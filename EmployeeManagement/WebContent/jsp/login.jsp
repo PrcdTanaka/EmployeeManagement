@@ -15,7 +15,7 @@
 		<html:form action="/MainAction" >
 			<div class="block">
 
-				<div>社員番号</div>
+<!-- 				<div>社員管理システム</div>	 -->
 
 				<div class="space"></div>
 
