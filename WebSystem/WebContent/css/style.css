@@ -6,7 +6,17 @@
 [class*="fontawesome-"]:before {
   font-family: 'FontAwesome', sans-serif;
 }
-
+.btn {
+	font-weight:bold;
+	text-decoration:none;
+	text-align:center;
+	padding:8px;
+	color:#fff;					/* •¶šF */
+	background-color:#49a9d4;	/* ”wŒiF */
+	width: 20%;
+	margin-left: 40%;
+	border-radius: 10px;		/* ŠpŠÛ */
+}
 /* Simple Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -121,3 +131,7 @@ td {	/*table“à‚Ìtd‚É‘Î‚µ‚Ä*/
 	height:25px;
 }
 
+#login {
+	margin-left:50%;
+	width: 10%;
+}
