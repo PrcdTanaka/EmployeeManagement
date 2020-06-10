@@ -31,7 +31,7 @@
 				</div>
 				<div>
 					<center>パスワード：
-						<html:text property="password"/>
+						<html:password property="password" value= ""/>
 					</center>
 				</div>
 

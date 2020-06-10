@@ -38,6 +38,7 @@ public final class MainForm extends ActionForm {
 		time_to = "";
 		button = "";
 		message = "";
+		password = "";
 		dtime = "";
 	}
 
