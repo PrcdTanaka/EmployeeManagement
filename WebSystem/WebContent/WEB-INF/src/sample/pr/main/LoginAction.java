@@ -142,7 +142,7 @@ public final class LoginAction extends Action {
 
 			if(dAction.getSyainName(lForm)) {
 				switch(button) {
-				case "syussya":
+				case "login":
 					clickBtnIn(lForm);
 					break;
 				case "taisya":
