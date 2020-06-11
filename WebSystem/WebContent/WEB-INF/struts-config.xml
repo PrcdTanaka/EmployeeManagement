@@ -13,8 +13,10 @@
 
     	<!-- 勤怠メイン画面 -->
 		<form-bean name="MainForm" type="sample.pr.main.MainForm"/>
+		<form-bean name="LoginForm" type="sample.pr.main.LoginForm"/>
 
     </form-beans>
+
 
 
 <!-- =========================================== Action Mapping Definitions -->
@@ -34,7 +36,18 @@
 			<forward name="view" path="/jsp/KintaiList.jsp"/>
 			<forward name="back" path="/jsp/Main.jsp" />
 		</action>
-
+		
+		<action
+			name="LoginForm"
+			path="/LoginAction"
+			type="sample.pr.main.LoginAction"
+			validate="false"
+			scope="request">
+			<forward name="message" path="/jsp/Message.jsp"/>
+			<forward name="view" path="/jsp/KintaiList.jsp"/>
+			<forward name="back" path="/jsp/Main.jsp" />
+		</action>
+		
     </action-mappings>
 
 

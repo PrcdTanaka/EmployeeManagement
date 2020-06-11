@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import sample.db.DbConnector;
-import sample.pr.main.MainForm;
+import sample.pr.main.LoginForm;
 import sample.utility.FileLoader;
 
 public class DbAction extends Object{
@@ -68,7 +68,7 @@ public class DbAction extends Object{
 	 * @param form メイン画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
-	public boolean getKintaiInfo(MainForm form) {
+	public boolean getKintaiInfo(LoginForm form) {
 		
 		boolean ret = true;
 		
@@ -112,7 +112,7 @@ public class DbAction extends Object{
 	 * @param form メイン画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
-	public boolean getSyainName(MainForm form) {
+	public boolean getSyainName(LoginForm form) {
 
 		boolean ret = false;
 
@@ -200,7 +200,7 @@ public class DbAction extends Object{
 	 * @param form メイン画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
-	public boolean getTimeFromTo(MainForm form) {
+	public boolean getTimeFromTo(LoginForm form) {
 
 		boolean ret = true;
 		String datetime = form.getTime_from();
@@ -298,7 +298,7 @@ public class DbAction extends Object{
 	 * @param form メイン画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
-	public boolean setTimeFrom(MainForm form) {
+	public boolean setTimeFrom(LoginForm form) {
 		
 		boolean ret = true;
 		String datetime = form.getTime_from();
@@ -388,7 +388,7 @@ public class DbAction extends Object{
 	 * @param form メイン画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
-	public boolean setTimeTo(MainForm form) {
+	public boolean setTimeTo(LoginForm form) {
 		return true;
 	}
 }

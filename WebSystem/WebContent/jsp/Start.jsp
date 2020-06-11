@@ -6,7 +6,7 @@
 
 <html:html>
 	<body>
-		<%// メイン画面へ遷移 %>
-		<logic:redirect page="/jsp/Main.jsp" />
+		<%// ログイン画面へ遷移 %>
+		<logic:redirect page="/jsp/login.jsp" />
 	</body>
 </html:html>

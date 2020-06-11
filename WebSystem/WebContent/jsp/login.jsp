@@ -16,10 +16,8 @@
 	</table>
 	
 	<body>
-		<html:form action="/MainAction" >
+		<html:form action="/LoginAction" >
 			<div class="block">
-
-				
 
 				<div class="space"></div>
 
