@@ -14,6 +14,7 @@
     	<!-- 勤怠メイン画面 -->
 		<form-bean name="MainForm" type="sample.pr.main.MainForm"/>
 		<form-bean name="LoginForm" type="sample.pr.main.LoginForm"/>
+		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
 
     </form-beans>
 
@@ -36,7 +37,7 @@
 			<forward name="view" path="/jsp/KintaiList.jsp"/>
 			<forward name="back" path="/jsp/Main.jsp" />
 		</action>
-		
+
 		<action
 			name="LoginForm"
 			path="/LoginAction"
@@ -49,7 +50,20 @@
 			<forward name="manager" path="/jsp/Main.jsp"/>
 			<forward name="back" path="/jsp/Main.jsp" />
 		</action>
-		
+
+		<action
+			name="PasswordForm"
+			path="/PasswordAction"
+			type="sample.pr.main.PasswordAction"
+			validate="false"
+			scope="request">
+			<forward name="message" path="/jsp/Main.jsp"/>
+			<forward name="logout" path="/jsp/login.jsp"/>
+			<forward name="login" path="/jsp.Main.jsp" />
+			<forward name="manager" path="/jsp/Main.jsp"/>
+			<forward name="back" path="/jsp/Main.jsp" />
+		</action>
+
     </action-mappings>
 
 

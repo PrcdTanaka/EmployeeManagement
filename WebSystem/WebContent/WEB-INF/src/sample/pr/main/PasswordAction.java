@@ -16,7 +16,7 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
 
-public final class LoginAction extends Action {
+public final class PasswordAction extends Action {
 
 	// DB接続用オブジェクト
 	private DbAction dba = new DbAction();
@@ -42,7 +42,7 @@ public final class LoginAction extends Action {
 	 * @throws IOException
 	 *             -
 	 */
-	public LoginAction() throws IOException {
+	public MainAction() throws IOException {
 
 	}
 
@@ -117,12 +117,12 @@ public final class LoginAction extends Action {
 		
 		// アクションフォームBeanより入力フォームのデータを取り出す処理
 		// フォーム情報をキャスト
-		LoginForm lForm = (LoginForm) frm;
+		MainForm mForm = (MainForm) frm;
 		
 		// フォームへ入力された情報をとりだす。
-		String syain_no = lForm.getSyain_no();
+		String syain_no = mForm.getSyain_no();
 		// クリックされたボタンの名称をアクションフォームから取得
-		String button = lForm.getButton();
+		String button = mForm.getButton();
 		
 		// 社員番号を整形
 		// 　　※桁数が4桁未満の場合は先頭から"0"埋め)<br>
@@ -140,10 +140,10 @@ public final class LoginAction extends Action {
 		try {
 			dAction = new DbAction();
 
-			if(dAction.getSyainName(lForm)) {
+			if(dAction.getSyainName(mForm)) {
 				switch(button) {
-				case "login":
-					clickBtnIn(lForm);
+				case "syussya":
+					clickBtnIn(mForm);
 					break;
 				case "taisya":
 					
@@ -161,7 +161,7 @@ public final class LoginAction extends Action {
 		 * 　　遷移先："message"<br>
 		 */
 			else {
-				lForm.setMessage("社員マスタに存在しない社員番号です。");
+				mForm.setMessage("社員マスタに存在しない社員番号です。");
 				return (map.findForward("message"));
 			}
 			
@@ -176,7 +176,7 @@ public final class LoginAction extends Action {
 		 * 　　　引数１："form"<br>
 		 * 　　　引数２：メイン画面アクションフォーム
 		 */
-		request.setAttribute("form", lForm);
+		request.setAttribute("form", mForm);
 		
 		/* 7.戻り値を返却する。<br>
 		 * 　7-1.遷移先情報取得処理をコール。<br>
@@ -210,7 +210,7 @@ public final class LoginAction extends Action {
 	 *            メイン画面アクションフォーム
 	 * @return 遷移先
 	 */
-	private String clickBtnIn(LoginForm form) {
+	private String clickBtnIn(MainForm form) {
 
 		form.setTime_from(time_get());
 		// 出社時間が入力されていなかったら...
@@ -230,7 +230,7 @@ public final class LoginAction extends Action {
 		}
 		// 出社時間が入力されていたら...
 		else {
-			
+			System.out.println("既に出社しています。");
 			form.setMessage("既に出社しています。");
 		}
 		forward = "message";
@@ -262,7 +262,7 @@ public final class LoginAction extends Action {
 	 *            メイン画面アクションフォーム
 	 * @return 遷移先
 	 */
-	private String clickBtnOut(LoginForm form) {
+	private String clickBtnOut(MainForm form) {
 
 		// 出退時間取得
 		boolean result = dba.getTimeFromTo(form);
@@ -297,7 +297,7 @@ public final class LoginAction extends Action {
 	 *            メイン画面アクションフォーム
 	 * @return 遷移先
 	 */
-	private String clickBtnView(LoginForm form) {
+	private String clickBtnView(MainForm form) {
 		
 		// 勤怠情報取得
 		boolean result = dba.getKintaiInfo(form);
