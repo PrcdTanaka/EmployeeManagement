@@ -24,7 +24,7 @@
 				<!-- 社員番号入力欄 -->
 				<div>
 					<center>　　社員No：
-						<html:text property="syain_no" maxlength="4" />
+						<html:text property="employee_no" maxlength="4" />
 					</center>
 				</div>
 				<div>
@@ -35,7 +35,7 @@
 
 				<div class="space"></div>
 				<br>
-				<!-- 出社ボタン -->
+				<!-- ログインボタン -->
 				<span><html:submit property="button" styleClass="btn" value="ログイン" styleId="login" /></span>
 
 			</div>

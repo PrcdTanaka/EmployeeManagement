@@ -3,44 +3,64 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="sample.pr.main.MainForm;" %>
 
+<%
+	MainForm mForm = new MainForm();
+	mForm.setManager("0");
+	String manager = mForm.getManager();
+%>
+				
 <html:html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title><bean:message key="login.title"/></title>
+		<title><bean:message key="main.title"/></title>
 		<html:base/>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/main.css"/> 
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<tr>
+			<html:form action="/MainAction" styleId="mform">
+				<p>ログインユーザ：
+					<bean:write name="MainForm" property="employee_name"
+						scope="request" ignore="true" />
+					<td align="left"><html:submit property="button" styleClass="btn" style="margin-left:3px;" value="ログアウト" styleId="logout" /></td>
+				</p>
+			</html:form>
+		</tr>
 	</head>
-	<table>
-		<center><h1>ログイン画面</h1></center>
-	</table>
-	
-	<body>
-		<html:form action="/MainAction" >
-			<div class="block">
+		<body>
+			<form id="frm1" name="frm1a" action="/jsp/Main.jsp">
+			
+			</form>
+			<br>
+			<div class="accbox" style="">
+			
+			<!--ラベル1-->
+			<label for="label1">社員管理</label>
+			<input type="checkbox" id="label1" class="cssacc" />
+			<div class="accshow">
+				<!--ここに隠す中身-->
+				<p class="link">
+					<li><a href="personal_information.html">ユーザ情報編集画面</a></li>
+					<span id="entry">
+						<li><a href="user_inforegistration.html">ユーザ情報登録画面</a></li>
+					</span>
+					<li><a id="sample" href="search.html">ユーザ検索画面</a></li>
+					<li><a href="passward.html">パスワード変更画面</a></li>
+					<li><a href="reference_info.html">参照情報画面</a></li>
+				</p>
+				<script type="text/javascript">
+					// 管理者フラグが無いなら（0）
+					// 「ユーザ情報登録画面」を非表示
+					if(<%= manager %>=="0"){
+						document.getElementById("entry").textContent = "";
+					}else{
 
-				
-
-				<div class="space"></div>
-
-				<!-- 社員番号入力欄 -->
-				<div>
-					<center>　　社員No：
-						<html:text property="syain_no" maxlength="4" />
-					</center>
+					}
+				</script>
 				</div>
-				<div>
-					<center>パスワード：
-						<html:password property="password" value= ""/>
-					</center>
-				</div>
-
-				<div class="space"></div>
-				<br>
-				<!-- 出社ボタン -->
-				<span><html:submit property="button" styleClass="btn" value="ログイン" styleId="login" /></span>
-
 			</div>
-		</html:form>
-	</body>
+			<!--//ラベル1-->
+		</body>
 </html:html>
