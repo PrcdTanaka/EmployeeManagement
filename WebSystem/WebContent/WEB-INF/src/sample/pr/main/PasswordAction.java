@@ -16,7 +16,7 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
 
-public final class LoginAction extends Action {
+public final class PasswordAction extends Action {
 
 	// DB接続用オブジェクト
 	private DbAction dba = new DbAction();
@@ -30,7 +30,7 @@ public final class LoginAction extends Action {
 	 * <p>
 	 * メイン画面アクションの初期設定を行う。
 	 * </p>
-	 * 
+	 *
 	 * 1.初期設定を行う。<br>
 	 * 　1-1.DB接続クラスのインスタンスを生成する。<br>
 	 * 　1-2.遷移先<br>
@@ -38,11 +38,11 @@ public final class LoginAction extends Action {
 	 * 2.例外発生時の処理。<br>
 	 * 　2-1.IOExceptionをthrowする。<br>
 	 * <br>
-	 * 
+	 *
 	 * @throws IOException
 	 *             -
 	 */
-	public LoginAction() throws IOException {
+	public PasswordAction() throws IOException {
 
 	}
 
@@ -50,7 +50,7 @@ public final class LoginAction extends Action {
 	 * <p>
 	 * クリックされたボタンを判定し、遷移先情報を返却する。
 	 * </p>
-	 * 
+	 *
 	 * 1.メイン画面のアクションフォーム情報をインプットパラメータ.アクションフォームから取得する。<br>
 	 * <br>
 	 * 2.クリックされたボタンの名称をアクションフォームから取得する。<br>
@@ -64,7 +64,7 @@ public final class LoginAction extends Action {
 	 * 3.社員名を取得する。<br>
 	 * 　3-1.社員名取得処理をコール。<br>
 	 * 　　クラス　：DbAction<br>
-	 * 　　メソッド：getEmployeeName()<br>
+	 * 　　メソッド：getSyainName()<br>
 	 * 　　　引数１：メイン画面アクションフォーム<br>
 	 * <br>
 	 * 4.社員名が取得できた場合の処理。<br>
@@ -102,54 +102,54 @@ public final class LoginAction extends Action {
 	 * 　　クラス　：ActionMapping<br>
 	 * 　　メソッド：findForward(遷移先)<br>
 	 * <br>
-	 * 
+	 *
 	 * @param map
 	 *            アクションマッピング<br>
 	 *            frm アクションフォーム<br>
 	 *            request リクエスト情報<br>
 	 *            response レスポンス情報<br>
 	 * @return 遷移先情報
-	 * 
+	 *
 	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
 
-		
-		
+
+
 		// アクションフォームBeanより入力フォームのデータを取り出す処理
 		// フォーム情報をキャスト
-		LoginForm lForm = (LoginForm) frm;
-		
+		MainForm mForm = (MainForm) frm;
+
 		// フォームへ入力された情報をとりだす。
-		String employee_no = lForm.getEmployee_no();
+		String syain_no = mForm.getSyain_no();
 		// クリックされたボタンの名称をアクションフォームから取得
-		String button = lForm.getButton();
-		
+		String button = mForm.getButton();
+
 		// 社員番号を整形
 		// 　　※桁数が4桁未満の場合は先頭から"0"埋め)<br>
-		if(employee_no.length() < 4) {
-			for(int length = employee_no.length(); length < 4; length++ ) {
-				employee_no = "0" + employee_no;
+		if(syain_no.length() < 4) {
+			for(int length = syain_no.length(); length < 4; length++ ) {
+				syain_no = "0" + syain_no;
 			}
 		}
-		
+
 		// 社員名の取得
 		// 　　クラス　：DbAction<br>
-		// 　　メソッド：getEmployeeName()<br>
+		// 　　メソッド：getSyainName()<br>
 			// 社員名を取得できた場合
 		DbAction dAction;
 		try {
 			dAction = new DbAction();
 
-			if(dAction.getEmployeeName(lForm)) {
+			if(dAction.getSyainName(mForm)) {
 				switch(button) {
-				case "login":
-					clickBtnIn(lForm);
+				case "syussya":
+					clickBtnIn(mForm);
 					break;
 				case "taisya":
-					
+
 					break;
 				case "sansyou":
-					
+
 					break;
 				}
 			}
@@ -161,10 +161,10 @@ public final class LoginAction extends Action {
 		 * 　　遷移先："message"<br>
 		 */
 			else {
-				lForm.setMessage("社員マスタに存在しない社員番号です。");
+				mForm.setMessage("社員マスタに存在しない社員番号です。");
 				return (map.findForward("message"));
 			}
-			
+
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -176,8 +176,8 @@ public final class LoginAction extends Action {
 		 * 　　　引数１："form"<br>
 		 * 　　　引数２：メイン画面アクションフォーム
 		 */
-		request.setAttribute("form", lForm);
-		
+		request.setAttribute("form", mForm);
+
 		/* 7.戻り値を返却する。<br>
 		 * 　7-1.遷移先情報取得処理をコール。<br>
 		 * 　　クラス　：ActionMapping<br>
@@ -190,7 +190,7 @@ public final class LoginAction extends Action {
 	 * <p>
 	 * 出社メソッド
 	 * </p>
-	 * 
+	 *
 	 * 1.出退時間を取得する。<br>
 	 * 　1-1.出退時間取得処理を呼び出し<br>
 	 * 　　クラス　：DbAction<br>
@@ -205,30 +205,32 @@ public final class LoginAction extends Action {
 	 * 3.出社時間登録済みの場合<br>
 	 * 　3-1.メッセージ出力<br>
 	 * 　　"既に出社しています。"<br>
-	 * 
+	 *
 	 * @param form
 	 *            メイン画面アクションフォーム
 	 * @return 遷移先
 	 */
-	private String clickBtnIn(LoginForm form) {
+	private String clickBtnIn(MainForm form) {
 
+		form.setTime_from(time_get());
 		// 出社時間が入力されていなかったら...
 		if (dba.getTimeFromTo(form)) {
-			
+
 			/*
 			String day = String.format("%tY年 %tm月 %td日", time_get().substring(0,8));
 				//	time_get().substring(0,8);
 			String time = time_get().substring(9);*/
-			
+
 			Date today = new Date();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
-			
+
 			dba.setTimeFrom(form);
-			form.setMessage(form.getEmployee_name() + "　出社しました。");
+			form.setMessage(form.getSyain_name() + "　出社しました。");
+			form.setDtime(format.format(today));
 		}
 		// 出社時間が入力されていたら...
 		else {
-			
+			System.out.println("既に出社しています。");
 			form.setMessage("既に出社しています。");
 		}
 		forward = "message";
@@ -240,7 +242,7 @@ public final class LoginAction extends Action {
 	 * <p>
 	 * 退社メソッド
 	 * </p>
-	 * 
+	 *
 	 * 1.出退時間を取得する。<br>
 	 * 　1-1.出退時間取得処理を呼び出し<br>
 	 * 　　クラス　：DbAction<br>
@@ -255,12 +257,12 @@ public final class LoginAction extends Action {
 	 * 　　メソッド：setTimeTo()<br>
 	 * 　3-2.メッセージ出力<br>
 	 * 　　"退社しました。"<br>
-	 * 
+	 *
 	 * @param form
 	 *            メイン画面アクションフォーム
 	 * @return 遷移先
 	 */
-	private String clickBtnOut(LoginForm form) {
+	private String clickBtnOut(MainForm form) {
 
 		// 出退時間取得
 		boolean result = dba.getTimeFromTo(form);
@@ -278,7 +280,7 @@ public final class LoginAction extends Action {
 
 	/**
 	 * 参照メソッド
-	 * 
+	 *
 	 * 1.勤怠情報取得メソッド<br>
 	 * 　クラス　：DbAction<br>
 	 * 　メソッド：getKintaiInfo()<br>
@@ -295,12 +297,12 @@ public final class LoginAction extends Action {
 	 *            メイン画面アクションフォーム
 	 * @return 遷移先
 	 */
-	private String clickBtnView(LoginForm form) {
-		
+	private String clickBtnView(MainForm form) {
+
 		// 勤怠情報取得
 		boolean result = dba.getKintaiInfo(form);
-		
-		
+
+
 		if(result) {
 			return "view";
 		}
@@ -308,27 +310,27 @@ public final class LoginAction extends Action {
 			System.out.println("勤怠情報がありません。");
 			return "message";
 		}
-		
+
 	}
 	public static String time_get() {
 		LocalDateTime date1 = LocalDateTime.now();
 		// 日付の取得
-		DateTimeFormatter dtformat1 = 
+		DateTimeFormatter dtformat1 =
 				DateTimeFormatter.ofPattern("yyyy年MM月dd日");
 		String day = dtformat1.format(date1);
 		// 時間の取得
-		DateTimeFormatter dtformat2 = 
+		DateTimeFormatter dtformat2 =
 				DateTimeFormatter.ofPattern("HHmm");
 		String time = dtformat2.format(date1);
-		
+
 		// 日付と時間の取得
-		DateTimeFormatter dtformat3 = 
+		DateTimeFormatter dtformat3 =
 				DateTimeFormatter.ofPattern("yyyyMMdd,HHmm");
 		String datetime = dtformat3.format(date1);
 		System.out.println(day);
 		System.out.println(time);
 		System.out.println(datetime);
-		
+
 		return datetime;
 	}
 }
