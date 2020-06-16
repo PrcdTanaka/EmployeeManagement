@@ -25,19 +25,19 @@
 
 
 				<div>
-				   <center>古いパスワード<input type="text"password="password"></center>
+				   <center>古いパスワード</center>
 				  			<html:password property="password" value= ""/>
 				   </center>
 				</div>
 
 				<div>
-				    <center>新しいパスワード<input type="text"password="password"></center>
+				    <center>新しいパスワード</center>
 				  			<html:password property="password" value= ""/>
 				 </center>
 				</div>
 
 				<div>
-				    <center>新しいパスワード<input type="text"password="password"></center>
+				    <center>新しいパスワード</center>
 				  			<html:password property="password" value= ""/>
 					</center>
 				</div>
