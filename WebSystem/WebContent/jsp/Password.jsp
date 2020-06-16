@@ -23,7 +23,6 @@
 				<div class="space"></div>
 
 
-
 				<div>
 				   <center>古いパスワード</center>
 				  			<html:password property="password" value= ""/>
