@@ -1,3 +1,9 @@
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="sample.pr.main.SearchForm;" %>
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="main.css">
 <link rel="stylesheet" type="text/css" href="botton_controler.css">
@@ -23,7 +29,7 @@ h2{
 
 .search {
 	position:relative;
-	
+
 	display: inline-block;
 }
 .sarch btn-open{
@@ -34,51 +40,46 @@ h2{
 
 
 
-<html lang="ja">
+<html:html>
+	<head>
+	<center><h1>ãƒ¦ãƒ¼ã‚¶æ¤œç´¢</h1></center>
+	</head>
 	<body>
-		<h1>ƒ†[ƒU[ŒŸõ</h1>
+	<html:form action="/SearchAction">
 		<span class="center">
-			<div class="botton_control">
-				<input type="text" name="search" class="search"style="font-size:20px;width:300px; height:30px;">
-				<input type="radio" class="radios" id="open" name="sarch"/><label class="sarch btn-open" for="open"style="position:absolute;left:63%;top:15.1%;">ŒŸõ</label>
-				<input type="radio" class="radios" id="close" name="sarch" checked="checked" /><label class="sarch btn-close" for="close"style="position:absolute;left:63%;top:15.1%;">ŒŸõ</label>
+				<center><html:text property="text" maxlength="12" />
+				<html:submit property="button" value="æ¤œç´¢" /></center>
 				<p>
-				<input type="radio" name="q1" value="ŽÐˆõ”Ô†"> ŽÐˆõ”Ô†
-				<input type="radio" name="q1" value="–¼‘O"> –¼‘O
-				<input type="radio" name="q1" value="‹Zp•”"> ‹Zp•”
-				</p>
-				<div class="sarch_ans">
-					<h2>ŒŸõŒ‹‰Ê</h2>
+				<html:radio property="radio" value="number" />ç¤¾å“¡No
+				<html:radio property="radio" value="name" />æ°å
+				<html:radio property="radio" value="department"/>æŠ€è¡“éƒ¨
+					<h2>æ¤œç´¢çµæžœ</h2>
 					<table border="1" align = "center" style="border-collapse: collapse" >
 						<tr bgcolor="#b0c4de">
-							<td>ŽÐˆõ”Ô†</td>
-							<td text-align:center>–¼‘O</td>
-							<td text-align:center>‹Zp•”</td>
+							<td>ï¿½Ðˆï¿½ï¿½Ôï¿½</td>
+							<td text-align:center>ï¿½ï¿½ï¿½O</td>
+							<td text-align:center>ï¿½Zï¿½pï¿½ï¿½</td>
 						</tr>
 						<tr>
 							 <td align="right">0666</td>
-							 <td><a href="ŽQÆî•ñ‰æ–Ê.html">Œã“¡‹ž—C</a></td>
-							 <td>‘æ2‹Zp•”</td>
+							 <td><a href="ï¿½Qï¿½Æï¿½ï¿½ï¿½ï¿½.html">ï¿½ã“¡ï¿½ï¿½ï¿½C</a></td>
+							 <td>ï¿½ï¿½2ï¿½Zï¿½pï¿½ï¿½</td>
 						</tr>
 						<tr>
-							<td align="right">0777</td><td><a href="ŽQÆî•ñ‰æ–Ê.html">Œã“¡‰E‹ž</a></td>
-							<td>‘æ3‹Zp•”</td>
+							<td align="right">0777</td><td><a href="ï¿½Qï¿½Æï¿½ï¿½ï¿½ï¿½.html">ï¿½ã“¡ï¿½Eï¿½ï¿½</a></td>
+							<td>ï¿½ï¿½3ï¿½Zï¿½pï¿½ï¿½</td>
 						</tr>
 						<tr>
 							<td align="right">0888</td>
-							<td><a href="ŽQÆî•ñ‰æ–Ê.html">Œã“¡‹ž</a></td>
-							<td>‘æ4‹Zp•”</td>
+							<td><a href="ï¿½Qï¿½Æï¿½ï¿½ï¿½ï¿½.html">ï¿½ã“¡ï¿½ï¿½</a></td>
+							<td>ï¿½ï¿½4ï¿½Zï¿½pï¿½ï¿½</td>
 						</tr>
 					</table>
-				</div>
-				
-			</div>
-			
-			
 		</span>
-		
+	</html:form>
+
 		<div>
-			<input type="button" class="btn" value="–ß‚é"onclick ="history.back()"></input>
+			<input type="button" class="btn" value="ï¿½ß‚ï¿½"onclick ="history.back()"></input>
 		</div>
 	</body>
-</html>
+</html:html>

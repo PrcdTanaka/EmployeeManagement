@@ -15,6 +15,7 @@
 		<form-bean name="MainForm" type="sample.pr.main.MainForm"/>
 		<form-bean name="LoginForm" type="sample.pr.main.LoginForm"/>
 		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
+		<form-bean name="SearchForm" type="sample.pr.main.SearchForm"/>
 
     </form-beans>
 
@@ -51,7 +52,7 @@
 			<forward name="back" path="/jsp/Main.jsp" />
 		</action>
 
-		
+
 		<action
 			name="PasswordForm"
 			path="/PasswordAction"
@@ -65,6 +66,15 @@
 			<forward name="back" path="/jsp/Main.jsp" />
 		</action>
 
+		<action
+			name="SearchForm"
+			path="/SearchAction"
+			type="sample.pr.main.SearchAction"
+			validate="false"
+			scope="request">
+			<forward name="text" path="/jsp/search.jsp"/>
+
+		</action>
     </action-mappings>
 
 
