@@ -64,7 +64,7 @@ public final class LoginAction extends Action {
 	 * 3.社員名を取得する。<br>
 	 * 　3-1.社員名取得処理をコール。<br>
 	 * 　　クラス　：DbAction<br>
-	 * 　　メソッド：getSyainName()<br>
+	 * 　　メソッド：getEmployeeName()<br>
 	 * 　　　引数１：メイン画面アクションフォーム<br>
 	 * <br>
 	 * 4.社員名が取得できた場合の処理。<br>
@@ -120,27 +120,27 @@ public final class LoginAction extends Action {
 		LoginForm lForm = (LoginForm) frm;
 		
 		// フォームへ入力された情報をとりだす。
-		String syain_no = lForm.getSyain_no();
+		String employee_no = lForm.getEmployee_no();
 		// クリックされたボタンの名称をアクションフォームから取得
 		String button = lForm.getButton();
 		
 		// 社員番号を整形
 		// 　　※桁数が4桁未満の場合は先頭から"0"埋め)<br>
-		if(syain_no.length() < 4) {
-			for(int length = syain_no.length(); length < 4; length++ ) {
-				syain_no = "0" + syain_no;
+		if(employee_no.length() < 4) {
+			for(int length = employee_no.length(); length < 4; length++ ) {
+				employee_no = "0" + employee_no;
 			}
 		}
 		
 		// 社員名の取得
 		// 　　クラス　：DbAction<br>
-		// 　　メソッド：getSyainName()<br>
+		// 　　メソッド：getEmployeeName()<br>
 			// 社員名を取得できた場合
 		DbAction dAction;
 		try {
 			dAction = new DbAction();
 
-			if(dAction.getSyainName(lForm)) {
+			if(dAction.getEmployeeName(lForm)) {
 				switch(button) {
 				case "login":
 					clickBtnIn(lForm);
@@ -212,7 +212,6 @@ public final class LoginAction extends Action {
 	 */
 	private String clickBtnIn(LoginForm form) {
 
-		form.setTime_from(time_get());
 		// 出社時間が入力されていなかったら...
 		if (dba.getTimeFromTo(form)) {
 			
@@ -225,8 +224,7 @@ public final class LoginAction extends Action {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
 			
 			dba.setTimeFrom(form);
-			form.setMessage(form.getSyain_name() + "　出社しました。");
-			form.setDtime(format.format(today));
+			form.setMessage(form.getEmployee_name() + "　出社しました。");
 		}
 		// 出社時間が入力されていたら...
 		else {

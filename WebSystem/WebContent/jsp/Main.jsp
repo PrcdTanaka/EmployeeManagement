@@ -10,7 +10,7 @@
 	mForm.setManager("0");
 	String manager = mForm.getManager();
 %>
-				
+
 <html:html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
