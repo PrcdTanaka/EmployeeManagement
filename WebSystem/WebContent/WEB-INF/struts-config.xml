@@ -51,6 +51,7 @@
 			<forward name="back" path="/jsp/Main.jsp" />
 		</action>
 
+		
 		<action
 			name="PasswordForm"
 			path="/PasswordAction"

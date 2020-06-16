@@ -20,13 +20,13 @@
 		<link rel="stylesheet" type="text/css" href="../css/main.css"/> 
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<tr>
-			<html:form action="/MainAction" styleId="mform">
-				<p>ログインユーザ：
-					<bean:write name="MainForm" property="employee_name"
-						scope="request" ignore="true" />
+				<html:form action="/MainAction" styleId="mform">
+			<p>ログインユーザ：
+				<bean:write name="LoginForm" property="employee_name"
+					scope="request" ignore="true" />
 					<td align="left"><html:submit property="button" styleClass="btn" style="margin-left:3px;" value="ログアウト" styleId="logout" /></td>
-				</p>
-			</html:form>
+			</p>
+				</html:form>
 		</tr>
 	</head>
 		<body>
