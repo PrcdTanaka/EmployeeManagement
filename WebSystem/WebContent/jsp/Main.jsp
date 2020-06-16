@@ -20,13 +20,17 @@
 		<link rel="stylesheet" type="text/css" href="../css/main.css"/> 
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<tr>
-				<html:form action="/MainAction" styleId="mform">
-			<p>ログインユーザ：
-				<bean:write name="LoginForm" property="employee_name"
-					scope="request" ignore="true" />
-					<td align="left"><html:submit property="button" styleClass="btn" style="margin-left:3px;" value="ログアウト" styleId="logout" /></td>
-			</p>
-				</html:form>
+			<html:form action="/MainAction" styleId="mform">
+				<p>ログインユーザ：
+					<bean:write name="LoginForm" property="employee_name"
+						scope="request" ignore="true" />
+					<html:hidden property="employee_no" name="LoginForm"/>
+					<td align="left">
+						<html:submit property="button" styleClass="btn"
+							 style="margin-left:3px;" value="ログアウト" styleId="logout" />
+					</td>
+				</p>
+			</html:form>
 		</tr>
 	</head>
 		<body>
@@ -34,7 +38,7 @@
 			
 			</form>
 			<br>
-			<div class="accbox" style="">
+			<div class="accbox">
 			
 			<!--ラベル1-->
 			<label for="label1">社員管理</label>
