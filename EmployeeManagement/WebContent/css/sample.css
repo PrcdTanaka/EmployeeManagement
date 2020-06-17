@@ -1,0 +1,52 @@
+.cp_menu {
+	max-width: 360px;
+	margin: 0 auto;
+	padding: 0;
+}
+.cp_menu a {
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	color: #000000;
+	line-height: 1;
+}
+.cp_menu label {
+	display: block;
+	position: relative;
+	margin: 0 0 2px 0;
+	padding: 12px;
+	line-height: 1;
+	color: #000000;
+	background: #FFCCCC;
+	cursor: pointer;
+}
+.cp_menu label::before {
+	position: absolute;
+	content: '¥';
+	color: #000000f;
+	right: 0.5em;
+	top: 25%;
+}
+.cp_menu input {
+	display: none;
+}
+.cp_menu ul {
+	margin: 0;
+	padding: 0;
+	background: #FFCCCC;
+	list-style: none;
+}
+.cp_menu li {
+	overflow-y: hidden;
+	max-height: 0;
+	transition: all 0.5s;
+}
+/*ƒŠƒXƒg‚ª‘‚¦‚½‚çUL‚²‚Æ‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢*/
+#cp_menu_bar1:checked ~ #link1 li,
+#cp_menu_bar2:checked ~ #link2 li, 
+#cp_menu_bar3:checked ~ #link3 li, 
+#cp_menu_bar4:checked ~ #link4 li,
+#cp_menu_bar5:checked ~ #link5 li {	
+	max-height: 46px;
+	opacity: 1;
+}

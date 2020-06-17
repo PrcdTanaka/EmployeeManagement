@@ -1,0 +1,43 @@
+.sarch {
+    color: #fff;
+    background:#49a9d4;
+    padding: .3em .5em;
+    margin-bottom: .3em;
+    border-radius: .3em;
+    text-align: center;
+    display: table; 
+}
+.sarch:hover {
+    cursor: pointer;    
+}
+.sarch:active {
+    background: #49a9d4cc;
+}
+
+
+.botton_control .radios{
+    display: none;
+}
+/* button control */
+.botton_control #close:checked ~ .btn-close {
+    display: none;
+}
+.botton_control #close:checked ~ .btn-open {
+    display: table;
+    transition: 0.5s;
+}
+.botton_control #open:checked ~ .btn-close {
+    
+    transition: 0.5s;
+}
+.botton_control #open:checked ~ .btn-open {
+    display: none;
+}
+/* content control */
+.botton_control #close:checked ~ .sarch_ans {
+    display: none;
+}
+.botton_control #open:checked ~ .sarch_ans {
+    display: block;
+}
+Copy

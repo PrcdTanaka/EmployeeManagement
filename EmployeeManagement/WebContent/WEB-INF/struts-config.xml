@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+<!-- ================================================ Form Bean Definitions -->
+
+    <form-beans>
+
+    	<!-- ActionFormの定義 -->
+
+    	<!-- 勤怠メイン画面 -->
+		<form-bean name="MainForm" type="pr.main.MainForm"/>
+
+    </form-beans>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+	<action-mappings>
+
+    	<!-- Actionの定義 -->
+
+		<!-- 勤怠メイン画面 -->
+		<action
+			name="MainForm"
+			path="/MainAction"
+			type="pr.main.MainAction"
+			validate="false"
+			scope="request">
+			<forward name="message" path="/WebContent/jsp/Message.jsp"/>
+			<forward name="view" path="/WebContent/jsp/KintaiList.jsp"/>
+		</action>
+
+    </action-mappings>
+
+
+<!-- ======================================== Message Resources Definitions -->
+
+    <message-resources parameter="MessageResources" />
+
+
+</struts-config>
+
