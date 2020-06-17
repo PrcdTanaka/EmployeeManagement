@@ -9,7 +9,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="stylesheet"type="text/css"href="sample.css"/>
 		<html lang="ja">
-		<link rel="stylesheet" type="text/css" href="main.css">
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
 
   	<table>
@@ -38,12 +39,10 @@
 				<div class="space"></div>
 				<br>
 				<!-- 変更ボタン -->
-   	            <Center>
-   	            	<input type="button" class="btn" value="変更" onclick =""style="font-size:25px;"></input>
-   	            </Center>
+				<input type="button" class="btn" style="margin-top:3px;" value="変更" onclick =""style="font-size:25px;"></input>
 
     			<!-- 戻るボタン -->
-    			<Center><input type="button" class="btn" value="戻る" onclick = "location.href='main.jsp'" style="font-size:25px;"></input></Center>
+    			<input type="button" class="btn" style="margin-top:3px;" value="戻る" onclick = "location.href='main.jsp'" style="font-size:25px;"></input>
 
  			 </div>
    		 </html:form>
