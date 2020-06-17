@@ -21,21 +21,19 @@
 			<div class="block">
 
 				<div class="space"></div>
-
-
+				<br>
+				<br>
+				<br>
 				<div>
-				   <center>古いパスワード</center>
-				  	<html:password property="password" value= ""/>
+				    <center>  古いパスワード：<html:password property="password" value= ""/></center>
 				</div>
-
+				<br>
 				<div>
-				    <center>新しいパスワード</center>
-				  	<html:password property="password" value= ""/>
+				    <center>新しいパスワード：<html:password property="password" value= ""/></center>
 				</div>
-
+				<br>
 				<div>
-				    <center>新しいパスワード</center>
-				  	<html:password property="password" value= ""/>
+				    <center>新しいパスワード：<html:password property="password" value= ""/></center>
 				</div>
 				<div class="space"></div>
 				<br>
