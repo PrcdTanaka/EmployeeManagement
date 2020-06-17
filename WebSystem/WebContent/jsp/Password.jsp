@@ -25,31 +25,27 @@
 
 				<div>
 				   <center>古いパスワード</center>
-				  			<html:password property="password" value= ""/>
+				  	<html:password property="password" value= ""/>
 				</div>
 
 				<div>
 				    <center>新しいパスワード</center>
-				  			<html:password property="password" value= ""/>
+				  	<html:password property="password" value= ""/>
 				</div>
 
 				<div>
 				    <center>新しいパスワード</center>
-				  			<html:password property="password" value= ""/>
+				  	<html:password property="password" value= ""/>
 				</div>
 				<div class="space"></div>
 				<br>
-				<!-- 変更ボタン -->>
-				<Center>
-					<input type="button" class="btn" value="変更" onclick =""style="font-size:25px;">
-					</input>
-				</Center>
+				<!-- 変更ボタン -->
+   	            <Center>
+   	            	<input type="button" class="btn" value="変更" onclick =""style="font-size:25px;"></input>
+   	            </Center>
 
-    			<!-- 戻るボタン -->>
-    			<Center>
-    				<input type="button" class="btn" value="戻る" onclick = "location.href='main.jsp'" style="font-size:25px;">
-    				</input>
-    			</Center>
+    			<!-- 戻るボタン -->
+    			<Center><input type="button" class="btn" value="戻る" onclick = "location.href='main.jsp'" style="font-size:25px;"></input></Center>
 
  			 </div>
    		 </html:form>
