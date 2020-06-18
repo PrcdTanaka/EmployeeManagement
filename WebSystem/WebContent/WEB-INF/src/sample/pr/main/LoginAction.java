@@ -177,6 +177,7 @@ public final class LoginAction extends Action {
 		 * 　　　引数２：メイン画面アクションフォーム
 		 */
 		request.setAttribute("form", lForm);
+		request.removeAttribute("employee_no");
 		
 		/* 7.戻り値を返却する。<br>
 		 * 　7-1.遷移先情報取得処理をコール。<br>

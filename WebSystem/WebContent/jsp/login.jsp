@@ -29,7 +29,7 @@
 				</div>
 				<div>
 					<center>パスワード：
-						<html:password property="password" value= ""/>
+						<html:password property="password" value= "" />
 					</center>
 				</div>
 
