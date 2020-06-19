@@ -3,7 +3,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="sample.pr.main.MainForm;" %>
+<%@ page import="sample.pr.main.MainForm" %>
 
 <%
 	MainForm mForm = new MainForm();
@@ -51,7 +51,7 @@
 						<li><a href="user_inforegistration.html">ユーザ情報登録画面</a></li>
 					</span>
 					<li><a id="sample" href="search.html">ユーザ検索画面</a></li>
-					<li><a href="passward.html">パスワード変更画面</a></li>
+					<li><a href="Password.jsp">パスワード変更画面</a></li>
 					<li><a href="reference_info.html">参照情報画面</a></li>
 				</p>
 				<script type="text/javascript">
