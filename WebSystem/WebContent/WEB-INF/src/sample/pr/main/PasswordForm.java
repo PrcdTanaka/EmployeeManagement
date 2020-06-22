@@ -62,10 +62,15 @@ public final class PasswordForm extends ActionForm {
 	 * メイン画面アクションフォームに社員番号を設定する。
 	 * </p>
 	 *
+<<<<<<< HEAD
 	 * @param employee_no 社員番号
+=======
+	 * @param Employee_no 社員番号
+>>>>>>> refs/remotes/origin/development
 	 */
-	public void setEmployee_no(String employee_no) {
-		this.employee_no = employee_no;
+
+	public void setEmployee_no(String Employee_no) {
+		this.employee_no = Employee_no;
 	}
 
 	/**
@@ -86,10 +91,14 @@ public final class PasswordForm extends ActionForm {
 	 * メイン画面アクションフォームに社員氏名を設定する。
 	 * </p>
 	 *
+<<<<<<< HEAD
 	 * @param employee_name 社員氏名
+=======
+	 * @param Employee_name 社員氏名
+>>>>>>> refs/remotes/origin/development
 	 */
-	public void setEmployee_name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setEmployee_name(String Employee_name) {
+		this.employee_name = Employee_name;
 	}
 
 	/**

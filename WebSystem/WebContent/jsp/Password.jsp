@@ -5,6 +5,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.MainForm" %>
 
+
 <html:html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,6 +23,12 @@
   		<html:form action="/PasswordAction" >
 			<html:hidden property="employee_name" name="PasswordForm"/>
 			<div class="block">
+
+				<p>ログインユーザ：
+					<bean:write name="LoginForm" property="employee_name"
+						scope="request" ignore="true" />
+
+
 
 				<div class="space"></div>
 				<br>
@@ -44,7 +51,9 @@
 				<input type="button" class="btn" style="margin-top:3px;" value="変更" onclick =""style="font-size:25px;"></input>
 
     			<!-- 戻るボタン -->
-    			<input type="button" class="btn" style="margin-top:3px;" value="戻る" onclick = "location.href='main.jsp'" style="font-size:25px;"></input>
+    			<FORM>
+				<INPUT type="button"class="btn" style="margin-top:3px;" value="戻る" onClick="history.back()">
+				</FORM>
 
  			 </div>
    		 </html:form>
