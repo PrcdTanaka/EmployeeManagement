@@ -16,11 +16,11 @@ public final class MainAction extends Action {
 
 	// DB接続用オブジェクト
 	private DbAction dba = new DbAction();
+	private LoginForm lForm = new LoginForm();
 
 	// 遷移先
 	private String forward;
 
-	DbAction dbaction = new DbAction();
 
 	/**
 	 * <p>
@@ -115,6 +115,8 @@ public final class MainAction extends Action {
 		// フォーム情報をキャスト
 		MainForm mForm = (MainForm) frm;
 		
+		String aaaa = request.getParameter("employee_name");
+		
 		// フォームへ入力された情報をとりだす。
 		String employee_no = mForm.getEmployee_no();
 		// クリックされたボタンの名称をアクションフォームから取得
@@ -127,6 +129,7 @@ public final class MainAction extends Action {
 				employee_no = "0" + employee_no;
 			}
 		}
+		
 		
 		// 社員名の取得
 		// 　　クラス　：DbAction<br>

@@ -12,7 +12,9 @@
     	<!-- ActionFormの定義 -->
 
     	<!-- 勤怠メイン画面 -->
-		<form-bean name="MainForm" type="sample.pr.main.MainForm"/>
+		<form-bean name="MainForm" type="sample.pr.main.MainForm">
+			<form-property name="userData" type="java.util.LinkedHashMap" />
+		</form-bean>
 		<form-bean name="LoginForm" type="sample.pr.main.LoginForm"/>
 		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
 		<form-bean name="SearchForm" type="sample.pr.main.SearchForm"/>

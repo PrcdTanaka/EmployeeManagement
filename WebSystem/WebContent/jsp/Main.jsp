@@ -24,7 +24,9 @@
 				<p>ログインユーザ：
 					<bean:write name="LoginForm" property="employee_name"
 						scope="request" ignore="true" />
-					<html:hidden property="employee_no" name="LoginForm"/>
+					<html:hidden property="employee_name" name="LoginForm"/>
+					<html:hidden property="link" value="Link" />
+					
 					<td align="left">
 						<html:submit property="button" styleClass="btn"
 							 style="margin-left:3px;" value="ログアウト" styleId="logout" />
@@ -38,21 +40,49 @@
 			
 			</form>
 			<br>
-			<div class="accbox">
 			
+			<html:form action="/MainAction">
+			<html:password property="password" value= "" />
+			<div class="accbox">
 			<!--ラベル1-->
 			<label for="label1">社員管理</label>
 			<input type="checkbox" id="label1" class="cssacc" />
 			<div class="accshow">
 				<!--ここに隠す中身-->
 				<p class="link">
-					<li><a href="personal_information.html">ユーザ情報編集画面</a></li>
+					<li>
+						<html:link action="/MainAction">ユーザ情報編集画面
+							<html:param name="employee_no"><bean:write name="LoginForm" property="employee_no"/></html:param>
+							<html:param name="link">edit</html:param>
+						</html:link>
+					</li>
+					
 					<span id="entry">
-						<li><a href="user_inforegistration.html">ユーザ情報登録画面</a></li>
+						<li>
+							<html:link action="/MainAction">ユーザ情報登録画面
+								<html:param name="employee_no"><bean:write name="LoginForm" property="employee_no"/></html:param>
+								<html:param name="link">register</html:param>
+							</html:link>
+						</li>
 					</span>
-					<li><a id="sample" href="search.html">ユーザ検索画面</a></li>
-					<li><a href="Password.jsp">パスワード変更画面</a></li>
-					<li><a href="reference_info.html">参照情報画面</a></li>
+					<li>
+						<html:link action="/MainAction">ユーザ検索画面
+							<html:param name="employee_no"><bean:write name="LoginForm" property="employee_no"/></html:param>
+							<html:param name="link">search</html:param>
+						</html:link>
+					</li>
+					<li>
+						<html:link action="/MainAction">パスワード変更画面
+							<html:param name="employee_no"><bean:write name="LoginForm" property="employee_no"/></html:param>
+							<html:param name="link">password</html:param>
+						</html:link>
+					</li>
+					<li>
+						<html:link action="/MainAction">参照情報画面
+							<html:param name="employee_no"><bean:write name="LoginForm" property="employee_no"/></html:param>
+							<html:param name="link">reference</html:param>
+						</html:link>
+					</li>
 				</p>
 				<script type="text/javascript">
 					// 管理者フラグが無いなら（0）
@@ -66,5 +96,7 @@
 				</div>
 			</div>
 			<!--//ラベル1-->
+			</html:form>
+			
 		</body>
 </html:html>

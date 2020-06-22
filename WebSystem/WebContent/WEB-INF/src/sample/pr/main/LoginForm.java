@@ -1,5 +1,7 @@
 package sample.pr.main;
 
+import java.util.Map;
+
 import org.apache.struts.action.ActionForm;
 
 public final class LoginForm extends ActionForm {
@@ -19,6 +21,8 @@ public final class LoginForm extends ActionForm {
 	private String message;
 	/** 管理者フラグ */
 	private String manager;
+	
+	private Map<String, String> user;
 
 	/**
 	 * 初期化処理。
@@ -183,4 +187,5 @@ public final class LoginForm extends ActionForm {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
+	
 }
