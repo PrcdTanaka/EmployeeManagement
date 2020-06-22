@@ -4,11 +4,12 @@
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.MainForm" %>
+<%@ page import="sample.pr.main.LoginForm" %>
+<%@ page import="sample.pr.main.MainForm" %>
 
 <%
-	MainForm mForm = new MainForm();
-	mForm.setManager("0");
-	String manager = mForm.getManager();
+	LoginForm lForm = new LoginForm();
+	String manager = lForm.getManager();
 %>
 
 <html:html>
@@ -24,7 +25,9 @@
 				<p>ログインユーザ：
 					<bean:write name="LoginForm" property="employee_name"
 						scope="request" ignore="true" />
-					<html:hidden property="employee_no" name="LoginForm"/>
+					<html:hidden property="employee_name" name="LoginForm"/>
+					<html:hidden property="link" value="Link" />
+					
 					<td align="left">
 						<html:submit property="button" styleClass="btn"
 							 style="margin-left:3px;" value="ログアウト" styleId="logout" />
@@ -38,6 +41,9 @@
 
 			</form>
 			<br>
+			
+			<html:form action="/MainAction">
+			<html:password property="password" value= "" />
 			<div class="accbox">
 
 			<!--ラベル1-->
@@ -48,7 +54,12 @@
 				<p class="link">
 					<li><a href="Personal_information.jsp">ユーザ情報編集画面</a></li>
 					<span id="entry">
-						<li><a href="user_inforegistration.html">ユーザ情報登録画面</a></li>
+						<li>
+							<html:link action="/MainAction">ユーザ情報登録画面
+								<html:param name="employee_no"><bean:write name="LoginForm" property="employee_no"/></html:param>
+								<html:param name="link">register</html:param>
+							</html:link>
+						</li>
 					</span>
 					<li><a id="sample" href="search.html">ユーザ検索画面</a></li>
 					<li><a href="Password.jsp">パスワード変更画面</a></li>
@@ -66,5 +77,7 @@
 				</div>
 			</div>
 			<!--//ラベル1-->
+			</html:form>
+			
 		</body>
 </html:html>

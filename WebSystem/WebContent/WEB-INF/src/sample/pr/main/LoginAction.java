@@ -119,6 +119,7 @@ public final class LoginAction extends Action {
 		// フォーム情報をキャスト
 		LoginForm lForm = (LoginForm) frm;
 		
+		
 		// フォームへ入力された情報をとりだす。
 		String employee_no = lForm.getEmployee_no();
 		// クリックされたボタンの名称をアクションフォームから取得

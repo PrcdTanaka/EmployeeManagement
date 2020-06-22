@@ -19,6 +19,8 @@ public final class MainForm extends ActionForm {
 	private String message;
 	/** 管理者フラグ */
 	private String manager;
+	/** リンク先 */
+	private String link;
 
 	/**
 	 * 初期化処理。
@@ -33,6 +35,7 @@ public final class MainForm extends ActionForm {
 		message = "";
 		password = "";
 		manager = "";
+		link = "";
 	}
 
 	/**
@@ -182,5 +185,29 @@ public final class MainForm extends ActionForm {
 	 */
 	public void setManager(String manager) {
 		this.manager = manager;
+	}
+	
+	/**
+	 * リンク先取得処理。
+	 * <p>
+	 * メイン画面アクションフォームからリンク先を取得する。
+	 * </p>
+	 *
+	 * @return リンク先
+	 */
+	public String getLink() {
+		return link;
+	}
+	
+	/**
+	 * リンク先設定処理。
+	 * <p>
+	 * メイン画面アクションフォームにリンク先を設定する。
+	 * </p>
+	 *
+	 * @param message リンク先
+	 */
+	public void setLink(String link) {
+		this.link = link;
 	}
 }
