@@ -8,11 +8,11 @@ public final class PasswordForm extends ActionForm {
 	private static final long serialVersionUID = 1L;
 
 	/** 社員番号 */
-	private String syain_no;
+	private String employee_no;
 	/** パスワード */
 	private String password;
 	/** 社員氏名 */
-	private String syain_name;
+	private String employee_name;
 	/** 出社時間 */
 	private String time_from;
 	/** 退社時間 */
@@ -32,8 +32,8 @@ public final class PasswordForm extends ActionForm {
 	 * </p>
 	 */
 	public void initialize() {
-		syain_no = "";
-		syain_name = "";
+		employee_no = "";
+		employee_name = "";
 		time_from = "";
 		time_to = "";
 		button = "";
@@ -50,8 +50,8 @@ public final class PasswordForm extends ActionForm {
 	 *
 	 * @return 社員番号
 	 */
-	public String getSyain_no() {
-		return syain_no;
+	public String getEmployee_no() {
+		return employee_no;
 	}
 
 	/**
@@ -60,10 +60,10 @@ public final class PasswordForm extends ActionForm {
 	 * メイン画面アクションフォームに社員番号を設定する。
 	 * </p>
 	 *
-	 * @param syain_no 社員番号
+	 * @param Employee_no 社員番号
 	 */
-	public void setSyain_no(String syain_no) {
-		this.syain_no = syain_no;
+	public void setEmployee_no(String Employee_no) {
+		this.employee_no = Employee_no;
 	}
 
 	/**
@@ -74,8 +74,8 @@ public final class PasswordForm extends ActionForm {
 	 *
 	 * @return 社員氏名
 	 */
-	public String getSyain_name() {
-		return syain_name;
+	public String getEmployee_name() {
+		return employee_name;
 	}
 
 	/**
@@ -84,10 +84,10 @@ public final class PasswordForm extends ActionForm {
 	 * メイン画面アクションフォームに社員氏名を設定する。
 	 * </p>
 	 *
-	 * @param syain_name 社員氏名
+	 * @param Employee_name 社員氏名
 	 */
-	public void setSyain_name(String syain_name) {
-		this.syain_name = syain_name;
+	public void setEmployee_name(String Employee_name) {
+		this.employee_name = Employee_name;
 	}
 
 	/**
