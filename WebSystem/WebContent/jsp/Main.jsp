@@ -3,12 +3,12 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="sample.pr.main.LoginForm" %>
 <%@ page import="sample.pr.main.MainForm" %>
 
 <%
-	MainForm mForm = new MainForm();
-	mForm.setManager("0");
-	String manager = mForm.getManager();
+	LoginForm lForm = new LoginForm();
+	String manager = lForm.getManager();
 %>
 
 <html:html>
