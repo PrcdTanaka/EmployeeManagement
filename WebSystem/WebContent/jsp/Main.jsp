@@ -6,10 +6,6 @@
 <%@ page import="sample.pr.main.LoginForm" %>
 <%@ page import="sample.pr.main.MainForm" %>
 
-<%
-	LoginForm lForm = new LoginForm();
-	String manager = lForm.getManager();
-%>
 
 <html:html>
 	<head>
@@ -42,7 +38,6 @@
 			<br>
 			
 			<html:form action="/MainAction">
-			<html:password property="password" value= "" />
 			<div class="accbox">
 			<!--ラベル1-->
 			<label for="label1">社員管理</label>
@@ -84,11 +79,17 @@
 						</html:link>
 					</li>
 				</p>
+				
+				<bean:define id="manager" name="LoginForm" property="manager" type="String" />
+				<%
+					LoginForm lForm = new LoginForm();
+					
+				%>
 				<script type="text/javascript">
 					// 管理者フラグが無いなら（0）
 					// 「ユーザ情報登録画面」を非表示
-					if(<%= manager %>=="0"){
-						document.getElementById("entry").textContent = "";
+				 	if(<%= manager %>=="0"){
+				 		document.getElementById("entry").textContent = "";
 					}else{
 
 					}
