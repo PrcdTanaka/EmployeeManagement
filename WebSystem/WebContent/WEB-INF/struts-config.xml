@@ -70,8 +70,8 @@
 			type="sample.pr.main.SearchAction"
 			validate="false"
 			scope="request">
-			<forward name="text" path="/jsp/search.jsp"/>
-
+			<forward name="search" path="/jsp/search.jsp"/>
+			<forward name="back" path="/jsp/Main.jsp"/>
 		</action>
 
 		<action
