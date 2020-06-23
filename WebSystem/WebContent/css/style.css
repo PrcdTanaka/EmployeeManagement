@@ -44,6 +44,10 @@ form {
   padding: 0 1.5em;
 }
 
+form #mform{
+  padding: 3em;
+}
+
 .form-item {
   margin-bottom: 0.75em;
   width: 100%;

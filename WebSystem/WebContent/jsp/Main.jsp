@@ -18,7 +18,7 @@
 		<tr>
 		
 			<html:form action="/MainAction" styleId="mform">
-				<p>ログインユーザ：
+				<p style="margin-top:5px;">ログインユーザ：
 					<bean:write name="LoginForm" property="employee_name"
 						scope="request" ignore="true" />
 					<html:hidden property="employee_name" name="LoginForm"/>
