@@ -139,35 +139,4 @@ public final class MainAction extends Action {
 		return map.findForward(forward);
 
 	}
-
-	/**
-	 * <p>
-	 * 出社メソッド
-	 * </p>
-	 * 
-	 * 1.出退時間を取得する。<br>
-	 * 　1-1.出退時間取得処理を呼び出し<br>
-	 * 　　クラス　：DbAction<br>
-	 * 　　メソッド：getTimeFromTo()<br>
-	 * 　　引数１　：メイン画面アクションフォーム<br>
-	 * 2.出社時間未登録の場合の処理。<br>
-	 * 　2-1.出社時間登録処理を呼び出し<br>
-	 * 　　クラス　：DbAction<br>
-	 * 　　メソッド：setTimeFrom()<br>
-	 * 　2-2.メッセージ出力<br>
-	 * 　　"出社しました。"<br>
-	 * 3.出社時間登録済みの場合<br>
-	 * 　3-1.メッセージ出力<br>
-	 * 　　"既に出社しています。"<br>
-	 * 
-	 * @param form
-	 *            メイン画面アクションフォーム
-	 * @return 遷移先
-	 */
-	private String clickBtnIn(MainForm form) {
-
-		forward = "message";
-
-		return forward;
-	}
 }
