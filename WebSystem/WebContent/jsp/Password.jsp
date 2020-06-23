@@ -12,6 +12,7 @@
 		<link rel="stylesheet"type="text/css"href="sample.css"/>
 		<html lang="ja">
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<html:base/>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
 
