@@ -122,6 +122,7 @@ public final class SearchAction extends Action {
 		String text = sForm.getText();
 		// クリックされたボタンの名称をアクションフォームから取得
 		String radio = sForm.getRadio();
+		String button=sForm.getButton();
 
 		// 社員名の取得
 		// 　　クラス　：DbAction<br>
@@ -131,11 +132,16 @@ public final class SearchAction extends Action {
 		try {
 			dAction = new DbAction();
 			request.setCharacterEncoding("utf-8");
-			if(radio.equals("")) {
-				forward="search";
+			if(button.equals("戻る")) {
+				forward="back";
 			}
 			else {
 				forward="search";
+				dbaction.getSearchAns(sForm);
+				for(String A:sForm.getSyain_no())
+				{
+
+				}
 			}
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック
