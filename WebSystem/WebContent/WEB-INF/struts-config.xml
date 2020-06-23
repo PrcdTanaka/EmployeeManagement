@@ -36,7 +36,6 @@
 			type="sample.pr.main.LoginAction"
 			validate="false"
 			scope="request">
-			<forward name="message" path="/jsp/Main.jsp"/>
 			<forward name="login" path="/jsp/login.jsp" />
 			<forward name="main" path="/jsp/Main.jsp"/>
 		</action>
@@ -47,10 +46,7 @@
 			type="sample.pr.main.MainAction"
 			validate="false"
 			scope="request">
-			<forward name="message" path="/jsp/Message.jsp"/>
-			<forward name="password" path="/jsp/Password.jsp"/>
-			<forward name="view" path="/jsp/KintaiList.jsp"/>
-			<forward name="back" path="/jsp/Main.jsp" />
+			<forward name="logout" path="/jsp/logout.jsp" />
 			<forward name="edit" path="/jsp/Main.jsp" />
 			<forward name="register" path="/jsp/Main.jsp" />
 			<forward name="search" path="/jsp/search.jsp" />

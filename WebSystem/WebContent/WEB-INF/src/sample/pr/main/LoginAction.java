@@ -1,6 +1,7 @@
 package sample.pr.main;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -124,6 +125,12 @@ public final class LoginAction extends Action {
 	public ActionForward execute(ActionMapping map, ActionForm frm,
 			HttpServletRequest request, HttpServletResponse response) {
 
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		// 1.ログイン画面のアクションフォーム情報をインプットパラメータ.アクションフォームから取得する。
 		// アクションフォームBeanより入力フォームのデータを取り出す処理
 		// フォーム情報をキャスト
