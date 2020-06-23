@@ -5,7 +5,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.MainForm" %>
 
-
 <html:html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
