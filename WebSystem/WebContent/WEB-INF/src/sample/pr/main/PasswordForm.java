@@ -17,6 +17,8 @@ public final class PasswordForm extends ActionForm {
 	private String time_from;
 	/** 退社時間 */
 	private String time_to;
+	/** リンク先 */
+	private String link;
 
 	/** ボタン名 */
 	private String button;
@@ -60,8 +62,13 @@ public final class PasswordForm extends ActionForm {
 	 * メイン画面アクションフォームに社員番号を設定する。
 	 * </p>
 	 *
+<<<<<<< HEAD
+	 * @param employee_no 社員番号
+=======
 	 * @param Employee_no 社員番号
+>>>>>>> refs/remotes/origin/development
 	 */
+
 	public void setEmployee_no(String Employee_no) {
 		this.employee_no = Employee_no;
 	}
@@ -84,7 +91,11 @@ public final class PasswordForm extends ActionForm {
 	 * メイン画面アクションフォームに社員氏名を設定する。
 	 * </p>
 	 *
+<<<<<<< HEAD
+	 * @param employee_name 社員氏名
+=======
 	 * @param Employee_name 社員氏名
+>>>>>>> refs/remotes/origin/development
 	 */
 	public void setEmployee_name(String Employee_name) {
 		this.employee_name = Employee_name;
@@ -204,6 +215,14 @@ public final class PasswordForm extends ActionForm {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
+	}	
+	/**
+	 * リンク先取得処理。
+	 * <p>
+	 * メイン画面アクションフォームからリンク先を取得する。
+	 * </p>
+	 *
+	 * @return リンク先
+	 */
 
 }

@@ -5,7 +5,27 @@
 	"http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
+
   <display-name>Struts Blank Application</display-name>
+  <filter>
+        <!-- フィルタ名を記載します。 -->
+    <filter-name>EncodeFilter</filter-name>
+        <!-- フィルタ処理の際のクラスを指定します。
+            SetCharacterEncodingFilterクラスは
+            filtersパッケージ内にあります。 -->
+    <filter-class>filters.SetCharacterEncodingFilter</filter-class>
+        <!-- パラメータ値にエンコード方式を指定します。 -->
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <!-- すべてのURLパターンでフィルタ処理が
+        行われるように指定します。 -->
+  <filter-mapping>
+    <filter-name>EncodeFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <!-- Standard Action Servlet Configuration -->
   <servlet>

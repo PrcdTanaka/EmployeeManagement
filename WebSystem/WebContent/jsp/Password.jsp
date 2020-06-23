@@ -3,6 +3,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="sample.pr.main.MainForm" %>
 
 
 <html:html>
@@ -20,6 +21,7 @@
 
  	<body>
   		<html:form action="/PasswordAction" >
+			<html:hidden property="employee_name" name="PasswordForm"/>
 			<div class="block">
 
 				<p>ログインユーザ：
