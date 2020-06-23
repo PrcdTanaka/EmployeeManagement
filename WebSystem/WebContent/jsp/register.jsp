@@ -6,8 +6,9 @@
 
 <html:html>
 	<head>
+		<html:base/>
+		<title><bean:message key="register.title"/></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet"type="text/css"href="sample.css"/>
 		<html lang="ja">
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
