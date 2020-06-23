@@ -1,6 +1,7 @@
 package sample.pr.main;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,12 +16,12 @@ import sample.ap.DbAction;
 public final class SearchAction extends Action {
 
 	// DB接続用オブジェクト
-	private DbAction dba = new DbAction();
+	DbAction dbaction = new DbAction();
 
 	// 遷移先
 	private String forward;
 
-	DbAction dbaction = new DbAction();
+
 
 	/**
 	 * <p>
@@ -41,7 +42,6 @@ public final class SearchAction extends Action {
 	public SearchAction() throws IOException {
 
 	}
-
 	/**
 	 * <p>
 	 * クリックされたボタンを判定し、遷移先情報を返却する。
@@ -107,27 +107,22 @@ public final class SearchAction extends Action {
 	 * @return 遷移先情報
 	 *
 	 */
-	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
-
-
-
+	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response)
+	{
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		// アクションフォームBeanより入力フォームのデータを取り出す処理
 		// フォーム情報をキャスト
-		LoginForm lForm = (LoginForm) frm;
+		SearchForm sForm = (SearchForm) frm;
 
 		// フォームへ入力された情報をとりだす。
-		String syain_no = lForm.getSyain_no();
+		String text = sForm.getText();
 		// クリックされたボタンの名称をアクションフォームから取得
-		String button = lForm.getButton();
+		String radio = sForm.getRadio();
 
-		// 社員番号を整形
-		// 　　※桁数が4桁未満の場合は先頭から"0"埋め)<br>
-		if(syain_no.length() < 4) {
-			for(int length = syain_no.length(); length < 4; length++ ) {
-				syain_no = "0" + syain_no;
-			}
-		}
-		
 		// 社員名の取得
 		// 　　クラス　：DbAction<br>
 		// 　　メソッド：getSyainName()<br>
@@ -135,30 +130,12 @@ public final class SearchAction extends Action {
 		DbAction dAction;
 		try {
 			dAction = new DbAction();
-
-			if(dAction.getEmoloyee_No(lForm)) {
-				switch() {
-				case "syussya":
-
-					break;
-				case "taisya":
-
-					break;
-				case "sansyou":
-
-					break;
-				}
+			request.setCharacterEncoding("utf-8");
+			if(radio.equals("")) {
+				forward="search";
 			}
-
-		/* 5.社員名が取得できなかった場合の処理。<br>
-		 * 　5-1.メッセージを設定する。<br>
-		 * 　　メッセージ：「社員マスタに存在しない社員番号です。」<br>
-		 * 　5-2.遷移先を設定する。<br>
-		 * 　　遷移先："message"<br>
-		 */
 			else {
-				lForm.setMessage("社員マスタに存在しない社員番号です。");
-				return (map.findForward("message"));
+				forward="search";
 			}
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック
@@ -168,10 +145,10 @@ public final class SearchAction extends Action {
 		 * 　6-1.リクエスト情報登録処理をコール。<br>
 		 * 　　クラス　：HttpServletRequest<br>
 		 * 　　メソッド：setAttribute()<br>
-		 * 　　　引数１："form"<br>
+		 									* 　　　引数１："form"<br>
 		 * 　　　引数２：メイン画面アクションフォーム
 		 */
-		request.setAttribute("form", lForm);
+		request.setAttribute("form", sForm);
 
 		/* 7.戻り値を返却する。<br>
 		 * 　7-1.遷移先情報取得処理をコール。<br>
