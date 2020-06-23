@@ -9,6 +9,7 @@ import java.util.Map;
 import sample.db.DbConnector;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
+import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
 
 public class DbAction extends Object{
@@ -132,7 +133,7 @@ public class DbAction extends Object{
 	 * <p>
 	 * 社員名を取得する。
 	 * </p>
-	 * 
+	 *
 	 * 1.DBに接続する。<br>
 	 * 2.DB接続に成功したらSQLの発行。<br>
 	 * 　　2-1.発行するSQLと項目の情報を生成する。<br>
@@ -153,7 +154,7 @@ public class DbAction extends Object{
 	 * 4.DBから取得した情報をアクションフォームに設定。<br>
 	 * 5.例外発生時の処理。<br>
 	 * 　　5-1.スタックトレースを出力。<br>
-	 * 
+	 *
 	 * @param form メイン画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
@@ -220,7 +221,7 @@ public class DbAction extends Object{
 	 * <p>
 	 * 社員名を取得する。
 	 * </p>
-	 * 
+	 *
 	 * 1.DBに接続する。<br>
 	 * 2.DB接続に成功したらSQLの発行。<br>
 	 * 　　2-1.発行するSQLと項目の情報を生成する。<br>
@@ -241,7 +242,7 @@ public class DbAction extends Object{
 	 * 4.DBから取得した情報をアクションフォームに設定。<br>
 	 * 5.例外発生時の処理。<br>
 	 * 　　5-1.スタックトレースを出力。<br>
-	 * 
+	 *
 	 * @param form メイン画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
@@ -308,7 +309,7 @@ public class DbAction extends Object{
 	 * <p>
 	 * 管理者フラグを取得する。
 	 * </p>
-	 * 
+	 *
 	 * 1.DBに接続する。<br>
 	 * 2.DB接続に成功したらSQLの発行。<br>
 	 * 　　2-1.発行するSQLと項目の情報を生成する。<br>
@@ -329,7 +330,7 @@ public class DbAction extends Object{
 	 * 4.DBから取得した情報をアクションフォームに設定。<br>
 	 * 5.例外発生時の処理。<br>
 	 * 　　5-1.スタックトレースを出力。<br>
-	 * 
+	 *
 	 * @param form メイン画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
@@ -477,5 +478,72 @@ public class DbAction extends Object{
 		}
 		return ret;
 
+	}
+	public boolean getSearchAns(SearchForm form) {
+
+		boolean ret = true;
+	//	String datetime = form.getTime_from();
+	//	String [] dtime_box = datetime.split(",",0);
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT" + crlf);
+			sb.append("DEPERTMANT," + crlf);
+			sb.append("EMPLOYEE_NAME," + crlf);
+			sb.append("EMPLOYEE_NO" + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("  EMPLOYEE_MST" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("\""+form.getRadio()+"LIKE'%"+form.getText()+"%'=?\"" + crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("DEPERTMANT");
+			columnList.add("EMPLOYEE_NAME");
+			columnList.add("EMPLOYEE_NO");
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList= new ArrayList<Object>();
+			bindList.add(form.getSyain_no());
+			bindList.add(form.getSyain_name());
+			bindList.add(form.getDepertmant());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();
+
+			try {
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setDepertmant(val.get("DEPERTMANT"));
+					form.setSyain_name(val.get("EMPLOYEE_NAME"));
+					form.setSyain_no(val.get("EMPLOYEE_NO"));
+					ret = false;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
 	}
 }
