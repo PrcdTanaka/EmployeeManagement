@@ -9,15 +9,16 @@
 
     <form-beans>
 
-    	<!-- ActionFormの定義 -->
+    	<!-- ActionFormã®å®ç¾© -->
 
-    	<!-- 勤怠メイン画面 -->
+    	<!-- å¤æ ã¡ã¤ã³ç»é¢ -->
 		<form-bean name="MainForm" type="sample.pr.main.MainForm">
 			<form-property name="userData" type="java.util.LinkedHashMap" />
 		</form-bean>
 		<form-bean name="LoginForm" type="sample.pr.main.LoginForm"/>
 		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
 		<form-bean name="SearchForm" type="sample.pr.main.SearchForm"/>
+		<form-bean name="RegisterForm" type="sample.pr.main.RegisterForm"/>
 
     </form-beans>
 
@@ -27,9 +28,9 @@
 
 	<action-mappings>
 
-    	<!-- Actionの定義 -->
+    	<!-- Actionã®å®ç¾© -->
 
-		<!-- 勤怠メイン画面 -->
+		<!-- å¤æ ã¡ã¤ã³ç»é¢ -->
 		<action
 			name="LoginForm"
 			path="/LoginAction"
@@ -51,8 +52,8 @@
 			<forward name="register" path="/jsp/Main.jsp" />
 			<forward name="search" path="/jsp/search.jsp" />
 			<forward name="password" path="/jsp/Password.jsp" />
-			<forward name="reference" path="/jsp/Main.jsp" />
 		</action>
+
 
 		<action
 			name="PasswordForm"
@@ -69,9 +70,20 @@
 			type="sample.pr.main.SearchAction"
 			validate="false"
 			scope="request">
-			<forward name="text" path="/jsp/search.jsp"/>
+			<forward name="search" path="/jsp/search.jsp"/>
+			<forward name="back" path="/jsp/Main.jsp"/>
+		</action>
+
+		<action
+			name="RegisterForm"
+			path="/RegisterAction"
+			type="sample.pr.main.RegisterAction"
+			validate="false"
+			scope="request">
+			<forward name="message" path="/jsp/Register.jsp"/>
 
 		</action>
+
     </action-mappings>
 
 

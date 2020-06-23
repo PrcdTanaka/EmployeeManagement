@@ -1,5 +1,8 @@
 package sample.pr.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.struts.action.ActionForm;
 
 public final class SearchForm extends ActionForm {
@@ -7,18 +10,16 @@ public final class SearchForm extends ActionForm {
 	/** シリアルバージョンID */
 	private static final long serialVersionUID = 1L;
 
-	/** 社員番号 */
-	private String syain_no;
-	/** 社員氏名 */
-	private String syain_name;
-	/** 技術部名 */
-	private String depertmant;
 	/** ボタン名 */
 	private String button;
 	/** メッセージ */
 	private String text;
 	/** ラジオボタン */
 	private String radio;
+
+	List<String> depertlist=new ArrayList<String>();
+	List<String> namelist=new ArrayList<String>();
+	List<String> numberlist=new ArrayList<String>();
 
 	/**
 	 * 初期化処理。
@@ -27,9 +28,9 @@ public final class SearchForm extends ActionForm {
 	 * </p>
 	 */
 	public void initialize() {
-		syain_no   = "";
-		syain_name = "";
-		depertmant = "";
+		depertlist.clear();
+		namelist.clear();
+		numberlist.clear();
 		button     = "";
 		text    = "";
 		radio      = "";
@@ -43,8 +44,8 @@ public final class SearchForm extends ActionForm {
 	 *
 	 * @return 社員番号
 	 */
-	public String getSyain_no() {
-		return syain_no;
+	public List<String> getSyain_no() {
+		return numberlist;
 	}
 
 	/**
@@ -56,7 +57,7 @@ public final class SearchForm extends ActionForm {
 	 * @param syain_no 社員番号
 	 */
 	public void setSyain_no(String syain_no) {
-		this.syain_no = syain_no;
+		numberlist.add(syain_no);
 	}
 
 	/**
@@ -67,8 +68,8 @@ public final class SearchForm extends ActionForm {
 	 *
 	 * @return 社員氏名
 	 */
-	public String getSyain_name() {
-		return syain_name;
+	public List<String> getSyain_name() {
+		return namelist;
 	}
 
 	/**
@@ -80,7 +81,7 @@ public final class SearchForm extends ActionForm {
 	 * @param syain_name 社員氏名
 	 */
 	public void setSyain_name(String syain_name) {
-		this.syain_name = syain_name;
+		namelist.add(syain_name);
 	}
 
 	/**
@@ -92,10 +93,6 @@ public final class SearchForm extends ActionForm {
 	 * @return ボタン名
 	 */
 	public String getButton() {
-
-		if(button.equals("åºç¤¾")){
-			button = "syussya";
-		}
 
 		return button;
 	}
@@ -120,7 +117,7 @@ public final class SearchForm extends ActionForm {
 	 *
 	 * @return メッセージ
 	 */
-	public String getTessage() {
+	public String getMessage() {
 		return text;
 	}
 
@@ -147,15 +144,15 @@ public final class SearchForm extends ActionForm {
 		this.radio = radio;
 	}
 
-	public String getDepertmant()
+	public List<String> getDepertmant()
 	{
-		return depertmant;
+		return depertlist;
 	}
 
 
 	public void setDepertmant(String depertmant)
 	{
-		this.depertmant=depertmant;
+		depertlist.add(depertmant);
 	}
 
 }

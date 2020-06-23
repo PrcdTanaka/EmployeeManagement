@@ -48,32 +48,14 @@ h2{
 	<html:form action="/SearchAction">
 		<span class="center">
 				<center><html:text property="text" maxlength="12" />
-				<html:submit property="button" value="検索" /></center>
+				<html:submit property="button" value="検索" /><></center>
 				<p>
-				<html:radio property="radio" value="number" />社員No
-				<html:radio property="radio" value="name" />氏名
-				<html:radio property="radio" value="department"/>技術部
+				<html:radio property="radio" value="EMPROYEE_NUMBER" />社員No
+				<html:radio property="radio" value="EMPROYEE_NAME" />氏名
+				<html:radio property="radio" value="DEPARTMANT"/>技術部
 					<h2>検索結果</h2>
 					<table border="1" align = "center" style="border-collapse: collapse" >
-						<tr bgcolor="#b0c4de">
-							<td>�Ј��ԍ�</td>
-							<td text-align:center>���O</td>
-							<td text-align:center>�Z�p��</td>
-						</tr>
-						<tr>
-							 <td align="right">0666</td>
-							 <td><a href="�Q�Ə����.html">�㓡���C</a></td>
-							 <td>��2�Z�p��</td>
-						</tr>
-						<tr>
-							<td align="right">0777</td><td><a href="�Q�Ə����.html">�㓡�E��</a></td>
-							<td>��3�Z�p��</td>
-						</tr>
-						<tr>
-							<td align="right">0888</td>
-							<td><a href="�Q�Ə����.html">�㓡��</a></td>
-							<td>��4�Z�p��</td>
-						</tr>
+
 					</table>
 		</span>
 	</html:form>
