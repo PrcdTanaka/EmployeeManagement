@@ -7,8 +7,8 @@
 
 <html:html>
 	<head>
+		<html:base/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet"type="text/css"href="sample.css"/>
 		<html lang="ja">
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -47,12 +47,9 @@
 				<div class="space"></div>
 				<br>
 				<!-- 変更ボタン -->
-				<input type="button" class="btn" style="margin-top:3px;" value="変更" onclick =""style="font-size:25px;"></input>
-
+				<html:submit property="button" styleClass="btn" value="変更" styleId="change" />
     			<!-- 戻るボタン -->
-    			<FORM>
-				<INPUT type="button"class="btn" style="margin-top:3px;" value="戻る" onClick="history.back()">
-				</FORM>
+				<html:submit property="button" styleClass="btn" value="戻る" styleId="back" />
 
  			 </div>
    		 </html:form>
