@@ -16,6 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/main.css"/> 
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<tr>
+		
 			<html:form action="/MainAction" styleId="mform">
 				<p>ログインユーザ：
 					<bean:write name="LoginForm" property="employee_name"
@@ -70,12 +71,6 @@
 						<html:link action="/MainAction">パスワード変更画面
 							<html:param name="employee_no"><bean:write name="LoginForm" property="employee_no"/></html:param>
 							<html:param name="link">password</html:param>
-						</html:link>
-					</li>
-					<li>
-						<html:link action="/MainAction">参照情報画面
-							<html:param name="employee_no"><bean:write name="LoginForm" property="employee_no"/></html:param>
-							<html:param name="link">reference</html:param>
 						</html:link>
 					</li>
 				</p>

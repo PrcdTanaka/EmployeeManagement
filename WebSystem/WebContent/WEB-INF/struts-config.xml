@@ -51,7 +51,6 @@
 			<forward name="register" path="/jsp/Main.jsp" />
 			<forward name="search" path="/jsp/search.jsp" />
 			<forward name="password" path="/jsp/Password.jsp" />
-			<forward name="reference" path="/jsp/Main.jsp" />
 		</action>
 
 		<action

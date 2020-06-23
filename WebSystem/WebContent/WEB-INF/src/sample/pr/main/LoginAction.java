@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -227,6 +228,9 @@ public final class LoginAction extends Action {
 		 * 　　　引数２：メイン画面アクションフォーム<br>
 		 */
 		request.setAttribute("form", lForm);
+		if(forward.equals("login")){
+			JOptionPane.showMessageDialog(null,lForm.getMessage());
+		}
 		/* 9.戻り値を返却する。<br>
 		 * 　9-1.遷移先情報取得処理をコール。<br>
 		 * 　　クラス　：ActionMapping<br>

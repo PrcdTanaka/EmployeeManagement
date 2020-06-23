@@ -128,9 +128,6 @@ public final class MainAction extends Action {
 			case "password":
 				forward = "password";
 				break;
-			case "reference":
-				forward = "reference";
-				break;
 			}
 		}
 		
