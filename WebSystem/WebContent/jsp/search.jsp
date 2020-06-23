@@ -58,10 +58,11 @@ h2{
 
 					</table>
 		</span>
-	</html:form>
+
 
 		<div>
-			<input type="button" class="btn" value="�߂�"onclick ="history.back()"></input>
+			<html:submit property="button" value="戻る" /></input>
 		</div>
+		</html:form>
 	</body>
 </html:html>

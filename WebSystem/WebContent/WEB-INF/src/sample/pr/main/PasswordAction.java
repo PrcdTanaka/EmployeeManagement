@@ -14,17 +14,10 @@ import sample.ap.DbAction;
 
 public final class PasswordAction extends Action {
 
-	// DB接続用オブジェクト
-	private DbAction dba = new DbAction();
-
-	// 遷移先
-	private String forward;
-
-	DbAction dbaction = new DbAction();
 
 	/**
 	 * <p>
-	 * メイン画面アクションの初期設定を行う。
+	 * パスワード変更画面アクションの初期設定を行う。
 	 * </p>
 	 *
 	 * 1.初期設定を行う。<br>
@@ -42,6 +35,12 @@ public final class PasswordAction extends Action {
 
 	}
 
+	// DB接続用オブジェクト
+	private DbAction dba = new DbAction();
+
+	// 遷移先
+	private String forward;
+	
 	/**
 	 * <p>
 	 * クリックされたボタンを判定し、遷移先情報を返却する。
