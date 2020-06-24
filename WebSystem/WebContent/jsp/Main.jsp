@@ -9,6 +9,9 @@
 
 <html:html>
 	<head>
+		<%
+			Object s = session.getAttribute("form");
+		%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><bean:message key="main.title"/></title>
 		<html:base/>
@@ -16,13 +19,10 @@
 		<link rel="stylesheet" type="text/css" href="../css/main.css"/> 
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<tr>
-		
 			<html:form action="/MainAction" styleId="mform">
 				<p style="margin-top:5px;">ログインユーザ：
 					<bean:write name="LoginForm" property="employee_name"
 						scope="request" ignore="true" />
-					<html:hidden property="employee_name" name="LoginForm"/>
-					<html:hidden property="link" value="Link" />
 					
 					<td align="left">
 						<html:submit property="button" styleClass="btn"

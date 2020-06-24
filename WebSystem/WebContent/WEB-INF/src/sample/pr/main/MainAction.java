@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -130,7 +131,8 @@ public final class MainAction extends Action {
 				break;
 			}
 		}
-		
+		HttpSession session = request.getSession();
+		Object s = session.getAttribute("form");
 		request.setAttribute("form", mForm);
 		
 		return map.findForward(forward);

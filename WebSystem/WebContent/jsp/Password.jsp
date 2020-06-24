@@ -23,8 +23,12 @@
 			<html:hidden property="employee_name" name="PasswordForm"/>
 			<div class="block">
 
+		<%
+			String userId = request.getParameter("employee_no");
+		%>
+			<%= userId %>
 				<p>ログインユーザ：
-					<bean:write name="LoginForm" property="employee_name"
+					<bean:write name="LoginForm" property="employee_no"
 						scope="request" ignore="true" />
 
 
