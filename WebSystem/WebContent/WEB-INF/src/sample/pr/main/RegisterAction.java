@@ -97,34 +97,34 @@ public final class RegisterAction extends Action {
 	 * 　　クラス　：DbAction<br>
 	 * 　　メソッド：confirmationNo()<br>
 	 * 　　引数　　：ユーザ登録画面アクションフォーム<br>
-	 * 　1-2.社員番号が既に存在している場合。<br>
-	 * 　　1-2-1.エラーメッセージの設定。<br>
+	 * 2.社員番号が既に存在している場合。<br>
+	 * 　2-1.エラーメッセージの設定。<br>
+	 * 　　クラス　：RegisterForm<br>
+	 * 　　メソッド：setMessage()<br>
+	 * 　　引数　　："社員番号が既に存在しています。"<br>
+	 * 3.社員番号が存在しない場合。
+	 * 　3-1パスワードの強度チェック処理をコール。<br>
+	 * 　　クラス　：Register<br>
+	 * 　　メソッド：checkPass()<br>
+	 * 　　引数　　：アクションフォーム.getPassword()<br>
+	 * 　3-2.パスワードの強度が十分な場合。<br>
+	 * 　　3-2-1.ユーザ登録処理をコール。<br>
+	 * 　　　クラス　：DbAction<br>
+	 * 　　　メソッド：userRegister()<br>
+	 * 　　　引数　　：ユーザ登録画面アクションフォーム<br>
+	 * 　3-3.パスワードの強度が不十分な場合。<br>
+	 * 　　3-3-1.エラーメッセージの設定。<br>
 	 * 　　　クラス　：RegisterForm<br>
 	 * 　　　メソッド：setMessage()<br>
-	 * 　　　引数　　："社員番号が既に存在しています。"<br>
-	 * 　1-3.社員番号が存在しない場合。
-	 * 　　1-3-1パスワードの強度チェック処理をコール。<br>
-	 * 　　　クラス　：Register<br>
-	 * 　　　メソッド：checkPass()<br>
-	 * 　　　引数　　：アクションフォーム.getPassword()<br>
-	 * 　　1-3-2.パスワードの強度が十分な場合。<br>
-	 * 　　　1-3-2-1.ユーザ登録処理をコール。<br>
-	 * 　　　　クラス　：DbAction<br>
-	 * 　　　　メソッド：userRegister()<br>
-	 * 　　　　引数　　：ユーザ登録画面アクションフォーム<br>
-	 * 　　　
-	 * 　　1-3-3.パスワードの強度が不十分な場合。<br>
-	 * 
+	 * 　　　引数　　："パスワードが複雑さの要件を満たしていません。"<br>
+	 * 4.戻り値を返却する。<br>
+	 * 　4-1.遷移先情報を設定。<br>
+	 * 　　forward："register"<br>
 	 * <br>
-	 * 
-	 * 
 	 * @param form
 	 * @return 遷移先
 	 */
 	public String register(RegisterForm form){
-		
-		
-		
 		return null;
 	}
 
