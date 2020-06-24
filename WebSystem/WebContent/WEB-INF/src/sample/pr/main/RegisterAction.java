@@ -69,7 +69,10 @@ public final class RegisterAction extends Action {
 	 * 　　　メソッド：entry()<br>
 	 * 　　　引数　　：RegisterForm.getEmployee_no()<br>
 	 * 　　　戻り値　：forward<br>
+	 * 　　
 	 * 
+		HttpSession session = request.getSession();
+		Object s = session.getAttribute("form");
 	 * <br>
 	 * 
 	 * @param map

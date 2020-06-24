@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import org.apache.struts.action.Action;
@@ -228,6 +229,13 @@ public final class LoginAction extends Action {
 		 * 　　　引数２：メイン画面アクションフォーム<br>
 		 */
 		request.setAttribute("form", lForm);
+		
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("form", lForm);
+		
+		LoginForm s = (LoginForm) session.getAttribute("form");
+		
 		if(forward.equals("login")){
 			JOptionPane.showMessageDialog(null,lForm.getMessage());
 		}

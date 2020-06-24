@@ -23,12 +23,6 @@
 			<html:hidden property="employee_name" name="PasswordForm"/>
 			<div class="block">
 
-				<p>ログインユーザ：
-					<bean:write name="LoginForm" property="employee_name"
-						scope="request" ignore="true" />
-
-
-
 				<div class="space"></div>
 				<br>
 				<br>
