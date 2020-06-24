@@ -1,7 +1,6 @@
 package sample.pr.main;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,9 +51,9 @@ public final class RegisterAction extends Action {
 	 * 　　メソッド：setCharacterEncoding()<br>
 	 * 　　引数　　："utf-8"<br>
 	 * 　1-2.UnsupportedEncodingException（文字のエンコーディングがサポートされていません。）が発生した場合。<br>
-	 * 　　スタックトレースの出力<br>
-	 * 　　クラス　：e<br>
-	 * 　　メソッド：printStackTrace()<br>
+	 * 　　1-2-1.スタックトレースの出力<br>
+	 * 　　　クラス　：e<br>
+	 * 　　　メソッド：printStackTrace()<br>
 	 * <br>
 	 * 2.登録画面のアクションフォーム情報をインプットパラメータ.アクションフォームから取得する。<br>
 	 * 　2-1.フォーム情報のキャスト<br>
@@ -66,15 +65,18 @@ public final class RegisterAction extends Action {
 	 * 　3-2.登録ボタンの場合。<br>
 	 * 　　3-2-1.ユーザ登録処理をコール<br>
 	 * 　　　クラス　：RegisterAction<br>
-	 * 　　　メソッド：entry()<br>
-	 * 　　　引数　　：RegisterForm.getEmployee_no()<br>
-	 * 　　　戻り値　：forward<br>
-	 * 　　
-	 * 
-		HttpSession session = request.getSession();
-		Object s = session.getAttribute("form");
+	 * 　　　メソッド：register()<br>
+	 * 　　　引数　　：ユーザー登録画面アクションフォーム<br>
+	 * 　　　戻り値　：遷移先設定<br>
+	 * 　3-3.戻るボタンの場合。<br>
+	 * 　　3-3-1.遷移先設定<br>
+	 * 　　　遷移先："main"<br>
 	 * <br>
-	 * 
+	 * 4.戻り値を返却する。<br>
+	 * 　4-1.遷移先情報取得処理をコール。<br>
+	 * 　　クラス　：ActionMapping<br>
+	 * 　　メソッド：findForward(遷移先)<br>
+	 * <br>
 	 * @param map
 	 *            アクションマッピング<br>
 	 *            frm アクションフォーム<br>
@@ -83,45 +85,47 @@ public final class RegisterAction extends Action {
 	 * @return 遷移先情報
 	 */ 
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-
-		// アクションフォームBeanより入力フォームのデータを取り出す処理
-		// フォーム情報をキャスト
-		LoginForm rForm = (LoginForm) frm;
-
-		// フォームへ入力された情報をとりだす。
-		String e_noemploye = rForm.getEmployee_no();
-		// クリックされたボタンの名称をアクションフォームから取得
-		String button = rForm.getButton();
-
-		DbAction dAction;
-
-		try {
-			dAction = new DbAction();
-
-			if(dAction.getEmployeeName(rForm)) {
-
-			} else {
-
-			}
-
-			} catch (IOException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-
-		}
 		return null;
 	}
-
-	private String clickBtnIn(LoginForm form) {
-
-		forward = "message";
-
-		return forward;
+	
+	/***
+	 * <p>
+	 * 入力された情報から新規ユーザの登録を行う。
+	 * </p>
+	 * 1.社員情報の取得<br>
+	 * 　1-1.社員番号の検索<br>
+	 * 　　クラス　：DbAction<br>
+	 * 　　メソッド：confirmationNo()<br>
+	 * 　　引数　　：ユーザ登録画面アクションフォーム<br>
+	 * 　1-2.社員番号が既に存在している場合。<br>
+	 * 　　1-2-1.エラーメッセージの設定。<br>
+	 * 　　　クラス　：RegisterForm<br>
+	 * 　　　メソッド：setMessage()<br>
+	 * 　　　引数　　："社員番号が既に存在しています。"<br>
+	 * 　1-3.社員番号が存在しない場合。
+	 * 　　1-3-1パスワードの強度チェック処理をコール。<br>
+	 * 　　　クラス　：Register<br>
+	 * 　　　メソッド：checkPass()<br>
+	 * 　　　引数　　：アクションフォーム.getPassword()<br>
+	 * 　　1-3-2.パスワードの強度が十分な場合。<br>
+	 * 　　　1-3-2-1.ユーザ登録処理をコール。<br>
+	 * 　　　　クラス　：DbAction<br>
+	 * 　　　　メソッド：userRegister()<br>
+	 * 　　　　引数　　：ユーザ登録画面アクションフォーム<br>
+	 * 　　　
+	 * 　　1-3-3.パスワードの強度が不十分な場合。<br>
+	 * 
+	 * <br>
+	 * 
+	 * 
+	 * @param form
+	 * @return 遷移先
+	 */
+	public String register(RegisterForm form){
+		
+		
+		
+		return null;
 	}
 
 }

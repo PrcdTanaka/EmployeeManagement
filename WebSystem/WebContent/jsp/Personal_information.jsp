@@ -48,9 +48,9 @@
 					<div class="birth">
 						<label for="birth">生年月日：</label>
 						<html:text property="birth" />
-						<input type="text" id="birth" name="birth" size="3">年</input> <input
-							type="text" id="birth" name="birth" size="1">月</input> <input
-							type="text" id="birth" name="birth" size="1">日</input>
+						<input type="text" id="birth" name="birth" size="3">年
+						<input type="text" id="birth" name="birth" size="1">月
+						<input type="text" id="birth" name="birth" size="1">日
 					</div>
 					<div class="sex">
 						<label for="sex">性別：</label> <select name="sex" id="sex">
@@ -188,305 +188,306 @@
 								type="tel" class="emergency_tel" id="emergency_tel5"
 								name="emergency5" />
 						</div>
-						</p>
-						</br>
-						</p>
-						<div class="family_structure" id="family_structure">
-							<label for="family_structure">家族構成</label>
-							<div>
-								<label for="family_structure_name1" name="family_structure1">氏名
-									：</label> <input type="text" class="family_structure_name"
-									id="family_structure_name1" name="family_structure1" />
-							</div>
-							<div>
-								<label for="family_structure_furigana1" name="family_structure1">フリガナ：</label>
-								<input type="text" class="family_structure_furigana"
-									id="family_structure_furigana1" name="family_structure1" />
-							</div>
-							<div>
-								<label for="family_structure_birth1" name="family_structure1">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth1" name="family_structure1" size="4">年</input>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth1" name="family_structure1" size="2">月</input>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth1" name="family_structure1" size="2">日</input>
-							</div>
-							<div>
-								<label for="family_structure_sex1" name="family_structure1">性別：</label>
-								<select id="family_structure_sex1" class="family_structure_sex"
-									name="family_structure1">
-									<option value="">-</option>
-									<option value="true">男</option>
-									<option value="false">女</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_relationship1"
-									name="family_structure1">続柄：</label> <input type="text"
-									id="family_structure_relationship1"
-									class="family_structure_relationship" name="family_structure1"
-									size="4" />
-							</div>
-							<div>
-								<label for="family_structure_support1" name="family_structure1">扶養の有無：</label>
-								<select name="family_structure_support"
-									id="family_structure_support1" name="family_structure1"
-									class="family_structure_support">
-									<option value="">-</option>
-									<option value="true">有</option>
-									<option value="false">無</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_job1" name="family_structure1">職業：</label>
-								<input type="text" id="family_structure_job1"
-									class="family_structure_job" name="family_structure1" />
-							</div>
-
-							<div>
-								<label for="family_structure_name2" name="family_structure2">氏名
-									：</label> <input type="text" class="family_structure_name"
-									id="family_structure_name2" name="family_structure2" />
-							</div>
-							<div>
-								<label for="family_structure_furigana2" name="family_structure2">フリガナ：</label>
-								<input type="text" class="family_structure_furigana"
-									id="family_structure_furigana2" name="family_structure2" />
-							</div>
-							<div>
-								<label for="family_structure_birth2" name="family_structure2">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth2" name="family_structure2" size="4">
-								<label for="family_structure_birth2" name="family_structure2">年</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth2" name="family_structure2" size="2">
-								<label for="family_structure_birth2" name="family_structure2">月</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth2" name="family_structure2" size="2">
-								<label for="family_structure_birth2" name="family_structure2">日</label>
-								</input>
-							</div>
-							<div>
-								<label for="family_structure_sex2" name="family_structure2">性別：</label>
-								<select id="family_structure_sex2" class="family_structure_sex"
-									name="family_structure2">
-									<option value="">-</option>
-									<option value="true">男</option>
-									<option value="false">女</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_relationship2"
-									name="family_structure2">続柄：</label> <input type="text"
-									id="family_structure_relationship2" name="family_structure2"
-									class="family_structure_relationship" size="4" />
-							</div>
-							<div>
-								<label for="family_structure_support2" name="family_structure2">扶養の有無：</label>
-								<select name="family_structure2" id="family_structure_support2"
-									class="family_structure_support">
-									<option value="">-</option>
-									<option value="true">有</option>
-									<option value="false">無</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_job2" name="family_structure2">職業：</label>
-								<input type="text" id="family_structure_job2"
-									name="family_structure2" class="family_structure_job" />
-							</div>
-
-							</br> </br>
-
-							<div>
-								<label for="family_structure_name3" name="family_structure3">氏名
-									：</label> <input type="text" class="family_structure_name"
-									name="family_structure3" id="family_structure_name3" />
-							</div>
-							<div>
-								<label for="family_structure_furigana3" name="family_structure3">フリガナ：</label>
-								<input type="text" class="family_structure_furigana"
-									name="family_structure3" id="family_structure_furigana3" />
-							</div>
-							<div>
-								<label for="family_structure_birth3" name="family_structure3">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth3" name="family_structure3" size="4">
-								<label for="family_structure_birth2" name="family_structure3">年</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth3" name="family_structure3" size="2">
-								<label for="family_structure_birth2" name="family_structure3">月</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth3" name="family_structure3" size="2">
-								<label for="family_structure_birth2" name="family_structure3">日</label>
-								</input>
-							</div>
-							<div>
-								<label for="family_structure_sex3" name="family_structure3">性別：</label>
-								<select id="family_structure_sex3" class="family_structure_sex"
-									name="family_structure3">
-									<option value="">-</option>
-									<option value="true">男</option>
-									<option value="false">女</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_relationship3"
-									name="family_structure3">続柄：</label> <input type="text"
-									id="family_structure_relationship3" name="family_structure3"
-									class="family_structure_relationship" size="4" />
-							</div>
-							<div>
-								<label for="family_structure_support3" name="family_structure3">扶養の有無：</label>
-								<select name="family_structure3" id="family_structure_support3"
-									class="family_structure_support">
-									<option value="">-</option>
-									<option value="true">有</option>
-									<option value="false">無</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_job3" name="family_structure3">職業：</label>
-								<input type="text" id="family_structure_job3"
-									name="family_structure3" class="family_structure_job" />
-							</div>
-
-
-							<div>
-								<label for="family_structure_name4" name="family_structure4">氏名
-									：</label> <input type="text" class="family_structure_name"
-									name="family_structure4" id="family_structure_name4" />
-							</div>
-							<div>
-								<label for="family_structure_furigana4" name="family_structure4">フリガナ：</label>
-								<input type="text" class="family_structure_furigana"
-									name="family_structure4" id="family_structure_furigana4" />
-							</div>
-							<div>
-								<label for="family_structure_birth4" name="family_structure4">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth4" name="family_structure4" size="4">
-								<label for="family_structure_birth2" name="family_structure4">年</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth4" name="family_structure4" size="2">
-								<label for="family_structure_birth2" name="family_structure4">月</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth4" name="family_structure4" size="2">
-								<label for="family_structure_birth2" name="family_structure4">日</label>
-								</input>
-							</div>
-							<div>
-								<label for="family_structure_sex4" name="family_structure4">性別：</label>
-								<select id="family_structure_sex4" class="family_structure_sex"
-									name="family_structure4">
-									<option value="">-</option>
-									<option value="true">男</option>
-									<option value="false">女</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_relationship4"
-									name="family_structure4">続柄：</label> <input type="text"
-									id="family_structure_relationship4" name="family_structure4"
-									class="family_structure_relationship" size="4" />
-							</div>
-							<div>
-								<label for="family_structure_support4" name="family_structure4">扶養の有無：</label>
-								<select name="family_structure4" id="family_structure_support4"
-									name="family_structure4" class="family_structure_support">
-									<option value="a">-</option>
-									<option value="true">有</option>
-									<option value="false">無</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_job4" name="family_structure4">職業：</label>
-								<input type="text" id="family_structure_job4"
-									name="family_structure4" class="family_structure_job" />
-							</div>
-
-
-							<div>
-								<label for="family_structure_name5" name="family_structure5">氏名
-									：</label> <input type="text" class="family_structure_name"
-									name="family_structure5" id="family_structure_name5" />
-							</div>
-							<div>
-								<label for="family_structure_furigana5" name="family_structure5">フリガナ：</label>
-								<input type="text" class="family_structure_furigana"
-									name="family_structure5" id="family_structure_furigana5" />
-							</div>
-							<div>
-								<label for="family_structure_birth5" name="family_structure5">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth5" name="family_structure5" size="4">
-								<label for="family_structure_birth2" name="family_structure5">年</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth5" name="family_structure5" size="2">
-								<label for="family_structure_birth2" name="family_structure5">月</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth5" name="family_structure5" size="2">
-								<label for="family_structure_birth2" name="family_structure5">日</label>
-								</input>
-							</div>
-							<div>
-								<label for="family_structure_sex5" name="family_structure5">性別：</label>
-								<select id="family_structure_sex5" class="family_structure_sex"
-									name="family_structure5">
-									<option value="">-</option>
-									<option value="true">男</option>
-									<option value="false">女</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_relationship5"
-									name="family_structure5">続柄：</label> <input type="text"
-									id="family_structure_relationship5" name="family_structure5"
-									class="family_structure_relationship" size="4" />
-							</div>
-							<div>
-								<label for="family_structure_support5" name="family_structure5">扶養の有無：</label>
-								<select name="family_structure5" id="family_structure_support5"
-									name="family_structure5" class="family_structure_support">
-									<option value="">-</option>
-									<option value="true">有</option>
-									<option value="false">無</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_job5" name="family_structure5">職業：</label>
-								<input type="text" id="family_structure_job5"
-									name="family_structure5" class="family_structure_job" />
-							</div>
-
+					</div>
+					<br>
+					<div class="family_structure" id="family_structure">
+						<label for="family_structure">家族構成</label>
+						<div>
+							<label for="family_structure_name1" name="family_structure1">氏名
+								：</label> <input type="text" class="family_structure_name"
+								id="family_structure_name1" name="family_structure1" />
 						</div>
-						<div class="modoru">
-							<input type="submit" class="btn" id="button" value="登録/編集">
+						<div>
+							<label for="family_structure_furigana1" name="family_structure1">フリガナ：</label>
+							<input type="text" class="family_structure_furigana"
+								id="family_structure_furigana1" name="family_structure1" />
 						</div>
-						<p>確認書類</p>
-						<div id="document">
-							<input type="checkbox" class="document" id="resident_card"
-								name="document" value="1"><label for="resident_card">住民票[</label>
-							<input type="checkbox" class="document" id="rental_agreement"
-								name="document" value="2"><label for="rental_agreement">賃貸契約書</label>
-							<input type="checkbox" class="document" id="family_register"
-								name="document" value="3"><label for="family_register">戸籍謄本</label>
-							<input type="checkbox" class="document"
-								id="tax_exemption_certificate" name="document" value="4"><label
-								for="tax_exemption_certificate">非課税証明書</label> <input
-								type="checkbox" class="document" id="other" name="document"
-								value="5"><label for="other">その他</label>
+						<div>
+							<label for="family_structure_birth1" name="family_structure1">生年月日：</label>
+							<input type="text" class="family_structure_birth"
+								id="family_structure_birth1" name="family_structure1" size="4">年</input>
+							<input type="text" class="family_structure_birth"
+								id="family_structure_birth1" name="family_structure1" size="2">月</input>
+							<input type="text" class="family_structure_birth"
+								id="family_structure_birth1" name="family_structure1" size="2">日</input>
 						</div>
-						<div class="nb">備考l</div>
-						<textarea id="nb" name="nb" value="test"></textarea>
+						<div>
+							<label for="family_structure_sex1" name="family_structure1">性別：</label>
+							<select id="family_structure_sex1" class="family_structure_sex"
+								name="family_structure1">
+								<option value="">-</option>
+								<option value="true">男</option>
+								<option value="false">女</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_relationship1"
+								name="family_structure1">続柄：</label> <input type="text"
+								id="family_structure_relationship1"
+								class="family_structure_relationship" name="family_structure1"
+								size="4" />
+						</div>
+						<div>
+							<label for="family_structure_support1" name="family_structure1">扶養の有無：</label>
+							<select name="family_structure_support"
+								id="family_structure_support1" name="family_structure1"
+								class="family_structure_support">
+								<option value="">-</option>
+								<option value="true">有</option>
+								<option value="false">無</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_job1" name="family_structure1">職業：</label>
+							<input type="text" id="family_structure_job1"
+								class="family_structure_job" name="family_structure1" />
+						</div>
+
+						<div>
+							<label for="family_structure_name2" name="family_structure2">氏名
+								：</label> <input type="text" class="family_structure_name"
+								id="family_structure_name2" name="family_structure2" />
+						</div>
+						<div>
+							<label for="family_structure_furigana2" name="family_structure2">フリガナ：</label>
+							<input type="text" class="family_structure_furigana"
+								id="family_structure_furigana2" name="family_structure2" />
+						</div>
+						<div>
+							<label for="family_structure_birth2" name="family_structure2">生年月日：</label>
+							<input type="text" class="family_structure_birth"
+								id="family_structure_birth2" name="family_structure2" size="4">
+							<label for="family_structure_birth2" name="family_structure2">年</label>
+							</input> <input type="text" class="family_structure_birth"
+								id="family_structure_birth2" name="family_structure2" size="2">
+							<label for="family_structure_birth2" name="family_structure2">月</label>
+							</input> <input type="text" class="family_structure_birth"
+								id="family_structure_birth2" name="family_structure2" size="2">
+							<label for="family_structure_birth2" name="family_structure2">日</label>
+							</input>
+						</div>
+						<div>
+							<label for="family_structure_sex2" name="family_structure2">性別：</label>
+							<select id="family_structure_sex2" class="family_structure_sex"
+								name="family_structure2">
+								<option value="">-</option>
+								<option value="true">男</option>
+								<option value="false">女</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_relationship2"
+								name="family_structure2">続柄：</label> <input type="text"
+								id="family_structure_relationship2" name="family_structure2"
+								class="family_structure_relationship" size="4" />
+						</div>
+						<div>
+							<label for="family_structure_support2" name="family_structure2">扶養の有無：</label>
+							<select name="family_structure2" id="family_structure_support2"
+								class="family_structure_support">
+								<option value="">-</option>
+								<option value="true">有</option>
+								<option value="false">無</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_job2" name="family_structure2">職業：</label>
+							<input type="text" id="family_structure_job2"
+								name="family_structure2" class="family_structure_job" />
+						</div>
+
+						</br> </br>
+
+						<div>
+							<label for="family_structure_name3" name="family_structure3">氏名
+								：</label> <input type="text" class="family_structure_name"
+								name="family_structure3" id="family_structure_name3" />
+						</div>
+						<div>
+							<label for="family_structure_furigana3" name="family_structure3">フリガナ：</label>
+							<input type="text" class="family_structure_furigana"
+								name="family_structure3" id="family_structure_furigana3" />
+						</div>
+						<div>
+							<label for="family_structure_birth3" name="family_structure3">生年月日：</label>
+							<input type="text" class="family_structure_birth"
+								id="family_structure_birth3" name="family_structure3" size="4">
+							<label for="family_structure_birth2" name="family_structure3">年</label>
+							</input> <input type="text" class="family_structure_birth"
+								id="family_structure_birth3" name="family_structure3" size="2">
+							<label for="family_structure_birth2" name="family_structure3">月</label>
+							</input> <input type="text" class="family_structure_birth"
+								id="family_structure_birth3" name="family_structure3" size="2">
+							<label for="family_structure_birth2" name="family_structure3">日</label>
+							</input>
+						</div>
+						<div>
+							<label for="family_structure_sex3" name="family_structure3">性別：</label>
+							<select id="family_structure_sex3" class="family_structure_sex"
+								name="family_structure3">
+								<option value="">-</option>
+								<option value="true">男</option>
+								<option value="false">女</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_relationship3"
+								name="family_structure3">続柄：</label> <input type="text"
+								id="family_structure_relationship3" name="family_structure3"
+								class="family_structure_relationship" size="4" />
+						</div>
+						<div>
+							<label for="family_structure_support3" name="family_structure3">扶養の有無：</label>
+							<select name="family_structure3" id="family_structure_support3"
+								class="family_structure_support">
+								<option value="">-</option>
+								<option value="true">有</option>
+								<option value="false">無</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_job3" name="family_structure3">職業：</label>
+							<input type="text" id="family_structure_job3"
+								name="family_structure3" class="family_structure_job" />
+						</div>
+
+
+						<div>
+							<label for="family_structure_name4" name="family_structure4">氏名
+								：</label> <input type="text" class="family_structure_name"
+								name="family_structure4" id="family_structure_name4" />
+						</div>
+						<div>
+							<label for="family_structure_furigana4" name="family_structure4">フリガナ：</label>
+							<input type="text" class="family_structure_furigana"
+								name="family_structure4" id="family_structure_furigana4" />
+						</div>
+						<div>
+							<label for="family_structure_birth4" name="family_structure4">生年月日：</label>
+							<input type="text" class="family_structure_birth"
+								id="family_structure_birth4" name="family_structure4" size="4">
+							<label for="family_structure_birth2" name="family_structure4">年</label>
+							</input> <input type="text" class="family_structure_birth"
+								id="family_structure_birth4" name="family_structure4" size="2">
+							<label for="family_structure_birth2" name="family_structure4">月</label>
+							</input> <input type="text" class="family_structure_birth"
+								id="family_structure_birth4" name="family_structure4" size="2">
+							<label for="family_structure_birth2" name="family_structure4">日</label>
+							</input>
+						</div>
+						<div>
+							<label for="family_structure_sex4" name="family_structure4">性別：</label>
+							<select id="family_structure_sex4" class="family_structure_sex"
+								name="family_structure4">
+								<option value="">-</option>
+								<option value="true">男</option>
+								<option value="false">女</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_relationship4"
+								name="family_structure4">続柄：</label> <input type="text"
+								id="family_structure_relationship4" name="family_structure4"
+								class="family_structure_relationship" size="4" />
+						</div>
+						<div>
+							<label for="family_structure_support4" name="family_structure4">扶養の有無：</label>
+							<select name="family_structure4" id="family_structure_support4"
+								name="family_structure4" class="family_structure_support">
+								<option value="a">-</option>
+								<option value="true">有</option>
+								<option value="false">無</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_job4" name="family_structure4">職業：</label>
+							<input type="text" id="family_structure_job4"
+								name="family_structure4" class="family_structure_job" />
+						</div>
+
+
+						<div>
+							<label for="family_structure_name5" name="family_structure5">氏名
+								：</label> <input type="text" class="family_structure_name"
+								name="family_structure5" id="family_structure_name5" />
+						</div>
+						<div>
+							<label for="family_structure_furigana5" name="family_structure5">フリガナ：</label>
+							<input type="text" class="family_structure_furigana"
+								name="family_structure5" id="family_structure_furigana5" />
+						</div>
+						<div>
+							<label for="family_structure_birth5" name="family_structure5">生年月日：</label>
+							<input type="text" class="family_structure_birth"
+								id="family_structure_birth5" name="family_structure5" size="4">
+							<label for="family_structure_birth2" name="family_structure5">年</label>
+							</input> <input type="text" class="family_structure_birth"
+								id="family_structure_birth5" name="family_structure5" size="2">
+							<label for="family_structure_birth2" name="family_structure5">月</label>
+							</input> <input type="text" class="family_structure_birth"
+								id="family_structure_birth5" name="family_structure5" size="2">
+							<label for="family_structure_birth2" name="family_structure5">日</label>
+							</input>
+						</div>
+						<div>
+							<label for="family_structure_sex5" name="family_structure5">性別：</label>
+							<select id="family_structure_sex5" class="family_structure_sex"
+								name="family_structure5">
+								<option value="">-</option>
+								<option value="true">男</option>
+								<option value="false">女</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_relationship5"
+								name="family_structure5">続柄：</label> <input type="text"
+								id="family_structure_relationship5" name="family_structure5"
+								class="family_structure_relationship" size="4" />
+						</div>
+						<div>
+							<label for="family_structure_support5" name="family_structure5">扶養の有無：</label>
+							<select name="family_structure5" id="family_structure_support5"
+								name="family_structure5" class="family_structure_support">
+								<option value="">-</option>
+								<option value="true">有</option>
+								<option value="false">無</option>
+							</select>
+						</div>
+						<div>
+							<label for="family_structure_job5" name="family_structure5">職業：</label>
+							<input type="text" id="family_structure_job5"
+								name="family_structure5" class="family_structure_job" />
+						</div>
+
+					</div>
+					<div class="modoru">
+						<input type="submit" class="btn" id="button" value="登録/編集">
+					</div>
+					<p>確認書類</p>
+					<div id="document">
+						<input type="checkbox" class="document" id="resident_card"
+							name="document" value="1"><label for="resident_card">住民票[</label>
+						<input type="checkbox" class="document" id="rental_agreement"
+							name="document" value="2"><label for="rental_agreement">賃貸契約書</label>
+						<input type="checkbox" class="document" id="family_register"
+							name="document" value="3"><label for="family_register">戸籍謄本</label>
+						<input type="checkbox" class="document"
+							id="tax_exemption_certificate" name="document" value="4"><label
+							for="tax_exemption_certificate">非課税証明書</label> <input
+							type="checkbox" class="document" id="other" name="document"
+							value="5"><label for="other">その他</label>
+					</div>
+					<div class="nb">備考l</div>
+					<textarea id="nb" name="nb" value="test"></textarea>
 
 
 
-						</br>
+					<br>
 				</form>
 
 				<script type="text/javascript" src="./personal_information.js"></script>
+			</div>
+		</html:form>
 	</body>
 
 	<FORM>
@@ -494,5 +495,4 @@
 			onClick="history.back()">
 	</FORM>
 </div>
-</html:form>
 </html:html>
