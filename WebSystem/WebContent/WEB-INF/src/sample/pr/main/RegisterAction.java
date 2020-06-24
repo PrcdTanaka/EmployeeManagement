@@ -1,6 +1,8 @@
 package sample.pr.main;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -93,7 +95,17 @@ public final class RegisterAction extends Action {
 	 * 入力された情報から新規ユーザの登録を行う。
 	 * </p>
 	 * 1.社員情報の取得<br>
-	 * 　1-1.社員番号の検索<br>
+	 * 　1-1.社員番号のチェック<br>
+	 * 　　クラス　：RegisterAction<br>
+	 * 　　メソッド：checkPattern()<br>
+	 * 　　引数１　：アクションフォーム.getEmployee_no()<br>
+	 * 　　引数２　："Employee_no"<br>
+	 * 　　1-1-1.チェックで不正と判定された場合<br>
+	 * 　　　1-1-1-1.エラーメッセージの設定。<br>
+	 * 　　　　クラス　：RegisterForm<br>
+	 * 　　　　メソッド：setMessage()<br>
+	 * 　　　　引数　　："社員番号が不正です。"<br>
+	 * 　1-2.社員番号の検索<br>
 	 * 　　クラス　：DbAction<br>
 	 * 　　メソッド：confirmationNo()<br>
 	 * 　　引数　　：ユーザ登録画面アクションフォーム<br>
@@ -104,9 +116,10 @@ public final class RegisterAction extends Action {
 	 * 　　引数　　："社員番号が既に存在しています。"<br>
 	 * 3.社員番号が存在しない場合。
 	 * 　3-1パスワードの強度チェック処理をコール。<br>
-	 * 　　クラス　：Register<br>
-	 * 　　メソッド：checkPass()<br>
-	 * 　　引数　　：アクションフォーム.getPassword()<br>
+	 * 　　クラス　：RegisterAction<br>
+	 * 　　メソッド：checkPattern()<br>
+	 * 　　引数１　：アクションフォーム.getPassword()<br>
+	 * 　　引数２　："password"<br>
 	 * 　3-2.パスワードの強度が十分な場合。<br>
 	 * 　　3-2-1.ユーザ登録処理をコール。<br>
 	 * 　　　クラス　：DbAction<br>
@@ -126,6 +139,40 @@ public final class RegisterAction extends Action {
 	 */
 	public String register(RegisterForm form){
 		return null;
+	}
+	
+	/***
+	 * <p>
+	 * パスワードの複雑さ要件をチェックする。
+	 * </p>
+	 * 
+	 * @param word 対処文字列
+	 * @param pattern チェックパターン
+	 * @return 問題ナシ：true, 問題アリ：false
+	 */
+	public boolean checkPattern(String word, String pattern){
+		
+		boolean result = true;
+		
+		if( word == null || word.isEmpty() ) return false ;
+		switch(pattern){
+		case "employee_name":
+			Pattern p1 = Pattern.compile("^[0-9]+$"); // 正規表現パターンの読み込み
+			Matcher m1 = p1.matcher(word); // パターンと検査対象文字列の照合
+			result = m1.matches(); // 照合結果をtrueかfalseで取得
+			if(word.length() != 4)
+				result = false;
+			break;
+		case "password":
+			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$"); // 正規表現パターンの読み込み
+			Matcher m2 = p2.matcher(word); // パターンと検査対象文字列の照合
+			result = m2.matches(); // 照合結果をtrueかfalseで取得
+			if(!(word.length() >= 8 && word.length() <= 16))
+				result = false;
+			break;
+		}
+		
+		return result;
 	}
 
 }
