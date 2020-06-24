@@ -233,7 +233,9 @@ public final class LoginAction extends Action {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("form", lForm);
-		Object s = session.getAttribute("form");
+		
+		LoginForm s = (LoginForm) session.getAttribute("form");
+		
 		if(forward.equals("login")){
 			JOptionPane.showMessageDialog(null,lForm.getMessage());
 		}

@@ -10,7 +10,8 @@
 <html:html>
 	<head>
 		<%
-			Object s = session.getAttribute("form");
+		LoginForm s = (LoginForm) session.getAttribute("form");
+		String user = s.getEmployee_name();
 		%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><bean:message key="main.title"/></title>
@@ -20,10 +21,7 @@
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<tr>
 			<html:form action="/MainAction" styleId="mform">
-				<p style="margin-top:5px;">ログインユーザ：
-					<bean:write name="LoginForm" property="employee_name"
-						scope="request" ignore="true" />
-					
+				<p style="margin-top:5px;">ログインユーザ：<%=user %>
 					<td align="left">
 						<html:submit property="button" styleClass="btn"
 							 style="margin-left:3px;" value="ログアウト" styleId="logout" />
