@@ -3,7 +3,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="sample.pr.main.MainForm"%>
+<%@ page import="sample.pr.main.Personal_informationForm"%>
 
 <html:html>
 <head>
@@ -22,8 +22,7 @@
 
 	<body>
 		<html:form action="/Personal_informationAction">
-			<html:hidden property="employee_name"
-				name="/Personal_informationForm" />
+			<html:hidden property="employee_name" name="Personal_informationForm" />
 			<div class="block">
 
 				<div align="right">
@@ -33,9 +32,9 @@
 					<div class="hire_date">
 						<label for="hire_date">入社日</label>
 						<html:text property="hire_date" />
-						<input type="text" id="hire_date1" name="joining_year" size="3">年</input>
-						<input type="text" id="hire_date2" name="joining_month" size="1">月</input>
-						<input type="text" id="hire_date3" name="joining_day" size="1">日</input>
+						<html:text property= "text" value="年" size="3"/>
+						<html:text property= "text" value="月" size="1"/>
+						<html:text property= "text" value="日" size="1"/>
 					</div>
 					<div class="name">
 						<label for="name">氏名 ：</label> <input type="text" id="name"
@@ -48,9 +47,9 @@
 					<div class="birth">
 						<label for="birth">生年月日：</label>
 						<html:text property="birth" />
-						<input type="text" id="birth" name="birth" size="3">年</input> <input
-							type="text" id="birth" name="birth" size="1">月</input> <input
-							type="text" id="birth" name="birth" size="1">日</input>
+						<html:text property= "text" value="年" size="3"/>
+						<html:text property= "text" value="月" size="1"/>
+						<html:text property= "text" value="日" size="1"/>
 					</div>
 					<div class="sex">
 						<label for="sex">性別：</label> <select name="sex" id="sex">
@@ -72,7 +71,7 @@
 					</div>
 					<div class="postal_code">
 						<label for="postal_code">郵便番号：</label> <input type="text"
-							id="postal_code" size="2" name="postal_code">-</input> <input
+							id="postal_code" size="2" name="postal_code"></input> <input
 							type="text" id="postal_code" size="2" name="postal_code"></input>
 					</div>
 					<div class="address">
@@ -487,12 +486,14 @@
 				</form>
 
 				<script type="text/javascript" src="./personal_information.js"></script>
+			</div>
+		</html:form>
 	</body>
 
 	<FORM>
 		<INPUT type="button" class="btn" style="margin-top: 3px;" value="戻る"
 			onClick="history.back()">
 	</FORM>
-</div>
-</html:form>
+
+
 </html:html>
