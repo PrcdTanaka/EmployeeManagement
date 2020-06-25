@@ -547,7 +547,7 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
-	
+
 	public boolean confirmationNo(RegisterForm form){
 
 		boolean ret = true;
@@ -608,7 +608,7 @@ public class DbAction extends Object{
 	}
 
 	public boolean userRegister(RegisterForm form){
-		
+
 		boolean ret = true;
 		String employee_no = form.getEmployee_no();
 		String password = form.getPassword();
@@ -631,15 +631,16 @@ public class DbAction extends Object{
 			sb.append("  EMPLOYEE_NO(" + crlf);
 			sb.append("  PASSWORD," + crlf);
 			sb.append("VALUES(" + crlf);
-			sb.append("  ,'" + employee_no);
-			sb.append("','" + password);
+			sb.append("' + ?");
+			sb.append("',' + ?");
 			sb.append("')" + crlf);
 
 			String query = sb.toString();
 
 			// 取得項目
 			List<String> columnList = new ArrayList<String>();
-			columnList.add("SYAIN_NO");
+			columnList.add("EMPLOYEE_NO");
+			columnList.add("PASSWORD");
 
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
@@ -647,12 +648,12 @@ public class DbAction extends Object{
 
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getSyain_no());
-
+			bindList.add(form.getEmployee_no());
+			bindList.add(form.getPassword());
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
 			try {
-				
+
 				dba.executeQuery(query, typeList, bindList);
 				dba.commit();
 				dba.closeConnection();
@@ -664,5 +665,5 @@ public class DbAction extends Object{
 		return ret;
 
 	}
-	
+
 }
