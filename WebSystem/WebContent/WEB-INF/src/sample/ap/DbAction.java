@@ -631,7 +631,7 @@ public class DbAction extends Object{
 			sb.append("  EMPLOYEE_NO(" + crlf);
 			sb.append("  PASSWORD," + crlf);
 			sb.append("VALUES(" + crlf);
-			sb.append("  ,' + ?");
+			sb.append("' + ?");
 			sb.append("',' + ?");
 			sb.append("')" + crlf);
 
