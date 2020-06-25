@@ -9,6 +9,7 @@ import java.util.Map;
 import sample.db.DbConnector;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
+import sample.pr.main.RegisterForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
 
@@ -546,4 +547,123 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+
+	public boolean confirmationNo(RegisterForm form){
+
+		boolean ret = true;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT" + crlf);
+			sb.append("  EMPLOYEE_NO" + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("  EMPLOYEE_MST" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("EMPLOYEE_NO");
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					ret = false;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+
+	public boolean userRegister(RegisterForm form){
+
+		boolean ret = true;
+		String employee_no = form.getEmployee_no();
+		String password = form.getPassword();
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO" + crlf);
+			sb.append("  EMPLOYEE_NO(" + crlf);
+			sb.append("  PASSWORD," + crlf);
+			sb.append("VALUES(" + crlf);
+			sb.append("' + ?");
+			sb.append("',' + ?");
+			sb.append("')" + crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("EMPLOYEE_NO");
+			columnList.add("PASSWORD");
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+			bindList.add(form.getPassword());
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, typeList, bindList);
+				dba.commit();
+				dba.closeConnection();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+
 }

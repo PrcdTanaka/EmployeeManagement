@@ -80,7 +80,8 @@
 			type="sample.pr.main.RegisterAction"
 			validate="false"
 			scope="request">
-			<forward name="message" path="/jsp/Register.jsp"/>
+			<forward name="register" path="/jsp/register.jsp"/>
+			<forward name="main" path="/jsp/Main.jsp"/>
 
 		</action>
 

@@ -2,6 +2,8 @@ package sample.pr.main;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,8 +42,8 @@ public final class RegisterAction extends Action {
 
 	// 遷移先
 	private String forward;
-	
-	 
+
+
 	/****
 	 * <p>
 	 * クリックされたボタンを判定し、遷移先情報を返却する。
@@ -52,9 +54,9 @@ public final class RegisterAction extends Action {
 	 * 　　メソッド：setCharacterEncoding()<br>
 	 * 　　引数　　："utf-8"<br>
 	 * 　1-2.UnsupportedEncodingException（文字のエンコーディングがサポートされていません。）が発生した場合。<br>
-	 * 　　スタックトレースの出力<br>
-	 * 　　クラス　：e<br>
-	 * 　　メソッド：printStackTrace()<br>
+	 * 　　1-2-1.スタックトレースの出力<br>
+	 * 　　　クラス　：e<br>
+	 * 　　　メソッド：printStackTrace()<br>
 	 * <br>
 	 * 2.登録画面のアクションフォーム情報をインプットパラメータ.アクションフォームから取得する。<br>
 	 * 　2-1.フォーム情報のキャスト<br>
@@ -66,62 +68,145 @@ public final class RegisterAction extends Action {
 	 * 　3-2.登録ボタンの場合。<br>
 	 * 　　3-2-1.ユーザ登録処理をコール<br>
 	 * 　　　クラス　：RegisterAction<br>
-	 * 　　　メソッド：entry()<br>
-	 * 　　　引数　　：RegisterForm.getEmployee_no()<br>
-	 * 　　　戻り値　：forward<br>
-	 * 　　
-	 * 
-		HttpSession session = request.getSession();
-		Object s = session.getAttribute("form");
+	 * 　　　メソッド：register()<br>
+	 * 　　　引数　　：ユーザー登録画面アクションフォーム<br>
+	 * 　　　戻り値　：遷移先設定<br>
+	 * 　3-3.戻るボタンの場合。<br>
+	 * 　　3-3-1.遷移先設定<br>
+	 * 　　　遷移先："main"<br>
 	 * <br>
-	 * 
+	 * 4.戻り値を返却する。<br>
+	 * 　4-1.遷移先情報取得処理をコール。<br>
+	 * 　　クラス　：ActionMapping<br>
+	 * 　　メソッド：findForward(遷移先)<br>
+	 * <br>
 	 * @param map
 	 *            アクションマッピング<br>
 	 *            frm アクションフォーム<br>
 	 *            request リクエスト情報<br>
 	 *            response レスポンス情報<br>
 	 * @return 遷移先情報
-	 */ 
+	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
+			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-
-		// アクションフォームBeanより入力フォームのデータを取り出す処理
-		// フォーム情報をキャスト
-		LoginForm rForm = (LoginForm) frm;
-
-		// フォームへ入力された情報をとりだす。
-		String e_noemploye = rForm.getEmployee_no();
-		// クリックされたボタンの名称をアクションフォームから取得
+		RegisterForm rForm = (RegisterForm) frm;
 		String button = rForm.getButton();
-
-		DbAction dAction;
-
-		try {
-			dAction = new DbAction();
-
-			if(dAction.getEmployeeName(rForm)) {
-
-			} else {
-
-			}
-
-			} catch (IOException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-
+		if(button.equals("登録")) {
+			forward = register(rForm);
 		}
-		return null;
+		else if(button.equals("戻る")) {
+			forward = "main";
+		}
+
+		return map.findForward(forward);
 	}
 
-	private String clickBtnIn(LoginForm form) {
+	/***
+	 * <p>
+	 * 入力された情報から新規ユーザの登録を行う。
+	 * </p>
+	 * 1.社員情報の取得<br>
+	 * 　1-1.社員番号のチェック<br>
+	 * 　　クラス　：RegisterAction<br>
+	 * 　　メソッド：checkPattern()<br>
+	 * 　　引数１　：アクションフォーム.getEmployee_no()<br>
+	 * 　　引数２　："Employee_no"<br>
+	 * 　　1-1-1.チェックで不正と判定された場合<br>
+	 * 　　　1-1-1-1.エラーメッセージの設定。<br>
+	 * 　　　　クラス　：RegisterForm<br>
+	 * 　　　　メソッド：setMessage()<br>
+	 * 　　　　引数　　："社員番号が不正です。"<br>
+	 * 　1-2.社員番号の検索<br>
+	 * 　　クラス　：DbAction<br>
+	 * 　　メソッド：confirmationNo()<br>
+	 * 　　引数　　：ユーザ登録画面アクションフォーム<br>
+	 * 2.社員番号が既に存在している場合。<br>
+	 * 　2-1.エラーメッセージの設定。<br>
+	 * 　　クラス　：RegisterForm<br>
+	 * 　　メソッド：setMessage()<br>
+	 * 　　引数　　："社員番号が既に存在しています。"<br>
+	 * 3.社員番号が存在しない場合。
+	 * 　3-1パスワードの強度チェック処理をコール。<br>
+	 * 　　クラス　：RegisterAction<br>
+	 * 　　メソッド：checkPattern()<br>
+	 * 　　引数１　：アクションフォーム.getPassword()<br>
+	 * 　　引数２　："password"<br>
+	 * 　3-2.パスワードの強度が十分な場合。<br>
+	 * 　　3-2-1.ユーザ登録処理をコール。<br>
+	 * 　　　クラス　：DbAction<br>
+	 * 　　　メソッド：userRegister()<br>
+	 * 　　　引数　　：ユーザ登録画面アクションフォーム<br>
+	 * 　3-3.パスワードの強度が不十分な場合。<br>
+	 * 　　3-3-1.エラーメッセージの設定。<br>
+	 * 　　　クラス　：RegisterForm<br>
+	 * 　　　メソッド：setMessage()<br>
+	 * 　　　引数　　："パスワードが複雑さの要件を満たしていません。"<br>
+	 * 4.戻り値を返却する。<br>
+	 * 　4-1.遷移先情報を設定。<br>
+	 * 　　forward："register"<br>
+	 * <br>
+	 * @param form Actionform
+	 * @return 遷移先
+	 */
+	public String register(RegisterForm form){
 
-		forward = "message";
+		if(!checkPattern(form.getEmployee_no(),"Employee_no")) {
+			form.setMassage("社員番号が不正です。");
+		}
 
-		return forward;
+		if(dba.confirmationNo(form)) {
+			form.setMassage("社員番号が既に存在しています。");
+
+		}else {
+
+			if(checkPattern(form.getPassword(),"password")) {
+				dba.userRegister(form);
+			}else {
+				form.setMassage("パスワードが複雑さの要件を満たしていません。");
+			}
+		}
+
+
+		return "register";
+	}
+
+	/***
+	 * <p>
+	 * パスワードの複雑さ要件をチェックする。
+	 * </p>
+	 *
+	 * @param word 対処文字列
+	 * @param pattern チェックパターン
+	 * @return 問題ナシ：true, 問題アリ：false
+	 */
+	public boolean checkPattern(String word, String pattern){
+
+		boolean result = true;
+
+		if( word == null || word.isEmpty() ) return false ;
+		switch(pattern){
+		case "employee_name":
+			Pattern p1 = Pattern.compile("^[0-9]+$"); // 正規表現パターンの読み込み
+			Matcher m1 = p1.matcher(word); // パターンと検査対象文字列の照合
+			result = m1.matches(); // 照合結果をtrueかfalseで取得
+			if(word.length() != 4)
+				result = false;
+			break;
+		case "password":
+			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$"); // 正規表現パターンの読み込み
+			Matcher m2 = p2.matcher(word); // パターンと検査対象文字列の照合
+			result = m2.matches(); // 照合結果をtrueかfalseで取得
+			if(!(word.length() >= 8 && word.length() <= 16))
+				result = false;
+			break;
+		}
+
+		return result;
 	}
 
 }

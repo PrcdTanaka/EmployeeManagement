@@ -14,6 +14,8 @@ public final class RegisterForm extends ActionForm {
 	/** ボタン名 */
 	private String button;
 
+	private String message;
+
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -24,6 +26,7 @@ public final class RegisterForm extends ActionForm {
 		employee_no = "";
 		button = "";
 		password = "";
+		message = "";
 	}
 
 	/**
@@ -101,5 +104,29 @@ public final class RegisterForm extends ActionForm {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * メッセージ取得処理。
+	 * <p>
+	 * 社員登録画面アクションフォームからメッセージを取得する。
+	 * </p>
+	 *
+	 * @return メッセージ
+	 */
+	public String getMassage() {
+		return message;
+	}
+
+	/**
+	 * メッセージ設定処理。
+	 * <p>
+	 * 社員登録画面アクションフォームにメッセージを設定する。
+	 * </p>
+	 *
+	 * @param message メッセージ
+	 */
+	public void setMassage(String Massage) {
+		this.message = Massage;
 	}
 }

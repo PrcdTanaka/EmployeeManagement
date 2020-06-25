@@ -477,6 +477,7 @@
 							type="checkbox" class="document" id="other" name="document"
 							value="5"><label for="other">その他</label>
 					</div>
+					
 					<div class="nb">備考l</div>
 					<textarea id="nb" name="nb" value="test"></textarea>
 
