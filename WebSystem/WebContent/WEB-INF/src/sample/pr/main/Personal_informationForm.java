@@ -25,12 +25,6 @@ public final class Personal_informationForm extends ActionForm {
 	/** 日時 */
 	private String dtime;
 
-	private String hidden;
-
-	private String text;
-
-	private String hire_date;
-
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -46,10 +40,7 @@ public final class Personal_informationForm extends ActionForm {
 		message = "";
 		password = "";
 		dtime = "";
-		hidden = "";
-		text = "";
-		hire_date = "";
-				}
+	}
 
 	/**
 	 * 社員番号取得処理。
@@ -214,22 +205,5 @@ public final class Personal_informationForm extends ActionForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getHidden() {
-		return hidden;
-	}
-	public void setHidden(String hidden) {
-		this.hidden = hidden;
-	}
-	public String getText() {
-		return text;
-	}
-	public void setText(String text) {
-		this.text = text;
-	}
-	public String getHire_date() {
-		return hire_date;
-	}
-	public void setHire_date(String hire_date) {
-		this.hire_date = hire_date;
-	}
+
 }
