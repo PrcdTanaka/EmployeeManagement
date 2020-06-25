@@ -1,6 +1,7 @@
 package sample.pr.main;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,8 +42,8 @@ public final class RegisterAction extends Action {
 
 	// 遷移先
 	private String forward;
-	
-	 
+
+
 	/****
 	 * <p>
 	 * クリックされたボタンを判定し、遷移先情報を返却する。
@@ -85,11 +86,26 @@ public final class RegisterAction extends Action {
 	 *            request リクエスト情報<br>
 	 *            response レスポンス情報<br>
 	 * @return 遷移先情報
-	 */ 
+	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
-		return null;
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		RegisterForm rForm = (RegisterForm) frm;
+		String button = rForm.getButton();
+		if(button.equals("登録")) {
+			forward = register(rForm);
+		}
+		else if(button.equals("戻る")) {
+			forward = "main";
+		}
+
+		return map.findForward(forward);
 	}
-	
+
 	/***
 	 * <p>
 	 * 入力された情報から新規ユーザの登録を行う。
@@ -134,26 +150,44 @@ public final class RegisterAction extends Action {
 	 * 　4-1.遷移先情報を設定。<br>
 	 * 　　forward："register"<br>
 	 * <br>
-	 * @param form
+	 * @param form Actionform
 	 * @return 遷移先
 	 */
 	public String register(RegisterForm form){
-		return null;
+
+		if(!checkPattern(form.getEmployee_no(),"Employee_no")) {
+			form.setMassage("社員番号が不正です。");
+		}
+
+		if(dba.confirmationNo(form)) {
+			form.setMassage("社員番号が既に存在しています。");
+
+		}else {
+
+			if(checkPattern(form.getPassword(),"password")) {
+				dba.userRegister(form);
+			}else {
+				form.setMassage("パスワードが複雑さの要件を満たしていません。");
+			}
+		}
+
+
+		return "register";
 	}
-	
+
 	/***
 	 * <p>
 	 * パスワードの複雑さ要件をチェックする。
 	 * </p>
-	 * 
+	 *
 	 * @param word 対処文字列
 	 * @param pattern チェックパターン
 	 * @return 問題ナシ：true, 問題アリ：false
 	 */
 	public boolean checkPattern(String word, String pattern){
-		
+
 		boolean result = true;
-		
+
 		if( word == null || word.isEmpty() ) return false ;
 		switch(pattern){
 		case "employee_name":
@@ -171,7 +205,7 @@ public final class RegisterAction extends Action {
 				result = false;
 			break;
 		}
-		
+
 		return result;
 	}
 
