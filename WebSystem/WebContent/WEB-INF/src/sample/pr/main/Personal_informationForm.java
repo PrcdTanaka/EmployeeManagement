@@ -24,6 +24,8 @@ public final class Personal_informationForm extends ActionForm {
 	private String message;
 	/** 日時 */
 	private String dtime;
+	
+	private String hidden;
 
 	/**
 	 * 初期化処理。
@@ -40,6 +42,7 @@ public final class Personal_informationForm extends ActionForm {
 		message = "";
 		password = "";
 		dtime = "";
+		hidden = "";
 	}
 
 	/**
@@ -205,5 +208,10 @@ public final class Personal_informationForm extends ActionForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	public String getHidden() {
+		return password;
+	}
+	public void setHidden(String hidden) {
+		this.hidden = hidden;
+	}
 }
