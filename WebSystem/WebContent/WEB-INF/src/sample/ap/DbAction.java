@@ -629,27 +629,16 @@ public class DbAction extends Object{
 			sb.append("  PASSWORD," + crlf);
 			sb.append("  MANAGER_FLAG" + crlf);
 			sb.append(")VALUES(" + crlf);
-			sb.append("'?',");
-			sb.append("'?',");
-			sb.append("0)" + crlf);
+			sb.append("  '" + form.getEmployee_no() + "'," + crlf);
+			sb.append("  '" + form.getPassword() + "'," + crlf);
+			sb.append("  0" + crlf);
+			sb.append(")" + crlf);
 
 			String query = sb.toString();
 
-
-
-			// 設定値 - 型
-			List<Integer> typeList = new ArrayList<Integer>();
-			typeList.add(dba.DB_STRING);
-
-			// 設定値 - 値
-			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getEmployee_no());
-			bindList.add(form.getPassword());
-			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();
-
 			try {
-
-				dba.executeQuery(query, typeList, bindList);
+				
+				dba.executeQuery(query);
 				dba.commit();
 				dba.closeConnection();
 
