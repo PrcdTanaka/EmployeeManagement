@@ -155,11 +155,11 @@ public final class RegisterAction extends Action {
 	 */
 	public String register(RegisterForm form){
 
-		if(!checkPattern(form.getEmployee_no(),"Employee_no")) {
+		if(!checkPattern(form.getEmployee_no(),"employee_no")) {
 			form.setMassage("社員番号が不正です。");
 		}
 
-		if(dba.confirmationNo(form)) {
+		if(!dba.confirmationNo(form)) {
 			form.setMassage("社員番号が既に存在しています。");
 
 		}else {
@@ -190,7 +190,7 @@ public final class RegisterAction extends Action {
 
 		if( word == null || word.isEmpty() ) return false ;
 		switch(pattern){
-		case "employee_name":
+		case "employee_no":
 			Pattern p1 = Pattern.compile("^[0-9]+$"); // 正規表現パターンの読み込み
 			Matcher m1 = p1.matcher(word); // パターンと検査対象文字列の照合
 			result = m1.matches(); // 照合結果をtrueかfalseで取得
