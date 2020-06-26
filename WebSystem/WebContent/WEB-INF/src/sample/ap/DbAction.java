@@ -610,9 +610,6 @@ public class DbAction extends Object{
 	public boolean userRegister(RegisterForm form){
 
 		boolean ret = true;
-		String employee_no = form.getEmployee_no();
-		String password = form.getPassword();
-
 		// DB接続
 		DbConnector dba = null;
 		try {
@@ -627,20 +624,18 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("INSERT INTO" + crlf);
-			sb.append("  EMPLOYEE_NO(" + crlf);
+			sb.append("INSERT INTO EMPLOYEE_MST(" + crlf);
+			sb.append("  EMPLOYEE_NO," + crlf);
 			sb.append("  PASSWORD," + crlf);
-			sb.append("VALUES(" + crlf);
-			sb.append("' + ?");
-			sb.append("',' + ?");
-			sb.append("')" + crlf);
+			sb.append("  MANAGER_FLAG" + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("'?',");
+			sb.append("'?',");
+			sb.append("0)" + crlf);
 
 			String query = sb.toString();
 
-			// 取得項目
-			List<String> columnList = new ArrayList<String>();
-			columnList.add("EMPLOYEE_NO");
-			columnList.add("PASSWORD");
+
 
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
@@ -650,7 +645,7 @@ public class DbAction extends Object{
 			List<Object> bindList = new ArrayList<Object>();
 			bindList.add(form.getEmployee_no());
 			bindList.add(form.getPassword());
-			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();
 
 			try {
 
