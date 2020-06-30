@@ -1,0 +1,29 @@
+.SS{
+	position:relative;
+	text-align:left;
+	left: 55%;
+	margin-top : 3%;
+	font-size:20px;
+	line-height: 240%;
+	width:45%;
+}
+.IMG{
+	position:absolute;
+	top : 5%;
+	left:30%;
+}
+.free{
+	position:relative;
+	left:38%;
+	width:62%;
+	font-size:20px;
+	line-height:200%;
+}
+.syokai{
+	line-height:100%
+}
+
+body{
+	width:100%;
+	margin:0;
+}

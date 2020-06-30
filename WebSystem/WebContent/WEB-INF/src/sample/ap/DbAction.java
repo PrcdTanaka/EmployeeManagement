@@ -547,7 +547,15 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
-
+	
+	/**
+	 * <p>
+	 * 社員番号確認処理
+	 * </p>
+	 * 
+	 * @param form ユーザー登録画面アクションフォーム
+	 * @return 重複ナシ：true DB接続失敗,重複アリ：false
+	 */
 	public boolean confirmationNo(RegisterForm form){
 
 		boolean ret = true;
@@ -606,7 +614,14 @@ public class DbAction extends Object{
 		return ret;
 
 	}
-
+	/***
+	 * <p>
+	 * 新規ユーザーを登録する。
+	 * </p>
+	 * 
+	 * @param form ユーザー登録画面アクションフォーム
+	 * @return DB接続成功：true DB接続失敗：false
+	 */
 	public boolean userRegister(RegisterForm form){
 
 		boolean ret = true;
@@ -644,6 +659,7 @@ public class DbAction extends Object{
 
 			} catch (SQLException e) {
 				e.printStackTrace();
+				ret = false;
 			}
 		}
 		return ret;
