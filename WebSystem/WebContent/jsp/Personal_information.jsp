@@ -32,44 +32,45 @@
 				<form action="open_inforegistration.jsp" method="post">
 					<div class="hire_date">
 						<label for="hire_date">入社日</label>
-						<html:text property= "text" value="" size="6"/>年月日
+						<html:text property="hire_date" name ="Personal_informationForm" styleId="hire_date" value="" size="8" maxlength="8" />
+						(半角数字8ケタ)
 
 					</div>
 					<div class="name">
-						<label for="name">氏名 ：</label> <input type="text" id="name"
-							class="name" />
+						<label for="name">氏名 ：</label>
+						<html:text property="employee_name" name ="Personal_informationForm" styleId="name" value=""></html:text>
 					</div>
 					<div>
-						<label for="furigana">フリガナ：</label> <input type="text"
-							id="furigana" class="furigana" />
+						<label for="furigana">フリガナ：</label>
+						<html:text property="furigana_name" name ="Personal_informationForm" styleId="furigana" value=""></html:text>
 					</div>
 					<div class="birth">
 						<label for="birth">生年月日：</label>
-						<html:text property= "text" value="" size="6"/>
-
+						<html:text property= "birth" name ="Personal_informationForm" styleId="birth" value="" size="8" maxlength="8" />
 					</div>
 					<div class="sex">
-						<label for="sex">性別：</label> <select name="sex" id="sex">
-							<option value="">-</option>
-							<option value="true">男</option>
-							<option value="false">女</option>
-						</select>
+						<label for="sex">性別：</label>
+						<html:select property="sex" name ="Personal_informationForm" styleId="sex">
+							<html:option value="">-</html:option>
+							<html:option value="0">男</html:option>
+							<html:option value="1">女</html:option>
+						</html:select>
 					</div>
 					<div class="tel">
 						<label for="tel_home">電話番号</label>
 						<div class="tel_home">
-							<label for="tel_home">　自宅 ：</label> <input id="tel_home"
-								type="tel" />
+							<label for="tel_home">　自宅 ：</label>
+							<html:text property="tel_home" name ="Personal_informationForm" styleId="tel_home" />
 						</div>
 						<div class="tel_phone">
-							<label for="tel_phone">　携帯電話：</label> <input id="tel_phone"
-								type="tel" />
+							<label for="tel_phone">　携帯電話：</label>
+							<html:text property="tel_phone" name ="Personal_informationForm" styleId="tel_phone" />
 						</div>
 					</div>
 					<div class="postal_code">
-						<label for="postal_code">郵便番号：</label> <input type="text"
-							id="postal_code" size="2" name="postal_code"></input> <input
-							type="text" id="postal_code" size="2" name="postal_code"></input>
+						<label for="postal_code">郵便番号：</label>
+						<input type="text" id="postal_code" size="2" name="postal_code"></input>
+						<input type="text" id="postal_code" size="2" name="postal_code"></input>
 					</div>
 					<div class="address">
 						<label for="address">住所 ：</label> <input type="text" id="address"
@@ -461,6 +462,6 @@
 		<INPUT type="button" class="btn" style="margin-top: 3px;" value="戻る"
 			onClick="history.back()">
 	</FORM>
-
+</div>
 
 </html:html>
