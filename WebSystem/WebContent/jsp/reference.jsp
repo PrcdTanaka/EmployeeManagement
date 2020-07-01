@@ -11,30 +11,38 @@
 <link rel="stylesheet" type="text/css" href="../main.css">
 <link rel="stylesheet" type="text/css" href="../reference.css">
 	<body>
-		<%
-		LoginForm lfs = (LoginForm) session.getAttribute("searchForm");
-		String name = lfs.getEmployee_name();
+		<!--%
+		SearchForm sForm = (SearchForm) session.getAttribute("searchForm");
+		String name = sForm.getEmployee_name();			// 名前
+		String post = sForm.getPost();					// 役職
+		String hire_date = sForm.getHire_date();		// 入社日
+		String dep = sForm.getDepertment();				// 所属部
+		String hobbies = sForm.getHobbies();			// 趣味
+		String specialty = sForm.getSpecialty();		// 特技
+		String introduction = sForm.getIntroduction();	// 紹介文
 		
-		%>
+		%-->
 		<div class="SS">
-			<p>名前　　　：<%= name %>　　　役職：なし</p>
-			<p>入社年月日：自動入力<p>
-			<p>技術部　　：第2技術部</p>
+			<p>名前　　　：<!-- %= name % -->　　　役職：<!-- %= post % --></p>
+			<p>入社年月日：<!-- %= hire_date % --><p>
+			<p>技術部　　：<!-- %= dep % --></p>
 		</div>
 
 		<div class="IMG">
-			<img src="C:\Users\mizuki_komaki\Pictures\Screenshots\a.png"  height="170px">
+			<html:img src="${pageContext.request.contextPath}/img/genba_noko.png"  height="170px" alt="現場猫" />
 		</div>
 
 		<div class="free">
-			<p>趣味：聞き耳</p>
-			<p>特技：秒間18連打</p>
+			<p>趣味：<!-- %= hobbies % --></p>
+			<p>特技：<!-- %= specialty % --></p>
 		<div class="syokai">
 			<p style="position:relative;right:80px;">紹介文</p>
-			<p style="font-size:20px;position:relative;right:50px;">てやんでぇ</p>
+			<p style="font-size:20px;position:relative;right:50px;">てやんでぇ<!-- %= introduction % --></p>
+			<html:textarea name="SearchForm" property="introduction" />
 		</div>
 		<div>
-		      <p><input type="button" class="btn" value="戻る" onclick="location.href='main.html'"></input></p>
+				<!-- 戻るボタン -->
+				<span><html:submit property="button" styleClass="btn" value="戻る" styleId="back" /></span>
 		</div>
 	</body>
 </html:html>

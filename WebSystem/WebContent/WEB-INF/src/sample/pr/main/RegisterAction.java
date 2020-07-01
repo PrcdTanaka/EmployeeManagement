@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -91,7 +92,6 @@ public final class RegisterAction extends Action {
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 		RegisterForm rForm = (RegisterForm) frm;
@@ -102,6 +102,8 @@ public final class RegisterAction extends Action {
 		else if(button.equals("戻る")) {
 			forward = "main";
 		}
+		HttpSession session = request.getSession();
+		session.setAttribute("rForm", rForm);
 
 		return map.findForward(forward);
 	}
@@ -157,6 +159,7 @@ public final class RegisterAction extends Action {
 
 		if(!checkPattern(form.getEmployee_no(),"employee_no")) {
 			form.setMassage("社員番号が不正です。");
+			return "register";
 		}
 
 		if(!dba.confirmationNo(form)) {
@@ -165,7 +168,8 @@ public final class RegisterAction extends Action {
 		}else {
 
 			if(checkPattern(form.getPassword(),"password")) {
-				dba.userRegister(form);
+				if(dba.userRegister(form))
+					form.setMassage("ユーザー登録に成功しました。");
 			}else {
 				form.setMassage("パスワードが複雑さの要件を満たしていません。");
 			}
