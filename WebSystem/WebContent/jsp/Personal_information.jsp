@@ -11,10 +11,11 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../css/personal_information.css">
 <link rel="stylesheet" type="text/css" href="main.css">
 <html lang="ja">
 </head>
-<div class="form-wrapper">
+<div class="form-wrapper"style = " background: #e9e9e9">
 
 	<table>
 		<h1>個人情報入力画面</h1>
@@ -31,10 +32,8 @@
 				<form action="open_inforegistration.jsp" method="post">
 					<div class="hire_date">
 						<label for="hire_date">入社日</label>
-						<html:text property="hire_date" />
-						<html:text property= "text" value="年" size="3"/>
-						<html:text property= "text" value="月" size="1"/>
-						<html:text property= "text" value="日" size="1"/>
+						<html:text property= "text" value="" size="6"/>年月日
+
 					</div>
 					<div class="name">
 						<label for="name">氏名 ：</label> <input type="text" id="name"
@@ -46,10 +45,8 @@
 					</div>
 					<div class="birth">
 						<label for="birth">生年月日：</label>
-						<html:text property="birth" />
-						<html:text property= "text" value="年" size="3"/>
-						<html:text property= "text" value="月" size="1"/>
-						<html:text property= "text" value="日" size="1"/>
+						<html:text property= "text" value="" size="6"/>
+
 					</div>
 					<div class="sex">
 						<label for="sex">性別：</label> <select name="sex" id="sex">
@@ -61,11 +58,11 @@
 					<div class="tel">
 						<label for="tel_home">電話番号</label>
 						<div class="tel_home">
-							<label for="tel_home">自宅 ：</label> <input id="tel_home"
+							<label for="tel_home">　自宅 ：</label> <input id="tel_home"
 								type="tel" />
 						</div>
 						<div class="tel_phone">
-							<label for="tel_phone">携帯電話：</label> <input id="tel_phone"
+							<label for="tel_phone">　携帯電話：</label> <input id="tel_phone"
 								type="tel" />
 						</div>
 					</div>
@@ -119,7 +116,8 @@
 								name="emergency1" />
 						</div>
 						</p>
-
+						
+						<span id="entry">
 						<p class="emergency_contact" id="emergency_contact2">
 						<div>
 							<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
@@ -137,6 +135,8 @@
 								name="emergency2" />
 						</div>
 						</p>
+						</span>
+						
 						<p class="emergency_contact" id="emergency_contact3">
 						<div>
 							<label for="emergency_name3" name="emergency3">氏名：</label> <input
@@ -204,12 +204,7 @@
 							</div>
 							<div>
 								<label for="family_structure_birth1" name="family_structure1">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth1" name="family_structure1" size="4">年</input>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth1" name="family_structure1" size="2">月</input>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth1" name="family_structure1" size="2">日</input>
+								<html:text property= "text" value="" size="6"/>
 							</div>
 							<div>
 								<label for="family_structure_sex1" name="family_structure1">性別：</label>
@@ -255,16 +250,7 @@
 							</div>
 							<div>
 								<label for="family_structure_birth2" name="family_structure2">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth2" name="family_structure2" size="4">
-								<label for="family_structure_birth2" name="family_structure2">年</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth2" name="family_structure2" size="2">
-								<label for="family_structure_birth2" name="family_structure2">月</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth2" name="family_structure2" size="2">
-								<label for="family_structure_birth2" name="family_structure2">日</label>
-								</input>
+								<html:text property= "text" value="" size="6"/>
 							</div>
 							<div>
 								<label for="family_structure_sex2" name="family_structure2">性別：</label>
@@ -310,15 +296,7 @@
 							</div>
 							<div>
 								<label for="family_structure_birth3" name="family_structure3">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth3" name="family_structure3" size="4">
-								<label for="family_structure_birth2" name="family_structure3">年</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth3" name="family_structure3" size="2">
-								<label for="family_structure_birth2" name="family_structure3">月</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth3" name="family_structure3" size="2">
-								<label for="family_structure_birth2" name="family_structure3">日</label>
+								<html:text property= "text" value="" size="6"/>
 								</input>
 							</div>
 							<div>
@@ -364,15 +342,7 @@
 							</div>
 							<div>
 								<label for="family_structure_birth4" name="family_structure4">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth4" name="family_structure4" size="4">
-								<label for="family_structure_birth2" name="family_structure4">年</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth4" name="family_structure4" size="2">
-								<label for="family_structure_birth2" name="family_structure4">月</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth4" name="family_structure4" size="2">
-								<label for="family_structure_birth2" name="family_structure4">日</label>
+								<html:text property= "text" value="" size="6"/>
 								</input>
 							</div>
 							<div>
@@ -418,15 +388,7 @@
 							</div>
 							<div>
 								<label for="family_structure_birth5" name="family_structure5">生年月日：</label>
-								<input type="text" class="family_structure_birth"
-									id="family_structure_birth5" name="family_structure5" size="4">
-								<label for="family_structure_birth2" name="family_structure5">年</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth5" name="family_structure5" size="2">
-								<label for="family_structure_birth2" name="family_structure5">月</label>
-								</input> <input type="text" class="family_structure_birth"
-									id="family_structure_birth5" name="family_structure5" size="2">
-								<label for="family_structure_birth2" name="family_structure5">日</label>
+								<html:text property= "text" value="" size="6"/>
 								</input>
 							</div>
 							<div>
@@ -460,9 +422,14 @@
 							</div>
 
 						</div>
-						<div class="modoru">
-							<input type="submit" class="btn" id="button" value="登録/編集">
-						</div>
+							<!-- 登録/編集ボタン  -->
+							<div class="sample3Area" id="makeImg">
+  							<input type="checkbox" id="sample3check" checked="">
+    						<label for="sample3check">
+      						<span></span>
+    						</label>
+							</div>
+
 						<p>確認書類</p>
 						<div id="document">
 							<input type="checkbox" class="document" id="resident_card"
