@@ -23,7 +23,7 @@
 		
 		%-->
 		<div class="SS">
-			<p>名前　　　：<!-- %= name % -->　　　役職：<!-- %= post % --></p>
+			<p>名前　　　：<!-- %= name % --><!-- bean:write name="SearchForm" -->　　　役職：<!-- %= post % --></p>
 			<p>入社年月日：<!-- %= hire_date % --><p>
 			<p>技術部　　：<!-- %= dep % --></p>
 		</div>
