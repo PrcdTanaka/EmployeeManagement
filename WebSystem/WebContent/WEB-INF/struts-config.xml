@@ -19,6 +19,7 @@
 		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
 		<form-bean name="SearchForm" type="sample.pr.main.SearchForm"/>
 		<form-bean name="RegisterForm" type="sample.pr.main.RegisterForm"/>
+		<form-bean name="Personal_informationForm" type="sample.pr.main.Personal_informationForm"/>
 
     </form-beans>
 
