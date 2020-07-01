@@ -138,10 +138,6 @@ public final class SearchAction extends Action {
 			else {
 				forward="search";
 				dbaction.getSearchAns(sForm);
-				for(String A:sForm.getSyain_no())
-				{
-
-				}
 			}
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック

@@ -6,6 +6,10 @@ import org.apache.struts.action.ActionForm;
 
 public final class LoginForm extends ActionForm {
 
+	// コンストラクタ
+	public LoginForm(){
+		
+	}
 	/** シリアルバージョンID */
 	private static final long serialVersionUID = 1L;
 

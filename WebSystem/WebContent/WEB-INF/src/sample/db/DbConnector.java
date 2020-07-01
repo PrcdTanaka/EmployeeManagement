@@ -214,6 +214,35 @@ public class DbConnector {
 		}
 		return ret;
 	}
+	
+	/**
+	 * INSERT句を発行する。
+	 *
+	 * @param pQuery
+	 * @return 実行結果
+	 * @throws SQLException
+	 */
+	public long executeQuery(String pQuery) throws SQLException {
+
+		long ret = 0;
+		PreparedStatement pst = null;
+
+		try {
+
+			pst = this.con.prepareStatement(pQuery);
+			pst.executeUpdate();
+			pst.close();
+
+		} catch (SQLException e) {
+			ret = 1;
+			con.rollback();
+			e.printStackTrace();
+		} catch (Exception e) {
+			ret = 1;
+			e.printStackTrace();
+		}
+		return ret;
+	}
 
 	/**
 	 * バインド変数の設定を行う。

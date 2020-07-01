@@ -20,6 +20,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Temp/pleiades/tomcat/8/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Temp/pleiades/tomcat/7/lib/ojdbc6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

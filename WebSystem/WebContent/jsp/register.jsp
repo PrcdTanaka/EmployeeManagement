@@ -3,6 +3,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="sample.pr.main.RegisterForm" %>
 
 <html:html>
 	<head>
@@ -18,12 +19,26 @@
   	</table>
 
  	<body>
+ 	<%
+ 		String message;
+ 		try{
+			RegisterForm rForm = (RegisterForm) session.getAttribute("rForm");
+ 			message =  rForm.getMassage();
+ 			if(message == null)
+ 				message = "";
+
+ 		}catch(NullPointerException e){
+ 			message = "";
+ 		}
+ 		
+ 	%>
   		<html:form action="/RegisterAction" >
 			<div class="block">
 
 				<div class="space"></div>
 				<br>
 				<br>
+					<center><%= message %></center>
 				<br>
 				<div>
 				    <center>　　社員No：<html:text property="employee_no" value= ""/></center>
