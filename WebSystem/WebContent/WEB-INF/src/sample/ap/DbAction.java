@@ -481,78 +481,85 @@ public class DbAction extends Object{
 
 	}
 	public boolean getSearchAns(SearchForm form) {
-
 		boolean ret = true;
-	//	String datetime = form.getTime_from();
-	//	String [] dtime_box = datetime.split(",",0);
+		//	String datetime = form.getTime_from();
+		//	String [] dtime_box = datetime.split(",",0);
 
-		// DB接続
-		DbConnector dba = null;
-		try {
-			dba = new DbConnector(gHost,gSid,gUser,gPass);
-		} catch (IOException e1) {
-			ret = false;
-			e1.printStackTrace();
-		}
-
-		if (dba.conSts) {
-
-			StringBuffer sb = new StringBuffer();
-			String crlf = System.getProperty("line.separator");
-
-			sb.append("SELECT" + crlf);
-			sb.append("DEPERTMANT," + crlf);
-			sb.append("EMPLOYEE_NAME," + crlf);
-			sb.append("EMPLOYEE_NO" + crlf);
-			sb.append("FROM" + crlf);
-			sb.append("  EMPLOYEE_MST" + crlf);
-			sb.append("WHERE" + crlf);
-			sb.append("\""+form.getRadio()+"LIKE'%"+form.getText()+"%'=?\"" + crlf);
-
-			String query = sb.toString();
-
-			// 取得項目
-			List<String> columnList = new ArrayList<String>();
-			columnList.add("DEPERTMANT");
-			columnList.add("EMPLOYEE_NAME");
-			columnList.add("EMPLOYEE_NO");
-
-			// 設定値 - 型
-			List<Integer> typeList = new ArrayList<Integer>();
-			typeList.add(dba.DB_STRING);
-
-			// 設定値 - 値
-			List<Object> bindList= new ArrayList<Object>();
-			bindList.add(form.getSyain_no());
-			bindList.add(form.getSyain_name());
-			bindList.add(form.getDepertmant());
-
-			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();
-
+			// DB接続
+			DbConnector dba = null;
 			try {
-				dba.executeQuery(query, columnList, typeList, bindList, rsList);
-				dba.commit();
-				dba.closeConnection();
-
-				for (Map<String, String> val : rsList) {
-					form.setDepertmant(val.get("DEPERTMANT"));
-					form.setSyain_name(val.get("EMPLOYEE_NAME"));
-					form.setSyain_no(val.get("EMPLOYEE_NO"));
-					ret = false;
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
+				dba = new DbConnector(gHost,gSid,gUser,gPass);
+			} catch (IOException e1) {
+				ret = false;
+				e1.printStackTrace();
 			}
-		}
-		return ret;
+
+			if (dba.conSts) {
+
+				StringBuffer sb = new StringBuffer();
+				String crlf = System.getProperty("line.separator");
+
+				sb.append("SELECT" + crlf);
+				sb.append(" DEPARTMENT," + crlf);
+				sb.append(" NAME,"+crlf);
+				sb.append(" EMPLOYEE_MST.EMPLOYEE_NO" + crlf);
+				sb.append("FROM" + crlf);
+				sb.append(" EMPLOYEE_MST" + crlf);
+				sb.append("LEFT OUTER JOIN" + crlf);
+				sb.append(" PERSONAL_INFORMATION_TBL" + crlf);
+				sb.append("ON" + crlf);
+				sb.append(" EMPLOYEE_MST.EMPLOYEE_NO=PERSONAL_INFORMATION_TBL.EMPLOYEE_NO" + crlf);
+				sb.append("WHERE" + crlf);
+				sb.append(  form.getRadio()+"=?"+crlf);
+
+				String query = sb.toString();
+
+				// 取得項目
+				List<String> columnList = new ArrayList<String>();
+				columnList.add("DEPARTMENT");
+				columnList.add("NAME");
+				columnList.add("EMPLOYEE_NO");
+
+				// 設定値 - 型
+				List<Integer> typeList = new ArrayList<Integer>();
+				typeList.add(dba.DB_STRING);
+
+
+				// 設定値 - 値
+				List<Object> bindList= new ArrayList<Object>();
+				if(form.getRadio().equals("DEPARTMENT")&&form.getText().length()==1)
+					bindList.add("0"+form.getText());
+				else
+					bindList.add(form.getText());
+
+				List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+				try {
+					dba.executeQuery(query, columnList, typeList, bindList, rsList);
+					dba.commit();
+					dba.closeConnection();
+
+
+					for (Map<String, String> val : rsList) {
+						form.setEmployee_name(val.get("NAME"));
+						form.setEmployee_no(val.get("EMPLOYEE_NO"));
+						form.setDepertmant(val.get("DEPERTMENT"));
+						ret = false;
+					}
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			return ret;
 	}
-	
+
 	/**
 	 * <p>
 	 * 社員番号確認処理
 	 * </p>
-	 * 
+	 *
 	 * @param form ユーザー登録画面アクションフォーム
 	 * @return 重複ナシ：true DB接続失敗,重複アリ：false
 	 */
@@ -618,7 +625,7 @@ public class DbAction extends Object{
 	 * <p>
 	 * 新規ユーザーを登録する。
 	 * </p>
-	 * 
+	 *
 	 * @param form ユーザー登録画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
@@ -652,7 +659,7 @@ public class DbAction extends Object{
 			String query = sb.toString();
 
 			try {
-				
+
 				dba.executeQuery(query);
 				dba.commit();
 				dba.closeConnection();
