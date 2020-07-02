@@ -7,6 +7,12 @@
 
 <html:html>
 <head>
+
+		<%
+		Personal_informationForm s = (Personal_informationForm) session.getAttribute("form");
+		Boolean text = s.getText();
+		%>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -16,6 +22,8 @@
 <html lang="ja">
 </head>
 <div class="form-wrapper"style = " background: #e9e9e9">
+
+
 
 	<table>
 		<h1>個人情報入力画面</h1>
@@ -116,7 +124,7 @@
 								name="emergency1" />
 						</div>
 						</p>
-						
+
 						<span id="entry">
 						<p class="emergency_contact" id="emergency_contact2">
 						<div>
@@ -135,8 +143,8 @@
 								name="emergency2" />
 						</div>
 						</p>
-						</span>
-						
+
+
 						<p class="emergency_contact" id="emergency_contact3">
 						<div>
 							<label for="emergency_name3" name="emergency3">氏名：</label> <input
@@ -186,6 +194,7 @@
 							<label for="emergency_tel5" name="emergency5">TEL ：</label> <input
 								type="tel" class="emergency_tel" id="emergency_tel5"
 								name="emergency5" />
+						</span>
 						</div>
 						</p>
 						</br>
@@ -453,6 +462,20 @@
 				</form>
 
 				<script type="text/javascript" src="./personal_information.js"></script>
+
+
+				<script type="text/javascript">
+				//もしテキストボックスが空なら非表示に
+
+				if (<%= text  %>) {
+					document.getElementById("entry").textContent = "";
+
+				//そうでなければ表示
+
+				}else {
+
+				</script>
+				}
 			</div>
 		</html:form>
 	</body>

@@ -31,6 +31,8 @@ public final class Personal_informationForm extends ActionForm {
 
 	private String birth;
 
+	private String text;
+
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -226,10 +228,22 @@ public final class Personal_informationForm extends ActionForm {
 	public void setHire_date(String hire_date) {
 		this.hire_date = hire_date;
 	}
+
 	public String getBirth() {
 		return birth;
 	}
 	public void setBirth(String birth) {
 		this.birth = birth;
+	}
+
+	public Boolean getText() {
+		if(text == null){
+			return false;
+		}
+		return !text.isEmpty();
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 }

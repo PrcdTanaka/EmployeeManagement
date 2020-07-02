@@ -49,10 +49,11 @@
 			validate="false"
 			scope="request">
 			<forward name="logout" path="/jsp/logout.jsp" />
-			<forward name="edit" path="/jsp/Main.jsp" />
+			<forward name="edit" path="/jsp/Personal_information.jsp" />
 			<forward name="register" path="/jsp/register.jsp" />
 			<forward name="search" path="/jsp/search.jsp" />
 			<forward name="password" path="/jsp/Password.jsp" />
+
 		</action>
 
 
