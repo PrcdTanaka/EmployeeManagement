@@ -9,27 +9,45 @@
 <%@ page import="sample.pr.main.SearchForm;" %>
 
 <html lang="ja">
-<link rel="stylesheet" type="text/css" href="main.css">
-<link rel="stylesheet" type="text/css" href="botton_controler.css">
+
 <!DOCTYPE html>
 <style>
 body{
+	text-align: center;
+	}
+h1{
+	margin-top: 8%;
+    font-size: 390%;
+}
+
+table{
+	 border: 1px solid;
+   	align-items: center;
+    line-height: 2;
+	 border-collapse:collapse;
+	 width:40%;
 
 }
+
+
 td{
-	text-align: middle;
-	padding:2px 20px;
+
 }
+
 
 h2{
-	position: relative;
-	right: 170px;
+
+}
+.back{
+margin-top: 4%;
+position:relative;
 }
 
 
 .center {
 	text-align:center;
 }
+
 
 .search {
 	position:relative;
@@ -46,7 +64,7 @@ h2{
 
 <html:html>
 	<head>
-
+	<link rel="stylesheet"  type="text/css" href="../css/search.css">
 	<center><h1>ユーザ検索</h1></center>
 	</head>
 	<body>
@@ -59,7 +77,8 @@ h2{
 				<html:radio property="radio" value="NAME" />氏名
 				<html:radio property="radio" value="DEPARTMENT"/>技術部
 				<h2>検索結果</h2>
-				<table  border="1" align = "center" style="border-collapse: collapse" >
+
+
 					<%
 					try
 					{
@@ -67,13 +86,33 @@ h2{
 						List<String> name=s.getEmployee_name();
 						List<String> no=s.getEmployee_no();
 						List<String> depart=s.getDepertment();
-						for(int i=0;i<no.size();i++)
+
+						out.println("<table border=\"1\" align = \"center\" style=\"border-collapse: collapse\"  >");
+						for(int i=-1;i<no.size();i++)
 						{
-							out.print(name.get(i));
-							out.print(no.get(i));
-							out.print(depart.get(i));
+							if(i<0)
+							{
+								out.println("<tr bgcolor=\"#b0c4de\">");
+								out.println(" <td>名前</td><td text-align:center>社員番号</td><td text-align:center>技術部</td></tr>");
+							}
+							else
+							{
+								out.println("<tr><td>");
+						        out.println(name.get(i));
+						        out.println("</td>");
+
+						        out.println("<td>");
+						        out.println(no.get(i));
+						        out.println("</td>");
+
+						        out.println("<td>");
+						        out.println(depart.get(i));
+						        out.println("</td></tr>");
+							}
+
 
 						}
+						out.println("</table>");
 					}
 					catch(NullPointerException e)
 					{
@@ -81,20 +120,10 @@ h2{
 					}
 
 					%>
-				</table>
 		</span>
-			<!--  -script type="text/javascript">
-					// 管理者フラグが無いなら（0）
-					// 「ユーザ情報登録画面」を非表示
-				 	if(<!%= a %>==false){
-				 		document.getElementById("listtable").textContent = "";
-					}else{
 
-					}
-				</script-->
-
-		<div>
-			<html:submit property="button" value="戻る" /></input>
+		<div class="back">
+			<html:submit property="button" value="戻る" />
 		</div>
 		</html:form>
 	</body>
