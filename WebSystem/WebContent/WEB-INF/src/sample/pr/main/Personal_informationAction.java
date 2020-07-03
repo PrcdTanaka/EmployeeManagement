@@ -113,7 +113,7 @@ public final class Personal_informationAction extends Action {
 
 		// アクションフォームBeanより入力フォームのデータを取り出す処理
 		// フォーム情報をキャスト
-		Personal_informationForm mForm = (Personal_informationForm) frm;
+		MainForm mForm = (MainForm) frm;
 
 		// フォームへ入力された情報をとりだす。
 		String employee_no = mForm.getEmployee_no();
@@ -136,19 +136,19 @@ public final class Personal_informationAction extends Action {
 		try {
 			dAction = new DbAction();
 
-//			if(dAction.getEmployeeName(mForm)) {
-//				switch(button) {
-//				case "syussya":
-//					clickBtnIn(mForm);
-//					break;
-//				case "taisya":
-//
-//					break;
-//				case "sansyou":
-//
-//					break;
-//				}
-//			}
+			if(dAction.getEmployeeName(mForm)) {
+				switch(button) {
+				case "syussya":
+					clickBtnIn(mForm);
+					break;
+				case "taisya":
+
+					break;
+				case "sansyou":
+
+					break;
+				}
+			}
 
 		/* 5.社員名が取得できなかった場合の処理。<br>
 		 * 　5-1.メッセージを設定する。<br>
@@ -156,10 +156,10 @@ public final class Personal_informationAction extends Action {
 		 * 　5-2.遷移先を設定する。<br>
 		 * 　　遷移先："message"<br>
 		 */
-//			else {
-//				mForm.setMessage("社員マスタに存在しない社員番号です。");
-//				return (map.findForward("message"));
-//			}
+			else {
+				mForm.setMessage("社員マスタに存在しない社員番号です。");
+				return (map.findForward("message"));
+			}
 
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック

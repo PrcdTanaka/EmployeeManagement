@@ -1,11 +1,9 @@
 package sample.pr.main;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -14,19 +12,11 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
 
-public final class MainAction extends Action {
-
-	// DB接続用オブジェクト
-	private DbAction dba = new DbAction();
-	private LoginForm lForm = new LoginForm();
-
-	// 遷移先
-	private String forward;
-
+public final class ReferenceAction extends Action {
 
 	/**
 	 * <p>
-	 * メイン画面アクションの初期設定を行う。
+	 * 参照画面アクションの初期設定を行う。
 	 * </p>
 	 * 
 	 * 1.初期設定を行う。<br>
@@ -40,9 +30,15 @@ public final class MainAction extends Action {
 	 * @throws IOException
 	 *             -
 	 */
-	public MainAction() throws IOException {
+	public ReferenceAction() throws IOException {
 
 	}
+	// DB接続用オブジェクト
+	private DbAction dba = new DbAction();
+	private LoginForm lForm = new LoginForm();
+
+	// 遷移先
+	private String forward;
 
 	/**
 	 * <p>
@@ -98,43 +94,8 @@ public final class MainAction extends Action {
 	 * 
 	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		String Button = "";
-		MainForm mForm = (MainForm) frm;
-		try{
-			Button = mForm.getButton();
-		} catch(NullPointerException e){
-			e.printStackTrace();
-		}
 		
-		if(Button.equals("ログアウト")){
-			// ログアウトボタン押下時、
-			// 遷移先を"logout"に設定。
-			forward = "logout";
-		} else if (Button.equals("")) {
-			switch (mForm.getLink()) {
-			case "edit":
-				forward = "edit";
-				break;
-			case "register":
-				forward = "register";
-				break;
-			case "search":
-				forward = "search";
-				break;
-			case "password":
-				forward = "password";
-				break;
-			}
-		}
-		
-		request.setAttribute("form", mForm);
-		
-		return map.findForward(forward);
+		return null;
 
 	}
 }

@@ -17,6 +17,8 @@ public final class Personal_informationForm extends ActionForm {
 	private String time_from;
 	/** 退社時間 */
 	private String time_to;
+	/** 性別 */
+	private String sex;
 
 	/** ボタン名 */
 	private String button;
@@ -30,8 +32,10 @@ public final class Personal_informationForm extends ActionForm {
 	private String hire_date;
 
 	private String birth;
-
-	private String text;
+	
+	private String tel_home;
+	
+	private String tel_phone;
 
 	/**
 	 * 初期化処理。
@@ -51,6 +55,9 @@ public final class Personal_informationForm extends ActionForm {
 		hidden = "";
 		hire_date = "";
 		birth = "";
+		sex = "";
+		tel_home = "";
+		tel_phone = "";
 	}
 
 	/**
@@ -228,22 +235,31 @@ public final class Personal_informationForm extends ActionForm {
 	public void setHire_date(String hire_date) {
 		this.hire_date = hire_date;
 	}
-
 	public String getBirth() {
 		return birth;
 	}
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-
-	public Boolean getText() {
-		if(text == null){
-			return false;
-		}
-		return !text.isEmpty();
+	
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public String getTel_home () {
+		return tel_home;
+	}
+	public void setTel_home (String tel_home) {
+		this.tel_home = tel_home;
+	}
+
+	public String getTel_phone () {
+		return tel_phone;
+	}
+	public void setTel_phone (String tel_phone) {
+		this.tel_phone = tel_phone;
 	}
 }
