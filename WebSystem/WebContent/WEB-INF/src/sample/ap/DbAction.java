@@ -541,11 +541,39 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 
+<<<<<<< HEAD
 				for (Map<String, String> val : rsList) {
 					form.setEmployee_name(val.get("NAME"));
 					form.setEmployee_no(val.get("EMPLOYEE_NO"));
 					form.setDepertmant(val.get("DEPERTMENT"));
 					ret = false;
+=======
+				// 設定値 - 値
+				List<Object> bindList= new ArrayList<Object>();
+				if(form.getRadio().equals("DEPARTMENT")&&form.getText().length()==1)
+					bindList.add("0"+form.getText());
+				else
+					bindList.add(form.getText());
+
+				List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+				try {
+					dba.executeQuery(query, columnList, typeList, bindList, rsList);
+					dba.commit();
+					dba.closeConnection();
+
+
+					for (Map<String, String> val : rsList) {
+						form.setDepertment(val.get("DEPARTMENT"));
+						form.setEmployee_name(val.get("NAME"));
+						form.setEmployee_no(val.get("EMPLOYEE_NO"));
+
+						ret = true;
+					}
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+>>>>>>> refs/remotes/origin/development
 				}
 
 			} catch (SQLException e) {

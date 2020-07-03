@@ -1,31 +1,53 @@
+<%@page import="java.io.UnsupportedEncodingException"%>
+<%@page import="java.util.Iterator"%>
+<%@ page import="sample.pr.main.MainForm"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
-
+<%@ page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.SearchForm;" %>
+
 <html lang="ja">
-<link rel="stylesheet" type="text/css" href="main.css">
-<link rel="stylesheet" type="text/css" href="botton_controler.css">
+
 <!DOCTYPE html>
 <style>
 body{
+	text-align: center;
+	}
+h1{
+	margin-top: 8%;
+    font-size: 390%;
+}
+
+table{
+	 border: 1px solid;
+   	align-items: center;
+    line-height: 2;
+	 border-collapse:collapse;
+	 width:40%;
 
 }
+
+
 td{
-	text-align: middle;
-	padding:2px 20px;
+
 }
+
 
 h2{
-	position: relative;
-	right: 170px;
+
+}
+.back{
+margin-top: 4%;
+position:relative;
 }
 
 
 .center {
 	text-align:center;
 }
+
 
 .search {
 	position:relative;
@@ -42,26 +64,66 @@ h2{
 
 <html:html>
 	<head>
+	<link rel="stylesheet"  type="text/css" href="../css/search.css">
 	<center><h1>ユーザ検索</h1></center>
 	</head>
 	<body>
 	<html:form action="/SearchAction">
 		<span class="center">
 				<center><html:text property="text" maxlength="12" />
-				<html:submit property="button" value="検索" /><></center>
+				<html:submit property="button" value="検索" /></center>
 				<p>
-				<html:radio property="radio" value="EMPROYEE_NUMBER" />社員No
-				<html:radio property="radio" value="EMPROYEE_NAME" />氏名
-				<html:radio property="radio" value="DEPARTMANT"/>技術部
-					<h2>検索結果</h2>
-					<table border="1" align = "center" style="border-collapse: collapse" >
+				<html:radio property="radio" value="EMPLOYEE_MST.EMPLOYEE_NO" />社員No
+				<html:radio property="radio" value="NAME" />氏名
+				<html:radio property="radio" value="DEPARTMENT"/>技術部
+				<h2>検索結果</h2>
 
-					</table>
+
+					<%
+					try
+					{
+						SearchForm s=(SearchForm)session.getAttribute("form");
+						List<String> name=s.getEmployee_name();
+						List<String> no=s.getEmployee_no();
+						List<String> depart=s.getDepertment();
+
+						out.println("<table border=\"1\" align = \"center\" style=\"border-collapse: collapse\"  >");
+						for(int i=-1;i<no.size();i++)
+						{
+							if(i<0)
+							{
+								out.println("<tr bgcolor=\"#b0c4de\">");
+								out.println(" <td>名前</td><td text-align:center>社員番号</td><td text-align:center>技術部</td></tr>");
+							}
+							else
+							{
+								out.println("<tr><td>");
+						        out.println(name.get(i));
+						        out.println("</td>");
+
+						        out.println("<td>");
+						        out.println(no.get(i));
+						        out.println("</td>");
+
+						        out.println("<td>");
+						        out.println(depart.get(i));
+						        out.println("</td></tr>");
+							}
+
+
+						}
+						out.println("</table>");
+					}
+					catch(NullPointerException e)
+					{
+
+					}
+
+					%>
 		</span>
 
-
-		<div>
-			<html:submit property="button" value="戻る" /></input>
+		<div class="back">
+			<html:submit property="button" value="戻る" />
 		</div>
 		</html:form>
 	</body>

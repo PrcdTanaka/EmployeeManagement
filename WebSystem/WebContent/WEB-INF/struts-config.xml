@@ -19,6 +19,7 @@
 		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
 		<form-bean name="SearchForm" type="sample.pr.main.SearchForm"/>
 		<form-bean name="RegisterForm" type="sample.pr.main.RegisterForm"/>
+		<form-bean name="Personal_informationForm" type="sample.pr.main.Personal_informationForm"/>
 
     </form-beans>
 
@@ -48,7 +49,7 @@
 			validate="false"
 			scope="request">
 			<forward name="logout" path="/jsp/logout.jsp" />
-			<forward name="edit" path="/jsp/Main.jsp" />
+			<forward name="edit" path="/jsp/Personal_information.jsp" />
 			<forward name="register" path="/jsp/register.jsp" />
 			<forward name="search" path="/jsp/search.jsp" />
 			<forward name="password" path="/jsp/Password.jsp" />
@@ -61,7 +62,7 @@
 			type="sample.pr.main.PasswordAction"
 			validate="false"
 			scope="request">
-			<forward name="main" path="/jsp/Main.jsp"/>
+			<forward name="message" path="/jsp/Main.jsp"/>
 		</action>
 
 		<action
