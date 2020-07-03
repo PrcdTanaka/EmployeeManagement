@@ -9,8 +9,8 @@
 <head>
 
 		<%
-		Personal_informationForm s = (Personal_informationForm) session.getAttribute("form");
-		Boolean text = s.getText();
+		//Personal_informationForm s = (Personal_informationForm) session.getAttribute("form");
+		//Boolean text = s.getText();
 		%>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -125,79 +125,160 @@
 						</div>
 						</p>
 
-						<span id="entry">
-						<p class="emergency_contact" id="emergency_contact2">
-						<div>
-							<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
-							<input type="text" class="emergency_name" id="emergency_name2"
-								name="emergency2" />
-						</div>
-						<div>
-							<label for="relationship2" name="emergency2">本人との関係：</label> <input
-								type="text" class="relationship" id="relationship2"
-								name="emergency2" size="4" />
-						</div>
-						<div>
-							<label for="emergency_tel2" name="emergency2">TEL ：</label> <input
-								type="tel" class="emergency_tel" id="emergency_tel2"
-								name="emergency2" />
-						</div>
+
+						<p>
+  						<a href="#" id="link_view2" onClick="toggle_view2();return false;" style="display:none;">表示</a>
+  						<a href="#" id="link_hidden2" onClick="toggle_hidden2();return false;">非表示</a>
 						</p>
+						<div id="area_hoge2">
+  							<p>
+  								<p class="emergency_contact" id="emergency_contact2">
+									<div>
+										<label for="emergency_name2" id="a1" name="emergency2">aaa氏名：</label>
+										<input type="text" class="emergency_name" id="emergency_name2" name="emergency2" />
+									</div>
+									<div>
+										<label for="relationship2" name="emergency2">本人との関係：</label>
+										<input type="text" class="relationship" id="relationship2" name="emergency2" size="4" />
+									</div>
+									<div>
+										<label for="emergency_tel2" name="emergency2">TEL ：</label>
+										<input 	type="tel" class="emergency_tel" id="emergency_tel2" name="emergency2" />
+									</div>
+								</p>
+							</p>
+						</div>
+						<script language="JavaScript" type="text/javascript">
+						var elem2_1 = document.getElementById("area_hoge2");
+						var elem2_2 = document.getElementById("link_view2");
+						var elem2_3 = document.getElementById("link_hidden2");
+						function toggle_view2() {
+  						elem2_1.style.display = "";
+  						elem2_2.style.display = "none";
+  						elem2_3.style.display = "";
+						}
+						function toggle_hidden2() {
+  						elem2_1.style.display = "none";
+  						elem2_2.style.display = "";
+  						elem2_3.style.display = "none";
+						}
+						</script>
+
+						<p>
+  						<a href="#" id="link_view3" onClick="toggle_view3();return false;" style="display:none;">表示</a>
+  						<a href="#" id="link_hidden3" onClick="toggle_hidden3();return false;">非表示</a>
+						</p>
+						<div id="area_hoge3">
+  							<p>
+  								<p class="emergency_contact" id="emergency_contact3">
+									<div>
+										<label for="emergency_name3" name="emergency3">bbb氏名：</label>
+										<input type="text" class="emergency_name" id="emergency_name3"name="emergency3" />
+									</div>
+									<div>
+										<label for="relationship3" name="emergency3">本人との関係：</label>
+										<input type="text" class="relationship" id="relationship3"name="emergency3" size="4" />
+									</div>
+									<div>
+										<label for="emergency_tel3" name="emergency3">TEL ：</label>
+										<input type="tel" class="emergency_tel" id="emergency_tel3"name="emergency3" />
+									</div>
+								</p>
+							</p>
+						</div>
+						<script language="JavaScript" type="text/javascript">
+						var elem3_1 = document.getElementById("area_hoge3");
+						var elem3_2 = document.getElementById("link_view3");
+						var elem3_3 = document.getElementById("link_hidden3");
+						function toggle_view3() {
+  						elem3_1.style.display = "";
+  						elem3_2.style.display = "none";
+  						elem3_3.style.display = "";
+						}
+						function toggle_hidden3() {
+  						elem3_1.style.display = "none";
+  						elem3_2.style.display = "";
+  						elem3_3.style.display = "none";
+						}
+						</script>
+
+						<p>
+  						<a href="#" id="link_view4" onClick="toggle_view4();return false;" style="display:none;">表示</a>
+  						<a href="#" id="link_hidden4" onClick="toggle_hidden4();return false;">非表示</a>
+						</p>
+						<div id="area_hoge4">
+							</p>
+								<p class="emergency_contact" id="emergency_contact4">
+									<div>
+										<label for="emergency_name4" name="emergency4">ccc氏名：</label>
+										<input type="text" class="emergency_name" id="emergency_name4"name="emergency4" />
+									</div>
+									<div>
+										<label for="relationship4" name="emergency4">本人との関係：</label>
+										<input type="text" class="relationship" id="relationship4"name="emergency4" size="4" />
+									</div>
+									<div>
+										<label for="emergency_tel4" name="emergency4">TEL ：</label>
+										<input type="tel" class="emergency_tel" id="emergency_tel4"name="emergency4" />
+									</div>
+								</p>
+							</p>
+						</div>
+						<script language="JavaScript" type="text/javascript">
+						var elem4_1 = document.getElementById("area_hoge4");
+						var elem4_2 = document.getElementById("link_view4");
+						var elem4_3 = document.getElementById("link_hidden4");
+						function toggle_view4() {
+  						elem4_1.style.display = "";
+  						elem4_2.style.display = "none";
+  						elem4_3.style.display = "";
+						}
+						function toggle_hidden4() {
+  						elem4_1.style.display = "none";
+  						elem4_2.style.display = "";
+  						elem4_3.style.display = "none";
+						}
+						</script>
+
+						<p>
+  						<a href="#" id="link_view5" onClick="toggle_view5();return false;" style="display:none;">表示</a>
+  						<a href="#" id="link_hidden5" onClick="toggle_hidden5();return false;">非表示</a>
+						</p>
+						<div id="area_hoge5">
+							</p>
+								<p class="emergency_contact" id="emergency_contact5">
+									<div>
+										<label for="emergency_name5" name="emergency5">ddd氏名：</label>
+										<input type="text" class="emergency_name" id="emergency_name5"name="emergency5" />
+									</div>
+									<div>
+										<label for="relationship5" name="emergency5">本人との関係：</label>
+										<input type="text" class="relationship" id="relationship5"name="emergency5" size="4" />
+									</div>
+									<div>
+										<label for="emergency_tel5" name="emergency5">TEL ：</label>
+										<input type="tel" class="emergency_tel" id="emergency_tel5"name="emergency5" />
+									</div>
+								</p>
+							</p>
+						</div>
+						<script language="JavaScript" type="text/javascript">
+						var elem5_1 = document.getElementById("area_hoge5");
+						var elem5_2 = document.getElementById("link_view5");
+						var elem5_3 = document.getElementById("link_hidden5");
+						function toggle_view5() {
+  						elem5_1.style.display = "";
+  						elem5_2.style.display = "none";
+  						elem5_3.style.display = "";
+						}
+						function toggle_hidden5() {
+  						elem5_1.style.display = "none";
+  						elem5_2.style.display = "";
+  						elem5_3.style.display = "none";
+						}
+						</script>
 
 
-						<p class="emergency_contact" id="emergency_contact3">
-						<div>
-							<label for="emergency_name3" name="emergency3">氏名：</label> <input
-								type="text" class="emergency_name" id="emergency_name3"
-								name="emergency3" />
-						</div>
-						<div>
-							<label for="relationship3" name="emergency3">本人との関係：</label> <input
-								type="text" class="relationship" id="relationship3"
-								name="emergency3" size="4" />
-						</div>
-						<div>
-							<label for="emergency_tel3" name="emergency3">TEL ：</label> <input
-								type="tel" class="emergency_tel" id="emergency_tel3"
-								name="emergency3" />
-						</div>
-						</p>
-						<p class="emergency_contact" id="emergency_contact4">
-						<div>
-							<label for="emergency_name4" name="emergency4">氏名：</label> <input
-								type="text" class="emergency_name" id="emergency_name4"
-								name="emergency4" />
-						</div>
-						<div>
-							<label for="relationship4" name="emergency4">本人との関係：</label> <input
-								type="text" class="relationship" id="relationship4"
-								name="emergency4" size="4" />
-						</div>
-						<div>
-							<label for="emergency_tel4" name="emergency4">TEL ：</label> <input
-								type="tel" class="emergency_tel" id="emergency_tel4"
-								name="emergency4" />
-						</div>
-						</p>
-						<p class="emergency_contact" id="emergency_contact5">
-						<div>
-							<label for="emergency_name5" name="emergency5">氏名：</label> <input
-								type="text" class="emergency_name" id="emergency_name5"
-								name="emergency5" />
-						</div>
-						<div>
-							<label for="relationship5" name="emergency5">本人との関係：</label> <input
-								type="text" class="relationship" id="relationship5"
-								name="emergency5" size="4" />
-						</div>
-						<div>
-							<label for="emergency_tel5" name="emergency5">TEL ：</label> <input
-								type="tel" class="emergency_tel" id="emergency_tel5"
-								name="emergency5" />
-						</span>
-						</div>
-						</p>
-						</br>
 						</p>
 						<div class="family_structure" id="family_structure">
 							<label for="family_structure">家族構成</label>
@@ -464,17 +545,7 @@
 				<script type="text/javascript" src="./personal_information.js"></script>
 
 
-				<script type="text/javascript">
-				//もしテキストボックスが空なら非表示に
 
-				if (<%= text  %>) {
-					document.getElementById("entry").textContent = "";
-
-				//そうでなければ表示
-
-				}else {
-
-				</script>
 				}
 			</div>
 		</html:form>
