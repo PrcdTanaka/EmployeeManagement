@@ -114,7 +114,7 @@
 							<p class="emergency_contact" id="emergency_contact1">
 							<div>
 								<label for="emergency_name1" name="emergency1">代表：</label>
-								<html:text property="emergency_name"
+								<html:text property="emergency_name1"
 									name="Personal_informationForm" styleId="emergency_name1" />
 							</div>
 							<div>
