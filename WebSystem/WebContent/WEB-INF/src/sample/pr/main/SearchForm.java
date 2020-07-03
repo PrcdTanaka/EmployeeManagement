@@ -1,7 +1,7 @@
 package sample.pr.main;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.struts.action.ActionForm;
 
@@ -17,13 +17,11 @@ public final class SearchForm extends ActionForm {
 	/** ラジオボタン */
 	private String radio;
 
-	private String number;
+	private List<String> number=new ArrayList<String>();
 
-	private String name;
+	private List<String> name=new ArrayList<String>();
 
-	private String depeart;
-
-	private List<Map<String, String>> rlist;
+	private List<String> depart=new ArrayList<String>();
 
 
 	/**
@@ -33,12 +31,12 @@ public final class SearchForm extends ActionForm {
 	 * </p>
 	 */
 	public void initialize() {
-		number="";
-		name="";
-		depeart="";
 		button     = "";
 		text    = "";
 		radio      = "";
+		number=new ArrayList<String>();
+		name=new ArrayList<String>();
+		depart=new ArrayList<String>();
 	}
 
 	/**
@@ -49,7 +47,7 @@ public final class SearchForm extends ActionForm {
 	 *
 	 * @return 社員番号
 	 */
-	public String getEmployee_no() {
+	public List<String> getEmployee_no() {
 		return number;
 	}
 
@@ -62,7 +60,7 @@ public final class SearchForm extends ActionForm {
 	 * @param syain_no 社員番号
 	 */
 	public void setEmployee_no(String Emp_no) {
-		number=Emp_no;
+		number.add(Emp_no);
 	}
 
 	/**
@@ -73,7 +71,7 @@ public final class SearchForm extends ActionForm {
 	 *
 	 * @return 社員氏名
 	 */
-	public String getEmployee_name() {
+	public List<String> getEmployee_name() {
 		return name;
 	}
 
@@ -86,7 +84,7 @@ public final class SearchForm extends ActionForm {
 	 * @param syain_name 社員氏名
 	 */
 	public void setEmployee_name(String Emp_name) {
-		name=Emp_name;
+		name.add(Emp_name);
 	}
 
 	/**
@@ -149,26 +147,18 @@ public final class SearchForm extends ActionForm {
 		this.radio = radio;
 	}
 
-	public String getDepertmant()
+	public List<String> getDepertment()
 	{
-		return depeart;
+		return depart;
 	}
 
 
-	public void setDepertmant(String depertmant)
+	public void setDepertment(String department)
 	{
+		List<String> A=new ArrayList<String>();
 
-		this.depeart="第"+depertmant+"技術部";
-	}
-
-	public void setlist(List<Map<String, String>> rsList)
-	{
-		rlist=rsList;
-	}
-
-	public List<Map<String, String>> getlist()
-	{
-		return rlist;
+		A.add(department);
+		depart.add(department);
 	}
 
 }

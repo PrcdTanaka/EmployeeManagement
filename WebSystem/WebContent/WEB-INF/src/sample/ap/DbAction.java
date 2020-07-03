@@ -541,10 +541,11 @@ public class DbAction extends Object{
 
 
 					for (Map<String, String> val : rsList) {
+						form.setDepertment(val.get("DEPARTMENT"));
 						form.setEmployee_name(val.get("NAME"));
 						form.setEmployee_no(val.get("EMPLOYEE_NO"));
-						form.setDepertmant(val.get("DEPERTMENT"));
-						ret = false;
+
+						ret = true;
 					}
 
 				} catch (SQLException e) {
