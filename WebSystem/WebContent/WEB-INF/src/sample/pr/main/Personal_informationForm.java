@@ -35,7 +35,7 @@ public final class Personal_informationForm extends ActionForm {
 	
 	
 
-
+	/** 家族構成：氏名 */
 	private String emergency_name1;
 	private String emergency_name2;
 	private String emergency_name3;
