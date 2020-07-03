@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -128,7 +129,7 @@ public final class SearchAction extends Action {
 		// 　　クラス　：DbAction<br>
 		// 　　メソッド：getSyainName()<br>
 			// 社員名を取得できた場合
-	
+
 		try {
 			request.setCharacterEncoding("utf-8");
 			if(button.equals("戻る")) {
@@ -149,7 +150,9 @@ public final class SearchAction extends Action {
 		 									* 　　　引数１："form"<br>
 		 * 　　　引数２：メイン画面アクションフォーム
 		 */
-		request.setAttribute("sform", sForm);
+		request.setAttribute("form", sForm);
+		HttpSession session = request.getSession();
+		session.setAttribute("form", sForm);
 
 		/* 7.戻り値を返却する。<br>
 		 * 　7-1.遷移先情報取得処理をコール。<br>

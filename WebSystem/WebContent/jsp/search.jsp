@@ -59,17 +59,20 @@ h2{
 				<html:radio property="radio" value="NAME" />氏名
 				<html:radio property="radio" value="DEPARTMENT"/>技術部
 				<h2>検索結果</h2>
-				<table id ="listtable" border="1" align = "center" style="border-collapse: collapse" >
+				<table  border="1" align = "center" style="border-collapse: collapse" >
 					<%
 					try
 					{
-						SearchForm s=(SearchForm)session.getAttribute("sform");
+						SearchForm s=(SearchForm)session.getAttribute("form");
 						List<String> name=s.getEmployee_name();
-						String no="";
-						String de="";
-						for(Iterator it =name.iterator(); it.hasNext();)
+						List<String> no=s.getEmployee_no();
+						List<String> depart=s.getDepertment();
+						for(int i=0;i<no.size();i++)
 						{
-							System.out.println(it.next());
+							out.print(name.get(i));
+							out.print(no.get(i));
+							out.print(depart.get(i));
+
 						}
 					}
 					catch(NullPointerException e)

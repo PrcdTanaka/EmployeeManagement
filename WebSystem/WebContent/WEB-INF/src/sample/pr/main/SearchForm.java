@@ -17,11 +17,11 @@ public final class SearchForm extends ActionForm {
 	/** ラジオボタン */
 	private String radio;
 
-	private List<String> number;
+	private List<String> number=new ArrayList<String>();
 
-	private List<String> name;
+	private List<String> name=new ArrayList<String>();
 
-	private List<String> depart;
+	private List<String> depart=new ArrayList<String>();
 
 
 	/**
@@ -155,7 +155,9 @@ public final class SearchForm extends ActionForm {
 
 	public void setDepertment(String department)
 	{
+		List<String> A=new ArrayList<String>();
 
+		A.add(department);
 		depart.add(department);
 	}
 
