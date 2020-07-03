@@ -127,10 +127,10 @@
 
 
 						<p>
-  						<a href="#" id="link_view2" onClick="toggle_view2();return false;" style="display:none;">表示</a>
-  						<a href="#" id="link_hidden2" onClick="toggle_hidden2();return false;">非表示</a>
+  						<a href="#" id="link_view2" onClick="toggle_view2();return false;" >表示</a>
+  						<a href="#" id="link_hidden2" onClick="toggle_hidden2();return false;"style="display:none;">非表示</a>
 						</p>
-						<div id="area_hoge2">
+						<div id="area_hoge2" style="display:none;">
   							<p>
   								<p class="emergency_contact" id="emergency_contact2">
 									<div>
@@ -165,10 +165,10 @@
 						</script>
 
 						<p>
-  						<a href="#" id="link_view3" onClick="toggle_view3();return false;" style="display:none;">表示</a>
-  						<a href="#" id="link_hidden3" onClick="toggle_hidden3();return false;">非表示</a>
+  						<a href="#" id="link_view3" onClick="toggle_view3();return false;" >表示</a>
+  						<a href="#" id="link_hidden3" onClick="toggle_hidden3();return false;"style="display:none;">非表示</a>
 						</p>
-						<div id="area_hoge3">
+						<div id="area_hoge3"style="display:none;">
   							<p>
   								<p class="emergency_contact" id="emergency_contact3">
 									<div>
@@ -203,10 +203,10 @@
 						</script>
 
 						<p>
-  						<a href="#" id="link_view4" onClick="toggle_view4();return false;" style="display:none;">表示</a>
-  						<a href="#" id="link_hidden4" onClick="toggle_hidden4();return false;">非表示</a>
+  						<a href="#" id="link_view4" onClick="toggle_view4();return false;" >表示</a>
+  						<a href="#" id="link_hidden4" onClick="toggle_hidden4();return false;"style="display:none;">非表示</a>
 						</p>
-						<div id="area_hoge4">
+						<div id="area_hoge4"style="display:none;">
 							</p>
 								<p class="emergency_contact" id="emergency_contact4">
 									<div>
@@ -241,10 +241,10 @@
 						</script>
 
 						<p>
-  						<a href="#" id="link_view5" onClick="toggle_view5();return false;" style="display:none;">表示</a>
-  						<a href="#" id="link_hidden5" onClick="toggle_hidden5();return false;">非表示</a>
+  						<a href="#" id="link_view5" onClick="toggle_view5();return false;" >表示</a>
+  						<a href="#" id="link_hidden5" onClick="toggle_hidden5();return false;"style="display:none;">非表示</a>
 						</p>
-						<div id="area_hoge5">
+						<div id="area_hoge5"style="display:none;">
 							</p>
 								<p class="emergency_contact" id="emergency_contact5">
 									<div>
