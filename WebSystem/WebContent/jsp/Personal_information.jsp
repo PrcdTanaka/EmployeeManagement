@@ -127,8 +127,8 @@
 
 
 						<p>
-  						<a href="#" id="link_view2" onClick="toggle_view2();return false;" >表示</a>
-  						<a href="#" id="link_hidden2" onClick="toggle_hidden2();return false;"style="display:none;">非表示</a>
+  						<a href="#" id="link_view2" onClick="toggle_view2();return false;" >追加</a>
+  						<a href="#" id="link_hidden2" onClick="toggle_hidden2();return false;"style="display:none;">削除</a>
 						</p>
 						<div id="area_hoge2" style="display:none;">
   							<p>
@@ -145,6 +145,8 @@
 										<label for="emergency_tel2" name="emergency2">TEL ：</label>
 										<input 	type="tel" class="emergency_tel" id="emergency_tel2" name="emergency2" />
 									</div>
+									<a href="#" id="link_view3" onClick="toggle_view3();return false;" >追加</a>
+  									<a href="#" id="link_hidden3" onClick="toggle_hidden3();return false;"style="display:none;">削除</a>
 								</p>
 							</p>
 						</div>
@@ -164,10 +166,9 @@
 						}
 						</script>
 
-						<p>
-  						<a href="#" id="link_view3" onClick="toggle_view3();return false;" >表示</a>
-  						<a href="#" id="link_hidden3" onClick="toggle_hidden3();return false;"style="display:none;">非表示</a>
-						</p>
+
+
+
 						<div id="area_hoge3"style="display:none;">
   							<p>
   								<p class="emergency_contact" id="emergency_contact3">
@@ -183,6 +184,8 @@
 										<label for="emergency_tel3" name="emergency3">TEL ：</label>
 										<input type="tel" class="emergency_tel" id="emergency_tel3"name="emergency3" />
 									</div>
+									<a href="#" id="link_view4" onClick="toggle_view4();return false;" >追加</a>
+  									<a href="#" id="link_hidden4" onClick="toggle_hidden4();return false;"style="display:none;">削除</a>
 								</p>
 							</p>
 						</div>
@@ -202,10 +205,9 @@
 						}
 						</script>
 
-						<p>
-  						<a href="#" id="link_view4" onClick="toggle_view4();return false;" >表示</a>
-  						<a href="#" id="link_hidden4" onClick="toggle_hidden4();return false;"style="display:none;">非表示</a>
-						</p>
+
+
+
 						<div id="area_hoge4"style="display:none;">
 							</p>
 								<p class="emergency_contact" id="emergency_contact4">
@@ -221,6 +223,8 @@
 										<label for="emergency_tel4" name="emergency4">TEL ：</label>
 										<input type="tel" class="emergency_tel" id="emergency_tel4"name="emergency4" />
 									</div>
+									<a href="#" id="link_view5" onClick="toggle_view5();return false;" >追加</a>
+  									<a href="#" id="link_hidden5" onClick="toggle_hidden5();return false;"style="display:none;">削除</a>
 								</p>
 							</p>
 						</div>
@@ -240,10 +244,9 @@
 						}
 						</script>
 
-						<p>
-  						<a href="#" id="link_view5" onClick="toggle_view5();return false;" >表示</a>
-  						<a href="#" id="link_hidden5" onClick="toggle_hidden5();return false;"style="display:none;">非表示</a>
-						</p>
+
+
+
 						<div id="area_hoge5"style="display:none;">
 							</p>
 								<p class="emergency_contact" id="emergency_contact5">
@@ -279,18 +282,17 @@
 						</script>
 
 
+
 						</p>
 						<div class="family_structure" id="family_structure">
 							<label for="family_structure">家族構成</label>
 							<div>
-								<label for="family_structure_name1" name="family_structure1">氏名
-									：</label> <input type="text" class="family_structure_name"
-									id="family_structure_name1" name="family_structure1" />
+								<label for="family_structure_name1" name="family_structure1">氏名：</label>
+								<input type="text" class="family_structure_name"id="family_structure_name1" name="family_structure1" />
 							</div>
 							<div>
 								<label for="family_structure_furigana1" name="family_structure1">フリガナ：</label>
-								<input type="text" class="family_structure_furigana"
-									id="family_structure_furigana1" name="family_structure1" />
+								<input type="text" class="family_structure_furigana"id="family_structure_furigana1" name="family_structure1" />
 							</div>
 							<div>
 								<label for="family_structure_birth1" name="family_structure1">生年月日：</label>
@@ -328,71 +330,92 @@
 									class="family_structure_job" name="family_structure1" />
 							</div>
 
-							<div>
-								<label for="family_structure_name2" name="family_structure2">氏名
-									：</label> <input type="text" class="family_structure_name"
-									id="family_structure_name2" name="family_structure2" />
-							</div>
-							<div>
-								<label for="family_structure_furigana2" name="family_structure2">フリガナ：</label>
-								<input type="text" class="family_structure_furigana"
-									id="family_structure_furigana2" name="family_structure2" />
-							</div>
-							<div>
-								<label for="family_structure_birth2" name="family_structure2">生年月日：</label>
-								<html:text property= "text" value="" size="6"/>
-							</div>
-							<div>
-								<label for="family_structure_sex2" name="family_structure2">性別：</label>
-								<select id="family_structure_sex2" class="family_structure_sex"
-									name="family_structure2">
-									<option value="">-</option>
-									<option value="true">男</option>
-									<option value="false">女</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_relationship2"
-									name="family_structure2">続柄：</label> <input type="text"
-									id="family_structure_relationship2" name="family_structure2"
-									class="family_structure_relationship" size="4" />
-							</div>
-							<div>
-								<label for="family_structure_support2" name="family_structure2">扶養の有無：</label>
-								<select name="family_structure2" id="family_structure_support2"
-									class="family_structure_support">
-									<option value="">-</option>
-									<option value="true">有</option>
-									<option value="false">無</option>
-								</select>
-							</div>
-							<div>
-								<label for="family_structure_job2" name="family_structure2">職業：</label>
-								<input type="text" id="family_structure_job2"
-									name="family_structure2" class="family_structure_job" />
-							</div>
 
-							</br> </br>
 
-							<div>
-								<label for="family_structure_name3" name="family_structure3">氏名
-									：</label> <input type="text" class="family_structure_name"
-									name="family_structure3" id="family_structure_name3" />
-							</div>
-							<div>
-								<label for="family_structure_furigana3" name="family_structure3">フリガナ：</label>
-								<input type="text" class="family_structure_furigana"
-									name="family_structure3" id="family_structure_furigana3" />
-							</div>
-							<div>
-								<label for="family_structure_birth3" name="family_structure3">生年月日：</label>
-								<html:text property= "text" value="" size="6"/>
-								</input>
-							</div>
-							<div>
-								<label for="family_structure_sex3" name="family_structure3">性別：</label>
-								<select id="family_structure_sex3" class="family_structure_sex"
-									name="family_structure3">
+							<p>
+  							<a href="#" id="link_view6" onClick="toggle_view6();return false;" >追加</a>
+  							<a href="#" id="link_hidden6" onClick="toggle_hidden6();return false;"style="display:none;">削除</a>
+							</p>
+								<div id="area_hoge6" style="display:none;">
+									<p>
+										<div>
+											<label for="family_structure_name2" name="family_structure2">氏名：</label>
+											<input type="text" class="family_structure_name"id="family_structure_name2" name="family_structure2" />
+										</div>
+										<div>
+											<label for="family_structure_furigana2" name="family_structure2">フリガナ：</label>
+											<input type="text" class="family_structure_furigana"id="family_structure_furigana2" name="family_structure2" />
+										</div>
+										<div>
+											<label for="family_structure_birth2" name="family_structure2">生年月日：</label>
+											<html:text property= "text" value="" size="6"/>
+										</div>
+										<div>
+											<label for="family_structure_sex2" name="family_structure2">性別：</label>
+											<select id="family_structure_sex2" class="family_structure_sex"
+											name="family_structure2">
+											<option value="">-</option>
+											<option value="true">男</option>
+											<option value="false">女</option>
+											</select>
+										</div>
+										<div>
+											<label for="family_structure_relationship2"
+											name="family_structure2">続柄：</label> <input type="text"
+											id="family_structure_relationship2" name="family_structure2"
+											class="family_structure_relationship" size="4" />
+										</div>
+										<div>
+											<label for="family_structure_support2" name="family_structure2">扶養の有無：</label>
+											<select name="family_structure2" id="family_structure_support2"
+											class="family_structure_support">
+											<option value="">-</option>
+											<option value="true">有</option>
+											<option value="false">無</option>
+											</select>
+										</div>
+										<div>
+											<label for="family_structure_job2" name="family_structure2">職業：</label>
+											<input type="text" id="family_structure_job2"
+											name="family_structure2" class="family_structure_job" />
+										</div>
+											<a href="#" id="link_view7" onClick="toggle_view7();return false;" >追加</a>
+  											<a href="#" id="link_hidden7" onClick="toggle_hidden7();return false;"style="display:none;">削除</a>
+									</p>
+								</p>
+								</div>
+								<script language="JavaScript" type="text/javascript">
+								var elem6_1 = document.getElementById("area_hoge6");
+								var elem6_2 = document.getElementById("link_view6");
+								var elem6_3 = document.getElementById("link_hidden6");
+								function toggle_view6() {
+  								elem6_1.style.display = "";
+  								elem6_2.style.display = "none";
+  								elem6_3.style.display = "";
+								}
+								function toggle_hidden6() {
+  								elem6_1.style.display = "none";
+  								elem6_2.style.display = "";
+  								elem6_3.style.display = "none";
+								}
+								</script>
+
+
+								<div>
+									<label for="family_structure_name3" name="family_structure3">氏名：</label>
+									<input type="text" class="family_structure_name"name="family_structure3" id="family_structure_name3" />
+								</div>
+								<div>
+									<label for="family_structure_furigana3" name="family_structure3">フリガナ：</label>
+									<input type="text" class="family_structure_furigana"name="family_structure3" id="family_structure_furigana3" />
+								</div>
+								<div>
+									<label for="family_structure_birth3" name="family_structure3">生年月日：</label>
+									<html:text property= "text" value="" size="6"/>
+								</div>
+								<div>
+									<label for="family_structure_sex3" name="family_structure3">性別：</label>
+									<select id="family_structure_sex3" class="family_structure_sex"name="family_structure3">
 									<option value="">-</option>
 									<option value="true">男</option>
 									<option value="false">女</option>
@@ -418,6 +441,26 @@
 								<input type="text" id="family_structure_job3"
 									name="family_structure3" class="family_structure_job" />
 							</div>
+							<a href="#" id="link_view8" onClick="toggle_view8();return false;" >追加</a>
+  							<a href="#" id="link_hidden8" onClick="toggle_hidden8();return false;"style="display:none;">削除</a>
+							</div>
+								<script language="JavaScript" type="text/javascript">
+								var elem7_1 = document.getElementById("area_hoge7");
+								var elem7_2 = document.getElementById("link_view7");
+								var elem7_3 = document.getElementById("link_hidden7");
+								function toggle_view7() {
+  								elem7_1.style.display = "";
+  								elem7_2.style.display = "none";
+  								elem7_3.style.display = "";
+								}
+								function toggle_hidden7() {
+  								elem7_1.style.display = "none";
+  								elem7_2.style.display = "";
+  								elem7_3.style.display = "none";
+								}
+								</script>
+
+
 
 
 							<div>
@@ -464,6 +507,25 @@
 								<input type="text" id="family_structure_job4"
 									name="family_structure4" class="family_structure_job" />
 							</div>
+							<a href="#" id="link_view9" onClick="toggle_view9();return false;" >追加</a>
+  							<a href="#" id="link_hidden9" onClick="toggle_hidden9();return false;"style="display:none;">削除</a>
+							</div>
+								<script language="JavaScript" type="text/javascript">
+								var elem8_1 = document.getElementById("area_hoge8");
+								var elem8_2 = document.getElementById("link_view8");
+								var elem8_3 = document.getElementById("link_hidden8");
+								function toggle_view8() {
+  								elem8_1.style.display = "";
+  								elem8_2.style.display = "none";
+  								elem8_3.style.display = "";
+								}
+								function toggle_hidden8() {
+  								elem8_1.style.display = "none";
+  								elem8_2.style.display = "";
+  								elem8_3.style.display = "none";
+								}
+								</script>
+
 
 
 							<div>
