@@ -96,10 +96,6 @@ public final class MainForm extends ActionForm {
 	 */
 	public String getButton() {
 		
-		if(button.equals("ã­ã°ã¤ã³")){
-			button = "login";
-		}
-		
 		return button;
 	}
 

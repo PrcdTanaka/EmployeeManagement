@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -105,11 +104,8 @@ public final class MainAction extends Action {
 		}
 		String Button = "";
 		MainForm mForm = (MainForm) frm;
-		try{
-			Button = mForm.getButton();
-		} catch(NullPointerException e){
-			e.printStackTrace();
-		}
+		
+		Button = mForm.getButton();
 		
 		if(Button.equals("ログアウト")){
 			// ログアウトボタン押下時、
