@@ -23,6 +23,18 @@
 	</table>
 
 	<body>
+		
+		<%
+		
+ 		String hire_date;
+ 		try{
+			Personal_informationForm pForm = (Personal_informationForm) session.getAttribute("pForm");
+			hire_date =  pForm.getHire_date();
+
+ 		}catch(NullPointerException e){
+ 			hire_date = "aaa";
+ 		}
+		%>
 		<html:form action="/Personal_informationAction">
 			<div class="block">
 
@@ -99,10 +111,10 @@
 					<p>
 						<div class="emergency_contact" id="emergency_contact">
 							<label for="emergency_contact">緊急連絡先</label>
-							<div class=="emergency_postal_code">
+							<div>
 								<label for="emergency_postal_code">郵便番号：</label>
 								<html:text property="emergency_postal_code"
-									name="emergency_postal_code" styleId="emergency_postal_code"
+									name="Personal_informationForm" styleId="emergency_postal_code"
 									size="4" maxlength="7" />
 							</div>
 							<div class="emergency_address">
@@ -467,6 +479,13 @@
 								for="sample3check"> <span></span>
 							</label>
 						</div>
+						
+						 
+
+						<script type="text/javascript">
+							
+							
+						</script>
 
 						<p>確認書類</p>
 						<div id="document">
