@@ -6,14 +6,20 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="sample.pr.main.SearchForm;" %>
-
+<%@ page import="sample.pr.main.SearchForm" %>
+<%@ page import="sample.pr.main.LoginForm" %>
 <html lang="ja">
 
 <!DOCTYPE html>
 <style>
+
 body{
+
 	text-align: center;
+	}
+a{
+text-decoration:none;
+color:black;
 	}
 h1{
 	margin-top: 8%;
@@ -68,7 +74,10 @@ position:relative;
 	<center><h1>ユーザ検索</h1></center>
 	</head>
 	<body>
+
+
 	<html:form action="/SearchAction">
+
 		<span class="center">
 				<center><html:text property="text" maxlength="12" />
 				<html:submit property="button" value="検索" /></center>
@@ -82,6 +91,7 @@ position:relative;
 					<%
 					try
 					{
+
 						SearchForm s=(SearchForm)session.getAttribute("form");
 						List<String> name=s.getEmployee_name();
 						List<String> no=s.getEmployee_no();
@@ -97,9 +107,11 @@ position:relative;
 							}
 							else
 							{
-								out.println("<tr><td>");
+								out.println("<tr><td>");      //名前にリンクがついてます。
+								out.println("<a href=\"#\">");
 						        out.println(name.get(i));
 						        out.println("</td>");
+						        out.println("</a>");
 
 						        out.println("<td>");
 						        out.println(no.get(i));
@@ -118,13 +130,19 @@ position:relative;
 					{
 
 					}
+					catch(Exception e)
+					{
+
+					}
 
 					%>
 		</span>
 
 		<div class="back">
-			<html:submit property="button" value="戻る" />
+		<html:submit property="button" value="戻る"></html:submit>
+
 		</div>
+
 		</html:form>
 	</body>
 </html:html>

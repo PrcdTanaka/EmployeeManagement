@@ -185,7 +185,7 @@ public final class PasswordAction extends Action {
 	public String password(RegisterForm form){
 		if(checkPattern(form.getPassword(),"password")) {
 			dba.userRegister(form);
-			form.setMassage("パスワードが複雑さの要件を満たしていません。");
+			form.setMessage("パスワードが複雑さの要件を満たしていません。");
 		}
 
 		return "register";
