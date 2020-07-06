@@ -469,6 +469,7 @@ public class DbAction extends Object{
 				dba.commit();
 				dba.closeConnection();
 
+
 				for (Map<String, String> val : rsList) {
 					form.setPassword(val.get("PASSWORD"));
 					ret = true;
@@ -481,6 +482,11 @@ public class DbAction extends Object{
 		return ret;
 
 	}
+	/**
+	 * ユーザー検索処理
+	 * nullなら全件表示
+	 * 小牧誠治
+	 */
 	public boolean getSearchAns(SearchForm form) {
 		boolean ret = true;
 		//	String datetime = form.getTime_from();
@@ -503,15 +509,28 @@ public class DbAction extends Object{
 			sb.append("SELECT" + crlf);
 			sb.append(" DEPARTMENT," + crlf);
 			sb.append(" NAME,"+crlf);
-			sb.append(" EMPLOYEE_MST.EMPLOYEE_NO" + crlf);
+			sb.append(" EMPLOYEE_MST.EMPLOYEE_NO," + crlf);
+			sb.append(" MANAGER_FLAG"+crlf);
 			sb.append("FROM" + crlf);
 			sb.append(" EMPLOYEE_MST" + crlf);
 			sb.append("LEFT OUTER JOIN" + crlf);
 			sb.append(" PERSONAL_INFORMATION_TBL" + crlf);
 			sb.append("ON" + crlf);
 			sb.append(" EMPLOYEE_MST.EMPLOYEE_NO=PERSONAL_INFORMATION_TBL.EMPLOYEE_NO" + crlf);
-			sb.append("WHERE" + crlf);
-			sb.append(  form.getRadio()+"=?"+crlf);
+			if(form.getText().equals("")){
+				sb.append("WHERE" + crlf);
+				sb.append( "MANAGER_FLAG=?"+crlf);
+			}
+			else{
+				sb.append("WHERE" + crlf);
+				sb.append(  form.getRadio()+"=?"+crlf);
+			}
+
+
+//			if(form.getText()!=null)
+//
+//			else
+//				sb.append("*;");
 
 			String query = sb.toString();
 
@@ -528,35 +547,32 @@ public class DbAction extends Object{
 
 			// 設定値 - 値
 			List<Object> bindList= new ArrayList<Object>();
-			if(form.getRadio().equals("DEPARTMENT")&&form.getText().length()==1)
+			if(form.getText().equals(""))
+				bindList.add("0");
+			else if(form.getRadio().equals("DEPARTMENT")&&form.getText().length()==1)
 				bindList.add("0"+form.getText());
 			else
 				bindList.add(form.getText());
 
-			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 			try {
 				dba.executeQuery(query, columnList, typeList, bindList, rsList);
 				dba.commit();
 				dba.closeConnection();
 
 
-
-
-
-
-					for (Map<String, String> val : rsList) {
-						form.setDepertment(val.get("DEPARTMENT"));
-						form.setEmployee_name(val.get("NAME"));
-						form.setEmployee_no(val.get("EMPLOYEE_NO"));
-
-						ret = true;
-					}
+				for (Map<String, String> val : rsList) {
+					form.setDepertment(val.get("DEPARTMENT"));
+					form.setEmployee_name(val.get("NAME"));
+					form.setEmployee_no(val.get("EMPLOYEE_NO"));
+					ret = true;
+				}
 
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-
 
 		}
 

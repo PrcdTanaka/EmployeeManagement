@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -28,7 +27,7 @@ public final class MainAction extends Action {
 	 * <p>
 	 * メイン画面アクションの初期設定を行う。
 	 * </p>
-	 * 
+	 *
 	 * 1.初期設定を行う。<br>
 	 * 　1-1.DB接続クラスのインスタンスを生成する。<br>
 	 * 　1-2.遷移先<br>
@@ -36,7 +35,7 @@ public final class MainAction extends Action {
 	 * 2.例外発生時の処理。<br>
 	 * 　2-1.IOExceptionをthrowする。<br>
 	 * <br>
-	 * 
+	 *
 	 * @throws IOException
 	 *             -
 	 */
@@ -48,7 +47,7 @@ public final class MainAction extends Action {
 	 * <p>
 	 * クリックされたボタンを判定し、遷移先情報を返却する。
 	 * </p>
-	 * 
+	 *
 	 * 1.メイン画面のアクションフォーム情報をインプットパラメータ.アクションフォームから取得する。<br>
 	 * <br>
 	 * 2.クリックされたボタンの名称をアクションフォームから取得する。<br>
@@ -85,17 +84,17 @@ public final class MainAction extends Action {
 	 * 　　クラス　：ActionMapping<br>
 	 * 　　メソッド：findForward(遷移先)<br>
 	 * <br>
-	 * 
+	 *
 	 * セッションの削除
 	 * lForm.initialize();
-	 * 
+	 *
 	 * @param map
 	 *            アクションマッピング<br>
 	 *            frm アクションフォーム<br>
 	 *            request リクエスト情報<br>
 	 *            response レスポンス情報<br>
 	 * @return 遷移先情報
-	 * 
+	 *
 	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
 		try {
@@ -110,7 +109,7 @@ public final class MainAction extends Action {
 		} catch(NullPointerException e){
 			e.printStackTrace();
 		}
-		
+
 		if(Button.equals("ログアウト")){
 			// ログアウトボタン押下時、
 			// 遷移先を"logout"に設定。
@@ -131,9 +130,9 @@ public final class MainAction extends Action {
 				break;
 			}
 		}
-		
+
 		request.setAttribute("form", mForm);
-		
+
 		return map.findForward(forward);
 
 	}
