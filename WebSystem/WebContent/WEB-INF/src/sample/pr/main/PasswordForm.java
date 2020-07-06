@@ -16,7 +16,7 @@ public final class PasswordForm extends ActionForm {
 	private String button;
 	/** メッセージ */
 	private String message;
-	private String Dbpassword;
+	private String dbpassword;
 
 	/**
 	 * 初期化処理。
@@ -31,6 +31,7 @@ public final class PasswordForm extends ActionForm {
 		newpassword2 = "";
 		button = "";
 		message = "";
+		dbpassword = "";
 	}
 
 	/**
@@ -185,7 +186,7 @@ public final class PasswordForm extends ActionForm {
 	 * @return DBパスワード
 	 */
 	public String getDbpassword() {
-		return getDbpassword();
+		return dbpassword;
 	}
 	/**
 	 * ログインしているユーザーのパス設定処理。
@@ -195,8 +196,8 @@ public final class PasswordForm extends ActionForm {
 	 *
 	 * @param DBパスワード
 	 */
-	public void setDbpassword(String Dbpassword) {
-		this.Dbpassword = Dbpassword;
+	public void setDbpassword(String dbpassword) {
+		this.dbpassword = dbpassword;
 	}
 
 }

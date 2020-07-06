@@ -8,6 +8,7 @@
 <html:html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title><bean:message key="personal.title"/></title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -30,9 +31,8 @@
  		try{
 			Personal_informationForm pForm = (Personal_informationForm) session.getAttribute("pForm");
 			hire_date =  pForm.getHire_date();
-
  		}catch(NullPointerException e){
- 			hire_date = "aaa";
+ 			hire_date = null;
  		}
 		%>
 		<html:form action="/Personal_informationAction">
@@ -46,7 +46,7 @@
 						<label for="hire_date">入社日</label>
 						<html:text property="hire_date" name="Personal_informationForm"
 							styleId="hire_date" value="" size="8" maxlength="8" />
-						(半角数字8ケタ)
+						(半角数字8ケタ)<%= hire_date %>
 
 					</div>
 					<div class="name">

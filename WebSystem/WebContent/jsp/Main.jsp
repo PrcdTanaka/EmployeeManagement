@@ -69,7 +69,7 @@
 					</li>
 					<li>
 						<html:link action="/MainAction">パスワード変更画面
-							<html:param name="employee_no"><%= no %><!-- bean:write name="LoginForm" property="employee_no"/--></html:param>
+							<html:param name="employee_no"><%= no %></html:param>
 							<html:param name="link">password</html:param>
 						</html:link>
 					</li>

@@ -17,11 +17,9 @@ public final class MainAction extends Action {
 
 	// DB接続用オブジェクト
 	private DbAction dba = new DbAction();
-	private LoginForm lForm = new LoginForm();
 
 	// 遷移先
 	private String forward;
-
 
 	/**
 	 * <p>
@@ -40,7 +38,6 @@ public final class MainAction extends Action {
 	 *             -
 	 */
 	public MainAction() throws IOException {
-
 	}
 
 	/**
