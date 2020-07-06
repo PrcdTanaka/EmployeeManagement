@@ -20,7 +20,7 @@
 
  	<body>
   		<html:form action="/PasswordAction" >
-			<html:hidden property="employee_name" name="PasswordForm"/>
+			<html:hidden property="employee_no" name="PasswordForm"/>
 			<div class="block">
 
 				<div class="space"></div>
@@ -28,15 +28,15 @@
 				<br>
 				<br>
 				<div>
-				    <center>  古いパスワード：<html:password property="password" value= ""/></center>
+				    <center>  古いパスワード：<html:password property="oldpassword" value= ""/></center>
 				</div>
 				<br>
 				<div>
-				    <center>新しいパスワード：<html:password property="password" value= ""/></center>
+				    <center>新しいパスワード：<html:password property="newpassword1" value= ""/></center>
 				</div>
 				<br>
 				<div>
-				    <center>新しいパスワード：<html:password property="password" value= ""/></center>
+				    <center>新しいパスワード：<html:password property="newpassword2" value= ""/></center>
 				</div>
 				<div class="space"></div>
 				<br>
