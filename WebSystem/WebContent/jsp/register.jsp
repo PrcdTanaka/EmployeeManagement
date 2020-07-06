@@ -23,14 +23,14 @@
  		String message;
  		try{
 			RegisterForm rForm = (RegisterForm) session.getAttribute("rForm");
- 			message =  rForm.getMassage();
+ 			message =  rForm.getMessage();
  			if(message == null)
  				message = "";
 
  		}catch(NullPointerException e){
  			message = "";
  		}
- 		
+
  	%>
   		<html:form action="/RegisterAction" >
 			<div class="block">
