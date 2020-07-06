@@ -1,10 +1,12 @@
 package sample.pr.main;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -41,7 +43,7 @@ public final class PasswordAction extends Action {
 
 	// 遷移先
 	private String forward;
-	
+
 	/**
 	 * <p>
 	 * クリックされたボタンを判定し、遷移先情報を返却する。
@@ -63,28 +65,16 @@ public final class PasswordAction extends Action {
 	 * 　　メソッド：getSyainName()<br>
 	 * 　　　引数１：メイン画面アクションフォーム<br>
 	 * <br>
-	 * 4.社員名が取得できた場合の処理。<br>
-	 * 　4-1.押下されたボタンを判定してそれぞれの処理をコール。<br>
-	 * 　　4-1-1.出社ボタン押下処理をコール。<br>
-	 * 　　　クラス　：MainAction<br>
-	 * 　　　メソッド：clickBtnIn()<br>
-	 * 　　　　引数１：メイン画面アクションフォーム<br>
-	 * 　　4-1-2.退社ボタン押下処理をコール。<br>
+	 * 　　4-1.戻るボタン押下処理をコール。<br>
 	 * 　　　クラス　：MainAction<br>
 	 * 　　　メソッド：clickBtnOut()<br>
 	 * 　　　　引数１：メイン画面アクションフォーム<br>
-	 * 　　4-1-3.参照ボタン押下処理をコール。<br>
-	 * 　　　クラス　：MainAction<br>
-	 * 　　　メソッド：clickBtnView()<br>
-	 * 　　　　引数１：メイン画面アクションフォーム<br>
+	 * 　　4-1-2変更ボタン押下処理をコール。
+	 * 　　　クラス　：Chennge<br>
+	 * 　　　メソッド：clickBtnOut()
+	 * 　　　　引数：メイン画面アクションフォーム
 	 * 　4-2.遷移先を設定する。<br>
 	 * 　　遷移先：各ボタン押下処理の戻り値<br>
-	 * <br>
-	 * 5.社員名が取得できなかった場合の処理。<br>
-	 * 　5-1.メッセージを設定する。<br>
-	 * 　　メッセージ：「社員マスタに存在しない社員番号です。」<br>
-	 * 　5-2.遷移先を設定する。<br>
-	 * 　　遷移先："message"<br>
 	 * <br>
 	 * 6.アクションフォームをインプットパラメータ.リクエスト情報に設定する。<br>
 	 * 　6-1.リクエスト情報登録処理をコール。<br>
@@ -107,9 +97,131 @@ public final class PasswordAction extends Action {
 	 * @return 遷移先情報
 	 *
 	 */
-	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		Object s = session.getAttribute("form");
-		return null;
+	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response,DbAction dba,PasswordForm Passfrm) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		PasswordForm pForm = (PasswordForm) frm;
+		String button = pForm.getButton();
+		if(button.equals("戻る")) {
+			forward = "main";
+		}if(button.equals("変更")){
+			if(pForm.getOldpassword().equals("")){
+				pForm.setMessage("パスワードを入力してください。");
+			}else{
+				 // DBに格納されたパスワード取得処理
+				dba.getPassword(pForm);
+				pForm.getOldpassword();
+				if(pForm.getOldpassword().equals(pForm.getDbpassword())){
+					if(pForm.getNewpassword().equals(pForm.getNewpassword2())){
+						if(!checkPattern(pForm.getNewpassword(), "password")){
+							pForm.setMessage("パスワードが複雑さの要件を満たしていません。");
+						}else{
+							dba.setPassword(pForm);
+							pForm.setMessage("パスワードを変更しました。");
+						}
+					}else{
+						pForm.setMessage("入力されたパスワードが不正です。");
+					}
+				}else{
+					pForm.setMessage("入力されたパスワードが不正です。");
+				}
+			}
+		}
+		return map.findForward(forward);
 	}
+
+
+	/***
+	 * <p>
+	 * 入力された情報から新規ユーザの登録を行う。
+	 * </p>
+	 * 1.社員情報の取得<br>
+	 * 　1-1.社員番号のチェック<br>
+	 * 　　クラス　：RegisterAction<br>
+	 * 　　メソッド：checkPattern()<br>
+	 * 　　引数１　：アクションフォーム.getEmployee_no()<br>
+	 * 　　引数２　："Employee_no"<br>
+	 * 　　1-1-1.チェックで不正と判定された場合<br>
+	 * 　　　1-1-1-1.エラーメッセージの設定。<br>
+	 * 　　　　クラス　：RegisterForm<br>
+	 * 　　　　メソッド：setMessage()<br>
+	 * 　　　　引数　　："社員番号が不正です。"<br>
+	 * 　1-2.社員番号の検索<br>
+	 * 　　クラス　：DbAction<br>
+	 * 　　メソッド：confirmationNo()<br>
+	 * 　　引数　　：ユーザ登録画面アクションフォーム<br>
+	 * 2.社員番号が既に存在している場合。<br>
+	 * 　2-1.エラーメッセージの設定。<br>
+	 * 　　クラス　：RegisterForm<br>
+	 * 　　メソッド：setMessage()<br>
+	 * 　　引数　　："社員番号が既に存在しています。"<br>
+	 * 3.社員番号が存在しない場合。
+	 * 　3-1パスワードの強度チェック処理をコール。<br>
+	 * 　　クラス　：RegisterAction<br>
+	 * 　　メソッド：checkPattern()<br>
+	 * 　　引数１　：アクションフォーム.getPassword()<br>
+	 * 　　引数２　："password"<br>
+	 * 　3-2.パスワードの強度が十分な場合。<br>
+	 * 　　3-2-1.ユーザ登録処理をコール。<br>
+	 * 　　　クラス　：DbAction<br>
+	 * 　　　メソッド：userRegister()<br>
+	 * 　　　引数　　：ユーザ登録画面アクションフォーム<br>
+	 * 　3-3.パスワードの強度が不十分な場合。<br>
+	 * 　　3-3-1.エラーメッセージの設定。<br>
+	 * 　　　クラス　：RegisterForm<br>
+	 * 　　　メソッド：setMessage()<br>
+	 * 　　　引数　　："パスワードが複雑さの要件を満たしていません。"<br>
+	 * 4.戻り値を返却する。<br>
+	 * 　4-1.遷移先情報を設定。<br>
+	 * 　　forward："register"<br>
+	 * <br>
+	 * @param form Actionform
+	 * @return 遷移先
+	 */
+	public String password(RegisterForm form){
+		if(checkPattern(form.getPassword(),"password")) {
+			dba.userRegister(form);
+			form.setMassage("パスワードが複雑さの要件を満たしていません。");
+		}
+
+		return "register";
+	}
+
+	/***
+	 * <p>
+	 * パスワードの複雑さ要件をチェックする。
+	 * </p>
+	 *
+	 * @param word 対象文字列
+	 * @param pattern チェックパターン
+	 * @return 問題ナシ：true, 問題アリ：false
+	 */
+	public boolean checkPattern(String word, String pattern){
+
+		boolean result = true;
+
+		if( word == null || word.isEmpty() ) return false ;
+		switch(pattern){
+		case "employee_no":
+			Pattern p1 = Pattern.compile("^[0-9]+$"); // 正規表現パターンの読み込み
+			Matcher m1 = p1.matcher(word); // パターンと検査対象文字列の照合
+			result = m1.matches(); // 照合結果をtrueかfalseで取得
+			if(word.length() != 4)
+				result = false;
+			break;
+		case "password":
+			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$"); // 正規表現パターンの読み込み
+			Matcher m2 = p2.matcher(word); // パターンと検査対象文字列の照合
+			result = m2.matches(); // 照合結果をtrueかfalseで取得
+			if(!(word.length() >= 8 && word.length() <= 16))
+				result = false;
+			break;
+		}
+		return result;
+	}
+
 }

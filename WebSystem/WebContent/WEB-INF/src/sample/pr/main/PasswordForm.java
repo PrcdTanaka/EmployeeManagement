@@ -4,28 +4,19 @@ import org.apache.struts.action.ActionForm;
 
 public final class PasswordForm extends ActionForm {
 
-	/** シリアルバージョンID */
-	private static final long serialVersionUID = 1L;
-
 	/** 社員番号 */
 	private String employee_no;
-	/** パスワード */
-	private String password;
-	/** 社員氏名 */
-	private String employee_name;
-	/** 出社時間 */
-	private String time_from;
-	/** 退社時間 */
-	private String time_to;
-	/** リンク先 */
-	private String link;
-
+	/** 古いパスワード */
+	private String oldpassword;
+	/** 新しいパスワード1 */
+	private String newpassword1;
+	/** 新しいパスワード2 */
+	private String newpassword2;
 	/** ボタン名 */
 	private String button;
 	/** メッセージ */
 	private String message;
-	/** 日時 */
-	private String dtime;
+	private String Dbpassword;
 
 	/**
 	 * 初期化処理。
@@ -35,13 +26,11 @@ public final class PasswordForm extends ActionForm {
 	 */
 	public void initialize() {
 		employee_no = "";
-		employee_name = "";
-		time_from = "";
-		time_to = "";
+		oldpassword = "";
+		newpassword1 = "";
+		newpassword2 = "";
 		button = "";
 		message = "";
-		password = "";
-		dtime = "";
 	}
 
 	/**
@@ -61,93 +50,82 @@ public final class PasswordForm extends ActionForm {
 	 * <p>
 	 * メイン画面アクションフォームに社員番号を設定する。
 	 * </p>
-	 *
-<<<<<<< HEAD
 	 * @param employee_no 社員番号
-=======
-	 * @param Employee_no 社員番号
->>>>>>> refs/remotes/origin/development
 	 */
-
 	public void setEmployee_no(String Employee_no) {
 		this.employee_no = Employee_no;
 	}
 
 	/**
-	 * 社員氏名取得処理。
+	 * 古いパスワード取得処理。
 	 * <p>
-	 * メイン画面アクションフォームから社員氏名を取得する。
+	 * メイン画面アクションフォームから古いパスワードを取得する。
 	 * </p>
 	 *
-	 * @return 社員氏名
+	 * @return 古いパスワード
 	 */
-	public String getEmployee_name() {
-		return employee_name;
+	public String getOldpassword() {
+		return oldpassword;
 	}
 
 	/**
-	 * 社員氏名設定処理。
+	 * 古いパスワード設定処理。
 	 * <p>
-	 * メイン画面アクションフォームに社員氏名を設定する。
+	 * パスワードフォームに古いパスワードを設定する。
 	 * </p>
 	 *
-<<<<<<< HEAD
-	 * @param employee_name 社員氏名
-=======
-	 * @param Employee_name 社員氏名
->>>>>>> refs/remotes/origin/development
+	 * @param oldpassword 古いパスワード
 	 */
-	public void setEmployee_name(String Employee_name) {
-		this.employee_name = Employee_name;
+	public void setOldpassword(String oldpassword) {
+		this.oldpassword = oldpassword;
 	}
 
 	/**
-	 * 出社時間取得処理。
+	 * 新しいパスワード1取得処理。
 	 * <p>
-	 * メイン画面アクションフォームから出社時間を取得する。
+	 * メイン画面アクションフォームから新しいパスワード1を取得する。
 	 * </p>
 	 *
-	 * @return 出社時間
+	 * @return 新しいパスワード1
 	 */
-	public String getTime_from() {
-
-		return time_from;
+	public String getNewpassword() {
+		return newpassword1;
 	}
 
 	/**
-	 * 出社時間設定処理。
+	 * 新しいパスワード1設定処理。
 	 * <p>
-	 * メイン画面アクションフォームに出社時間を設定する。
+	 * パスワードフォーム新しいパスワード1を設定する。
 	 * </p>
 	 *
-	 * @param time_from 出社時間
+	 * @param newpassword 新しいパスワード1
 	 */
-	public void setTime_from(String time_from) {
-		this.time_from = time_from;
+	public void setNewpassword1(String newpassword) {
+		this.newpassword1 = newpassword;
 	}
 
 	/**
-	 * 退社時間取得処理。
+	 * 新しいパスワード2取得処理。
 	 * <p>
-	 * メイン画面アクションフォームから退社時間を取得する。
+	 * メイン画面アクションフォームから新しいパスワード2を取得する。
 	 * </p>
 	 *
-	 * @return 退社時間
+	 * @return 新しいパスワード2
 	 */
-	public String getTime_to() {
-		return time_to;
+	public String getNewpassword2() {
+		return newpassword2;
 	}
 
 	/**
-	 * 退社時間設定処理。
+	 * 新しいパスワード2設定処理。
 	 * <p>
-	 * メイン画面アクションフォームに退社時間を設定する。
+	 * パスワードフォーム新しいパスワード2を設定する。
 	 * </p>
 	 *
-	 * @param time_to 退社時間
+	 * @param newpassword 新しいパスワード2
 	 */
-	public void setTime_to(String time_to) {
-		this.time_to = time_to;
+	public void setNewpassword2(String newpassword) {
+		this.newpassword2 = newpassword;
 	}
 
 	/**
@@ -159,11 +137,6 @@ public final class PasswordForm extends ActionForm {
 	 * @return ボタン名
 	 */
 	public String getButton() {
-
-		if(button.equals("åºç¤¾")){
-			button = "syussya";
-		}
-
 		return button;
 	}
 
@@ -203,26 +176,27 @@ public final class PasswordForm extends ActionForm {
 		this.message = message;
 	}
 
-	public String getDtime() {
-		return dtime;
-	}
-	public void setDtime(String password) {
-		this.dtime = dtime;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}	
 	/**
-	 * リンク先取得処理。
+	 * ログインしているユーザーのパス取得処理。
 	 * <p>
-	 * メイン画面アクションフォームからリンク先を取得する。
+	 * パスワード変更画面アクションフォームからログインしているユーザーのパスを取得する。
 	 * </p>
 	 *
-	 * @return リンク先
+	 * @return DBパスワード
 	 */
+	public String getDbpassword() {
+		return getDbpassword();
+	}
+	/**
+	 * ログインしているユーザーのパス設定処理。
+	 * <p>
+	 * パスワードフォームにDBパスワードを設定する。
+	 * </p>
+	 *
+	 * @param DBパスワード
+	 */
+	public void setDbpassword(String Dbpassword) {
+		this.Dbpassword = Dbpassword;
+	}
 
 }
