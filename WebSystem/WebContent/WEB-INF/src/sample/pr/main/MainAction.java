@@ -102,11 +102,14 @@ public final class MainAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		String Button = "";
+		String Button;
 		MainForm mForm = (MainForm) frm;
 		try{
 			Button = mForm.getButton();
+			if(Button == null)
+				Button = "";
 		} catch(NullPointerException e){
+			Button = "";
 			e.printStackTrace();
 		}
 		
