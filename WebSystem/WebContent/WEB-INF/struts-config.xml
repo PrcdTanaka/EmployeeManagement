@@ -61,7 +61,7 @@
 			type="sample.pr.main.PasswordAction"
 			validate="false"
 			scope="request">
-			<forward name="register" path="/jsp/register.jsp"/>
+			<forward name="password" path="/jsp/register.jsp"/>
 			<forward name="main" path="/jsp/Main.jsp"/>
 		</action>
 	
