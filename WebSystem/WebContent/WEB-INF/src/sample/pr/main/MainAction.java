@@ -104,8 +104,11 @@ public final class MainAction extends Action {
 		}
 		String Button = "";
 		MainForm mForm = (MainForm) frm;
-		
-		Button = mForm.getButton();
+		try{
+			Button = mForm.getButton();
+		} catch(NullPointerException e){
+			e.printStackTrace();
+		}
 		
 		if(Button.equals("ログアウト")){
 			// ログアウトボタン押下時、
