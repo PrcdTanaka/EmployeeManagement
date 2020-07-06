@@ -130,6 +130,10 @@ position:relative;
 					{
 
 					}
+					catch(Exception e)
+					{
+
+					}
 
 					%>
 		</span>

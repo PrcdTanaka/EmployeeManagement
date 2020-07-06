@@ -138,6 +138,9 @@ public final class SearchAction extends Action {
 			else {
 				forward="search";
 				dbaction.getSearchAns(sForm);
+				request.setAttribute("form", sForm);
+				HttpSession session = request.getSession();
+				session.setAttribute("form", sForm);
 			}
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック
@@ -150,9 +153,7 @@ public final class SearchAction extends Action {
 		 									* 　　　引数１："form"<br>
 		 * 　　　引数２：メイン画面アクションフォーム
 		 */
-		request.setAttribute("form", sForm);
-		HttpSession session = request.getSession();
-		session.setAttribute("form", sForm);
+
 
 		/* 7.戻り値を返却する。<br>
 		 * 　7-1.遷移先情報取得処理をコール。<br>
