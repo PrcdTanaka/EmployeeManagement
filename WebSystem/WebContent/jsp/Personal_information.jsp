@@ -10,15 +10,13 @@
 
 <html:html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title><bean:message key="personal.title"/></title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/style.css">
-<link rel="stylesheet" type="text/css"
-	href="../css/personal_information.css">
-<link rel="stylesheet" type="text/css" href="main.css">
-<html lang="ja">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><bean:message key="personal.title"/></title>
+	<html:base/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<html lang="ja">
 </head>
 <div class="form-wrapper" style="background: #e9e9e9">
 
