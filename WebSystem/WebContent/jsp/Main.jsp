@@ -14,6 +14,10 @@
 		String no = s.getEmployee_no();
 		String name = s.getEmployee_name();
 		String manager = s.getManager();
+		
+		if(name == null){
+			name = "";
+		}
 		%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><bean:message key="main.title"/></title>

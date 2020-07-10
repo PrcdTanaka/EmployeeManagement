@@ -109,7 +109,7 @@
 		String nb = "";
 		String confirmer_no = "";
 		String button = "";
-		String status = "entry";
+		String status = "0";
 		
 		// 社員番号を個人情報入力画面アクションフォームに格納
 		pForm.setEmployee_no(lForm.getEmployee_no());
@@ -193,7 +193,7 @@
 			confirmer_no = pForm.getConfirmer_no();
 			button = pForm.getButton();
 			
-			status = "edit";
+			status = "1";
 			
 			// 各フィールドを入直不可にする。
 			// readonly
@@ -313,30 +313,29 @@
 						</div>
 					</p>
 
-					<span id="entry">
-						<p class="emergency_contact" id="emergency_contact2">
-							<div>
-								<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
-								<html:text property="emergency_name2"
-								name="Personal_informationForm" styleId="emergency_name2" 
-								styleClass="emergency_name" value="<%= emergency_name2 %>" />
-							</div>
-							<div>
-								<label for="relationship2" name="emergency2">本人との関係：</label>
-								<html:text property="relationship2"
-								name="Personal_informationForm" styleId="relationship2" 
-								styleClass="relationship" value="<%= relationship2 %>" />
-							</div>
-							<div>
-								<label for="emergency_tel2" name="emergency2">TEL ：</label>
-								<html:text property="emergency_tel2"
-								name="Personal_informationForm" styleId="emergency_tel2" 
-								styleClass="emergency_tel" value="<%= emergency_tel2 %>" />
-							</div>
-						</p>
-					</span>
+				<p class="emergency_contact" id="emergency_contact2">
+				
+				<div>
+					<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
+					<html:text property="emergency_name2"
+						name="Personal_informationForm" styleId="emergency_name2"
+						styleClass="emergency_name" value="<%=emergency_name2%>" />
+				</div>
+				<div>
+					<label for="relationship2" name="emergency2">本人との関係：</label>
+					<html:text property="relationship2" name="Personal_informationForm"
+						styleId="relationship2" styleClass="relationship"
+						value="<%=relationship2%>" />
+				</div>
+				<div>
+					<label for="emergency_tel2" name="emergency2">TEL ：</label>
+					<html:text property="emergency_tel2"
+						name="Personal_informationForm" styleId="emergency_tel2"
+						styleClass="emergency_tel" value="<%=emergency_tel2%>" />
+				</div>
+				</p>
 
-					<p class="emergency_contact" id="emergency_contact3">
+				<p class="emergency_contact" id="emergency_contact3">
 						<div>
 							<label for="emergency_name3" id="a1" name="emergency3">氏名：</label>
 							<html:text property="emergency_name3"
@@ -657,7 +656,7 @@
 						
 						<!-- 登録/編集ボタン  -->
 						<p id="Bentry">
-							<html:submit property="button" styleClass="btn" value="登録" styleId="Aentry" />
+							<html:submit property="button" styleClass="btn" value="登録" styleId="entry" />
 						</p>
 						
 						<p id="Bedit">
@@ -666,6 +665,13 @@
 						<script type="text/javascript">
 						
 						    document.getElementById("Bentry").style.display ="none";
+						    document.getElementById("Bedit").style.display ="none";
+						    
+						    if(<%= status %>=='0'){
+							    document.getElementById("Bentry").style.display  = "block";
+						    }else if(<%= status %>=='1'){
+								document.getElementById("Bedit").style.display  = "block";
+						    }
 						    
 							function clickbtn1(){
 							    document.getElementById("Bentry").style.display  = "block";
