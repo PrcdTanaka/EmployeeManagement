@@ -872,8 +872,10 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setEmployee_name(val.get("NAME"));
-					ret = true;
+					if (val.get("NAME") != null) {
+						form.setEmployee_name(val.get("NAME"));
+						ret = true;
+					}
 				}
 
 			} catch (SQLException e) {
