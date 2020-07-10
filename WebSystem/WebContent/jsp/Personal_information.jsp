@@ -109,7 +109,7 @@
 		String nb = "";
 		String confirmer_no = "";
 		String button = "";
-		String aaa = null;
+		String status = "entry";
 		
 		// 社員番号を個人情報入力画面アクションフォームに格納
 		pForm.setEmployee_no(lForm.getEmployee_no());
@@ -192,6 +192,14 @@
 			nb = pForm.getNb();
 			confirmer_no = pForm.getConfirmer_no();
 			button = pForm.getButton();
+			
+			status = "edit";
+			
+			// 各フィールドを入直不可にする。
+			// readonly
+			
+			
+			
 		}
 		
 		%>
@@ -648,25 +656,21 @@
 						</div>
 						
 						<!-- 登録/編集ボタン  -->
-						<!--
-						<div class="sample3Area" id="makeImg">
-							<input type="checkbox" id="sample3check" checked=""> <label
-								for="sample3check"> <span></span>
-							</label>
-						</div>
-						 -->
+						<p id="Bentry">
+							<html:submit property="button" styleClass="btn" value="登録" styleId="Aentry" />
+						</p>
 						
-						<div>
-							<html:submit property="button" styleClass="btn" value="登録" styleId="entry" />
-						</div>
-						
-						<div>
-							<html:submit property="button" styleClass="btn" value="編集" styleId="edit" />
-						</div>
-						 
-
+						<p id="Bedit">
+							<input type="button" value="編集" id="edit" onclick="clickbtn1()" class="btn" />
+						</p>
 						<script type="text/javascript">
-							
+						
+						    document.getElementById("Bentry").style.display ="none";
+						    
+							function clickbtn1(){
+							    document.getElementById("Bentry").style.display  = "block";
+							    document.getElementById("Bedit").style.display  = "none";
+							}
 							
 						</script>
 
@@ -702,6 +706,7 @@
 				<div>
 					<html:submit property="button" styleClass="btn" value="戻る" styleId="back" />
 				</div>
+				
 		</html:form>
 
 				<script type="text/javascript" src="./personal_information.js"></script>
