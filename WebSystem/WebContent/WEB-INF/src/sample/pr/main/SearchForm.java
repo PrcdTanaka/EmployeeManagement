@@ -15,7 +15,7 @@ public final class SearchForm extends ActionForm {
 	/** メッセージ */
 	private String text;
 	/** ラジオボタン */
-	private String radio;
+	private String radio="EMPLOYEE_MST.EMPLOYEE_NO";
 
 	private List<String> number=new ArrayList<String>();
 
@@ -33,7 +33,7 @@ public final class SearchForm extends ActionForm {
 	public void initialize() {
 		button     = "";
 		text    = "";
-		radio      = "";
+		radio      = "EMPLOYEE_MST.EMPLOYEE_NO";
 		number=new ArrayList<String>();
 		name=new ArrayList<String>();
 		depart=new ArrayList<String>();
