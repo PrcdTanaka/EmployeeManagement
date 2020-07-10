@@ -1,6 +1,7 @@
 package sample.pr.main;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +20,6 @@ public final class Personal_informationAction extends Action {
 
 	// 遷移先
 	private String forward;
-
-	DbAction dbaction = new DbAction();
 
 	/**
 	 * <p>
@@ -96,8 +95,44 @@ public final class Personal_informationAction extends Action {
 	 *
 	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		String Button;
+		Personal_informationForm pForm = (Personal_informationForm) frm;
+		try{
+			Button = pForm.getButton();
+			if(Button == null)
+				Button = "";
+		} catch(NullPointerException e){
+			Button = "";
+			e.printStackTrace();
+		}
+
+			switch (Button) {
+			case "edit":
+				forward = "edit";
+				break;
+			case "register":
+				forward = "register";
+				break;
+			case "search":
+				forward = "search";
+				break;
+			case "password":
+				forward = "password";
+				break;
+			}
+
+
+
+
+
+
 		return map.findForward(forward);
-	}
+		}
 
 	/**
 	 * <p>
