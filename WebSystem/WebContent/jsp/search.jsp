@@ -17,6 +17,7 @@
 body{
 
 	text-align: center;
+	background-color:e9e9e9;
 	}
 a{
 text-decoration:none;
@@ -48,8 +49,15 @@ h2{
 .back{
 margin-top: 4%;
 position:relative;
-}
 
+}
+.sousin{
+	background-color: #49a9d4;
+	border-radius:8px;
+	font-weight: bold;
+	padding:8px;
+	color:#fff;
+}
 
 .center {
 	text-align:center;
@@ -94,7 +102,7 @@ position:relative;
 					try
 					{
 
-						SearchForm s=(SearchForm)session.getAttribute("form");
+						SearchForm s=(SearchForm)session.getAttribute("sForm");
 						List<String> name=s.getEmployee_name();
 						List<String> no=s.getEmployee_no();
 						List<String> depart=s.getDepertment();
@@ -146,8 +154,9 @@ position:relative;
 					%>
 		</span>
 
+
 		<div class="back">
-		<html:submit property="button" value="戻る"></html:submit>
+		<html:submit styleClass="sousin" property="button" value="戻る"></html:submit>
 
 		</div>
 
