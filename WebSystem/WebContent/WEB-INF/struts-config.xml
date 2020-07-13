@@ -65,7 +65,7 @@
 			<forward name="main" path="/jsp/Main.jsp"/>
 			<forward name="password" path="/jsp/Password.jsp"/>
 		</action>
-	
+
 		<action
 			name="RegisterForm"
 			path="/RegisterAction"
@@ -75,7 +75,7 @@
 			<forward name="register" path="/jsp/register.jsp"/>
 			<forward name="main" path="/jsp/Main.jsp"/>
 		</action>
-		
+
 		<action
 			name="SearchForm"
 			path="/SearchAction"
