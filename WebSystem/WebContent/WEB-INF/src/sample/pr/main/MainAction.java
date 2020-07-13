@@ -22,7 +22,6 @@ public final class MainAction extends Action {
 	// 遷移先
 	private String forward;
 
-
 	/**
 	 * <p>
 	 * メイン画面アクションの初期設定を行う。
@@ -40,7 +39,6 @@ public final class MainAction extends Action {
 	 *             -
 	 */
 	public MainAction() throws IOException {
-
 	}
 
 	/**

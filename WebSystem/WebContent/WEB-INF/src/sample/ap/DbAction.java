@@ -2,6 +2,7 @@ package sample.ap;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import sample.db.DbConnector;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
 import sample.pr.main.PasswordForm;
+import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
@@ -869,6 +871,412 @@ public class DbAction extends Object{
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * 社員名を取得する。
+	 * 
+	 * @param form メイン画面アクションフォーム
+	 * @return DB接続成功：true DB接続失敗：false
+	 */
+	public boolean getEmoloyee_Name(Personal_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT" + crlf);
+			sb.append("  NAME" + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("  PERSONAL_INFORMATION_TBL" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("NAME");
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					if (val.get("NAME") != null) {
+						form.setEmployee_name(val.get("NAME"));
+						ret = true;
+					}
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+
+	/**
+	 * 個人情報を取得する。
+	 * 
+	 * @param form
+	 * @return
+	 * @throws ParseException 
+	 */
+	public boolean getPersonalData(Personal_informationForm form) throws ParseException {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT" + crlf);
+			sb.append("  HIRE_DATE," + crlf);
+			sb.append("  NAME," + crlf);
+			sb.append("  FURIGANA_NAME," + crlf);
+			sb.append("  SEX," + crlf);
+			sb.append("  BIRTH," + crlf);
+			sb.append("  POSTAL_CODE," + crlf);
+			sb.append("  ADDRESS," + crlf);
+			sb.append("  DIVISION," + crlf);
+			sb.append("  TEL_HOME," + crlf);
+			sb.append("  TEL_PHONE," + crlf);
+			sb.append("  EMERGENCY_ADDRESS," + crlf);
+			sb.append("  EMERGENCY_TEL," + crlf);
+			sb.append("  DOCUMENT," + crlf);
+			sb.append("  NB," + crlf);
+			sb.append("  CONFIRMER" + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("  PERSONAL_INFORMATION_TBL" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("HIRE_DATE");
+			columnList.add("NAME");
+			columnList.add("FURIGANA_NAME");
+			columnList.add("SEX");
+			columnList.add("BIRTH");
+			columnList.add("POSTAL_CODE");
+			columnList.add("ADDRESS");
+			columnList.add("DIVISION");
+			columnList.add("TEL_HOME");
+			columnList.add("TEL_PHONE");
+			columnList.add("EMERGENCY_ADDRESS");
+			columnList.add("EMERGENCY_TEL");
+			columnList.add("DOCUMENT");
+			columnList.add("NB");
+			columnList.add("CONFIRMER");
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setHire_date(val.get("HIRE_DATE"));
+					form.setEmployee_name(val.get("NAME"));
+					form.setFurigana_name(val.get("FURIGANA_NAME"));
+					form.setSex(val.get("SEX"));
+					/*SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd");
+					form.setBirth(sdFormat.parse(val.get("BIRTH")));
+					*/
+					form.setBirth(val.get("BIRTH"));
+					form.setPostal_code(val.get("POSTAL_CODE"));
+					form.setAddress(val.get("ADDRESS"));
+					form.setDivision(val.get("DIVISION"));
+					form.setTel_home(val.get("TEL_HOME"));
+					form.setTel_phone(val.get("TEL_PHONE"));
+					form.setEmergency_address(val.get("EMERGENCY_ADDRESS"));
+					form.setEmergency_tel1(val.get("EMERGENCY_TEL"));
+					form.setDocument(val.get("DOCUMENT"));
+					form.setNb(val.get("NB"));
+					form.setConfirmer_no(val.get("CONFIRMER"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
+
+	/**
+	 * 緊急連絡先を取得する。
+	 * 
+	 * @param form
+	 * @return
+	 */
+	public boolean getEmergencyContact(Personal_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT" + crlf);
+			sb.append("  EMPLOYEE_NO," + crlf);
+			sb.append("  NO," + crlf);
+			sb.append("  NAME," + crlf);
+			sb.append("  RELATIONSHIP," + crlf);
+			sb.append("  TEL" + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("  EMERGENCY_CONTACT_TBL" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("EMPLOYEE_NO");
+			columnList.add("NO");
+			columnList.add("NAME");
+			columnList.add("RELATIONSHIP");
+			columnList.add("TEL");
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				int count = 0;
+				for (Map<String, String> val : rsList) {
+					String no = val.get("NO");
+					switch(no){
+					case "1":
+						form.setEmergency_name1(val.get("NAME"));
+						form.setRelationship1(val.get("RELATIONSHIP"));
+						form.setEmergency_tel1(val.get("TEL"));
+						break;
+					case "2":
+						form.setEmergency_name2(val.get("NAME"));
+						form.setRelationship2(val.get("RELATIONSHIP"));
+						form.setEmergency_tel2(val.get("TEL"));
+						break;
+					case "3":
+						form.setEmergency_name3(val.get("NAME"));
+						form.setRelationship3(val.get("RELATIONSHIP"));
+						form.setEmergency_tel3(val.get("TEL"));
+						break;
+					case "4":
+						form.setEmergency_name4(val.get("NAME"));
+						form.setRelationship4(val.get("RELATIONSHIP"));
+						form.setEmergency_tel4(val.get("TEL"));
+						break;
+					case "5":
+						form.setEmergency_name5(val.get("NAME"));
+						form.setRelationship5(val.get("RELATIONSHIP"));
+						form.setEmergency_tel5(val.get("TEL"));
+						break;
+						
+					}
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
+
+	/**
+	 * 家族構成を取得する。
+	 * 
+	 * @param form
+	 * @return
+	 */
+	public boolean getFamily(Personal_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT" + crlf);
+			sb.append("  NO," + crlf);
+			sb.append("  NAME," + crlf);
+			sb.append("  FURIGANA," + crlf);
+			sb.append("  SEX," + crlf);
+			sb.append("  REALTIONSHIP," + crlf);
+			sb.append("  BIRTH," + crlf);
+			sb.append("  RESIDENCE," + crlf);
+			sb.append("  SUPPORT," + crlf);
+			sb.append("  JOB" + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("  FAMILY_STRUCTURE_TBL" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("NO");
+			columnList.add("NAME");
+			columnList.add("FURIGANA");
+			columnList.add("SEX");
+			columnList.add("REALTIONSHIP");
+			columnList.add("BIRTH");
+			columnList.add("RESIDENCE");
+			columnList.add("SUPPORT");
+			columnList.add("JOB");
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				int count = 0;
+				for (Map<String, String> val : rsList) {
+					String no = val.get("NO");
+					switch(no){
+					case "1":
+						form.setFamily_structure_name1(val.get("NAME"));
+						form.setFamily_structure_furigana1(val.get("FURIGANA"));
+						form.setFamily_structure_sex1(val.get("SEX"));
+						form.setFamily_structure_birth1(val.get("BIRTH"));
+						form.setFamily_structure_relationship1(val.get("REALTIONSHIP"));
+						form.setFamily_structure_support1(val.get("SUPPORT"));
+						form.setFamily_structure_job1(val.get("JOB"));
+						break;
+					case "2":
+						form.setFamily_structure_name2(val.get("NAME"));
+						form.setFamily_structure_furigana2(val.get("FURIGANA"));
+						form.setFamily_structure_sex2(val.get("SEX"));
+						form.setFamily_structure_birth2(val.get("BIRTH"));
+						form.setFamily_structure_relationship2(val.get("RELATIONSHIP"));
+						form.setFamily_structure_support2(val.get("SUPPORT"));
+						form.setFamily_structure_job2(val.get("JOB"));
+						break;
+					case "3":
+						form.setFamily_structure_name3(val.get("NAME"));
+						form.setFamily_structure_furigana3(val.get("FURIGANA"));
+						form.setFamily_structure_sex3(val.get("SEX"));
+						form.setFamily_structure_birth3(val.get("BIRTH"));
+						form.setFamily_structure_relationship3(val.get("RELATIONSHIP"));
+						form.setFamily_structure_support3(val.get("SUPPORT"));
+						form.setFamily_structure_job3(val.get("JOB"));
+						break;
+					case "4":
+						form.setFamily_structure_name4(val.get("NAME"));
+						form.setFamily_structure_furigana4(val.get("FURIGANA"));
+						form.setFamily_structure_sex4(val.get("SEX"));
+						form.setFamily_structure_birth4(val.get("BIRTH"));
+						form.setFamily_structure_relationship4(val.get("RELATIONSHIP"));
+						form.setFamily_structure_support4(val.get("SUPPORT"));
+						form.setFamily_structure_job4(val.get("JOB"));
+						break;
+					case "5":
+						form.setFamily_structure_name5(val.get("NAME"));
+						form.setFamily_structure_furigana5(val.get("FURIGANA"));
+						form.setFamily_structure_sex5(val.get("SEX"));
+						form.setFamily_structure_birth5(val.get("BIRTH"));
+						form.setFamily_structure_relationship5(val.get("RELATIONSHIP"));
+						form.setFamily_structure_support5(val.get("SUPPORT"));
+						form.setFamily_structure_job5(val.get("JOB"));
+						break;
+					}
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
 	}
 
 }

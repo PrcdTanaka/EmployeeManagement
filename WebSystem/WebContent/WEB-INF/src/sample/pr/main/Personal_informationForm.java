@@ -1,11 +1,16 @@
 package sample.pr.main;
 
+import java.text.ParseException;
+
 import org.apache.struts.action.ActionForm;
 
 public final class Personal_informationForm extends ActionForm {
 
 	/** シリアルバージョンID */
 	private static final long serialVersionUID = 1L;
+	
+	/** 社員番号 */
+	private String employee_no;
 
 	/** 入社日 */
 	private String hire_date;
@@ -77,6 +82,13 @@ public final class Personal_informationForm extends ActionForm {
 	private String family_structure_furigana3;
 	private String family_structure_furigana4;
 	private String family_structure_furigana5;
+
+	/** 家族構成：性別 */
+	private String family_structure_sex1;
+	private String family_structure_sex2;
+	private String family_structure_sex3;
+	private String family_structure_sex4;
+	private String family_structure_sex5;
 	
 	/** 家族構成：生年月日 */
 	private String family_structure_birth1;
@@ -85,13 +97,6 @@ public final class Personal_informationForm extends ActionForm {
 	private String family_structure_birth4;
 	private String family_structure_birth5;
 	
-	/** 家族構成：性別 */
-	private String family_structure_sex1;
-	private String family_structure_sex2;
-	private String family_structure_sex3;
-	private String family_structure_sex4;
-	private String family_structure_sex5;
-
 	/** 家族構成：続柄 */
 	private String family_structure_relationship1;
 	private String family_structure_relationship2;
@@ -113,6 +118,18 @@ public final class Personal_informationForm extends ActionForm {
 	private String family_structure_job4;
 	private String family_structure_job5;
 	
+	/** 確認資料 */
+	private String document;
+	
+	/** 備考 */
+	private String nb;
+	
+	/** 確認者:社員番号 */
+	private String confirmer_no;
+	
+	/** ボタン */
+	private String button;
+	
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -120,6 +137,7 @@ public final class Personal_informationForm extends ActionForm {
 	 * </p>
 	 */
 	public void initialize() {
+		employee_no = "";
 		hire_date = "";
 		employee_name = "";
 		furigana_name = "";
@@ -182,16 +200,25 @@ public final class Personal_informationForm extends ActionForm {
 		family_structure_job3 = "";
 		family_structure_job4 = "";
 		family_structure_job5 = "";
+		document = "";
+		nb = "";
+		confirmer_no = "";
+		button = "";
 	}
 
 
-
-
-
+	public void setEmployee_no(String employee_no){
+		this.employee_no = employee_no;
+	}
+	public String getEmployee_no(){
+		return employee_no;
+	}
 
 	public String getHire_date() {
-		if(hire_date == null)
-			hire_date = "";
+		if (hire_date != null) {
+			String date = hire_date.substring(0, 10);
+			this.hire_date = date.replace("-", "/");
+		}
 		return hire_date;
 	}
 	public void setHire_date(String hire_date) {
@@ -215,14 +242,16 @@ public final class Personal_informationForm extends ActionForm {
 	public void setFurigana_name(String furigana_name) {
 		this.furigana_name = furigana_name;
 	}
-	
-	public String getBirth() {
-		if(birth == null)
-			birth = "";
-		return birth;
-	}
+
 	public void setBirth(String birth) {
 		this.birth = birth;
+	}
+	public String getBirth() throws ParseException {
+		if (birth != null) {
+			String date = birth.substring(0, 10);
+			this.birth = date.replace("-", "/");
+		}
+		return birth;
 	}
 
 	public String getSex() {
@@ -469,6 +498,38 @@ public final class Personal_informationForm extends ActionForm {
 		return family_structure_furigana5;
 	}
 	
+	/** 家族構成：性別 */
+	public void setFamily_structure_sex1(String family_structure_sex1){
+		this.family_structure_sex1 = family_structure_sex1;
+	}
+	public String getFamily_structure_sex1(){
+		return family_structure_sex1;
+	}
+	public void setFamily_structure_sex2(String family_structure_sex2){
+		this.family_structure_sex2 = family_structure_sex2;
+	}
+	public String getFamily_structure_sex2(){
+		return family_structure_sex2;
+	}
+	public void setFamily_structure_sex3(String family_structure_sex3){
+		this.family_structure_sex3 = family_structure_sex3;
+	}
+	public String getFamily_structure_sex3(){
+		return family_structure_sex3;
+	}
+	public void setFamily_structure_sex4(String family_structure_sex4){
+		this.family_structure_sex4 = family_structure_sex4;
+	}
+	public String getFamily_structure_sex4(){
+		return family_structure_sex4;
+	}
+	public void setFamily_structure_sex5(String family_structure_sex5){
+		this.family_structure_sex5 = family_structure_sex5;
+	}
+	public String getFamily_structure_sex5(){
+		return family_structure_sex5;
+	}
+	
 	/** 家族構成：生年月日 */
 	public void setFamily_structure_birth1(String family_structure_birth1){
 		this.family_structure_birth1 = family_structure_birth1;
@@ -501,38 +562,6 @@ public final class Personal_informationForm extends ActionForm {
 		return family_structure_birth5;
 	}
 	
-	/** 家族構成：性別 */
-	public void setFamily_structure_sex1(String family_structure_sex1){
-		this.family_structure_sex1 = family_structure_sex1;
-	}
-	public String getFamily_structure_sex1(){
-		return family_structure_sex1;
-	}
-	public void setFamily_structure_sex2(String family_structure_sex2){
-		this.family_structure_sex2 = family_structure_sex2;
-	}
-	public String getFamily_structure_sex2(){
-		return family_structure_sex2;
-	}
-	public void setFamily_structure_sex3(String family_structure_sex3){
-		this.family_structure_sex3 = family_structure_sex3;
-	}
-	public String getFamily_structure_sex3(){
-		return family_structure_sex3;
-	}
-	public void setFamily_structure_sex4(String family_structure_sex4){
-		this.family_structure_sex4 = family_structure_sex4;
-	}
-	public String getFamily_structure_sex4(){
-		return family_structure_sex4;
-	}
-	public void setFamily_structure_sex5(String family_structure_sex5){
-		this.family_structure_sex5 = family_structure_sex5;
-	}
-	public String getFamily_structure_sex5(){
-		return family_structure_sex5;
-	}
-
 	/** 家族構成：続柄 */
 	public void setFamily_structure_relationship1(String family_structure_relationship1){
 		this.family_structure_relationship1 = family_structure_relationship1;
@@ -627,5 +656,39 @@ public final class Personal_informationForm extends ActionForm {
 	}
 	public String getFamily_structure_job5(){
 		return family_structure_job5;
+	}
+	
+	/** 確認資料 */
+	public void setDocument(String document){
+		this.document = document;
+	}
+	public String getDocument(){
+		return document;
+	}
+	
+	/** 備考 */
+	public void setNb(String nb){
+		this.nb = nb;
+	}
+	public String getNb(){
+		return nb;
+	}
+	
+	/** 確認者:社員番号 */
+	public void setConfirmer_no(String confirmer_no){
+		this.confirmer_no = confirmer_no;
+	}
+	public String getConfirmer_no(){
+		if(confirmer_no == null)
+			confirmer_no = "";
+		return confirmer_no;
+	}
+	
+	/** ボタン */
+	public void setButton(String button){
+		this.button = button;
+	}
+	public String getButton(){
+		return button;
 	}
 }

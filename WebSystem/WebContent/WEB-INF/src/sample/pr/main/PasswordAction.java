@@ -34,15 +34,14 @@ public final class PasswordAction extends Action {
 	 * @throws IOException
 	 *             -
 	 */
-	public PasswordAction() throws IOException {
-
-	}
-
 	// DB接続用オブジェクト
 	private DbAction dba = new DbAction();
 
 	// 遷移先
 	private String forward;
+	
+	public PasswordAction() throws IOException {
+	}
 
 	/**
 	 * <p>
@@ -98,10 +97,10 @@ public final class PasswordAction extends Action {
 	 *
 	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
+
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 		PasswordForm pForm = (PasswordForm) frm;
@@ -131,6 +130,7 @@ public final class PasswordAction extends Action {
 					pForm.setMessage("入力されたパスワードが不正です。");
 				}
 			}
+			forward = "register";
 		}
 		return map.findForward(forward);
 	}
@@ -188,7 +188,6 @@ public final class PasswordAction extends Action {
 			dba.setPassword(form);
 			form.setMessage("パスワードが複雑さの要件を満たしていません。");
 		}
-
 		return "password";
 	}
 

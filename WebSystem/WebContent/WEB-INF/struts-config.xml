@@ -16,8 +16,8 @@
 			<form-property name="userData" type="java.util.LinkedHashMap" />
 		</form-bean>
 		<form-bean name="LoginForm" type="sample.pr.main.LoginForm"/>
-		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
 		<form-bean name="SearchForm" type="sample.pr.main.SearchForm"/>
+		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
 		<form-bean name="RegisterForm" type="sample.pr.main.RegisterForm"/>
 		<form-bean name="Personal_informationForm" type="sample.pr.main.Personal_informationForm"/>
 
@@ -55,8 +55,7 @@
 			<forward name="password" path="/jsp/Password.jsp" />
 		</action>
 
-
-		<action
+	<action
 			name="PasswordForm"
 			path="/PasswordAction"
 			type="sample.pr.main.PasswordAction"
@@ -65,7 +64,17 @@
 			<forward name="main" path="/jsp/Main.jsp"/>
 			<forward name="password" path="/jsp/Password.jsp"/>
 		</action>
-
+	
+		<action
+			name="RegisterForm"
+			path="/RegisterAction"
+			type="sample.pr.main.RegisterAction"
+			validate="false"
+			scope="request">
+			<forward name="register" path="/jsp/register.jsp"/>
+			<forward name="main" path="/jsp/Main.jsp"/>
+		</action>
+		
 		<action
 			name="SearchForm"
 			path="/SearchAction"
@@ -76,16 +85,6 @@
 			<forward name="back" path="/jsp/Main.jsp"/>
 		</action>
 
-		<action
-			name="RegisterForm"
-			path="/RegisterAction"
-			type="sample.pr.main.RegisterAction"
-			validate="false"
-			scope="request">
-			<forward name="register" path="/jsp/register.jsp"/>
-			<forward name="main" path="/jsp/Main.jsp"/>
-
-		</action>
 
 		<action
 			name="Personal_informationForm"

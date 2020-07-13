@@ -14,6 +14,10 @@
 		String no = s.getEmployee_no();
 		String name = s.getEmployee_name();
 		String manager = s.getManager();
+		
+		if(name == null){
+			name = "";
+		}
 		%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><bean:message key="main.title"/></title>
@@ -69,7 +73,7 @@
 					</li>
 					<li>
 						<html:link action="/MainAction">パスワード変更画面
-							<html:param name="employee_no"><%= no %><!-- bean:write name="LoginForm" property="employee_no"/--></html:param>
+							<html:param name="employee_no"><%= no %></html:param>
 							<html:param name="link">password</html:param>
 						</html:link>
 					</li>

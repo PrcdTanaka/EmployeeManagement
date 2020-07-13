@@ -114,7 +114,7 @@ public final class RegisterForm extends ActionForm {
 	 *
 	 * @return メッセージ
 	 */
-	public String getMassage() {
+	public String getMessage() {
 		return message;
 	}
 
@@ -126,7 +126,7 @@ public final class RegisterForm extends ActionForm {
 	 *
 	 * @param message メッセージ
 	 */
-	public void setMassage(String Massage) {
-		this.message = Massage;
+	public void setMessage(String Message) {
+		this.message = Message;
 	}
 }

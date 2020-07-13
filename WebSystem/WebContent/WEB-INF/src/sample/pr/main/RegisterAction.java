@@ -158,20 +158,20 @@ public final class RegisterAction extends Action {
 	public String register(RegisterForm form){
 
 		if(!checkPattern(form.getEmployee_no(),"employee_no")) {
-			form.setMassage("社員番号が不正です。");
+			form.setMessage("社員番号が不正です。");
 			return "register";
 		}
 
 		if(!dba.confirmationNo(form)) {
-			form.setMassage("社員番号が既に存在しています。");
+			form.setMessage("社員番号が既に存在しています。");
 
 		}else {
 
 			if(checkPattern(form.getPassword(),"password")) {
 				if(dba.userRegister(form))
-					form.setMassage("ユーザー登録に成功しました。");
+					form.setMessage("ユーザー登録に成功しました。");
 			}else {
-				form.setMassage("パスワードが複雑さの要件を満たしていません。");
+				form.setMessage("パスワードが複雑さの要件を満たしていません。");
 			}
 		}
 
