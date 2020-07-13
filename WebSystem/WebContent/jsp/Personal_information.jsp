@@ -20,7 +20,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <html lang="ja"></head>
-
 <div class="form-wrapper" style="background: #e9e9e9">
 
 	<table>

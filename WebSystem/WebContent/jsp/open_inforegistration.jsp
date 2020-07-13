@@ -19,10 +19,11 @@
 			<input type="submit" value="戻る">
 
 		</div>
-		<html:form action="/LoginAction" >
+		<html:form action="/Open_infomationAction">
 		<div class='main1'>
 			<div class='pic'>
-				<img src="C:\Users\gakuto_yamagishi\Desktop\susi.jpg" height="200" width="200">
+					<img src="C:\Users\gakuto_yamagishi\Desktop\susi.jpg" height="200"
+						width="200">
 			</div>
 				<div class='pro'>
 				<div class='pro2'>
