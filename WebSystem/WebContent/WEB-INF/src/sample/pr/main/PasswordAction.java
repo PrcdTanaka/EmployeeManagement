@@ -97,7 +97,7 @@ public final class PasswordAction extends Action {
 	 * @return 遷移先情報
 	 *
 	 */
-	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response,DbAction dba,PasswordForm Passfrm) {
+	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
@@ -115,12 +115,13 @@ public final class PasswordAction extends Action {
 				 // DBに格納されたパスワード取得処理
 				dba.getPassword(pForm);
 				pForm.getOldpassword();
-				if(pForm.getOldpassword().equals(pForm.getDbpassword())){
+				if(pForm.getOldpassword().equals(dba.getDbpassword(pForm))){
 					if(pForm.getNewpassword().equals(pForm.getNewpassword2())){
 						if(!checkPattern(pForm.getNewpassword(), "password")){
 							pForm.setMessage("パスワードが複雑さの要件を満たしていません。");
 						}else{
 							dba.setPassword(pForm);
+							forward = "password";
 							pForm.setMessage("パスワードを変更しました。");
 						}
 					}else{
@@ -137,9 +138,9 @@ public final class PasswordAction extends Action {
 
 	/***
 	 * <p>
-	 * 入力された情報から新規ユーザの登録を行う。
+	 * 入力された情報からパスワードの変更を行う。
 	 * </p>
-	 * 1.社員情報の取得<br>
+	 * 1.社員番号の取得<br>
 	 * 　1-1.社員番号のチェック<br>
 	 * 　　クラス　：RegisterAction<br>
 	 * 　　メソッド：checkPattern()<br>
@@ -149,7 +150,7 @@ public final class PasswordAction extends Action {
 	 * 　　　1-1-1-1.エラーメッセージの設定。<br>
 	 * 　　　　クラス　：RegisterForm<br>
 	 * 　　　　メソッド：setMessage()<br>
-	 * 　　　　引数　　："社員番号が不正です。"<br>
+	 * 　　　　引数　　："パスワードが不正です。"<br>
 	 * 　1-2.社員番号の検索<br>
 	 * 　　クラス　：DbAction<br>
 	 * 　　メソッド：confirmationNo()<br>
@@ -182,13 +183,13 @@ public final class PasswordAction extends Action {
 	 * @param form Actionform
 	 * @return 遷移先
 	 */
-	public String password(RegisterForm form){
-		if(checkPattern(form.getPassword(),"password")) {
-			dba.userRegister(form);
-			form.setMassage("パスワードが複雑さの要件を満たしていません。");
+	public String password(PasswordForm form){
+		if(checkPattern(form.getNewpassword(),"password")) {
+			dba.setPassword(form);
+			form.setMessage("パスワードが複雑さの要件を満たしていません。");
 		}
 
-		return "register";
+		return "password";
 	}
 
 	/***
