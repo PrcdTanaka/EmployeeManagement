@@ -1,3 +1,4 @@
+<%@page import="javax.swing.text.Document"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
 <%@page import="java.util.Iterator"%>
 <%@ page import="sample.pr.main.MainForm"%>
@@ -82,7 +83,8 @@ position:relative;
 				<center><html:text property="text" maxlength="12" />
 				<html:submit property="button" value="検索" /></center>
 				<p>
-				<html:radio property="radio" value="EMPLOYEE_MST.EMPLOYEE_NO" />社員No
+				<input type="radio"value="" checked="checked" style="display:none;" />
+				<html:radio property="radio" value="EMPLOYEE_MST.EMPLOYEE_NO"  />社員No
 				<html:radio property="radio" value="NAME" />氏名
 				<html:radio property="radio" value="DEPARTMENT"/>技術部
 				<h2>検索結果</h2>
@@ -109,6 +111,12 @@ position:relative;
 							{
 								out.println("<tr><td>");      //名前にリンクがついてます。
 								out.println("<a href=\"#\">");
+								if(name.get(i)==null)
+								{
+									out.println("<a href=\"#\" style=\"color:red\"");
+									name.set(i, "未登録");
+									 out.println("</a>");
+								}
 						        out.println(name.get(i));
 						        out.println("</td>");
 						        out.println("</a>");
