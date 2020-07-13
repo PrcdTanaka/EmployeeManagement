@@ -32,9 +32,9 @@
 		<%
 		DbAction dba = new DbAction();
 		Personal_informationForm pForm = new Personal_informationForm();
-		
+
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		
+
 		String employee_no = "";
 		String hire_date = "";
 		String employee_name = "";
@@ -77,7 +77,7 @@
 		String family_structure_sex2 = "";
 		String family_structure_sex3 = "";
 		String family_structure_sex4 = "";
-		String family_structure_sex5 = "";	
+		String family_structure_sex5 = "";
 		String family_structure_birth1 = "";
 		String family_structure_birth2 = "";
 		String family_structure_birth3 = "";
@@ -103,10 +103,10 @@
 		String confirmer_no = "";
 		String button = "";
 		String status = "0";
-		
+
 		// 社員番号を個人情報入力画面アクションフォームに格納
 		pForm.setEmployee_no(lForm.getEmployee_no());
-		
+
 		// 社員名がDBに登録されているかの確認
 		if(dba.getEmoloyee_Name(pForm)){
 			// 社員名が存在する場合
@@ -116,7 +116,7 @@
 			dba.getEmergencyContact(pForm);
 			// DBから家族構成を取得する。
 			dba.getFamily(pForm);
-			
+
 			// 各パラメータを設定する。
 			employee_no = pForm.getEmployee_no();
 			hire_date = pForm.getHire_date();
@@ -185,16 +185,16 @@
 			nb = pForm.getNb();
 			confirmer_no = pForm.getConfirmer_no();
 			button = pForm.getButton();
-			
+
 			status = "1";
-			
+
 			// 各フィールドを入直不可にする。
 			// readonly
-			
-			
-			
+
+
+
 		}
-		
+
 		%>
 		<div class="block">
 
@@ -734,8 +734,8 @@
 				</div>
 				</br>
 				<script type="text/javascript">
-					
-				
+
+
 				</script>
 				<!-- /form> -->
 				<div>
