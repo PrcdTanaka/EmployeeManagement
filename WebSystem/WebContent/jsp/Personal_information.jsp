@@ -20,7 +20,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <html lang="ja"></head>
-
 <div class="form-wrapper" style="background: #e9e9e9">
 
 	<table>
@@ -32,9 +31,9 @@
 		<%
 		DbAction dba = new DbAction();
 		Personal_informationForm pForm = new Personal_informationForm();
-		
+
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		
+
 		String employee_no = "";
 		String hire_date = "";
 		String employee_name = "";
@@ -77,7 +76,7 @@
 		String family_structure_sex2 = "";
 		String family_structure_sex3 = "";
 		String family_structure_sex4 = "";
-		String family_structure_sex5 = "";	
+		String family_structure_sex5 = "";
 		String family_structure_birth1 = "";
 		String family_structure_birth2 = "";
 		String family_structure_birth3 = "";
@@ -103,10 +102,10 @@
 		String confirmer_no = "";
 		String button = "";
 		String status = "0";
-		
+
 		// 社員番号を個人情報入力画面アクションフォームに格納
 		pForm.setEmployee_no(lForm.getEmployee_no());
-		
+
 		// 社員名がDBに登録されているかの確認
 		if(dba.getEmoloyee_Name(pForm)){
 			// 社員名が存在する場合
@@ -116,7 +115,7 @@
 			dba.getEmergencyContact(pForm);
 			// DBから家族構成を取得する。
 			dba.getFamily(pForm);
-			
+
 			// 各パラメータを設定する。
 			employee_no = pForm.getEmployee_no();
 			hire_date = pForm.getHire_date();
@@ -185,16 +184,15 @@
 			nb = pForm.getNb();
 			confirmer_no = pForm.getConfirmer_no();
 			button = pForm.getButton();
-			
+
 			status = "1";
-			
+
 			// 各フィールドを入直不可にする。
-			// readonly
 			
 			
 			
 		}
-		
+
 		%>
 		<div class="block">
 
@@ -396,7 +394,7 @@
 						<label for="family_structure_name1" name="family_structure1">氏名：</label>
 						<html:text property="family_structure_name1"
 							name="Personal_informationForm"
-							styleId="Personal_informationForm1"
+							styleId="family_structure_name1"
 							value="<%= family_structure_name1 %>" />
 					</div>
 					<div>
@@ -418,8 +416,8 @@
 							name="Personal_informationForm" styleId="family_structure_sex1"
 							value="<%= family_structure_sex1 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">男</html:option>
-							<html:option value="false">女</html:option>
+							<html:option value="0">男</html:option>
+							<html:option value="1">女</html:option>
 						</html:select>
 					</div>
 					<div>
@@ -437,8 +435,8 @@
 							styleId="family_structure_support1"
 							value="<%= family_structure_support1 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">有</html:option>
-							<html:option value="false">無</html:option>
+							<html:option value="0">有</html:option>
+							<html:option value="1">無</html:option>
 						</html:select>
 					</div>
 					<div>
@@ -473,8 +471,8 @@
 							name="Personal_informationForm" styleId="family_structure_sex2"
 							value="<%= family_structure_sex2 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">男</html:option>
-							<html:option value="false">女</html:option>
+							<html:option value="0">男</html:option>
+							<html:option value="1">女</html:option>
 						</html:select>
 						</select>
 					</div>
@@ -493,8 +491,8 @@
 							styleId="family_structure_support2"
 							value="<%= family_structure_support2 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">有</html:option>
-							<html:option value="false">無</html:option>
+							<html:option value="0">有</html:option>
+							<html:option value="1">無</html:option>
 						</html:select>
 					</div>
 					<div>
@@ -531,8 +529,8 @@
 							name="Personal_informationForm" styleId="family_structure_sex3"
 							value="<%= family_structure_sex3 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">男</html:option>
-							<html:option value="false">女</html:option>
+							<html:option value="0">男</html:option>
+							<html:option value="1">女</html:option>
 						</html:select>
 						</select>
 					</div>
@@ -551,8 +549,8 @@
 							styleId="family_structure_support3"
 							value="<%= family_structure_support3 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">有</html:option>
-							<html:option value="false">無</html:option>
+							<html:option value="0">有</html:option>
+							<html:option value="1">無</html:option>
 						</html:select>
 					</div>
 					<div>
@@ -588,8 +586,8 @@
 							name="Personal_informationForm" styleId="family_structure_sex4"
 							value="<%= family_structure_sex4 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">男</html:option>
-							<html:option value="false">女</html:option>
+							<html:option value="0">男</html:option>
+							<html:option value="1">女</html:option>
 						</html:select>
 						</select>
 					</div>
@@ -608,8 +606,8 @@
 							styleId="family_structure_support4"
 							value="<%= family_structure_support4 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">有</html:option>
-							<html:option value="false">無</html:option>
+							<html:option value="0">有</html:option>
+							<html:option value="1">無</html:option>
 						</html:select>
 					</div>
 					<div>
@@ -645,8 +643,8 @@
 							name="Personal_informationForm" styleId="family_structure_sex5"
 							value="<%= family_structure_sex5 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">男</html:option>
-							<html:option value="false">女</html:option>
+							<html:option value="0">男</html:option>
+							<html:option value="1">女</html:option>
 						</html:select>
 						</select>
 					</div>
@@ -665,8 +663,8 @@
 							styleId="family_structure_support5"
 							value="<%= family_structure_support5 %>">
 							<html:option value="">-</html:option>
-							<html:option value="true">有</html:option>
-							<html:option value="false">無</html:option>
+							<html:option value="0">有</html:option>
+							<html:option value="1">無</html:option>
 						</html:select>
 					</div>
 					<div>
@@ -684,22 +682,157 @@
 				</p>
 
 				<p id="Bedit">
-					<input type="button" value="編集" id="edit" onclick="clickbtn1()"
+					<input type="button" value="編集" id="edit" onclick="clickBtnEdit()"
 						class="btn" />
 				</p>
 				<script type="text/javascript">
 					document.getElementById("Bentry").style.display = "none";
 					document.getElementById("Bedit").style.display = "none";
-
+					// 名前が未入力の場合
 					if (<%=status%> == '0') {
 						document.getElementById("Bentry").style.display = "block";
-					} else if (<%=status%> == '1') {
+					} 
+					// 名前が入力済みの場合
+					else if (<%=status%> == '1') {
 						document.getElementById("Bedit").style.display = "block";
+
+						document.getElementById('hire_date').readOnly = true;
+						document.getElementById('name').readOnly = true;
+						document.getElementById('furigana').readOnly = true;
+						document.getElementById('birth').readOnly = true;
+						document.getElementById('sex').readOnly = true;
+						document.getElementById('tel_home').readOnly = true;
+						document.getElementById('tel_phone').readOnly = true;
+						document.getElementById('postal_code').readOnly = true;
+						document.getElementById('address').readOnly = true;
+						document.getElementById('division').readOnly = true;
+						document.getElementById('emergency_postal_code').readOnly = true;
+						document.getElementById('emergency_address').readOnly = true;
+						document.getElementById('emergency_name1').readOnly = true;
+						document.getElementById('emergency_name2').readOnly = true;
+						document.getElementById('emergency_name3').readOnly = true;
+						document.getElementById('emergency_name4').readOnly = true;
+						document.getElementById('emergency_name5').readOnly = true;
+						document.getElementById('relationship1').readOnly = true;
+						document.getElementById('relationship2').readOnly = true;
+						document.getElementById('relationship3').readOnly = true;
+						document.getElementById('relationship4').readOnly = true;
+						document.getElementById('relationship5').readOnly = true;
+						document.getElementById('emergency_tel1').readOnly = true;
+						document.getElementById('emergency_tel2').readOnly = true;
+						document.getElementById('emergency_tel3').readOnly = true;
+						document.getElementById('emergency_tel4').readOnly = true;
+						document.getElementById('emergency_tel5').readOnly = true;
+						document.getElementById('family_structure_name1').readOnly = true;
+						document.getElementById('family_structure_name2').readOnly = true;
+						document.getElementById('family_structure_name3').readOnly = true;
+						document.getElementById('family_structure_name4').readOnly = true;
+						document.getElementById('family_structure_name5').readOnly = true;
+						document.getElementById('family_structure_furigana1').readOnly = true;
+						document.getElementById('family_structure_furigana2').readOnly = true;
+						document.getElementById('family_structure_furigana3').readOnly = true;
+						document.getElementById('family_structure_furigana4').readOnly = true;
+						document.getElementById('family_structure_furigana5').readOnly = true;
+						document.getElementById('family_structure_sex1').readOnly = true;
+						document.getElementById('family_structure_sex2').readOnly = true;
+						document.getElementById('family_structure_sex3').readOnly = true;
+						document.getElementById('family_structure_sex4').readOnly = true;
+						document.getElementById('family_structure_sex5').readOnly = true;
+						document.getElementById('family_structure_birth1').readOnly = true;
+						document.getElementById('family_structure_birth2').readOnly = true;
+						document.getElementById('family_structure_birth3').readOnly = true;
+						document.getElementById('family_structure_birth4').readOnly = true;
+						document.getElementById('family_structure_birth5').readOnly = true;
+						document.getElementById('family_structure_relationship1').readOnly = true;
+						document.getElementById('family_structure_relationship2').readOnly = true;
+						document.getElementById('family_structure_relationship3').readOnly = true;
+						document.getElementById('family_structure_relationship4').readOnly = true;
+						document.getElementById('family_structure_relationship5').readOnly = true;
+						document.getElementById('family_structure_support1').readOnly = true;
+						document.getElementById('family_structure_support2').readOnly = true;
+						document.getElementById('family_structure_support3').readOnly = true;
+						document.getElementById('family_structure_support4').readOnly = true;
+						document.getElementById('family_structure_support5').readOnly = true;
+						document.getElementById('family_structure_job1').readOnly = true;
+						document.getElementById('family_structure_job2').readOnly = true;
+						document.getElementById('family_structure_job3').readOnly = true;
+						document.getElementById('family_structure_job4').readOnly = true;
+						document.getElementById('family_structure_job5').readOnly = true;
+						document.getElementById('document').readOnly = true;
+						document.getElementById('nb').readOnly = true;
+						document.getElementById('confirmer_no').readOnly = true;
 					}
 
-					function clickbtn1() {
+					function clickBtnEdit() {
 						document.getElementById("Bentry").style.display = "block";
 						document.getElementById("Bedit").style.display = "none";
+						
+						document.getElementById('hire_date').readOnly = false;
+						document.getElementById('name').readOnly = false;
+						document.getElementById('furigana').readOnly = false;
+						document.getElementById('birth').readOnly = false;
+						document.getElementById('sex').readOnly = false;
+						document.getElementById('tel_home').readOnly = false;
+						document.getElementById('tel_phone').readOnly = false;
+						document.getElementById('postal_code').readOnly = false;
+						document.getElementById('address').readOnly = false;
+						document.getElementById('division').readOnly = false;
+						document.getElementById('emergency_postal_code').readOnly = false;
+						document.getElementById('emergency_address').readOnly = false;
+						document.getElementById('emergency_name1').readOnly = false;
+						document.getElementById('emergency_name2').readOnly = false;
+						document.getElementById('emergency_name3').readOnly = false;
+						document.getElementById('emergency_name4').readOnly = false;
+						document.getElementById('emergency_name5').readOnly = false;
+						document.getElementById('relationship1').readOnly = false;
+						document.getElementById('relationship2').readOnly = false;
+						document.getElementById('relationship3').readOnly = false;
+						document.getElementById('relationship4').readOnly = false;
+						document.getElementById('relationship5').readOnly = false;
+						document.getElementById('emergency_tel1').readOnly = false;
+						document.getElementById('emergency_tel2').readOnly = false;
+						document.getElementById('emergency_tel3').readOnly = false;
+						document.getElementById('emergency_tel4').readOnly = false;
+						document.getElementById('emergency_tel5').readOnly = false;
+						document.getElementById('family_structure_name1').readOnly = false;
+						document.getElementById('family_structure_name2').readOnly = false;
+						document.getElementById('family_structure_name3').readOnly = false;
+						document.getElementById('family_structure_name4').readOnly = false;
+						document.getElementById('family_structure_name5').readOnly = false;
+						document.getElementById('family_structure_furigana1').readOnly = false;
+						document.getElementById('family_structure_furigana2').readOnly = false;
+						document.getElementById('family_structure_furigana3').readOnly = false;
+						document.getElementById('family_structure_furigana4').readOnly = false;
+						document.getElementById('family_structure_furigana5').readOnly = false;
+						document.getElementById('family_structure_sex1').readOnly = false;
+						document.getElementById('family_structure_sex2').readOnly = false;
+						document.getElementById('family_structure_sex3').readOnly = false;
+						document.getElementById('family_structure_sex4').readOnly = false;
+						document.getElementById('family_structure_sex5').readOnly = false;
+						document.getElementById('family_structure_birth1').readOnly = false;
+						document.getElementById('family_structure_birth2').readOnly = false;
+						document.getElementById('family_structure_birth3').readOnly = false;
+						document.getElementById('family_structure_birth4').readOnly = false;
+						document.getElementById('family_structure_birth5').readOnly = false;
+						document.getElementById('family_structure_relationship1').readOnly = false;
+						document.getElementById('family_structure_relationship2').readOnly = false;
+						document.getElementById('family_structure_relationship3').readOnly = false;
+						document.getElementById('family_structure_relationship4').readOnly = false;
+						document.getElementById('family_structure_relationship5').readOnly = false;
+						document.getElementById('family_structure_support1').readOnly = false;
+						document.getElementById('family_structure_support2').readOnly = false;
+						document.getElementById('family_structure_support3').readOnly = false;
+						document.getElementById('family_structure_support4').readOnly = false;
+						document.getElementById('family_structure_support5').readOnly = false;
+						document.getElementById('family_structure_job1').readOnly = false;
+						document.getElementById('family_structure_job2').readOnly = false;
+						document.getElementById('family_structure_job3').readOnly = false;
+						document.getElementById('family_structure_job4').readOnly = false;
+						document.getElementById('family_structure_job5').readOnly = false;
+						document.getElementById('document').readOnly = false;
+						document.getElementById('nb').readOnly = false;
+						document.getElementById('confirmer_no').readOnly = false;
+
 					}
 				</script>
 
@@ -732,10 +865,11 @@
 							styleId="edit" />
 					</div>
 				</div>
+
 				</br>
 				<script type="text/javascript">
-					
-				
+
+
 				</script>
 				<!-- /form> -->
 				<div>
@@ -745,7 +879,7 @@
 
 			</html:form>
 
-			<script type="text/javascript" src="./personal_information.js"></script>
+		<!-- <script type="text/javascript" src="../js/personal_information.js"></script> -->
 		</div>
 	</body>
 

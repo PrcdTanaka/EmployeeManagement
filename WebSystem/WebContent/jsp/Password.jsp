@@ -3,7 +3,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="sample.pr.main.RegisterForm" %>
+<%@ page import="sample.pr.main.PasswordForm" %>
 
 <html:html>
 	<head>
@@ -35,11 +35,10 @@
 				</div>
 				<div class="space"></div>
 				<br>
-				<!-- 登録ボタン -->
-				<span><html:submit property="button" styleClass="btn" style="margin-top:3px;font-size:25px;" value="変更"/></span>
-
+				<!-- 変更ボタン -->
+				<html:submit property="button" styleClass="btn" value="変更" styleId="chenge" />
     			<!-- 戻るボタン -->
-    			<span><html:submit property="button" styleClass="btn" style="margin-top:3px;font-size:25px;" value="戻る"/></span>
+				<html:submit property="button" styleClass="btn" value="戻る" styleId="main" />
 
  			 </div>
    		 </html:form>

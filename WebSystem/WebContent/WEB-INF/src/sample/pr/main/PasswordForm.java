@@ -101,7 +101,7 @@ public final class PasswordForm extends ActionForm {
 	 *
 	 * @param newpassword 新しいパスワード1
 	 */
-	public void setNewpassword1(String newpassword) {
+	public void setNewpassword(String newpassword) {
 		this.newpassword1 = newpassword;
 	}
 

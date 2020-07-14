@@ -8,7 +8,7 @@ public final class Personal_informationForm extends ActionForm {
 
 	/** シリアルバージョンID */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** 社員番号 */
 	private String employee_no;
 
@@ -54,28 +54,28 @@ public final class Personal_informationForm extends ActionForm {
 	private String emergency_name3;
 	private String emergency_name4;
 	private String emergency_name5;
-	
+
 	/** 緊急連絡先：本人との関係（続柄） */
 	private String relationship1;
 	private String relationship2;
 	private String relationship3;
 	private String relationship4;
 	private String relationship5;
-	
+
 	/** 緊急連絡先：電話番号 */
 	private String emergency_tel1;
 	private String emergency_tel2;
 	private String emergency_tel3;
 	private String emergency_tel4;
 	private String emergency_tel5;
-	
+
 	/** 家族構成：氏名 */
 	private String family_structure_name1;
 	private String family_structure_name2;
 	private String family_structure_name3;
 	private String family_structure_name4;
 	private String family_structure_name5;
-	
+
 	/** 家族構成：フリガナ */
 	private String family_structure_furigana1;
 	private String family_structure_furigana2;
@@ -89,26 +89,26 @@ public final class Personal_informationForm extends ActionForm {
 	private String family_structure_sex3;
 	private String family_structure_sex4;
 	private String family_structure_sex5;
-	
+
 	/** 家族構成：生年月日 */
 	private String family_structure_birth1;
 	private String family_structure_birth2;
 	private String family_structure_birth3;
 	private String family_structure_birth4;
 	private String family_structure_birth5;
-	
+
 	/** 家族構成：続柄 */
 	private String family_structure_relationship1;
 	private String family_structure_relationship2;
 	private String family_structure_relationship3;
 	private String family_structure_relationship4;
 	private String family_structure_relationship5;
-	
+
 	/** 家族構成：扶養の有無 */
-	private String family_structure_support1;	
-	private String family_structure_support2;	
-	private String family_structure_support3;	
-	private String family_structure_support4;	
+	private String family_structure_support1;
+	private String family_structure_support2;
+	private String family_structure_support3;
+	private String family_structure_support4;
 	private String family_structure_support5;
 
 	/** 家族構成：職業 */
@@ -117,19 +117,19 @@ public final class Personal_informationForm extends ActionForm {
 	private String family_structure_job3;
 	private String family_structure_job4;
 	private String family_structure_job5;
-	
+
 	/** 確認資料 */
 	private String document;
-	
+
 	/** 備考 */
 	private String nb;
-	
+
 	/** 確認者:社員番号 */
 	private String confirmer_no;
-	
+
 	/** ボタン */
 	private String button;
-	
+
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -224,7 +224,7 @@ public final class Personal_informationForm extends ActionForm {
 	public void setHire_date(String hire_date) {
 		this.hire_date = hire_date;
 	}
-	
+
 	public String getEmployee_name() {
 		if(employee_name == null)
 			employee_name = "";
@@ -233,7 +233,7 @@ public final class Personal_informationForm extends ActionForm {
 	public void setEmployee_name(String employee_name) {
 		this.employee_name = employee_name;
 	}
-	
+
 	public String getFurigana_name() {
 		if(furigana_name == null)
 			furigana_name = "";
@@ -367,8 +367,8 @@ public final class Personal_informationForm extends ActionForm {
 	public String getEmergency_name5() {
 		return emergency_name5;
 	}
-	
-	/** 緊急連絡先：本人との関係（続柄） */	
+
+	/** 緊急連絡先：本人との関係（続柄） */
 	public void setRelationship1(String relationship1) {
 		this.relationship1 = relationship1;
 	}
@@ -465,7 +465,7 @@ public final class Personal_informationForm extends ActionForm {
 	public String getFamily_structure_name5(){
 		return family_structure_name5;
 	}
-	
+
 	/** 家族構成：フリガナ */
 	public void setFamily_structure_furigana1(String family_structure_furigana1){
 		this.family_structure_furigana1 = family_structure_furigana1;
@@ -497,7 +497,7 @@ public final class Personal_informationForm extends ActionForm {
 	public String getFamily_structure_furigana5(){
 		return family_structure_furigana5;
 	}
-	
+
 	/** 家族構成：性別 */
 	public void setFamily_structure_sex1(String family_structure_sex1){
 		this.family_structure_sex1 = family_structure_sex1;
@@ -529,7 +529,7 @@ public final class Personal_informationForm extends ActionForm {
 	public String getFamily_structure_sex5(){
 		return family_structure_sex5;
 	}
-	
+
 	/** 家族構成：生年月日 */
 	public void setFamily_structure_birth1(String family_structure_birth1){
 		this.family_structure_birth1 = family_structure_birth1;
@@ -561,7 +561,7 @@ public final class Personal_informationForm extends ActionForm {
 	public String getFamily_structure_birth5(){
 		return family_structure_birth5;
 	}
-	
+
 	/** 家族構成：続柄 */
 	public void setFamily_structure_relationship1(String family_structure_relationship1){
 		this.family_structure_relationship1 = family_structure_relationship1;
@@ -593,7 +593,7 @@ public final class Personal_informationForm extends ActionForm {
 	public String getFamily_structure_relationship5(){
 		return family_structure_relationship5;
 	}
-	
+
 	/** 家族構成：扶養の有無 */
 	public void setFamily_structure_support1(String family_structure_support1){
 		this.family_structure_support1 = family_structure_support1;
@@ -650,14 +650,14 @@ public final class Personal_informationForm extends ActionForm {
 	}
 	public String getFamily_structure_job4(){
 		return family_structure_job4;
-	}	
+	}
 	public void setFamily_structure_job5(String family_structure_job5){
 		this.family_structure_job5 = family_structure_job5;
 	}
 	public String getFamily_structure_job5(){
 		return family_structure_job5;
 	}
-	
+
 	/** 確認資料 */
 	public void setDocument(String document){
 		this.document = document;
@@ -665,7 +665,7 @@ public final class Personal_informationForm extends ActionForm {
 	public String getDocument(){
 		return document;
 	}
-	
+
 	/** 備考 */
 	public void setNb(String nb){
 		this.nb = nb;
@@ -673,7 +673,7 @@ public final class Personal_informationForm extends ActionForm {
 	public String getNb(){
 		return nb;
 	}
-	
+
 	/** 確認者:社員番号 */
 	public void setConfirmer_no(String confirmer_no){
 		this.confirmer_no = confirmer_no;
@@ -683,7 +683,7 @@ public final class Personal_informationForm extends ActionForm {
 			confirmer_no = "";
 		return confirmer_no;
 	}
-	
+
 	/** ボタン */
 	public void setButton(String button){
 		this.button = button;
