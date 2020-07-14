@@ -942,6 +942,42 @@ public class DbAction extends Object{
 		return ret;
 
 	}
+/**
+ * 個人情報設定処理
+ * @param form
+ * @return
+ */
+	public boolean setPersonal_information(Personal_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+
+			sb.append("UPDDATE" + crlf);
+			sb.append(" PERSONAL_INFORMATION_TBL " + crlf);
+			sb.append("SET" + crlf);
+			sb.append("  NAME ='"  + form.getEmployee_name() + "'," + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+		}
+		return ret;
+	}
+
+
+
+
 
 	/**
 	 * 個人情報を取得する。

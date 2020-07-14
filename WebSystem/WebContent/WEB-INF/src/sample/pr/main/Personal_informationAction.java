@@ -112,16 +112,16 @@ public final class Personal_informationAction extends Action {
 		}
 
 			switch (Button) {
-			case "edit":
-				forward = "edit";
+			case "登録":
+				forward = clickBtnEntry(pForm);
 				break;
-			case "register":
-				forward = "register";
+			case "確認":
+				forward = clickBtnConf(pForm);
 				break;
-			case "search":
-				forward = "search";
+			case "戻る":
+				forward = clickBtnBack(pForm);
 				break;
-			case "password":
+			case "":
 				forward = "password";
 				break;
 			}
@@ -132,8 +132,13 @@ public final class Personal_informationAction extends Action {
 
 
 		return map.findForward(forward);
-		}
+	}
 
+
+
+	
+	
+	
 	/**
 	 * <p>
 	 * 登録ボタン押下メソッド
@@ -145,8 +150,18 @@ public final class Personal_informationAction extends Action {
 	 *            メイン画面アクションフォーム
 	 * @return 遷移先
 	 */
-	private String clickBtnEntry(MainForm form) {
-
+	private String clickBtnEntry(Personal_informationForm form) {
+		System.out.println("clickBtnEntryメソッドが呼ばれました");
+		return forward;
+	}
+	
+	private String clickBtnConf(Personal_informationForm form) {
+		System.out.println("clickBtnConfメソッドが呼ばれました");
+		return forward;
+	}
+	
+	private String clickBtnBack(Personal_informationForm form) {
+		System.out.println("clickBtnBackメソッドが呼ばれました");
 		return forward;
 	}
 }

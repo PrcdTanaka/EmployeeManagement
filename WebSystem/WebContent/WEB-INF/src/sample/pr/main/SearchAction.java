@@ -138,9 +138,9 @@ public final class SearchAction extends Action {
 			else {
 				forward="search";
 				dbaction.getSearchAns(sForm);
-				request.setAttribute("form", sForm);
+
 				HttpSession session = request.getSession();
-				session.setAttribute("form", sForm);
+				session.setAttribute("sForm", sForm);
 			}
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック
