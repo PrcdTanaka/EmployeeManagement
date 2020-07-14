@@ -782,10 +782,10 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("UPDDATE" + crlf);
-			sb.append("ENPLOYEE_MST" + crlf);
+			sb.append("UPDATE" + crlf);
+			sb.append("EMPLOYEE_MST" + crlf);
 			sb.append("SET" + crlf);
-			sb.append("PASSWORD = " + form.getNewpassword() + crlf);
+			sb.append("PASSWORD = " + "'" +form.getNewpassword1()+"'" + crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("EMPLOYEE_NO = ?" + crlf);
 
@@ -808,7 +808,6 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setDbpassword(val.get("SYAIN_NAME"));
 					ret = true;
 				}
 
@@ -819,7 +818,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
-	public Object getDbpassword(PasswordForm form) {
+	public boolean getDbpassword(PasswordForm form) {
 		// TODO 自動生成されたメソッド・スタブ
 		boolean ret = false;
 
@@ -845,6 +844,10 @@ public class DbAction extends Object{
 
 			String query = sb.toString();
 
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("PASSWORD");
+
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
 			typeList.add(dba.DB_STRING);
@@ -857,12 +860,12 @@ public class DbAction extends Object{
 
 			try {
 
-				dba.executeQuery(query, typeList, bindList);
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
 				dba.commit();
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setDbpassword(val.get("SYAIN_NAME"));
+					form.setDbpassword(val.get("PASSWORD"));
 					ret = true;
 				}
 
@@ -870,12 +873,12 @@ public class DbAction extends Object{
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return ret;
 	}
 
 	/**
 	 * 社員名を取得する。
-	 * 
+	 *
 	 * @param form メイン画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
@@ -939,13 +942,49 @@ public class DbAction extends Object{
 		return ret;
 
 	}
+/**
+ * 個人情報設定処理
+ * @param form
+ * @return
+ */
+	public boolean setPersonal_information(Personal_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+
+			sb.append("UPDDATE" + crlf);
+			sb.append(" PERSONAL_INFORMATION_TBL " + crlf);
+			sb.append("SET" + crlf);
+			sb.append("  NAME ='"  + form.getEmployee_name() + "'," + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+		}
+		return ret;
+	}
+
+
+
+
 
 	/**
 	 * 個人情報を取得する。
-	 * 
+	 *
 	 * @param form
 	 * @return
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 	public boolean getPersonalData(Personal_informationForm form) throws ParseException {
 
@@ -1052,7 +1091,7 @@ public class DbAction extends Object{
 
 	/**
 	 * 緊急連絡先を取得する。
-	 * 
+	 *
 	 * @param form
 	 * @return
 	 */
@@ -1139,7 +1178,7 @@ public class DbAction extends Object{
 						form.setRelationship5(val.get("RELATIONSHIP"));
 						form.setEmergency_tel5(val.get("TEL"));
 						break;
-						
+
 					}
 					ret = true;
 				}
@@ -1153,7 +1192,7 @@ public class DbAction extends Object{
 
 	/**
 	 * 家族構成を取得する。
-	 * 
+	 *
 	 * @param form
 	 * @return
 	 */

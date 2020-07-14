@@ -89,7 +89,7 @@ public final class PasswordForm extends ActionForm {
 	 *
 	 * @return 新しいパスワード1
 	 */
-	public String getNewpassword() {
+	public String getNewpassword1() {
 		return newpassword1;
 	}
 
@@ -101,8 +101,8 @@ public final class PasswordForm extends ActionForm {
 	 *
 	 * @param newpassword 新しいパスワード1
 	 */
-	public void setNewpassword(String newpassword) {
-		this.newpassword1 = newpassword;
+	public void setNewpassword1(String newpassword1) {
+		this.newpassword1 = newpassword1;
 	}
 
 	/**
@@ -125,8 +125,8 @@ public final class PasswordForm extends ActionForm {
 	 *
 	 * @param newpassword 新しいパスワード2
 	 */
-	public void setNewpassword2(String newpassword) {
-		this.newpassword2 = newpassword;
+	public void setNewpassword2(String newpassword2) {
+		this.newpassword2 = newpassword2;
 	}
 
 	/**

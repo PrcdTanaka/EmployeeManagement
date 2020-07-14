@@ -4,8 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%-- <%@ page import="sample.pr.main.LoginForm" %> --%>
-<%-- <%@ page import="sample.pr.main.Open_informationForm" %> --%>
+<%@ page import="sample.pr.main.Open_informationForm" %>
 
 <html:html>
 
@@ -18,7 +17,7 @@
 			<input type="submit" value="戻る">
 
 		</div>
-		<html:form action="/Open_infomationAction">
+		<html:form action="/Open_informationAction">
 			<div class='main1'>
 				<div class='pic'>
 					<img src="C:\Users\gakuto_yamagishi\Desktop\susi.jpg" height="200"
