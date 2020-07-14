@@ -965,10 +965,11 @@ public class DbAction extends Object{
 			sb.append("UPDDATE" + crlf);
 			sb.append(" PERSONAL_INFORMATION_TBL " + crlf);
 			sb.append("SET" + crlf);
-			sb.append("  NAME =" + 'form.getEmployee_name()' + crlf);
+			sb.append("  NAME ='"  + form.getEmployee_name() + "'," + crlf);
 			sb.append("WHERE" + crlf);
-			sb.append("  EMPLOYEE_NO = ?" + crlf)
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
 		}
+		return ret;
 	}
 
 
