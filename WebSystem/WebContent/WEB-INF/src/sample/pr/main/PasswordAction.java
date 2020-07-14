@@ -110,6 +110,8 @@ public final class PasswordAction extends Action {
 
 		pForm.setEmployee_no(lForm.getEmployee_no());
 
+		forward = "password";
+
 		String button = pForm.getButton();
 		if(button.equals("戻る")) {
 			forward = "main";
@@ -128,7 +130,6 @@ public final class PasswordAction extends Action {
 							pForm.setMessage("パスワードが複雑さの要件を満たしていません。");
 						}else{
 							dba.setPassword(pForm);
-							forward = "password";
 							pForm.setMessage("パスワードを変更しました。");
 						}
 					}else{
@@ -139,6 +140,7 @@ public final class PasswordAction extends Action {
 				}
 			}
 		}
+		session.setAttribute("pForm", pForm);
 		return map.findForward(forward);
 	}
 
@@ -215,7 +217,6 @@ public final class PasswordAction extends Action {
 			Pattern p1 = Pattern.compile("^$|^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!-/:-@\\[-`{-~])[!-~]*{8,16}$"); // 正規表現パターンの読み込み
 			Matcher m1 = p1.matcher(word); // パターンと検査対象文字列の照合
 			result = m1.matches(); // 照合結果をtrueかfalseで取得
-			System.out.print(result);
 		}
 		return result;
 	}
