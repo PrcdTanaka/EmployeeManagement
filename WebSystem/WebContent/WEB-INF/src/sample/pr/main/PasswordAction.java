@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -39,7 +40,7 @@ public final class PasswordAction extends Action {
 
 	// 遷移先
 	private String forward;
-	
+
 	public PasswordAction() throws IOException {
 	}
 
@@ -104,6 +105,11 @@ public final class PasswordAction extends Action {
 			e.printStackTrace();
 		}
 		PasswordForm pForm = (PasswordForm) frm;
+		HttpSession session = request.getSession();
+		LoginForm lForm = (LoginForm) session.getAttribute("form");
+
+		pForm.setEmployee_no(lForm.getEmployee_no());
+
 		String button = pForm.getButton();
 		if(button.equals("戻る")) {
 			forward = "main";
@@ -111,12 +117,16 @@ public final class PasswordAction extends Action {
 			if(pForm.getOldpassword().equals("")){
 				pForm.setMessage("パスワードを入力してください。");
 			}else{
-				 // DBに格納されたパスワード取得処理
-				dba.getPassword(pForm);
-				pForm.getOldpassword();
-				if(pForm.getOldpassword().equals(dba.getDbpassword(pForm))){
-					if(pForm.getNewpassword().equals(pForm.getNewpassword2())){
-						if(!checkPattern(pForm.getNewpassword(), "password")){
+				dba.getDbpassword(pForm);
+				// DBに格納されたパスワード取得処理
+				String oldpassword = pForm.getOldpassword();
+				String dbpassword = pForm.getDbpassword();
+
+				String str1 = String.valueOf(dbpassword);
+				if(oldpassword.equals(dbpassword)){
+				//if(pForm.getOldpassword().equals(dba.getDbpassword(pForm))){
+					if(pForm.getNewpassword1().equals(pForm.getNewpassword2())){
+						if(!checkPattern(pForm.getNewpassword1(), "password")){
 							pForm.setMessage("パスワードが複雑さの要件を満たしていません。");
 						}else{
 							dba.setPassword(pForm);
@@ -130,7 +140,6 @@ public final class PasswordAction extends Action {
 					pForm.setMessage("入力されたパスワードが不正です。");
 				}
 			}
-			forward = "register";
 		}
 		return map.findForward(forward);
 	}
@@ -184,7 +193,7 @@ public final class PasswordAction extends Action {
 	 * @return 遷移先
 	 */
 	public String password(PasswordForm form){
-		if(checkPattern(form.getNewpassword(),"password")) {
+		if(checkPattern(form.getNewpassword1(),"password")) {
 			dba.setPassword(form);
 			form.setMessage("パスワードが複雑さの要件を満たしていません。");
 		}
@@ -223,5 +232,4 @@ public final class PasswordAction extends Action {
 		}
 		return result;
 	}
-
 }
