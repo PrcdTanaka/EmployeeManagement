@@ -117,14 +117,12 @@ public final class PasswordAction extends Action {
 			if(pForm.getOldpassword().equals("")){
 				pForm.setMessage("パスワードを入力してください。");
 			}else{
-				dba.getDbpassword(pForm);
 				// DBに格納されたパスワード取得処理
+				dba.getDbpassword(pForm);
 				String oldpassword = pForm.getOldpassword();
 				String dbpassword = pForm.getDbpassword();
 
-				String str1 = String.valueOf(dbpassword);
 				if(oldpassword.equals(dbpassword)){
-				//if(pForm.getOldpassword().equals(dba.getDbpassword(pForm))){
 					if(pForm.getNewpassword1().equals(pForm.getNewpassword2())){
 						if(!checkPattern(pForm.getNewpassword1(), "password")){
 							pForm.setMessage("パスワードが複雑さの要件を満たしていません。");
@@ -211,24 +209,13 @@ public final class PasswordAction extends Action {
 	 */
 	public boolean checkPattern(String word, String pattern){
 
-		boolean result = true;
+		boolean result = false;
 
-		if( word == null || word.isEmpty() ) return false ;
-		switch(pattern){
-		case "employee_no":
-			Pattern p1 = Pattern.compile("^[0-9]+$"); // 正規表現パターンの読み込み
+		if(word.length() > 7){
+			Pattern p1 = Pattern.compile("^$|^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!-/:-@\\[-`{-~])[!-~]*{8,16}$"); // 正規表現パターンの読み込み
 			Matcher m1 = p1.matcher(word); // パターンと検査対象文字列の照合
 			result = m1.matches(); // 照合結果をtrueかfalseで取得
-			if(word.length() != 4)
-				result = false;
-			break;
-		case "password":
-			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$"); // 正規表現パターンの読み込み
-			Matcher m2 = p2.matcher(word); // パターンと検査対象文字列の照合
-			result = m2.matches(); // 照合結果をtrueかfalseで取得
-			if(!(word.length() >= 8 && word.length() <= 16))
-				result = false;
-			break;
+			System.out.print(result);
 		}
 		return result;
 	}
