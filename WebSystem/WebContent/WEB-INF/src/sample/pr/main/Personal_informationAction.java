@@ -108,7 +108,6 @@ public final class Personal_informationAction extends Action {
 				Button = "";
 		} catch(NullPointerException e){
 			Button = "";
-			e.printStackTrace();
 		}
 
 			switch (Button) {
@@ -139,7 +138,19 @@ public final class Personal_informationAction extends Action {
 	 * 登録ボタン押下メソッド
 	 * </p>
 	 *
-	 *
+	 * 1.氏名空白チェック<br>
+	 * 　1-1.空白の場合<br>
+	 * 　　1-1-1.エラーメッセージを設定する。<br>
+	 * 　　　メッセージ："氏名を入力して下さい。"<br>
+	 * 2.空白でない場合<br>
+	 * 　2-1.各日付のフォーマットチェック<br>
+	 * 　　
+	 * 　2-2.日付を『YYYY/MM/DD』から『YYYY-MM-DD』に整形する。<br>
+	 * 　2-3.DB登録<br>
+	 * 3.遷移先の設定<br>
+	 * 　遷移先：同じページ<br>
+	 * 4.遷移先返却<br>
+	 *<br>
 	 *
 	 * @param form
 	 *            メイン画面アクションフォーム
