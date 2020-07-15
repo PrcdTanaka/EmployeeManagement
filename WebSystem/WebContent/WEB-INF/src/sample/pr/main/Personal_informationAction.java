@@ -136,9 +136,9 @@ public final class Personal_informationAction extends Action {
 
 
 
-	
-	
-	
+
+
+
 	/**
 	 * <p>
 	 * 登録ボタン押下メソッド
@@ -151,15 +151,17 @@ public final class Personal_informationAction extends Action {
 	 * @return 遷移先
 	 */
 	private String clickBtnEntry(Personal_informationForm form) {
+		 setPersonal_information;
+
 		System.out.println("clickBtnEntryメソッドが呼ばれました");
 		return forward;
 	}
-	
+
 	private String clickBtnConf(Personal_informationForm form) {
 		System.out.println("clickBtnConfメソッドが呼ばれました");
 		return forward;
 	}
-	
+
 	private String clickBtnBack(Personal_informationForm form) {
 		System.out.println("clickBtnBackメソッドが呼ばれました");
 		return forward;
