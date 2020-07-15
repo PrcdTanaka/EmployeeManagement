@@ -117,7 +117,9 @@ position:relative;
 							else
 							{
 								out.println("<tr><td>");      //名前にリンクがついてます。
-								out.println("<a href=\"#\" onclick=\"js_alert()\">");
+								out.println("<a href=\"/WebSystem/jsp/reference.jsp?employee_no=");
+								out.println(no.get(i));
+								out.println("\" onclick=\"js_alert()\">");
 								if(name.get(i)==null)
 								{
 									out.println("<a href=\"#\" style=\"color:red\"");
