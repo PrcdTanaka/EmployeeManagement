@@ -782,10 +782,10 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("UPDDATE" + crlf);
-			sb.append("ENPLOYEE_MST" + crlf);
+			sb.append("UPDATE" + crlf);
+			sb.append("EMPLOYEE_MST" + crlf);
 			sb.append("SET" + crlf);
-			sb.append("PASSWORD = " + form.getNewpassword() + crlf);
+			sb.append("PASSWORD = " + "'" +form.getNewpassword1()+"'" + crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("EMPLOYEE_NO = ?" + crlf);
 
@@ -808,7 +808,6 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setDbpassword(val.get("SYAIN_NAME"));
 					ret = true;
 				}
 
@@ -819,7 +818,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
-	public Object getDbpassword(PasswordForm form) {
+	public boolean getDbpassword(PasswordForm form) {
 		// TODO 自動生成されたメソッド・スタブ
 		boolean ret = false;
 
@@ -845,6 +844,10 @@ public class DbAction extends Object{
 
 			String query = sb.toString();
 
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("PASSWORD");
+
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
 			typeList.add(dba.DB_STRING);
@@ -857,12 +860,12 @@ public class DbAction extends Object{
 
 			try {
 
-				dba.executeQuery(query, typeList, bindList);
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
 				dba.commit();
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setDbpassword(val.get("SYAIN_NAME"));
+					form.setDbpassword(val.get("PASSWORD"));
 					ret = true;
 				}
 
@@ -870,7 +873,7 @@ public class DbAction extends Object{
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return ret;
 	}
 
 	/**

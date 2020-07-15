@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -39,7 +40,7 @@ public final class PasswordAction extends Action {
 
 	// 遷移先
 	private String forward;
-	
+
 	public PasswordAction() throws IOException {
 	}
 
@@ -104,6 +105,13 @@ public final class PasswordAction extends Action {
 			e.printStackTrace();
 		}
 		PasswordForm pForm = (PasswordForm) frm;
+		HttpSession session = request.getSession();
+		LoginForm lForm = (LoginForm) session.getAttribute("form");
+
+		pForm.setEmployee_no(lForm.getEmployee_no());
+
+		forward = "password";
+
 		String button = pForm.getButton();
 		if(button.equals("戻る")) {
 			forward = "main";
@@ -111,16 +119,17 @@ public final class PasswordAction extends Action {
 			if(pForm.getOldpassword().equals("")){
 				pForm.setMessage("パスワードを入力してください。");
 			}else{
-				 // DBに格納されたパスワード取得処理
-				dba.getPassword(pForm);
-				pForm.getOldpassword();
-				if(pForm.getOldpassword().equals(dba.getDbpassword(pForm))){
-					if(pForm.getNewpassword().equals(pForm.getNewpassword2())){
-						if(!checkPattern(pForm.getNewpassword(), "password")){
+				// DBに格納されたパスワード取得処理
+				dba.getDbpassword(pForm);
+				String oldpassword = pForm.getOldpassword();
+				String dbpassword = pForm.getDbpassword();
+
+				if(oldpassword.equals(dbpassword)){
+					if(pForm.getNewpassword1().equals(pForm.getNewpassword2())){
+						if(!checkPattern(pForm.getNewpassword1(), "password")){
 							pForm.setMessage("パスワードが複雑さの要件を満たしていません。");
 						}else{
 							dba.setPassword(pForm);
-							forward = "password";
 							pForm.setMessage("パスワードを変更しました。");
 						}
 					}else{
@@ -130,8 +139,8 @@ public final class PasswordAction extends Action {
 					pForm.setMessage("入力されたパスワードが不正です。");
 				}
 			}
-			forward = "register";
 		}
+		session.setAttribute("pForm", pForm);
 		return map.findForward(forward);
 	}
 
@@ -184,7 +193,7 @@ public final class PasswordAction extends Action {
 	 * @return 遷移先
 	 */
 	public String password(PasswordForm form){
-		if(checkPattern(form.getNewpassword(),"password")) {
+		if(checkPattern(form.getNewpassword1(),"password")) {
 			dba.setPassword(form);
 			form.setMessage("パスワードが複雑さの要件を満たしていません。");
 		}
@@ -202,26 +211,13 @@ public final class PasswordAction extends Action {
 	 */
 	public boolean checkPattern(String word, String pattern){
 
-		boolean result = true;
+		boolean result = false;
 
-		if( word == null || word.isEmpty() ) return false ;
-		switch(pattern){
-		case "employee_no":
-			Pattern p1 = Pattern.compile("^[0-9]+$"); // 正規表現パターンの読み込み
+		if(word.length() > 7){
+			Pattern p1 = Pattern.compile("^$|^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!-/:-@\\[-`{-~])[!-~]*{8,16}$"); // 正規表現パターンの読み込み
 			Matcher m1 = p1.matcher(word); // パターンと検査対象文字列の照合
 			result = m1.matches(); // 照合結果をtrueかfalseで取得
-			if(word.length() != 4)
-				result = false;
-			break;
-		case "password":
-			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$"); // 正規表現パターンの読み込み
-			Matcher m2 = p2.matcher(word); // パターンと検査対象文字列の照合
-			result = m2.matches(); // 照合結果をtrueかfalseで取得
-			if(!(word.length() >= 8 && word.length() <= 16))
-				result = false;
-			break;
 		}
 		return result;
 	}
-
 }
