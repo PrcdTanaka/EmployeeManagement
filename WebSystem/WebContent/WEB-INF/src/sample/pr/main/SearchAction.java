@@ -129,18 +129,22 @@ public final class SearchAction extends Action {
 		// 　　クラス　：DbAction<br>
 		// 　　メソッド：getSyainName()<br>
 			// 社員名を取得できた場合
-
+		HttpSession session = request.getSession();
 		try {
 			request.setCharacterEncoding("utf-8");
 			if(button.equals("戻る")) {
 				forward="back";
+				session.removeAttribute("sForm");
 			}
-			else {
+			else if(button.equals("検索")){
 				forward="search";
 				dbaction.getSearchAns(sForm);
-				request.setAttribute("form", sForm);
-				HttpSession session = request.getSession();
-				session.setAttribute("form", sForm);
+				session.setAttribute("sForm", sForm);
+
+			}
+			else{
+				forward="search";
+				session.setAttribute("sForm", sForm);
 			}
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック

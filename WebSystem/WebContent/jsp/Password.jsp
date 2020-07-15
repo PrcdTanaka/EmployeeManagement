@@ -18,11 +18,27 @@
   		<center><h1>パスワード変更画面</h1></center>
   	</table>
 
+  	 	<%
+ 		String message;
+ 		try{
+ 			PasswordForm pForm = (PasswordForm) session.getAttribute("pForm");
+ 			message =  pForm.getMessage();
+ 			if(message == null)
+ 				message = "";
+
+ 		}catch(NullPointerException e){
+ 			message = "";
+ 		}
+
+ 	%>
  	<body>
   		<html:form action="/PasswordAction" >
 			<div class="block">
 
 				<div class="space"></div>
+				<br>
+				<br>
+					<center><%= message %></center>
 				<br>
 				<div>
 				    <center>  古いパスワード：<html:text property="oldpassword" value= ""/></center>

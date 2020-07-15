@@ -17,6 +17,7 @@
 body{
 
 	text-align: center;
+	background-color:e9e9e9;
 	}
 a{
 text-decoration:none;
@@ -48,8 +49,15 @@ h2{
 .back{
 margin-top: 4%;
 position:relative;
-}
 
+}
+.send{
+	background-color: #49a9d4;
+	border-radius:8px;
+	font-weight: bold;
+	padding:8px;
+	color:#fff;
+}
 
 .center {
 	text-align:center;
@@ -89,16 +97,15 @@ position:relative;
 				<html:radio property="radio" value="DEPARTMENT"/>技術部
 				<h2>検索結果</h2>
 
-
 					<%
 					try
 					{
 
-						SearchForm s=(SearchForm)session.getAttribute("form");
+						SearchForm s=(SearchForm)session.getAttribute("sForm");
 						List<String> name=s.getEmployee_name();
 						List<String> no=s.getEmployee_no();
 						List<String> depart=s.getDepertment();
-
+						out.println("<script>function js_alert() {alert(\"Pushed!\");}</script>");
 						out.println("<table border=\"1\" align = \"center\" style=\"border-collapse: collapse\"  >");
 						for(int i=-1;i<no.size();i++)
 						{
@@ -110,7 +117,7 @@ position:relative;
 							else
 							{
 								out.println("<tr><td>");      //名前にリンクがついてます。
-								out.println("<a href=\"#\">");
+								out.println("<a href=\"#\" onclick=\"js_alert()\">");
 								if(name.get(i)==null)
 								{
 									out.println("<a href=\"#\" style=\"color:red\"");
@@ -146,8 +153,9 @@ position:relative;
 					%>
 		</span>
 
+
 		<div class="back">
-		<html:submit property="button" value="戻る"></html:submit>
+		<html:submit styleClass="send" property="button" value="戻る"></html:submit>
 
 		</div>
 

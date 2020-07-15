@@ -22,6 +22,7 @@ public final class SearchForm extends ActionForm {
 	private List<String> name=new ArrayList<String>();
 
 	private List<String> depart=new ArrayList<String>();
+	private String no_search;
 
 
 	/**
@@ -31,6 +32,7 @@ public final class SearchForm extends ActionForm {
 	 * </p>
 	 */
 	public void initialize() {
+		no_search =new String();
 		button     = "";
 		text    = "";
 		radio      = "EMPLOYEE_MST.EMPLOYEE_NO";
@@ -159,6 +161,21 @@ public final class SearchForm extends ActionForm {
 
 		A.add(department);
 		depart.add(department);
+	}
+
+	/**
+	 * @return no_search
+	 */
+	public String getNo_search() {
+		return no_search;
+	}
+
+	/**
+	 * @param no_search セットする no_search
+	 */
+	public void setNo_search(String no_search) {
+		this.no_search = no_search;
+
 	}
 
 }

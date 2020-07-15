@@ -20,7 +20,7 @@
 		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
 		<form-bean name="RegisterForm" type="sample.pr.main.RegisterForm"/>
 		<form-bean name="Personal_informationForm" type="sample.pr.main.Personal_informationForm"/>
-		<form-bean name="Open_informationAction" type="sample.pr.main.Open_informationAction"/>
+		<form-bean name="Open_informationForm" type="sample.pr.main.Open_informationForm"/>
 
     </form-beans>
 
@@ -84,6 +84,7 @@
 			scope="request">
 			<forward name="search" path="/jsp/search.jsp"/>
 			<forward name="back" path="/jsp/Main.jsp"/>
+			<forward name="fly" path="/jsp/reference.jsp"/>
 		</action>
 
 
@@ -102,7 +103,8 @@
 			type="sample.pr.main.Open_informationAction"
 			validate="false"
 			scope="request">
-			<forward name="message" path="/jsp/Main.jsp"/>
+			<forward name="main" path="/jsp/Main.jsp"/>
+			<forward name="back" path="/jsp/Personal_information.jsp"/>
 		</action>
 
     </action-mappings>
