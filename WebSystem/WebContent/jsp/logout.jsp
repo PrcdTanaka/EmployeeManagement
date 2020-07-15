@@ -6,6 +6,10 @@
 
 <html:html>
 	<body>
+		<%
+		session.removeAttribute("form");
+		
+		%>
 		<%// ログイン画面へ遷移 %>
 		<logic:redirect page="/jsp/login.jsp" />
 	</body>
