@@ -151,7 +151,7 @@ public final class Personal_informationAction extends Action {
 	 * @return 遷移先
 	 */
 	private String clickBtnEntry(Personal_informationForm form) {
-		 setPersonal_information;
+		 //Personal_information;
 
 		System.out.println("clickBtnEntryメソッドが呼ばれました");
 		return forward;
