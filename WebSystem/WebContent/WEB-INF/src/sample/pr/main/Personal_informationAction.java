@@ -108,19 +108,20 @@ public final class Personal_informationAction extends Action {
 				Button = "";
 		} catch(NullPointerException e){
 			Button = "";
+			e.printStackTrace();
 		}
 
 			switch (Button) {
-			case "edit":
-				forward = "edit";
+			case "登録":
+				forward = clickBtnEntry(pForm);
 				break;
-			case "register":
-				forward = "register";
+			case "確認":
+				forward = clickBtnConf(pForm);
 				break;
-			case "search":
-				forward = "search";
+			case "戻る":
+				forward = clickBtnBack(pForm);
 				break;
-			case "password":
+			case "":
 				forward = "password";
 				break;
 			}
@@ -131,33 +132,36 @@ public final class Personal_informationAction extends Action {
 
 
 		return map.findForward(forward);
-		}
+	}
 
+
+
+	
+	
+	
 	/**
 	 * <p>
 	 * 登録ボタン押下メソッド
 	 * </p>
 	 *
-	 * 1.氏名空白チェック<br>
-	 * 　1-1.空白の場合<br>
-	 * 　　1-1-1.エラーメッセージを設定する。<br>
-	 * 　　　メッセージ："氏名を入力して下さい。"<br>
-	 * 2.空白でない場合<br>
-	 * 　2-1.各日付のフォーマットチェック<br>
-	 * 　　
-	 * 　2-2.日付を『YYYY/MM/DD』から『YYYY-MM-DD』に整形する。<br>
-	 * 　2-3.DB登録<br>
-	 * 3.遷移先の設定<br>
-	 * 　遷移先：同じページ<br>
-	 * 4.遷移先返却<br>
-	 *<br>
+	 *
 	 *
 	 * @param form
 	 *            メイン画面アクションフォーム
 	 * @return 遷移先
 	 */
-	private String clickBtnEntry(MainForm form) {
-
+	private String clickBtnEntry(Personal_informationForm form) {
+		System.out.println("clickBtnEntryメソッドが呼ばれました");
+		return forward;
+	}
+	
+	private String clickBtnConf(Personal_informationForm form) {
+		System.out.println("clickBtnConfメソッドが呼ばれました");
+		return forward;
+	}
+	
+	private String clickBtnBack(Personal_informationForm form) {
+		System.out.println("clickBtnBackメソッドが呼ばれました");
 		return forward;
 	}
 }
