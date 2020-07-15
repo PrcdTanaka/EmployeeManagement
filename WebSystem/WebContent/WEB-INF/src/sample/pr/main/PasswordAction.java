@@ -55,9 +55,6 @@ public final class PasswordAction extends Action {
 	 * 　2-1.ボタン名称取得処理をコール。<br>
 	 * 　　クラス　：MainForm<br>
 	 * 　　メソッド：getButton()<br>
-	 * 　2-2.社員番号を整形する。<br>
-	 * 　　形式：4桁の文字列<br>
-	 * 　　※桁数が4桁未満の場合は先頭から"0"埋め)<br>
 	 * <br>
 	 * 3.社員名を取得する。<br>
 	 * 　3-1.社員名取得処理をコール。<br>
@@ -104,6 +101,7 @@ public final class PasswordAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+
 		PasswordForm pForm = (PasswordForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
@@ -116,27 +114,30 @@ public final class PasswordAction extends Action {
 		if(button.equals("戻る")) {
 			forward = "main";
 		}if(button.equals("変更")){
+				//入力された古いパスワードの空白判定
 			if(pForm.getOldpassword().equals("")){
 				pForm.setMessage("パスワードを入力してください。");
 			}else{
-				// DBに格納されたパスワード取得処理
+				// DBに格納されたパスワードと入力された古いパスワード取得処理
 				dba.getDbpassword(pForm);
 				String oldpassword = pForm.getOldpassword();
 				String dbpassword = pForm.getDbpassword();
 
+				//DBに格納されたパスと入力された古いパスワード比較処理
 				if(oldpassword.equals(dbpassword)){
+				//新しいパスワード２つの比較処理
 					if(pForm.getNewpassword1().equals(pForm.getNewpassword2())){
 						if(!checkPattern(pForm.getNewpassword1(), "password")){
-							pForm.setMessage("パスワードが複雑さの要件を満たしていません。");
+							pForm.setMessage("【大文字小文字アルファベット】【数字】【記号】を含む8～16桁のパスワードを入力してください。");
 						}else{
 							dba.setPassword(pForm);
 							pForm.setMessage("パスワードを変更しました。");
 						}
 					}else{
-						pForm.setMessage("入力されたパスワードが不正です。");
+						pForm.setMessage("入力された新しいパスワードが不正です。");
 					}
 				}else{
-					pForm.setMessage("入力されたパスワードが不正です。");
+					pForm.setMessage("入力された古いパスワードが不正です。");
 				}
 			}
 		}
@@ -195,7 +196,6 @@ public final class PasswordAction extends Action {
 	public String password(PasswordForm form){
 		if(checkPattern(form.getNewpassword1(),"password")) {
 			dba.setPassword(form);
-			form.setMessage("パスワードが複雑さの要件を満たしていません。");
 		}
 		return "password";
 	}
