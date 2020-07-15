@@ -130,6 +130,9 @@ public final class Personal_informationForm extends ActionForm {
 	/** ボタン */
 	private String button;
 
+	/** メッセージ */
+	private String message;
+	
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -204,6 +207,7 @@ public final class Personal_informationForm extends ActionForm {
 		nb = "";
 		confirmer_no = "";
 		button = "";
+		message = "";
 	}
 
 
@@ -691,4 +695,13 @@ public final class Personal_informationForm extends ActionForm {
 	public String getButton(){
 		return button;
 	}
+	
+	/** メッセージ */
+	public void setMessage(String message){
+		this.message = message;
+	}
+	public String getMessage(){
+		return message;
+	}
+	
 }

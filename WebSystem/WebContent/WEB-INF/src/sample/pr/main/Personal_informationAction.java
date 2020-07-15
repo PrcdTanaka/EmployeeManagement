@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -95,13 +96,24 @@ public final class Personal_informationAction extends Action {
 	 *
 	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
+
+		String Button;
+		
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		String Button;
+		// ログインセッションの呼び出し
+		HttpSession session = request.getSession();
+		LoginForm lForm = (LoginForm) session.getAttribute("form");
+		
+		// フォーム情報の呼び出し
 		Personal_informationForm pForm = (Personal_informationForm) frm;
+		
+		// ログインユーザの社員番号取得
+		pForm.setEmployee_no(lForm.getEmployee_no());
+		
 		try{
 			Button = pForm.getButton();
 			if(Button == null)
@@ -143,7 +155,14 @@ public final class Personal_informationAction extends Action {
 	 * <p>
 	 * 登録ボタン押下メソッド
 	 * </p>
-	 *
+	 * 1.氏名空白チェック<br>
+	 * 　1-1.空白の場合<br>
+	 * 　　1-1-1.エラーメッセージを設定する。<br>
+	 * 2.空白でない場合<br>
+	 * 　2-1.DB登録<br>
+	 * 3.遷移先の設定<br>
+	 * 　遷移先：同じページ<br>
+	 * 4.遷移先返却<br>
 	 *
 	 *
 	 * @param form
@@ -151,9 +170,15 @@ public final class Personal_informationAction extends Action {
 	 * @return 遷移先
 	 */
 	private String clickBtnEntry(Personal_informationForm form) {
-		 //Personal_information;
-
-		System.out.println("clickBtnEntryメソッドが呼ばれました");
+		
+		if(form.getEmployee_name() == null){
+			form.setMessage("氏名を入力して下さい。");
+		} else {
+			dba.setPersonalData(form);
+		}
+		
+		
+		forward = "pInfo";
 		return forward;
 	}
 
@@ -165,5 +190,20 @@ public final class Personal_informationAction extends Action {
 	private String clickBtnBack(Personal_informationForm form) {
 		System.out.println("clickBtnBackメソッドが呼ばれました");
 		return forward;
+	}
+	
+	/**
+	 * 日付の整形
+	 * @param form
+	 * @return 
+	 */
+	private boolean dateCheck(Personal_informationForm form){
+		boolean ret = true;
+		
+		if(form.getHire_date() != null){
+			
+		}
+		
+		return ret;
 	}
 }

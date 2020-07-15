@@ -447,7 +447,7 @@ public class DbAction extends Object{
 			sb.append("FROM" + crlf);
 			sb.append("  EMPLOYEE_MST" + crlf);
 			sb.append("WHERE" + crlf);
-			sb.append("  PASSWORD = ?" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
 
 			String query = sb.toString();
 
@@ -947,7 +947,7 @@ public class DbAction extends Object{
  * @param form
  * @return
  */
-	public boolean setPersonal_information(Personal_informationForm form) {
+	public boolean setPersonalData(Personal_informationForm form) {
 
 		boolean ret = false;
 
@@ -965,7 +965,7 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 
-			sb.append("UPDDATE" + crlf);
+			sb.append("UPDATE" + crlf);
 			sb.append(" PERSONAL_INFORMATION_TBL " + crlf);
 			sb.append("SET" + crlf);
 			sb.append("  NAME ='"  + form.getEmployee_name() + "'" + crlf);
