@@ -105,7 +105,9 @@ position:relative;
 						List<String> name=s.getEmployee_name();
 						List<String> no=s.getEmployee_no();
 						List<String> depart=s.getDepertment();
-						out.println("<script>function js_alert() {alert(\"Pushed!\");}</script>");
+						LoginForm l=(LoginForm)session.getAttribute("form");
+						String manager=l.getManager();
+						out.println("<script>function js_alert() {alert(\"未登録のため参照できません!!FUCKYOU!!!\");}</script>");
 						out.println("<table border=\"1\" align = \"center\" style=\"border-collapse: collapse\"  >");
 						for(int i=-1;i<no.size();i++)
 						{
@@ -117,12 +119,20 @@ position:relative;
 							else
 							{
 								out.println("<tr><td>");      //名前にリンクがついてます。
-								out.println("<a href=\"/WebSystem/jsp/reference.jsp?employee_no=");
-								out.println(no.get(i));
-								out.println("\" onclick=\"js_alert()\">");
+								if(manager.equals("0")){
+									out.println("<a href=\"/WebSystem/jsp/reference.jsp?employee_no=");
+									out.println(no.get(i));
+									out.println("\" >");
+								}
+								else{
+									out.println("<a href=\"/WebSystem/jsp/Personal_information.jsp?employee_no=");
+									out.println(no.get(i));
+									out.println("\" >");
+								}
+
 								if(name.get(i)==null)
 								{
-									out.println("<a href=\"#\" style=\"color:red\"");
+									out.println("<a href=\"#\" style=\"color:red\"onclick=\"js_alert()\"");
 									name.set(i, "未登録");
 									 out.println("</a>");
 								}
