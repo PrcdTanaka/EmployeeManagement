@@ -138,7 +138,7 @@ position:relative;
 								else
 								{
 									out.println("<a href=\"/WebSystem/jsp/reference.jsp?employee_no=");
-									out.println(no.get(i));
+									name.set(i, "未登録");
 									out.println("\" >");
 								}
 						        out.println(name.get(i));
