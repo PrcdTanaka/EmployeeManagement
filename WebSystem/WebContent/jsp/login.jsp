@@ -3,6 +3,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="sample.pr.main.LoginForm" %>
 
 
 <html:html>
@@ -17,11 +18,26 @@
 	</table>
 	
 	<body>
+	 	<%
+ 		String message;
+ 		try{
+ 			LoginForm s = (LoginForm) session.getAttribute("form");
+ 			message =  s.getMessage();
+ 			if(message == null)
+ 				message = "";
+
+ 		}catch(NullPointerException e){
+ 			message = "";
+ 		}
+
+ 	%>
 		<html:form action="/LoginAction" >
 			<div class="block">
 
 				<div class="space"></div>
-
+				
+				<center><%= message %></center>
+				
 				<!-- 社員番号入力欄 -->
 				<div>
 					<center>　　社員No：

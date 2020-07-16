@@ -6,7 +6,6 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -166,23 +165,6 @@ public final class LoginAction extends Action {
 			 */
 			String fpassword = lForm.getPassword();
 
-			/*
-			 * 5.社員情報を取得する。<br> 
-			 * 　5-1.社員名取得処理をコール。<br> 
-			 * 　　　クラス：DbAction<br>
-			 * 　　メソッド：getEmployeeName()<br> 
-			 * 　　　引数１：ログイン画面アクションフォーム<br>
-			 */
-			if (!dba.getEmployeeName(lForm)) {
-				/* 7.社員名が取得できなかった場合の処理。<br>
-				 * 　7-1.メッセージを設定する。<br>
-				 * 　　メッセージ：「社員番号、あるいはパスワードが間違えています。」<br>
-				 * 　7-2.遷移先を設定する。_ログイン画面<br>
-				 * 　　遷移先："login"<br>
-				 */
-				lForm.setManager("社員番号、あるいはパスワードが間違えています。");
-				forward = "login";
-			}else{
 				/*
 				 * 　5-2.登録パスワードの取得処理をコール。<br> 
 				 * 　　　クラス：DbAction<br>
@@ -203,6 +185,7 @@ public final class LoginAction extends Action {
 				 * 　　6-1-1.フォームのパスワードとfpasswordを比較する。<br>
 				 */
 				if(fpassword.equals(lForm.getPassword())){
+					dba.getEmployeeName(lForm);
 					/* 　6-2.比較結果が同じだった場合。<br>
 					 * 　　6-2-1.遷移先設定_メイン画面<br>
 					 * 　　　遷移先："main"<br>
@@ -215,11 +198,9 @@ public final class LoginAction extends Action {
 					 * 　　6-3-2.遷移先設定_ログイン画面<br>
 					 * 　　　遷移先："login"<br>
 					 */
-					lForm.setManager("社員番号、あるいはパスワードが間違えています。");
+					lForm.setMessage("社員番号、あるいはパスワードが間違えています。");
 					forward = "login";
 				}
-				
-			}
 		}
 		/* 8.アクションフォームをインプットパラメータ.リクエスト情報に設定する。<br>
 		 * 　8-1.リクエスト情報登録処理をコール。<br>
@@ -237,7 +218,7 @@ public final class LoginAction extends Action {
 		LoginForm s = (LoginForm) session.getAttribute("form");
 		
 		if(forward.equals("login")){
-			JOptionPane.showMessageDialog(null,lForm.getMessage());
+//			JOptionPane.showMessageDialog(null,lForm.getMessage());
 		}
 		/* 9.戻り値を返却する。<br>
 		 * 　9-1.遷移先情報取得処理をコール。<br>
