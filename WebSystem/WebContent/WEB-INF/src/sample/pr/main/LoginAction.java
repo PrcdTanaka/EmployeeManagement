@@ -185,6 +185,7 @@ public final class LoginAction extends Action {
 				 * 　　6-1-1.フォームのパスワードとfpasswordを比較する。<br>
 				 */
 				if(fpassword.equals(lForm.getPassword())){
+					dba.getEmployeeName(lForm);
 					/* 　6-2.比較結果が同じだった場合。<br>
 					 * 　　6-2-1.遷移先設定_メイン画面<br>
 					 * 　　　遷移先："main"<br>
