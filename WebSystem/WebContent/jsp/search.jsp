@@ -129,12 +129,17 @@ position:relative;
 									out.println(no.get(i));
 									out.println("\" >");
 								}
-
-								if(name.get(i)==null)
+								if(name.get(i)==null&&manager.equals("0"))
 								{
 									out.println("<a href=\"#\" style=\"color:red\"onclick=\"js_alert()\"");
 									name.set(i, "未登録");
 									 out.println("</a>");
+								}
+								else
+								{
+									out.println("<a href=\"/WebSystem/jsp/reference.jsp?employee_no=");
+									out.println(no.get(i));
+									out.println("\" >");
 								}
 						        out.println(name.get(i));
 						        out.println("</td>");
