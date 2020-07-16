@@ -1,9 +1,11 @@
 package sample.pr.main;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -40,6 +42,21 @@ public final class Open_informationAction extends Action {
 	private String forward;
 
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		PasswordForm pForm = (PasswordForm) frm;
+		HttpSession session = request.getSession();
+		LoginForm lForm = (LoginForm) session.getAttribute("form");
+
+		pForm.setEmployee_no(lForm.getEmployee_no());
+
+		forward = "password";
+
 			return null;
 	}
 }

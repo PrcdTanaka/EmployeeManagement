@@ -89,6 +89,7 @@ public final class RegisterAction extends Action {
 	 * @return 遷移先情報
 	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
@@ -101,8 +102,8 @@ public final class RegisterAction extends Action {
 		}
 		else if(button.equals("戻る")) {
 			forward = "main";
+			session.removeAttribute("rForm");
 		}
-		HttpSession session = request.getSession();
 		session.setAttribute("rForm", rForm);
 
 		return map.findForward(forward);
@@ -169,6 +170,7 @@ public final class RegisterAction extends Action {
 
 			if(checkPattern(form.getPassword(),"password")) {
 				if(dba.userRegister(form))
+					dba.userRegister2(form);
 					form.setMessage("ユーザー登録に成功しました。");
 			}else {
 				form.setMessage("パスワードが複雑さの要件を満たしていません。");
@@ -192,24 +194,11 @@ public final class RegisterAction extends Action {
 
 		boolean result = true;
 
-		if( word == null || word.isEmpty() ) return false ;
-		switch(pattern){
-		case "employee_no":
-			Pattern p1 = Pattern.compile("^[0-9]+$"); // 正規表現パターンの読み込み
-			Matcher m1 = p1.matcher(word); // パターンと検査対象文字列の照合
-			result = m1.matches(); // 照合結果をtrueかfalseで取得
-			if(word.length() != 4)
-				result = false;
-			break;
-		case "password":
-			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$"); // 正規表現パターンの読み込み
-			Matcher m2 = p2.matcher(word); // パターンと検査対象文字列の照合
-			result = m2.matches(); // 照合結果をtrueかfalseで取得
-			if(!(word.length() >= 8 && word.length() <= 16))
-				result = false;
-			break;
+		if(word.length() > 7){
+			Pattern p = Pattern.compile("^$|^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!-/:-@\\[-`{-~])[!-~]*{8,16}$"); // 正規表現パターンの読み込み
+			Matcher m = p.matcher(word); // パターンと検査対象文字列の照合
+			result = m.matches(); // 照合結果をtrueかfalseで取得
 		}
-
 		return result;
 	}
 
