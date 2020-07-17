@@ -525,7 +525,9 @@ public class DbAction extends Object{
 			}
 			else{
 				sb.append("WHERE" + crlf);
-				sb.append(  form.getRadio()+"=?"+crlf);
+				sb.append("MANAGER_FLAG=0 AND" + crlf);
+				sb.append(  form.getRadio()+crlf);
+				sb.append("LIKE ?");
 			}
 
 
@@ -551,10 +553,8 @@ public class DbAction extends Object{
 			List<Object> bindList= new ArrayList<Object>();
 			if(form.getText().equals(""))
 				bindList.add("0");
-			else if(form.getRadio().equals("DEPARTMENT")&&form.getText().length()==1)
-				bindList.add("0"+form.getText());
 			else
-				bindList.add(form.getText());
+				bindList.add("%"+form.getText()+"%");
 
 
 
