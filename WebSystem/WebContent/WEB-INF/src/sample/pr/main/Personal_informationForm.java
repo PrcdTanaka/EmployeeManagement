@@ -1,7 +1,5 @@
 package sample.pr.main;
 
-import java.text.ParseException;
-
 import org.apache.struts.action.ActionForm;
 
 public final class Personal_informationForm extends ActionForm {
@@ -43,7 +41,7 @@ public final class Personal_informationForm extends ActionForm {
 	private String division;
 
 	/** 緊急連絡先：郵便番号 */
-	private String emergency_postal_code;
+	private String emergency_tel;
 
 	/** 緊急連絡先：住所 */
 	private String emergency_address;
@@ -103,6 +101,13 @@ public final class Personal_informationForm extends ActionForm {
 	private String family_structure_relationship3;
 	private String family_structure_relationship4;
 	private String family_structure_relationship5;
+	
+	/** 家族構成：同居・別居 */
+	private String family_structure_residence1;
+	private String family_structure_residence2;
+	private String family_structure_residence3;
+	private String family_structure_residence4;
+	private String family_structure_residence5;
 
 	/** 家族構成：扶養の有無 */
 	private String family_structure_support1;
@@ -117,15 +122,6 @@ public final class Personal_informationForm extends ActionForm {
 	private String family_structure_job3;
 	private String family_structure_job4;
 	private String family_structure_job5;
-
-	/** 確認資料 */
-	private String document;
-
-	/** 備考 */
-	private String nb;
-
-	/** 確認者:社員番号 */
-	private String confirmer_no;
 
 	/** ボタン */
 	private String button;
@@ -151,7 +147,7 @@ public final class Personal_informationForm extends ActionForm {
 		postal_code = "";
 		address = "";
 		division = "";
-		emergency_postal_code = "";
+		emergency_tel = "";
 		emergency_address = "";
 		emergency_name1 = "";
 		emergency_name2 = "";
@@ -193,6 +189,11 @@ public final class Personal_informationForm extends ActionForm {
 		family_structure_relationship3 = "";
 		family_structure_relationship4 = "";
 		family_structure_relationship5 = "";
+		family_structure_residence1 = "";
+		family_structure_residence2 = "";
+		family_structure_residence3 = "";
+		family_structure_residence4 = "";
+		family_structure_residence5 = "";
 		family_structure_support1 = "";
 		family_structure_support2 = "";
 		family_structure_support3 = "";
@@ -203,9 +204,6 @@ public final class Personal_informationForm extends ActionForm {
 		family_structure_job3 = "";
 		family_structure_job4 = "";
 		family_structure_job5 = "";
-		document = "";
-		nb = "";
-		confirmer_no = "";
 		button = "";
 		message = "";
 	}
@@ -250,7 +248,7 @@ public final class Personal_informationForm extends ActionForm {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public String getBirth() throws ParseException {
+	public String getBirth() {
 		if (birth != null) {
 			String date = birth.substring(0, 10);
 			this.birth = date.replace("-", "/");
@@ -312,14 +310,14 @@ public final class Personal_informationForm extends ActionForm {
 		this.division = division;
 	}
 
-	/** 緊急連絡先：郵便番号 */
-	public String getEmergency_postal_code() {
-		if(emergency_postal_code == null)
-			emergency_postal_code = "";
-		return emergency_postal_code;
+	/** 緊急連絡先：電話番号 */
+	public String getEmergency_tel() {
+		if(emergency_tel == null)
+			emergency_tel = "";
+		return emergency_tel;
 	}
-	public void setEmergency_postal_code(String emergency_postal_code) {
-		this.emergency_postal_code = emergency_postal_code;
+	public void setEmergency_tel(String emergency_tel) {
+		this.emergency_tel = emergency_tel;
 	}
 
 	/** 緊急連絡先：住所 */
@@ -539,31 +537,71 @@ public final class Personal_informationForm extends ActionForm {
 		this.family_structure_birth1 = family_structure_birth1;
 	}
 	public String getFamily_structure_birth1(){
-		return family_structure_birth1;
+		try {
+			if (family_structure_birth1 != null) {
+				String date = family_structure_birth1.substring(0, 10);
+				this.family_structure_birth1 = date.replace("-", "/");
+			}
+			return family_structure_birth1;
+		} catch (StringIndexOutOfBoundsException e) {
+			return "";
+		}
 	}
 	public void setFamily_structure_birth2(String family_structure_birth2){
 		this.family_structure_birth2 = family_structure_birth2;
 	}
 	public String getFamily_structure_birth2(){
-		return family_structure_birth2;
+		try {
+			if (family_structure_birth2 != null) {
+				String date = family_structure_birth2.substring(0, 10);
+				this.family_structure_birth2 = date.replace("-", "/");
+			}
+			return family_structure_birth2;
+		} catch (StringIndexOutOfBoundsException e) {
+			return "";
+		}
 	}
 	public void setFamily_structure_birth3(String family_structure_birth3){
 		this.family_structure_birth3 = family_structure_birth3;
 	}
 	public String getFamily_structure_birth3(){
-		return family_structure_birth3;
+		try {
+			if (family_structure_birth3 != null) {
+				String date = family_structure_birth3.substring(0, 10);
+				this.family_structure_birth3 = date.replace("-", "/");
+			}
+			return family_structure_birth3;
+		} catch (StringIndexOutOfBoundsException e) {
+			return "";
+		}
 	}
 	public void setFamily_structure_birth4(String family_structure_birth4){
 		this.family_structure_birth4 = family_structure_birth4;
 	}
 	public String getFamily_structure_birth4(){
-		return family_structure_birth4;
+		try {
+			if (family_structure_birth4 != null) {
+				String date = family_structure_birth4.substring(0, 10);
+				this.family_structure_birth4 = date.replace("-", "/");
+			}
+			return family_structure_birth4;
+		} catch (StringIndexOutOfBoundsException e) {
+			return "";
+		}
 	}
 	public void setFamily_structure_birth5(String family_structure_birth5){
 		this.family_structure_birth5 = family_structure_birth5;
 	}
 	public String getFamily_structure_birth5(){
-		return family_structure_birth5;
+		try {
+			if (family_structure_birth5 != null) {
+				String date = family_structure_birth5.substring(0, 10);
+				this.family_structure_birth5 = date.replace("-", "/");
+			}
+			return family_structure_birth5;
+		} catch (StringIndexOutOfBoundsException e) {
+			return "";
+		}
 	}
 
 	/** 家族構成：続柄 */
@@ -598,6 +636,38 @@ public final class Personal_informationForm extends ActionForm {
 		return family_structure_relationship5;
 	}
 
+	/** 家族構成：続柄 */
+	public void setFamily_structure_residence1(String family_structure_residence1){
+		this.family_structure_residence1 = family_structure_residence1;
+	}
+	public String getFamily_structure_residence1(){
+		return family_structure_residence1;
+	}
+	public void setFamily_structure_residence2(String family_structure_residence2){
+		this.family_structure_residence2 = family_structure_residence2;
+	}
+	public String getFamily_structure_residence2(){
+		return family_structure_residence2;
+	}
+	public void setFamily_structure_residence3(String family_structure_residence3){
+		this.family_structure_residence3 = family_structure_residence3;
+	}
+	public String getFamily_structure_residence3(){
+		return family_structure_residence3;
+	}
+	public void setFamily_structure_residence4(String family_structure_residence4){
+		this.family_structure_residence4 = family_structure_residence4;
+	}
+	public String getFamily_structure_residence4(){
+		return family_structure_residence4;
+	}
+	public void setFamily_structure_residence5(String family_structure_residence5){
+		this.family_structure_residence5 = family_structure_residence5;
+	}
+	public String getFamily_structure_residence5(){
+		return family_structure_residence5;
+	}
+	
 	/** 家族構成：扶養の有無 */
 	public void setFamily_structure_support1(String family_structure_support1){
 		this.family_structure_support1 = family_structure_support1;
@@ -660,32 +730,6 @@ public final class Personal_informationForm extends ActionForm {
 	}
 	public String getFamily_structure_job5(){
 		return family_structure_job5;
-	}
-
-	/** 確認資料 */
-	public void setDocument(String document){
-		this.document = document;
-	}
-	public String getDocument(){
-		return document;
-	}
-
-	/** 備考 */
-	public void setNb(String nb){
-		this.nb = nb;
-	}
-	public String getNb(){
-		return nb;
-	}
-
-	/** 確認者:社員番号 */
-	public void setConfirmer_no(String confirmer_no){
-		this.confirmer_no = confirmer_no;
-	}
-	public String getConfirmer_no(){
-		if(confirmer_no == null)
-			confirmer_no = "";
-		return confirmer_no;
 	}
 
 	/** ボタン */
