@@ -155,6 +155,7 @@ position:relative;
 						        	depart.set(i,"無所属");
 						        else
 						        	depart.set(i,"第"+depart.get(i)+"技術部");
+
 						        out.println(depart.get(i));
 						        out.println("</td></tr>");
 							}
