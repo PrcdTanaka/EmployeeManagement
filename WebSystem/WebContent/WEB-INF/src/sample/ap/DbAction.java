@@ -525,14 +525,16 @@ public class DbAction extends Object{
 			}
 			else{
 				sb.append("WHERE" + crlf);
-				sb.append(  form.getRadio()+"=?"+crlf);
+				sb.append("MANAGER_FLAG=0 AND" + crlf);
+				sb.append(  form.getRadio()+crlf);
+				sb.append("LIKE ?");
 			}
 
 
-//			if(form.getText()!=null)
-//
-//			else
-//				sb.append("*;");
+			//			if(form.getText()!=null)
+			//
+			//			else
+			//				sb.append("*;");
 
 			String query = sb.toString();
 
@@ -551,10 +553,8 @@ public class DbAction extends Object{
 			List<Object> bindList= new ArrayList<Object>();
 			if(form.getText().equals(""))
 				bindList.add("0");
-			else if(form.getRadio().equals("DEPARTMENT")&&form.getText().length()==1)
-				bindList.add("0"+form.getText());
 			else
-				bindList.add(form.getText());
+				bindList.add("%"+form.getText()+"%");
 
 
 
@@ -572,9 +572,9 @@ public class DbAction extends Object{
 					ret = true;
 				}
 
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
 		}
 
@@ -697,6 +697,63 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+
+	/***
+	 * <p>
+	 * 新規ユーザーを登録する。
+	 * </p>
+	 *
+	 * @param form ユーザー登録画面アクションフォーム
+	 * @return DB接続成功：true DB接続失敗：false
+	 */
+
+	public boolean userRegister2(RegisterForm form){
+
+		boolean ret = true;
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO PUBLIC_INFORMATION_TBL(" + crlf);
+			sb.append("  EMPLOYEE_NO" + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("  '" + form.getEmployee_no() +"'" +crlf);
+			sb.append(")" + crlf);
+
+			String query = sb.toString();
+
+			try {
+
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+		}
+		return ret;
+
+		/***
+		 * <p>
+		 * パスワードを取得する。
+		 * </p>
+		 *
+		 * @param form パスワード変更画面アクションフォーム
+		 * @return DB接続成功：true DB接続失敗：false
+		 */
+	}
 	/***
 	 * <p>
 	 * パスワードを取得する。
@@ -762,6 +819,15 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+
+	/***
+	 * <p>
+	 * パスワードを変更する。
+	 * </p>
+	 *
+	 * @param form パスワード変更画面アクションフォーム
+	 * @return DB接続成功：true DB接続失敗：false
+	 */
 
 	public boolean setPassword(PasswordForm form) {
 
@@ -938,7 +1004,6 @@ public class DbAction extends Object{
 			}
 		}
 		return ret;
-
 	}
 	/**
 	 * 個人情報設定処理
@@ -1566,7 +1631,7 @@ public class DbAction extends Object{
 					form.setSex(val.get("SEX"));
 					/*SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd");
 					form.setBirth(sdFormat.parse(val.get("BIRTH")));
-					*/
+					 */
 					form.setBirth(val.get("BIRTH"));
 					form.setPostal_code(val.get("POSTAL_CODE"));
 					form.setAddress(val.get("ADDRESS"));

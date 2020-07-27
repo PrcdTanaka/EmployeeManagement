@@ -119,28 +119,29 @@ position:relative;
 							else
 							{
 								out.println("<tr><td>");      //名前にリンクがついてます。
-								if(manager.equals("0")){
+
+								if(name.get(i)==null&&manager.equals("1"))
+								{
+									out.println("<a href=\"/WebSystem/jsp/Personal_information.jsp?employee_no=");
+									out.println(no.get(i));
+									out.println("\" style=\"color:red\" >");
+									name.set(i, "未登録");
+								}
+								else if(name.get(i)==null){
+									out.println("<a href=\"#\" style=\"color:red\"onclick=\"js_alert()\">");
+									name.set(i, "未登録");
+								}
+								else if(manager.equals("0")){
 									out.println("<a href=\"/WebSystem/jsp/reference.jsp?employee_no=");
 									out.println(no.get(i));
 									out.println("\" >");
 								}
-								else{
+								else if(manager.equals("1")){
 									out.println("<a href=\"/WebSystem/jsp/Personal_information.jsp?employee_no=");
 									out.println(no.get(i));
 									out.println("\" >");
 								}
-								if(name.get(i)==null&&manager.equals("0"))
-								{
-									out.println("<a href=\"#\" style=\"color:red\"onclick=\"js_alert()\"");
-									name.set(i, "未登録");
-									 out.println("</a>");
-								}
-								else
-								{
-									out.println("<a href=\"/WebSystem/jsp/reference.jsp?employee_no=");
-									name.set(i, "未登録");
-									out.println("\" >");
-								}
+
 						        out.println(name.get(i));
 						        out.println("</td>");
 						        out.println("</a>");
@@ -150,6 +151,11 @@ position:relative;
 						        out.println("</td>");
 
 						        out.println("<td>");
+						        if(depart.get(i)==null)
+						        	depart.set(i,"無所属");
+						        else
+						        	depart.set(i,"第"+depart.get(i)+"技術部");
+
 						        out.println(depart.get(i));
 						        out.println("</td></tr>");
 							}
