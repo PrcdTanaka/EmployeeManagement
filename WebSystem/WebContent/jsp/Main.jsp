@@ -14,7 +14,7 @@
 		String no = s.getEmployee_no();
 		String name = s.getEmployee_name();
 		String manager = s.getManager();
-		
+
 		if(name == null){
 			name = "";
 		}
@@ -23,7 +23,7 @@
 		<title><bean:message key="main.title"/></title>
 		<html:base/>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
-		<link rel="stylesheet" type="text/css" href="../css/main.css"/> 
+		<link rel="stylesheet" type="text/css" href="../css/main.css"/>
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<tr>
 			<html:form action="/MainAction" styleId="mform">
@@ -38,10 +38,10 @@
 	</head>
 		<body>
 			<form id="frm1" name="frm1a" action="/jsp/Main.jsp">
-			
+
 			</form>
 			<br>
-			
+
 			<html:form action="/MainAction">
 			<div class="accbox">
 			<!--ラベル1-->
@@ -56,7 +56,7 @@
 							<html:param name="link">edit</html:param>
 						</html:link>
 					</li>
-					
+
 					<span id="entry">
 						<li>
 							<html:link action="/MainAction">ユーザ情報登録画面
@@ -78,7 +78,7 @@
 						</html:link>
 					</li>
 				</p>
-				
+
 				<!-- bean:define id="manager" name="LoginForm" property="manager" type="String" /-->
 				<script type="text/javascript">
 					// 管理者フラグが無いなら（0）
@@ -93,6 +93,6 @@
 			</div>
 			<!--//ラベル1-->
 			</html:form>
-			
+
 		</body>
 </html:html>
