@@ -129,17 +129,21 @@ public final class SearchAction extends Action {
 		// 　　クラス　：DbAction<br>
 		// 　　メソッド：getSyainName()<br>
 			// 社員名を取得できた場合
-
+		HttpSession session = request.getSession();
 		try {
 			request.setCharacterEncoding("utf-8");
 			if(button.equals("戻る")) {
 				forward="back";
+				session.removeAttribute("sForm");
 			}
-			else {
+			else if(button.equals("検索")){
 				forward="search";
 				dbaction.getSearchAns(sForm);
+				session.setAttribute("sForm", sForm);
 
-				HttpSession session = request.getSession();
+			}
+			else{
+				forward="search";
 				session.setAttribute("sForm", sForm);
 			}
 		} catch (IOException e) {

@@ -447,7 +447,7 @@ public class DbAction extends Object{
 			sb.append("FROM" + crlf);
 			sb.append("  EMPLOYEE_MST" + crlf);
 			sb.append("WHERE" + crlf);
-			sb.append("  PASSWORD = ?" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
 
 			String query = sb.toString();
 
@@ -525,14 +525,16 @@ public class DbAction extends Object{
 			}
 			else{
 				sb.append("WHERE" + crlf);
-				sb.append(  form.getRadio()+"=?"+crlf);
+				sb.append("MANAGER_FLAG=0 AND" + crlf);
+				sb.append(  form.getRadio()+crlf);
+				sb.append("LIKE ?");
 			}
 
 
-//			if(form.getText()!=null)
-//
-//			else
-//				sb.append("*;");
+			//			if(form.getText()!=null)
+			//
+			//			else
+			//				sb.append("*;");
 
 			String query = sb.toString();
 
@@ -551,10 +553,8 @@ public class DbAction extends Object{
 			List<Object> bindList= new ArrayList<Object>();
 			if(form.getText().equals(""))
 				bindList.add("0");
-			else if(form.getRadio().equals("DEPARTMENT")&&form.getText().length()==1)
-				bindList.add("0"+form.getText());
 			else
-				bindList.add(form.getText());
+				bindList.add("%"+form.getText()+"%");
 
 
 
@@ -572,9 +572,9 @@ public class DbAction extends Object{
 					ret = true;
 				}
 
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
 		}
 
@@ -696,14 +696,61 @@ public class DbAction extends Object{
 			}
 		}
 		return ret;
+	}
 
+	/***
+	 * <p>
+	 * 新規ユーザーを登録する。
+	 * </p>
+	 *
+	 * @param form ユーザー登録画面アクションフォーム
+	 * @return DB接続成功：true DB接続失敗：false
+	 */
+
+	public boolean userRegister2(RegisterForm form){
+
+		boolean ret = true;
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO PUBLIC_INFORMATION_TBL(" + crlf);
+			sb.append("  EMPLOYEE_NO" + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("  '" + form.getEmployee_no() +"'" +crlf);
+			sb.append(")" + crlf);
+
+			String query = sb.toString();
+
+			try {
+
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+		}
+		return ret;
 
 		/***
 		 * <p>
-		 * 新規ユーザーを登録する。
+		 * パスワードを取得する。
 		 * </p>
 		 *
-		 * @param form ユーザー登録画面アクションフォーム
+		 * @param form パスワード変更画面アクションフォーム
 		 * @return DB接続成功：true DB接続失敗：false
 		 */
 	}
@@ -765,6 +812,15 @@ public class DbAction extends Object{
 		return ret;
 	}
 
+	/***
+	 * <p>
+	 * パスワードを変更する。
+	 * </p>
+	 *
+	 * @param form パスワード変更画面アクションフォーム
+	 * @return DB接続成功：true DB接続失敗：false
+	 */
+
 	public boolean setPassword(PasswordForm form) {
 
 		boolean ret = false;
@@ -782,10 +838,10 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("UPDDATE" + crlf);
-			sb.append("ENPLOYEE_MST" + crlf);
+			sb.append("UPDATE" + crlf);
+			sb.append("EMPLOYEE_MST" + crlf);
 			sb.append("SET" + crlf);
-			sb.append("PASSWORD = " + form.getNewpassword() + crlf);
+			sb.append("PASSWORD = " + "'" +form.getNewpassword1()+"'" + crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("EMPLOYEE_NO = ?" + crlf);
 
@@ -808,7 +864,6 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setDbpassword(val.get("SYAIN_NAME"));
 					ret = true;
 				}
 
@@ -819,7 +874,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
-	public Object getDbpassword(PasswordForm form) {
+	public boolean getDbpassword(PasswordForm form) {
 		// TODO 自動生成されたメソッド・スタブ
 		boolean ret = false;
 
@@ -845,6 +900,10 @@ public class DbAction extends Object{
 
 			String query = sb.toString();
 
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("PASSWORD");
+
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
 			typeList.add(dba.DB_STRING);
@@ -857,12 +916,12 @@ public class DbAction extends Object{
 
 			try {
 
-				dba.executeQuery(query, typeList, bindList);
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
 				dba.commit();
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setDbpassword(val.get("SYAIN_NAME"));
+					form.setDbpassword(val.get("PASSWORD"));
 					ret = true;
 				}
 
@@ -870,7 +929,7 @@ public class DbAction extends Object{
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return ret;
 	}
 
 	/**
@@ -939,12 +998,12 @@ public class DbAction extends Object{
 		return ret;
 
 	}
-/**
- * 個人情報設定処理
- * @param form
- * @return
- */
-	public boolean setPersonal_information(Personal_informationForm form) {
+	/**
+	 * 個人情報設定処理
+	 * @param form
+	 * @return
+	 */
+	public boolean setPersonalData(Personal_informationForm form) {
 
 		boolean ret = false;
 
@@ -962,13 +1021,36 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 
-			sb.append("UPDDATE" + crlf);
+			sb.append("UPDATE" + crlf);
 			sb.append(" PERSONAL_INFORMATION_TBL " + crlf);
 			sb.append("SET" + crlf);
-			sb.append("  NAME ='"  + form.getEmployee_name() + "'," + crlf);
+			sb.append("  NAME ='"  + form.getEmployee_name() + "'" + crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			try {
+
+				dba.executeQuery(query, typeList, bindList);
+				dba.commit();
+				dba.closeConnection();
+
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+
+
 		return ret;
 	}
 
@@ -1064,7 +1146,7 @@ public class DbAction extends Object{
 					form.setSex(val.get("SEX"));
 					/*SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd");
 					form.setBirth(sdFormat.parse(val.get("BIRTH")));
-					*/
+					 */
 					form.setBirth(val.get("BIRTH"));
 					form.setPostal_code(val.get("POSTAL_CODE"));
 					form.setAddress(val.get("ADDRESS"));

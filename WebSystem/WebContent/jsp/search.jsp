@@ -51,7 +51,7 @@ margin-top: 4%;
 position:relative;
 
 }
-.sousin{
+.send{
 	background-color: #49a9d4;
 	border-radius:8px;
 	font-weight: bold;
@@ -97,7 +97,6 @@ position:relative;
 				<html:radio property="radio" value="DEPARTMENT"/>技術部
 				<h2>検索結果</h2>
 
-
 					<%
 					try
 					{
@@ -106,7 +105,9 @@ position:relative;
 						List<String> name=s.getEmployee_name();
 						List<String> no=s.getEmployee_no();
 						List<String> depart=s.getDepertment();
-
+						LoginForm l=(LoginForm)session.getAttribute("form");
+						String manager=l.getManager();
+						out.println("<script>function js_alert() {alert(\"未登録のため参照できません!!FUCKYOU!!!\");}</script>");
 						out.println("<table border=\"1\" align = \"center\" style=\"border-collapse: collapse\"  >");
 						for(int i=-1;i<no.size();i++)
 						{
@@ -118,13 +119,29 @@ position:relative;
 							else
 							{
 								out.println("<tr><td>");      //名前にリンクがついてます。
-								out.println("<a href=\"#\">");
-								if(name.get(i)==null)
+
+								if(name.get(i)==null&&manager.equals("1"))
 								{
-									out.println("<a href=\"#\" style=\"color:red\"");
+									out.println("<a href=\"/WebSystem/jsp/Personal_information.jsp?employee_no=");
+									out.println(no.get(i));
+									out.println("\" style=\"color:red\" >");
 									name.set(i, "未登録");
-									 out.println("</a>");
 								}
+								else if(name.get(i)==null){
+									out.println("<a href=\"#\" style=\"color:red\"onclick=\"js_alert()\">");
+									name.set(i, "未登録");
+								}
+								else if(manager.equals("0")){
+									out.println("<a href=\"/WebSystem/jsp/reference.jsp?employee_no=");
+									out.println(no.get(i));
+									out.println("\" >");
+								}
+								else if(manager.equals("1")){
+									out.println("<a href=\"/WebSystem/jsp/Personal_information.jsp?employee_no=");
+									out.println(no.get(i));
+									out.println("\" >");
+								}
+
 						        out.println(name.get(i));
 						        out.println("</td>");
 						        out.println("</a>");
@@ -134,6 +151,10 @@ position:relative;
 						        out.println("</td>");
 
 						        out.println("<td>");
+						        if(depart.get(i)==null)
+						        	depart.set(i,"無所属");
+						        else
+						        	depart.set(i,"第"+depart.get(i)+"技術部");
 						        out.println(depart.get(i));
 						        out.println("</td></tr>");
 							}
@@ -156,7 +177,7 @@ position:relative;
 
 
 		<div class="back">
-		<html:submit styleClass="sousin" property="button" value="戻る"></html:submit>
+		<html:submit styleClass="send" property="button" value="戻る"></html:submit>
 
 		</div>
 
