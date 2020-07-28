@@ -213,6 +213,7 @@
 					<html:text property="employee_name" name="Personal_informationForm"
 						styleId="name" value="<%= employee_name %>" size="18" maxlength="16" ></html:text>
 					※必須
+					<%= employee_name %>
 				</div>
 				<div>
 					<label for="furigana">フリガナ：</label>

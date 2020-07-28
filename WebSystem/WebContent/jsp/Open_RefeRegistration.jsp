@@ -18,10 +18,7 @@
 </head>
 <body>
 	<html:form action="/Open_informationAction">
-		<%
-		String name = "";
-		String pos ="";
-	%>
+
 		<div class='main1'>
 			<div class='pic'>
 				<img src="C:\Users\gakuto_yamagishi\Desktop\susi.jpg" height="200"
@@ -30,27 +27,23 @@
 			<div class='pro'>
 				<div class='pro2'>
 					<p style="margin-top: 5px;">
-						名前：<%= name %>
+						名前：
+						<html:text property="name" styleId="name"></html:text>
+
 					</p>
 					<p style="margin-top: 5px; margin-left: 50px">
-						役職：<%= pos %>
+						役職：
+						<html:text property="pos" styleId="pos"></html:text>
 					</p>
 				</div>
 				<div class='pro2'>
 					<div class='day'>入社年月日:</div>
-					<html:text property="djc" />
+
+					<html:text property="djc" styleId="djc"></html:text>
 				</div>
 				<div class='pro2'>
 					<div class='tec'>技術部 :</div>
-					<html:select property="tec" name="Open_informationForm"
-						styleId="tec">
-						<html:option value="">-</html:option>
-						<html:option value="0">第1技術部</html:option>
-						<html:option value="1">第2技術部</html:option>
-						<html:option value="2">第3技術部</html:option>
-						<html:option value="3">第4技術部</html:option>
-						<html:option value="4">第5技術部</html:option>
-					</html:select>
+					<html:text property="tec" name="Open_informationForm" styleId="tec"></html:text>
 				</div>
 			</div>
 		</div>
@@ -58,32 +51,33 @@
 		<div class='main2'>
 			<div class='pro3'>
 				<div class='hobyy'>趣味:</div>
-				<html:text property="hobby" />
+				<html:text property="hobby" styleId="hobby"></html:text>
 			</div>
 			<div class='pro3'>
 				<div class='ss'>特技:</div>
-				<html:text property="ss" />
+				<html:text property="ss" styleId="ss"></html:text>
 			</div>
 		</div>
 
 		<div class='bottom'>
 			<div class='int'>紹介文</div>
-			<html:textarea property="intr"></html:textarea>
+			<html:textarea property="intr" styleId="intr"></html:textarea>
 			<!-- styleClass='int2'name='int2' cols='100' rows='10' -->
 		</div>
-		<!-- 登録/編集ボタン  -->
-		<p id="Bentry">
-			<html:submit property="button" styleClass="btn" value="登録"
-				styleId="entry" />
-		</p>
 
-		<p id="Bedit">
-			<input type="button" value="編集" id="edit" onclick="clickBtnEdit()"
-				class="btn" />
-		</p>
 		<!-- 戻るボタン -->
 		<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
+
+		<script type="text/javascript">
+			document.getElementById('name').readOnly = true;
+			document.getElementById('pos').readOnly = true;
+			document.getElementById('djc').readOnly = true;
+			document.getElementById('tec').readOnly = true;
+			document.getElementById('hobby').readOnly = true;
+			document.getElementById('ss').readOnly = true;
+			document.getElementById('intr').readOnly = true;
+		</script>
 
 
 
