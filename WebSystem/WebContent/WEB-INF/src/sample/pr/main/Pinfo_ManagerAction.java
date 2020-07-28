@@ -14,7 +14,7 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
 
-public final class Personal_informationAction extends Action {
+public final class Pinfo_ManagerAction extends Action {
 
 	// DB接続用オブジェクト
 	private DbAction dba = new DbAction();
@@ -38,7 +38,7 @@ public final class Personal_informationAction extends Action {
 	 * @throws IOException
 	 *             -
 	 */
-	public Personal_informationAction() throws IOException {
+	public Pinfo_ManagerAction() throws IOException {
 
 	}
 
@@ -98,22 +98,21 @@ public final class Personal_informationAction extends Action {
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
 
 		String Button;
-		
+
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		// ログインセッションの呼び出し
-		HttpSession session = request.getSession();
-		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		
+		HttpSession session = request.getSession();
+
 		// フォーム情報の呼び出し
 		Personal_informationForm pForm = (Personal_informationForm) frm;
-		
+
 		// ログインユーザの社員番号取得
-		pForm.setEmployee_no(lForm.getEmployee_no());
-		
+		pForm.setEmployee_no(request.getParameter("employee_no"));
+
 		try{
 			Button = pForm.getButton();
 			if(Button == null)
@@ -127,6 +126,9 @@ public final class Personal_informationAction extends Action {
 			case "登録":
 				forward = clickBtnEntry(pForm);
 				break;
+			case "確認":
+				forward = clickBtnConf(pForm);
+				break;
 			case "戻る":
 				forward = clickBtnBack(pForm);
 				break;
@@ -134,7 +136,6 @@ public final class Personal_informationAction extends Action {
 				forward = "password";
 				break;
 			}
-
 		return map.findForward(forward);
 	}
 
@@ -162,40 +163,40 @@ public final class Personal_informationAction extends Action {
 	 * @return 遷移先
 	 */
 	private String clickBtnEntry(Personal_informationForm form) {
-		
+
 		if(form.getEmployee_name() == null){
 			form.setMessage("氏名を入力して下さい。");
 		} else {
-			int no;
-			for(no = 1; no <= 5; no++) {
-				// 緊急連絡先テーブルに社員番号とNoの組み合わせが存在しているかの確認。
-				if(dba.getEmployee_no(form, "EMERGENCY_CONTACT_TBL", no)) {
-					// 社員番号が存在している場合
-					dba.setEmergencyContactU(form, no);
-				} else {
-					// 社員番号が存在しない場合
-					dba.setEmergencyContactI(form, no);
-				}
-				
-				// 家族構成テーブルに社員番号とNoの組み合わせが存在しているかの確認。
-				if(dba.getEmployee_no(form, "FAMILY_STRUCTURE_TBL", no)) {
-					// 社員番号が存在している場合
-					dba.setFamilyStructureU(form, no);
-				} else {
-					// 社員番号が存在しない場合
-					dba.setFamilyStructureI(form, no);
-				}
-				
-			}
 			dba.setPersonalData(form);
 		}
-		
+
+
 		forward = "pInfo";
 		return forward;
 	}
+
+	private String clickBtnConf(Personal_informationForm form) {
+		System.out.println("clickBtnConfメソッドが呼ばれました");
+		return forward;
+	}
+
 	private String clickBtnBack(Personal_informationForm form) {
 		System.out.println("clickBtnBackメソッドが呼ばれました");
-		forward = "main";
 		return forward;
+	}
+
+	/**
+	 * 日付の整形
+	 * @param form
+	 * @return
+	 */
+	private boolean dateCheck(Personal_informationForm form){
+		boolean ret = true;
+
+		if(form.getHire_date() != null){
+
+		}
+
+		return ret;
 	}
 }

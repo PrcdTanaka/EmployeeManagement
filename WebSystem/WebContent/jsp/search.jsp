@@ -137,7 +137,7 @@ position:relative;
 									out.println("\" >");
 								}
 								else if(manager.equals("1")){
-									out.println("<a href=\"/WebSystem/jsp/Personal_information.jsp?employee_no=");
+									out.println("<a href=\"/WebSystem/jsp/Pinfo_Manager.jsp?employee_no=");
 									out.println(no.get(i));
 									out.println("\" >");
 								}
@@ -155,6 +155,7 @@ position:relative;
 						        	depart.set(i,"無所属");
 						        else
 						        	depart.set(i,"第"+depart.get(i)+"技術部");
+
 						        out.println(depart.get(i));
 						        out.println("</td></tr>");
 							}

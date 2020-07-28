@@ -4,11 +4,9 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="sample.pr.main.SearchForm"%>
+<%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="sample.pr.main.Personal_informationForm"%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
 
 <html:html>
 <head>
@@ -34,7 +32,7 @@
 		DbAction dba = new DbAction();
 		Personal_informationForm pForm = new Personal_informationForm();
 
-		SearchForm sForm = (SearchForm) session.getAttribute("sForm");
+		LoginForm lForm = (LoginForm) session.getAttribute("form");
 
 		String employee_no = "";
 		String hire_date = "";
@@ -47,7 +45,7 @@
 		String postal_code = "";
 		String address = "";
 		String division = "";
-		String emergency_postal_code = "";
+		String Emergency_tel = "";
 		String emergency_address = "";
 		String emergency_name1 = "";
 		String emergency_name2 = "";
@@ -89,6 +87,11 @@
 		String family_structure_relationship3 = "";
 		String family_structure_relationship4 = "";
 		String family_structure_relationship5 = "";
+		String family_structure_residence1 = "";
+		String family_structure_residence2 = "";
+		String family_structure_residence3 = "";
+		String family_structure_residence4 = "";
+		String family_structure_residence5 = "";
 		String family_structure_support1 = "";
 		String family_structure_support2 = "";
 		String family_structure_support3 = "";
@@ -105,11 +108,8 @@
 		String button = "";
 		String status = "0";
 
-		List<String> a = new ArrayList<String>();
-		a=sForm.getEmployee_no(); 
 		// 社員番号を個人情報入力画面アクションフォームに格納
-		System.out.println(a);
-//		pForm.setEmployee_no(a[0]);
+		pForm.setEmployee_no(request.getParameter("employee_no"));
 
 		// 社員名がDBに登録されているかの確認
 		if(dba.getEmoloyee_Name(pForm)){
@@ -133,7 +133,7 @@
 			postal_code = pForm.getPostal_code();
 			address = pForm.getAddress();
 			division = pForm.getDivision();
-			emergency_postal_code = pForm.getEmergency_postal_code();
+			Emergency_tel = pForm.getEmergency_tel();
 			emergency_address = pForm.getEmergency_address();
 			emergency_name1 = pForm.getEmergency_name1();
 			emergency_name2 = pForm.getEmergency_name2();
@@ -175,6 +175,11 @@
 			family_structure_relationship3 = pForm.getFamily_structure_relationship3();
 			family_structure_relationship4 = pForm.getFamily_structure_relationship4();
 			family_structure_relationship5 = pForm.getFamily_structure_relationship5();
+			family_structure_residence1 = pForm.getFamily_structure_residence1();
+			family_structure_residence2 = pForm.getFamily_structure_residence2();
+			family_structure_residence3 = pForm.getFamily_structure_residence3();
+			family_structure_residence4 = pForm.getFamily_structure_residence4();
+			family_structure_residence5 = pForm.getFamily_structure_residence5();
 			family_structure_support1 = pForm.getFamily_structure_support1();
 			family_structure_support2 = pForm.getFamily_structure_support2();
 			family_structure_support3 = pForm.getFamily_structure_support3();
@@ -185,17 +190,14 @@
 			family_structure_job3 = pForm.getFamily_structure_job3();
 			family_structure_job4 = pForm.getFamily_structure_job4();
 			family_structure_job5 = pForm.getFamily_structure_job5();
-			document = pForm.getDocument();
-			nb = pForm.getNb();
-			confirmer_no = pForm.getConfirmer_no();
 			button = pForm.getButton();
 
 			status = "1";
 
 			// 各フィールドを入直不可にする。
-			
-			
-			
+
+
+
 		}
 
 		%>
@@ -209,20 +211,20 @@
 				<div class="hire_date">
 					<label for="hire_date">入社日</label>
 					<html:text property="hire_date" name="Personal_informationForm"
-						styleId="hire_date" value="<%= hire_date %>" size="8" />
-					(半角数字8ケタ)
+						styleId="hire_date" value="<%= hire_date %>" size="8" maxlength="8" />
+					例) 2020年4月10日 → 20200410
 
 				</div>
 				<div class="name">
 					<label for="name">氏名 ：</label>
 					<html:text property="employee_name" name="Personal_informationForm"
-						styleId="name" value="<%= employee_name %>"></html:text>
+						styleId="name" value="<%= employee_name %>" size="18" maxlength="16" ></html:text>
 					※必須
 				</div>
 				<div>
 					<label for="furigana">フリガナ：</label>
 					<html:text property="furigana_name" name="Personal_informationForm"
-						styleId="furigana" value="<%= furigana_name %>"></html:text>
+						styleId="furigana" value="<%= furigana_name %>" size="18" maxlength="16" ></html:text>
 				</div>
 				<div class="sex">
 					<label for="sex">性別：</label>
@@ -236,30 +238,30 @@
 				<div class="birth">
 					<label for="birth">生年月日：</label>
 					<html:text property="birth" name="Personal_informationForm"
-						styleId="birth" value="<%= birth %>" size="8" />
+						styleId="birth" value="<%= birth %>" size="7" maxlength="8" />
 				</div>
 				<div class="tel">
 					<label for="tel_home">電話番号</label>
 					<div class="tel_home">
 						<label for="tel_home"> 自宅 ：</label>
 						<html:text property="tel_home" name="Personal_informationForm"
-							styleId="tel_home" value="<%= tel_home %>" />
+							styleId="tel_home" value="<%= tel_home %>" size="15" maxlength="15" />
 					</div>
 					<div class="tel_phone">
 						<label for="tel_phone"> 携帯電話：</label>
 						<html:text property="tel_phone" name="Personal_informationForm"
-							styleId="tel_phone" value="<%= tel_phone %>" />
+							styleId="tel_phone" value="<%= tel_phone %>" size="19" maxlength="15"/>
 					</div>
 				</div>
 				<div class="postal_code">
 					<label for="postal_code">郵便番号：</label>
 					<html:text property="postal_code" name="Personal_informationForm"
-						styleId="postal_code" maxlength="7" value="<%= postal_code %>" />
+						styleId="postal_code" value="<%= postal_code %>" size="7" maxlength="7"/>
 				</div>
 				<div class="address">
 					<label for="address">住所 ：</label>
 					<html:text property="address" name="Personal_informationForm"
-						styleId="address" value="<%= address %>" />
+						styleId="address" value="<%= address %>" size="40" maxlength="32"/>
 				</div>
 				<div class="division">
 					<label for="division">住所区分：</label>
@@ -277,35 +279,35 @@
 				<div class="emergency_contact" id="emergency_contact">
 					<label for="emergency_contact">緊急連絡先</label>
 					<div>
-						<label for="emergency_postal_code">郵便番号：</label>
-						<html:text property="emergency_postal_code"
-							name="Personal_informationForm" styleId="emergency_postal_code"
-							size="4" maxlength="7" value="<%= emergency_postal_code %>" />
+						<label for="Emergency_tel">電話番号：</label>
+						<html:text property="Emergency_tel"
+							name="Personal_informationForm" styleId="Emergency_tel"
+							size="4" maxlength="7" value="<%= Emergency_tel %>" />
 					</div>
 					<div class="emergency_address">
 						<label for="emergency_address">住所 ：</label>
 						<html:text property="emergency_address"
 							name="Personal_informationForm" styleId="emergency_address"
-							size="50" value="<%= emergency_address %>" />
+							value="<%= emergency_address %>" size="40" maxlength="32" />
 					</div>
 					<p class="emergency_contact" id="emergency_contact1">
 					<div>
 						<label for="emergency_name1" name="emergency1">代表：</label>
 						<html:text property="emergency_name1"
 							name="Personal_informationForm" styleId="emergency_name1"
-							value="<%= emergency_name1 %>" />
+							value="<%= emergency_name1 %>" size="18" maxlength="16"/>
 					</div>
 					<div>
 						<label for="relationship1" name="emergency1">本人との関係：</label>
 						<html:text property="relationship1"
 							name="Personal_informationForm" styleId="relationship1"
-							styleClass="relationship" value="<%= relationship1 %>" />
+							styleClass="relationship" value="<%= relationship1 %>" size="3" maxlength="3"/>
 					</div>
 					<div>
 						<label for="emergency_tel1" name="emergency1">TEL ：</label>
 						<html:text property="emergency_tel1"
 							name="Personal_informationForm" styleId="emergency_tel1"
-							styleClass="emergency_tel" value="<%= emergency_tel1 %>" />
+							styleClass="emergency_tel" value="<%= emergency_tel1 %>" size="19" maxlength="15"/>
 					</div>
 				</div>
 				</p>
@@ -315,19 +317,19 @@
 					<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
 					<html:text property="emergency_name2"
 						name="Personal_informationForm" styleId="emergency_name2"
-						styleClass="emergency_name" value="<%=emergency_name2%>" />
+						styleClass="emergency_name" value="<%=emergency_name2%>" size="18" maxlength="16" />
 				</div>
 				<div>
 					<label for="relationship2" name="emergency2">本人との関係：</label>
 					<html:text property="relationship2" name="Personal_informationForm"
 						styleId="relationship2" styleClass="relationship"
-						value="<%=relationship2%>" />
+						value="<%=relationship2%>" size="3" maxlength="3" />
 				</div>
 				<div>
 					<label for="emergency_tel2" name="emergency2">TEL ：</label>
 					<html:text property="emergency_tel2"
 						name="Personal_informationForm" styleId="emergency_tel2"
-						styleClass="emergency_tel" value="<%=emergency_tel2%>" />
+						styleClass="emergency_tel" value="<%=emergency_tel2%>" size="19" maxlength="15" />
 				</div>
 				</p>
 
@@ -336,19 +338,19 @@
 					<label for="emergency_name3" id="a1" name="emergency3">氏名：</label>
 					<html:text property="emergency_name3"
 						name="Personal_informationForm" styleId="emergency_name3"
-						styleClass="emergency_name" value="<%= emergency_name3 %>"></html:text>
+						styleClass="emergency_name" value="<%= emergency_name3 %>" size="18" maxlength="16"></html:text>
 				</div>
 				<div>
 					<label for="relationship3" name="emergency3">本人との関係：</label>
 					<html:text property="relationship3" name="Personal_informationForm"
 						styleId="relationship3" styleClass="relationship"
-						value="<%= relationship3 %>" />
+						value="<%= relationship3 %>" size="3" maxlength="3" />
 				</div>
 				<div>
 					<label for="emergency_tel3" name="emergency3">TEL ：</label>
 					<html:text property="emergency_tel3"
 						name="Personal_informationForm" styleId="emergency_tel3"
-						styleClass="emergency_tel" value="<%= emergency_tel3 %>" />
+						styleClass="emergency_tel" value="<%= emergency_tel3 %>" size="19" maxlength="15"/>
 				</div>
 				</p>
 				<p class="emergency_contact" id="emergency_contact4">
@@ -356,19 +358,19 @@
 					<label for="emergency_name4" id="a1" name="emergency4">氏名：</label>
 					<html:text property="emergency_name4"
 						name="Personal_informationForm" styleId="emergency_name4"
-						styleClass="emergency_name" value="<%= emergency_name4 %>"></html:text>
+						styleClass="emergency_name" value="<%= emergency_name4 %>" size="18" maxlength="16"></html:text>
 				</div>
 				<div>
 					<label for="relationship4" name="emergency4">本人との関係：</label>
 					<html:text property="relationship4" name="Personal_informationForm"
 						styleId="relationship4" styleClass="relationship"
-						value="<%= relationship4 %>" />
+						value="<%= relationship4 %>" size="3" maxlength="3" />
 				</div>
 				<div>
 					<label for="emergency_tel4" name="emergency4">TEL ：</label>
 					<html:text property="emergency_tel4"
 						name="Personal_informationForm" styleId="emergency_tel4"
-						styleClass="emergency_tel" value="<%= emergency_tel4 %>" />
+						styleClass="emergency_tel" value="<%= emergency_tel4 %>" size="19" maxlength="15" />
 				</div>
 				</p>
 				<p class="emergency_contact" id="emergency_contact5">
@@ -376,19 +378,19 @@
 					<label for="emergency_name5" id="a1" name="emergency5">氏名：</label>
 					<html:text property="emergency_name5"
 						name="Personal_informationForm" styleId="emergency_name5"
-						styleClass="emergency_name" value="<%= emergency_name5 %>"></html:text>
+						styleClass="emergency_name" value="<%= emergency_name5 %>" size="18" maxlength="16"></html:text>
 				</div>
 				<div>
 					<label for="relationship5" name="emergency5">本人との関係：</label>
 					<html:text property="relationship5" name="Personal_informationForm"
 						styleId="relationship5" styleClass="relationship"
-						value="<%= relationship5 %>" />
+						value="<%= relationship5 %>" size="3" maxlength="3" />
 				</div>
 				<div>
 					<label for="emergency_tel5" name="emergency5">TEL ：</label>
 					<html:text property="emergency_tel5"
 						name="Personal_informationForm" styleId="emergency_tel5"
-						styleClass="emergency_tel" value="<%= emergency_tel5 %>" />
+						styleClass="emergency_tel" value="<%= emergency_tel5 %>" size="19" maxlength="15" />
 				</div>
 				</p>
 				</br>
@@ -400,20 +402,20 @@
 						<html:text property="family_structure_name1"
 							name="Personal_informationForm"
 							styleId="family_structure_name1"
-							value="<%= family_structure_name1 %>" />
+							value="<%= family_structure_name1 %>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_furigana1" name="family_structure1">フリガナ：</label>
 						<html:text property="family_structure_furigana1"
 							name="Personal_informationForm"
 							styleId="family_structure_furigana1"
-							value="<%= family_structure_furigana1 %>" />
+							value="<%= family_structure_furigana1 %>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_birth1" name="family_structure1">生年月日：</label>
 						<html:text property="family_structure_birth1"
 							name="Personal_informationForm" styleId="family_structure_birth1"
-							value="<%= family_structure_birth1 %>" />
+							value="<%= family_structure_birth1 %>" size="7" maxlength="8" />
 					</div>
 					<div>
 						<label for="family_structure_sex1" name="family_structure1">性別：</label>
@@ -431,7 +433,19 @@
 						<html:text property="family_structure_relationship1"
 							name="Personal_informationForm"
 							styleId="family_structure_relationship1"
-							value="<%= family_structure_relationship1 %>" />
+							value="<%= family_structure_relationship1 %>" size="3" maxlength="3" />
+					</div>
+					<div>
+						<label for="family_structure_residence"
+							name="family_structure1">同居・別居</label>
+						<html:select property="family_structure_residence1"
+							name="Personal_informationForm"
+							styleId="family_structure_residence1"
+							value="<%= family_structure_residence1 %>">
+							<html:option value="">-</html:option>
+							<html:option value="0">同居</html:option>
+							<html:option value="1">別居</html:option>
+						</html:select>
 					</div>
 					<div>
 						<label for="family_structure_support1" name="family_structure1">扶養の有無：</label>
@@ -448,27 +462,27 @@
 						<label for="family_structure_job1" name="family_structure1">職業：</label>
 						<html:text property="family_structure_job1"
 							name="Personal_informationForm" styleId="family_structure_job1"
-							value="<%= family_structure_job1 %>" />
+							value="<%= family_structure_job1 %>" size="18" maxlength="16" />
 					</div>
 
 					<div>
 						<label for="family_structure_name2" name="family_structure2">氏名：</label>
 						<html:text property="family_structure_name2"
 							name="Personal_informationForm" styleId="family_structure_name2"
-							value="<%= family_structure_name2 %>" />
+							value="<%= family_structure_name2 %>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_furigana2" name="family_structure2">フリガナ：</label>
 						<html:text property="family_structure_furigana2"
 							name="Personal_informationForm"
 							styleId="family_structure_furigana2"
-							value="<%= family_structure_furigana2 %>" />
+							value="<%= family_structure_furigana2 %>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_birth2" name="family_structure2">生年月日：</label>
 						<html:text property="family_structure_birth2"
 							name="Personal_informationForm" styleId="family_structure_birth2"
-							value="<%= family_structure_birth2 %>" />
+							value="<%= family_structure_birth2 %>" size="7" maxlength="8" />
 					</div>
 					<div>
 						<label for="family_structure_sex2" name="family_structure2">性別：</label>
@@ -490,6 +504,18 @@
 							value="<%= family_structure_relationship2 %>" />
 					</div>
 					<div>
+						<label for="family_structure_residence"
+							name="family_structure2">同居・別居</label>
+						<html:select property="family_structure_residence2"
+							name="Personal_informationForm"
+							styleId="family_structure_residence2"
+							value="<%= family_structure_residence2 %>">
+							<html:option value="">-</html:option>
+							<html:option value="0">同居</html:option>
+							<html:option value="1">別居</html:option>
+						</html:select>
+					</div>
+					<div>
 						<label for="family_structure_support2" name="family_structure2">扶養の有無：</label>
 						<html:select property="family_structure_support2"
 							name="Personal_informationForm"
@@ -504,7 +530,7 @@
 						<label for="family_structure_job2" name="family_structure2">職業：</label>
 						<html:text property="family_structure_job2"
 							name="Personal_informationForm" styleId="family_structure_job2"
-							value="<%= family_structure_job2 %>" />
+							value="<%= family_structure_job2 %>" size="18" maxlength="16" />
 					</div>
 
 					</br>
@@ -513,20 +539,20 @@
 						<label for="family_structure_name3" name="family_structure3">氏名：</label>
 						<html:text property="family_structure_name3"
 							name="Personal_informationForm" styleId="family_structure_name3"
-							value="<%= family_structure_name3 %>" />
+							value="<%= family_structure_name3 %>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_furigana3" name="family_structure3">フリガナ：</label>
 						<html:text property="family_structure_furigana3"
 							name="Personal_informationForm"
 							styleId="family_structure_furigana3"
-							value="<%= family_structure_furigana3 %>" />
+							value="<%= family_structure_furigana3 %>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_birth3" name="family_structure3">生年月日：</label>
 						<html:text property="family_structure_birth3"
 							name="Personal_informationForm" styleId="family_structure_birth3"
-							value="<%= family_structure_birth3 %>" />
+							value="<%= family_structure_birth3 %>"  size="7" maxlength="8" />
 					</div>
 					<div>
 						<label for="family_structure_sex3" name="family_structure3">性別：</label>
@@ -545,7 +571,19 @@
 						<html:text property="family_structure_relationship3"
 							name="Personal_informationForm"
 							styleId="family_structure_relationship3"
-							value="<%= family_structure_relationship3 %>" />
+							value="<%= family_structure_relationship3 %>" size="3" maxlength="3" />
+					</div>
+					<div>
+						<label for="family_structure_residence"
+							name="family_structure3">同居・別居</label>
+						<html:select property="family_structure_residence3"
+							name="Personal_informationForm"
+							styleId="family_structure_residence3"
+							value="<%= family_structure_residence3 %>">
+							<html:option value="">-</html:option>
+							<html:option value="0">同居</html:option>
+							<html:option value="1">別居</html:option>
+						</html:select>
 					</div>
 					<div>
 						<label for="family_structure_support3" name="family_structure3">扶養の有無：</label>
@@ -562,7 +600,7 @@
 						<label for="family_structure_job3" name="family_structure3">職業：</label>
 						<html:text property="family_structure_job3"
 							name="Personal_informationForm" styleId="family_structure_job3"
-							value="<%= family_structure_job3 %>" />
+							value="<%= family_structure_job3 %>"  size="18" maxlength="16"/>
 					</div>
 
 
@@ -570,20 +608,20 @@
 						<label for="family_structure_name4" name="family_structure4">氏名：</label>
 						<html:text property="family_structure_name4"
 							name="Personal_informationForm" styleId="family_structure_name4"
-							value="<%= family_structure_name4 %>" />
+							value="<%= family_structure_name4 %>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_furigana4" name="family_structure4">フリガナ：</label>
 						<html:text property="family_structure_furigana4"
 							name="Personal_informationForm"
 							styleId="family_structure_furigana4"
-							value="<%= family_structure_furigana4 %>" />
+							value="<%= family_structure_furigana4 %>"  size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_birth4" name="family_structure4">生年月日：</label>
 						<html:text property="family_structure_birth4"
 							name="Personal_informationForm" styleId="family_structure_birth4"
-							value="<%= family_structure_birth4 %>" />
+							value="<%= family_structure_birth4 %>"  size="7" maxlength="8" />
 					</div>
 					<div>
 						<label for="family_structure_sex4" name="family_structure4">性別：</label>
@@ -605,6 +643,18 @@
 							value="<%= family_structure_relationship4 %>" />
 					</div>
 					<div>
+						<label for="family_structure_residence"
+							name="family_structure4">同居・別居</label>
+						<html:select property="family_structure_residence4"
+							name="Personal_informationForm"
+							styleId="family_structure_residence4"
+							value="<%= family_structure_residence4 %>">
+							<html:option value="">-</html:option>
+							<html:option value="0">同居</html:option>
+							<html:option value="1">別居</html:option>
+						</html:select>
+					</div>
+					<div>
 						<label for="family_structure_support4" name="family_structure4">扶養の有無：</label>
 						<html:select property="family_structure_support4"
 							name="Personal_informationForm"
@@ -619,7 +669,7 @@
 						<label for="family_structure_job4" name="family_structure4">職業：</label>
 						<html:text property="family_structure_job4"
 							name="Personal_informationForm" styleId="family_structure_job4"
-							value="<%= family_structure_job4 %>" />
+							value="<%= family_structure_job4 %>"  size="18" maxlength="16" />
 					</div>
 
 
@@ -627,20 +677,20 @@
 						<label for="family_structure_name5" name="family_structure5">氏名：</label>
 						<html:text property="family_structure_name5"
 							name="Personal_informationForm" styleId="family_structure_name5"
-							value="<%= family_structure_name5 %>" />
+							value="<%= family_structure_name5 %>"  size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_furigana5" name="family_structure5">フリガナ：</label>
 						<html:text property="family_structure_furigana5"
 							name="Personal_informationForm"
 							styleId="family_structure_furigana5"
-							value="<%= family_structure_furigana5 %>" />
+							value="<%= family_structure_furigana5 %>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_birth5" name="family_structure5">生年月日：</label>
 						<html:text property="family_structure_birth5"
 							name="Personal_informationForm" styleId="family_structure_birth5"
-							value="<%= family_structure_birth5 %>" />
+							value="<%= family_structure_birth5 %>"  size="7" maxlength="8" />
 					</div>
 					<div>
 						<label for="family_structure_sex5" name="family_structure5">性別：</label>
@@ -659,7 +709,19 @@
 						<html:text property="family_structure_relationship5"
 							name="Personal_informationForm"
 							styleId="family_structure_relationship5"
-							value="<%= family_structure_relationship5 %>" />
+							value="<%= family_structure_relationship5 %>"  size="3" maxlength="3" />
+					</div>
+					<div>
+						<label for="family_structure_residence"
+							name="family_structure5">同居・別居</label>
+						<html:select property="family_structure_residence5"
+							name="Personal_informationForm"
+							styleId="family_structure_residence5"
+							value="<%= family_structure_residence5 %>">
+							<html:option value="">-</html:option>
+							<html:option value="0">同居</html:option>
+							<html:option value="1">別居</html:option>
+						</html:select>
 					</div>
 					<div>
 						<label for="family_structure_support5" name="family_structure5">扶養の有無：</label>
@@ -676,7 +738,7 @@
 						<label for="family_structure_job5" name="family_structure5">職業：</label>
 						<html:text property="family_structure_job5"
 							name="Personal_informationForm" styleId="family_structure_job5"
-							value="<%= family_structure_job5 %>" />
+							value="<%= family_structure_job5 %>"  size="18" maxlength="16" />
 					</div>
 				</div>
 
@@ -696,7 +758,7 @@
 					// 名前が未入力の場合
 					if (<%=status%> == '0') {
 						document.getElementById("Bentry").style.display = "block";
-					} 
+					}
 					// 名前が入力済みの場合
 					else if (<%=status%> == '1') {
 						document.getElementById("Bedit").style.display = "block";
@@ -711,7 +773,7 @@
 						document.getElementById('postal_code').readOnly = true;
 						document.getElementById('address').readOnly = true;
 						document.getElementById('division').readOnly = true;
-						document.getElementById('emergency_postal_code').readOnly = true;
+						document.getElementById('Emergency_tel').readOnly = true;
 						document.getElementById('emergency_address').readOnly = true;
 						document.getElementById('emergency_name1').readOnly = true;
 						document.getElementById('emergency_name2').readOnly = true;
@@ -763,15 +825,12 @@
 						document.getElementById('family_structure_job3').readOnly = true;
 						document.getElementById('family_structure_job4').readOnly = true;
 						document.getElementById('family_structure_job5').readOnly = true;
-						document.getElementById('document').readOnly = true;
-						document.getElementById('nb').readOnly = true;
-						document.getElementById('confirmer_no').readOnly = true;
 					}
 
 					function clickBtnEdit() {
 						document.getElementById("Bentry").style.display = "block";
 						document.getElementById("Bedit").style.display = "none";
-						
+
 						document.getElementById('hire_date').readOnly = false;
 						document.getElementById('name').readOnly = false;
 						document.getElementById('furigana').readOnly = false;
@@ -782,7 +841,7 @@
 						document.getElementById('postal_code').readOnly = false;
 						document.getElementById('address').readOnly = false;
 						document.getElementById('division').readOnly = false;
-						document.getElementById('emergency_postal_code').readOnly = false;
+						document.getElementById('Emergency_tel').readOnly = false;
 						document.getElementById('emergency_address').readOnly = false;
 						document.getElementById('emergency_name1').readOnly = false;
 						document.getElementById('emergency_name2').readOnly = false;
@@ -834,48 +893,11 @@
 						document.getElementById('family_structure_job3').readOnly = false;
 						document.getElementById('family_structure_job4').readOnly = false;
 						document.getElementById('family_structure_job5').readOnly = false;
-						document.getElementById('document').readOnly = false;
-						document.getElementById('nb').readOnly = false;
-						document.getElementById('confirmer_no').readOnly = false;
 
 					}
 				</script>
 
-				<div id="Confirmation">
-					<p>確認書類</p>
-					<div id="document">
-						<input type="checkbox" class="document" id="resident_card"
-							name="document" value="1"><label for="resident_card">住民票</label>
-						<input type="checkbox" class="document" id="rental_agreement"
-							name="document" value="2"><label for="rental_agreement">賃貸契約書</label>
-						<input type="checkbox" class="document" id="family_register"
-							name="document" value="3"><label for="family_register">戸籍謄本</label>
-						<input type="checkbox" class="document"
-							id="tax_exemption_certificate" name="document" value="4"><label
-							for="tax_exemption_certificate">非課税証明書</label> <input
-							type="checkbox" class="document" id="other" name="document"
-							value="5"><label for="other">その他</label>
-					</div>
-					<div class="nb">
-						備考<br>
-						<textarea id="nb" name="nb" value="test"></textarea>
-					</div>
-					<div id="confirmer">
-						確認者：<%=confirmer_no%>
-						<html:hidden property="confirmer_no"
-							name="Personal_informationForm" styleId="confirmer_no" value=""></html:hidden>
-					</div>
-					<div>
-						<html:submit property="button" styleClass="btn" value="確認"
-							styleId="edit" />
-					</div>
-				</div>
-
 				</br>
-				<script type="text/javascript">
-
-
-				</script>
 				<!-- /form> -->
 				<div>
 					<html:submit property="button" styleClass="btn" value="戻る"
