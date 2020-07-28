@@ -193,12 +193,6 @@ public final class Personal_informationAction extends Action {
 		forward = "pInfo";
 		return forward;
 	}
-
-	private String clickBtnConf(Personal_informationForm form) {
-		System.out.println("clickBtnConfメソッドが呼ばれました");
-		return forward;
-	}
-
 	private String clickBtnBack(Personal_informationForm form) {
 		System.out.println("clickBtnBackメソッドが呼ばれました");
 		forward = "main";
