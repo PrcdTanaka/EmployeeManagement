@@ -1043,7 +1043,7 @@ public class DbAction extends Object{
 			sb.append("  EMERGENCY_TEL = '" + form.getEmergency_tel() + "'" + crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("  EMPLOYEE_NO = ?" + crlf);
-			
+
 			String query = sb.toString();
 
 			// 設定値 - 型
@@ -1073,7 +1073,7 @@ public class DbAction extends Object{
 
 	/**
 	 * 社員番号確認処理
-	 * 
+	 *
 	 * @param form アクションフォーム
 	 * @param table 確認テーブル名
 	 * @param no 検索値
@@ -1090,10 +1090,10 @@ public class DbAction extends Object{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
 
 		if (dba.conSts) {
-			
+
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
@@ -1138,11 +1138,11 @@ public class DbAction extends Object{
 			}
 		}
 
-		
+
 		return ret;
 	}
 
-	
+
 	/**
 	 * 緊急連絡先設定処理
 	 * @param form
@@ -1195,7 +1195,7 @@ public class DbAction extends Object{
 					sb.append("  RELATIONSHIP ='"  + form.getRelationship5() + "'," + crlf);
 					sb.append("  TEL ='" + form.getEmergency_tel5() + "'" + crlf);
 					break;
-				
+
 				}
 				sb.append("WHERE" + crlf);
 				sb.append("  EMPLOYEE_NO = ?" + crlf);
@@ -1288,7 +1288,7 @@ public class DbAction extends Object{
 					break;
 				}
 				sb.append(")" + crlf);
-				
+
 				String query = sb.toString();
 
 				// 設定値 - 型
@@ -1392,7 +1392,7 @@ public class DbAction extends Object{
 					sb.append("  SUPPORT = '" + form.getFamily_structure_support5() + "'," + crlf);
 					sb.append("  JOB = '" + form.getFamily_structure_job5() + "'" + crlf);
 					break;
-				
+
 				}
 				sb.append("WHERE" + crlf);
 				sb.append("  EMPLOYEE_NO = ?" + crlf);
@@ -1516,7 +1516,7 @@ public class DbAction extends Object{
 					break;
 				}
 				sb.append(")" + crlf);
-				
+
 				String query = sb.toString();
 
 				// 設定値 - 型

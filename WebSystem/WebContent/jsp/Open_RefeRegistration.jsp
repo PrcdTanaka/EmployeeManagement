@@ -6,6 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="sample.pr.main.Open_informationForm"%>
 <%@ page import="java.util.function.*"%>
+<%@ page import="sample.pr.main.LoginForm"%>
+<%@ page import="sample.ap.DbAction"%>
+<%@ page import="sample.pr.main.SearchAction" %>
 
 <html:html>
 
@@ -18,7 +21,28 @@
 </head>
 <body>
 	<html:form action="/Open_informationAction">
+	<%
+		DbAction dba = new DbAction();
+		Open_informationForm oForm = new Open_informationForm();
 
+		SearchAction lForm = (SearchAction) session.getAttribute("form");
+
+		String name="";
+		String pos="";
+		String djc="";
+		String tec="";
+		String hobby="";
+		String ss="";
+		String intr="";
+
+		name = oForm.getName();
+		pos = oForm.getPos();
+		djc = oForm.getDjc();
+		tec = oForm.getTec();
+		hobby = oForm.getHobby();
+		ss = oForm.getSs();
+		intr = oForm.getIntr();
+		%>
 		<div class='main1'>
 			<div class='pic'>
 				<img src="C:\Users\gakuto_yamagishi\Desktop\susi.jpg" height="200"
