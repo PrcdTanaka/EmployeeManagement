@@ -65,8 +65,11 @@
 	</div>
 		<div class='main1'>
 			<div class='pic'>
-				<img src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg" height="190"
-					width="190">
+			<div id="dropArea">Drop or Click here!</div>
+			<input id="fileInput" type="file" accept="image/*" multiple>
+			<div id="output"></div>
+				<--img src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg" height="190"
+					width="190"-->
 			</div>
 			<div class='pro'>
 				<div class='pro2'>
@@ -125,12 +128,6 @@
 		<!-- 戻るボタン -->
 		<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
-		<%
-		//function clickBtnEdit() {
-			//			document.getElementById("Bentry").style.display = "block";
-				//		document.getElementById("Bedit").style.display = "none";
-		//}
-						%>
 
 	</html:form>
 </body>
