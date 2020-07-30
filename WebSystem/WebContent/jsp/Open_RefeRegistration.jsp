@@ -27,8 +27,8 @@
 
 					SearchForm sForm = (SearchForm) session
 							.getAttribute("sForm");
-					// oForm.setEmployee_no(sForm.getEmployee_no());
-					String val = request.getParameter("employee_no");
+					oForm.setEmployee_no(sForm.getEmployee_no());
+
 					String name = "";
 					String pos = "";
 					String djc = "";
@@ -40,11 +40,11 @@
 					// 社員名を探すために社員番号が必要
 					// 社員番号を取得するために...
 					// 欲しい社員番号：ユーザ検索画面で押された社員番号
-					//oForm.setEmployee_no(sForm.getEmployee_no());
+					oForm.setEmployee_no(sForm.getEmployee_no());
 
-					/**DBに登録されているかの確認
+					//DBに登録されているかの確認
 					if (dba.getName(oForm)) {
-*
+
 						name = oForm.getName();
 						pos = oForm.getPos();
 						djc = oForm.getDjc();
@@ -52,7 +52,7 @@
 						hobby = oForm.getHobby();
 						ss = oForm.getSs();
 						intr = oForm.getIntr();
-					}*/
+					}
 		%>
 		<div class='main1'>
 			<div class='pic'>

@@ -162,7 +162,7 @@ public final class Personal_informationAction extends Action {
 	 */
 	private String clickBtnEntry(Personal_informationForm form) {
 
-		if(form.getEmployee_name() == null || form.getEmployee_name().equals("")) {
+		if(form.getEmployee_name() == null){
 			form.setMessage("氏名を入力して下さい。");
 		} else {
 			int no;
