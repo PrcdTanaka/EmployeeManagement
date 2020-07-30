@@ -131,7 +131,7 @@ position:relative;
 									name.set(i, "未登録");
 								}
 								else if(manager.equals("0")){
-									out.println("<a href=\"/WebSystem/jsp/reference.jsp?employee_no=");
+									out.println("<a href=\"/WebSystem/jsp/Open_RefeRegistration.jsp?employee_no=");
 									out.println(no.get(i));
 									out.println("\" >");
 								}

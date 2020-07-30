@@ -211,8 +211,8 @@
 				<div class="hire_date">
 					<label for="hire_date">入社日</label>
 					<html:text property="hire_date" name="Personal_informationForm"
-						styleId="hire_date" value="<%= hire_date %>" size="8" maxlength="8" />
-					例) 2020年4月10日 → 20200410
+						styleId="hire_date" value="<%= hire_date %>" size="8" maxlength="10" />
+					例) 2020年4月10日 → 2020/04/10
 
 				</div>
 				<div class="name">
@@ -238,7 +238,7 @@
 				<div class="birth">
 					<label for="birth">生年月日：</label>
 					<html:text property="birth" name="Personal_informationForm"
-						styleId="birth" value="<%= birth %>" size="7" maxlength="8" />
+						styleId="birth" value="<%= birth %>" size="7" maxlength="10" />
 				</div>
 				<div class="tel">
 					<label for="tel_home">電話番号</label>
