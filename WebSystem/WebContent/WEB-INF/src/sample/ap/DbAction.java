@@ -10,6 +10,7 @@ import java.util.Map;
 import sample.db.DbConnector;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
+import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
@@ -744,16 +745,16 @@ public class DbAction extends Object{
 			}
 		}
 		return ret;
-
 	}
-	/***
-	 * <p>
-	 * パスワードを取得する。
-	 * </p>
-	 *
-	 * @param form ユーザー登録画面アクションフォーム
-	 * @return DB接続成功：true DB接続失敗：false
-	 */
+		/***
+		 * <p>
+		 * パスワードを取得する。
+		 * </p>
+		 *
+		 * @param form パスワード変更画面アクションフォーム
+		 * @return DB接続成功：true DB接続失敗：false
+		 */
+
 	public boolean getPassword(PasswordForm form) {
 
 		boolean ret = false;
@@ -996,6 +997,7 @@ public class DbAction extends Object{
 			}
 		}
 		return ret;
+
 	}
 	/**
 	 * 個人情報設定処理
@@ -1642,6 +1644,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
+
 	/**
 	 * 緊急連絡先を取得する。
 	 *
@@ -1870,5 +1873,210 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+	/***
+	 * <p>
+	 * 公開情報を登録する。
+	 * </p>
+	 *
+	 * @param form パスワード変更画面アクションフォーム
+	 * @return DB接続成功：true DB接続失敗：false
+	 */
 
+	public boolean setKomaki(Open_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("UPDATE" + crlf);
+			sb.append("PUBLIC_INFORMATION_TBL" + crlf);
+			sb.append("SET" + crlf);
+			sb.append("DEPARTMENT = " + "'" +form.getTec()+"'" + crlf);
+			sb.append(",POST = " + "'" +form.getPos()+"'" + crlf);
+			sb.append(",HOBBIES = " + "'" +form.getHobby()+"'" + crlf);
+			sb.append(",SPECIALTY = " + "'" +form.getSs()+"'" + crlf);
+			sb.append(",INTRODUCTION = " + "'" +form.getIntr()+"'" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, typeList, bindList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
+
+	/***
+	 * <p>
+	 * 公開情報を取得する。
+	 * </p>
+	 *
+	 * @param form パスワード変更画面アクションフォーム
+	 * @return DB接続成功：true DB接続失敗：false
+	 */
+	public boolean getMizuki(Open_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT" + crlf);
+			sb.append("  department" + crlf);
+			sb.append("  ,post" + crlf);
+			sb.append("  ,hobbies" + crlf);
+			sb.append("  ,specialty" + crlf);
+			sb.append("  ,introduction" + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("  PUBLIC_INFORMATION_TBL" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("department");
+			columnList.add("post");
+			columnList.add("hobbies");
+			columnList.add("specialty");
+			columnList.add("introduction");
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setTec(val.get("department"));
+					form.setPos(val.get("post"));
+					form.setHobby(val.get("hobbies"));
+					form.setSs(val.get("specialty"));
+					form.setIntr(val.get("introduction"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+	/***
+	 * <p>
+	 * 入社年月日を取得する。
+	 * </p>
+	 *
+	 * @param form パスワード変更画面アクションフォーム
+	 * @return DB接続成功：true DB接続失敗：false
+	 */
+	public boolean getSunaga(Open_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT" + crlf);
+			sb.append("HIRE_DATE"+crlf);
+			sb.append("FROM" + crlf);
+			sb.append("  PERSONAL_INFORMATION_TBL" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("HIRE_DATE");
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+				for (Map<String, String> val : rsList) {
+					form.setDjc(val.get("HIRE_DATE"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
 }

@@ -193,11 +193,6 @@
 			button = pForm.getButton();
 
 			status = "1";
-
-			// 各フィールドを入直不可にする。
-
-
-
 		}
 
 		%>
