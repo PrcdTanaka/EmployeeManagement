@@ -100,11 +100,11 @@ public final class Open_RefelenceForm extends ActionForm {
 		this.intr = intr;
 	}
 
-	public String getintr() {
+	public String getIntr() {
 		return intr;
 	}
 
-	public void setEmployye_no(String employee_no) {
+	public void setEmployee_no(String employee_no) {
 		this.employee_no = employee_no;
 	}
 
