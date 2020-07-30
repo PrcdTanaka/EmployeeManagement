@@ -745,14 +745,6 @@ public class DbAction extends Object{
 		}
 		return ret;
 
-		/***
-		 * <p>
-		 * パスワードを取得する。
-		 * </p>
-		 *
-		 * @param form パスワード変更画面アクションフォーム
-		 * @return DB接続成功：true DB接続失敗：false
-		 */
 	}
 	/***
 	 * <p>

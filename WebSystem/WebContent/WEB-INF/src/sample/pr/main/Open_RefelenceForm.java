@@ -28,6 +28,9 @@ public final class Open_RefelenceForm extends ActionForm {
 	/** 紹介文 */
 	private String intr;
 
+	/** 社員番号 */
+	private String employee_no;
+
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -42,6 +45,7 @@ public final class Open_RefelenceForm extends ActionForm {
 		hobby = "";
 		ss = "";
 		intr = "";
+		employee_no = "";
 	}
 
 	public void setName(String name) {
@@ -98,6 +102,14 @@ public final class Open_RefelenceForm extends ActionForm {
 
 	public String getintr() {
 		return intr;
+	}
+
+	public void setEmployye_no(String employee_no) {
+		this.employee_no = employee_no;
+	}
+
+	public String getEmployee_no() {
+		return employee_no;
 	}
 
 }
