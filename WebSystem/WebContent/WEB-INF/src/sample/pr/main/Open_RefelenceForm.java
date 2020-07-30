@@ -111,5 +111,4 @@ public final class Open_RefelenceForm extends ActionForm {
 	public String getEmployee_No() {
 		return employee_no;
 	}
-
 }
