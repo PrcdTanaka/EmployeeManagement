@@ -4,11 +4,11 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="sample.pr.main.Open_informationForm"%>
+<%@ page import="sample.pr.main.Open_RefelenceForm"%>
 <%@ page import="java.util.function.*"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.ap.DbAction"%>
-<%@ page import="sample.pr.main.SearchAction"%>
+<%@ page import="sample.pr.main.SearchForm"%>
 
 <html:html>
 
@@ -23,25 +23,36 @@
 	<html:form action="/Open_informationAction">
 		<%
 			DbAction dba = new DbAction();
-				Open_informationForm oForm = new Open_informationForm();
+					Open_RefelenceForm oForm = new Open_RefelenceForm();
 
-				SearchAction lForm = (SearchAction) session.getAttribute("form");
+					SearchForm sForm = (SearchForm) session
+							.getAttribute("sForm");
+					oForm.setEmployee_no(sForm.getEmployee_no());
 
-				String name="";
-				String pos="";
-				String djc="";
-				String tec="";
-				String hobby="";
-				String ss="";
-				String intr="";
+					String name = "";
+					String pos = "";
+					String djc = "";
+					String tec = "";
+					String hobby = "";
+					String ss = "";
+					String intr = "";
 
-				name = oForm.getName();
-				pos = oForm.getPos();
-				djc = oForm.getDjc();
-				tec = oForm.getTec();
-				hobby = oForm.getHobby();
-				ss = oForm.getSs();
-				intr = oForm.getIntr();
+					// 社員名を探すために社員番号が必要
+					// 社員番号を取得するために...
+					// 欲しい社員番号：ユーザ検索画面で押された社員番号
+					oForm.setEmployee_no(sForm.getEmployee_no());
+
+					//DBに登録されているかの確認
+					if (dba.getName(oForm)) {
+
+						name = oForm.getName();
+						pos = oForm.getPos();
+						djc = oForm.getDjc();
+						tec = oForm.getTec();
+						hobby = oForm.getHobby();
+						ss = oForm.getSs();
+						intr = oForm.getIntr();
+					}
 		%>
 		<div class='main1'>
 			<div class='pic'>
