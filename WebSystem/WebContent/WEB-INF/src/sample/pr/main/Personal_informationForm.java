@@ -217,11 +217,15 @@ public final class Personal_informationForm extends ActionForm {
 	}
 
 	public String getHire_date() {
-		if (hire_date != null) {
-			String date = hire_date.substring(0, 10);
-			this.hire_date = date.replace("-", "/");
+		try {
+			if (hire_date != null) {
+				String date = hire_date.substring(0, 10);
+				this.hire_date = date.replace("-", "/");
+			}
+			return hire_date;
+		} catch (StringIndexOutOfBoundsException e) {
+			return "";
 		}
-		return hire_date;
 	}
 	public void setHire_date(String hire_date) {
 		this.hire_date = hire_date;
@@ -249,11 +253,15 @@ public final class Personal_informationForm extends ActionForm {
 		this.birth = birth;
 	}
 	public String getBirth() {
-		if (birth != null) {
-			String date = birth.substring(0, 10);
-			this.birth = date.replace("-", "/");
+		try {
+			if (birth != null) {
+				String date = birth.substring(0, 10);
+				this.birth = date.replace("-", "/");
+			}
+			return birth;
+		} catch (StringIndexOutOfBoundsException e) {
+			return "";
 		}
-		return birth;
 	}
 
 	public String getSex() {
