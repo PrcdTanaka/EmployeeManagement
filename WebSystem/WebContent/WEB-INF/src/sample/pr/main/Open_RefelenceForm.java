@@ -108,7 +108,7 @@ public final class Open_RefelenceForm extends ActionForm {
 		this.employee_no = employee_no;
 	}
 
-	public String getEmployee_no() {
+	public String getEmployee_No() {
 		return employee_no;
 	}
 
