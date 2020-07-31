@@ -110,8 +110,17 @@ public final class Personal_informationAction extends Action {
 
 		// フォーム情報の呼び出し
 		Personal_informationForm pForm = (Personal_informationForm) frm;
-		// ログインユーザの社員番号取得
-		pForm.setEmployee_no(lForm.getEmployee_no());
+		//マネージャーでの呼び出し時のみ呼ばれます。
+		try{
+			Personal_informationForm rForm = (Personal_informationForm)session.getAttribute("rForm");
+			pForm.setEmployee_no(rForm.getEmployee_no());
+		}catch(Exception e)
+		{
+			// ログインユーザの社員番号取得
+			pForm.setEmployee_no(lForm.getEmployee_no());
+		}
+
+
 
 		try{
 			Button = pForm.getButton();
@@ -128,6 +137,8 @@ public final class Personal_informationAction extends Action {
 				break;
 			case "戻る":
 				forward = clickBtnBack(pForm);
+				session.removeAttribute("rForm");
+				session.removeAttribute("sForm");
 				break;
 			case "":
 				forward = "password";
