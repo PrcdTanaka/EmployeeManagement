@@ -194,9 +194,7 @@
 
 			status = "1";
 
-			// 各フィールドを入直不可にする。
-
-
+			session.setAttribute("rForm",pForm);
 
 		}
 
@@ -745,7 +743,7 @@
 				<!-- 登録/編集ボタン  -->
 				<p id="Bentry">
 					<html:submit property="button" styleClass="btn" value="登録"
-						styleId="entry" />
+						styleId="entry"  />
 				</p>
 
 				<p id="Bedit">
