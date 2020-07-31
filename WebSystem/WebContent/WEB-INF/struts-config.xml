@@ -84,7 +84,7 @@
 			scope="request">
 			<forward name="search" path="/jsp/search.jsp"/>
 			<forward name="back" path="/jsp/Main.jsp"/>
-			<forward name="fly" path="/jsp/reference.jsp"/>
+			<forward name="fly" path="/jsp/Open_RefeRegistration.jsp"/>
 		</action>
 
 

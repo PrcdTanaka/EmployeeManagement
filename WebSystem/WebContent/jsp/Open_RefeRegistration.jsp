@@ -9,6 +9,7 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="sample.pr.main.SearchForm"%>
+<%@ page import="sample.pr.main.Open_informationForm"%>
 
 <html:html>
 
@@ -23,7 +24,10 @@
 	<html:form action="/Open_informationAction">
 		<%
 			DbAction dba = new DbAction();
-					Open_RefelenceForm oForm = new Open_RefelenceForm();
+					Open_informationForm oform=new Open_informationForm();
+					oform.setEmployee_no(request.getParameter("employee_no"));
+					dba.getMizuki(oform);
+					dba.getSunaga(oform);
 
 					String name = "";
 					String pos = "";
@@ -37,26 +41,16 @@
 					// 社員番号を取得するために...
 					// 欲しい社員番号：ユーザ検索画面で押された社員番号
 
-					// 名前がDBに登録されているかの確認
-					if (dba.getName(oForm)) {
 						// 名前が存在する場合
 						// DBから個人情報を取得する
-						dba.getPos(oForm);
-						dba.getDjc(oForm);
-						dba.getTec(oForm);
-						dba.getHobby(oForm);
-						dba.getSs(oForm);
-						dba.getIntr(oForm);
-
 						// 各パラメーターを設定する
-						//name = oForm.getName();
-						//pos = oForm.getPos();
-						//djc = oForm.getDjc();
-						//tec = oForm.getTec();
-						//hobby = oForm.getHobby();
-						//ss = oForm.getSs();
-						//intr = oForm.getIntr();
-					}
+						name = oform.getName();
+						pos = oform.getPos();
+						djc = oform.getDjc();
+						tec = oform.getTec();
+						hobby = oform.getHobby();
+						ss = oform.getSs();
+						intr = oform.getIntr();
 		%>
 		<div class='main1'>
 			<div class='pic'>
@@ -66,42 +60,38 @@
 			<div class='pro'>
 				<div class='pro2'>
 					<p style="margin-top: 5px;">
-						名前：
-						<html:text property="name" styleId="name"></html:text>
+						名前：<%=name %>
 
 					</p>
 					<p style="margin-top: 5px; margin-left: 50px">
-						役職：
-						<html:text property="pos" styleId="pos"></html:text>
+						役職：<%=pos %>
 					</p>
 				</div>
 				<div class='pro2'>
-					<div class='day'>入社年月日:</div>
-
-					<html:text property="djc" styleId="djc"></html:text>
+					<div class='day'></div>
+					入社年月日:<%=djc %>
 				</div>
 				<div class='pro2'>
-					<div class='tec'>技術部 :</div>
-					<html:text property="tec" name="Open_informationForm" styleId="tec"></html:text>
+					<div class='tec'></div>
+					技術部 :<%=tec %>
 				</div>
 			</div>
 		</div>
 
 		<div class='main2'>
 			<div class='pro3'>
-				<div class='hobyy'>趣味:</div>
-				<html:text property="hobby" styleId="hobby"></html:text>
+				<div class='hobyy'></div>
+				趣味:<%=hobby %>
 			</div>
 			<div class='pro3'>
-				<div class='ss'>特技:</div>
-				<html:text property="ss" styleId="ss"></html:text>
+				<div class='ss'></div>
+				特技:<%=ss %>
 			</div>
 		</div>
 
 		<div class='bottom'>
 			<div class='int'>紹介文</div>
-			<html:textarea property="intr" styleId="intr"></html:textarea>
-			<!-- styleClass='int2'name='int2' cols='100' rows='10' -->
+			<%=intr %>
 		</div>
 
 		<!-- 戻るボタン -->
