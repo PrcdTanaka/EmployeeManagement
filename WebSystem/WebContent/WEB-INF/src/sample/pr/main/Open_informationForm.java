@@ -31,6 +31,13 @@ public final class Open_informationForm extends ActionForm {
 	/**ボタン名*/
 	private String button;
 
+	/**社員番号*/
+	private String employee_no;
+
+	/**メッセージ*/
+	private String message;
+
+
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -237,5 +244,17 @@ public final class Open_informationForm extends ActionForm {
 
 	public String getButton(){
 		return button;
+	}
+	public String getEmployee_no() {
+		return employee_no;
+	}
+	public void setEmployee_no(String employee_no){
+		this.employee_no = employee_no;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message){
+		this.message = message;
 	}
 }

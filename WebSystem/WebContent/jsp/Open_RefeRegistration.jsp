@@ -25,10 +25,6 @@
 			DbAction dba = new DbAction();
 					Open_RefelenceForm oForm = new Open_RefelenceForm();
 
-					SearchForm sForm = (SearchForm) session
-							.getAttribute("sForm");
-					oForm.setEmployee_no(sForm.getEmployee_no());
-
 					String name = "";
 					String pos = "";
 					String djc = "";
@@ -40,18 +36,26 @@
 					// 社員名を探すために社員番号が必要
 					// 社員番号を取得するために...
 					// 欲しい社員番号：ユーザ検索画面で押された社員番号
-					oForm.setEmployee_no(sForm.getEmployee_no());
 
-					//DBに登録されているかの確認
+					// 名前がDBに登録されているかの確認
 					if (dba.getName(oForm)) {
+						// 名前が存在する場合
+						// DBから個人情報を取得する
+						dba.getPos(oForm);
+						dba.getDjc(oForm);
+						dba.getTec(oForm);
+						dba.getHobby(oForm);
+						dba.getSs(oForm);
+						dba.getIntr(oForm);
 
-						name = oForm.getName();
-						pos = oForm.getPos();
-						djc = oForm.getDjc();
-						tec = oForm.getTec();
-						hobby = oForm.getHobby();
-						ss = oForm.getSs();
-						intr = oForm.getIntr();
+						// 各パラメーターを設定する
+						//name = oForm.getName();
+						//pos = oForm.getPos();
+						//djc = oForm.getDjc();
+						//tec = oForm.getTec();
+						//hobby = oForm.getHobby();
+						//ss = oForm.getSs();
+						//intr = oForm.getIntr();
 					}
 		%>
 		<div class='main1'>

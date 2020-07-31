@@ -42,7 +42,7 @@ public final class Open_RefelenceAction extends Action {
 
 	public ActionForward execute(ActionMapping map, ActionForm frm,
 			HttpServletRequest request, HttpServletResponse response) {
-
+		return null;
 	}
 
 }
