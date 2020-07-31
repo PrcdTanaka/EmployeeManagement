@@ -40,7 +40,7 @@
 					Open_informationForm oForm = new Open_informationForm();
 					oForm.setEmployee_no(s.getEmployee_no());
 					dba.getMizuki(oForm);
-					dba.getSunaga(oForm);
+					dba.getHire_date(oForm);
 					String djc = "";
 					String sunaga = "";
 					String Employee_no = "";
@@ -76,7 +76,23 @@
     </div>
 
 				<img id="preview"> <img id="preview">
-				<--imgsrc="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
+				<script type="text/javascript" src="../js/personal_information.js">
+				var target = document.getElementById('target');
+				target.addEventListener('dragover', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					e.dataTransfer.dropEffect = 'copy';
+				});
+				target.addEventListener('drop', function (e) {
+					e.stopPropagation();
+					e.preventDefault();
+					const reader = new FileReader();
+					reader.onload = function (e) {
+						document.getElementById('preview').src = e.target.result;
+					}
+					reader.readAsDataURL(e.dataTransfer.files[0]);
+				});</script>
+				<!--imgsrc="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
 				height="190" width="190"-->
 			</div>
 			<div class='pro'>

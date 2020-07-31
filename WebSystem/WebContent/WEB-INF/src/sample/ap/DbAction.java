@@ -1878,7 +1878,7 @@ public class DbAction extends Object{
 	 * 公開情報を登録する。
 	 * </p>
 	 *
-	 * @param form パスワード変更画面アクションフォーム
+	 * @param form 公開情報編集画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
 
@@ -1945,7 +1945,7 @@ public class DbAction extends Object{
 	 * 公開情報を取得する。
 	 * </p>
 	 *
-	 * @param form パスワード変更画面アクションフォーム
+	 * @param form 公開情報編集画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
 	public boolean getMizuki(Open_informationForm form) {
@@ -2024,7 +2024,7 @@ public class DbAction extends Object{
 	 * @param form パスワード変更画面アクションフォーム
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
-	public boolean getSunaga(Open_informationForm form) {
+	public boolean getHire_date(Open_informationForm form) {
 
 		boolean ret = false;
 
