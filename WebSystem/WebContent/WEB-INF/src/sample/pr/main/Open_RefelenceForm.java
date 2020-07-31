@@ -64,8 +64,9 @@ public final class Open_RefelenceForm extends ActionForm {
 		return pos;
 	}
 
-	public void setDjc(String djc) {
-		this.djc = djc;
+	public void setDjc(String a) {
+		// 2020/04/01 00:00:00
+		this.djc = a.substring(0, 10);
 	}
 
 	public String getDjc() {
