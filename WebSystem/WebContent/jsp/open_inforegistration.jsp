@@ -25,12 +25,10 @@
 		<%
 			String message;
 					try {
-						Open_informationForm oForm = (Open_informationForm) session
-								.getAttribute("oForm");
+						Open_informationForm oForm = (Open_informationForm) session.getAttribute("oForm");
 						message = oForm.getMessage();
 						if (message == null)
 							message = "";
-
 					} catch (NullPointerException e) {
 						message = "";
 					}
@@ -102,8 +100,17 @@
 					</p>
 				</div>
 				<div class='pro2'>
-					<p class='pos' style="margin-left: 5px">役職:</p>
-					<html:text property="pos" />
+					<p class='pos'>役職:</p>
+					<html:select property="pos" name="Open_informationForm"
+						styleId="tec">
+						<html:option value="">-</html:option>
+						<html:option value="0">役職なし</html:option>
+						<html:option value="1">主任</html:option>
+						<html:option value="2">係長</html:option>
+						<html:option value="3">課長</html:option>
+						<html:option value="4">次長</html:option>
+						<html:option value="5">部長</html:option>
+						</html:select>
 				</div>
 				<p style="margin-top: 5px;">
 					入社年月日：<%=djc%>
@@ -113,11 +120,16 @@
 					<html:select property="tec" name="Open_informationForm"
 						styleId="tec">
 						<html:option value="">-</html:option>
-						<html:option value="0">第1技術部</html:option>
-						<html:option value="1">第2技術部</html:option>
-						<html:option value="2">第3技術部</html:option>
-						<html:option value="3">第4技術部</html:option>
-						<html:option value="4">第5技術部</html:option>
+						<html:option value="0">総務・経理部</html:option>
+						<html:option value="1">第1技術部</html:option>
+						<html:option value="2">第2技術部</html:option>
+						<html:option value="3">第3技術部</html:option>
+						<html:option value="4">第4技術部</html:option>
+						<html:option value="5">第5技術部</html:option>
+						<html:option value="6">ソリューション技術部</html:option>
+						<html:option value="7">システム営業部</html:option>
+						<html:option value="8">人事部</html:option>
+						<html:option value="9">採用マーケティング部</html:option>
 					</html:select>
 				</div>
 			</div>

@@ -27,7 +27,7 @@
 					Open_informationForm oform=new Open_informationForm();
 					oform.setEmployee_no(request.getParameter("employee_no"));
 					dba.getMizuki(oform);
-					dba.getSunaga(oform);
+					dba.getHire_date(oform);
 
 					String name = "";
 					String pos = "";

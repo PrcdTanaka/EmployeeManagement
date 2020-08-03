@@ -60,7 +60,8 @@ public final class Open_informationAction extends Action {
 		String button = oForm.getButton();
 		if(button.equals("戻る")) {
 			forward = "main";
-		}if(button.equals("変更")){
+		}if(button.equals("登録")){
+			dba.setKomaki(oForm);
 			oForm.setMessage("編集しました");
 			forward = "open";
 		}
