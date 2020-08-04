@@ -207,6 +207,7 @@
 					<label for="hire_date">入社日</label>
 					<html:text property="hire_date" name="Personal_informationForm"
 						styleId="hire_date" value="<%= hire_date %>" size="8" maxlength="10" />
+					<p>
 					例) 2020年4月10日 → 2020/04/10
 
 				</div>
