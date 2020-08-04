@@ -99,7 +99,27 @@ public final class Open_informationForm extends ActionForm {
 	 */
 
 	public String getPos(){
-		return pos;
+
+		switch(pos){
+		case "0":
+			pos="役職無し";
+			break;
+		case "1":
+			pos="主任";
+			break;
+		case "2":
+			pos="係長";
+			break;
+		case "3":
+			pos="課長";
+			break;
+		case "4":
+			pos="次長";
+			break;
+		case "5":
+			pos="部長";
+			break;
+		}return pos;
 	}
 	/**
 	 * 入社年月日取得処理。
@@ -147,6 +167,38 @@ public final class Open_informationForm extends ActionForm {
 	 */
 
 	public String getTec(){
+		switch(tec){
+		case "00":
+			tec="総務・経理部";
+			break;
+		case "01":
+			tec="第1技術部";
+			break;
+		case "02":
+			tec="第2技術部";
+			break;
+		case "03":
+			tec="第3技術部";
+			break;
+		case "04":
+			tec="第4技術部";
+			break;
+		case "05":
+			tec="第5技術部";
+			break;
+		case "06":
+			tec="ソリューション技術部";
+			break;
+		case "07":
+			tec="システム営業部";
+			break;
+		case "08":
+			tec="人事部";
+			break;
+		case "09":
+			tec="採用マーケティング部";
+			break;
+		}
 		return tec;
 	}
 	/**

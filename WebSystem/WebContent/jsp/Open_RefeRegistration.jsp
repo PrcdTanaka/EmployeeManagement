@@ -56,6 +56,8 @@
 						hobby = oform.getHobby();
 						ss = oform.getSs();
 						intr = oform.getIntr();
+
+
 		%>
 		<div class='main1'>
 			<div class='pic'>
@@ -102,9 +104,9 @@
 		<!-- 戻るボタン -->
 		<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
-			<html:submit property="button" styleClass="btn" value="検索"
-			styleId="search" />
-
+		<!--html:submit property="button" styleClass="btn" value="検索"
+			styleId="search" /-->
+		<a href="search.jsp">ユーザー検索画面へ</a>
 		<script type="text/javascript">
 			document.getElementById('name').readOnly = true;
 			document.getElementById('pos').readOnly = true;
@@ -113,6 +115,7 @@
 			document.getElementById('hobby').readOnly = true;
 			document.getElementById('ss').readOnly = true;
 			document.getElementById('intr').readOnly = true;
+
 		</script>
 
 

@@ -134,6 +134,7 @@ public final class Personal_informationAction extends Action {
 			switch (Button) {
 			case "登録":
 				forward = clickBtnEntry(pForm,lForm);
+				session.removeAttribute("sForm");
 				break;
 			case "戻る":
 				forward = clickBtnBack(pForm);
