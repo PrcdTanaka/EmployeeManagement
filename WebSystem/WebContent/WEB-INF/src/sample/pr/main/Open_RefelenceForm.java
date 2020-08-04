@@ -37,6 +37,7 @@ public final class Open_RefelenceForm extends ActionForm {
 	 * メイン画面アクションフォームを初期化する。
 	 * </p>
 	 */
+	private String Button;
 	public void initialize() {
 		name = "";
 		pos = "";
@@ -46,6 +47,7 @@ public final class Open_RefelenceForm extends ActionForm {
 		ss = "";
 		intr = "";
 		employee_no = "";
+		Button="";
 	}
 
 	public void setName(String name) {
@@ -111,5 +113,12 @@ public final class Open_RefelenceForm extends ActionForm {
 
 	public String getEmployee_No() {
 		return employee_no;
+	}
+
+	public void setButton(String button){
+		Button=button;
+	}
+	public String getButton() {
+		return Button;
 	}
 }
