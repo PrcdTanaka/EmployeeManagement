@@ -120,16 +120,16 @@
 					<html:select property="tec" name="Open_informationForm"
 						styleId="tec">
 						<html:option value="">-</html:option>
-						<html:option value="0">総務・経理部</html:option>
-						<html:option value="1">第1技術部</html:option>
-						<html:option value="2">第2技術部</html:option>
-						<html:option value="3">第3技術部</html:option>
-						<html:option value="4">第4技術部</html:option>
-						<html:option value="5">第5技術部</html:option>
-						<html:option value="6">ソリューション技術部</html:option>
-						<html:option value="7">システム営業部</html:option>
-						<html:option value="8">人事部</html:option>
-						<html:option value="9">採用マーケティング部</html:option>
+						<html:option value="00">総務・経理部</html:option>
+						<html:option value="01">第1技術部</html:option>
+						<html:option value="02">第2技術部</html:option>
+						<html:option value="03">第3技術部</html:option>
+						<html:option value="04">第4技術部</html:option>
+						<html:option value="05">第5技術部</html:option>
+						<html:option value="06">ソリューション技術部</html:option>
+						<html:option value="07">システム営業部</html:option>
+						<html:option value="08">人事部</html:option>
+						<html:option value="09">採用マーケティング部</html:option>
 					</html:select>
 				</div>
 			</div>
