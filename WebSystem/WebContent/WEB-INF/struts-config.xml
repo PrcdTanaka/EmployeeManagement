@@ -116,7 +116,7 @@
 			type="sample.pr.main.Open_RefelenceAction"
 			validate="false"
 			scope="request">
-			<forward name="back" path="/jsp/Main.jsp"/>
+			<forward name="main" path="/jsp/Main.jsp"/>
 			<forward name="search" path="/jsp/search.jsp"/>
 		</action>
     </action-mappings>

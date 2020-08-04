@@ -56,7 +56,7 @@ public final class Open_RefelenceAction extends Action {
 		String button=rForm.getButton();
 		HttpSession session=request.getSession();
 		if(button.equals("戻る")){
-			forward="back";
+			forward="main";
 			session.removeAttribute("rForm");
 		}
 		else if(button.equals("検索")){

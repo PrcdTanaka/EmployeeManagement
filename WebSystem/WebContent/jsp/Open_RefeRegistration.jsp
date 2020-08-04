@@ -102,6 +102,8 @@
 		<!-- 戻るボタン -->
 		<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
+			<html:submit property="button" styleClass="btn" value="検索"
+			styleId="search" />
 
 		<script type="text/javascript">
 			document.getElementById('name').readOnly = true;
