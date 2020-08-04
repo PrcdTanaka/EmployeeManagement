@@ -307,6 +307,13 @@
 				</div>
 				</p>
 
+				<p>
+  						<a href="#" id="link_view2" onClick="toggle_view2();return false;" >追加</a>
+  						<a href="#" id="link_hidden2" onClick="toggle_hidden2();return false;"style="display:none;">削除</a>
+						</p>
+						<div id="area_hoge2" style="display:none;">
+						<p>
+
 				<p class="emergency_contact" id="emergency_contact2">
 				<div>
 					<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
@@ -327,7 +334,29 @@
 						styleClass="emergency_tel" value="<%=emergency_tel2%>" size="19" maxlength="15" />
 				</div>
 				</p>
+				<a href="#" id="link_view3" onClick="toggle_view3();return false;" >追加</a>
+  				<a href="#" id="link_hidden3" onClick="toggle_hidden3();return false;"style="display:none;">削除</a>
+								</p>
+							</p>
+						</div>
+						<script language="JavaScript" type="text/javascript">
+						var elem2_1 = document.getElementById("area_hoge2");
+						var elem2_2 = document.getElementById("link_view2");
+						var elem2_3 = document.getElementById("link_hidden2");
+						function toggle_view2() {
+  						elem2_1.style.display = "";
+  						elem2_2.style.display = "none";
+  						elem2_3.style.display = "";
+						}
+						function toggle_hidden2() {
+  						elem2_1.style.display = "none";
+  						elem2_2.style.display = "";
+  						elem2_3.style.display = "none";
+						}
+						</script>
 
+<div id="area_hoge3"style="display:none;">
+  							<p>
 				<p class="emergency_contact" id="emergency_contact3">
 				<div>
 					<label for="emergency_name3" id="a1" name="emergency3">氏名：</label>
@@ -347,6 +376,32 @@
 						name="Personal_informationForm" styleId="emergency_tel3"
 						styleClass="emergency_tel" value="<%= emergency_tel3 %>" size="19" maxlength="15"/>
 				</div>
+				<a href="#" id="link_view4" onClick="toggle_view4();return false;" >追加</a>
+  									<a href="#" id="link_hidden4" onClick="toggle_hidden4();return false;"style="display:none;">削除</a>
+								</p>
+							</p>
+						</div>
+						<script language="JavaScript" type="text/javascript">
+						var elem3_1 = document.getElementById("area_hoge3");
+						var elem3_2 = document.getElementById("link_view3");
+						var elem3_3 = document.getElementById("link_hidden3");
+						function toggle_view3() {
+  						elem3_1.style.display = "";
+  						elem3_2.style.display = "none";
+  						elem3_3.style.display = "";
+						}
+						function toggle_hidden3() {
+  						elem3_1.style.display = "none";
+  						elem3_2.style.display = "";
+  						elem3_3.style.display = "none";
+						}
+						</script>
+
+
+
+
+						<div id="area_hoge4"style="display:none;">
+							</p>
 				</p>
 				<p class="emergency_contact" id="emergency_contact4">
 				<div>
@@ -367,6 +422,32 @@
 						name="Personal_informationForm" styleId="emergency_tel4"
 						styleClass="emergency_tel" value="<%= emergency_tel4 %>" size="19" maxlength="15" />
 				</div>
+				<a href="#" id="link_view5" onClick="toggle_view5();return false;" >追加</a>
+  									<a href="#" id="link_hidden5" onClick="toggle_hidden5();return false;"style="display:none;">削除</a>
+								</p>
+							</p>
+						</div>
+						<script language="JavaScript" type="text/javascript">
+						var elem4_1 = document.getElementById("area_hoge4");
+						var elem4_2 = document.getElementById("link_view4");
+						var elem4_3 = document.getElementById("link_hidden4");
+						function toggle_view4() {
+  						elem4_1.style.display = "";
+  						elem4_2.style.display = "none";
+  						elem4_3.style.display = "";
+						}
+						function toggle_hidden4() {
+  						elem4_1.style.display = "none";
+  						elem4_2.style.display = "";
+  						elem4_3.style.display = "none";
+						}
+						</script>
+
+
+
+
+						<div id="area_hoge5"style="display:none;">
+							</p>
 				</p>
 				<p class="emergency_contact" id="emergency_contact5">
 				<div>
@@ -387,9 +468,28 @@
 						name="Personal_informationForm" styleId="emergency_tel5"
 						styleClass="emergency_tel" value="<%= emergency_tel5 %>" size="19" maxlength="15" />
 				</div>
+				<a href="#" id="link_hidden5" onClick="toggle_hidden5();return false;"style="display:none;">削除</a>
 				</p>
-				</br>
 				</p>
+							</p>
+						</div>
+						<script language="JavaScript" type="text/javascript">
+						var elem5_1 = document.getElementById("area_hoge5");
+						var elem5_2 = document.getElementById("link_view5");
+						var elem5_3 = document.getElementById("link_hidden5");
+						function toggle_view5() {
+  						elem5_1.style.display = "";
+  						elem5_2.style.display = "none";
+  						elem5_3.style.display = "";
+						}
+						function toggle_hidden5() {
+  						elem5_1.style.display = "none";
+  						elem5_2.style.display = "";
+  						elem5_3.style.display = "none";
+						}
+						</script>
+
+
 				<div class="family_structure" id="family_structure">
 					<label for="family_structure">家族構成</label>
 					<div>
@@ -460,7 +560,8 @@
 							value="<%= family_structure_job1 %>" size="18" maxlength="16" />
 					</div>
 
-					<div>
+
+
 						<label for="family_structure_name2" name="family_structure2">氏名：</label>
 						<html:text property="family_structure_name2"
 							name="Personal_informationForm" styleId="family_structure_name2"
@@ -492,7 +593,7 @@
 					</div>
 					<div>
 						<label for="family_structure_relationship2"
-							name="family_structure2">続柄：</label>
+							name="family_structure2-2">続柄：</label>
 						<html:text property="family_structure_relationship2"
 							name="Personal_informationForm"
 							styleId="family_structure_relationship2"
@@ -528,7 +629,9 @@
 							value="<%= family_structure_job2 %>" size="18" maxlength="16" />
 					</div>
 
-					</br>
+
+
+
 
 					<div>
 						<label for="family_structure_name3" name="family_structure3">氏名：</label>
@@ -902,6 +1005,9 @@
 			</html:form>
 
 		<!-- <script type="text/javascript" src="../js/personal_information.js"></script> -->
+		 <script type="text/javascript">
+		 document.write("最終更新日" + document.lastModified);
+		 </script>
 		</div>
 	</body>
 
