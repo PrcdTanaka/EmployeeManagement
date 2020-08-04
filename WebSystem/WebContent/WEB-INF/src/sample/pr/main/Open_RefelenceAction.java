@@ -1,9 +1,11 @@
 package sample.pr.main;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -42,7 +44,28 @@ public final class Open_RefelenceAction extends Action {
 
 	public ActionForward execute(ActionMapping map, ActionForm frm,
 			HttpServletRequest request, HttpServletResponse response) {
-		return null;
+
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+		e.printStackTrace();
+		}
+
+
+		Open_RefelenceForm rForm = (Open_RefelenceForm) frm;
+		String button=rForm.getButton();
+		HttpSession session=request.getSession();
+		if(button.equals("戻る")){
+			forward="back";
+			session.removeAttribute("rForm");
+		}
+		else if(button.equals("検索")){
+			forward="search";
+			session.setAttribute("rForm", rForm);
+		}
+
+		return map.findForward(forward);
 	}
+
 
 }

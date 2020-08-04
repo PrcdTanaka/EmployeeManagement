@@ -1,3 +1,5 @@
+<%@page import="sample.pr.main.Personal_informationForm"%>
+<%@page import="sample.pr.main.Personal_informationAction"%>
 <%@page import="java.util.Date"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
@@ -28,6 +30,9 @@
 					oform.setEmployee_no(request.getParameter("employee_no"));
 					dba.getMizuki(oform);
 					dba.getHire_date(oform);
+					Personal_informationForm Ename=new Personal_informationForm();
+					Ename.setEmployee_no(request.getParameter("employee_no"));
+					dba.getEmoloyee_Name(Ename);
 
 					String name = "";
 					String pos = "";
@@ -44,7 +49,7 @@
 						// 名前が存在する場合
 						// DBから個人情報を取得する
 						// 各パラメーターを設定する
-						name = oform.getName();
+						name = Ename.getEmployee_name();
 						pos = oform.getPos();
 						djc = oform.getDjc();
 						tec = oform.getTec();
