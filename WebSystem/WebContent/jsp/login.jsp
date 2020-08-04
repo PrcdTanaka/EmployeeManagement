@@ -16,7 +16,7 @@
 	<table>
 		<center><h1>ログイン画面</h1></center>
 	</table>
-	
+
 	<body>
 	 	<%
  		String message;
@@ -35,9 +35,9 @@
 			<div class="block">
 
 				<div class="space"></div>
-				
+
 				<center><%= message %></center>
-				
+
 				<!-- 社員番号入力欄 -->
 				<div>
 					<center>　　社員No：
@@ -54,8 +54,8 @@
 				<br>
 				<!-- ログインボタン -->
 				<span><html:submit property="button" styleClass="btn" value="ログイン" styleId="login" /></span>
-
 			</div>
+			<a href="Personal_information.jsp">パスワードを忘れた場合は</a>
 		</html:form>
 	</body>
 </html:html>

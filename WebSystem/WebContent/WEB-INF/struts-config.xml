@@ -107,7 +107,7 @@
 			scope="request">
 			<forward name="main" path="/jsp/Main.jsp"/>
 			<forward name="back" path="/jsp/Personal_information.jsp"/>
-			<forward name="open" path="/jsp/Open_information.jsp"/>
+			<forward name="open" path="/jsp/Open_inforegistration.jsp"/>
 		</action>
 
 		<action
