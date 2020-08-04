@@ -48,24 +48,29 @@ public final class Open_RefelenceAction extends Action {
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 
 
 		Open_RefelenceForm rForm = (Open_RefelenceForm) frm;
 		String button=rForm.getButton();
 		HttpSession session=request.getSession();
-		if(button.equals("戻る")){
-			forward="main";
-			session.removeAttribute("rForm");
+		try{
+			request.setCharacterEncoding("utf-8");
+			if(button.equals("戻る")){
+				forward="main";
+				session.removeAttribute("rForm");
+			}
+			else if(button.equals("検索")){
+				forward="search";
+				session.setAttribute("rForm", rForm);
+			}
+		}catch(IOException e){
+			e.printStackTrace();
 		}
-		else if(button.equals("検索")){
-			forward="search";
-			session.setAttribute("rForm", rForm);
+			session.removeAttribute("sForm");
+			return map.findForward(forward);
 		}
 
-		return map.findForward(forward);
+
 	}
-
-
-}

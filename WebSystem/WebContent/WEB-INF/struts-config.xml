@@ -97,6 +97,7 @@
 			scope="request">
 			<forward name="main" path="/jsp/Main.jsp"/>
 			<forward name="pInfo" path="/jsp/Personal_information.jsp"/>
+			<forward name="search" path="/jsp/search.jsp"/>
 		</action>
 
 		<action

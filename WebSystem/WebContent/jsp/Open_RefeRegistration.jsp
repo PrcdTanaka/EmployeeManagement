@@ -23,7 +23,7 @@
 
 </head>
 <body>
-	<html:form action="/Open_informationAction">
+	<html:form action="/Open_RefelenceAction">
 		<%
 			DbAction dba = new DbAction();
 					Open_informationForm oform=new Open_informationForm();
