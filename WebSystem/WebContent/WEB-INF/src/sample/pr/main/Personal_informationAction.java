@@ -133,7 +133,7 @@ public final class Personal_informationAction extends Action {
 
 			switch (Button) {
 			case "登録":
-				forward = clickBtnEntry(pForm);
+				forward = clickBtnEntry(pForm,lForm);
 				break;
 			case "戻る":
 				forward = clickBtnBack(pForm);
@@ -171,7 +171,7 @@ public final class Personal_informationAction extends Action {
 	 *            メイン画面アクションフォーム
 	 * @return 遷移先
 	 */
-	private String clickBtnEntry(Personal_informationForm form) {
+	private String clickBtnEntry(Personal_informationForm form, LoginForm login) {
 
 		if(form.getEmployee_name() == null){
 			form.setMessage("氏名を入力して下さい。");
@@ -200,7 +200,11 @@ public final class Personal_informationAction extends Action {
 			dba.setPersonalData(form);
 		}
 
-		forward = "pInfo";
+		if(login.getEmployee_no()==form.getEmployee_no())
+			forward = "pInfo";
+		else
+			forward = "search";
+
 		return forward;
 	}
 	private String clickBtnBack(Personal_informationForm form) {

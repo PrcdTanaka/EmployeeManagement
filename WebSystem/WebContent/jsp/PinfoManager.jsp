@@ -202,7 +202,7 @@
 		<div class="block">
 
 			<div align="right">
-				<a href="open_inforegistration.jsp">公開情報編集画面へ</a>
+				<a></a>
 			</div>
 			<html:form action="/Personal_informationAction">
 				<!-- form action="open_inforegistration.jsp" method="post"> -->
