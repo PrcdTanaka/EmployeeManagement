@@ -63,7 +63,7 @@
 		<div class='main1'>
 			<div class='pic'>
 				 <div id="dragDropArea">
-        <div class="drag-drop-inside">
+        <div class="drag-drop-inside" >
             <p class="drag-drop-info">ここにファイルをドロップ</p>
             <p>または</p>
             <p class="drag-drop-buttons">
@@ -90,7 +90,7 @@
 					}
 					reader.readAsDataURL(e.dataTransfer.files[0]);
 				});</script>
-				<!--imgsrc="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
+				<!-- img src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
 				height="190" width="190"-->
 			</div>
 			<div class='pro'>
@@ -102,7 +102,7 @@
 				<div class='pro2'>
 					<p class='pos'>役職:</p>
 					<html:select property="pos" name="Open_informationForm"
-						styleId="tec">
+						styleId="pos">
 						<html:option value="">-</html:option>
 						<html:option value="0">役職なし</html:option>
 						<html:option value="1">主任</html:option>
@@ -116,7 +116,7 @@
 					入社年月日：<%=djc%>
 				</p>
 				<div class='pro2'>
-					<div class='tec'>技術部 :</div>
+					<p class='tec'>技術部:</p>
 					<html:select property="tec" name="Open_informationForm"
 						styleId="tec">
 						<html:option value="">-</html:option>
