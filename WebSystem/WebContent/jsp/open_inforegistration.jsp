@@ -102,7 +102,7 @@
 				<div class='pro2'>
 					<p class='pos'>役職:</p>
 					<html:select property="pos" name="Open_informationForm"
-						styleId="pos">
+						styleId="pos" value = "">
 						<html:option value="">-</html:option>
 						<html:option value="0">役職なし</html:option>
 						<html:option value="1">主任</html:option>
@@ -118,7 +118,7 @@
 				<div class='pro2'>
 					<p class='tec'>技術部:</p>
 					<html:select property="tec" name="Open_informationForm"
-						styleId="tec">
+						styleId="tec" value = "">
 						<html:option value="">-</html:option>
 						<html:option value="00">総務・経理部</html:option>
 						<html:option value="01">第1技術部</html:option>
