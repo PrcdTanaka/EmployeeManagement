@@ -200,4 +200,9 @@ public final class PasswordForm extends ActionForm {
 		this.dbpassword = dbpassword;
 	}
 
+	public String getTel_phone() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
 }
