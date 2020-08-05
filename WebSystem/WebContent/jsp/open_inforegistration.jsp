@@ -154,7 +154,7 @@
 		<!-- 登録/編集ボタン  -->
 		<p id="Bentry">
 			<html:submit property="button" styleClass="btn" value="登録"
-				styleId="entry" />
+				styleId="open" />
 		</p>
 
 		<p id="Bedit">

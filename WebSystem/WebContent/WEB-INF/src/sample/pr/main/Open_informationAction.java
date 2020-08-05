@@ -64,7 +64,8 @@ public final class Open_informationAction extends Action {
 			dba.setKomaki(oForm);
 			oForm.setMessage("編集しました");
 			forward = "open";
+
 		}
-			return null;
+			return map.findForward(forward);
 	}
 }
