@@ -17,6 +17,7 @@ public final class PasswordForm extends ActionForm {
 	/** メッセージ */
 	private String message;
 	private String dbpassword;
+	private String tel_phone;
 
 	/**
 	 * 初期化処理。
@@ -199,10 +200,29 @@ public final class PasswordForm extends ActionForm {
 	public void setDbpassword(String dbpassword) {
 		this.dbpassword = dbpassword;
 	}
-
+	/**
+	 * ログインしているユーザーの携帯番号取得処理。
+	 * <p>
+	 * パスワード変更画面アクションフォームからログインしているユーザーの携帯番号を取得する。
+	 * </p>
+	 *
+	 * @return 携帯番号
+	 */
 	public String getTel_phone() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return tel_phone;
 	}
+	/**
+	 * ログインしているユーザーの携帯番号設定処理。
+	 * <p>
+	 * パスワードフォームに携帯番号を設定する。
+	 * </p>
+	 *
+	 * @param 携帯番号
+	 */
+	public void setTel_phone(String tel_phone) {
+		this.tel_phone = tel_phone;
+	}
+
+
 
 }

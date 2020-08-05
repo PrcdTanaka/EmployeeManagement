@@ -2079,7 +2079,7 @@ public class DbAction extends Object{
 		return ret;
 
 	}
-	public boolean getTel_phone(Open_informationForm form) {
+	public boolean getTel_phone(Personal_informationForm form) {
 
 		boolean ret = false;
 
@@ -2123,7 +2123,7 @@ public class DbAction extends Object{
 				dba.commit();
 				dba.closeConnection();
 				for (Map<String, String> val : rsList) {
-					form.setDjc(val.get("TEL_PHONE"));
+					form.setTel_phone(val.get("TEL_PHONE"));
 					ret = true;
 				}
 

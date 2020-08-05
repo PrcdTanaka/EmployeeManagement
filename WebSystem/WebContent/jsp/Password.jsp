@@ -57,7 +57,6 @@
 				<html:submit property="button" styleClass="btn" value="戻る" styleId="main" />
 
 				<div align="right">
-			<a href="Personal_information.jsp">パスワードを忘れた場合は</a>
 		</div>
  			 </div>
    		 </html:form>

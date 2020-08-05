@@ -101,7 +101,7 @@ public final class PasswordChangeAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
+		Personal_informationForm piForm = (Personal_informationForm) frm;
 		PasswordForm pForm = (PasswordForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
@@ -121,7 +121,7 @@ public final class PasswordChangeAction extends Action {
 				// DBに格納された社員番号と入力された社員番号取得処理
 				dba.getDbpassword(pForm);
 				String employee_no = lForm.getEmployee_no();
-				String dbemployee_no = lForm.getEmployee_no();
+				String dbemployee_no = pForm.getEmployee_no();
 
 				//DBに格納された社員番号と入力された社員番号比較処理
 				if(employee_no.equals(dbemployee_no)){
@@ -130,11 +130,11 @@ public final class PasswordChangeAction extends Action {
 				}
 			}
 			//入力された携帯番号の空白判定
-			if(pForm.getTel_phone().equals("")){
+			if(piForm.getTel_phone().equals("")){
 				pForm.setMessage("携帯番号を入力してください。");
 			}else{
 				// DBに格納された携帯番号と入力された携帯番号取得処理
-				dba.getDbpassword(pForm);
+				dba.getTel_phone(piForm);
 				String tel_phone = pForm.getTel_phone();
 				String dbtel_phone = pForm.getTel_phone();
 

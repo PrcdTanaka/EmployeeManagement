@@ -55,7 +55,7 @@
 				<!-- ログインボタン -->
 				<span><html:submit property="button" styleClass="btn" value="ログイン" styleId="login" /></span>
 			</div>
-			<a href="Personal_information.jsp">パスワードを忘れた場合は</a>
+			<a href="PasswordChange.jsp">パスワードを忘れた場合は</a>
 		</html:form>
 	</body>
 </html:html>

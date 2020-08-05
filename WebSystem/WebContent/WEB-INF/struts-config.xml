@@ -120,6 +120,18 @@
 			<forward name="main" path="/jsp/Main.jsp"/>
 			<forward name="search" path="/jsp/search.jsp"/>
 		</action>
+
+		<action
+			name="PasswordForm"
+			path="/PasswordChangeAction"
+			type="sample.pr.main.PasswordChangeAction"
+			validate="false"
+			scope="request">
+			<forward name="main" path="/jsp/Main.jsp"/>
+			<forward name="password" path="/jsp/PasswordChange.jsp"/>
+		</action>
+
+
     </action-mappings>
 
 
