@@ -22,7 +22,7 @@
 		<form-bean name="Personal_informationForm" type="sample.pr.main.Personal_informationForm"/>
 		<form-bean name="Open_RefelenceForm" type="sample.pr.main.Open_RefelenceForm"/>
 		<form-bean name="Open_informationForm" type="sample.pr.main.Open_informationForm"/>
-
+		<form-bean name="PasswordChangeForm" type="sample.pr.main.PasswordChangeForm"/>
     </form-beans>
 
 
@@ -42,6 +42,7 @@
 			scope="request">
 			<forward name="login" path="/jsp/login.jsp" />
 			<forward name="main" path="/jsp/Main.jsp"/>
+			<forward name="change" path="/jsp/PasswordChange.jsp"/>
 		</action>
 
 		<action
