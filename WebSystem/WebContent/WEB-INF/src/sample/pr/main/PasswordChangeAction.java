@@ -101,7 +101,7 @@ public final class PasswordChangeAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
+		Personal_informationForm piForm = (Personal_informationForm) frm;
 		PasswordForm pForm = (PasswordForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
@@ -121,7 +121,7 @@ public final class PasswordChangeAction extends Action {
 				// DBに格納された社員番号と入力された社員番号取得処理
 				dba.getDbpassword(pForm);
 				String employee_no = lForm.getEmployee_no();
-				String dbemployee_no = lForm.getEmployee_no();
+				String dbemployee_no = pForm.getEmployee_no();
 
 				//DBに格納された社員番号と入力された社員番号比較処理
 				if(employee_no.equals(dbemployee_no)){
@@ -130,29 +130,18 @@ public final class PasswordChangeAction extends Action {
 				}
 			}
 			//入力された携帯番号の空白判定
-			if(pForm.getOldpassword().equals("")){
-				pForm.setMessage("パスワードを入力してください。");
+			if(piForm.getTel_phone().equals("")){
+				pForm.setMessage("携帯番号を入力してください。");
 			}else{
-				// DBに格納されたパスワードと入力された古いパスワード取得処理
-				dba.getDbpassword(pForm);
-				String oldpassword = pForm.getOldpassword();
-				String dbpassword = pForm.getDbpassword();
+				// DBに格納された携帯番号と入力された携帯番号取得処理
+				dba.getTel_phone(piForm);
+				String tel_phone = pForm.getTel_phone();
+				String dbtel_phone = pForm.getTel_phone();
 
-				//DBに格納されたパスと入力された古いパスワード比較処理
-				if(oldpassword.equals(dbpassword)){
-				//新しいパスワード２つの比較処理
-					if(pForm.getNewpassword1().equals(pForm.getNewpassword2())){
-						if(!checkPattern(pForm.getNewpassword1(), "password")){
-							pForm.setMessage("【大文字小文字アルファベット】【数字】【記号】を含む8～16桁のパスワードを入力してください。");
-						}else{
-							dba.setPassword(pForm);
-							pForm.setMessage("パスワードを変更しました。");
-						}
-					}else{
-						pForm.setMessage("入力された新しいパスワードが不正です。");
-					}
+				//DBに格納された携帯番号と入力された携帯番号比較処理
+				if(tel_phone.equals(dbtel_phone)){
 				}else{
-					pForm.setMessage("入力された古いパスワードが不正です。");
+					pForm.setMessage("入力された携帯番号が不正です。");
 				}
 			}
 			//入力されたパスワードの空白判定

@@ -32,7 +32,7 @@
 
  	%>
  	<body>
-  		<html:form action="/PasswordAction" >
+  		<html:form action="/PasswordChangeAction" >
 			<div class="block">
 
 				<div class="space"></div>
@@ -41,10 +41,10 @@
 					<center><%= message %></center>
 				<br>
 				<div>
-				    <center>  古いパスワード：<html:text property="oldpassword" value= ""/></center>
+				    <center>        社員番号：<html:text property="dbemployee_no" value= ""/></center>
 				</div>
 				<div>
-				    <center>新しいパスワード：<html:text property="newpassword1" value= ""/></center>
+				    <center>        携帯番号：<html:text property="dbtel_phone" value= ""/></center>
 				</div>
 				<div>
 				    <center>新しいパスワード：<html:text property="newpassword2" value= ""/></center>
@@ -57,7 +57,6 @@
 				<html:submit property="button" styleClass="btn" value="戻る" styleId="main" />
 
 				<div align="right">
-			<a href="Personal_information.jsp">パスワードを忘れた場合は</a>
 		</div>
  			 </div>
    		 </html:form>
