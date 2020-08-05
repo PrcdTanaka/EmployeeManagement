@@ -27,13 +27,13 @@
 		<%
 			DbAction dba = new DbAction();
 					Open_informationForm oform=new Open_informationForm();
+					Personal_informationForm pform=new Personal_informationForm();
 					oform.setEmployee_no(request.getParameter("employee_no"));
 					dba.getMizuki(oform);
 					dba.getHire_date(oform);
 					Personal_informationForm Ename=new Personal_informationForm();
 					Ename.setEmployee_no(request.getParameter("employee_no"));
 					dba.getEmoloyee_Name(Ename);
-					dba.getHire_date(oform);
 					String name = "";
 					String pos = "";
 					String djc = "";
