@@ -74,7 +74,7 @@
 								break;
 							}
 
-						}catch(NullPointerException e){
+						}catch(Exception e){
 							pos="未登録";
 						}
 						try{
@@ -111,7 +111,7 @@
 								tec="採用マーケティング部";
 								break;
 							}
-						}catch(NullPointerException e){
+						}catch(Exception e){
 							tec="未登録";
 						}
 						hobby = oform.getHobby();
@@ -141,8 +141,10 @@
 					</p>
 				</div>
 				<div class='pro2'>
+				<div align="left">
 					<div class='day'></div>
 					入社年月日:<%=djc %>
+				</div>
 				</div>
 				<div class='pro2'>
 					<div class='tec'></div>
