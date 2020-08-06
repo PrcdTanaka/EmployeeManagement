@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -16,7 +15,7 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
 
-public final class PasswordChangeAction extends Action {
+public final class PasswordForgetAction extends Action {
 
 
 	/**
@@ -41,7 +40,7 @@ public final class PasswordChangeAction extends Action {
 	// 遷移先
 	private String forward;
 
-	public PasswordChangeAction() throws IOException {
+	public PasswordForgetAction() throws IOException {
 	}
 
 	/**
@@ -103,10 +102,6 @@ public final class PasswordChangeAction extends Action {
 		}
 		Personal_informationForm piForm = (Personal_informationForm) frm;
 		PasswordForm pForm = (PasswordForm) frm;
-		HttpSession session = request.getSession();
-		LoginForm lForm = (LoginForm) session.getAttribute("form");
-
-		pForm.setEmployee_no(lForm.getEmployee_no());
 
 		forward = "password";
 
@@ -115,18 +110,18 @@ public final class PasswordChangeAction extends Action {
 			forward = "main";
 		}if(button.equals("変更")){
 				//入力された社員番号の空白判定
-			if(lForm.getEmployee_no().equals("")){
-				lForm.setMessage("社員番号を入力してください。");
+			if(piForm.getEmployee_no().equals("")){
+				piForm.setMessage("社員番号を入力してください。");
 			}else{
 				// DBに格納された社員番号と入力された社員番号取得処理
 				dba.getDbpassword(pForm);
-				String employee_no = lForm.getEmployee_no();
-				String dbemployee_no = pForm.getEmployee_no();
+				String employee_no = pForm.getEmployee_no();
+				String dbemployee_no = dba.getEmployee_no();
 
 				//DBに格納された社員番号と入力された社員番号比較処理
 				if(employee_no.equals(dbemployee_no)){
 				}else{
-					lForm.setMessage("入力された社員番号が不正です。");
+					pForm.setMessage("入力された社員番号が不正です。");
 				}
 			}
 			//入力された携帯番号の空白判定
@@ -170,8 +165,33 @@ public final class PasswordChangeAction extends Action {
 					pForm.setMessage("入力された古いパスワードが不正です。");
 				}
 			}
+			//入力されたパスワードの空白判定
+			if(pForm.getOldpassword().equals("")){
+				pForm.setMessage("パスワードを入力してください。");
+			}else{
+				// DBに格納されたパスワードと入力された古いパスワード取得処理
+				dba.getDbpassword(pForm);
+				String oldpassword = pForm.getOldpassword();
+				String dbpassword = pForm.getDbpassword();
+
+				//DBに格納されたパスと入力された古いパスワード比較処理
+				if(oldpassword.equals(dbpassword)){
+				//新しいパスワード２つの比較処理
+					if(pForm.getNewpassword1().equals(pForm.getNewpassword2())){
+						if(!checkPattern(pForm.getNewpassword1(), "password")){
+							pForm.setMessage("【大文字小文字アルファベット】【数字】【記号】を含む8～16桁のパスワードを入力してください。");
+						}else{
+							dba.setPassword(pForm);
+							pForm.setMessage("パスワードを変更しました。");
+						}
+					}else{
+						pForm.setMessage("入力された新しいパスワードが不正です。");
+					}
+				}else{
+					pForm.setMessage("入力された古いパスワードが不正です。");
+				}
+			}
 		}
-		session.setAttribute("pForm", pForm);
 		return map.findForward(forward);
 	}
 

@@ -52,7 +52,7 @@
 				<div class="space"></div>
 				<br>
 				<!-- 変更ボタン -->
-				<html:submit property="button" styleClass="btn" value="変更" styleId="chenge" />
+				<html:submit property="button" styleClass="btn" value="変更" styleId="change" />
     			<!-- 戻るボタン -->
 				<html:submit property="button" styleClass="btn" value="戻る" styleId="main" />
 

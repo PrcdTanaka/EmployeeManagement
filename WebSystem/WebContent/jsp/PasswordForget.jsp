@@ -16,7 +16,7 @@
 
 <table>
 	<center>
-		<h1>パスワード変更手続き画面</h1>
+		<h1>社員番号認証画面</h1>
 	</center>
 </table>
 <%
@@ -41,20 +41,11 @@
 			<center><%= message %></center>
 		<br>
 		<div>
-			<center>　　　　　　社員番号：<html:text property="employee_no" value= "" maxlength="4" /></center>
-		</div>
-		<div>
-		    <center>　　　　　　携帯番号：<html:text property="tel_phone" value= "" maxlength="11" /></center>
-		</div>
-		<div>
-			 <center>　　新しいパスワード：<html:text property="newpassword" value= "" maxlength="16" /></center>
-		</div>
-		<div>
-		    <center>新しいパスワード(確認用)：<html:text property="newpassword2" value= "" maxlength="16" /></center>
+			<center>社員番号：<html:text property="employee_no" value= "" maxlength="4" /></center>
 		</div>
 		<br>
 		<!-- 変更ボタン -->
-		<html:submit property="button" styleClass="btn" value="変更" styleId="change" />
+		<html:submit property="button" styleClass="btn" value="次へ" styleId="change" />
     	<!-- 戻るボタン -->
 		<html:submit property="button" styleClass="btn" value="戻る" styleId="main" />
 
