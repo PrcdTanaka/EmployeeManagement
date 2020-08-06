@@ -198,6 +198,11 @@ public final class Personal_informationAction extends Action {
 				}
 
 			}
+			//管理者の場合、確認書類を登録する。
+			if(login.getManager().equals(1))
+				dba.setConfirm(form);
+
+
 			dba.setPersonalData(form);
 		}
 

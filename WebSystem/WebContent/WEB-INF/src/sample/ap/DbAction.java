@@ -2132,4 +2132,35 @@ public class DbAction extends Object{
 		return ret;
 
 	}
+	public boolean setConfirm(Personal_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("UPDATE" + crlf);
+			sb.append("  PERSONAL_INFORMATION_TBL" + crlf);
+			sb.append("SET" + crlf);
+			sb.append("  DOCUMENT" + form.getDocument() + crlf);
+			sb.append("  NB"  + form.getNb() + crlf);
+			sb.append("  CONFIRMER" + form.getConfirmer() + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+		}
+		ret = true;
+
+
+		return ret;
+	}
 }
