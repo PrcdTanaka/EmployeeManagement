@@ -142,8 +142,9 @@
 				</div>
 				<div class='pro2'>
 				<div align="left">
-					<div class='day'></div>
+					<p style="margin-bottom:25px;">
 					入社年月日:<%=djc %>
+					</p>
 				</div>
 				</div>
 				<div class='pro2'>
