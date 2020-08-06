@@ -37,6 +37,9 @@ public final class Open_informationForm extends ActionForm {
 	/**メッセージ*/
 	private String message;
 
+	/**画像**/
+	private String img;
+
 
 	/**
 	 * 初期化処理。
@@ -258,5 +261,11 @@ public final class Open_informationForm extends ActionForm {
 	}
 	public void setMessage(String message){
 		this.message = message;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img){
+		this.img = img;
 	}
 }

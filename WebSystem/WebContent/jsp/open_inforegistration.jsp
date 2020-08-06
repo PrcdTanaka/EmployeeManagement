@@ -100,7 +100,9 @@
 					</p>
 				</div>
 				<div class='pro2'>
+				<div align="left">
 					<p class='pos'>役職:</p>
+				</div>
 					<html:select property="pos" name="Open_informationForm"
 						styleId="pos" value = "">
 						<html:option value="">-</html:option>
@@ -112,9 +114,11 @@
 						<html:option value="5">部長</html:option>
 						</html:select>
 				</div>
+				<div align="left">
 				<p style="margin-top: 5px;">
 					入社年月日：<%=djc%>
 				</p>
+				</div>
 				<div class='pro2'>
 					<p class='tec'>技術部:</p>
 					<html:select property="tec" name="Open_informationForm"
@@ -151,15 +155,10 @@
 			<html:textarea property="intr" rows="10" cols="100" value="<%=intr%>"></html:textarea>
 			<!-- styleClass='int2'name='int2' cols='90' rows='10' -->
 		</div>
-		<!-- 登録/編集ボタン  -->
+		<!-- 登録ボタン  -->
 		<p id="Bentry">
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="open" />
-		</p>
-
-		<p id="Bedit">
-			<input type="button" value="編集" id="edit" onclick="clickBtnEdit()"
-				class="btn" style="display: none" />
 		</p>
 		<!-- 戻るボタン -->
 		<html:submit property="button" styleClass="btn" value="戻る"
