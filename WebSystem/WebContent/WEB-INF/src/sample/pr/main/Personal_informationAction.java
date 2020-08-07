@@ -131,20 +131,20 @@ public final class Personal_informationAction extends Action {
 			e.printStackTrace();
 		}
 
-			switch (Button) {
-			case "登録":
-				forward = clickBtnEntry(pForm,lForm);
-				session.removeAttribute("sForm");
-				break;
-			case "戻る":
-				forward = clickBtnBack(pForm);
-				session.removeAttribute("rForm");
-				session.removeAttribute("sForm");
-				break;
-			case "":
-				forward = "password";
-				break;
-			}
+		switch (Button) {
+		case "登録":
+			forward = clickBtnEntry(pForm,lForm);
+			session.removeAttribute("sForm");
+			break;
+		case "戻る":
+			forward = clickBtnBack(pForm);
+			session.removeAttribute("rForm");
+			session.removeAttribute("sForm");
+			break;
+		case "":
+			forward = "password";
+			break;
+		}
 
 		return map.findForward(forward);
 	}
@@ -178,6 +178,8 @@ public final class Personal_informationAction extends Action {
 			form.setMessage("氏名を入力して下さい。");
 		} else {
 			int no;
+			//入社年月日登録
+			dba.setHire_date(form);
 			for(no = 1; no <= 5; no++) {
 				// 緊急連絡先テーブルに社員番号とNoの組み合わせが存在しているかの確認。
 				if(dba.getEmployee_no(form, "EMERGENCY_CONTACT_TBL", no)) {
@@ -201,10 +203,7 @@ public final class Personal_informationAction extends Action {
 			//管理者の場合、確認書類を登録する。
 			if(login.getManager().equals(1))
 				dba.setConfirm(form);
-
-
 			dba.setPersonalData(form);
-			
 		}
 
 		if(login.getEmployee_no()==form.getEmployee_no())
