@@ -90,8 +90,8 @@
 					}
 					reader.readAsDataURL(e.dataTransfer.files[0]);
 				});</script>
-				<!-- img src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
-				height="190" width="190"-->
+				<!-- src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
+				height="190" width="190" -->
 			</div>
 			<div class='pro'>
 				<div class='pro2'>
