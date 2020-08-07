@@ -2163,4 +2163,56 @@ public class DbAction extends Object{
 
 		return ret;
 	}
+
+	public boolean setHire_date(Personal_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("UPDATE" + crlf);
+			sb.append("PERSONAL_INFORMATION_TBL" + crlf);
+			sb.append("SET" + crlf);
+			sb.append("HIRE_DATE = " + "'" +form.getHire_date()+"'" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, typeList, bindList);
+				dba.commit();
+				dba.closeConnection();
+
+					ret = true;
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
 }
