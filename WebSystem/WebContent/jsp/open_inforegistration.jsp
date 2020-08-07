@@ -40,7 +40,7 @@
 					dba.getMizuki(oForm);
 					dba.getHire_date(oForm);
 					String djc = "";
-					String sunaga = "";
+					String name = "";
 					String Employee_no = "";
 					String intr = oForm.getIntr();
 					String hobby = oForm.getHobby();
@@ -48,13 +48,12 @@
 					try {
 						Employee_no = s.getEmployee_no();
 						djc = oForm.getDjc();
-						sunaga = s.getEmployee_name();
+						name = s.getEmployee_name();
 					} catch (Exception e) {
 						if (djc.equals(null)) {
 
 						}
 					}
-					String name = s.getEmployee_name();
 					String pos = "";
 		%>
 		<div align="right">
@@ -96,7 +95,7 @@
 			<div class='pro'>
 				<div class='pro2'>
 					<p style="margin-top: 5px;">
-						名前：<%=sunaga%>
+						名前：<%=name%>
 					</p>
 				</div>
 				<div class='pro2'>
