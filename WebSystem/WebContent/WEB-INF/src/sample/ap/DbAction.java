@@ -1907,6 +1907,7 @@ public class DbAction extends Object{
 			sb.append(",HOBBIES = " + "'" +form.getHobby()+"'" + crlf);
 			sb.append(",SPECIALTY = " + "'" +form.getSs()+"'" + crlf);
 			sb.append(",INTRODUCTION = " + "'" +form.getIntr()+"'" + crlf);
+			sb.append(",IMG = " + "'" +form.getImg()+"'" + crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("EMPLOYEE_NO = ?" + crlf);
 
