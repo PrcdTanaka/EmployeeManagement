@@ -233,9 +233,10 @@
 					<label for="birth">生年月日：</label>
 					<html:text property="birth" name="Personal_informationForm"
 						styleId="birth" value="<%=birth%>" size="7" maxlength="10" />
+					<p>例) 1999年12月31日 → 1999/12/31
 				</div>
 				<div class="tel">
-					<label for="tel_home">電話番号</label>
+					<label for="tel_home">電話番号(ハイフンなし)</label>
 					<div class="tel_home">
 						<label for="tel_home"> 自宅 ：</label>
 						<html:text property="tel_home" name="Personal_informationForm"
@@ -249,7 +250,7 @@
 					</div>
 				</div>
 				<div class="postal_code">
-					<label for="postal_code">郵便番号：</label>
+					<label for="postal_code">郵便番号(ハイフンなし)：</label>
 					<html:text property="postal_code" name="Personal_informationForm"
 						styleId="postal_code" value="<%=postal_code%>" size="7"
 						maxlength="7" />
