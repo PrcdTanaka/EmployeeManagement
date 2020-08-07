@@ -8,15 +8,14 @@
 <%@ page import="sample.pr.main.Open_informationForm"%>
 <%@ page import="java.util.function.*"%>
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.Open_informationForm"%>
 <%@ page import="sample.ap.DbAction"%>
 
 <html:html>
 
 
 <head>
-<link rel="stylesheet" type="text/css" href="../css/open.css">
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="/WebSystem/css/open.css">
+<link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 
 
 </head>
@@ -61,16 +60,17 @@
 		</div>
 		<div class='main1'>
 			<div class='pic'>
-				 <div id="dragDropArea">
-        <div class="drag-drop-inside" >
-            <p class="drag-drop-info">ここにファイルをドロップ</p>
-            <p>または</p>
-            <p class="drag-drop-buttons">
-                <input id="fileInput" type="file" accept="image/*" value="ファイルを選択" name="photo" onChange="photoPreview(event)">
-            </p>
-            <div id="previewArea"></div>
-        </div>
-    </div>
+				<div id="dragDropArea">
+					<div class="drag-drop-inside">
+						<p class="drag-drop-info">ここにファイルをドロップ</p>
+						<p>または</p>
+						<p class="drag-drop-buttons">
+							<input id="fileInput" type="file" accept="image/*"
+								value="ファイルを選択" name="photo" onChange="photoPreview(event)">
+						</p>
+						<div id="previewArea"></div>
+					</div>
+				</div>
 
 				<img id="preview"> <img id="preview">
 				<script type="text/javascript" src="../js/personal_information.js">
@@ -94,34 +94,30 @@
 			</div>
 			<div class='pro'>
 				<div class='pro2'>
-					<p style="margin-top: 5px;">
+					<p style="margin-top: 5px; margin-bottom: 20px">
 						名前：<%=name%>
+					</p>
+					<p style="margin-top: 5px; margin-left: 50px; margin-bottom: 20px">
+						役職：<%=pos %>
+						<html:select property="pos" name="Open_informationForm"
+							styleId="pos" value="">
+							<html:option value="">-</html:option>
+							<html:option value="0">役職なし</html:option>
+							<html:option value="1">主任</html:option>
+							<html:option value="2">係長</html:option>
+							<html:option value="3">課長</html:option>
+							<html:option value="4">次長</html:option>
+							<html:option value="5">部長</html:option>
+						</html:select>
 					</p>
 				</div>
 				<div class='pro2'>
-				<div align="left">
-					<p class='pos'>役職:</p>
-				</div>
-					<html:select property="pos" name="Open_informationForm"
-						styleId="pos" value = "">
-						<html:option value="">-</html:option>
-						<html:option value="0">役職なし</html:option>
-						<html:option value="1">主任</html:option>
-						<html:option value="2">係長</html:option>
-						<html:option value="3">課長</html:option>
-						<html:option value="4">次長</html:option>
-						<html:option value="5">部長</html:option>
-						</html:select>
-				</div>
-				<div align="left">
-				<p style="margin-top: 5px;">
 					入社年月日：<%=djc%>
-				</p>
 				</div>
 				<div class='pro2'>
 					<p class='tec'>技術部:</p>
 					<html:select property="tec" name="Open_informationForm"
-						styleId="tec" value = "">
+						styleId="tec" value="">
 						<html:option value="">-</html:option>
 						<html:option value="00">総務・経理部</html:option>
 						<html:option value="01">第1技術部</html:option>

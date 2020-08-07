@@ -108,7 +108,6 @@
 			validate="false"
 			scope="request">
 			<forward name="main" path="/jsp/Main.jsp"/>
-			<forward name="back" path="/jsp/Personal_information.jsp"/>
 			<forward name="open" path="/jsp/open_inforegistration.jsp"/>
 		</action>
 
