@@ -205,15 +205,13 @@
 				<div class="hire_date">
 					<label for="hire_date">入社日</label>
 					<html:text property="hire_date" name="Personal_informationForm"
-						styleId="hire_date" value="<%=hire_date%>" size="8"
-						maxlength="10" />
+						styleId="hire_date" value="<%=hire_date%>" size="8" maxlength="10" />
 					<p>例) 2020年4月10日 → 2020/04/10
 				</div>
 				<div class="name">
 					<label for="name">氏名 ：</label>
 					<html:text property="employee_name" name="Personal_informationForm"
-						styleId="name" value="<%=employee_name%>" size="18"
-						maxlength="16"></html:text>
+						styleId="name" value="<%=employee_name%>" size="18" maxlength="16"></html:text>
 					※必須
 				</div>
 				<div>
@@ -241,8 +239,7 @@
 					<div class="tel_home">
 						<label for="tel_home"> 自宅 ：</label>
 						<html:text property="tel_home" name="Personal_informationForm"
-							styleId="tel_home" value="<%=tel_home%>" size="15"
-							maxlength="15" />
+							styleId="tel_home" value="<%=tel_home%>" size="15" maxlength="15" />
 					</div>
 					<div class="tel_phone">
 						<label for="tel_phone"> 携帯電話：</label>
@@ -276,7 +273,9 @@
 				</div>
 				<p>
 				<div class="emergency_contact" id="emergency_contact">
-					<label for="emergency_contact">緊急連絡先</label>
+			<br>
+					<h2><label for="emergency_contact">緊急連絡先</label></h2>
+					<br>
 					<div>
 						<label for="Emergency_tel">電話番号：</label>
 						<html:text property="Emergency_tel"
@@ -307,213 +306,112 @@
 						<label for="emergency_tel1" name="emergency1">TEL ：</label>
 						<html:text property="emergency_tel1"
 							name="Personal_informationForm" styleId="emergency_tel1"
-							styleClass="emergency_tel" value="<%=emergency_tel1%>"
-							size="19" maxlength="15" />
-					</div>
-				</div>
-				</p>
-
-				<p>
-					<a href="#" id="link_view2" onClick="toggle_view2();return false;">追加</a>
-					<a href="#" id="link_hidden2"
-						onClick="toggle_hidden2();return false;" style="display: none;">削除</a>
-				</p>
-				<div id="area_hoge2" style="display: none;">
-					<p>
-					<p class="emergency_contact" id="emergency_contact2">
-					<div>
-						<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
-						<html:text property="emergency_name2"
-							name="Personal_informationForm" styleId="emergency_name2"
-							styleClass="emergency_name" value="<%=emergency_name2%>"
-							size="18" maxlength="16" />
-					</div>
-					<div>
-						<label for="relationship2" name="emergency2">本人との関係：</label>
-						<html:text property="relationship2"
-							name="Personal_informationForm" styleId="relationship2"
-							styleClass="relationship" value="<%=relationship2%>" size="3"
-							maxlength="3" />
-					</div>
-					<div>
-						<label for="emergency_tel2" name="emergency2">TEL ：</label>
-						<html:text property="emergency_tel2"
-							name="Personal_informationForm" styleId="emergency_tel2"
-							styleClass="emergency_tel" value="<%=emergency_tel2%>" size="19"
+							styleClass="emergency_tel" value="<%=emergency_tel1%>" size="19"
 							maxlength="15" />
 					</div>
-					</p>
-					<a href="#" id="link_view3" onClick="toggle_view3();return false;">追加</a>
-					<a href="#" id="link_hidden3"
-						onClick="toggle_hidden3();return false;" style="display: none;">削除</a>
-					</p>
-					</p>
 				</div>
-				<script language="JavaScript" type="text/javascript">
-					var elem2_1 = document.getElementById("area_hoge2");
-					var elem2_2 = document.getElementById("link_view2");
-					var elem2_3 = document.getElementById("link_hidden2");
-					function toggle_view2() {
-						elem2_1.style.display = "";
-						elem2_2.style.display = "none";
-						elem2_3.style.display = "";
-					}
-					function toggle_hidden2() {
-						elem2_1.style.display = "none";
-						elem2_2.style.display = "";
-						elem2_3.style.display = "none";
-					}
-				</script>
+				</p>
 
-				<div id="area_hoge3" style="display: none;">
-					<p>
-					<p class="emergency_contact" id="emergency_contact3">
-					<div>
-						<label for="emergency_name3" id="a1" name="emergency3">氏名：</label>
-						<html:text property="emergency_name3"
-							name="Personal_informationForm" styleId="emergency_name3"
-							styleClass="emergency_name" value="<%=emergency_name3%>"
-							size="18" maxlength="16"></html:text>
-					</div>
-					<div>
-						<label for="relationship3" name="emergency3">本人との関係：</label>
-						<html:text property="relationship3"
-							name="Personal_informationForm" styleId="relationship3"
-							styleClass="relationship" value="<%=relationship3%>" size="3"
-							maxlength="3" />
-					</div>
-					<div>
-						<label for="emergency_tel3" name="emergency3">TEL ：</label>
-						<html:text property="emergency_tel3"
-							name="Personal_informationForm" styleId="emergency_tel3"
-							styleClass="emergency_tel" value="<%=emergency_tel3%>"
-							size="19" maxlength="15" />
-					</div>
-					<a href="#" id="link_view4" onClick="toggle_view4();return false;">追加</a>
-					<a href="#" id="link_hidden4"
-						onClick="toggle_hidden4();return false;" style="display: none;">削除</a>
-					</p>
-					</p>
+
+
+				<p class="emergency_contact" id="emergency_contact2">
+				<div>
+					<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
+					<html:text property="emergency_name2"
+						name="Personal_informationForm" styleId="emergency_name2"
+						styleClass="emergency_name" value="<%=emergency_name2%>" size="18"
+						maxlength="16" />
 				</div>
-				<script language="JavaScript" type="text/javascript">
-					var elem3_1 = document.getElementById("area_hoge3");
-					var elem3_2 = document.getElementById("link_view3");
-					var elem3_3 = document.getElementById("link_hidden3");
-					function toggle_view3() {
-						elem3_1.style.display = "";
-						elem3_2.style.display = "none";
-						elem3_3.style.display = "";
-					}
-					function toggle_hidden3() {
-						elem3_1.style.display = "none";
-						elem3_2.style.display = "";
-						elem3_3.style.display = "none";
-					}
-				</script>
-
-
-
-
-				<div id="area_hoge4" style="display: none;">
-					</p>
-					</p>
-					<p class="emergency_contact" id="emergency_contact4">
-					<div>
-						<label for="emergency_name4" id="a1" name="emergency4">氏名：</label>
-						<html:text property="emergency_name4"
-							name="Personal_informationForm" styleId="emergency_name4"
-							styleClass="emergency_name" value="<%=emergency_name4%>"
-							size="18" maxlength="16"></html:text>
-					</div>
-					<div>
-						<label for="relationship4" name="emergency4">本人との関係：</label>
-						<html:text property="relationship4"
-							name="Personal_informationForm" styleId="relationship4"
-							styleClass="relationship" value="<%=relationship4%>" size="3"
-							maxlength="3" />
-					</div>
-					<div>
-						<label for="emergency_tel4" name="emergency4">TEL ：</label>
-						<html:text property="emergency_tel4"
-							name="Personal_informationForm" styleId="emergency_tel4"
-							styleClass="emergency_tel" value="<%=emergency_tel4%>"
-							size="19" maxlength="15" />
-					</div>
-					<a href="#" id="link_view5" onClick="toggle_view5();return false;">追加</a>
-					<a href="#" id="link_hidden5"
-						onClick="toggle_hidden5();return false;" style="display: none;">削除</a>
-					</p>
-					</p>
+				<div>
+					<label for="relationship2" name="emergency2">本人との関係：</label>
+					<html:text property="relationship2" name="Personal_informationForm"
+						styleId="relationship2" styleClass="relationship"
+						value="<%=relationship2%>" size="3" maxlength="3" />
 				</div>
-				<script language="JavaScript" type="text/javascript">
-					var elem4_1 = document.getElementById("area_hoge4");
-					var elem4_2 = document.getElementById("link_view4");
-					var elem4_3 = document.getElementById("link_hidden4");
-					function toggle_view4() {
-						elem4_1.style.display = "";
-						elem4_2.style.display = "none";
-						elem4_3.style.display = "";
-					}
-					function toggle_hidden4() {
-						elem4_1.style.display = "none";
-						elem4_2.style.display = "";
-						elem4_3.style.display = "none";
-					}
-				</script>
-
-
-
-
-				<div id="area_hoge5" style="display: none;">
-					</p>
-					</p>
-					<p class="emergency_contact" id="emergency_contact5">
-					<div>
-						<label for="emergency_name5" id="a1" name="emergency5">氏名：</label>
-						<html:text property="emergency_name5"
-							name="Personal_informationForm" styleId="emergency_name5"
-							styleClass="emergency_name" value="<%=emergency_name5%>"
-							size="18" maxlength="16"></html:text>
-					</div>
-					<div>
-						<label for="relationship5" name="emergency5">本人との関係：</label>
-						<html:text property="relationship5"
-							name="Personal_informationForm" styleId="relationship5"
-							styleClass="relationship" value="<%=relationship5%>" size="3"
-							maxlength="3" />
-					</div>
-					<div>
-						<label for="emergency_tel5" name="emergency5">TEL ：</label>
-						<html:text property="emergency_tel5"
-							name="Personal_informationForm" styleId="emergency_tel5"
-							styleClass="emergency_tel" value="<%=emergency_tel5%>"
-							size="19" maxlength="15" />
-					</div>
-					<a href="#" id="link_hidden5"
-						onClick="toggle_hidden5();return false;" style="display: none;">削除</a>
-					</p>
-					</p>
-					</p>
+				<div>
+					<label for="emergency_tel2" name="emergency2">TEL ：</label>
+					<html:text property="emergency_tel2"
+						name="Personal_informationForm" styleId="emergency_tel2"
+						styleClass="emergency_tel" value="<%=emergency_tel2%>" size="19"
+						maxlength="15" />
 				</div>
-				<script language="JavaScript" type="text/javascript">
-					var elem5_1 = document.getElementById("area_hoge5");
-					var elem5_2 = document.getElementById("link_view5");
-					var elem5_3 = document.getElementById("link_hidden5");
-					function toggle_view5() {
-						elem5_1.style.display = "";
-						elem5_2.style.display = "none";
-						elem5_3.style.display = "";
-					}
-					function toggle_hidden5() {
-						elem5_1.style.display = "none";
-						elem5_2.style.display = "";
-						elem5_3.style.display = "none";
-					}
-				</script>
 
 
+
+
+
+
+				<p class="emergency_contact" id="emergency_contact3">
+				<div>
+					<label for="emergency_name3" id="a1" name="emergency3">氏名：</label>
+					<html:text property="emergency_name3"
+						name="Personal_informationForm" styleId="emergency_name3"
+						styleClass="emergency_name" value="<%=emergency_name3%>" size="18"
+						maxlength="16"></html:text>
+				</div>
+				<div>
+					<label for="relationship3" name="emergency3">本人との関係：</label>
+					<html:text property="relationship3" name="Personal_informationForm"
+						styleId="relationship3" styleClass="relationship"
+						value="<%=relationship3%>" size="3" maxlength="3" />
+				</div>
+				<div>
+					<label for="emergency_tel3" name="emergency3">TEL ：</label>
+					<html:text property="emergency_tel3"
+						name="Personal_informationForm" styleId="emergency_tel3"
+						styleClass="emergency_tel" value="<%=emergency_tel3%>" size="19"
+						maxlength="15" />
+				</div>
+
+
+
+				<p class="emergency_contact" id="emergency_contact4">
+				<div>
+					<label for="emergency_name4" id="a1" name="emergency4">氏名：</label>
+					<html:text property="emergency_name4"
+						name="Personal_informationForm" styleId="emergency_name4"
+						styleClass="emergency_name" value="<%=emergency_name4%>" size="18"
+						maxlength="16"></html:text>
+				</div>
+				<div>
+					<label for="relationship4" name="emergency4">本人との関係：</label>
+					<html:text property="relationship4" name="Personal_informationForm"
+						styleId="relationship4" styleClass="relationship"
+						value="<%=relationship4%>" size="3" maxlength="3" />
+				</div>
+				<div>
+					<label for="emergency_tel4" name="emergency4">TEL ：</label>
+					<html:text property="emergency_tel4"
+						name="Personal_informationForm" styleId="emergency_tel4"
+						styleClass="emergency_tel" value="<%=emergency_tel4%>" size="19"
+						maxlength="15" />
+				</div>
+
+				<p class="emergency_contact" id="emergency_contact5">
+				<div>
+					<label for="emergency_name5" id="a1" name="emergency5">氏名：</label>
+					<html:text property="emergency_name5"
+						name="Personal_informationForm" styleId="emergency_name5"
+						styleClass="emergency_name" value="<%=emergency_name5%>" size="18"
+						maxlength="16"></html:text>
+				</div>
+				<div>
+					<label for="relationship5" name="emergency5">本人との関係：</label>
+					<html:text property="relationship5" name="Personal_informationForm"
+						styleId="relationship5" styleClass="relationship"
+						value="<%=relationship5%>" size="3" maxlength="3" />
+				</div>
+				<div>
+					<label for="emergency_tel5" name="emergency5">TEL ：</label>
+					<html:text property="emergency_tel5"
+						name="Personal_informationForm" styleId="emergency_tel5"
+						styleClass="emergency_tel" value="<%=emergency_tel5%>" size="19"
+						maxlength="15" />
+				</div>
+				<br>
 				<div class="family_structure" id="family_structure">
-					<label for="family_structure">家族構成</label>
+					<h2><label for="family_structure">家族構成</label></h2>
+					<br>
 					<div>
 						<label for="family_structure_name1" name="family_structure1">氏名：</label>
 						<html:text property="family_structure_name1"
@@ -525,8 +423,7 @@
 						<html:text property="family_structure_furigana1"
 							name="Personal_informationForm"
 							styleId="family_structure_furigana1"
-							value="<%=family_structure_furigana1%>" size="18"
-							maxlength="16" />
+							value="<%=family_structure_furigana1%>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_birth1" name="family_structure1">生年月日：</label>
@@ -687,8 +584,7 @@
 					<html:text property="family_structure_relationship3"
 						name="Personal_informationForm"
 						styleId="family_structure_relationship3"
-						value="<%=family_structure_relationship3%>" size="3"
-						maxlength="3" />
+						value="<%=family_structure_relationship3%>" size="3" maxlength="3" />
 				</div>
 				<div>
 					<label for="family_structure_residence" name="family_structure3">同居・別居</label>
@@ -824,8 +720,7 @@
 					<html:text property="family_structure_relationship5"
 						name="Personal_informationForm"
 						styleId="family_structure_relationship5"
-						value="<%=family_structure_relationship5%>" size="3"
-						maxlength="3" />
+						value="<%=family_structure_relationship5%>" size="3" maxlength="3" />
 				</div>
 				<div>
 					<label for="family_structure_residence" name="family_structure5">同居・別居</label>
@@ -855,6 +750,7 @@
 						name="Personal_informationForm" styleId="family_structure_job5"
 						value="<%=family_structure_job5%>" size="18" maxlength="16" />
 				</div>
+		</html:form>
 		</div>
 
 		<!-- 登録/編集ボタン  -->
@@ -868,170 +764,179 @@
 				class="btn" />
 		</p>
 		<script type="text/javascript">
-			document.getElementById("Bentry").style.display = "none";
-			document.getElementById("Bedit").style.display = "none";
-			// 名前が未入力の場合
-			if (
-		<%=status%>
-			== '0') {
-				document.getElementById("Bentry").style.display = "block";
-			}
-			// 名前が入力済みの場合
-			else if (
-		<%=status%>
-			== '1') {
-				document.getElementById("Bedit").style.display = "block";
+					document.getElementById("Bentry").style.display = "none";
+					document.getElementById("Bedit").style.display = "none";
+					// 名前が未入力の場合
+					if (
+				<%=status%>
+					== '0') {
+						document.getElementById("Bentry").style.display = "block";
+					}
+					// 名前が入力済みの場合
+					else if (
+				<%=status%>
+					== '1') {
+						document.getElementById("Bedit").style.display = "block";
 
-				document.getElementById('hire_date').readOnly = true;
-				document.getElementById('name').readOnly = true;
-				document.getElementById('furigana').readOnly = true;
-				document.getElementById('birth').readOnly = true;
-				document.getElementById('sex').readOnly = true;
-				document.getElementById('tel_home').readOnly = true;
-				document.getElementById('tel_phone').readOnly = true;
-				document.getElementById('postal_code').readOnly = true;
-				document.getElementById('address').readOnly = true;
-				document.getElementById('division').readOnly = true;
-				document.getElementById('Emergency_tel').readOnly = true;
-				document.getElementById('emergency_address').readOnly = true;
-				document.getElementById('emergency_name1').readOnly = true;
-				document.getElementById('emergency_name2').readOnly = true;
-				document.getElementById('emergency_name3').readOnly = true;
-				document.getElementById('emergency_name4').readOnly = true;
-				document.getElementById('emergency_name5').readOnly = true;
-				document.getElementById('relationship1').readOnly = true;
-				document.getElementById('relationship2').readOnly = true;
-				document.getElementById('relationship3').readOnly = true;
-				document.getElementById('relationship4').readOnly = true;
-				document.getElementById('relationship5').readOnly = true;
-				document.getElementById('emergency_tel1').readOnly = true;
-				document.getElementById('emergency_tel2').readOnly = true;
-				document.getElementById('emergency_tel3').readOnly = true;
-				document.getElementById('emergency_tel4').readOnly = true;
-				document.getElementById('emergency_tel5').readOnly = true;
-				document.getElementById('family_structure_name1').readOnly = true;
-				document.getElementById('family_structure_name2').readOnly = true;
-				document.getElementById('family_structure_name3').readOnly = true;
-				document.getElementById('family_structure_name4').readOnly = true;
-				document.getElementById('family_structure_name5').readOnly = true;
-				document.getElementById('family_structure_furigana1').readOnly = true;
-				document.getElementById('family_structure_furigana2').readOnly = true;
-				document.getElementById('family_structure_furigana3').readOnly = true;
-				document.getElementById('family_structure_furigana4').readOnly = true;
-				document.getElementById('family_structure_furigana5').readOnly = true;
-				document.getElementById('family_structure_sex1').readOnly = true;
-				document.getElementById('family_structure_sex2').readOnly = true;
-				document.getElementById('family_structure_sex3').readOnly = true;
-				document.getElementById('family_structure_sex4').readOnly = true;
-				document.getElementById('family_structure_sex5').readOnly = true;
-				document.getElementById('family_structure_birth1').readOnly = true;
-				document.getElementById('family_structure_birth2').readOnly = true;
-				document.getElementById('family_structure_birth3').readOnly = true;
-				document.getElementById('family_structure_birth4').readOnly = true;
-				document.getElementById('family_structure_birth5').readOnly = true;
-				document.getElementById('family_structure_relationship1').readOnly = true;
-				document.getElementById('family_structure_relationship2').readOnly = true;
-				document.getElementById('family_structure_relationship3').readOnly = true;
-				document.getElementById('family_structure_relationship4').readOnly = true;
-				document.getElementById('family_structure_relationship5').readOnly = true;
-				document.getElementById('family_structure_support1').readOnly = true;
-				document.getElementById('family_structure_support2').readOnly = true;
-				document.getElementById('family_structure_support3').readOnly = true;
-				document.getElementById('family_structure_support4').readOnly = true;
-				document.getElementById('family_structure_support5').readOnly = true;
-				document.getElementById('family_structure_job1').readOnly = true;
-				document.getElementById('family_structure_job2').readOnly = true;
-				document.getElementById('family_structure_job3').readOnly = true;
-				document.getElementById('family_structure_job4').readOnly = true;
-				document.getElementById('family_structure_job5').readOnly = true;
-			}
+						document.getElementById('hire_date').readOnly = true;
+						document.getElementById('name').readOnly = true;
+						document.getElementById('furigana').readOnly = true;
+						document.getElementById('birth').readOnly = true;
+						document.getElementById('sex').readOnly = true;
+						document.getElementById('tel_home').readOnly = true;
+						document.getElementById('tel_phone').readOnly = true;
+						document.getElementById('postal_code').readOnly = true;
+						document.getElementById('address').readOnly = true;
+						document.getElementById('division').readOnly = true;
+						document.getElementById('Emergency_tel').readOnly = true;
+						document.getElementById('emergency_address').readOnly = true;
+						document.getElementById('emergency_name1').readOnly = true;
+						document.getElementById('emergency_name2').readOnly = true;
+						document.getElementById('emergency_name3').readOnly = true;
+						document.getElementById('emergency_name4').readOnly = true;
+						document.getElementById('emergency_name5').readOnly = true;
+						document.getElementById('relationship1').readOnly = true;
+						document.getElementById('relationship2').readOnly = true;
+						document.getElementById('relationship3').readOnly = true;
+						document.getElementById('relationship4').readOnly = true;
+						document.getElementById('relationship5').readOnly = true;
+						document.getElementById('emergency_tel1').readOnly = true;
+						document.getElementById('emergency_tel2').readOnly = true;
+						document.getElementById('emergency_tel3').readOnly = true;
+						document.getElementById('emergency_tel4').readOnly = true;
+						document.getElementById('emergency_tel5').readOnly = true;
+						document.getElementById('family_structure_name1').readOnly = true;
+						document.getElementById('family_structure_name2').readOnly = true;
+						document.getElementById('family_structure_name3').readOnly = true;
+						document.getElementById('family_structure_name4').readOnly = true;
+						document.getElementById('family_structure_name5').readOnly = true;
+						document.getElementById('family_structure_furigana1').readOnly = true;
+						document.getElementById('family_structure_furigana2').readOnly = true;
+						document.getElementById('family_structure_furigana3').readOnly = true;
+						document.getElementById('family_structure_furigana4').readOnly = true;
+						document.getElementById('family_structure_furigana5').readOnly = true;
+						document.getElementById('family_structure_sex1').readOnly = true;
+						document.getElementById('family_structure_sex2').readOnly = true;
+						document.getElementById('family_structure_sex3').readOnly = true;
+						document.getElementById('family_structure_sex4').readOnly = true;
+						document.getElementById('family_structure_sex5').readOnly = true;
+						document.getElementById('family_structure_birth1').readOnly = true;
+						document.getElementById('family_structure_birth2').readOnly = true;
+						document.getElementById('family_structure_birth3').readOnly = true;
+						document.getElementById('family_structure_birth4').readOnly = true;
+						document.getElementById('family_structure_birth5').readOnly = true;
+						document
+								.getElementById('family_structure_relationship1').readOnly = true;
+						document
+								.getElementById('family_structure_relationship2').readOnly = true;
+						document
+								.getElementById('family_structure_relationship3').readOnly = true;
+						document
+								.getElementById('family_structure_relationship4').readOnly = true;
+						document
+								.getElementById('family_structure_relationship5').readOnly = true;
+						document.getElementById('family_structure_support1').readOnly = true;
+						document.getElementById('family_structure_support2').readOnly = true;
+						document.getElementById('family_structure_support3').readOnly = true;
+						document.getElementById('family_structure_support4').readOnly = true;
+						document.getElementById('family_structure_support5').readOnly = true;
+						document.getElementById('family_structure_job1').readOnly = true;
+						document.getElementById('family_structure_job2').readOnly = true;
+						document.getElementById('family_structure_job3').readOnly = true;
+						document.getElementById('family_structure_job4').readOnly = true;
+						document.getElementById('family_structure_job5').readOnly = true;
+					}
 
-			function clickBtnEdit() {
-				document.getElementById("Bentry").style.display = "block";
-				document.getElementById("Bedit").style.display = "none";
+					function clickBtnEdit() {
+						document.getElementById("Bentry").style.display = "block";
+						document.getElementById("Bedit").style.display = "none";
 
-				document.getElementById('hire_date').readOnly = false;
-				document.getElementById('name').readOnly = false;
-				document.getElementById('furigana').readOnly = false;
-				document.getElementById('birth').readOnly = false;
-				document.getElementById('sex').readOnly = false;
-				document.getElementById('tel_home').readOnly = false;
-				document.getElementById('tel_phone').readOnly = false;
-				document.getElementById('postal_code').readOnly = false;
-				document.getElementById('address').readOnly = false;
-				document.getElementById('division').readOnly = false;
-				document.getElementById('Emergency_tel').readOnly = false;
-				document.getElementById('emergency_address').readOnly = false;
-				document.getElementById('emergency_name1').readOnly = false;
-				document.getElementById('emergency_name2').readOnly = false;
-				document.getElementById('emergency_name3').readOnly = false;
-				document.getElementById('emergency_name4').readOnly = false;
-				document.getElementById('emergency_name5').readOnly = false;
-				document.getElementById('relationship1').readOnly = false;
-				document.getElementById('relationship2').readOnly = false;
-				document.getElementById('relationship3').readOnly = false;
-				document.getElementById('relationship4').readOnly = false;
-				document.getElementById('relationship5').readOnly = false;
-				document.getElementById('emergency_tel1').readOnly = false;
-				document.getElementById('emergency_tel2').readOnly = false;
-				document.getElementById('emergency_tel3').readOnly = false;
-				document.getElementById('emergency_tel4').readOnly = false;
-				document.getElementById('emergency_tel5').readOnly = false;
-				document.getElementById('family_structure_name1').readOnly = false;
-				document.getElementById('family_structure_name2').readOnly = false;
-				document.getElementById('family_structure_name3').readOnly = false;
-				document.getElementById('family_structure_name4').readOnly = false;
-				document.getElementById('family_structure_name5').readOnly = false;
-				document.getElementById('family_structure_furigana1').readOnly = false;
-				document.getElementById('family_structure_furigana2').readOnly = false;
-				document.getElementById('family_structure_furigana3').readOnly = false;
-				document.getElementById('family_structure_furigana4').readOnly = false;
-				document.getElementById('family_structure_furigana5').readOnly = false;
-				document.getElementById('family_structure_sex1').readOnly = false;
-				document.getElementById('family_structure_sex2').readOnly = false;
-				document.getElementById('family_structure_sex3').readOnly = false;
-				document.getElementById('family_structure_sex4').readOnly = false;
-				document.getElementById('family_structure_sex5').readOnly = false;
-				document.getElementById('family_structure_birth1').readOnly = false;
-				document.getElementById('family_structure_birth2').readOnly = false;
-				document.getElementById('family_structure_birth3').readOnly = false;
-				document.getElementById('family_structure_birth4').readOnly = false;
-				document.getElementById('family_structure_birth5').readOnly = false;
-				document.getElementById('family_structure_relationship1').readOnly = false;
-				document.getElementById('family_structure_relationship2').readOnly = false;
-				document.getElementById('family_structure_relationship3').readOnly = false;
-				document.getElementById('family_structure_relationship4').readOnly = false;
-				document.getElementById('family_structure_relationship5').readOnly = false;
-				document.getElementById('family_structure_support1').readOnly = false;
-				document.getElementById('family_structure_support2').readOnly = false;
-				document.getElementById('family_structure_support3').readOnly = false;
-				document.getElementById('family_structure_support4').readOnly = false;
-				document.getElementById('family_structure_support5').readOnly = false;
-				document.getElementById('family_structure_job1').readOnly = false;
-				document.getElementById('family_structure_job2').readOnly = false;
-				document.getElementById('family_structure_job3').readOnly = false;
-				document.getElementById('family_structure_job4').readOnly = false;
-				document.getElementById('family_structure_job5').readOnly = false;
+						document.getElementById('hire_date').readOnly = false;
+						document.getElementById('name').readOnly = false;
+						document.getElementById('furigana').readOnly = false;
+						document.getElementById('birth').readOnly = false;
+						document.getElementById('sex').readOnly = false;
+						document.getElementById('tel_home').readOnly = false;
+						document.getElementById('tel_phone').readOnly = false;
+						document.getElementById('postal_code').readOnly = false;
+						document.getElementById('address').readOnly = false;
+						document.getElementById('division').readOnly = false;
+						document.getElementById('Emergency_tel').readOnly = false;
+						document.getElementById('emergency_address').readOnly = false;
+						document.getElementById('emergency_name1').readOnly = false;
+						document.getElementById('emergency_name2').readOnly = false;
+						document.getElementById('emergency_name3').readOnly = false;
+						document.getElementById('emergency_name4').readOnly = false;
+						document.getElementById('emergency_name5').readOnly = false;
+						document.getElementById('relationship1').readOnly = false;
+						document.getElementById('relationship2').readOnly = false;
+						document.getElementById('relationship3').readOnly = false;
+						document.getElementById('relationship4').readOnly = false;
+						document.getElementById('relationship5').readOnly = false;
+						document.getElementById('emergency_tel1').readOnly = false;
+						document.getElementById('emergency_tel2').readOnly = false;
+						document.getElementById('emergency_tel3').readOnly = false;
+						document.getElementById('emergency_tel4').readOnly = false;
+						document.getElementById('emergency_tel5').readOnly = false;
+						document.getElementById('family_structure_name1').readOnly = false;
+						document.getElementById('family_structure_name2').readOnly = false;
+						document.getElementById('family_structure_name3').readOnly = false;
+						document.getElementById('family_structure_name4').readOnly = false;
+						document.getElementById('family_structure_name5').readOnly = false;
+						document.getElementById('family_structure_furigana1').readOnly = false;
+						document.getElementById('family_structure_furigana2').readOnly = false;
+						document.getElementById('family_structure_furigana3').readOnly = false;
+						document.getElementById('family_structure_furigana4').readOnly = false;
+						document.getElementById('family_structure_furigana5').readOnly = false;
+						document.getElementById('family_structure_sex1').readOnly = false;
+						document.getElementById('family_structure_sex2').readOnly = false;
+						document.getElementById('family_structure_sex3').readOnly = false;
+						document.getElementById('family_structure_sex4').readOnly = false;
+						document.getElementById('family_structure_sex5').readOnly = false;
+						document.getElementById('family_structure_birth1').readOnly = false;
+						document.getElementById('family_structure_birth2').readOnly = false;
+						document.getElementById('family_structure_birth3').readOnly = false;
+						document.getElementById('family_structure_birth4').readOnly = false;
+						document.getElementById('family_structure_birth5').readOnly = false;
+						document
+								.getElementById('family_structure_relationship1').readOnly = false;
+						document
+								.getElementById('family_structure_relationship2').readOnly = false;
+						document
+								.getElementById('family_structure_relationship3').readOnly = false;
+						document
+								.getElementById('family_structure_relationship4').readOnly = false;
+						document
+								.getElementById('family_structure_relationship5').readOnly = false;
+						document.getElementById('family_structure_support1').readOnly = false;
+						document.getElementById('family_structure_support2').readOnly = false;
+						document.getElementById('family_structure_support3').readOnly = false;
+						document.getElementById('family_structure_support4').readOnly = false;
+						document.getElementById('family_structure_support5').readOnly = false;
+						document.getElementById('family_structure_job1').readOnly = false;
+						document.getElementById('family_structure_job2').readOnly = false;
+						document.getElementById('family_structure_job3').readOnly = false;
+						document.getElementById('family_structure_job4').readOnly = false;
+						document.getElementById('family_structure_job5').readOnly = false;
 
-			}
-		</script>
+					}
+				</script>
 
-		</br>
+
 		<!-- /form> -->
 		<div>
 			<html:submit property="button" styleClass="btn" value="戻る"
 				styleId="back" />
 		</div>
 
-		</html:form>
 
 		<!-- <script type="text/javascript" src="../js/personal_information.js"></script> -->
 		<script type="text/javascript">
-			document.write("最終更新日" + document.lastModified);
-		</script>
+				document.write("最終更新日" + document.lastModified);
+			</script>
 </div>
 </body>
 
 
-</div>
+
 </html:html>
