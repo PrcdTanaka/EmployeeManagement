@@ -61,9 +61,9 @@ public final class Open_informationAction extends Action {
 		if(button.equals("戻る")) {
 			forward = "main";
 		}if(button.equals("登録")){
-			dba.setKomaki(oForm);
+			dba.setOpen(oForm);
 			oForm.setMessage("編集しました");
-			//forward = "open";
+			forward = "open";
 
 		}
 			return map.findForward(forward);
