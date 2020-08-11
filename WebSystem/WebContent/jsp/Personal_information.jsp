@@ -274,8 +274,10 @@
 				</div>
 				<p>
 				<div class="emergency_contact" id="emergency_contact">
-			<br>
-					<h2><label for="emergency_contact">緊急連絡先</label></h2>
+					<br>
+					<h2>
+						<label for="emergency_contact">緊急連絡先</label>
+					</h2>
 					<br>
 					<div>
 						<label for="Emergency_tel">電話番号：</label>
@@ -314,7 +316,7 @@
 				</p>
 
 
-
+				<br>
 				<p class="emergency_contact" id="emergency_contact2">
 				<div>
 					<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
@@ -341,7 +343,7 @@
 
 
 
-
+				<br>
 				<p class="emergency_contact" id="emergency_contact3">
 				<div>
 					<label for="emergency_name3" id="a1" name="emergency3">氏名：</label>
@@ -365,7 +367,7 @@
 				</div>
 
 
-
+				<br>
 				<p class="emergency_contact" id="emergency_contact4">
 				<div>
 					<label for="emergency_name4" id="a1" name="emergency4">氏名：</label>
@@ -388,6 +390,7 @@
 						maxlength="15" />
 				</div>
 
+				<br>
 				<p class="emergency_contact" id="emergency_contact5">
 				<div>
 					<label for="emergency_name5" id="a1" name="emergency5">氏名：</label>
@@ -411,7 +414,9 @@
 				</div>
 				<br>
 				<div class="family_structure" id="family_structure">
-					<h2><label for="family_structure">家族構成</label></h2>
+					<h2>
+						<label for="family_structure">家族構成</label>
+					</h2>
 					<br>
 					<div>
 						<label for="family_structure_name1" name="family_structure1">氏名：</label>
@@ -481,7 +486,7 @@
 					</div>
 
 
-
+					<br>
 					<label for="family_structure_name2" name="family_structure2">氏名：</label>
 					<html:text property="family_structure_name2"
 						name="Personal_informationForm" styleId="family_structure_name2"
@@ -548,7 +553,7 @@
 						value="<%=family_structure_job2%>" size="18" maxlength="16" />
 				</div>
 
-
+				<br>
 				<div>
 					<label for="family_structure_name3" name="family_structure3">氏名：</label>
 					<html:text property="family_structure_name3"
@@ -616,7 +621,7 @@
 						value="<%=family_structure_job3%>" size="18" maxlength="16" />
 				</div>
 
-
+				<br>
 				<div>
 					<label for="family_structure_name4" name="family_structure4">氏名：</label>
 					<html:text property="family_structure_name4"
@@ -684,7 +689,7 @@
 						value="<%=family_structure_job4%>" size="18" maxlength="16" />
 				</div>
 
-
+				<br>
 				<div>
 					<label for="family_structure_name5" name="family_structure5">氏名：</label>
 					<html:text property="family_structure_name5"
@@ -751,7 +756,7 @@
 						name="Personal_informationForm" styleId="family_structure_job5"
 						value="<%=family_structure_job5%>" size="18" maxlength="16" />
 				</div>
-		</html:form>
+			</html:form>
 		</div>
 
 		<!-- 登録/編集ボタン  -->
@@ -765,163 +770,153 @@
 				class="btn" />
 		</p>
 		<script type="text/javascript">
-					document.getElementById("Bentry").style.display = "none";
-					document.getElementById("Bedit").style.display = "none";
-					// 名前が未入力の場合
-					if (
-				<%=status%>
-					== '0') {
-						document.getElementById("Bentry").style.display = "block";
-					}
-					// 名前が入力済みの場合
-					else if (
-				<%=status%>
-					== '1') {
-						document.getElementById("Bedit").style.display = "block";
+			document.getElementById("Bentry").style.display = "none";
+			document.getElementById("Bedit").style.display = "none";
+			// 名前が未入力の場合
+			if (
+		<%=status%>
+			== '0') {
+				document.getElementById("Bentry").style.display = "block";
+			}
+			// 名前が入力済みの場合
+			else if (
+		<%=status%>
+			== '1') {
+				document.getElementById("Bedit").style.display = "block";
 
-						document.getElementById('hire_date').readOnly = true;
-						document.getElementById('name').readOnly = true;
-						document.getElementById('furigana').readOnly = true;
-						document.getElementById('birth').readOnly = true;
-						document.getElementById('sex').readOnly = true;
-						document.getElementById('tel_home').readOnly = true;
-						document.getElementById('tel_phone').readOnly = true;
-						document.getElementById('postal_code').readOnly = true;
-						document.getElementById('address').readOnly = true;
-						document.getElementById('division').readOnly = true;
-						document.getElementById('Emergency_tel').readOnly = true;
-						document.getElementById('emergency_address').readOnly = true;
-						document.getElementById('emergency_name1').readOnly = true;
-						document.getElementById('emergency_name2').readOnly = true;
-						document.getElementById('emergency_name3').readOnly = true;
-						document.getElementById('emergency_name4').readOnly = true;
-						document.getElementById('emergency_name5').readOnly = true;
-						document.getElementById('relationship1').readOnly = true;
-						document.getElementById('relationship2').readOnly = true;
-						document.getElementById('relationship3').readOnly = true;
-						document.getElementById('relationship4').readOnly = true;
-						document.getElementById('relationship5').readOnly = true;
-						document.getElementById('emergency_tel1').readOnly = true;
-						document.getElementById('emergency_tel2').readOnly = true;
-						document.getElementById('emergency_tel3').readOnly = true;
-						document.getElementById('emergency_tel4').readOnly = true;
-						document.getElementById('emergency_tel5').readOnly = true;
-						document.getElementById('family_structure_name1').readOnly = true;
-						document.getElementById('family_structure_name2').readOnly = true;
-						document.getElementById('family_structure_name3').readOnly = true;
-						document.getElementById('family_structure_name4').readOnly = true;
-						document.getElementById('family_structure_name5').readOnly = true;
-						document.getElementById('family_structure_furigana1').readOnly = true;
-						document.getElementById('family_structure_furigana2').readOnly = true;
-						document.getElementById('family_structure_furigana3').readOnly = true;
-						document.getElementById('family_structure_furigana4').readOnly = true;
-						document.getElementById('family_structure_furigana5').readOnly = true;
-						document.getElementById('family_structure_sex1').readOnly = true;
-						document.getElementById('family_structure_sex2').readOnly = true;
-						document.getElementById('family_structure_sex3').readOnly = true;
-						document.getElementById('family_structure_sex4').readOnly = true;
-						document.getElementById('family_structure_sex5').readOnly = true;
-						document.getElementById('family_structure_birth1').readOnly = true;
-						document.getElementById('family_structure_birth2').readOnly = true;
-						document.getElementById('family_structure_birth3').readOnly = true;
-						document.getElementById('family_structure_birth4').readOnly = true;
-						document.getElementById('family_structure_birth5').readOnly = true;
-						document
-								.getElementById('family_structure_relationship1').readOnly = true;
-						document
-								.getElementById('family_structure_relationship2').readOnly = true;
-						document
-								.getElementById('family_structure_relationship3').readOnly = true;
-						document
-								.getElementById('family_structure_relationship4').readOnly = true;
-						document
-								.getElementById('family_structure_relationship5').readOnly = true;
-						document.getElementById('family_structure_support1').readOnly = true;
-						document.getElementById('family_structure_support2').readOnly = true;
-						document.getElementById('family_structure_support3').readOnly = true;
-						document.getElementById('family_structure_support4').readOnly = true;
-						document.getElementById('family_structure_support5').readOnly = true;
-						document.getElementById('family_structure_job1').readOnly = true;
-						document.getElementById('family_structure_job2').readOnly = true;
-						document.getElementById('family_structure_job3').readOnly = true;
-						document.getElementById('family_structure_job4').readOnly = true;
-						document.getElementById('family_structure_job5').readOnly = true;
-					}
+				document.getElementById('hire_date').readOnly = true;
+				document.getElementById('name').readOnly = true;
+				document.getElementById('furigana').readOnly = true;
+				document.getElementById('birth').readOnly = true;
+				document.getElementById('sex').readOnly = true;
+				document.getElementById('tel_home').readOnly = true;
+				document.getElementById('tel_phone').readOnly = true;
+				document.getElementById('postal_code').readOnly = true;
+				document.getElementById('address').readOnly = true;
+				document.getElementById('division').readOnly = true;
+				document.getElementById('Emergency_tel').readOnly = true;
+				document.getElementById('emergency_address').readOnly = true;
+				document.getElementById('emergency_name1').readOnly = true;
+				document.getElementById('emergency_name2').readOnly = true;
+				document.getElementById('emergency_name3').readOnly = true;
+				document.getElementById('emergency_name4').readOnly = true;
+				document.getElementById('emergency_name5').readOnly = true;
+				document.getElementById('relationship1').readOnly = true;
+				document.getElementById('relationship2').readOnly = true;
+				document.getElementById('relationship3').readOnly = true;
+				document.getElementById('relationship4').readOnly = true;
+				document.getElementById('relationship5').readOnly = true;
+				document.getElementById('emergency_tel1').readOnly = true;
+				document.getElementById('emergency_tel2').readOnly = true;
+				document.getElementById('emergency_tel3').readOnly = true;
+				document.getElementById('emergency_tel4').readOnly = true;
+				document.getElementById('emergency_tel5').readOnly = true;
+				document.getElementById('family_structure_name1').readOnly = true;
+				document.getElementById('family_structure_name2').readOnly = true;
+				document.getElementById('family_structure_name3').readOnly = true;
+				document.getElementById('family_structure_name4').readOnly = true;
+				document.getElementById('family_structure_name5').readOnly = true;
+				document.getElementById('family_structure_furigana1').readOnly = true;
+				document.getElementById('family_structure_furigana2').readOnly = true;
+				document.getElementById('family_structure_furigana3').readOnly = true;
+				document.getElementById('family_structure_furigana4').readOnly = true;
+				document.getElementById('family_structure_furigana5').readOnly = true;
+				document.getElementById('family_structure_sex1').readOnly = true;
+				document.getElementById('family_structure_sex2').readOnly = true;
+				document.getElementById('family_structure_sex3').readOnly = true;
+				document.getElementById('family_structure_sex4').readOnly = true;
+				document.getElementById('family_structure_sex5').readOnly = true;
+				document.getElementById('family_structure_birth1').readOnly = true;
+				document.getElementById('family_structure_birth2').readOnly = true;
+				document.getElementById('family_structure_birth3').readOnly = true;
+				document.getElementById('family_structure_birth4').readOnly = true;
+				document.getElementById('family_structure_birth5').readOnly = true;
+				document.getElementById('family_structure_relationship1').readOnly = true;
+				document.getElementById('family_structure_relationship2').readOnly = true;
+				document.getElementById('family_structure_relationship3').readOnly = true;
+				document.getElementById('family_structure_relationship4').readOnly = true;
+				document.getElementById('family_structure_relationship5').readOnly = true;
+				document.getElementById('family_structure_support1').readOnly = true;
+				document.getElementById('family_structure_support2').readOnly = true;
+				document.getElementById('family_structure_support3').readOnly = true;
+				document.getElementById('family_structure_support4').readOnly = true;
+				document.getElementById('family_structure_support5').readOnly = true;
+				document.getElementById('family_structure_job1').readOnly = true;
+				document.getElementById('family_structure_job2').readOnly = true;
+				document.getElementById('family_structure_job3').readOnly = true;
+				document.getElementById('family_structure_job4').readOnly = true;
+				document.getElementById('family_structure_job5').readOnly = true;
+			}
 
-					function clickBtnEdit() {
-						document.getElementById("Bentry").style.display = "block";
-						document.getElementById("Bedit").style.display = "none";
+			function clickBtnEdit() {
+				document.getElementById("Bentry").style.display = "block";
+				document.getElementById("Bedit").style.display = "none";
 
-						document.getElementById('hire_date').readOnly = false;
-						document.getElementById('name').readOnly = false;
-						document.getElementById('furigana').readOnly = false;
-						document.getElementById('birth').readOnly = false;
-						document.getElementById('sex').readOnly = false;
-						document.getElementById('tel_home').readOnly = false;
-						document.getElementById('tel_phone').readOnly = false;
-						document.getElementById('postal_code').readOnly = false;
-						document.getElementById('address').readOnly = false;
-						document.getElementById('division').readOnly = false;
-						document.getElementById('Emergency_tel').readOnly = false;
-						document.getElementById('emergency_address').readOnly = false;
-						document.getElementById('emergency_name1').readOnly = false;
-						document.getElementById('emergency_name2').readOnly = false;
-						document.getElementById('emergency_name3').readOnly = false;
-						document.getElementById('emergency_name4').readOnly = false;
-						document.getElementById('emergency_name5').readOnly = false;
-						document.getElementById('relationship1').readOnly = false;
-						document.getElementById('relationship2').readOnly = false;
-						document.getElementById('relationship3').readOnly = false;
-						document.getElementById('relationship4').readOnly = false;
-						document.getElementById('relationship5').readOnly = false;
-						document.getElementById('emergency_tel1').readOnly = false;
-						document.getElementById('emergency_tel2').readOnly = false;
-						document.getElementById('emergency_tel3').readOnly = false;
-						document.getElementById('emergency_tel4').readOnly = false;
-						document.getElementById('emergency_tel5').readOnly = false;
-						document.getElementById('family_structure_name1').readOnly = false;
-						document.getElementById('family_structure_name2').readOnly = false;
-						document.getElementById('family_structure_name3').readOnly = false;
-						document.getElementById('family_structure_name4').readOnly = false;
-						document.getElementById('family_structure_name5').readOnly = false;
-						document.getElementById('family_structure_furigana1').readOnly = false;
-						document.getElementById('family_structure_furigana2').readOnly = false;
-						document.getElementById('family_structure_furigana3').readOnly = false;
-						document.getElementById('family_structure_furigana4').readOnly = false;
-						document.getElementById('family_structure_furigana5').readOnly = false;
-						document.getElementById('family_structure_sex1').readOnly = false;
-						document.getElementById('family_structure_sex2').readOnly = false;
-						document.getElementById('family_structure_sex3').readOnly = false;
-						document.getElementById('family_structure_sex4').readOnly = false;
-						document.getElementById('family_structure_sex5').readOnly = false;
-						document.getElementById('family_structure_birth1').readOnly = false;
-						document.getElementById('family_structure_birth2').readOnly = false;
-						document.getElementById('family_structure_birth3').readOnly = false;
-						document.getElementById('family_structure_birth4').readOnly = false;
-						document.getElementById('family_structure_birth5').readOnly = false;
-						document
-								.getElementById('family_structure_relationship1').readOnly = false;
-						document
-								.getElementById('family_structure_relationship2').readOnly = false;
-						document
-								.getElementById('family_structure_relationship3').readOnly = false;
-						document
-								.getElementById('family_structure_relationship4').readOnly = false;
-						document
-								.getElementById('family_structure_relationship5').readOnly = false;
-						document.getElementById('family_structure_support1').readOnly = false;
-						document.getElementById('family_structure_support2').readOnly = false;
-						document.getElementById('family_structure_support3').readOnly = false;
-						document.getElementById('family_structure_support4').readOnly = false;
-						document.getElementById('family_structure_support5').readOnly = false;
-						document.getElementById('family_structure_job1').readOnly = false;
-						document.getElementById('family_structure_job2').readOnly = false;
-						document.getElementById('family_structure_job3').readOnly = false;
-						document.getElementById('family_structure_job4').readOnly = false;
-						document.getElementById('family_structure_job5').readOnly = false;
+				document.getElementById('hire_date').readOnly = false;
+				document.getElementById('name').readOnly = false;
+				document.getElementById('furigana').readOnly = false;
+				document.getElementById('birth').readOnly = false;
+				document.getElementById('sex').readOnly = false;
+				document.getElementById('tel_home').readOnly = false;
+				document.getElementById('tel_phone').readOnly = false;
+				document.getElementById('postal_code').readOnly = false;
+				document.getElementById('address').readOnly = false;
+				document.getElementById('division').readOnly = false;
+				document.getElementById('Emergency_tel').readOnly = false;
+				document.getElementById('emergency_address').readOnly = false;
+				document.getElementById('emergency_name1').readOnly = false;
+				document.getElementById('emergency_name2').readOnly = false;
+				document.getElementById('emergency_name3').readOnly = false;
+				document.getElementById('emergency_name4').readOnly = false;
+				document.getElementById('emergency_name5').readOnly = false;
+				document.getElementById('relationship1').readOnly = false;
+				document.getElementById('relationship2').readOnly = false;
+				document.getElementById('relationship3').readOnly = false;
+				document.getElementById('relationship4').readOnly = false;
+				document.getElementById('relationship5').readOnly = false;
+				document.getElementById('emergency_tel1').readOnly = false;
+				document.getElementById('emergency_tel2').readOnly = false;
+				document.getElementById('emergency_tel3').readOnly = false;
+				document.getElementById('emergency_tel4').readOnly = false;
+				document.getElementById('emergency_tel5').readOnly = false;
+				document.getElementById('family_structure_name1').readOnly = false;
+				document.getElementById('family_structure_name2').readOnly = false;
+				document.getElementById('family_structure_name3').readOnly = false;
+				document.getElementById('family_structure_name4').readOnly = false;
+				document.getElementById('family_structure_name5').readOnly = false;
+				document.getElementById('family_structure_furigana1').readOnly = false;
+				document.getElementById('family_structure_furigana2').readOnly = false;
+				document.getElementById('family_structure_furigana3').readOnly = false;
+				document.getElementById('family_structure_furigana4').readOnly = false;
+				document.getElementById('family_structure_furigana5').readOnly = false;
+				document.getElementById('family_structure_sex1').readOnly = false;
+				document.getElementById('family_structure_sex2').readOnly = false;
+				document.getElementById('family_structure_sex3').readOnly = false;
+				document.getElementById('family_structure_sex4').readOnly = false;
+				document.getElementById('family_structure_sex5').readOnly = false;
+				document.getElementById('family_structure_birth1').readOnly = false;
+				document.getElementById('family_structure_birth2').readOnly = false;
+				document.getElementById('family_structure_birth3').readOnly = false;
+				document.getElementById('family_structure_birth4').readOnly = false;
+				document.getElementById('family_structure_birth5').readOnly = false;
+				document.getElementById('family_structure_relationship1').readOnly = false;
+				document.getElementById('family_structure_relationship2').readOnly = false;
+				document.getElementById('family_structure_relationship3').readOnly = false;
+				document.getElementById('family_structure_relationship4').readOnly = false;
+				document.getElementById('family_structure_relationship5').readOnly = false;
+				document.getElementById('family_structure_support1').readOnly = false;
+				document.getElementById('family_structure_support2').readOnly = false;
+				document.getElementById('family_structure_support3').readOnly = false;
+				document.getElementById('family_structure_support4').readOnly = false;
+				document.getElementById('family_structure_support5').readOnly = false;
+				document.getElementById('family_structure_job1').readOnly = false;
+				document.getElementById('family_structure_job2').readOnly = false;
+				document.getElementById('family_structure_job3').readOnly = false;
+				document.getElementById('family_structure_job4').readOnly = false;
+				document.getElementById('family_structure_job5').readOnly = false;
 
-					}
-				</script>
+			}
+		</script>
 
 
 		<!-- /form> -->
@@ -933,11 +928,8 @@
 
 		<!-- <script type="text/javascript" src="../js/personal_information.js"></script> -->
 		<script type="text/javascript">
-				document.write("最終更新日" + document.lastModified);
-			</script>
+			document.write("最終更新日" + document.lastModified);
+		</script>
 </div>
 </body>
-
-
-
 </html:html>
