@@ -738,6 +738,17 @@
 							name="Personal_informationForm" styleId="family_structure_job5"
 							value="<%= family_structure_job5 %>"  size="18" maxlength="16" />
 					</div>
+					<h2>	確認書類</h2>
+					<div id="document">
+						<html:checkbox property="name"/>
+						<input type="checkbox" class="document" id="resident_card" name="document" value="1"><label for="resident_card">住民票</label>
+						<input type="checkbox" class="document" id="rental_agreement" name="document" value="2"><label for="rental_agreement">賃貸契約書</label>
+						<input type="checkbox" class="document" id="family_register" name="document" value="3"><label for="family_register">戸籍謄本</label>
+						<input type="checkbox" class="document" id="tax_exemption_certificate" name="document" value="4"><label for="tax_exemption_certificate">非課税証明書</label>
+						<input type="checkbox" class="document" id="other" name="document" value="5"><label for="other">その他</label>
+					</div>
+				<div class="nb">備考</div>
+					<textarea id="nb" name="nb" value="test"></textarea>
 				</div>
 
 				<!-- 登録/編集ボタン  -->
