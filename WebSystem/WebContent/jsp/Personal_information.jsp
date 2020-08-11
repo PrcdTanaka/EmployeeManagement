@@ -313,8 +313,6 @@
 							maxlength="15" />
 					</div>
 				</div>
-				</p>
-
 
 				<br>
 				<p class="emergency_contact" id="emergency_contact2">
@@ -339,10 +337,6 @@
 						maxlength="15" />
 				</div>
 
-
-
-
-
 				<br>
 				<p class="emergency_contact" id="emergency_contact3">
 				<div>
@@ -365,7 +359,6 @@
 						styleClass="emergency_tel" value="<%=emergency_tel3%>" size="19"
 						maxlength="15" />
 				</div>
-
 
 				<br>
 				<p class="emergency_contact" id="emergency_contact4">
@@ -756,7 +749,7 @@
 						name="Personal_informationForm" styleId="family_structure_job5"
 						value="<%=family_structure_job5%>" size="18" maxlength="16" />
 				</div>
-			</html:form>
+
 		</div>
 
 		<!-- 登録/編集ボタン  -->
@@ -922,7 +915,7 @@
 		<!-- /form> -->
 		<div>
 			<html:submit property="button" styleClass="btn" value="戻る"
-				styleId="back" />
+			styleId="main" />
 		</div>
 
 
@@ -931,5 +924,6 @@
 			document.write("最終更新日" + document.lastModified);
 		</script>
 </div>
+</html:form>
 </body>
 </html:html>
