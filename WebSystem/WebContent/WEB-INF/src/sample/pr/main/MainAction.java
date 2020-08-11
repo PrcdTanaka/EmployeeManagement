@@ -129,6 +129,9 @@ public final class MainAction extends Action {
 			case "password":
 				forward = "password";
 				break;
+			case "attendance":
+				forward="attendance";
+				break;
 			}
 		}
 
