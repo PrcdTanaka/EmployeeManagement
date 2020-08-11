@@ -24,7 +24,8 @@
 		<%
 			String message;
 					try {
-						Open_informationForm oForm = (Open_informationForm) session.getAttribute("oForm");
+						Open_informationForm oForm = (Open_informationForm) session
+								.getAttribute("oForm");
 						message = oForm.getMessage();
 						if (message == null)
 							message = "";
@@ -44,6 +45,9 @@
 					String intr = oForm.getIntr();
 					String hobby = oForm.getHobby();
 					String sp = oForm.getSs();
+					String img = "";
+					String pos = oForm.getPos();
+					String tec =oForm.getTec();
 					try {
 						Employee_no = s.getEmployee_no();
 						djc = oForm.getDjc();
@@ -53,7 +57,6 @@
 
 						}
 					}
-					String pos = "";
 		%>
 		<div align="right">
 			<a href="Personal_information.jsp">ユーザー情報編集画面へ</a>
@@ -62,35 +65,16 @@
 			<div class='pic'>
 				<div id="dragDropArea">
 					<div class="drag-drop-inside">
-						<p class="drag-drop-info">ここにファイルをドロップ</p>
-						<p>または</p>
 						<p class="drag-drop-buttons">
-							<input id="fileInput" type="file" accept="image/*"
-								value="ファイルを選択" name="photo" onChange="photoPreview(event)">
 						</p>
-						<div id="previewArea"></div>
+						<form action="/Open_informationAction">
+							<p>
+								<input type="file" name="img">
+							</p>
+						</form>
 					</div>
 				</div>
-
 				<img id="preview"> <img id="preview">
-				<script type="text/javascript" src="../js/personal_information.js">
-				var target = document.getElementById('target');
-				target.addEventListener('dragover', function (e) {
-					e.preventDefault();
-					e.stopPropagation();
-					e.dataTransfer.dropEffect = 'copy';
-				});
-				target.addEventListener('drop', function (e) {
-					e.stopPropagation();
-					e.preventDefault();
-					const reader = new FileReader();
-					reader.onload = function (e) {
-						document.getElementById('preview').src = e.target.result;
-					}
-					reader.readAsDataURL(e.dataTransfer.files[0]);
-				});</script>
-				<!-- src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
-				height="190" width="190" -->
 			</div>
 			<div class='pro'>
 				<div class='pro2'>
@@ -98,9 +82,9 @@
 						名前：<%=name%>
 					</p>
 					<p style="margin-top: 5px; margin-left: 50px; margin-bottom: 20px">
-						役職：<%=pos %>
+						役職：<%=pos%>
 						<html:select property="pos" name="Open_informationForm"
-							styleId="pos" value="">
+							styleId="pos" value="pos">
 							<html:option value="">-</html:option>
 							<html:option value="0">役職なし</html:option>
 							<html:option value="1">主任</html:option>
@@ -117,7 +101,7 @@
 				<div class='pro2'>
 					<p class='tec'>技術部:</p>
 					<html:select property="tec" name="Open_informationForm"
-						styleId="tec" value="">
+						styleId="tec" value="tec">
 						<html:option value="">-</html:option>
 						<html:option value="00">総務・経理部</html:option>
 						<html:option value="01">第1技術部</html:option>
