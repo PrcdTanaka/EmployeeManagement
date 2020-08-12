@@ -18,6 +18,7 @@ public class AttendanceForm extends ActionForm {
 	/** 休憩時間 */
 	private String rest_time;
 
+	/** ボタン */
 	private String Button;
 
 	/** 初期化処理。*/

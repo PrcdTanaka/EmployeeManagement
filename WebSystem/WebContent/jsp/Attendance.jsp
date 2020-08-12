@@ -53,7 +53,7 @@
 		</div>
 
 		<div style="position:relative; margin-top:2%; align:center;">
-			<input class="btn" type="button"  value="登録" styleId="entry"></input>
+			<input class="btn" type="button"  value="登録" styleId="attendance"></input>
 			<input  class="btn" type="button"  value="戻る" styleId="main"></input>
 		</div>
 
