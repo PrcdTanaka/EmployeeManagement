@@ -34,19 +34,21 @@ public class AttendanceAction {
 		AttendanceForm aForm = (AttendanceForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-
-		aForm.setEmployee_no(aForm.getEmployee_No());
+		aForm.setEmployee_no(lForm.getEmployee_no());
 		forward="attendance";
 		String button=aForm.getButton();
-		if(button.equals("戻る")){
-			forward="main";
+		try{
+			if(button.equals("戻る")){
+				forward="main";
+				session.removeAttribute("aForm");
+			}
+			else if(button.equals("登録")){
+				forward="attendance";
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		if(button.equals("登録")){
-			forward="attendance";
-
-		}
-
-
-		return null;
+		session.removeAttribute("aForm");
+		return map.findForward(forward);
 	}
 }

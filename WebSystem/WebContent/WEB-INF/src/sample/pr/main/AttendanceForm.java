@@ -33,30 +33,29 @@ public class AttendanceForm extends ActionForm {
 		this.employee_no = employee_no;
 	}
 
-	public String getEmployee_No() {
+	public String getEmployee_no() {
 		return employee_no;
 	}
 
-	public void setStart_Time(String start_time){
+	public void setStart_time(String start_time){
 		this.start_time=start_time;
 	}
 
-	public String getStart_Time(){
+	public String getStart_time(){
 		return start_time;
 	}
 
-	public void setEnd_Time(String end_time){
+	public void setEnd_time(String end_time){
 		this.end_time=end_time;
 	}
-	public String getEnd_Time(){
+	public String getEnd_time(){
 			return end_time;
 	}
-
-	public void setRest_Time(String rest_time){
+	public void setRest_time(String rest_time){
 		this.rest_time=rest_time;
 	}
 
-	public String getRest_Time(){
+	public String getRest_time(){
 		return rest_time;
 	}
 

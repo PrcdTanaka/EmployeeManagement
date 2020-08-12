@@ -2,6 +2,8 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ page import="sample.pr.main.LoginForm" %>
+<%@ page import="sample.pr.main.AttendanceForm" %>
+<%@ page import="sample.pr.main.MainForm" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
@@ -53,8 +55,8 @@
 		</div>
 
 		<div style="position:relative; margin-top:2%; align:center;">
-			<input class="btn" type="button"  value="登録" styleId="attendance"></input>
-			<input  class="btn" type="button"  value="戻る" styleId="main"></input>
+			<html:submit property="button" styleClass="btn" value="登録" styleId="attendance"/>
+			<html:submit property="button" styleClass="btn" value="戻る" styleId="main"/>
 		</div>
 
 	</body>
