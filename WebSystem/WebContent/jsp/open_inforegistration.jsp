@@ -73,8 +73,8 @@
 					</div>
 				</div>
 
-				<img id="preview"> <img id="preview">
-				<script type="text/javascript" src="../js/personal_information.js">
+				<img id="preview">
+				<script type="text/javascript" src="../jsp/open_information.jsp">
 				var target = document.getElementById('target');
 				target.addEventListener('dragover', function (e) {
 					e.preventDefault();
@@ -99,9 +99,9 @@
 						名前：<%=name%>
 					</p>
 					<p style="margin-top: 5px; margin-left: 50px; margin-bottom: 20px">
-						役職：<%=pos %>
+						役職：
 						<html:select property="pos" name="Open_informationForm"
-							styleId="pos" value="">
+							styleId="pos" value="<%=pos %>">
 							<html:option value="">-</html:option>
 							<html:option value="0">役職なし</html:option>
 							<html:option value="1">主任</html:option>
