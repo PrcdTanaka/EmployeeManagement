@@ -116,7 +116,7 @@ public final class PasswordForgetAction extends Action {
 				// DBに格納された社員番号と入力された社員番号取得処理
 				dba.getDbpassword(pForm);
 				String employee_no = pForm.getEmployee_no();
-				String dbemployee_no = dba.getEmployee_no();
+				String dbemployee_no = dba.getEmoloyee_No();
 
 				//DBに格納された社員番号と入力された社員番号比較処理
 				if(employee_no.equals(dbemployee_no)){
