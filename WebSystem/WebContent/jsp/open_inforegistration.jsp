@@ -61,35 +61,6 @@
 		</div>
 		<div class='main1'>
 			<div class='pic'>
-				<div id="dragDropArea">
-					<div class="drag-drop-inside">
-						<p class="drag-drop-info">ここにファイルをドロップ</p>
-						<p>または</p>
-						<p class="drag-drop-buttons">
-							<input id="fileInput" type="file" accept="image/*"
-								value="ファイルを選択" name="photo" onChange="photoPreview(event)">
-						</p>
-						<div id="previewArea"></div>
-					</div>
-				</div>
-
-				<img id="preview">
-				<script type="text/javascript" src="../jsp/open_information.jsp">
-				var target = document.getElementById('target');
-				target.addEventListener('dragover', function (e) {
-					e.preventDefault();
-					e.stopPropagation();
-					e.dataTransfer.dropEffect = 'copy';
-				});
-				target.addEventListener('drop', function (e) {
-					e.stopPropagation();
-					e.preventDefault();
-					const reader = new FileReader();
-					reader.onload = function (e) {
-						document.getElementById('preview').src = e.target.result;
-					}
-					reader.readAsDataURL(e.dataTransfer.files[0]);
-				});</script>
 				<!-- src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
 				height="190" width="190" -->
 			</div>
