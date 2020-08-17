@@ -1882,7 +1882,7 @@ public class DbAction extends Object{
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
 
-	public boolean setKomaki(Open_informationForm form) {
+	public boolean setOpen(Open_informationForm form) {
 
 		boolean ret = false;
 
@@ -1907,6 +1907,7 @@ public class DbAction extends Object{
 			sb.append(",HOBBIES = " + "'" +form.getHobby()+"'" + crlf);
 			sb.append(",SPECIALTY = " + "'" +form.getSs()+"'" + crlf);
 			sb.append(",INTRODUCTION = " + "'" +form.getIntr()+"'" + crlf);
+			sb.append(",IMG = " + "'" +form.getImg()+"'" + crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("EMPLOYEE_NO = ?" + crlf);
 
