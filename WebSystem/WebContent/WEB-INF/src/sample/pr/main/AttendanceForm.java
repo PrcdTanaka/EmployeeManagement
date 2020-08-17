@@ -2,7 +2,7 @@ package sample.pr.main;
 
 import org.apache.struts.action.ActionForm;
 
-public class AttendanceForm extends ActionForm {
+public final class AttendanceForm extends ActionForm {
 	/** シリアルバージョンID */
 	private static final long serialVersionUID = 1L;
 
