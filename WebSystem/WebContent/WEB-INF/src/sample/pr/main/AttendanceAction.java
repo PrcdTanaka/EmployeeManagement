@@ -14,7 +14,7 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
 
-public class AttendanceAction extends Action{
+public final class AttendanceAction extends Action{
 
 	// DB接続用オブジェクト
 	private DbAction dba = new DbAction();
