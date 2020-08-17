@@ -15,7 +15,9 @@
     </head>
 
   	<table>
-  		<center><h1>パスワード変更画面</h1></center>
+	<center>
+		<h1>パスワード変更手続き画面</h1>
+	</center>
   	</table>
 
   	 	<%
@@ -35,7 +37,6 @@
   		<html:form action="/PasswordChangeAction" >
 			<div class="block">
 
-				<div class="space"></div>
 				<br>
 				<br>
 					<center><%= message %></center>
