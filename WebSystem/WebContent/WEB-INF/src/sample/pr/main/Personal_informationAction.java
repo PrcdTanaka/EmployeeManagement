@@ -133,6 +133,12 @@ public final class Personal_informationAction extends Action {
 
 		switch (Button) {
 		case "登録":
+			//管理者の場合、確認書類を登録する。
+			if(lForm.getManager().equals("1"))
+			{
+				String[] checked = request.getParameterValues("document");
+				pForm.setDocument(checked);
+			}
 			forward = clickBtnEntry(pForm,lForm);
 			session.removeAttribute("sForm");
 			break;
@@ -198,11 +204,9 @@ public final class Personal_informationAction extends Action {
 					// 社員番号が存在しない場合
 					dba.setFamilyStructureI(form, no);
 				}
-
 			}
-			//管理者の場合、確認書類を登録する。
-			if(login.getManager().equals(1))
-				dba.setConfirm(form);
+
+			dba.setConfirm(form,login);
 			dba.setPersonalData(form);
 		}
 

@@ -2133,7 +2133,7 @@ public class DbAction extends Object{
 		return ret;
 
 	}
-	public boolean setConfirm(Personal_informationForm form) {
+	public boolean setConfirm(Personal_informationForm form,LoginForm lform) {
 
 		boolean ret = false;
 
@@ -2153,14 +2153,33 @@ public class DbAction extends Object{
 			sb.append("UPDATE" + crlf);
 			sb.append("  PERSONAL_INFORMATION_TBL" + crlf);
 			sb.append("SET" + crlf);
-			sb.append("  DOCUMENT" + form.getDocument() + crlf);
-			sb.append("  NB"  + form.getNb() + crlf);
-			sb.append("  CONFIRMER" + form.getConfirmer() + crlf);
+			sb.append("  DOCUMENT='"+ form.getDocument()+"'," + crlf);
+//			sb.append("  NB"  + form.getNb() + crlf);
+			sb.append("  CONFIRMER='" + lform.getEmployee_no()+"'"+ crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+		String query = sb.toString();
+
+		// 設定値 - 型
+		List<Integer> typeList = new ArrayList<Integer>();
+		typeList.add(dba.DB_STRING);
+
+		// 設定値 - 値
+		List<Object> bindList = new ArrayList<Object>();
+		bindList.add(form.getEmployee_no());
+
+		try {
+			dba.executeQuery(query, typeList, bindList);
+			dba.commit();
+			dba.closeConnection();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		ret = true;
-
+		}
 
 		return ret;
 	}
