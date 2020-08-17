@@ -47,7 +47,8 @@ public final class Personal_informationForm extends ActionForm {
 	private String emergency_address;
 
 	/** 確認書類*/
-	private int document;
+
+	private int           document;
 
 	private String  Nb;
 
@@ -770,11 +771,16 @@ public final class Personal_informationForm extends ActionForm {
 	}
 
 	/** 確認書類*/
-	public void setDocument(int doc){
-		document=doc;
+	public void setDocument(String[] doc)
+	{
+		for(String docu:doc)
+		{
+			document+=Math.pow(2.0,Double.valueOf(docu));
+		}
 	}
+
 	public int getDocument(){
-		return document;
+			return document;
 	}
 
 	/** 備考*/
@@ -785,11 +791,4 @@ public final class Personal_informationForm extends ActionForm {
 		return Nb;
 	}
 
-	/** 確認者*/
-	public void setConfirmer(String con){
-		confirmer=con;
-	}
-	public String getConfirmer(){
-		return confirmer;
-	}
 }
