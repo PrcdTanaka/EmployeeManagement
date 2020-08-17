@@ -27,13 +27,13 @@
 		<%
 			DbAction dba = new DbAction();
 					Open_informationForm oform=new Open_informationForm();
+					Personal_informationForm pform=new Personal_informationForm();
 					oform.setEmployee_no(request.getParameter("employee_no"));
 					dba.getMizuki(oform);
 					dba.getHire_date(oform);
 					Personal_informationForm Ename=new Personal_informationForm();
 					Ename.setEmployee_no(request.getParameter("employee_no"));
 					dba.getEmoloyee_Name(Ename);
-
 					String name = "";
 					String pos = "";
 					String djc = "";
@@ -50,19 +50,85 @@
 						// DBから個人情報を取得する
 						// 各パラメーターを設定する
 						name = Ename.getEmployee_name();
-						pos = oform.getPos();
 						djc = oform.getDjc();
-						tec = oform.getTec();
+						try{
+							pos = oform.getPos();
+							switch(Integer.parseInt(pos)){
+							case 0:
+								pos="役職無し";
+								break;
+							case 1:
+								pos="主任";
+								break;
+							case 2:
+								pos="係長";
+								break;
+							case 3:
+								pos="課長";
+								break;
+							case 4:
+								pos="次長";
+								break;
+							case 5:
+								pos="部長";
+								break;
+							}
+
+						}catch(Exception e){
+							pos="未登録";
+						}
+						try{
+							tec = oform.getTec();
+							switch(Integer.parseInt(tec)){
+							case 0:
+								tec="総務・経理部";
+								break;
+							case 1:
+								tec="第1技術部";
+								break;
+							case 2:
+								tec="第2技術部";
+								break;
+							case 3:
+								tec="第3技術部";
+								break;
+							case 4:
+								tec="第4技術部";
+								break;
+							case 5:
+								tec="第5技術部";
+								break;
+							case 6:
+								tec="ソリューション技術部";
+								break;
+							case 7:
+								tec="システム営業部";
+								break;
+							case 8:
+								tec="人事部";
+								break;
+							case 9:
+								tec="採用マーケティング部";
+								break;
+							}
+						}catch(Exception e){
+							tec="未登録";
+						}
 						hobby = oform.getHobby();
 						ss = oform.getSs();
 						intr = oform.getIntr();
 
 
 		%>
+		<div align="right">
+		<a href="search.jsp" style="margin-top:25px;margin-right:25px">ユーザー検索画面へ</a>
+		</div>
 		<div class='main1'>
 			<div class='pic'>
 				<img src="C:\Users\gakuto_yamagishi\Desktop\susi.jpg" height="200"
 					width="200">
+
+
 			</div>
 			<div class='pro'>
 				<div class='pro2'>
@@ -75,8 +141,11 @@
 					</p>
 				</div>
 				<div class='pro2'>
-					<div class='day'></div>
+				<div align="left">
+					<p style="margin-bottom:25px;">
 					入社年月日:<%=djc %>
+					</p>
+				</div>
 				</div>
 				<div class='pro2'>
 					<div class='tec'></div>
@@ -104,10 +173,8 @@
 		<!-- 戻るボタン -->
 		<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
-		<!--html:submit property="button" styleClass="btn" value="検索"
-			styleId="search" /-->
-		<a href="search.jsp">ユーザー検索画面へ</a>
-		<script type="text/javascript">
+
+			<script type="text/javascript">
 			document.getElementById('name').readOnly = true;
 			document.getElementById('pos').readOnly = true;
 			document.getElementById('djc').readOnly = true;

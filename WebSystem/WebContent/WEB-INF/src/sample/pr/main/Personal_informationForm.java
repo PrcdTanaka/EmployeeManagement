@@ -46,6 +46,17 @@ public final class Personal_informationForm extends ActionForm {
 	/** 緊急連絡先：住所 */
 	private String emergency_address;
 
+	/** 確認書類*/
+
+	private int           document;
+
+	private String  Nb;
+
+	private String confirmer;
+
+
+
+
 	/** 緊急連絡先：氏名 */
 	private String emergency_name1;
 	private String emergency_name2;
@@ -101,7 +112,7 @@ public final class Personal_informationForm extends ActionForm {
 	private String family_structure_relationship3;
 	private String family_structure_relationship4;
 	private String family_structure_relationship5;
-	
+
 	/** 家族構成：同居・別居 */
 	private String family_structure_residence1;
 	private String family_structure_residence2;
@@ -128,7 +139,7 @@ public final class Personal_informationForm extends ActionForm {
 
 	/** メッセージ */
 	private String message;
-	
+
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -206,6 +217,9 @@ public final class Personal_informationForm extends ActionForm {
 		family_structure_job5 = "";
 		button = "";
 		message = "";
+		document=0;
+		Nb="";
+		confirmer="";
 	}
 
 
@@ -675,7 +689,7 @@ public final class Personal_informationForm extends ActionForm {
 	public String getFamily_structure_residence5(){
 		return family_structure_residence5;
 	}
-	
+
 	/** 家族構成：扶養の有無 */
 	public void setFamily_structure_support1(String family_structure_support1){
 		this.family_structure_support1 = family_structure_support1;
@@ -747,7 +761,7 @@ public final class Personal_informationForm extends ActionForm {
 	public String getButton(){
 		return button;
 	}
-	
+
 	/** メッセージ */
 	public void setMessage(String message){
 		this.message = message;
@@ -755,5 +769,26 @@ public final class Personal_informationForm extends ActionForm {
 	public String getMessage(){
 		return message;
 	}
-	
+
+	/** 確認書類*/
+	public void setDocument(String[] doc)
+	{
+		for(String docu:doc)
+		{
+			document+=Math.pow(2.0,Double.valueOf(docu));
+		}
+	}
+
+	public int getDocument(){
+			return document;
+	}
+
+	/** 備考*/
+	public void setNb(String nb){
+		Nb=nb;
+	}
+	public String getNb(){
+		return Nb;
+	}
+
 }

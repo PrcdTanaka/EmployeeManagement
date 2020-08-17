@@ -56,7 +56,6 @@ public final class Open_RefelenceAction extends Action {
 		String button=rForm.getButton();
 		HttpSession session=request.getSession();
 		try{
-			request.setCharacterEncoding("utf-8");
 			if(button.equals("戻る")){
 				forward="main";
 				session.removeAttribute("rForm");
@@ -65,7 +64,7 @@ public final class Open_RefelenceAction extends Action {
 				forward="search";
 				session.setAttribute("rForm", rForm);
 			}
-		}catch(IOException e){
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 			session.removeAttribute("sForm");

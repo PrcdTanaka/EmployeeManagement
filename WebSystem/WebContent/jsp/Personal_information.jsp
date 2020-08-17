@@ -205,15 +205,13 @@
 				<div class="hire_date">
 					<label for="hire_date">入社日</label>
 					<html:text property="hire_date" name="Personal_informationForm"
-						styleId="hire_date" value="<%=hire_date%>" size="8"
-						maxlength="10" />
+						styleId="hire_date" value="<%=hire_date%>" size="8" maxlength="10" />
 					<p>例) 2020年4月10日 → 2020/04/10
 				</div>
 				<div class="name">
 					<label for="name">氏名 ：</label>
 					<html:text property="employee_name" name="Personal_informationForm"
-						styleId="name" value="<%=employee_name%>" size="18"
-						maxlength="16"></html:text>
+						styleId="name" value="<%=employee_name%>" size="18" maxlength="16"></html:text>
 					※必須
 				</div>
 				<div>
@@ -235,14 +233,14 @@
 					<label for="birth">生年月日：</label>
 					<html:text property="birth" name="Personal_informationForm"
 						styleId="birth" value="<%=birth%>" size="7" maxlength="10" />
+					<p>例) 1999年12月31日 → 1999/12/31
 				</div>
 				<div class="tel">
-					<label for="tel_home">電話番号</label>
+					<label for="tel_home">電話番号(ハイフンなし)</label>
 					<div class="tel_home">
 						<label for="tel_home"> 自宅 ：</label>
 						<html:text property="tel_home" name="Personal_informationForm"
-							styleId="tel_home" value="<%=tel_home%>" size="15"
-							maxlength="15" />
+							styleId="tel_home" value="<%=tel_home%>" size="15" maxlength="15" />
 					</div>
 					<div class="tel_phone">
 						<label for="tel_phone"> 携帯電話：</label>
@@ -252,7 +250,7 @@
 					</div>
 				</div>
 				<div class="postal_code">
-					<label for="postal_code">郵便番号：</label>
+					<label for="postal_code">郵便番号(ハイフンなし)：</label>
 					<html:text property="postal_code" name="Personal_informationForm"
 						styleId="postal_code" value="<%=postal_code%>" size="7"
 						maxlength="7" />
@@ -276,7 +274,11 @@
 				</div>
 				<p>
 				<div class="emergency_contact" id="emergency_contact">
-					<label for="emergency_contact">緊急連絡先</label>
+					<br>
+					<h2>
+						<label for="emergency_contact">緊急連絡先</label>
+					</h2>
+					<br>
 					<div>
 						<label for="Emergency_tel">電話番号：</label>
 						<html:text property="Emergency_tel"
@@ -307,213 +309,108 @@
 						<label for="emergency_tel1" name="emergency1">TEL ：</label>
 						<html:text property="emergency_tel1"
 							name="Personal_informationForm" styleId="emergency_tel1"
-							styleClass="emergency_tel" value="<%=emergency_tel1%>"
-							size="19" maxlength="15" />
-					</div>
-				</div>
-				</p>
-
-				<p>
-					<a href="#" id="link_view2" onClick="toggle_view2();return false;">追加</a>
-					<a href="#" id="link_hidden2"
-						onClick="toggle_hidden2();return false;" style="display: none;">削除</a>
-				</p>
-				<div id="area_hoge2" style="display: none;">
-					<p>
-					<p class="emergency_contact" id="emergency_contact2">
-					<div>
-						<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
-						<html:text property="emergency_name2"
-							name="Personal_informationForm" styleId="emergency_name2"
-							styleClass="emergency_name" value="<%=emergency_name2%>"
-							size="18" maxlength="16" />
-					</div>
-					<div>
-						<label for="relationship2" name="emergency2">本人との関係：</label>
-						<html:text property="relationship2"
-							name="Personal_informationForm" styleId="relationship2"
-							styleClass="relationship" value="<%=relationship2%>" size="3"
-							maxlength="3" />
-					</div>
-					<div>
-						<label for="emergency_tel2" name="emergency2">TEL ：</label>
-						<html:text property="emergency_tel2"
-							name="Personal_informationForm" styleId="emergency_tel2"
-							styleClass="emergency_tel" value="<%=emergency_tel2%>" size="19"
+							styleClass="emergency_tel" value="<%=emergency_tel1%>" size="19"
 							maxlength="15" />
 					</div>
-					</p>
-					<a href="#" id="link_view3" onClick="toggle_view3();return false;">追加</a>
-					<a href="#" id="link_hidden3"
-						onClick="toggle_hidden3();return false;" style="display: none;">削除</a>
-					</p>
-					</p>
 				</div>
-				<script language="JavaScript" type="text/javascript">
-					var elem2_1 = document.getElementById("area_hoge2");
-					var elem2_2 = document.getElementById("link_view2");
-					var elem2_3 = document.getElementById("link_hidden2");
-					function toggle_view2() {
-						elem2_1.style.display = "";
-						elem2_2.style.display = "none";
-						elem2_3.style.display = "";
-					}
-					function toggle_hidden2() {
-						elem2_1.style.display = "none";
-						elem2_2.style.display = "";
-						elem2_3.style.display = "none";
-					}
-				</script>
 
-				<div id="area_hoge3" style="display: none;">
-					<p>
-					<p class="emergency_contact" id="emergency_contact3">
-					<div>
-						<label for="emergency_name3" id="a1" name="emergency3">氏名：</label>
-						<html:text property="emergency_name3"
-							name="Personal_informationForm" styleId="emergency_name3"
-							styleClass="emergency_name" value="<%=emergency_name3%>"
-							size="18" maxlength="16"></html:text>
-					</div>
-					<div>
-						<label for="relationship3" name="emergency3">本人との関係：</label>
-						<html:text property="relationship3"
-							name="Personal_informationForm" styleId="relationship3"
-							styleClass="relationship" value="<%=relationship3%>" size="3"
-							maxlength="3" />
-					</div>
-					<div>
-						<label for="emergency_tel3" name="emergency3">TEL ：</label>
-						<html:text property="emergency_tel3"
-							name="Personal_informationForm" styleId="emergency_tel3"
-							styleClass="emergency_tel" value="<%=emergency_tel3%>"
-							size="19" maxlength="15" />
-					</div>
-					<a href="#" id="link_view4" onClick="toggle_view4();return false;">追加</a>
-					<a href="#" id="link_hidden4"
-						onClick="toggle_hidden4();return false;" style="display: none;">削除</a>
-					</p>
-					</p>
+				<br>
+				<p class="emergency_contact" id="emergency_contact2">
+				<div>
+					<label for="emergency_name2" id="a1" name="emergency2">氏名：</label>
+					<html:text property="emergency_name2"
+						name="Personal_informationForm" styleId="emergency_name2"
+						styleClass="emergency_name" value="<%=emergency_name2%>" size="18"
+						maxlength="16" />
 				</div>
-				<script language="JavaScript" type="text/javascript">
-					var elem3_1 = document.getElementById("area_hoge3");
-					var elem3_2 = document.getElementById("link_view3");
-					var elem3_3 = document.getElementById("link_hidden3");
-					function toggle_view3() {
-						elem3_1.style.display = "";
-						elem3_2.style.display = "none";
-						elem3_3.style.display = "";
-					}
-					function toggle_hidden3() {
-						elem3_1.style.display = "none";
-						elem3_2.style.display = "";
-						elem3_3.style.display = "none";
-					}
-				</script>
-
-
-
-
-				<div id="area_hoge4" style="display: none;">
-					</p>
-					</p>
-					<p class="emergency_contact" id="emergency_contact4">
-					<div>
-						<label for="emergency_name4" id="a1" name="emergency4">氏名：</label>
-						<html:text property="emergency_name4"
-							name="Personal_informationForm" styleId="emergency_name4"
-							styleClass="emergency_name" value="<%=emergency_name4%>"
-							size="18" maxlength="16"></html:text>
-					</div>
-					<div>
-						<label for="relationship4" name="emergency4">本人との関係：</label>
-						<html:text property="relationship4"
-							name="Personal_informationForm" styleId="relationship4"
-							styleClass="relationship" value="<%=relationship4%>" size="3"
-							maxlength="3" />
-					</div>
-					<div>
-						<label for="emergency_tel4" name="emergency4">TEL ：</label>
-						<html:text property="emergency_tel4"
-							name="Personal_informationForm" styleId="emergency_tel4"
-							styleClass="emergency_tel" value="<%=emergency_tel4%>"
-							size="19" maxlength="15" />
-					</div>
-					<a href="#" id="link_view5" onClick="toggle_view5();return false;">追加</a>
-					<a href="#" id="link_hidden5"
-						onClick="toggle_hidden5();return false;" style="display: none;">削除</a>
-					</p>
-					</p>
+				<div>
+					<label for="relationship2" name="emergency2">本人との関係：</label>
+					<html:text property="relationship2" name="Personal_informationForm"
+						styleId="relationship2" styleClass="relationship"
+						value="<%=relationship2%>" size="3" maxlength="3" />
 				</div>
-				<script language="JavaScript" type="text/javascript">
-					var elem4_1 = document.getElementById("area_hoge4");
-					var elem4_2 = document.getElementById("link_view4");
-					var elem4_3 = document.getElementById("link_hidden4");
-					function toggle_view4() {
-						elem4_1.style.display = "";
-						elem4_2.style.display = "none";
-						elem4_3.style.display = "";
-					}
-					function toggle_hidden4() {
-						elem4_1.style.display = "none";
-						elem4_2.style.display = "";
-						elem4_3.style.display = "none";
-					}
-				</script>
-
-
-
-
-				<div id="area_hoge5" style="display: none;">
-					</p>
-					</p>
-					<p class="emergency_contact" id="emergency_contact5">
-					<div>
-						<label for="emergency_name5" id="a1" name="emergency5">氏名：</label>
-						<html:text property="emergency_name5"
-							name="Personal_informationForm" styleId="emergency_name5"
-							styleClass="emergency_name" value="<%=emergency_name5%>"
-							size="18" maxlength="16"></html:text>
-					</div>
-					<div>
-						<label for="relationship5" name="emergency5">本人との関係：</label>
-						<html:text property="relationship5"
-							name="Personal_informationForm" styleId="relationship5"
-							styleClass="relationship" value="<%=relationship5%>" size="3"
-							maxlength="3" />
-					</div>
-					<div>
-						<label for="emergency_tel5" name="emergency5">TEL ：</label>
-						<html:text property="emergency_tel5"
-							name="Personal_informationForm" styleId="emergency_tel5"
-							styleClass="emergency_tel" value="<%=emergency_tel5%>"
-							size="19" maxlength="15" />
-					</div>
-					<a href="#" id="link_hidden5"
-						onClick="toggle_hidden5();return false;" style="display: none;">削除</a>
-					</p>
-					</p>
-					</p>
+				<div>
+					<label for="emergency_tel2" name="emergency2">TEL ：</label>
+					<html:text property="emergency_tel2"
+						name="Personal_informationForm" styleId="emergency_tel2"
+						styleClass="emergency_tel" value="<%=emergency_tel2%>" size="19"
+						maxlength="15" />
 				</div>
-				<script language="JavaScript" type="text/javascript">
-					var elem5_1 = document.getElementById("area_hoge5");
-					var elem5_2 = document.getElementById("link_view5");
-					var elem5_3 = document.getElementById("link_hidden5");
-					function toggle_view5() {
-						elem5_1.style.display = "";
-						elem5_2.style.display = "none";
-						elem5_3.style.display = "";
-					}
-					function toggle_hidden5() {
-						elem5_1.style.display = "none";
-						elem5_2.style.display = "";
-						elem5_3.style.display = "none";
-					}
-				</script>
 
+				<br>
+				<p class="emergency_contact" id="emergency_contact3">
+				<div>
+					<label for="emergency_name3" id="a1" name="emergency3">氏名：</label>
+					<html:text property="emergency_name3"
+						name="Personal_informationForm" styleId="emergency_name3"
+						styleClass="emergency_name" value="<%=emergency_name3%>" size="18"
+						maxlength="16"></html:text>
+				</div>
+				<div>
+					<label for="relationship3" name="emergency3">本人との関係：</label>
+					<html:text property="relationship3" name="Personal_informationForm"
+						styleId="relationship3" styleClass="relationship"
+						value="<%=relationship3%>" size="3" maxlength="3" />
+				</div>
+				<div>
+					<label for="emergency_tel3" name="emergency3">TEL ：</label>
+					<html:text property="emergency_tel3"
+						name="Personal_informationForm" styleId="emergency_tel3"
+						styleClass="emergency_tel" value="<%=emergency_tel3%>" size="19"
+						maxlength="15" />
+				</div>
 
+				<br>
+				<p class="emergency_contact" id="emergency_contact4">
+				<div>
+					<label for="emergency_name4" id="a1" name="emergency4">氏名：</label>
+					<html:text property="emergency_name4"
+						name="Personal_informationForm" styleId="emergency_name4"
+						styleClass="emergency_name" value="<%=emergency_name4%>" size="18"
+						maxlength="16"></html:text>
+				</div>
+				<div>
+					<label for="relationship4" name="emergency4">本人との関係：</label>
+					<html:text property="relationship4" name="Personal_informationForm"
+						styleId="relationship4" styleClass="relationship"
+						value="<%=relationship4%>" size="3" maxlength="3" />
+				</div>
+				<div>
+					<label for="emergency_tel4" name="emergency4">TEL ：</label>
+					<html:text property="emergency_tel4"
+						name="Personal_informationForm" styleId="emergency_tel4"
+						styleClass="emergency_tel" value="<%=emergency_tel4%>" size="19"
+						maxlength="15" />
+				</div>
+
+				<br>
+				<p class="emergency_contact" id="emergency_contact5">
+				<div>
+					<label for="emergency_name5" id="a1" name="emergency5">氏名：</label>
+					<html:text property="emergency_name5"
+						name="Personal_informationForm" styleId="emergency_name5"
+						styleClass="emergency_name" value="<%=emergency_name5%>" size="18"
+						maxlength="16"></html:text>
+				</div>
+				<div>
+					<label for="relationship5" name="emergency5">本人との関係：</label>
+					<html:text property="relationship5" name="Personal_informationForm"
+						styleId="relationship5" styleClass="relationship"
+						value="<%=relationship5%>" size="3" maxlength="3" />
+				</div>
+				<div>
+					<label for="emergency_tel5" name="emergency5">TEL ：</label>
+					<html:text property="emergency_tel5"
+						name="Personal_informationForm" styleId="emergency_tel5"
+						styleClass="emergency_tel" value="<%=emergency_tel5%>" size="19"
+						maxlength="15" />
+				</div>
+				<br>
 				<div class="family_structure" id="family_structure">
-					<label for="family_structure">家族構成</label>
+					<h2>
+						<label for="family_structure">家族構成</label>
+					</h2>
+					<br>
 					<div>
 						<label for="family_structure_name1" name="family_structure1">氏名：</label>
 						<html:text property="family_structure_name1"
@@ -525,8 +422,7 @@
 						<html:text property="family_structure_furigana1"
 							name="Personal_informationForm"
 							styleId="family_structure_furigana1"
-							value="<%=family_structure_furigana1%>" size="18"
-							maxlength="16" />
+							value="<%=family_structure_furigana1%>" size="18" maxlength="16" />
 					</div>
 					<div>
 						<label for="family_structure_birth1" name="family_structure1">生年月日：</label>
@@ -583,7 +479,7 @@
 					</div>
 
 
-
+					<br>
 					<label for="family_structure_name2" name="family_structure2">氏名：</label>
 					<html:text property="family_structure_name2"
 						name="Personal_informationForm" styleId="family_structure_name2"
@@ -650,7 +546,7 @@
 						value="<%=family_structure_job2%>" size="18" maxlength="16" />
 				</div>
 
-
+				<br>
 				<div>
 					<label for="family_structure_name3" name="family_structure3">氏名：</label>
 					<html:text property="family_structure_name3"
@@ -687,8 +583,7 @@
 					<html:text property="family_structure_relationship3"
 						name="Personal_informationForm"
 						styleId="family_structure_relationship3"
-						value="<%=family_structure_relationship3%>" size="3"
-						maxlength="3" />
+						value="<%=family_structure_relationship3%>" size="3" maxlength="3" />
 				</div>
 				<div>
 					<label for="family_structure_residence" name="family_structure3">同居・別居</label>
@@ -719,7 +614,7 @@
 						value="<%=family_structure_job3%>" size="18" maxlength="16" />
 				</div>
 
-
+				<br>
 				<div>
 					<label for="family_structure_name4" name="family_structure4">氏名：</label>
 					<html:text property="family_structure_name4"
@@ -787,7 +682,7 @@
 						value="<%=family_structure_job4%>" size="18" maxlength="16" />
 				</div>
 
-
+				<br>
 				<div>
 					<label for="family_structure_name5" name="family_structure5">氏名：</label>
 					<html:text property="family_structure_name5"
@@ -824,8 +719,7 @@
 					<html:text property="family_structure_relationship5"
 						name="Personal_informationForm"
 						styleId="family_structure_relationship5"
-						value="<%=family_structure_relationship5%>" size="3"
-						maxlength="3" />
+						value="<%=family_structure_relationship5%>" size="3" maxlength="3" />
 				</div>
 				<div>
 					<label for="family_structure_residence" name="family_structure5">同居・別居</label>
@@ -855,6 +749,7 @@
 						name="Personal_informationForm" styleId="family_structure_job5"
 						value="<%=family_structure_job5%>" size="18" maxlength="16" />
 				</div>
+
 		</div>
 
 		<!-- 登録/編集ボタン  -->
@@ -1016,22 +911,19 @@
 			}
 		</script>
 
-		</br>
+
 		<!-- /form> -->
 		<div>
 			<html:submit property="button" styleClass="btn" value="戻る"
-				styleId="back" />
+			styleId="main" />
 		</div>
 
-		</html:form>
 
 		<!-- <script type="text/javascript" src="../js/personal_information.js"></script> -->
 		<script type="text/javascript">
 			document.write("最終更新日" + document.lastModified);
 		</script>
 </div>
+</html:form>
 </body>
-
-
-</div>
 </html:html>

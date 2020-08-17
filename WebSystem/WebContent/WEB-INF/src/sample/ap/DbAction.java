@@ -1882,7 +1882,7 @@ public class DbAction extends Object{
 	 * @return DB接続成功：true DB接続失敗：false
 	 */
 
-	public boolean setKomaki(Open_informationForm form) {
+	public boolean setOpen(Open_informationForm form) {
 
 		boolean ret = false;
 
@@ -1907,6 +1907,7 @@ public class DbAction extends Object{
 			sb.append(",HOBBIES = " + "'" +form.getHobby()+"'" + crlf);
 			sb.append(",SPECIALTY = " + "'" +form.getSs()+"'" + crlf);
 			sb.append(",INTRODUCTION = " + "'" +form.getIntr()+"'" + crlf);
+			sb.append(",IMG = " + "'" +form.getImg()+"'" + crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("EMPLOYEE_NO = ?" + crlf);
 
@@ -1929,9 +1930,7 @@ public class DbAction extends Object{
 				dba.commit();
 				dba.closeConnection();
 
-				for (Map<String, String> val : rsList) {
 					ret = true;
-				}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -2133,5 +2132,107 @@ public class DbAction extends Object{
 		}
 		return ret;
 
+	}
+	public boolean setConfirm(Personal_informationForm form,LoginForm lform) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("UPDATE" + crlf);
+			sb.append("  PERSONAL_INFORMATION_TBL" + crlf);
+			sb.append("SET" + crlf);
+			sb.append("  DOCUMENT='"+ form.getDocument()+"'," + crlf);
+//			sb.append("  NB"  + form.getNb() + crlf);
+			sb.append("  CONFIRMER='" + lform.getEmployee_no()+"'"+ crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+		String query = sb.toString();
+
+		// 設定値 - 型
+		List<Integer> typeList = new ArrayList<Integer>();
+		typeList.add(dba.DB_STRING);
+
+		// 設定値 - 値
+		List<Object> bindList = new ArrayList<Object>();
+		bindList.add(form.getEmployee_no());
+
+		try {
+			dba.executeQuery(query, typeList, bindList);
+			dba.commit();
+			dba.closeConnection();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ret = true;
+		}
+
+		return ret;
+	}
+
+	public boolean setHire_date(Personal_informationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("UPDATE" + crlf);
+			sb.append("PERSONAL_INFORMATION_TBL" + crlf);
+			sb.append("SET" + crlf);
+			sb.append("HIRE_DATE = " + "'" +form.getHire_date()+"'" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("EMPLOYEE_NO = ?" + crlf);
+
+			String query = sb.toString();
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, typeList, bindList);
+				dba.commit();
+				dba.closeConnection();
+
+					ret = true;
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
 	}
 }

@@ -56,6 +56,7 @@
 			<forward name="register" path="/jsp/register.jsp" />
 			<forward name="search" path="/jsp/search.jsp" />
 			<forward name="password" path="/jsp/Password.jsp" />
+			<forward name="attendance" path="/jsp/Attendance.jsp"/>
 		</action>
 
 	<action
@@ -108,8 +109,7 @@
 			validate="false"
 			scope="request">
 			<forward name="main" path="/jsp/Main.jsp"/>
-			<forward name="back" path="/jsp/Personal_information.jsp"/>
-			<forward name="open" path="/jsp/Open_inforegistration.jsp"/>
+			<forward name="open" path="/jsp/open_inforegistration.jsp"/>
 		</action>
 
 		<action
@@ -132,6 +132,15 @@
 			<forward name="password" path="/jsp/PasswordChange.jsp"/>
 		</action>
 
+		<action
+			name="AttendanceForm"
+			path="/AttendanceAction"
+			type="sample.pr.main.AttendanceAction"
+			validate="false"
+			scope="request">
+			<forward name="main" path="/jsp/Main.jsp"/>
+			<forward name="attendance" path="/jsp/Attendance.jsp"/>
+		</action>
 
     </action-mappings>
 

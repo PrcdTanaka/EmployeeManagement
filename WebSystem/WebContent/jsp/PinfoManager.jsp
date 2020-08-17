@@ -1,8 +1,10 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
+<%@ page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.ap.DbAction"%>
@@ -102,7 +104,7 @@
 		String family_structure_job3 = "";
 		String family_structure_job4 = "";
 		String family_structure_job5 = "";
-		String document = "";
+		int document =0;
 		String nb = "";
 		String confirmer_no = "";
 		String button = "";
@@ -191,9 +193,14 @@
 			family_structure_job4 = pForm.getFamily_structure_job4();
 			family_structure_job5 = pForm.getFamily_structure_job5();
 			button = pForm.getButton();
-
+			document=pForm.getDocument();
+			nb=pForm.getNb();
 			status = "1";
+			try{
+				document=pForm.getDocument();
+			}catch(Exception e){
 
+			}
 			session.setAttribute("rForm",pForm);
 
 		}
@@ -738,6 +745,24 @@
 							name="Personal_informationForm" styleId="family_structure_job5"
 							value="<%= family_structure_job5 %>"  size="18" maxlength="16" />
 					</div>
+					<h2>	確認書類</h2>
+					<div>
+					<%
+						int a=0;
+						a=document&1;
+						if(a==1)
+						{
+
+						}
+						%>
+						<html:multibox property="document" value="0" />住民票
+						<html:multibox property="document" value="1"/>賃貸契約書
+						<html:multibox property="document" value="2"/>戸籍謄本
+						<html:multibox property="document" value="3"/>非課税証明書
+						<html:multibox property="document" value="4"/>その他
+					</div>
+				<div class="nb">備考</div>
+					<html:textarea property="nb" rows="10" cols="100" value="<%=nb%>"></html:textarea>
 				</div>
 
 				<!-- 登録/編集ボタン  -->
