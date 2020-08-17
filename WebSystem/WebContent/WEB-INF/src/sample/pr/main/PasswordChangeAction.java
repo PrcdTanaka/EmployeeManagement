@@ -109,21 +109,6 @@ public final class PasswordChangeAction extends Action {
 		if(button.equals("戻る")) {
 			forward = "main";
 		}if(button.equals("変更")){
-				//入力された社員番号の空白判定
-			if(piForm.getEmployee_no().equals("")){
-				piForm.setMessage("社員番号を入力してください。");
-			}else{
-				// DBに格納された社員番号と入力された社員番号取得処理
-				dba.getDbpassword(pForm);
-				String employee_no = pForm.getEmployee_no();
-				String dbemployee_no = dba.getEmployee_no();
-
-				//DBに格納された社員番号と入力された社員番号比較処理
-				if(employee_no.equals(dbemployee_no)){
-				}else{
-					pForm.setMessage("入力された社員番号が不正です。");
-				}
-			}
 			//入力された携帯番号の空白判定
 			if(piForm.getTel_phone().equals("")){
 				pForm.setMessage("携帯番号を入力してください。");

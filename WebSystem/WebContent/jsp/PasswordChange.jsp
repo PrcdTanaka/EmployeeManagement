@@ -41,9 +41,6 @@
 			<center><%= message %></center>
 		<br>
 		<div>
-			<center>　　　　　　社員番号：<html:text property="employee_no" value= "" maxlength="4" /></center>
-		</div>
-		<div>
 		    <center>　　　　　　携帯番号：<html:text property="tel_phone" value= "" maxlength="11" /></center>
 		</div>
 		<div>
