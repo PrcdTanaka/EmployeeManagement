@@ -5,148 +5,109 @@
 
 <struts-config>
 
-<!-- ================================================ Form Bean Definitions -->
+	<!-- ================================================ Form Bean Definitions -->
 
-    <form-beans>
+	<form-beans>
 
-    	<!-- ActionFormã®å®ç¾© -->
+		<!-- ActionFormã®å®ç¾© -->
 
-    	<!-- å¤æ ã¡ã¤ã³ç»é¢ -->
+		<!-- å¤æ ã¡ã¤ã³ç»é¢ -->
 		<form-bean name="MainForm" type="sample.pr.main.MainForm">
 			<form-property name="userData" type="java.util.LinkedHashMap" />
 		</form-bean>
-		<form-bean name="LoginForm" type="sample.pr.main.LoginForm"/>
-		<form-bean name="SearchForm" type="sample.pr.main.SearchForm"/>
-		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm"/>
-		<form-bean name="RegisterForm" type="sample.pr.main.RegisterForm"/>
-		<form-bean name="Personal_informationForm" type="sample.pr.main.Personal_informationForm"/>
-		<form-bean name="Open_RefelenceForm" type="sample.pr.main.Open_RefelenceForm"/>
-		<form-bean name="Open_informationForm" type="sample.pr.main.Open_informationForm"/>
-		<form-bean name="PasswordChangeForm" type="sample.pr.main.PasswordChangeForm"/>
-    </form-beans>
+		<form-bean name="LoginForm" type="sample.pr.main.LoginForm" />
+		<form-bean name="SearchForm" type="sample.pr.main.SearchForm" />
+		<form-bean name="PasswordForm" type="sample.pr.main.PasswordForm" />
+		<form-bean name="RegisterForm" type="sample.pr.main.RegisterForm" />
+		<form-bean name="Personal_informationForm" type="sample.pr.main.Personal_informationForm" />
+		<form-bean name="Open_RefelenceForm" type="sample.pr.main.Open_RefelenceForm" />
+		<form-bean name="Open_informationForm" type="sample.pr.main.Open_informationForm" />
+		<form-bean name="PasswordChangeForm" type="sample.pr.main.PasswordChangeForm" />
+		<form-bean name="AttendanceForm" type="sample.pr.main.AttendanceForm" />
+	</form-beans>
 
 
 
-<!-- =========================================== Action Mapping Definitions -->
+	<!-- =========================================== Action Mapping Definitions -->
 
 	<action-mappings>
 
-    	<!-- Actionã®å®ç¾© -->
+		<!-- Actionã®å®ç¾© -->
 
 		<!-- å¤æ ã¡ã¤ã³ç»é¢ -->
-		<action
-			name="LoginForm"
-			path="/LoginAction"
-			type="sample.pr.main.LoginAction"
-			validate="false"
-			scope="request">
+		<action name="LoginForm" path="/LoginAction" type="sample.pr.main.LoginAction"
+			validate="false" scope="request">
 			<forward name="login" path="/jsp/login.jsp" />
-			<forward name="main" path="/jsp/Main.jsp"/>
-			<forward name="change" path="/jsp/PasswordChange.jsp"/>
+			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="change" path="/jsp/PasswordChange.jsp" />
 		</action>
 
-		<action
-			name="MainForm"
-			path="/MainAction"
-			type="sample.pr.main.MainAction"
-			validate="false"
-			scope="request">
+		<action name="MainForm" path="/MainAction" type="sample.pr.main.MainAction"
+			validate="false" scope="request">
 			<forward name="logout" path="/jsp/logout.jsp" />
 			<forward name="edit" path="/jsp/Personal_information.jsp" />
 			<forward name="register" path="/jsp/register.jsp" />
 			<forward name="search" path="/jsp/search.jsp" />
 			<forward name="password" path="/jsp/Password.jsp" />
-			<forward name="attendance" path="/jsp/Attendance.jsp"/>
+			<forward name="attendance" path="/jsp/Attendance.jsp" />
 		</action>
 
-	<action
-			name="PasswordForm"
-			path="/PasswordAction"
-			type="sample.pr.main.PasswordAction"
-			validate="false"
+		<action name="PasswordForm" path="/PasswordAction"
+			type="sample.pr.main.PasswordAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="password" path="/jsp/Password.jsp" />
+		</action>
+
+		<action name="RegisterForm" path="/RegisterAction"
+			type="sample.pr.main.RegisterAction" validate="false" scope="request">
+			<forward name="register" path="/jsp/register.jsp" />
+			<forward name="main" path="/jsp/Main.jsp" />
+		</action>
+
+		<action name="SearchForm" path="/SearchAction" type="sample.pr.main.SearchAction"
+			validate="false" scope="request">
+			<forward name="search" path="/jsp/search.jsp" />
+			<forward name="back" path="/jsp/Main.jsp" />
+			<forward name="fly" path="/jsp/Open_RefeRegistration.jsp" />
+		</action>
+
+
+		<action name="Personal_informationForm" path="/Personal_informationAction"
+			type="sample.pr.main.Personal_informationAction" validate="false"
 			scope="request">
-			<forward name="main" path="/jsp/Main.jsp"/>
-			<forward name="password" path="/jsp/Password.jsp"/>
+			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="pInfo" path="/jsp/Personal_information.jsp" />
+			<forward name="search" path="/jsp/search.jsp" />
 		</action>
 
-		<action
-			name="RegisterForm"
-			path="/RegisterAction"
-			type="sample.pr.main.RegisterAction"
-			validate="false"
-			scope="request">
-			<forward name="register" path="/jsp/register.jsp"/>
-			<forward name="main" path="/jsp/Main.jsp"/>
+		<action name="Open_informationForm" path="/Open_informationAction"
+			type="sample.pr.main.Open_informationAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="open" path="/jsp/open_inforegistration.jsp" />
 		</action>
 
-		<action
-			name="SearchForm"
-			path="/SearchAction"
-			type="sample.pr.main.SearchAction"
-			validate="false"
-			scope="request">
-			<forward name="search" path="/jsp/search.jsp"/>
-			<forward name="back" path="/jsp/Main.jsp"/>
-			<forward name="fly" path="/jsp/Open_RefeRegistration.jsp"/>
+		<action name="Open_RefelenceForm" path="/Open_RefelenceAction"
+			type="sample.pr.main.Open_RefelenceAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="search" path="/jsp/search.jsp" />
 		</action>
 
-
-		<action
-			name="Personal_informationForm"
-			path="/Personal_informationAction"
-			type="sample.pr.main.Personal_informationAction"
-			validate="false"
-			scope="request">
-			<forward name="main" path="/jsp/Main.jsp"/>
-			<forward name="pInfo" path="/jsp/Personal_information.jsp"/>
-			<forward name="search" path="/jsp/search.jsp"/>
+		<action name="PasswordForm" path="/PasswordChangeAction"
+			type="sample.pr.main.PasswordChangeAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="password" path="/jsp/PasswordChange.jsp" />
 		</action>
 
-		<action
-			name="Open_informationForm"
-			path="/Open_informationAction"
-			type="sample.pr.main.Open_informationAction"
-			validate="false"
-			scope="request">
-			<forward name="main" path="/jsp/Main.jsp"/>
-			<forward name="open" path="/jsp/open_inforegistration.jsp"/>
+		<action name="AttendanceForm" path="/AttendanceAction"
+			type="sample.pr.main.AttendanceAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="attendance" path="/jsp/Attendance.jsp" />
 		</action>
-
-		<action
-			name="Open_RefelenceForm"
-			path="/Open_RefelenceAction"
-			type="sample.pr.main.Open_RefelenceAction"
-			validate="false"
-			scope="request">
-			<forward name="main" path="/jsp/Main.jsp"/>
-			<forward name="search" path="/jsp/search.jsp"/>
-		</action>
-
-		<action
-			name="PasswordForm"
-			path="/PasswordChangeAction"
-			type="sample.pr.main.PasswordChangeAction"
-			validate="false"
-			scope="request">
-			<forward name="main" path="/jsp/Main.jsp"/>
-			<forward name="password" path="/jsp/PasswordChange.jsp"/>
-		</action>
-
-		<action
-			name="AttendanceForm"
-			path="/AttendanceAction"
-			type="sample.pr.main.AttendanceAction"
-			validate="false"
-			scope="request">
-			<forward name="main" path="/jsp/Main.jsp"/>
-			<forward name="attendance" path="/jsp/Attendance.jsp"/>
-		</action>
-
-    </action-mappings>
+	</action-mappings>
 
 
-<!-- ======================================== Message Resources Definitions -->
+	<!-- ======================================== Message Resources Definitions -->
 
-    <message-resources parameter="MessageResources" />
+	<message-resources parameter="MessageResources" />
 </struts-config>
 
