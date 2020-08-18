@@ -8,6 +8,7 @@
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
+
 <html lang="ja">
 <!DOCTYPE html>
 <html:html>
