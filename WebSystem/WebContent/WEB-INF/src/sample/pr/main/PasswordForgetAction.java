@@ -128,7 +128,6 @@ public final class PasswordForgetAction extends Action {
 		return map.findForward(forward);
 	}
 
-
 	/***
 	 * <p>
 	 * 入力された情報からパスワードの変更を行う。
