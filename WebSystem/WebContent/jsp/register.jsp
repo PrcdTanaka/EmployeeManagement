@@ -47,6 +47,44 @@
 				<div>
 				    <center>パスワード：<html:text property="password" value= ""/></center>
 				</div>
+				<div style="position: relative; margin-top: 5%; text-align: center">
+					<p class="REST">秘密の質問</p>
+				<select class="REST" name="秘密の質問">
+					<option value="">選択してください</option>
+					<option value="">母親の旧姓</option>
+					<option value="">飼っているペットの名前</option>
+					<option value="">好きな食べ物</option>
+					<option value="">好きな国</option>
+					<option value="">初めて観た映画</option>
+					<option value="">学生時代の部活</option>
+					<option value="">子供の頃のあだ名</option>
+					<option value="">座右の銘</option>
+					<option value="">初めて行った海外</option>
+					<option value="">おふくろの味</option>
+				</select>
+				</div>
+				<div>
+				    <center><html:text property="password" value= ""/></center>
+				</div>
+				<div style="position: relative; margin-top: 5%; text-align: center">
+					<p class="REST">秘密の質問</p>
+				<select class="REST" name="秘密の質問">
+					<option value="">選択してください</option>
+					<option value="">母親の旧姓</option>
+					<option value="">飼っているペットの名前</option>
+					<option value="">好きな食べ物</option>
+					<option value="">好きな国</option>
+					<option value="">初めて観た映画</option>
+					<option value="">学生時代の部活</option>
+					<option value="">子供の頃のあだ名</option>
+					<option value="">座右の銘</option>
+					<option value="">初めて行った海外</option>
+					<option value="">おふくろの味</option>
+				</select>
+				</div>
+				<div>
+				    <center><html:text property="password" value= ""/></center>
+				</div>
 				<div class="space"></div>
 				<br>
 				<!-- 登録ボタン -->
