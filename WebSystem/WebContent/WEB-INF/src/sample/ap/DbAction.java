@@ -2328,7 +2328,7 @@ public class DbAction extends Object{
 				if(minutes.length()!=2){
 					minutes="0"+minutes;
 				}
-				String time=""+calendar.get(calendar.HOUR_OF_DAY)+calendar.get(calendar.MINUTE);
+				String time=""+hour+minutes;
 				String cale =month+day;
 				sb.append("INSERT INTO" + crlf);
 				sb.append("  ATTEND(EMPLOYEE_NO,G,MMDD)" + crlf);
@@ -2482,4 +2482,120 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+	public boolean getRest_time(AttendanceForm aForm) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+			Calendar calendar = Calendar.getInstance();
+			String month=(calendar.get(calendar.MONTH)+1)+"";
+			String day=""+calendar.get(calendar.DATE);
+			String cale =month+day;
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT" + crlf);
+			sb.append("  REST" + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("  ATTEND" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("  EMPLOYEE_NO = ?" + crlf);
+			sb.append("AND"+crlf);
+			sb.append("  MMDD="+cale+crlf);
+
+			String query = sb.toString();
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("REST");
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(aForm.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					aForm.setRest_time(val.get("REST"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}return ret;
+	}
+
+	public boolean setRest_time(AttendanceForm aForm){
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+			if(aForm.getRest_time()!=null){
+				Calendar calendar = Calendar.getInstance();
+				String month=(calendar.get(calendar.MONTH)+1)+"";
+				String day=""+calendar.get(calendar.DATE);
+				String cale =month+day;
+				String time=aForm.getRest_time();
+
+				sb.append("UPDATE" + crlf);
+				sb.append("  ATTEND" + crlf);
+				sb.append("SET" + crlf);
+				sb.append("  REST = " + "'" +time+"'" + crlf);
+				sb.append("WHERE" + crlf);
+				sb.append(  "EMPLOYEE_NO = ?" + crlf);
+				sb.append("AND"+crlf);
+				sb.append("  MMDD="+cale+crlf);
+
+				String query = sb.toString();
+
+				// 設定値 - 型
+				List<Integer> typeList = new ArrayList<Integer>();
+				typeList.add(dba.DB_STRING);
+
+				// 設定値 - 値
+				List<Object> bindList = new ArrayList<Object>();
+
+				bindList.add(aForm.getEmployee_no());
+
+				try {
+
+					dba.executeQuery(query, typeList, bindList);
+					dba.commit();
+					dba.closeConnection();
+
+					ret = true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return ret;
+	}
 }
+
+

@@ -45,7 +45,8 @@ public final class AttendanceAction extends Action{
 			}
 			else if(button.equals("登録")){		//休憩時間どぇす
 				forward="attendance";
-
+				session.setAttribute("aform", aForm);
+				dba.setRest_time(aForm);
 			}
 			else if(button.equals("出勤")){
 				forward="attendance";

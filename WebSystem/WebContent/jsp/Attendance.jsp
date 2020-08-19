@@ -6,6 +6,7 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.AttendanceForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
+<%@ page import="sample.ap.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 
@@ -25,6 +26,19 @@
 
 <body>
 	<html:form action="/AttendanceAction">
+		<%
+			try {
+						AttendanceForm aForm = (AttendanceForm) session.getAttribute("aForm");
+			} catch (NullPointerException e) {
+
+			}
+
+			DbAction dba = new DbAction();
+			LoginForm s = (LoginForm) session.getAttribute("form");
+			AttendanceForm aForm = new AttendanceForm();
+			aForm.setEmployee_no(s.getEmployee_no());
+			String rest_time=aForm.getRest_time();
+		%>
 		<div>
 			<center>
 				<h1>出退勤画面</h1>
@@ -41,18 +55,18 @@
 		</div>
 		<div style="position: relative; margin-top: 5%; text-align: center">
 			<p class="REST">休憩時間</p>
-			<select class="REST" name="休憩時間">
-				<option value="">選択してください</option>
-				<option value="">00:00</option>
-				<option value="">00:15</option>
-				<option value="">00:30</option>
-				<option value="">00:45</option>
-				<option value="">01:00</option>
-				<option value="">01:15</option>
-				<option value="">01:30</option>
-				<option value="">01:45</option>
-				<option value="">02:00</option>
-			</select>
+			<html:select property="rest_time" styleId="REST" >
+				<html:option value="">-</html:option>
+				<html:option value="0">00:00</html:option>
+				<html:option value="1">00:15</html:option>
+				<html:option value="2">00:30</html:option>
+				<html:option value="3">00:45</html:option>
+				<html:option value="4">01:00</html:option>
+				<html:option value="5">01:15</html:option>
+				<html:option value="6">01:30</html:option>
+				<html:option value="7">01:45</html:option>
+				<html:option value="8">02:00</html:option>
+			</html:select>
 		</div>
 
 		<div style="position: relative; margin-top: 2%; align: center;">

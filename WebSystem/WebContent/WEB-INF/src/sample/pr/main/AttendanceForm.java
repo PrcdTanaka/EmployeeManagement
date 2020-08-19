@@ -52,7 +52,35 @@ public final class AttendanceForm extends ActionForm {
 			return end_time;
 	}
 	public void setRest_time(String rest_time){
-		this.rest_time=rest_time;
+		switch(rest_time){
+		case"0":
+			this.rest_time="0000";
+			break;
+		case"1":
+			this.rest_time="0015";
+			break;
+		case"2":
+			this.rest_time="0030";
+			break;
+		case"3":
+			this.rest_time="0045";
+			break;
+		case"4":
+			this.rest_time="0100";
+			break;
+		case"5":
+			this.rest_time="0115";
+			break;
+		case"6":
+			this.rest_time="0130";
+			break;
+		case"7":
+			this.rest_time="0145";
+			break;
+		case"8":
+			this.rest_time="0200";
+			break;
+		}
 	}
 
 	public String getRest_time(){
