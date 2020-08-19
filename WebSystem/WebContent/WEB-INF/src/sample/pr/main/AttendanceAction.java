@@ -53,6 +53,7 @@ public final class AttendanceAction extends Action{
 			}
 			else if(button.equals("退社")){
 				forward="attendance";
+				dba.setEnd_time(lForm, aForm);
 
 			}
 		}catch(Exception e){
