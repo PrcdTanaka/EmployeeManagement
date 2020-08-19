@@ -2421,7 +2421,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
-	public boolean setEnd_time(LoginForm lForm,AttendanceForm aForm){
+	public boolean setEnd_time(AttendanceForm aForm,LoginForm lForm){
 		boolean ret = false;
 
 		// DB接続
@@ -2434,26 +2434,17 @@ public class DbAction extends Object{
 		if (dba.conSts) {
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
-			if(getEnd_time(aForm, lForm)){
-
-			}
-			else{
+			if(getStart_time(aForm, lForm)){
 				Calendar calendar = Calendar.getInstance();
 				String month=(calendar.get(calendar.MONTH)+1)+"";
-				if(month.length()!=2)
-					month="0"+month;
 				String day=""+calendar.get(calendar.DATE);
-				if(day.length()!=2)
-					day="0"+day;
 				String hour=""+calendar.get(calendar.HOUR_OF_DAY);
-				if(hour.length()!=2){
+				if(hour.length()!=2)
 					hour="0"+hour;
-				}
 				String minutes=""+calendar.get(calendar.MINUTE);
-				if(minutes.length()!=2){
+				if(minutes.length()!=2)
 					minutes="0"+minutes;
-				}
-				String time=""+calendar.get(calendar.HOUR_OF_DAY)+calendar.get(calendar.MINUTE);
+				String time=hour+minutes;
 				String cale =month+day;
 				sb.append("UPDATE" + crlf);
 				sb.append("  ATTEND" + crlf);
@@ -2486,6 +2477,7 @@ public class DbAction extends Object{
 					e.printStackTrace();
 				}
 			}
+
 
 		}
 		return ret;

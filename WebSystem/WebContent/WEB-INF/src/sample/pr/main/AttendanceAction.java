@@ -51,9 +51,9 @@ public final class AttendanceAction extends Action{
 				forward="attendance";
 				dba.setStart_time(aForm, lForm);
 			}
-			else if(button.equals("退社")){
+			else if(button.equals("退勤")){
 				forward="attendance";
-				dba.setEnd_time(lForm, aForm);
+				dba.setEnd_time(aForm,lForm);
 
 			}
 		}catch(Exception e){
