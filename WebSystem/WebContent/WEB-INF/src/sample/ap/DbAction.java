@@ -2331,7 +2331,7 @@ public class DbAction extends Object{
 				String time=""+hour+minutes;
 				String cale =month+day;
 				sb.append("INSERT INTO" + crlf);
-				sb.append("  ATTEND(EMPLOYEE_NO,G,MMDD)" + crlf);
+				sb.append("  ATTEND(EMPLOYEE_NO,START_TIME,MMDD)" + crlf);
 				sb.append("VALUES" + crlf);
 				sb.append("  ( ?");
 				sb.append("  ,"+time+",'"+cale+"')"+ crlf);
@@ -2383,7 +2383,7 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 			sb.append("SELECT" + crlf);
-			sb.append("  LEAVE"+crlf);
+			sb.append("  END_TIME"+crlf);
 			sb.append("FROM" + crlf);
 			sb.append("  ATTEND" + crlf);
 			sb.append("WHERE" + crlf);
@@ -2410,7 +2410,7 @@ public class DbAction extends Object{
 				dba.commit();
 				dba.closeConnection();
 				for (Map<String, String> val : rsList) {
-					aForm.setEnd_time(val.get("LEAVE"));
+					aForm.setEnd_time(val.get("END_TIME"));
 					ret = true;
 				}
 
@@ -2449,7 +2449,7 @@ public class DbAction extends Object{
 				sb.append("UPDATE" + crlf);
 				sb.append("  ATTEND" + crlf);
 				sb.append("SET" + crlf);
-				sb.append("  LEAVE="+time+crlf);
+				sb.append("  END_TIME="+time+crlf);
 				sb.append("WHERE"+ crlf);
 				sb.append("  EMPLOYEE_NO=?"+crlf);
 				sb.append("AND"+crlf);
