@@ -63,6 +63,7 @@ public final class Open_informationAction extends Action {
 		}if(button.equals("登録")){
 			dba.setOpen(oForm);
 			oForm.setMessage("編集しました");
+			session.setAttribute("oForm", oForm);
 			forward = "open";
 
 		}

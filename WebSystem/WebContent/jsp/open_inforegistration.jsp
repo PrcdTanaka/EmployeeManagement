@@ -60,9 +60,12 @@
 			<a href="Personal_information.jsp">ユーザー情報編集画面へ</a>
 		</div>
 		<div class='main1'>
+			<br>
+			<align="center"><%=message%></align center>
+			<br>
 			<div class='pic'>
-				<!-- src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
-				height="190" width="190" -->
+				<img src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
+				height="190" width="190" >
 			</div>
 			<div class='pro'>
 				<div class='pro2'>
@@ -72,7 +75,7 @@
 					<p style="margin-top: 5px; margin-left: 50px; margin-bottom: 20px">
 						役職：
 						<html:select property="pos" name="Open_informationForm"
-							styleId="pos" value="<%=pos %>">
+							styleId="pos" value="<%=pos%>">
 							<html:option value="">-</html:option>
 							<html:option value="0">役職なし</html:option>
 							<html:option value="1">主任</html:option>
