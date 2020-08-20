@@ -107,6 +107,10 @@
 				String confirmer_no = "";
 				String button = "";
 				String status = "0";
+				String question = "";
+				String question2 = "";
+				String answer = "";
+				String answer2 = "";
 
 				// 社員番号を個人情報入力画面アクションフォームに格納
 				pForm.setEmployee_no(lForm.getEmployee_no());
@@ -260,10 +264,22 @@
 					<html:text property="address" name="Personal_informationForm"
 						styleId="address" value="<%=address%>" size="40" maxlength="32" />
 				</div>
-				<div class="division">
-					<label for="division">住所区分：</label>
-					<html:select property="division" name="Personal_informationForm"
-						styleId="division" value="<%=division%>">
+				<div class="question">
+					<label for="question">秘密の質問：</label>
+					<html:select property="password" name="Personal_informationForm"
+						styleId="question" value="<%=question%>">
+						<html:option value="">-</html:option>
+						<html:option value="1">持家</html:option>
+						<html:option value="2">賃貸</html:option>
+						<html:option value="3">社員寮</html:option>
+						<html:option value="4">親元</html:option>
+						<html:option value="5">その他（共有など）</html:option>
+					</html:select>
+				</div>
+				<div>
+				<label for="question2">秘密の質問：</label>
+					<html:select property="password" name="Personal_informationForm"
+						styleId="question2" value="<%=division%>">
 						<html:option value="">-</html:option>
 						<html:option value="1">持家</html:option>
 						<html:option value="2">賃貸</html:option>

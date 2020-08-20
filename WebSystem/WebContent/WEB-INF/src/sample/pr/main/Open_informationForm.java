@@ -40,6 +40,18 @@ public final class Open_informationForm extends ActionForm {
 	/**画像**/
 	private String img;
 
+	/**秘密の質問**/
+	private String question;
+
+	/**秘密の質問２**/
+	private String question2;
+
+	/**解答**/
+	private String answer;
+
+	/**解答２**/
+	private String answer2;
+
 
 	/**
 	 * 初期化処理。
@@ -57,6 +69,10 @@ public final class Open_informationForm extends ActionForm {
 		ss="";
 		intr="";
 		button="";
+		question="";
+		question2="";
+		answer="";
+		answer2="";
 	}
 	/**
 	 * 氏名取得処理。
@@ -247,6 +263,53 @@ public final class Open_informationForm extends ActionForm {
 	 * @return ボタン名
 	 */
 
+	public void setQuestion(String question){
+		this.question=question;
+	}
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を設定する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
+
+	public void setQuestion2(String question2){
+		this.question2=question2;
+	}
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を設定する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
+
+	public void setAnswer(String answer){
+		this.answer=answer;
+	}
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を設定する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
+
+	public void setAnswer2(String answer2){
+		this.answer2=answer2;
+	}
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を設定する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
 	public String getButton(){
 		return button;
 	}

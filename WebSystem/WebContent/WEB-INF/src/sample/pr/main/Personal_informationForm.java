@@ -54,6 +54,19 @@ public final class Personal_informationForm extends ActionForm {
 
 	private String confirmer;
 
+	/**秘密の質問**/
+	private String question;
+
+	/**秘密の質問２**/
+	private String question2;
+
+	/**解答**/
+	private String answer;
+
+	/**解答２**/
+	private String answer2;
+
+
 
 
 
@@ -220,6 +233,10 @@ public final class Personal_informationForm extends ActionForm {
 		document=0;
 		Nb="";
 		confirmer="";
+		question="";
+		question2="";
+		answer="";
+		answer2="";
 	}
 
 
@@ -791,4 +808,67 @@ public final class Personal_informationForm extends ActionForm {
 		return Nb;
 	}
 
+	public void setQuestion(String question){
+		this.question=question;
+	}
+
+	public String getQuestion(){
+		return question;
+	}
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を設定する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
+
+	public void setQuestion2(String question2){
+		this.question2=question2;
+	}
+
+	public String getQuestion2(){
+		return question2;
+	}
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を設定する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
+
+	public void setAnswer(String answer){
+		this.answer=answer;
+	}
+
+	public String getAnswer(){
+		return answer;
+	}
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を設定する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
+
+	public void setAnswer2(String answer2){
+		this.answer2=answer2;
+	}
+
+	public String getAnswer2(){
+		return answer2;
+	}
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を設定する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
 }
