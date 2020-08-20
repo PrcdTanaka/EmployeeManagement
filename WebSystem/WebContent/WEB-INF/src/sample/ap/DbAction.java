@@ -2596,6 +2596,61 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+
+public boolean getQuestion(PasswordForm form) {
+
+	boolean ret = false;
+
+	// DB接続
+	DbConnector dba = null;
+	try {
+		dba = new DbConnector(gHost,gSid,gUser,gPass);
+	} catch (IOException e1) {
+		e1.printStackTrace();
+	}
+
+	if (dba.conSts) {
+
+		StringBuffer sb = new StringBuffer();
+		String crlf = System.getProperty("line.separator");
+
+		sb.append("SELECT" + crlf);
+		sb.append("  Q" + crlf);
+		sb.append("FROM" + crlf);
+		sb.append("  EMPLOYEE_MST" + crlf);
+		sb.append("WHERE" + crlf);
+		sb.append("  EMPLOYEE_NO = ?" + crlf);
+
+		String query = sb.toString();
+
+		// 取得項目
+		List<String> columnList = new ArrayList<String>();
+		columnList.add("EMPLOYEE_NO");
+
+		// 設定値 - 型
+		List<Integer> typeList = new ArrayList<Integer>();
+		typeList.add(dba.DB_STRING);
+
+		// 設定値 - 値
+		List<Object> bindList = new ArrayList<Object>();
+		bindList.add(form.getEmployee_no());
+
+		List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+		try {
+
+			dba.executeQuery(query, columnList, typeList, bindList, rsList);
+			dba.commit();
+			dba.closeConnection();
+
+			for (Map<String, String> val : rsList) {
+				form.setDbpassword(val.get("SYAIN_NAME"));
+				ret = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	return ret;
 }
-
-
