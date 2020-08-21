@@ -11,7 +11,6 @@
 <%@ page import="sample.pr.main.LoginForm" %>
 <html lang="ja">
 
-<!DOCTYPE html>
 <style>
 
 body{

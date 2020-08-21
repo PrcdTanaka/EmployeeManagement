@@ -919,8 +919,6 @@
 
 					}
 				</script>
-
-				</br>
 				<!-- /form> -->
 				<div>
 					<html:submit property="button" styleClass="btn" value="戻る"

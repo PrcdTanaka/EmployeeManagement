@@ -11,7 +11,6 @@
 
 
 <html lang="ja">
-<!DOCTYPE html>
 <html:html>
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 <style>
