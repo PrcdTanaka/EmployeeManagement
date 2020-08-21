@@ -706,7 +706,7 @@
 					<label for="family_structure_sex5" name="family_structure5">性別：</label>
 					<html:select property="family_structure_sex5"
 						name="Personal_informationForm" styleId="family_structure_sex5"
-						value="<%=family_structure_sex5%>">
+						value="<%=family_structure_sex5%>">	
 						<html:option value="">-</html:option>
 						<html:option value="0">男</html:option>
 						<html:option value="1">女</html:option>
@@ -749,7 +749,7 @@
 						name="Personal_informationForm" styleId="family_structure_job5"
 						value="<%=family_structure_job5%>" size="18" maxlength="16" />
 				</div>
-
+				
 		</div>
 
 		<!-- 登録/編集ボタン  -->
