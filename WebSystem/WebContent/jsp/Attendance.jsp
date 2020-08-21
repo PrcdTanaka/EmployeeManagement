@@ -28,16 +28,17 @@
 	<html:form action="/AttendanceAction">
 		<%
 			try {
-						AttendanceForm aForm = (AttendanceForm) session.getAttribute("aForm");
-			} catch (NullPointerException e) {
+						AttendanceForm aForm = (AttendanceForm) session
+								.getAttribute("aForm");
+					} catch (NullPointerException e) {
 
-			}
+					}
 
-			DbAction dba = new DbAction();
-			LoginForm s = (LoginForm) session.getAttribute("form");
-			AttendanceForm aForm = new AttendanceForm();
-			aForm.setEmployee_no(s.getEmployee_no());
-			String rest_time=aForm.getRest_time();
+					DbAction dba = new DbAction();
+					LoginForm s = (LoginForm) session.getAttribute("form");
+					AttendanceForm aForm = new AttendanceForm();
+					aForm.setEmployee_no(s.getEmployee_no());
+					String rest_time = aForm.getRest_time();
 		%>
 		<div>
 			<center>
@@ -46,16 +47,16 @@
 		</div>
 		<div style="top: 15%; position: relative;">
 			<html:submit property="button" styleClass="btn" value="出勤"
-				styleId="attendance" />
+				styleId="attendance"  onclick="return confirm('出勤しますか？');"/>
 		</div>
 
 		<div style="position: relative; margin-top: 5%;">
 			<html:submit property="button" styleClass="btn" value="退勤"
-				styleId="attendance" />
+				styleId="attendance"  onclick="return confirm('退勤しますか？');"/>
 		</div>
 		<div style="position: relative; margin-top: 5%; text-align: center">
 			<p class="REST">休憩時間</p>
-			<html:select property="rest_time" styleId="REST" >
+			<html:select property="rest_time" styleId="REST">
 				<html:option value="">-</html:option>
 				<html:option value="0">00:00</html:option>
 				<html:option value="1">00:15</html:option>
@@ -68,10 +69,9 @@
 				<html:option value="8">02:00</html:option>
 			</html:select>
 		</div>
-
 		<div style="position: relative; margin-top: 2%; align: center;">
-			<html:submit property="button" styleClass="btn" value="登録"
-				styleId="attendance" />
+			<html:submit property="button" styleClass="btn" value="登録(休憩時間)"
+				styleId="attendance" onclick="return confirm('休憩時間を登録しますか？');" />
 			<html:submit property="button" styleClass="btn" value="戻る"
 				styleId="main" />
 		</div>
