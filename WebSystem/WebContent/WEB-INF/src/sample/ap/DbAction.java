@@ -514,12 +514,16 @@ public class DbAction extends Object{
 			sb.append("SELECT" + crlf);
 			sb.append(" DEPARTMENT," + crlf);
 			sb.append(" NAME,"+crlf);
-			sb.append(" EMPLOYEE_MST.EMPLOYEE_NO," + crlf);
+			sb.append(" PUBLIC_INFORMATION_TBL.EMPLOYEE_NO," + crlf);
 			sb.append(" MANAGER_FLAG"+crlf);
 			sb.append("FROM" + crlf);
-			sb.append(" EMPLOYEE_MST" + crlf);
+			sb.append(" PUBLIC_INFORMATION_TBL" + crlf);
 			sb.append("LEFT OUTER JOIN" + crlf);
 			sb.append(" PERSONAL_INFORMATION_TBL" + crlf);
+			sb.append("ON" + crlf);
+			sb.append(" PUBLIC_INFORMATION_TBL.EMPLOYEE_NO=PERSONAL_INFORMATION_TBL.EMPLOYEE_NO" + crlf);
+			sb.append("LEFT OUTER JOIN" + crlf);
+			sb.append(" EMPLOYEE_MST" + crlf);
 			sb.append("ON" + crlf);
 			sb.append(" EMPLOYEE_MST.EMPLOYEE_NO=PERSONAL_INFORMATION_TBL.EMPLOYEE_NO" + crlf);
 			if(form.getText().equals("")){
