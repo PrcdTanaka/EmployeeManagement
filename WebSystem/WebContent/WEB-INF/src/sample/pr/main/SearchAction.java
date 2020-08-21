@@ -119,10 +119,6 @@ public final class SearchAction extends Action {
 		// フォーム情報をキャスト
 		SearchForm sForm = (SearchForm) frm;
 
-		// フォームへ入力された情報をとりだす。
-		String text = sForm.getText();
-		// クリックされたボタンの名称をアクションフォームから取得
-		String radio = sForm.getRadio();
 		String button=sForm.getButton();
 
 		// 社員名の取得

@@ -11,13 +11,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
-
 public final class MainAction extends Action {
 
-	// DB接続用オブジェクト
-	private DbAction dba = new DbAction();
-	private LoginForm lForm = new LoginForm();
 
 	// 遷移先
 	private String forward;

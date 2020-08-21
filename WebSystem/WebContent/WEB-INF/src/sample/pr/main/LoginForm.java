@@ -1,14 +1,12 @@
 package sample.pr.main;
 
-import java.util.Map;
-
 import org.apache.struts.action.ActionForm;
 
 public final class LoginForm extends ActionForm {
 
 	// コンストラクタ
 	public LoginForm(){
-		
+
 	}
 	/** シリアルバージョンID */
 	private static final long serialVersionUID = 1L;
@@ -25,8 +23,6 @@ public final class LoginForm extends ActionForm {
 	private String message;
 	/** 管理者フラグ */
 	private String manager;
-	
-	private Map<String, String> user;
 
 	/**
 	 * 初期化処理。
@@ -100,11 +96,11 @@ public final class LoginForm extends ActionForm {
 	 * @return ボタン名
 	 */
 	public String getButton() {
-		
+
 		if(button.equals("ã­ã°ã¤ã³")){
 			button = "login";
 		}
-		
+
 		return button;
 	}
 
@@ -155,7 +151,7 @@ public final class LoginForm extends ActionForm {
 	public String getPassword() {
 		return password;
 	}
-	
+
 	/**
 	 * パスワード設定処理。
 	 * <p>
@@ -179,7 +175,7 @@ public final class LoginForm extends ActionForm {
 	public String getManager() {
 		return manager;
 	}
-	
+
 	/**
 	 * 管理者フラグ設定処理。
 	 * <p>
@@ -191,5 +187,5 @@ public final class LoginForm extends ActionForm {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
-	
+
 }

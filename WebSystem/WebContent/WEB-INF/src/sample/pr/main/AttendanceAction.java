@@ -43,7 +43,7 @@ public final class AttendanceAction extends Action{
 				forward="main";
 				session.removeAttribute("aForm");
 			}
-			else if(button.equals("登録(休憩時間)")){		//休憩時間どぇす
+			else if(button.equals("登録(休憩時間)")){
 				forward="attendance";
 				session.setAttribute("aform", aForm);
 				dba.setRest_time(aForm);

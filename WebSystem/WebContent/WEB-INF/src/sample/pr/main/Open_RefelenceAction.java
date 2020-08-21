@@ -12,8 +12,6 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
-
 public final class Open_RefelenceAction extends Action {
 
 	/**
@@ -32,8 +30,6 @@ public final class Open_RefelenceAction extends Action {
 	 * @throws IOException
 	 *             -
 	 */
-	// DB接続用オブジェクト
-	private DbAction dba = new DbAction();
 
 	// 遷移先
 	private String forward;

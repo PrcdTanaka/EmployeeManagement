@@ -26,7 +26,7 @@ public final class LoginAction extends Action {
 	 * <p>
 	 * メイン画面アクションの初期設定を行う。
 	 * </p>
-	 * 
+	 *
 	 * 1.初期設定を行う。<br>
 	 * 　1-1.DB接続クラスのインスタンスを生成する。<br>
 	 * 　1-2.遷移先<br>
@@ -34,7 +34,7 @@ public final class LoginAction extends Action {
 	 * 2.例外発生時の処理。<br>
 	 * 　2-1.IOExceptionをthrowする。<br>
 	 * <br>
-	 * 
+	 *
 	 * @throws IOException
 	 *             -
 	 */
@@ -46,7 +46,7 @@ public final class LoginAction extends Action {
 	 * <p>
 	 * 入力された社員Ｎｏとパスワードを判定し、遷移先情報を返却する。
 	 * </p>
-	 * 
+	 *
 	 * 1.ログイン画面のアクションフォーム情報をインプットパラメータ.アクションフォームから取得する。<br>
 	 * <br>
 	 * 2.クリックされたボタンの名称をアクションフォームから取得する。<br>
@@ -114,14 +114,14 @@ public final class LoginAction extends Action {
 	 * 　　クラス　：ActionMapping<br>
 	 * 　　メソッド：findForward(遷移先)<br>
 	 * <br>
-	 * 
+	 *
 	 * @param map
 	 *            アクションマッピング<br>
 	 *            frm アクションフォーム<br>
 	 *            request リクエスト情報<br>
 	 *            response レスポンス情報<br>
 	 * @return 遷移先情報
-	 * 
+	 *
 	 */
 	public ActionForward execute(ActionMapping map, ActionForm frm,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -142,12 +142,12 @@ public final class LoginAction extends Action {
 
 		/*
 		 * 3.社員Noの入力チェック<br>
-		 * 　3-1.社員No取得処理をコール。<br> 
+		 * 　3-1.社員No取得処理をコール。<br>
 		 * 　　　クラス：LoginForm<br>
-		 * 　　メソッド：getEmployee_no<br> 
-		 * 　3-2.社員Noが空白の場合。<br> 
+		 * 　　メソッド：getEmployee_no<br>
+		 * 　3-2.社員Noが空白の場合。<br>
 		 * 　　3-2-1.メッセージの設定。<br>
-		 * 　　　メッセージ：「社員番号が空白になっています。」<br> 
+		 * 　　　メッセージ：「社員番号が空白になっています。」<br>
 		 * 　　3-2-2.遷移先設定_ログイン画面<br>
 		 * 　　　遷移先："login"<br>
 		 */
@@ -166,16 +166,16 @@ public final class LoginAction extends Action {
 			String fpassword = lForm.getPassword();
 
 				/*
-				 * 　5-2.登録パスワードの取得処理をコール。<br> 
+				 * 　5-2.登録パスワードの取得処理をコール。<br>
 				 * 　　　クラス：DbAction<br>
-				 * 　　メソッド：getPassword()<br> 
+				 * 　　メソッド：getPassword()<br>
 				 * 　　　　引数：ログイン画面アクションフォーム<br>
 				 */
 				dba.getPassword(lForm);
 				/*
-				 * 　5-3.管理者フラグ取得処理をコール。<br> 
+				 * 　5-3.管理者フラグ取得処理をコール。<br>
 				 * 　　　クラス：DbAction<br>
-				 * 　　メソッド：getManager()<br> 
+				 * 　　メソッド：getManager()<br>
 				 * 　　　　引数：ログイン画面アクションフォーム<br>
 				 */
 				dba.getManager(lForm);
@@ -210,13 +210,12 @@ public final class LoginAction extends Action {
 		 * 　　　引数２：メイン画面アクションフォーム<br>
 		 */
 		request.setAttribute("form", lForm);
-		
-		
+
+
 		HttpSession session = request.getSession();
+
 		session.setAttribute("form", lForm);
-		
-		LoginForm s = (LoginForm) session.getAttribute("form");
-		
+
 		if(forward.equals("login")){
 //			JOptionPane.showMessageDialog(null,lForm.getMessage());
 		}
