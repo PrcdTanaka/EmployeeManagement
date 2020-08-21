@@ -10,15 +10,13 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
-
 public final class ReferenceAction extends Action {
 
 	/**
 	 * <p>
 	 * 参照画面アクションの初期設定を行う。
 	 * </p>
-	 * 
+	 *
 	 * 1.初期設定を行う。<br>
 	 * 　1-1.DB接続クラスのインスタンスを生成する。<br>
 	 * 　1-2.遷移先<br>
@@ -26,25 +24,20 @@ public final class ReferenceAction extends Action {
 	 * 2.例外発生時の処理。<br>
 	 * 　2-1.IOExceptionをthrowする。<br>
 	 * <br>
-	 * 
+	 *
 	 * @throws IOException
 	 *             -
 	 */
 	public ReferenceAction() throws IOException {
 
 	}
-	// DB接続用オブジェクト
-	private DbAction dba = new DbAction();
-	private LoginForm lForm = new LoginForm();
 
-	// 遷移先
-	private String forward;
 
 	/**
 	 * <p>
 	 * クリックされたボタンを判定し、遷移先情報を返却する。
 	 * </p>
-	 * 
+	 *
 	 * 1.メイン画面のアクションフォーム情報をインプットパラメータ.アクションフォームから取得する。<br>
 	 * <br>
 	 * 2.クリックされたボタンの名称をアクションフォームから取得する。<br>
@@ -81,20 +74,20 @@ public final class ReferenceAction extends Action {
 	 * 　　クラス　：ActionMapping<br>
 	 * 　　メソッド：findForward(遷移先)<br>
 	 * <br>
-	 * 
+	 *
 	 * セッションの削除
 	 * lForm.initialize();
-	 * 
+	 *
 	 * @param map
 	 *            アクションマッピング<br>
 	 *            frm アクションフォーム<br>
 	 *            request リクエスト情報<br>
 	 *            response レスポンス情報<br>
 	 * @return 遷移先情報
-	 * 
+	 *
 	 */
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
-		
+
 		return null;
 
 	}

@@ -20,7 +20,7 @@
 		String hobbies = sForm.getHobbies();			// 趣味
 		String specialty = sForm.getSpecialty();		// 特技
 		String introduction = sForm.getIntroduction();	// 紹介文
-		
+
 		%-->
 		<div class="SS">
 			<p>名前　　　：<!-- %= name % --><!-- bean:write name="SearchForm" -->　　　役職：<!-- %= post % --></p>
