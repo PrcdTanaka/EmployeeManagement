@@ -2335,7 +2335,7 @@ public class DbAction extends Object{
 				String time=""+hour+minutes;
 				String cale =month+day;
 				sb.append("INSERT INTO" + crlf);
-				sb.append("  ATTEND(EMPLOYEE_NO,G,MMDD)" + crlf);
+				sb.append("  ATTEND(EMPLOYEE_NO,START_TIME,MMDD)" + crlf);
 				sb.append("VALUES" + crlf);
 				sb.append("  ( ?");
 				sb.append("  ,"+time+",'"+cale+"')"+ crlf);
@@ -2387,7 +2387,7 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 			sb.append("SELECT" + crlf);
-			sb.append("  LEAVE"+crlf);
+			sb.append("  END_TIME"+crlf);
 			sb.append("FROM" + crlf);
 			sb.append("  ATTEND" + crlf);
 			sb.append("WHERE" + crlf);
@@ -2414,7 +2414,7 @@ public class DbAction extends Object{
 				dba.commit();
 				dba.closeConnection();
 				for (Map<String, String> val : rsList) {
-					aForm.setEnd_time(val.get("LEAVE"));
+					aForm.setEnd_time(val.get("END_TIME"));
 					ret = true;
 				}
 
@@ -2453,7 +2453,7 @@ public class DbAction extends Object{
 				sb.append("UPDATE" + crlf);
 				sb.append("  ATTEND" + crlf);
 				sb.append("SET" + crlf);
-				sb.append("  LEAVE="+time+crlf);
+				sb.append("  END_TIME="+time+crlf);
 				sb.append("WHERE"+ crlf);
 				sb.append("  EMPLOYEE_NO=?"+crlf);
 				sb.append("AND"+crlf);
@@ -2600,61 +2600,6 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
-
-public boolean getQuestion(PasswordForm form) {
-
-	boolean ret = false;
-
-	// DB接続
-	DbConnector dba = null;
-	try {
-		dba = new DbConnector(gHost,gSid,gUser,gPass);
-	} catch (IOException e1) {
-		e1.printStackTrace();
-	}
-
-	if (dba.conSts) {
-
-		StringBuffer sb = new StringBuffer();
-		String crlf = System.getProperty("line.separator");
-
-		sb.append("SELECT" + crlf);
-		sb.append("  Q" + crlf);
-		sb.append("FROM" + crlf);
-		sb.append("  EMPLOYEE_MST" + crlf);
-		sb.append("WHERE" + crlf);
-		sb.append("  EMPLOYEE_NO = ?" + crlf);
-
-		String query = sb.toString();
-
-		// 取得項目
-		List<String> columnList = new ArrayList<String>();
-		columnList.add("EMPLOYEE_NO");
-
-		// 設定値 - 型
-		List<Integer> typeList = new ArrayList<Integer>();
-		typeList.add(dba.DB_STRING);
-
-		// 設定値 - 値
-		List<Object> bindList = new ArrayList<Object>();
-		bindList.add(form.getEmployee_no());
-
-		List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
-
-		try {
-
-			dba.executeQuery(query, columnList, typeList, bindList, rsList);
-			dba.commit();
-			dba.closeConnection();
-
-			for (Map<String, String> val : rsList) {
-				form.setDbpassword(val.get("SYAIN_NAME"));
-				ret = true;
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	return ret;
 }
+
+
