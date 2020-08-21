@@ -183,6 +183,11 @@ public final class Personal_informationAction extends Action {
 		if(form.getEmployee_name() == null){
 			form.setMessage("氏名を入力して下さい。");
 		} else {
+			if(form.getQuestion() == null){
+				//dba
+			}else{
+				
+			}
 			int no;
 			//入社年月日登録
 			dba.setHire_date(form);
