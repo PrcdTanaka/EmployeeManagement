@@ -210,7 +210,7 @@
 					<label for="hire_date">入社日</label>
 					<html:text property="hire_date" name="Personal_informationForm"
 						styleId="hire_date" value="<%=hire_date%>" size="8" maxlength="10" />
-					<p>例) 2020年4月10日 → 2020/04/10
+					<p><font color="red">例) 2020年4月10日 → 2020/04/10</font>
 				</div>
 				<div class="name">
 					<label for="name">氏名 ：</label>
@@ -237,7 +237,7 @@
 					<label for="birth">生年月日：</label>
 					<html:text property="birth" name="Personal_informationForm"
 						styleId="birth" value="<%=birth%>" size="7" maxlength="10" />
-					<p>例) 1999年12月31日 → 1999/12/31
+					<p><font color="red">例) 1999年12月31日 → 1999/12/31</font>
 				</div>
 				<div class="tel">
 					<label for="tel_home">電話番号(ハイフンなし)</label>
@@ -736,7 +736,7 @@
 					<label for="family_structure_sex5" name="family_structure5">性別：</label>
 					<html:select property="family_structure_sex5"
 						name="Personal_informationForm" styleId="family_structure_sex5"
-						value="<%=family_structure_sex5%>">	
+						value="<%=family_structure_sex5%>">
 						<html:option value="">-</html:option>
 						<html:option value="0">男</html:option>
 						<html:option value="1">女</html:option>
@@ -779,7 +779,7 @@
 						name="Personal_informationForm" styleId="family_structure_job5"
 						value="<%=family_structure_job5%>" size="18" maxlength="16" />
 				</div>
-				
+
 		</div>
 
 		<!-- 登録/編集ボタン  -->
