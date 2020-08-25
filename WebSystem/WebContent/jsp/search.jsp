@@ -120,9 +120,11 @@ position:relative;
 
 								if(name.get(i)==null&&manager.equals("1"))
 								{
+									//ここから
 									out.println("<a href=\"/WebSystem/jsp/Personal_information.jsp?employee_no=");
 									out.println(no.get(i));
 									out.println("\" style=\"color:red\" >");
+									//ここまでaタグ。     URLパラメータに押された場所の社員番号を出している。
 									name.set(i, "未登録");
 								}
 								else if(name.get(i)==null){
