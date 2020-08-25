@@ -41,16 +41,7 @@ public final class Open_informationForm extends ActionForm {
 	private String img;
 
 	/**秘密の質問**/
-	private String question;
-
-	/**秘密の質問２**/
-	private String question2;
-
-	/**解答**/
-	private String answer;
-
-	/**解答２**/
-	private String answer2;
+	private String pass;
 
 
 	/**
@@ -69,10 +60,7 @@ public final class Open_informationForm extends ActionForm {
 		ss="";
 		intr="";
 		button="";
-		question="";
-		question2="";
-		answer="";
-		answer2="";
+		pass="";
 	}
 	/**
 	 * 氏名取得処理。
@@ -262,54 +250,6 @@ public final class Open_informationForm extends ActionForm {
 	 *
 	 * @return ボタン名
 	 */
-
-	public void setQuestion(String question){
-		this.question=question;
-	}
-	/**
-	 * ボタン名設定処理。
-	 * <p>
-	 * メイン画面アクションフォームからボタン名を設定する。
-	 * </p>
-	 *
-	 * @return ボタン名
-	 */
-
-	public void setQuestion2(String question2){
-		this.question2=question2;
-	}
-	/**
-	 * ボタン名設定処理。
-	 * <p>
-	 * メイン画面アクションフォームからボタン名を設定する。
-	 * </p>
-	 *
-	 * @return ボタン名
-	 */
-
-	public void setAnswer(String answer){
-		this.answer=answer;
-	}
-	/**
-	 * ボタン名設定処理。
-	 * <p>
-	 * メイン画面アクションフォームからボタン名を設定する。
-	 * </p>
-	 *
-	 * @return ボタン名
-	 */
-
-	public void setAnswer2(String answer2){
-		this.answer2=answer2;
-	}
-	/**
-	 * ボタン名設定処理。
-	 * <p>
-	 * メイン画面アクションフォームからボタン名を設定する。
-	 * </p>
-	 *
-	 * @return ボタン名
-	 */
 	public String getButton(){
 		return button;
 	}
@@ -323,6 +263,7 @@ public final class Open_informationForm extends ActionForm {
 		return message;
 	}
 	public void setMessage(String message){
+
 		this.message = message;
 	}
 	public String getImg() {
@@ -331,4 +272,11 @@ public final class Open_informationForm extends ActionForm {
 	public void setImg(String img){
 		this.img = img;
 	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass){
+		this.pass=pass;
+	}
+
 }

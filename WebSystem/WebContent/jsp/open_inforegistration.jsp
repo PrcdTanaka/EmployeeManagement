@@ -9,7 +9,7 @@
 <%@ page import="java.util.function.*"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.ap.DbAction"%>
-
+<!DOCTYPE html>
 <html:html>
 
 
@@ -19,7 +19,7 @@
 
 
 </head>
-<body>
+<body style="text-align:center;">
 	<html:form action="/Open_informationAction">
 		<%
 			String message;
@@ -46,6 +46,7 @@
 					String sp = oForm.getSs();
 					String tec = oForm.getTec();
 					String pos = oForm.getPos();
+					String pass = "1";
 					try {
 						Employee_no = s.getEmployee_no();
 						djc = oForm.getDjc();
@@ -60,19 +61,19 @@
 			<a href="Personal_information.jsp">ユーザー情報編集画面へ</a>
 		</div>
 		<div class='main1'>
-			<br>
-			<align="center"><%=message%></align center>
-			<br>
 			<div class='pic'>
-				<img src="\\db366ybx\Proc-Server\Pro-Top\新人研修\2020年度\03.講義\04_成果\08_Webシステム\システム製作\img\test.jpg"
-				height="190" width="190" >
+			<%if(pass!=null){ %>
+				<img src="file://db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/システム製作/img/<%=Employee_no%>.png">
+			<%} %>
 			</div>
+
+
 			<div class='pro'>
 				<div class='pro2'>
-					<p style="margin-top: 5px; margin-bottom: 20px">
+					<p style="margin-top: 5px; margin-bottom: 20px margin-right: 2%">
 						名前：<%=name%>
 					</p>
-					<p style="margin-top: 5px; margin-left: 50px; margin-bottom: 20px">
+					<p style="margin-top: 5px; margin-left: 50px; margin-bottom: 20px text-align:right;">
 						役職：
 						<html:select property="pos" name="Open_informationForm"
 							styleId="pos" value="<%=pos%>">
@@ -86,6 +87,7 @@
 						</html:select>
 					</p>
 				</div>
+
 				<div class='pro2'>
 					入社年月日：<%=djc%>
 				</div>
@@ -108,31 +110,26 @@
 				</div>
 			</div>
 		</div>
+		<html:file property="pass" name="Open_informationForm" style="margin-right:38%;"  />
+				<br>
+				趣味:<html:text property="hobby" value="<%=hobby%>" style="margin-bottom:2%;"></html:text>
+				<BR>
+				特技:<html:text property="ss" size="20" value="<%=sp%>" />
 
-		<div class='main2'>
-			<div class='pro3'>
-				<div class='hobyy'>趣味:</div>
-				<html:text property="hobby" value="<%=hobby%>"></html:text>
-			</div>
-			<div class='pro3'>
-				<div class='ss'>特技:</div>
-				<html:text property="ss" size="20" value="<%=sp%>" />
-			</div>
-		</div>
 
-		<div class='bottom'>
+		<div>
 			<div class='int'>紹介文</div>
 			<html:textarea property="intr" rows="10" cols="100" value="<%=intr%>"></html:textarea>
 			<!-- styleClass='int2'name='int2' cols='90' rows='10' -->
 		</div>
+		<div style="text-align:left;">
 		<!-- 登録ボタン  -->
-		<p id="Bentry">
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="open" />
-		</p>
 		<!-- 戻るボタン -->
 		<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
+		</div>
 
 	</html:form>
 </body>

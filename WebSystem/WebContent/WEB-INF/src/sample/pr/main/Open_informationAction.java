@@ -1,8 +1,11 @@
 package sample.pr.main;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -63,10 +66,35 @@ public final class Open_informationAction extends Action {
 		}if(button.equals("登録")){
 			dba.setOpen(oForm);
 			oForm.setMessage("編集しました");
+			imgsave(oForm);
 			session.setAttribute("oForm", oForm);
 			forward = "open";
 
 		}
 			return map.findForward(forward);
+	}
+
+	public void  imgsave(Open_informationForm form){
+		String inputname = ""+form.getPass();
+
+		// 出力ファイル
+		String outputname = "//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/システム製作/img/"+form.getEmployee_no()+".png";
+
+		try {
+
+			//入力ファイルから画像データを読み込み
+			//BufferedImageオブジェクトとする
+			BufferedImage bImage = ImageIO.read(new File(inputname));
+
+			//BufferedImageオブジェクトを出力ファイルにpng形式で書き出し
+			ImageIO.write(bImage, "png", new File(outputname));
+
+		} catch (Exception e) {
+
+
+			// ファイルの入出力でエラーになった場合
+			e.printStackTrace();
+
+		}
 	}
 }
