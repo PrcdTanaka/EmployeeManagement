@@ -125,12 +125,11 @@
 		</div>
 		<div class='main1'>
 			<div class='pic'>
-				<img src="C:\Users\gakuto_yamagishi\Desktop\susi.jpg" height="200"
-					width="200">
+				<img src="file://db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/システム製作/img/<%=oform.getEmployee_no()%>.png" style ="margin-right:20%">
 
 
 			</div>
-			<div class='pro'>
+			<div class='pro' style="margin-left:20%;">
 				<div class='pro2'>
 					<p style="margin-top: 5px;">
 						名前：<%=name %>

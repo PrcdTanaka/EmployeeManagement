@@ -59,9 +59,8 @@
 
 .main2 {
 	height: 80;
-	padding: 1px 0px 0px 330px;
 	margin-bottom: 40px;
-	text-align: center;
+	margin-left: 40%;
 }
 
 .hobyy {
@@ -77,11 +76,18 @@
 
 .int {
 	text-algn:left;
-	padding-left: 40px;
+	margin-left:45%;
+
 }
 
 .int2 {
 	margin: 5px 0px 0px 70px;
+}
+
+.bottom{
+	height: 208;
+	width: 600;
+	margin-left:25%;
 }
 
 .pro3 {
