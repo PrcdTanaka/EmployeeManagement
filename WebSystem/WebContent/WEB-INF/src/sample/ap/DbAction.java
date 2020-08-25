@@ -2332,7 +2332,7 @@ public class DbAction extends Object{
 				if(minutes.length()!=2){
 					minutes="0"+minutes;
 				}
-				String time=""+hour+minutes;
+				String time=hour+minutes;
 				String cale =month+day;
 				sb.append("INSERT INTO" + crlf);
 				sb.append("  ATTEND(EMPLOYEE_NO,START_TIME,MMDD)" + crlf);
