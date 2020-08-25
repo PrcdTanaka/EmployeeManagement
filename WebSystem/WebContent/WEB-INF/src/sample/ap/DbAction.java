@@ -2618,17 +2618,23 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 			sb.append("SELECT" + crlf);
-			sb.append("  Q" + crlf);
+			sb.append("  QUESTION" + crlf);
+			sb.append("  QUESTION2" + crlf);
+			sb.append("  ANSWER" + crlf);
+			sb.append("  ANSWER2" + crlf);
+			sb.append("  MANAGER_FLAG" + crlf);
 			sb.append("FROM" + crlf);
-			sb.append("  EMPLOYEE_MST" + crlf);
-			sb.append("WHERE" + crlf);
-			sb.append("  EMPLOYEE_NO = ?" + crlf);
+			sb.append("  EMPLOYEE_MST E INNER JOIN PERSONAL_INFORMATION_TBL P ON E.EMPLOYEE_NO = P.EMPLOYEE_NO;" + crlf);
 
 			String query = sb.toString();
 
 			// 取得項目
 			List<String> columnList = new ArrayList<String>();
-			columnList.add("EMPLOYEE_NO");
+			columnList.add("QUESTION");
+			columnList.add("QUESTION2");
+			columnList.add("ANSWER");
+			columnList.add("ANSWER2");
+			columnList.add("MANAGER_FLAG");
 
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
@@ -2647,7 +2653,6 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setDbpassword(val.get("SYAIN_NAME"));
 					ret = true;
 				}
 

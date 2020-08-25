@@ -2,8 +2,6 @@ package sample.pr.main;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -116,7 +114,7 @@ public final class PasswordForgetAction extends Action {
 				// DBに格納された社員番号と入力された社員番号取得処理
 				dba.getDbpassword(pForm);
 				String employee_no = pForm.getEmployee_no();
-				String dbemployee_no = dba.getEmoloyee_No();
+				String dbemployee_no = dba.getEmoloyee_No(lForm);
 
 				//DBに格納された社員番号と入力された社員番号比較処理
 				if(employee_no.equals(dbemployee_no)){
@@ -175,31 +173,5 @@ public final class PasswordForgetAction extends Action {
 	 * @param form Actionform
 	 * @return 遷移先
 	 */
-	public String password(PasswordForm form){
-		if(checkPattern(form.getNewpassword1(),"password")) {
-			dba.setPassword(form);
-		}
-		return "password";
-	}
 
-	/***
-	 * <p>
-	 * パスワードの複雑さ要件をチェックする。
-	 * </p>
-	 *
-	 * @param word 対象文字列
-	 * @param pattern チェックパターン
-	 * @return 問題ナシ：true, 問題アリ：false
-	 */
-	public boolean checkPattern(String word, String pattern){
-
-		boolean result = false;
-
-		if(word.length() > 7){
-			Pattern p1 = Pattern.compile("^$|^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!-/:-@\\[-`{-~])[!-~]*{8,16}$"); // 正規表現パターンの読み込み
-			Matcher m1 = p1.matcher(word); // パターンと検査対象文字列の照合
-			result = m1.matches(); // 照合結果をtrueかfalseで取得
-		}
-		return result;
-	}
 }
