@@ -63,7 +63,7 @@
 		<div class='main1'>
 			<div class='pic'>
 			<%if(pass!=null){ %>
-				<img src="file://db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/システム製作/img/<%=Employee_no%>.png">
+				<img src="file://db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/システム製作/img/<%=Employee_no%>.png" style ="margin-right:10%">
 			<%} %>
 			</div>
 
