@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 <style>
 .REST {
-	font-size: 20px;
+	font-size: 25px;
 }
 
 .btn {
@@ -55,8 +55,8 @@
 		</div>
 		<div style="position: relative; margin-top: 5%; text-align: center">
 			<p class="REST">休憩時間</p>
-			<html:select property="rest_time" styleId="REST">
-				<html:option value="">-</html:option>
+			<html:select property="rest_time" styleId="REST" style="font-size:30px">
+				<html:option value="" style = "text-align:center;">選択</html:option>
 				<html:option value="0">00:00</html:option>
 				<html:option value="1">00:15</html:option>
 				<html:option value="2">00:30</html:option>
