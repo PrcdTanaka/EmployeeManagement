@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -98,10 +99,13 @@ public final class PasswordForgetAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		HttpSession session = request.getSession();
+		session.getAttribute("form");
 		Personal_informationForm piForm = (Personal_informationForm) frm;
 		PasswordForm pForm = (PasswordForm) frm;
-
+		LoginForm lForm=(LoginForm) session.getAttribute("form");
 		forward = "password";
+		pForm.setEmployee_no(lForm.getEmployee_no());
 
 		String button = pForm.getButton();
 		if(button.equals("戻る")) {
@@ -113,11 +117,12 @@ public final class PasswordForgetAction extends Action {
 			}else{
 				// DBに格納された社員番号と入力された社員番号取得処理
 				dba.getDbpassword(pForm);
+				dba.getQuestion(pForm);
 				String employee_no = pForm.getEmployee_no();
-				String dbemployee_no = dba.getEmoloyee_No(lForm);
 
-				//DBに格納された社員番号と入力された社員番号比較処理
-				if(employee_no.equals(dbemployee_no)){
+
+			//DBに格納された社員番号と入力された社員番号比較処理
+				if(pForm.getAnswer().equals("")){
 				}else{
 					pForm.setMessage("入力された社員番号が不正です。");
 				}

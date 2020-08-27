@@ -39,6 +39,7 @@
 			validate="false" scope="request">
 			<forward name="login" path="/jsp/login.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="password" path="/jsp/PasswordForget.jsp" />
 		</action>
 
 		<action name="MainForm" path="/MainAction" type="sample.pr.main.MainAction"

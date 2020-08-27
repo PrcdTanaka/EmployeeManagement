@@ -137,8 +137,7 @@ public final class LoginAction extends Action {
 		// フォーム情報をキャスト
 		LoginForm lForm = (LoginForm) frm;
 
-		// 2.クリックされたボタンの名称をアクションフォームから取得
-		String button = lForm.getButton();
+
 
 		/*
 		 * 3.社員Noの入力チェック<br>
@@ -152,11 +151,14 @@ public final class LoginAction extends Action {
 		 * 　　　遷移先："login"<br>
 		 */
 		String employee_no = lForm.getEmployee_no();
-
+		try{
+			lForm.getButton();
 		if (employee_no.equals("")) {
 			lForm.setMessage("社員番号が空白になっています。");
 			forward = "login";
-		} else {
+		}
+		else {
+
 			/* 4.入力パスワードの確保。<br>
 			 * 　4-1.パスワード取得処理をコール。<br>
 			 * 　　　クラス：LoginForm<br>
@@ -201,6 +203,9 @@ public final class LoginAction extends Action {
 					lForm.setMessage("社員番号、あるいはパスワードが間違えています。");
 					forward = "login";
 				}
+		}
+		}catch(Exception e){
+			forward="password";
 		}
 		/* 8.アクションフォームをインプットパラメータ.リクエスト情報に設定する。<br>
 		 * 　8-1.リクエスト情報登録処理をコール。<br>
