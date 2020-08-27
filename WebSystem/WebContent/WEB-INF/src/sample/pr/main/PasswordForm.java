@@ -18,6 +18,10 @@ public final class PasswordForm extends ActionForm {
 	private String message;
 	private String dbpassword;
 	private String tel_phone;
+	private String Question;
+	private String Question2;
+	private String Answer;
+	private String Answer2;
 
 	/**
 	 * 初期化処理。
@@ -33,6 +37,10 @@ public final class PasswordForm extends ActionForm {
 		button = "";
 		message = "";
 		dbpassword = "";
+		Question = "";
+		Question2 = "";
+		Answer = "";
+		Answer2 = "";
 	}
 
 	/**
@@ -222,7 +230,29 @@ public final class PasswordForm extends ActionForm {
 	public void setTel_phone(String tel_phone) {
 		this.tel_phone = tel_phone;
 	}
-
-
+	public void setQuestion(String Question) {
+		this.Question = Question;
+	}
+	public void setQuestion2(String Question) {
+		this.Question2 = Question;
+	}
+	public void setAnswer(String Answer) {
+		this.Answer=Answer;
+	}
+	public void setAnswer2(String Answer) {
+		this.Answer2=Answer;
+	}
+	public String getQuestion(){
+		return Question;
+	}
+	public String getQuestion2(){
+		return Question2;
+	}
+	public String getAnswer(){
+		return Answer;
+	}
+	public String getAnswer2(){
+		return Answer2;
+	}
 
 }
