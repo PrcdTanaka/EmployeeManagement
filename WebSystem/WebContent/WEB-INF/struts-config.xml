@@ -39,7 +39,6 @@
 			validate="false" scope="request">
 			<forward name="login" path="/jsp/login.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
-			<forward name="change" path="/jsp/PasswordChange.jsp" />
 		</action>
 
 		<action name="MainForm" path="/MainAction" type="sample.pr.main.MainAction"
@@ -102,6 +101,17 @@
 			type="sample.pr.main.AttendanceAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Main.jsp" />
 			<forward name="attendance" path="/jsp/Attendance.jsp" />
+		</action>
+
+		<action name="PasswordForm" path="/PasswordForgetAction"
+			type="sample.pr.main.PasswordForgetAction" validate="false" scope="request">
+			<forward name="change" path="/jsp/PasswordChange.jsp" />
+			<forward name="login" path="/jsp/login.jsp" />
+		</action>
+
+		<action name="PasswordForm" path="/PasswordChangeAction"
+			type="sample.pr.main.PasswordChangeAction" validate="false" scope="request">
+			<forward name="login" path="/jsp/login.jsp" />
 		</action>
 	</action-mappings>
 
