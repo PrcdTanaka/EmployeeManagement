@@ -1040,10 +1040,10 @@ public class DbAction extends Object{
 			sb.append("  TEL_HOME = '" + form.getTel_home() + "'," + crlf);
 			sb.append("  TEL_PHONE = '" + form.getTel_phone() + "'," + crlf);
 			sb.append("  EMERGENCY_ADDRESS = '" + form.getEmergency_address() + "'," + crlf);
-			sb.append("  EMERGENCY_TEL = '" + form.getEmergency_tel() + "'" + crlf);
-			sb.append("  QUESTION = '" + form.getQuestion() + "'" + crlf);
-			sb.append("  QUESTION2 = '" + form.getQuestion2() + "'" + crlf);
-			sb.append("  ANSWER = '" + form.getAnswer() + "'" + crlf);
+			sb.append("  EMERGENCY_TEL = '" + form.getEmergency_tel() + "'," + crlf);
+			sb.append("  QUESTION = '" + form.getQuestion() + "'," + crlf);
+			sb.append("  QUESTION2 = '" + form.getQuestion2() + "'," + crlf);
+			sb.append("  ANSWER = '" + form.getAnswer() + "'," + crlf);
 			sb.append("  ANSWER2 = '" + form.getAnswer2() + "'" + crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("  EMPLOYEE_NO = ?" + crlf);
@@ -2657,7 +2657,7 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					
+
 					ret = true;
 				}
 

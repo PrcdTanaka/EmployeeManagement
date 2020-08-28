@@ -268,17 +268,17 @@
 					<label for="question">秘密の質問：</label>
 					<html:select property="password" name="Personal_informationForm"
 						styleId="question" value="<%=question%>">
-					<option value="">選択してください</option>
-					<option value="1">母親の旧姓</option>
-					<option value="2">飼っているペットの名前</option>
-					<option value="3">好きな食べ物</option>
-					<option value="4">好きな国</option>
-					<option value="5">初めて観た映画</option>
-					<option value="6">学生時代の部活</option>
-					<option value="7">子供の頃のあだ名</option>
-					<option value="8">座右の銘</option>
-					<option value="9">初めて行った海外</option>
-					<option value="0">おふくろの味</option>
+					<html:option value="">選択してください</html:option>
+					<html:option value="1">母親の旧姓</html:option>
+					<html:option value="2">飼っているペットの名前</html:option>
+					<html:option value="3">好きな食べ物</html:option>
+					<html:option value="4">好きな国</html:option>
+					<html:option value="5">初めて観た映画</html:option>
+					<html:option value="6">学生時代の部活</html:option>
+					<html:option value="7">子供の頃のあだ名</html:option>
+					<html:option value="8">座右の銘</html:option>
+					<html:option value="9">初めて行った海外</html:option>
+					<html:option value="0">おふくろの味</html:option>
 					</html:select>
 					<html:text property="answer" name="Personal_informationForm"
 						styleId="answer" value="" size="40" maxlength="50" />
@@ -287,17 +287,17 @@
 				<label for="question2">秘密の質問：</label>
 					<html:select property="password" name="Personal_informationForm"
 						styleId="question2" value="<%=division%>">
-					<option value="">選択してください</option>
-					<option value="1">母親の旧姓</option>
-					<option value="2">飼っているペットの名前</option>
-					<option value="3">好きな食べ物</option>
-					<option value="4">好きな国</option>
-					<option value="5">初めて観た映画</option>
-					<option value="6">学生時代の部活</option>
-					<option value="7">子供の頃のあだ名</option>
-					<option value="8">座右の銘</option>
-					<option value="9">初めて行った海外</option>
-					<option value="0">おふくろの味</option>
+					<html:option value="">選択してください</html:option>
+					<html:option value="1">母親の旧姓</html:option>
+					<html:option value="2">飼っているペットの名前</html:option>
+					<html:option value="3">好きな食べ物</html:option>
+					<html:option value="4">好きな国</html:option>
+					<html:option value="5">初めて観た映画</html:option>
+					<html:option value="6">学生時代の部活</html:option>
+					<html:option value="7">子供の頃のあだ名</html:option>
+					<html:option value="8">座右の銘</html:option>
+					<html:option value="9">初めて行った海外</html:option>
+					<html:option value="0">おふくろの味</html:option>
 					</html:select>
 					<html:text property="answer2" name="Personal_informationForm"
 						styleId="answer2" value="" size="40" maxlength="50" />
