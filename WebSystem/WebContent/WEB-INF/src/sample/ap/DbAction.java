@@ -1041,10 +1041,14 @@ public class DbAction extends Object{
 			sb.append("  TEL_PHONE = '" + form.getTel_phone() + "'," + crlf);
 			sb.append("  EMERGENCY_ADDRESS = '" + form.getEmergency_address() + "'," + crlf);
 			sb.append("  EMERGENCY_TEL = '" + form.getEmergency_tel() + "'," + crlf);
+			if(form.getQuestion()!=null){
 			sb.append("  QUESTION = '" + form.getQuestion() + "'," + crlf);
-			sb.append("  QUESTION2 = '" + form.getQuestion2() + "'," + crlf);
 			sb.append("  ANSWER = '" + form.getAnswer() + "'," + crlf);
+			}
+			if(form.getQuestion2()!=null){
+			sb.append("  QUESTION2 = '" + form.getQuestion2() + "'," + crlf);
 			sb.append("  ANSWER2 = '" + form.getAnswer2() + "'" + crlf);
+			}
 			sb.append("WHERE" + crlf);
 			sb.append("  EMPLOYEE_NO = ?" + crlf);
 
