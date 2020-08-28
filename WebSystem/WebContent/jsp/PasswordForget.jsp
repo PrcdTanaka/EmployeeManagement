@@ -1,3 +1,4 @@
+<%@page import="sample.pr.main.LoginForm"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
@@ -22,8 +23,10 @@
 <%
  		String message;
  		try{
+ 			LoginForm lform=(LoginForm) session.getAttribute("form");
  			PasswordForm pForm = (PasswordForm) session.getAttribute("pForm");
  			message =  pForm.getMessage();
+ 			pForm.setEmployee_no(lform.getEmployee_no());
  			if(message == null)
  				message = "";
 

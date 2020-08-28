@@ -4,7 +4,18 @@
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.LoginForm" %>
-
+<style>
+.link-style-btn{
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #0033cc;
+}
+.link-style-btn:hover{
+  text-decoration: underline;
+  color: #002080;
+}
+</style>
 
 <html:html>
 	<head>
@@ -55,7 +66,7 @@
 				<!-- ログインボタン -->
 				<span><html:submit property="button" styleClass="btn" value="ログイン" styleId="login" /></span>
 			</div>
-			<html:link action="/LoginAction">パスワードを忘れた場合は</html:link>
+			<html:submit  styleClass="link-style-btn"  property="button" styleId="pass" value="パスワードを忘れた場合は"/>
 		</html:form>
 	</body>
 </html:html>
