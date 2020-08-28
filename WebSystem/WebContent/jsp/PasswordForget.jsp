@@ -17,42 +17,63 @@
 
 <table>
 	<center>
-		<h1>社員番号認証画面</h1>
+		<h1>秘密の質問入力画面</h1>
 	</center>
 </table>
 <%
- 		String message;
- 		try{
- 			LoginForm lform=(LoginForm) session.getAttribute("form");
- 			PasswordForm pForm = (PasswordForm) session.getAttribute("pForm");
- 			message =  pForm.getMessage();
- 			pForm.setEmployee_no(lform.getEmployee_no());
- 			if(message == null)
- 				message = "";
+	String message;
+		try {
+			LoginForm lform = (LoginForm) session.getAttribute("form");
+			PasswordForm pForm = (PasswordForm) session
+					.getAttribute("pForm");
+			message = pForm.getMessage();
+			pForm.setEmployee_no(lform.getEmployee_no());
+			if (message == null)
+				message = "";
 
- 		}catch(NullPointerException e){
- 			message = "";
- 		}
-
- 	%>
+		} catch (NullPointerException e) {
+			message = "";
+		}
+%>
 <body>
 	<html:form action="/PasswordChangeAction">
 		<div class="block">
 
-		<br>
-		<br>
-			<center><%= message %></center>
-		<br>
-		<div>
-			<center>社員番号：<html:text property="employee_no" value= "" maxlength="4" /></center>
-		</div>
-		<br>
-		<!-- 変更ボタン -->
-		<html:submit property="button" styleClass="btn" value="次へ" styleId="change" />
-    	<!-- 戻るボタン -->
-		<html:submit property="button" styleClass="btn" value="戻る" styleId="main" />
+			<br> <br>
+			<center><%=message%></center>
+			<br>
+			<div>
+				<center>
+			<div class="question">
+				<label for="question">秘密の質問：</label>
+				<html:select property="question" name="Personal_informationForm"
+					styleId="question" value="">
+					<html:option value="">選択してください</html:option>
+					<html:option value="1">母親の旧姓</html:option>
+					<html:option value="2">飼っているペットの名前</html:option>
+					<html:option value="3">好きな食べ物</html:option>
+					<html:option value="4">好きな国</html:option>
+					<html:option value="5">初めて観た映画</html:option>
+					<html:option value="6">学生時代の部活</html:option>
+					<html:option value="7">子供の頃のあだ名</html:option>
+					<html:option value="8">座右の銘</html:option>
+					<html:option value="9">初めて行った海外</html:option>
+					<html:option value="0">おふくろの味</html:option>
+				</html:select>
+				<html:text property="answer" name="Personal_informationForm"
+						styleId="answer" value="" size="40" maxlength="50" />
+			</div>
+				</center>
+			</div>
+			<br>
+			<!-- 変更ボタン -->
+			<html:submit property="button" styleClass="btn" value="次へ"
+				styleId="change" />
+			<!-- 戻るボタン -->
+			<html:submit property="button" styleClass="btn" value="戻る"
+				styleId="main" />
 
- 			 </div>
+		</div>
 	</html:form>
 </body>
 </html:html>
