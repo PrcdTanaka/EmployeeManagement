@@ -266,7 +266,7 @@
 				</div>
 				<div class="question">
 					<label for="question">秘密の質問：</label>
-					<html:select property="password" name="Personal_informationForm"
+					<html:select property="question" name="Personal_informationForm"
 						styleId="question" value="<%=question%>">
 					<html:option value="">選択してください</html:option>
 					<html:option value="1">母親の旧姓</html:option>
@@ -285,7 +285,7 @@
 				</div>
 				<div>
 				<label for="question2">秘密の質問：</label>
-					<html:select property="password" name="Personal_informationForm"
+					<html:select property="question2" name="Personal_informationForm"
 						styleId="question2" value="<%=division%>">
 					<html:option value="">選択してください</html:option>
 					<html:option value="1">母親の旧姓</html:option>
