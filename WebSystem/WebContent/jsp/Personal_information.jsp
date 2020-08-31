@@ -312,7 +312,7 @@
 					<div>
 						<label for="Emergency_tel">電話番号：</label>
 						<html:text property="Emergency_tel"
-							name="Personal_informationForm" styleId="Emergency_tel" size="4"
+							name="Personal_informationForm" styleId="Emergency_tel" size="19"
 							maxlength="7" value="<%=Emergency_tel%>" />
 					</div>
 					<div class="emergency_address">
