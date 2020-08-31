@@ -112,25 +112,24 @@ public final class PasswordForgetAction extends Action {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		forward = "change";
 		pForm.setEmployee_no(lForm.getEmployee_no());
 
 		String button = pForm.getButton();
 		if(button.equals("戻る")) {
 			forward = "login";
-		}if(button.equals("変更")){
+		}if(button.equals("次へ")){
 				//入力された回答の空白判定
-			if(piForm.getQuestion().equals("")){
+			if(piForm.getQuestion()==null){
 				piForm.setMessage("回答を入力してください。");
+				forward ="Forget";
 			}else{
 				// DBに格納された質問と入力された質問取得処理
 				dba.getQuestion(pForm);
-				String Question = pForm.getQuestion();
-
 
 			//DB回答＝自分の回答　　　　DB質問＝自分の質問
 			//DBに格納された質問と入力された回答比較処理
 				if(pForm.getAnswer().equals(pForm.getMyanswer())&&pForm.getQuestion().equals(pForm.getMyquestion())){
+					forward="change";
 				}else{
 					pForm.setMessage("入力された回答が不正です。");
 					forward="Forget";
