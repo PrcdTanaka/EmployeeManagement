@@ -2,6 +2,7 @@ package sample.pr.main;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -101,30 +102,38 @@ public final class PasswordForgetAction extends Action {
 		}
 		HttpSession session = request.getSession();
 		session.getAttribute("form");
-		Personal_informationForm piForm = (Personal_informationForm) frm;
+		Personal_informationForm piForm =new Personal_informationForm();
 		PasswordForm pForm = (PasswordForm) frm;
 		LoginForm lForm=(LoginForm) session.getAttribute("form");
-		forward = "password";
+		piForm.setEmployee_no(lForm.getEmployee_no());
+		try {
+			dba.getPersonalData(piForm);
+		} catch (ParseException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		forward = "change";
 		pForm.setEmployee_no(lForm.getEmployee_no());
 
 		String button = pForm.getButton();
 		if(button.equals("戻る")) {
-			forward = "main";
+			forward = "login";
 		}if(button.equals("変更")){
-				//入力された社員番号の空白判定
-			if(piForm.getEmployee_no().equals("")){
-				piForm.setMessage("社員番号を入力してください。");
+				//入力された回答の空白判定
+			if(piForm.getQuestion().equals("")){
+				piForm.setMessage("回答を入力してください。");
 			}else{
-				// DBに格納された社員番号と入力された社員番号取得処理
-				dba.getDbpassword(pForm);
+				// DBに格納された質問と入力された質問取得処理
 				dba.getQuestion(pForm);
-				String employee_no = pForm.getEmployee_no();
+				String Question = pForm.getQuestion();
 
 
-			//DBに格納された社員番号と入力された社員番号比較処理
-				if(pForm.getAnswer().equals("")){
+			//DB回答＝自分の回答　　　　DB質問＝自分の質問
+			//DBに格納された質問と入力された回答比較処理
+				if(pForm.getAnswer().equals(pForm.getMyanswer())&&pForm.getQuestion().equals(pForm.getMyquestion())){
 				}else{
-					pForm.setMessage("入力された社員番号が不正です。");
+					pForm.setMessage("入力された回答が不正です。");
+					forward="Forget";
 				}
 			}
 		}

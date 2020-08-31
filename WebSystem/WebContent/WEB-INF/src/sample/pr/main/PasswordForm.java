@@ -22,6 +22,8 @@ public final class PasswordForm extends ActionForm {
 	private String Question2;
 	private String Answer;
 	private String Answer2;
+	private String Myquestion;
+	private String Myanswer;
 
 	/**
 	 * 初期化処理。
@@ -253,6 +255,12 @@ public final class PasswordForm extends ActionForm {
 	}
 	public String getAnswer2(){
 		return Answer2;
+	}
+	public String getMyquestion(){
+		return Myquestion;
+	}
+	public String getMyanswer(){
+		return Myanswer;
 	}
 
 }
