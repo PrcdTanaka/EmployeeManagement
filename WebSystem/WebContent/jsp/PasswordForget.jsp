@@ -46,7 +46,7 @@
 				<center>
 			<div class="question">
 				<label for="question">秘密の質問：</label>
-				<html:select property="Myquestion" name="Personal_informationForm"
+				<html:select property="Myquestion" name="PasswordForm"
 					styleId="question" value="">
 					<html:option value="">選択してください</html:option>
 					<html:option value="1">母親の旧姓</html:option>
@@ -60,7 +60,7 @@
 					<html:option value="9">初めて行った海外</html:option>
 					<html:option value="0">おふくろの味</html:option>
 				</html:select>
-				<html:text property="Myanswer" name="Personal_informationForm"
+				<html:text property="Myanswer" name="PasswordForm"
 						styleId="answer" value="" size="40" maxlength="50" />
 			</div>
 				</center>
