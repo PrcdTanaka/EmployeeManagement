@@ -108,6 +108,7 @@
 		<action name="PasswordForm" path="/PasswordChangeAction"
 			type="sample.pr.main.PasswordChangeAction" validate="false" scope="request">
 			<forward name="login" path="/jsp/login.jsp" />
+			<forward name="change" path="/jsp/PasswordChange.jsp" />
 		</action>
 	</action-mappings>
 

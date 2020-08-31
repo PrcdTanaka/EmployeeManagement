@@ -32,7 +32,7 @@
 
  	%>
  	<body>
-  		<html:form action="/PasswordAction" >
+  		<html:form action="/PasswordChangeAction" >
 			<div class="block">
 
 				<div class="space"></div>
