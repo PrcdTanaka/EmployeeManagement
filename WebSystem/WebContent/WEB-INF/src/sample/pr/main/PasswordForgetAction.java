@@ -118,9 +118,9 @@ public final class PasswordForgetAction extends Action {
 			forward = "login";
 		}if(button.equals("次へ")){
 				//入力された回答の空白判定
-			if(piForm.getQuestion()==null){
+			if(pForm.getMyanswer()==null){
 				piForm.setMessage("回答を入力してください。");
-				forward ="Forget";
+				forward ="change";
 			}else{
 				// DBに格納された質問と入力された質問取得処理
 				dba.getQuestion(pForm);
@@ -131,7 +131,7 @@ public final class PasswordForgetAction extends Action {
 					forward="change";
 				}else{
 					pForm.setMessage("入力された回答が不正です。");
-					forward="Forget";
+					forward="change";
 				}
 			}
 		}

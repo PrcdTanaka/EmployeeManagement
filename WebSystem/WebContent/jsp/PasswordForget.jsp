@@ -14,40 +14,41 @@
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
-
-<table>
-	<center>
-		<h1>秘密の質問入力画面</h1>
-	</center>
-</table>
-<%
-	String message;
-		try {
-			LoginForm lform = (LoginForm) session.getAttribute("form");
-			PasswordForm pForm = (PasswordForm) session
-					.getAttribute("pForm");
-			message = pForm.getMessage();
-			pForm.setEmployee_no(lform.getEmployee_no());
-			if (message == null)
-				message = "";
-
-		} catch (NullPointerException e) {
-			message = "";
-		}
-%>
 <body>
 	<html:form action="/PasswordForgetAction">
+		<table>
+			<center>
+				<h1>秘密の質問入力画面</h1>
+			</center>
+		</table>
+		<%
+			String message;
+
+					try {
+						LoginForm lform = (LoginForm) session
+								.getAttribute("lform");
+						PasswordForm pForm = (PasswordForm) session
+								.getAttribute("pForm");
+						String Myquestion = pForm.getMyquestion();
+						String Myanswer = pForm.getMyanswer();
+						message = pForm.getMessage();
+						pForm.setEmployee_no(lform.getEmployee_no());
+						if (message == null)
+							message = "";
+
+					} catch (NullPointerException e) {
+						message = "";
+					}
+		%>
+
 		<div class="block">
 
 			<br> <br>
 			<center><%=message%></center>
 			<br>
-			<div>
-				<center>
-			<div class="question">
+			<div class="question" style="text-align: center">
 				<label for="question">秘密の質問：</label>
-				<html:select property="Myquestion"
-					styleId="question" value="">
+				<html:select property="Myquestion" styleId="question" value="">
 					<html:option value="">選択してください</html:option>
 					<html:option value="1">母親の旧姓</html:option>
 					<html:option value="2">飼っているペットの名前</html:option>
@@ -60,10 +61,8 @@
 					<html:option value="9">初めて行った海外</html:option>
 					<html:option value="0">おふくろの味</html:option>
 				</html:select>
-				<html:text property="Myanswer"
-						styleId="answer" value="" size="40" maxlength="50" />
-			</div>
-				</center>
+				<html:text property="Myanswer" styleId="answer" value="" size="40"
+					maxlength="50" />
 			</div>
 			<br>
 			<!-- 変更ボタン -->
