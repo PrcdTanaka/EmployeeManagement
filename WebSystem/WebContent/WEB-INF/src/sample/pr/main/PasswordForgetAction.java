@@ -101,7 +101,6 @@ public final class PasswordForgetAction extends Action {
 			e.printStackTrace();
 		}
 		HttpSession session = request.getSession();
-		session.getAttribute("form");
 		Personal_informationForm piForm =new Personal_informationForm();
 		PasswordForm pForm = (PasswordForm) frm;
 		LoginForm lForm=(LoginForm) session.getAttribute("form");

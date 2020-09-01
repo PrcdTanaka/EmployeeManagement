@@ -229,6 +229,14 @@ public final class PasswordForm extends ActionForm {
 	 *
 	 * @param 携帯番号
 	 */
+	public void setMyanswer(String Myanswer)
+	{
+		this.Myanswer=Myanswer;
+	}
+	public void setMyquestion(String Myquestion)
+	{
+		this.Myquestion=Myquestion;
+	}
 	public void setTel_phone(String tel_phone) {
 		this.tel_phone = tel_phone;
 	}
