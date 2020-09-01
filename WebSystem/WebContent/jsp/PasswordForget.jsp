@@ -26,7 +26,7 @@
 
 					try {
 						LoginForm lform = (LoginForm) session
-								.getAttribute("form");
+								.getAttribute("lform");
 						PasswordForm pForm = (PasswordForm) session
 								.getAttribute("pForm");
 						String Myquestion = pForm.getMyquestion();

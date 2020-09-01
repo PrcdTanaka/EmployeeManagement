@@ -43,6 +43,8 @@ public final class PasswordForm extends ActionForm {
 		Question2 = "";
 		Answer = "";
 		Answer2 = "";
+		Myquestion="";
+		Myanswer="";
 	}
 
 	/**
