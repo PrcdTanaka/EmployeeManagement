@@ -118,7 +118,7 @@ public final class PasswordForgetAction extends Action {
 			forward = "login";
 		}if(button.equals("次へ")){
 				//入力された回答の空白判定
-			if(piForm.getQuestion()==null){
+			if(pForm.getMyanswer()==null){
 				piForm.setMessage("回答を入力してください。");
 				forward ="Forget";
 			}else{
