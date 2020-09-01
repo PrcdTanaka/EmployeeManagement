@@ -51,7 +51,7 @@
 				<!-- 変更ボタン -->
 				<html:submit property="button" styleClass="btn" value="変更" styleId="change" onclick="return confirm('新しいパスワードを登録しますか？');"/>
     			<!-- 戻るボタン -->
-				<html:submit property="button" styleClass="btn" value="戻る" styleId="login" />
+				<html:submit property="button" styleClass="btn" value="戻る" styleId="" />
 
 				<div align="right">
 		</div>
