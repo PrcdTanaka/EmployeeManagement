@@ -98,7 +98,7 @@ position:relative;
 					<%
 					try
 					{
-
+						String a="";
 						SearchForm s=(SearchForm)session.getAttribute("sForm");
 						List<String> name=s.getEmployee_name();
 						List<String> no=s.getEmployee_no();
@@ -153,8 +153,42 @@ position:relative;
 						        out.println("<td>");
 						        if(depart.get(i)==null)
 						        	depart.set(i,"無所属");
-						        else
-						        	depart.set(i,"第"+depart.get(i)+"技術部");
+						        else{
+						        	switch(depart.get(i))
+						        	{
+						        	case "00":
+						        		a="総務・経理部";
+						        		break;
+						        	case "01":
+						        		a="第1技術部";
+						        		break;
+						        	case "02":
+						        		a="第2技術部";
+						        		break;
+						        	case "03":
+						        		a="第3技術部";
+						        		break;
+						        	case"04":
+						        		a="第4技術部";
+						        		break;
+						        	case"05":
+						        		a="第5技術部";
+						        		break;
+						        	case"06":
+						        		a="ソリューション技術部";
+						        		break;
+						        	case"07":
+						        		a="システム営業部";
+						        		break;
+						        	case"08":
+						        		a="人事部";
+						        		break;
+						        	case"09":
+						        		a="採用マーケティング部";
+						        		break;
+									}
+						        }
+						        	depart.set(i,a);
 
 						        out.println(depart.get(i));
 						        out.println("</td></tr>");
