@@ -752,6 +752,44 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+	public boolean userRegister3(RegisterForm form){
+
+		boolean ret = true;
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO PERSONAL_INFORMATION_TBL(" + crlf);
+			sb.append("  EMPLOYEE_NO" + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("  '" + form.getEmployee_no() +"'" +crlf);
+			sb.append(")" + crlf);
+
+			String query = sb.toString();
+
+			try {
+
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+		}
+		return ret;
+	}
 	/***
 	 * <p>
 	 * パスワードを取得する。
@@ -2266,11 +2304,14 @@ public class DbAction extends Object{
 			String month=(calendar.get(calendar.MONTH)+1)+"";
 			if(month.length()!=2)
 				month="0"+month;
-			String cale =month+calendar.get(calendar.DATE);
+			String date=calendar.get(calendar.DATE)+"";
+			if(date.length()!=2)
+				date="0"+date;
+			String cale =month+date;
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 			sb.append("SELECT" + crlf);
-			sb.append("MMDD"+crlf);
+			sb.append("START_TIME"+crlf);
 			sb.append("FROM" + crlf);
 			sb.append("  ATTEND" + crlf);
 			sb.append("WHERE" + crlf);
@@ -2281,7 +2322,7 @@ public class DbAction extends Object{
 
 			// 取得項目
 			List<String> columnList = new ArrayList<String>();
-			columnList.add("MMDD");
+			columnList.add("START_TIME");
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
 			typeList.add(dba.DB_STRING);
@@ -2297,7 +2338,7 @@ public class DbAction extends Object{
 				dba.commit();
 				dba.closeConnection();
 				for (Map<String, String> val : rsList) {
-					aForm.setStart_time(val.get("MMDD"));
+					aForm.setStart_time(val.get("START_TIME"));
 					ret = true;
 				}
 
@@ -2449,7 +2490,11 @@ public class DbAction extends Object{
 			if(getStart_time(aForm, lForm)){
 				Calendar calendar = Calendar.getInstance();
 				String month=(calendar.get(calendar.MONTH)+1)+"";
+				if(month.length()!=2)
+					month="0"+month;
 				String day=""+calendar.get(calendar.DATE);
+				if(day.length()!=2)
+					day="0"+day;
 				String hour=""+calendar.get(calendar.HOUR_OF_DAY);
 				if(hour.length()!=2)
 					hour="0"+hour;
@@ -2569,7 +2614,11 @@ public class DbAction extends Object{
 			if(aForm.getRest_time()!=null){
 				Calendar calendar = Calendar.getInstance();
 				String month=(calendar.get(calendar.MONTH)+1)+"";
+				if(month.length()!=2)
+					month="0"+month;
 				String day=""+calendar.get(calendar.DATE);
+				if(day.length()!=2)
+					day="0"+day;
 				String cale =month+day;
 				String time=aForm.getRest_time();
 

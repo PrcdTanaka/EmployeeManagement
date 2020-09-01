@@ -141,6 +141,8 @@ public final class Personal_informationAction extends Action {
 			}
 			forward = clickBtnEntry(pForm,lForm);
 			session.removeAttribute("sForm");
+			dba.getEmoloyee_Name(pForm);
+			lForm.setEmployee_name(pForm.getEmployee_name());
 			break;
 		case "戻る":
 			forward = clickBtnBack(pForm);
@@ -186,7 +188,7 @@ public final class Personal_informationAction extends Action {
 			if(form.getQuestion() == null){
 				//dba
 			}else{
-				
+
 			}
 			int no;
 			//入社年月日登録

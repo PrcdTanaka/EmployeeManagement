@@ -170,7 +170,9 @@ public final class RegisterAction extends Action {
 
 			if(checkPattern(form.getPassword(),"password")) {
 				if(dba.userRegister(form))
-					dba.userRegister2(form);
+					if(dba.userRegister2(form))
+						dba.userRegister3(form);
+
 					form.setMessage("ユーザー登録に成功しました。");
 			}else {
 				form.setMessage("パスワードが複雑さの要件を満たしていません。");
