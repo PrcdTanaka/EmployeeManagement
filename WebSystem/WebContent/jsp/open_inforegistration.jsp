@@ -131,6 +131,7 @@
 		<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
 		</div>
+		<!--a href="http://neutralx0.net/mini07.html" target="_blank"><img src="http://neutralx0.net/images/saku_img.gif" alt="さくさくスイーツ" border="0"></a><br><a href="http://neutralx0.net/mini07.html" target="_blank">さくさくスイーツ</a>-->
 
 	</html:form>
 </body>
