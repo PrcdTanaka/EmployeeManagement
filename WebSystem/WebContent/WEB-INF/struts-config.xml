@@ -24,6 +24,8 @@
 		<form-bean name="Open_informationForm" type="sample.pr.main.Open_informationForm" />
 		<form-bean name="PasswordChangeForm" type="sample.pr.main.PasswordChangeForm" />
 		<form-bean name="AttendanceForm" type="sample.pr.main.AttendanceForm" />
+		<form-bean name="KintaiMailForm" type="sample.pr.main.KintaiMailForm" />
+
 	</form-beans>
 
 
@@ -50,6 +52,7 @@
 			<forward name="search" path="/jsp/search.jsp" />
 			<forward name="password" path="/jsp/Password.jsp" />
 			<forward name="attendance" path="/jsp/Attendance.jsp" />
+			<forward name="kintaiMail" path="/jsp/KintaiMail.jsp" />
 		</action>
 
 		<action name="PasswordForm" path="/PasswordAction"
@@ -109,6 +112,11 @@
 			type="sample.pr.main.PasswordChangeAction" validate="false" scope="request">
 			<forward name="login" path="/jsp/login.jsp" />
 			<forward name="change" path="/jsp/PasswordChange.jsp" />
+		</action>
+
+		<action name="KintaiMailForm" path="/KintaiMailAction"
+			type="sample.pr.main.KintaiMailAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/main.jsp" />
 		</action>
 	</action-mappings>
 
