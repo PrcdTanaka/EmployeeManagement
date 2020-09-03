@@ -36,15 +36,15 @@
 				<h1>勤怠連絡管理画面</h1>
 			</center>
 		</div>
-		<div>
+		<div style="position: relative; margin-top: 10%; align: center;">
 			<html:submit property="button" styleClass="btn" value="勤怠連絡入力"
 				styleId="kintaimail"/>
 		</div>
-		<div>
+		<div  style="position: relative; margin-top: 10%; align: center;">
 			<html:submit property="button" styleClass="btn" value="勤怠一覧画面へ"
 				styleId="catalog"/>
 		</div>
-		<div>
+		<div style="position: relative; margin-top: 10%; align: center;">
 			<html:submit property="button" styleClass="btn" value="戻る"
 				styleId="main"/>
 		</div>
