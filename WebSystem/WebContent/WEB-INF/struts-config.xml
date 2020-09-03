@@ -26,7 +26,6 @@
 		<form-bean name="AttendanceForm" type="sample.pr.main.AttendanceForm" />
 		<form-bean name="KintaiMainForm" type="sample.pr.main.KintaiMainForm" />
 		<form-bean name="KintaiMailForm" type="sample.pr.main.KintaiMailForm" />
-		<form-bean name="KintaiListForm" type="sample.pr.main.KintaiListForm" />
 
 	</form-beans>
 
@@ -120,15 +119,11 @@
 			type="sample.pr.main.KintaiMainAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Main.jsp" />
 			<forward name="kintaimail" path="/jsp/KintaiMail.jsp"/>
-			<forward name="kintailist" path="/jsp/KintaiList.jsp"/>
+			<forward name="catalog" path="/jsp/KintaiCatalog.jsp"/>
 		</action>
 		<action name="KintaiMailForm" path="/KintaiMailAction"
 			type="sample.pr.main.KintaiMailAction" validate="false" scope="request">
-			<forward name="main" path="/jsp/Main.jsp" />
-		</action>
-		<action name="KintaiListForm" path="/KintaiListAction"
-			type="sample.pr.main.KintaiListAction" validate="false" scope="request">
-			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
 		</action>
 	</action-mappings>
 

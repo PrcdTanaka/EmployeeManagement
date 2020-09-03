@@ -1081,12 +1081,12 @@ public class DbAction extends Object{
 			sb.append("  EMERGENCY_ADDRESS = '" + form.getEmergency_address() + "'," + crlf);
 			sb.append("  EMERGENCY_TEL = '" + form.getEmergency_tel() + "'," + crlf);
 			if(form.getQuestion()!=null){
-			sb.append("  QUESTION = '" + form.getQuestion() + "'," + crlf);
-			sb.append("  ANSWER = '" + form.getAnswer() + "'," + crlf);
+				sb.append("  QUESTION = '" + form.getQuestion() + "'," + crlf);
+				sb.append("  ANSWER = '" + form.getAnswer() + "'," + crlf);
 			}
 			if(form.getQuestion2()!=null){
-			sb.append("  QUESTION2 = '" + form.getQuestion2() + "'," + crlf);
-			sb.append("  ANSWER2 = '" + form.getAnswer2() + "'" + crlf);
+				sb.append("  QUESTION2 = '" + form.getQuestion2() + "'," + crlf);
+				sb.append("  ANSWER2 = '" + form.getAnswer2() + "'" + crlf);
 			}
 			sb.append("WHERE" + crlf);
 			sb.append("  EMPLOYEE_NO = ?" + crlf);
@@ -2721,49 +2721,50 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+	//同一の日付が存在するかを検索
 	public boolean checkday(String a){
 		boolean ret=false;
 		// DB接続
-				DbConnector dba = null;
-				try {
-					dba = new DbConnector(gHost,gSid,gUser,gPass);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				if(dba.conSts){
-				StringBuffer sb = new StringBuffer();
-				String crlf = System.getProperty("line.separator");
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		if(dba.conSts){
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
 
-				Calendar calendar = Calendar.getInstance();
-				String month=(calendar.get(calendar.MONTH)+1)+"";
-				if(month.length()!=2)
-					month="0"+month;
-				String day=""+calendar.get(calendar.DATE);
-				if(day.length()!=2)
-					day="0"+day;
-				String cale=month+day;
+			Calendar calendar = Calendar.getInstance();
+			String month=(calendar.get(calendar.MONTH)+1)+"";
+			if(month.length()!=2)
+				month="0"+month;
+			String day=""+calendar.get(calendar.DATE);
+			if(day.length()!=2)
+				day="0"+day;
+			String cale=month+day;
 
-				sb.append("SELECT" + crlf);
-				sb.append("DAY " + crlf);
-				sb.append("FROM" + crlf);
-				sb.append("ROOM_ACCESS_TBL" + crlf);
-				sb.append("where" + crlf);
-				sb.append("day='" + cale + "'" + crlf);
-				String query = sb.toString();
+			sb.append("SELECT" + crlf);
+			sb.append("DAY " + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("ROOM_ACCESS_TBL" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("DAY='" + cale + "'" + crlf);
+			String query = sb.toString();
 
-				try {
-					dba.executeQuery(query);
-					dba.commit();
-					dba.closeConnection();
-					ret=true;
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				}
+			try {
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+				ret=true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return ret;
 	}
 
-	public boolean UpdateEnter(EnterForm form,String a,String b) {
+	public boolean InsertEnter(EnterForm form,String a,String b) {
 
 		boolean ret = false;
 
@@ -2782,17 +2783,17 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 
-			//日付、入室時間を登録する
-
+			//日付、入室時間を登録する(	"ENTRY_EMP" CHAR(4) NOT NULL ENABLE,
 			sb.append("INSERT INTO " + crlf);
-			sb.append("  room_access_tbl(EMPLOYEE_NO,DAY,ENTRY_TIME,EXIT_TIME,CHECK_LIST,FLOOR)" + crlf);
+			sb.append("  ROOM_ACCESS_TBL(ENTRY_EMP,DAY,ENTRY_TIME,LEAVING_TIME,CHECK_LIST,FLOOR,LEAVING_EMP)" + crlf);
 			sb.append("values" + crlf);
 			sb.append("('"+form.getEmployee_no()+"'," +crlf);
 			sb.append("'"+a+"',"+ crlf);
 			sb.append("'"+b+"',"+ crlf);
 			sb.append("0,"+ crlf);
 			sb.append("0,"+ crlf);
-			sb.append("0)"+ crlf);
+			sb.append("'"+form.getLink()+"',"+ crlf);
+			sb.append("0"+crlf);
 			String query = sb.toString();
 
 			try {
@@ -2806,6 +2807,49 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+	public boolean UpdateLeave(EnterForm form,String a,String b){
+		// DB接続
+		boolean ret=false;
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			
+			sb.append("UPDATE" + crlf);
+			sb.append("  ROOM_ACCESS_TBL" + crlf);
+			sb.append("SET" + crlf);
+			sb.append("  LEAVING_NO = " + "'"+form.getEmployee_no()+"'" + crlf);
+			sb.append("  LEAVING_TIME = " + "'" +a+"'" + crlf);
+			sb.append("  CHECK_LIST='"+form.getChecklist()+"'"+ crlf);
+			sb.append("WHERE" + crlf);
+			sb.append(  "DAY = '"+b+"'" + crlf);
+
+			String query = sb.toString();
+
+			try {
+
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+
+				ret = true;
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
+	
+
 }
+
 
 
