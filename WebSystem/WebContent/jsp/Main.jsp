@@ -84,9 +84,9 @@
 						</html:link>
 					</li>
 					<li>
-						<html:link action="/MainAction">勤怠連絡画面
+						<html:link action="/MainAction">勤怠連絡管理画面
 							<html:param name="employee_no"><%=no %></html:param>
-							<html:param name="link">kintaiMail</html:param>
+							<html:param name="link">KintaiMain</html:param>
 						</html:link>
 					</li>
 				</p>
