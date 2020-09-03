@@ -10,6 +10,7 @@ import java.util.Map;
 
 import sample.db.DbConnector;
 import sample.pr.main.AttendanceForm;
+import sample.pr.main.EnterForm;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
 import sample.pr.main.Open_informationForm;
@@ -2714,6 +2715,91 @@ public class DbAction extends Object{
 					ret = true;
 				}
 
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
+	public boolean checkday(String a){
+		boolean ret=false;
+		// DB接続
+				DbConnector dba = null;
+				try {
+					dba = new DbConnector(gHost,gSid,gUser,gPass);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				if(dba.conSts){
+				StringBuffer sb = new StringBuffer();
+				String crlf = System.getProperty("line.separator");
+
+				Calendar calendar = Calendar.getInstance();
+				String month=(calendar.get(calendar.MONTH)+1)+"";
+				if(month.length()!=2)
+					month="0"+month;
+				String day=""+calendar.get(calendar.DATE);
+				if(day.length()!=2)
+					day="0"+day;
+				String cale=month+day;
+
+				sb.append("SELECT" + crlf);
+				sb.append("DAY " + crlf);
+				sb.append("FROM" + crlf);
+				sb.append("ROOM_ACCESS_TBL" + crlf);
+				sb.append("where" + crlf);
+				sb.append("day='" + cale + "'" + crlf);
+				String query = sb.toString();
+
+				try {
+					dba.executeQuery(query);
+					dba.commit();
+					dba.closeConnection();
+					ret=true;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
+		return ret;
+	}
+
+	public boolean UpdateEnter(EnterForm form,String a,String b) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+
+			//日付、入室時間を登録する
+
+			sb.append("INSERT INTO " + crlf);
+			sb.append("  room_access_tbl(EMPLOYEE_NO,DAY,ENTRY_TIME,EXIT_TIME,CHECK_LIST,FLOOR)" + crlf);
+			sb.append("values" + crlf);
+			sb.append("('"+form.getEmployee_no()+"'," +crlf);
+			sb.append("'"+a+"',"+ crlf);
+			sb.append("'"+b+"',"+ crlf);
+			sb.append("0,"+ crlf);
+			sb.append("0,"+ crlf);
+			sb.append("0)"+ crlf);
+			String query = sb.toString();
+
+			try {
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+				ret=true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
