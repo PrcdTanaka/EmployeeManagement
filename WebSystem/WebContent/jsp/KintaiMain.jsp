@@ -42,7 +42,7 @@
 		</div>
 		<div>
 			<html:submit property="button" styleClass="btn" value="勤怠一覧画面へ"
-				styleId="catalog"/>
+				styleId="kintailist"/>
 		</div>
 		<div>
 			<html:submit property="button" styleClass="btn" value="戻る"
