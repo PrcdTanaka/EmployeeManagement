@@ -123,7 +123,7 @@
 		</action>
 		<action name="KintaiMailForm" path="/KintaiMailAction"
 			type="sample.pr.main.KintaiMailAction" validate="false" scope="request">
-			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
 		</action>
 	</action-mappings>
 

@@ -1,4 +1,28 @@
-.DEPERT {
-	width="300"
-	height="100"
-	}
+.depert {
+	margin-left:26px;
+	margin-top:10px;
+}
+.depert2 {
+	margin-left:-10px;
+	margin-top:10px;
+}
+.BCC{
+	margin-top:10px;
+	margin-left:10px;
+}
+.number{
+	margin-left:-20px;
+	margin-top:10px;
+}
+.code{
+	margin-left:-30px;
+	margin-top:10px;
+}
+.date{
+	margin-left:-48px;
+	margin-top:10px;
+}
+.time{
+	margin-left:-48px;
+	margin-top:10px;
+}
