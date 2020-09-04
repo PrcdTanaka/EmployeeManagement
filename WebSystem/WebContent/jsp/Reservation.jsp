@@ -6,21 +6,19 @@
 
 <html:html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/style.css">
-<html:form action="/ReservationAction">
-	<html lang="ja">
+<html lang="ja">
+<link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
+<html:form action="/ReservationAction">
 <body>
-	<table>
-
-		<center>
+<center>
 			<h1>会議室予約画面</h1>
 		</center>
 
 		<div align="right">
-			<a href="open_inforegistration.html">会議室新規登録画面へ</a>
+			<a href="RoomReservation.jsp">会議室新規登録画面へ</a>
 		</div>
-
+	<div align="left">
 		<table border="1">
 			<tr>
 				<th></th>
@@ -47,7 +45,9 @@
 				<td>〇</td>
 			</tr>
 		</table>
+	</div>
 		<br>
+		<div align="center">
 		<table border="2" cellpadding="0" cellspacing="0">
 			<tr>
 				<th></th>
@@ -57,333 +57,332 @@
 				<td width="360" height="40" colspan="5"></td>
 			</tr>
 			<tr>
-				<td width="120" height="40" rowspan="2">前の週へ</td>
-				<td width="360" height="40" colspan="7" style="text-align: center;">2020年09月</td>
-				<td width="120" height="40" rowspan="2">次の週へ</td>
+				<td rowspan="2">前の週へ</td>
+				<td width ="360" colspan ="7" style="text-align: center;">2020年09月</td>
+				<td rowspan="2">次の週へ</td>
 			</tr>
 			<tr>
-				<td width="120" height="40">1日(月)</td>
-				<td width="120" height="40">2日(火)</td>
-				<td width="120" height="40">3日(水)</td>
-				<td width="120" height="40">4日(木)</td>
-				<td width="120" height="40">5日(金)</td>
-				<td width="120" height="40">6日(土)</td>
-				<td width="120" height="40">7日(日)</td>
+				<td>1日(月)</td>
+				<td>2日(火)</td>
+				<td>3日(水)</td>
+				<td>4日(木)</td>
+				<td>5日(金)</td>
+				<td>6日(土)</td>
+				<td>7日(日)</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">8:00</td>
-				<td width="120" height="80">小牧</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">須永</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">後藤</td>
-				<td width="120" height="80">8:00</td>
+				<td >8:00</td>
+				<td >小牧</td>
+				<td >〇</td>
+				<td >〇</td>
+				<td >〇</td>
+				<td >須永</td>
+				<td >〇</td>
+				<td >後藤</td>
+				<td >8:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">8:30</td>
-				<td width="120" height="80">3-3</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">8:30</td>
+				<td >8:30</td>
+				<td >3-3</td>
+				<td >〇</td>
+				<td >〇</td>
+				<td >〇</td>
+				<td >〇</td>
+				<td >〇</td>
+				<td >〇</td>
+				<td >8:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">9:00</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">〇</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">9:00</td>
+				<td >9:00</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >〇</td>
+				<td >2-3</td>
+				<td >〇</td>
+				<td >〇</td>
+				<td >2-5</td>
+				<td >9:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">9:30</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">9:30</td>
+				<td >9:30</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >9:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">10:00</td>
-				<td width="120" height="80">3-3</td>
-				<td width="120" height="80">3-4</td>
-				<td width="120" height="80">3-5</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">10:00</td>
+				<td >10:00</td>
+				<td >3-3</td>
+				<td >3-4</td>
+				<td >3-5</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >10:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">10:30</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">4-4</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">10:30</td>
+				<td >10:30</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >4-4</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >10:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">11:00</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">11:00</td>
+				<td >11:00</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >11:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">11:30</td>
-				<td width="120" height="80">3-3</td>
-				<td width="120" height="80">3-4</td>
-				<td width="120" height="80">3-5</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">11:30</td>
+				<td >11:30</td>
+				<td >3-3</td>
+				<td >3-4</td>
+				<td >3-5</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >11:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">12:00</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">4-4</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">12:00</td>
+				<td >12:00</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >4-4</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >12:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">12:30</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">12:30</td>
+				<td >12:30</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >12:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">13:00</td>
-				<td width="120" height="80">3-3</td>
-				<td width="120" height="80">3-4</td>
-				<td width="120" height="80">3-5</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">13:00</td>
+				<td >13:00</td>
+				<td >3-3</td>
+				<td >3-4</td>
+				<td >3-5</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >13:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">13:30</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">4-4</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">13:30</td>
+				<td >13:30</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >4-4</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >13:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">14:00</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">14:00</td>
+				<td >14:00</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >14:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">14:30</td>
-				<td width="120" height="80">3-3</td>
-				<td width="120" height="80">3-4</td>
-				<td width="120" height="80">3-5</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">14:30</td>
+				<td >14:30</td>
+				<td >3-3</td>
+				<td >3-4</td>
+				<td >3-5</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >14:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">15:00</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">4-4</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">15:00</td>
+				<td >15:00</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >4-4</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >15:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">15:30</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">15:30</td>
+				<td >15:30</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >15:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">16:00</td>
-				<td width="120" height="80">3-3</td>
-				<td width="120" height="80">3-4</td>
-				<td width="120" height="80">3-5</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">16:00</td>
+				<td >16:00</td>
+				<td >3-3</td>
+				<td >3-4</td>
+				<td >3-5</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >16:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">16:30</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">4-4</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">16:30</td>
+				<td >16:30</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >4-4</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >16:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">17:00</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">17:00</td>
+				<td >17:00</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >17:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">17:30</td>
-				<td width="120" height="80">3-3</td>
-				<td width="120" height="80">3-4</td>
-				<td width="120" height="80">3-5</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">17:30</td>
+				<td >17:30</td>
+				<td >3-3</td>
+				<td >3-4</td>
+				<td >3-5</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >17:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">18:00</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">4-4</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">18:00</td>
+				<td >18:00</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >4-4</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >18:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">18:30</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">18:30</td>
+				<td >18:30</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >18:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">19:00</td>
-				<td width="120" height="80">3-3</td>
-				<td width="120" height="80">3-4</td>
-				<td width="120" height="80">3-5</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">19:00</td>
+				<td >19:00</td>
+				<td >3-3</td>
+				<td >3-4</td>
+				<td >3-5</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >19:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">19:30</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">4-4</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">19:30/td>
+				<td >19:30</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >4-4</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >19:30/td>
 			</tr>
 			<tr>
-				<td width="120" height="80">20:00</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">4-4</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">20:00</td>
+				<td >20:00</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >4-4</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >20:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">20:30</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">20:30</td>
+				<td >20:30</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >20:30</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">21:00</td>
-				<td width="120" height="80">3-3</td>
-				<td width="120" height="80">3-4</td>
-				<td width="120" height="80">3-5</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">21:00</td>
+				<td >21:00</td>
+				<td >3-3</td>
+				<td >3-4</td>
+				<td >3-5</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >21:00</td>
 			</tr>
 			<tr>
-				<td width="120" height="80">21:30</td>
-				<td width="120" height="80">4-2</td>
-				<td width="120" height="80">4-3</td>
-				<td width="120" height="80">4-4</td>
-				<td width="120" height="80">2-3</td>
-				<td width="120" height="80">2-4</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">2-5</td>
-				<td width="120" height="80">21:30</td>
+				<td >21:30</td>
+				<td >4-2</td>
+				<td >4-3</td>
+				<td >4-4</td>
+				<td >2-3</td>
+				<td >2-4</td>
+				<td >2-5</td>
+				<td >2-5</td>
+				<td >21:30</td>
 			</tr>
 		</table>
-
-	</table>
+	</div>
 	<p>
 		<input type="button" class="btn" value="戻る"
-			onclick="location.href='main.html'"></input> </input>
+			onclick="location.href='main.html'"></input>
 	</p>
 </body>
 </html:form>
