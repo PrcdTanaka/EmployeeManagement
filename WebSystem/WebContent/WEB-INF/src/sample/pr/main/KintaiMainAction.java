@@ -47,7 +47,7 @@ public class KintaiMainAction extends Action{
 				session.setAttribute("kform", kForm);
 			}
 			else if(button.equals("勤怠一覧画面へ")){
-				forward="catalog";
+				forward="kintailist";
 			}
 		}catch(Exception e){
 			e.printStackTrace();
