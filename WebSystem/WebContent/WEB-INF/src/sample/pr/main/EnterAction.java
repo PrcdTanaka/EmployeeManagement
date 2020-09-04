@@ -59,7 +59,7 @@ public final class EnterAction extends Action {
 		//セッション情報からログイン情報を取得
 		LoginForm lForm = (LoginForm)request.getAttribute("form");
 		//ログインした人の社員番号を取得
-		String employee_no = lForm.getEmployee_no();
+		eForm.setEmployee_no(lForm.getEmployee_no());
 		//jsp上で入力されたボタンを取得
 		String b=eForm.getButton();
 		String link=lForm.getLink();

@@ -136,6 +136,9 @@ public final class MainAction extends Action {
 			case "Access_Control":
 				forward="Access";
 				break;
+			case"1F":
+				forward="Enter";
+				break;
 			}
 		}
 

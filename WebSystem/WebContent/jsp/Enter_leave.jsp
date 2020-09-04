@@ -39,7 +39,7 @@
  			String checklist=eForm.getChecklist();
 
  	%>
- 		<html:form action="/Eneter_leavingAction">
+ 		<html:form action="/EnterAction">
 			<h1>入退室確認画面</h1>
 
 		<h2>1.電気</h2>
