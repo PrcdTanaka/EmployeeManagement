@@ -2875,8 +2875,44 @@ public class DbAction extends Object{
 			sb.append("  PTIME," + crlf);
 			sb.append("  REMARK," + crlf);
 			sb.append("  PERM," + crlf);
+			sb.append("  DEPART," + crlf);
 			sb.append(")VALUES(" + crlf);
-			sb.append("");
+			sb.append("'"+form.getCC()+"',"+crlf);
+			sb.append("'"+form.getBcc()+"',"+crlf);
+			sb.append("'"+form.getSpotcode()+"',"+crlf);
+			sb.append("'"+form.getDivision()+"',"+crlf);
+			sb.append("'"+form.getSpan()+"',"+crlf);
+			sb.append("'"+form.getPtime()+"',"+crlf);
+			sb.append("'"+form.getRemark()+"',"+crlf);
+			sb.append("'"+form.getPerm()+"',"+crlf);
+			sb.append("'"+form.getDepart()+"',"+crlf);
+			sb.append(")"+crlf);
+			String query = sb.toString();
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			try {
+
+				dba.executeQuery(query, typeList, bindList);
+				dba.commit();
+				dba.closeConnection();
+
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+
+		return ret;
+	}
+
 }
 
 
