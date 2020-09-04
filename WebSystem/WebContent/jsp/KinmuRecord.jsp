@@ -9,6 +9,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.SearchForm" %>
 <%@ page import="sample.pr.main.LoginForm" %>
+<%@ page import="sample.pr.main.KintaiMainForm" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.chrono.JapaneseDate" %>
@@ -124,6 +125,8 @@ position:relative;
 	<link rel="stylesheet"  type="text/css" href="../css/search.css">
 	<center><h1>勤務管理表作成</h1></center>
 	</head>
+
+<html:form action="/KinmuRecordAction">
 	<body>
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
@@ -174,17 +177,22 @@ position:relative;
 				<th class="kinmuHead">備考</th>
 			</tr>
 
-		<%
-		for(int i=1; i<=31; i++){
-			LocalDate date = LocalDate.of(2020, 8, i);
-			DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
+			<%
+			for(int i=1; i<=31; i++){
+				LocalDate date = LocalDate.of(2020, 8, i);
+				DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
 
-			out.println("<tr>");
-			out.println(" <td>" + i + "</td><td>"+ JapaneseDate.from(date).format(fmt) +"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-		}
-		%>
-
+				out.println("<tr>");
+				out.println(" <td>" + i + "</td><td>"+ JapaneseDate.from(date).format(fmt) +"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+			}
+			%>
 		</table>
 
+		<div class="back">
+		<html:submit styleClass="send" styleId="main" property="button" value="戻る"></html:submit>
+
+		</div>
+
 	</body>
+</html:form>
 </html:html>

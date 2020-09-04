@@ -12,17 +12,14 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
+public class KinmuRecordAction extends Action{
 
-public final class ReservationAction extends Action{
-
-	// DB接続用オブジェクト
-	private DbAction dba = new DbAction();
+//	private DbAction dba = new DbAction();
 
 	// 遷移先
 	private String forward;
 
-	public ReservationAction() throws IOException {
+	public KinmuRecordAction() throws IOException {
 	}
 	String button;
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
@@ -32,21 +29,28 @@ public final class ReservationAction extends Action{
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		ReservationForm rForm = (ReservationForm) frm;
+		KintaiMainForm kForm = (KintaiMainForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		rForm.setEmployee_no(lForm.getEmployee_no());
-		forward="reservation";
-		String button=rForm.getButton();
+		lForm.setEmployee_no(lForm.getEmployee_no());
+		forward = "KintaiMain";
+		String button=kForm.getButton();
 		try{
 			if(button.equals("戻る")){
 				forward="main";
-				session.removeAttribute("rForm");
+				session.removeAttribute("kForm");
+			}
+			else if(button.equals("勤怠連絡入力")){
+				forward="kintaimail";
+				session.setAttribute("kform", kForm);
+			}
+			else if(button.equals("勤怠一覧画面へ")){
+				forward="kintailist";
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		session.removeAttribute("rForm");
+		session.removeAttribute("kForm");
 		return map.findForward(forward);
 	}
 }

@@ -56,6 +56,7 @@
 			<forward name="attendance" path="/jsp/Attendance.jsp" />
 			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
+			<forward name="Access" path="/jsp/Access_Control.jsp" />
 		</action>
 
 		<action name="PasswordForm" path="/PasswordAction"
@@ -134,6 +135,15 @@
 		<action name="ReservationForm" path="/ReservationAction"
 			type="sample.pr.main.ReservationAction" validate="false" scope="request">
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
+			<forward name="main" path="/jsp/Main.jsp" />
+		</action>
+		<action name="KintaiMainForm" path="/KinmuRecordAction"
+			type="sample.pr.main.KinmuRecordAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/Main.jsp" />
+		</action>
+				<action name="Access_ControlForm" path="/Access_ControlAction"
+			type="sample.pr.main.Access_Control" validate="false" scope="request">
+			<forward name="Access" path="/jsp/Access_Control.jsp" />
 		</action>
 	</action-mappings>
 

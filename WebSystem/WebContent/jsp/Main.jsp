@@ -113,7 +113,7 @@
 			</html:form>
 
 
-						<html:form action="/MainAction">
+		<html:form action="/MainAction">
 			<div class="accbox">
 			<!--ラベル2-->
 			<label for="label2">入退室管理</label>
@@ -128,7 +128,7 @@
 						</html:link>
 						<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">1Fhistory</html:param>
+							<html:param name="link">Access_Control</html:param>
 						</html:link>
 					</li>
 
@@ -139,7 +139,7 @@
 							</html:link>
 							<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">2Fhistory</html:param>
+							<html:param name="link">Access_Control</html:param>
 						</html:link>
 						</li>
 
@@ -150,7 +150,7 @@
 						</html:link>
 						<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">3Fhistory</html:param>
+							<html:param name="link">Access_Control</html:param>
 						</html:link>
 					</li>
 					<li>
@@ -160,7 +160,7 @@
 						</html:link>
 						<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">4Fhistory</html:param>
+							<html:param name="link">Access_Control</html:param>
 						</html:link>
 					</li>
 				</p>
