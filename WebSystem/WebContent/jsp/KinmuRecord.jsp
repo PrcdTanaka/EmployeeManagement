@@ -9,6 +9,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.SearchForm" %>
 <%@ page import="sample.pr.main.LoginForm" %>
+<%@ page import="sample.pr.main.KintaiMainForm" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.chrono.JapaneseDate" %>
@@ -125,9 +126,8 @@ position:relative;
 	<center><h1>勤務管理表作成</h1></center>
 	</head>
 
-
+<html:form action="/KinmuRecordAction">
 	<body>
-	<html:form action="/KinmuRecordAction" >
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
 			<p class="basicInfo">第5技術部</p>
@@ -189,10 +189,10 @@ position:relative;
 		</table>
 
 		<div class="back">
-		<html:submit styleClass="send" property="button" value="戻る"></html:submit>
+		<html:submit styleClass="send" styleId="main" property="button" value="戻る"></html:submit>
 
 		</div>
-	</html:form>
 
 	</body>
+</html:form>
 </html:html>
