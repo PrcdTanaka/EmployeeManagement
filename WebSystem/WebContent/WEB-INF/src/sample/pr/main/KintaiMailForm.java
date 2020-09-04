@@ -6,6 +6,9 @@ public class KintaiMailForm extends ActionForm{
 	private String Button;
 	private String Employee_no;
 	private String employee_name;
+	private String CC;
+	private String depart;
+	private String division;
 
 	public void initialize(){
 		Button="";
@@ -38,6 +41,30 @@ public class KintaiMailForm extends ActionForm{
 	 */
 	public void setEmployee_name(String employee_name) {
 		this.employee_name = employee_name;
+	}
+
+	public void setCC(String CC){
+		this.CC=CC;
+	}
+
+	public String getCC(){
+		return CC;
+	}
+
+	public void setDepart(String depart){
+		this.depart=depart;
+	}
+
+	public String getDepart(){
+		return depart;
+	}
+
+	public void setDivision(String division){
+		this.division=division;
+	}
+
+	public String getDivision(){
+		return division;
 	}
 
 

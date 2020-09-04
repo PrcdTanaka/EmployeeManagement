@@ -12,26 +12,28 @@
 <html lang="ja">
 <html:html>
 <head>
-<link rel="stylesheet" type="text/css" href="/WebSystem/css/KintaiMail.css">
+<link rel="stylesheet" type="text/css"
+	href="/WebSystem/css/KintaiMail.css">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
 <body>
 	<html:form action="/KintaiMailAction">
 		<%
-		String Email="kintai@procd-k.co.jp";
-		String Employee_no="";
-		String name="";
-		DbAction dba = new DbAction();
-		LoginForm s = (LoginForm) session.getAttribute("form");
-		KintaiMailForm Form = new KintaiMailForm();
+			String Email = "kintai@procd-k.co.jp";
+					String Employee_no = "";
+					String name = "";
+					DbAction dba = new DbAction();
+					LoginForm s = (LoginForm) session.getAttribute("form");
+					KintaiMailForm Form = new KintaiMailForm();
+					String CC=Form.getCC();
+					String Depart=Form.getDepart();
+					String Division=Form.getDivision();
+					try {
+						Employee_no = s.getEmployee_no();
+						name = s.getEmployee_name();
+					} catch (Exception e) {
+					}
 
-		try {
-			Employee_no = s.getEmployee_no();
-			name = s.getEmployee_name();
-		} catch (Exception e) {
-		}
-
-		String depertment = " ";
 		%>
 		<div>
 			<center>
@@ -39,84 +41,91 @@
 			</center>
 		</div>
 
-		<p align="center"style="margin-left:-19%;">
-			宛先：<%= Email%>
+		<p  style="margin-left: -44%;">
+			<p align="center"style="margin-left:-45%">宛先:<%=Email%></p>
 		</p>
 
-		<div align="center" class="depert" >
-		CC:
-			<select name="DEPERT" style="width:338px">
-				<option value="1">第一技術部</option>
-				<option value="2">第二技術部</option>
-				<option value="3">第三技術部</option>
-				<option value="4">第四技術部</option>
-				<option value="5">第五技術部</option>
-				<option value="6">第六技術部</option>
-				<option value="7">ソリューション技術部</option>
-			</select>
+		<div align="center" class="depert">
+			CC:
+			<html:select property="CC" styleId="CC" name="KintaiMailForm"
+				style="font-size:15px;width:60%">
+				<html:option value="" style="text-align:center;">選択</html:option>
+				<html:option value="1">第一技術部</html:option>
+				<html:option value="2">第二技術部</html:option>
+				<html:option value="3">第三技術部</html:option>
+				<html:option value="4">第四技術部</html:option>
+				<html:option value="5">第五技術部</html:option>
+				<html:option value="6">第六技術部</html:option>
+				<html:option value="7">ソリューション技術部</html:option>
+			</html:select>
 		</div>
-		<p align="center"class="BCC">
-			BCC：<input type="text" name="namae" size="43" maxlength="20">
+		<p align="center" class="BCC">
+			BCC：<input type="text" name="namae" size="43" maxlength="40"style="font-size:15px;width:60%"placeholder="任意で記入">
 		</p>
 
-		<div align="center" class="depert2" >
-		所属部署:
-			<select name="DEPERT" style="width:338px;margin-top:40;">
-				<option value="1">第一技術部</option>
-				<option value="2">第二技術部</option>
-				<option value="3">第三技術部</option>
-				<option value="4">第四技術部</option>
-				<option value="5">第五技術部()</option>
-				<option value="6">第六技術部</option>
-				<option value="7">ソリューション技術部</option>
-			</select>
+		<div align="center" class="depert2"style="margin-top:50px;width:40%;margin-left:10%;">
+			所属部署:
+			<html:select property="depart" styleId="Depart" name="KintaiMailForm"
+				style="font-size:15px; width:60%;">
+				<html:option value="" style="text-align:center;">選択</html:option>
+				<html:option value="1">第一技術部</html:option>
+				<html:option value="2">第二技術部</html:option>
+				<html:option value="3">第三技術部</html:option>
+				<html:option value="4">第四技術部</html:option>
+				<html:option value="5">第五技術部</html:option>
+				<html:option value="6">第六技術部</html:option>
+				<html:option value="7">ソリューション技術部</html:option>
+			</html:select>
 		</div>
 
-		<p align="center"class="number"style="margin-left:-32%;">
-			社員番号：<%=Employee_no %>
+		<p align="center" style="margin-left: -60%;">
+			社員番号：<%=Employee_no%>
 		</p>
-		<p align="center"class="BCC"style="margin-left:-27%;">
+		<p align="center" class="BCC" style="margin-left: -55%;">
 			氏名：<%=name%>
 		</p>
-		<p align="center"class="code">
-			現場コード：<input type="text" name="namae" size="43" maxlength="20">
+		<p align="center" class="code" style="margin-left: -42%">
+			現場コード：<input type="text" name="namae" size="43" maxlength="5" style="width: 17%"placeholder="例 9-0001">
 		</p>
-		<div align="center" class="depert2" >
-		届出区分:
-			<select name="DEPERT" style="width:338px">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">A</option>
-				<option value="11">B</option>
-			</select>
+		<div align="center" class="depert2"style="width:40%;margin-left:10%">
+			届出区分:
+			<html:select property="CC" styleId="CC" name="KintaiMailForm"
+				style="font-size:15px; width:60%;">
+				<html:option value="" style="text-align:center;">選択</html:option>
+				<html:option value="1">1</html:option>
+				<html:option value="2">2</html:option>
+				<html:option value="3">4</html:option>
+				<html:option value="4">5</html:option>
+				<html:option value="5">6</html:option>
+				<html:option value="6">7</html:option>
+				<html:option value="7">8</html:option>
+				<html:option value="8">9</html:option>
+				<html:option value="9">A</html:option>
+				<html:option value="10">B</html:option>
+			</html:select>
 		</div>
-		<p align="center"class="date">
-			対象日付/期間：<input type="text" name="namae" size="43" maxlength="20">
+		<p align="center" class="code" style="margin-left: -43%">
+			対象日付/期間：<input type="text" name="namae" size="43" maxlength="4" style="width: 17%"placeholder="例 YYYYMMDD">
 		</p>
-		<p align="center"class="time">
-			出勤予定時刻：<input type="text" name="namae" size="43" maxlength="20">
+		<p align="center" class="code" style="margin-left: -43%">
+			出勤予定時刻：<input type="text" name="namae" size="43" maxlength="4" style="width: 17%">
 		</p>
-				<p style="margin-left:32%;">備考:</p>
-					<div style="margin-left:36%;"><html:textarea property="time" rows="10" cols="40" value=""></html:textarea></div>
+		<p style="margin-left: 17.5%;">備考:</p>
+		<div style="margin-left: 21%;">
+			<html:textarea property="time" rows="10" cols="40" value=""></html:textarea>
+		</div>
 
-		<p align="center"class="BCC">
-			許可：<input type="text" name="namae" size="43" maxlength="20">
+		<p align="center" class="code" style="margin-left: -39%">
+			許可：<input type="text" name="namae" size="43" maxlength="4" style="width: 17%">
 		</p>
 
 		<div>
 			<html:submit property="button" styleClass="btn" value="送信"
-				styleId="kintaimail" style="margin-top:10;"/>
+				styleId="kintaimail" style="margin-top:10;" />
 		</div>
 		<div>
 			<html:submit property="button" styleClass="btn" value="戻る"
-				styleId="KintaiMain" style="margin-top:10;"/>
+				styleId="KintaiMain" style="margin-top:10;" />
 		</div>
 
 
