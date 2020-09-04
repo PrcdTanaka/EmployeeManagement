@@ -1,5 +1,4 @@
 .depert {
-	margin-left:26px;
 	margin-top:10px;
 }
 .depert2 {
@@ -8,14 +7,14 @@
 }
 .BCC{
 	margin-top:10px;
-	margin-left:10px;
+	margin-left:-10px;
 }
 .number{
 	margin-top:10px;
 }
-.code{
-	margin-left:-30px;
-	margin-top:10px;
+.code {
+    margin-left: -30%;
+    margin-top: 10px;
 }
 .date{
 	margin-left:-48px;
