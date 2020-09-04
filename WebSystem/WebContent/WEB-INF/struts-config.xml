@@ -135,6 +135,7 @@
 		<action name="ReservationForm" path="/ReservationAction"
 			type="sample.pr.main.ReservationAction" validate="false" scope="request">
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
+			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
 		<action name="KintaiMainForm" path="/KinmuRecordAction"
 			type="sample.pr.main.KinmuRecordAction" validate="false" scope="request">

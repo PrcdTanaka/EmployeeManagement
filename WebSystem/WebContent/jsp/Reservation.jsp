@@ -332,7 +332,7 @@
 				<td >2-4</td>
 				<td >2-5</td>
 				<td >2-5</td>
-				<td >19:30/td>
+				<td >19:30</td>
 			</tr>
 			<tr>
 				<td >20:00</td>
@@ -381,8 +381,8 @@
 		</table>
 	</div>
 	<p>
-		<input type="button" class="btn" value="戻る"
-			onclick="location.href='main.html'"></input>
+		<html:submit property="button" styleClass="btn" value="戻る"
+			styleId="main" />
 	</p>
 </body>
 </html:form>
