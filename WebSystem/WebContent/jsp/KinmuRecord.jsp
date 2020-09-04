@@ -22,12 +22,38 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><bean:message key="login.title"/></title>
 		<html:base/>
-		<link rel="stylesheet" type="text/css" href="../css/style2.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
 	</head>
 
 	<center><h1>勤務管理表作成</h1></center>
 
 	<body>
+		<!-- 各種合計値の表 -->
+		<table border="1">
+			<tr>
+				<th class="head">総予定時間(h)</th>
+				<th class="head">総稼働時間(h)</th>
+				<th class="head">総残業時間(h)</th>
+				<th class="head">振休発生日数(日)</th>
+				<th class="head">有休/リ休(日)</th>
+				<th class="head">振替休(日)</th>
+				<th class="head">特別休(日)</th>
+				<th class="head">欠勤(日)</th>
+			</tr>
+			<tr>
+				<td>168.00</td>
+				<td>144.00</td>
+				<td>0.00</td>
+				<td>0</td>
+				<td>3</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+		</table>
+
+		<!-- 勤怠管理表 -->
+
 		<html:form action="/LoginAction" >
 
 
@@ -35,31 +61,9 @@
 			<div class="block">
 
 				<div class="space"></div>
-				<!-- 各種合計値の表 -->
-				<table>
-					<tr>
-						<th class="kawagoe">総予定時間(h)</th>
-						<th>総稼働時間(h)</th>
-						<th>総残業時間(h)</th>
-						<th>振休発生日数(日)</th>
-						<th>有休/リ休(日)</th>
-						<th>振替休(日)</th>
-						<th>特別休(日)</th>
-						<th>欠勤(日)</th>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
 
-				<!-- 勤怠管理表 -->
+
+
 
 
 
