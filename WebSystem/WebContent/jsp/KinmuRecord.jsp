@@ -9,6 +9,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.SearchForm" %>
 <%@ page import="sample.pr.main.LoginForm" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.chrono.JapaneseDate" %>
 <html lang="ja">
 
 <style>
@@ -24,7 +27,7 @@ color:black;
 	}
 h1{
 	margin-top: 8%;
-    font-size: 390%;
+    font-size: 50px;
 }
 
 table{
@@ -36,20 +39,50 @@ table{
 
 }
 
+/*勤務管理表の年度と月度、及び社員の基本情報*/
+.info{
+	margin: 20px 0 20px 0;
+	text-align: center;
+}
+
+/*上に表示する所属部、社員番号、名前*/
+.basicInfo{
+	text-align: center;
+}
+
+/*合計を表示するテーブル*/
 .total{
 	 border: 1px solid;
    	align-items: center;
     line-height: 2;
 	 border-collapse:collapse;
 	 width:80%;
+	 margin: 20px 0 20px 0;
 }
 
+/*実際の勤務管理表のテーブル*/
+.KinmuRecord{
+	 border: 1px solid;
+   	align-items: center;
+    line-height: 2;
+	 border-collapse:collapse;
+	 width:95%;
+	 margin: 20px 0 20px 0;
+}
+
+/*合計を表示するテーブルの見出し*/
 .totalHead{
 	font-size:12px;
 }
 
-td{
+/*勤務管理業テーブルの見出し*/
+.KinmuHead{
+	font-size:12px;
+}
 
+td{
+	text-align: center;
+	font-size:12px;
 }
 
 
@@ -89,9 +122,18 @@ position:relative;
 <html:html>
 	<head>
 	<link rel="stylesheet"  type="text/css" href="../css/search.css">
-	<center><h1>ユーザ検索</h1></center>
+	<center><h1>勤務管理表作成</h1></center>
 	</head>
 	<body>
+		<div class="info">
+			<p class="yearMonth">2020年 8月度</p>
+			<p class="basicInfo">第5技術部</p>
+			<p class="basicInfo">0329</p>
+			<p class="basicInfo">川越康太郎</p>
+		</div>
+
+
+		<!-- 上のほうに合計時間を表示するテーブル -->
 		<table class="total" border="1" align = "center" style="border-collapse: collapse">
 			<tr bgcolor="#b0c4de">
 				<th class="totalHead">総予定時間(h)</th>
@@ -115,139 +157,34 @@ position:relative;
 			</tr>
 		</table>
 
-	<html:form action="/SearchAction">
 
-		<span class="center">
-				<center><html:text property="text" maxlength="12" />
-				<html:submit property="button" value="検索" /></center>
-				<p>
-				<input type="radio"value="" checked="checked" style="display:none;" />
-				<html:radio property="radio" value="EMPLOYEE_MST.EMPLOYEE_NO"  />社員No
-				<html:radio property="radio" value="NAME" />氏名
-				<html:radio property="radio" value="DEPARTMENT"/>技術部
-				<h2>検索結果</h2>
+		<!-- 実際に勤務管理表を入力するテーブル -->
+		<table class="KinmuRecord" border="1" align = "center" style="border-collapse: collapse">
+			<tr  bgcolor="#b0c4de">
+				<th class="kinmuHead"></th>
+				<th class="kinmuHead"></th>
+				<th class="kinmuHead">休/祝</th>
+				<th class="kinmuHead">出社</th>
+				<th class="kinmuHead">退社</th>
+				<th class="kinmuHead">予定</th>
+				<th class="kinmuHead">休A</th>
+				<th class="kinmuHead">休B</th>
+				<th class="kinmuHead">休暇区分</th>
+				<th class="kinmuHead">実働時間</th>
+				<th class="kinmuHead">備考</th>
+			</tr>
 
-					<%
-					try
-					{
-						String a="";
-						SearchForm s=(SearchForm)session.getAttribute("sForm");
-						List<String> name=s.getEmployee_name();
-						List<String> no=s.getEmployee_no();
-						List<String> depart=s.getDepertment();
-						LoginForm l=(LoginForm)session.getAttribute("form");
-						String manager=l.getManager();
-						out.println("<script>function js_alert() {alert(\"未登録のため参照できません!!FUCKYOU!!!\");}</script>");
-						out.println("<table border=\"1\" align = \"center\" style=\"border-collapse: collapse\"  >");
-						for(int i=-1;i<no.size();i++)
-						{
-							if(i<0)
-							{
-								out.println("<tr bgcolor=\"#b0c4de\">");
-								out.println(" <td>名前</td><td text-align:center>社員番号</td><td text-align:center>技術部</td></tr>");
-							}
-							else
-							{
-								out.println("<tr><td>");      //名前にリンクがついてます。
+		<%
+		for(int i=1; i<=31; i++){
+			LocalDate date = LocalDate.of(2020, 8, i);
+			DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
 
-								if(name.get(i)==null&&manager.equals("1"))
-								{
-									//ここから
-									out.println("<a href=\"/WebSystem/jsp/Personal_information.jsp?employee_no=");
-									out.println(no.get(i));
-									out.println("\" style=\"color:red\" >");
-									//ここまでaタグ。     URLパラメータに押された場所の社員番号を出している。
-									name.set(i, "未登録");
-								}
-								else if(name.get(i)==null){
-									out.println("<a href=\"#\" style=\"color:red\"onclick=\"js_alert()\">");
-									name.set(i, "未登録");
-								}
-								else if(manager.equals("0")){
-									out.println("<a href=\"/WebSystem/jsp/Open_RefeRegistration.jsp?employee_no=");
-									out.println(no.get(i));
-									out.println("\" >");
-								}
-								else if(manager.equals("1")){
-									out.println("<a href=\"/WebSystem/jsp/PinfoManager.jsp?employee_no=");
-									out.println(no.get(i));
-									out.println("\" >");
-								}
+			out.println("<tr>");
+			out.println(" <td>" + i + "</td><td>"+ JapaneseDate.from(date).format(fmt) +"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+		}
+		%>
 
-						        out.println(name.get(i));
-						        out.println("</td>");
-						        out.println("</a>");
+		</table>
 
-						        out.println("<td>");
-						        out.println(no.get(i));
-						        out.println("</td>");
-
-						        out.println("<td>");
-						        if(depart.get(i)==null)
-						        	depart.set(i,"無所属");
-						        else{
-						        	switch(depart.get(i))
-						        	{
-						        	case "00":
-						        		a="総務・経理部";
-						        		break;
-						        	case "01":
-						        		a="第1技術部";
-						        		break;
-						        	case "02":
-						        		a="第2技術部";
-						        		break;
-						        	case "03":
-						        		a="第3技術部";
-						        		break;
-						        	case"04":
-						        		a="第4技術部";
-						        		break;
-						        	case"05":
-						        		a="第5技術部";
-						        		break;
-						        	case"06":
-						        		a="ソリューション技術部";
-						        		break;
-						        	case"07":
-						        		a="システム営業部";
-						        		break;
-						        	case"08":
-						        		a="人事部";
-						        		break;
-						        	case"09":
-						        		a="採用マーケティング部";
-						        		break;
-									}
-						        }
-						        	depart.set(i,a);
-
-						        out.println(depart.get(i));
-						        out.println("</td></tr>");
-							}
-
-
-						}
-						out.println("</table>");
-					}
-					catch(NullPointerException e)
-					{
-
-					}
-					catch(Exception e)
-					{
-
-					}
-
-					%>
-		</span>
-
-
-		<div class="back">
-		<html:submit styleClass="send" property="button" value="戻る"></html:submit>
-
-		</div>
-
-		</html:form>
 	</body>
 </html:html>
