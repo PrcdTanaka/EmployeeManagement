@@ -130,6 +130,9 @@ public final class MainAction extends Action {
 			case "KintaiMain":
 				forward="KintaiMain";
 				break;
+			case "reservation":
+				forward="reservation";
+				break;
 			}
 		}
 
