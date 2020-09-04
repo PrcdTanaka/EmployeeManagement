@@ -43,6 +43,7 @@ public class KintaiMailAction extends Action{
 			}
 			else if(button.equals("送信")){
 				forward="kintaimail";
+				dba.setKintaiInfo(Form);
 				session.setAttribute("form", Form);
 			}
 		}catch(Exception e){
