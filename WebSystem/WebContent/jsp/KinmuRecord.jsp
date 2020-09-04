@@ -124,7 +124,10 @@ position:relative;
 	<link rel="stylesheet"  type="text/css" href="../css/search.css">
 	<center><h1>勤務管理表作成</h1></center>
 	</head>
+
+
 	<body>
+	<html:form action="/KinmuRecordAction" >
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
 			<p class="basicInfo">第5技術部</p>
@@ -174,17 +177,22 @@ position:relative;
 				<th class="kinmuHead">備考</th>
 			</tr>
 
-		<%
-		for(int i=1; i<=31; i++){
-			LocalDate date = LocalDate.of(2020, 8, i);
-			DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
+			<%
+			for(int i=1; i<=31; i++){
+				LocalDate date = LocalDate.of(2020, 8, i);
+				DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
 
-			out.println("<tr>");
-			out.println(" <td>" + i + "</td><td>"+ JapaneseDate.from(date).format(fmt) +"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-		}
-		%>
-
+				out.println("<tr>");
+				out.println(" <td>" + i + "</td><td>"+ JapaneseDate.from(date).format(fmt) +"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+			}
+			%>
 		</table>
+
+		<div class="back">
+		<html:submit styleClass="send" property="button" value="戻る"></html:submit>
+
+		</div>
+	</html:form>
 
 	</body>
 </html:html>
