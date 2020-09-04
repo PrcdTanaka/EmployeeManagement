@@ -185,15 +185,15 @@ position:relative;
 				out.println("<tr>");
 				out.println("<td>" + i + "</td>");  //日付
 				out.println("<td>" + JapaneseDate.from(date).format(fmt) + "</td>");  //曜日
-				out.println("<td>" + "</td>");
-				out.println("<td>" + "</td>");
-				out.println("<td>" + "</td>");
-				out.println("<td>" + "</td>");
-				out.println("<td>" + "</td>");
-				out.println("<td>" + "</td>");
-				out.println("<td>" + "</td>");
-				out.println("<td>" + "</td>");
-				out.println("<td>" + "</td></tr>");
+				out.println("<td>" + "</td>");   //休/祝
+				out.println("<td>" + "</td>");   //出社
+				out.println("<td>" + "</td>");   //退社
+				out.println("<td>" + "</td>");   //予定
+				out.println("<td>" + "</td>");   //休A
+				out.println("<td>" + "</td>");   //休B
+				out.println("<td>" + "</td>");   //休暇区分
+				out.println("<td>" + "</td>");   //実働時間
+				out.println("<td>" + "</td></tr>");   //備考
 			}
 			%>
 		</table>
