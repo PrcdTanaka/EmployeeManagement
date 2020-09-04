@@ -7,9 +7,7 @@
 
 <html:html>
 <head>
-<html:base />
 <title><bean:message key="password.title" /></title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
