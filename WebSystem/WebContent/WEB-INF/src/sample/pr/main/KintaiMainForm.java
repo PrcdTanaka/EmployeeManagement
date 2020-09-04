@@ -16,11 +16,13 @@ public class KintaiMainForm extends ActionForm{
 	public String getButton(){
 		return Button;
 	}
+
 	public void setEmployee_no(String employee_no){
-		Employee_no=employee_no;
+		this.Employee_no=employee_no;
 	}
 	public String getEmployee_no(){
 		return Employee_no;
 	}
+
 
 }

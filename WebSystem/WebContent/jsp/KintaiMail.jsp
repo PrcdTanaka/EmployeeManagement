@@ -4,7 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.AttendanceForm"%>
+<%@ page import="sample.pr.main.KintaiMailForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -18,7 +18,20 @@
 <body>
 	<html:form action="/KintaiMailAction">
 		<%
-			String depertment = " ";
+		String Email="kintai@procd-k.co.jp";
+		String Employee_no="";
+		String name="";
+		DbAction dba = new DbAction();
+		LoginForm s = (LoginForm) session.getAttribute("form");
+		KintaiMailForm Form = new KintaiMailForm();
+
+		try {
+			Employee_no = s.getEmployee_no();
+			name = s.getEmployee_name();
+		} catch (Exception e) {
+		}
+
+		String depertment = " ";
 		%>
 		<div>
 			<center>
@@ -26,8 +39,8 @@
 			</center>
 		</div>
 
-		<p align="center">
-			宛先：<input type="text" name="namae" size="43" maxlength="20">
+		<p align="center"style="margin-left:-19%;">
+			宛先：<%= Email%>
 		</p>
 
 		<div align="center" class="depert" >
@@ -59,11 +72,11 @@
 			</select>
 		</div>
 
-		<p align="center"class="number">
-			社員番号：<input type="text" name="namae" size="43" maxlength="20">
+		<p align="center"class="number"style="margin-left:-32%;">
+			社員番号：<%=Employee_no %>
 		</p>
-		<p align="center"class="BCC">
-			氏名：<input type="text" name="namae" size="43" maxlength="20">
+		<p align="center"class="BCC"style="margin-left:-27%;">
+			氏名：<%=name%>
 		</p>
 		<p align="center"class="code">
 			現場コード：<input type="text" name="namae" size="43" maxlength="20">
