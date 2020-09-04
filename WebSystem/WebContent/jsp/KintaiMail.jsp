@@ -25,15 +25,20 @@
 					DbAction dba = new DbAction();
 					LoginForm s = (LoginForm) session.getAttribute("form");
 					KintaiMailForm Form = new KintaiMailForm();
-					String CC=Form.getCC();
-					String Depart=Form.getDepart();
-					String Division=Form.getDivision();
+					String CC = Form.getCC();
+					String Depart = Form.getDepart();
+					String Division = Form.getDivision();
+					String bcc = Form.getBcc();
+					String spotcode = Form.getSpotcode();
+					String span = Form.getSpan();
+					String ptime = Form.getPtime();
+					String remark = Form.getRemark();
+					String perm = Form.getPerm();
 					try {
 						Employee_no = s.getEmployee_no();
 						name = s.getEmployee_name();
 					} catch (Exception e) {
 					}
-
 		%>
 		<div>
 			<center>
@@ -41,8 +46,9 @@
 			</center>
 		</div>
 
-		<p  style="margin-left: -44%;">
-			<p align="center"style="margin-left:-45%">宛先:<%=Email%></p>
+		<p style="margin-left: -44%;">
+		<p align="center" style="margin-left: -45%">
+			宛先:<%=Email%></p>
 		</p>
 
 		<div align="center" class="depert">
@@ -55,15 +61,16 @@
 				<html:option value="3">第三技術部</html:option>
 				<html:option value="4">第四技術部</html:option>
 				<html:option value="5">第五技術部</html:option>
-				<html:option value="6">第六技術部</html:option>
-				<html:option value="7">ソリューション技術部</html:option>
+				<html:option value="6">ソリューション技術部</html:option>
 			</html:select>
 		</div>
 		<p align="center" class="BCC">
-			BCC：<input type="text" name="namae" size="43" maxlength="40"style="font-size:15px;width:60%"placeholder="任意で記入">
+			BCC：<input type="text" name="namae" size="43" maxlength="40"
+				style="font-size: 15px; width: 60%" placeholder="任意で記入">
 		</p>
 
-		<div align="center" class="depert2"style="margin-top:50px;width:40%;margin-left:10%;">
+		<div align="center" class="depert2"
+			style="margin-top: 50px; width: 40%; margin-left: 10%;">
 			所属部署:
 			<html:select property="depart" styleId="Depart" name="KintaiMailForm"
 				style="font-size:15px; width:60%;">
@@ -73,8 +80,7 @@
 				<html:option value="3">第三技術部</html:option>
 				<html:option value="4">第四技術部</html:option>
 				<html:option value="5">第五技術部</html:option>
-				<html:option value="6">第六技術部</html:option>
-				<html:option value="7">ソリューション技術部</html:option>
+				<html:option value="6">ソリューション技術部</html:option>
 			</html:select>
 		</div>
 
@@ -85,9 +91,11 @@
 			氏名：<%=name%>
 		</p>
 		<p align="center" class="code" style="margin-left: -42%">
-			現場コード：<input type="text" name="namae" size="43" maxlength="5" style="width: 17%"placeholder="例 9-0001">
+			現場コード：<input type="text" name="namae" size="43" maxlength="5"
+				style="width: 17%" placeholder="例 9-0001">
 		</p>
-		<div align="center" class="depert2"style="width:40%;margin-left:10%">
+		<div align="center" class="depert2"
+			style="width: 40%; margin-left: 10%">
 			届出区分:
 			<html:select property="CC" styleId="CC" name="KintaiMailForm"
 				style="font-size:15px; width:60%;">
@@ -105,10 +113,12 @@
 			</html:select>
 		</div>
 		<p align="center" class="code" style="margin-left: -43%">
-			対象日付/期間：<input type="text" name="namae" size="43" maxlength="4" style="width: 17%"placeholder="例 YYYYMMDD">
+			対象日付/期間：<input type="text" name="namae" size="43" maxlength="4"
+				style="width: 17%" placeholder="例 YYYYMMDD">
 		</p>
 		<p align="center" class="code" style="margin-left: -43%">
-			出勤予定時刻：<input type="text" name="namae" size="43" maxlength="4" style="width: 17%">
+			出勤予定時刻：<input type="text" name="namae" size="43" maxlength="4"
+				style="width: 17%" placeholder="例 13:00">
 		</p>
 		<p style="margin-left: 17.5%;">備考:</p>
 		<div style="margin-left: 21%;">
@@ -116,7 +126,8 @@
 		</div>
 
 		<p align="center" class="code" style="margin-left: -39%">
-			許可：<input type="text" name="namae" size="43" maxlength="4" style="width: 17%">
+			許可：<input type="text" name="namae" size="43" maxlength="4"
+				style="width: 17%" placeholder="姓のみ記入">
 		</p>
 
 		<div>

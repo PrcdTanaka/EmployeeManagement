@@ -11,6 +11,7 @@ import java.util.Map;
 import sample.db.DbConnector;
 import sample.pr.main.AttendanceForm;
 import sample.pr.main.EnterForm;
+import sample.pr.main.KintaiMailForm;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
 import sample.pr.main.Open_informationForm;
@@ -2821,7 +2822,7 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			
+
 			sb.append("UPDATE" + crlf);
 			sb.append("  ROOM_ACCESS_TBL" + crlf);
 			sb.append("SET" + crlf);
@@ -2847,8 +2848,35 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
-	
+	public boolean setKintaiInfo(KintaiMailForm form) {
 
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO" + crlf);
+			sb.append("  KINTAIMAIL(" + crlf);
+			sb.append("  CC," + crlf);
+			sb.append("  BCC," + crlf);
+			sb.append("  SPOTCODE," + crlf);
+			sb.append("  DIVISION," + crlf);
+			sb.append("  SPAN," + crlf);
+			sb.append("  PTIME," + crlf);
+			sb.append("  REMARK," + crlf);
+			sb.append("  PERM," + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("");
 }
 
 
