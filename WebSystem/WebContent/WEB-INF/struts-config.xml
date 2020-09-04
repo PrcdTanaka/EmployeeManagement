@@ -27,6 +27,7 @@
 		<form-bean name="KintaiMainForm" type="sample.pr.main.KintaiMainForm" />
 		<form-bean name="KintaiMailForm" type="sample.pr.main.KintaiMailForm" />
 		<form-bean name="ReservationForm" type="sample.pr.main.ReservationForm" />
+		<form-bean name="EnterForm" type="sample.pr.main.EnterForm" />
 
 	</form-beans>
 
@@ -57,6 +58,7 @@
 			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
+			<forward name="Enter" path="/jsp/Enter_leave.jsp" />
 		</action>
 
 		<action name="PasswordForm" path="/PasswordAction"
@@ -121,14 +123,14 @@
 		<action name="KintaiMainForm" path="/KintaiMainAction"
 			type="sample.pr.main.KintaiMainAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Main.jsp" />
-			<forward name="kintaimail" path="/jsp/KintaiMail.jsp"/>
-			<forward name="catalog" path="/jsp/KintaiCatalog.jsp"/>
+			<forward name="kintaimail" path="/jsp/KintaiMail.jsp" />
+			<forward name="catalog" path="/jsp/KintaiCatalog.jsp" />
 		</action>
 		<action name="KintaiMailForm" path="/KintaiMailAction"
 			type="sample.pr.main.KintaiMailAction" validate="false" scope="request">
 			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
 		</action>
-				<action name="KintaiMailForm" path="/KintaiMailAction"
+		<action name="KintaiMailForm" path="/KintaiMailAction"
 			type="sample.pr.main.KintaiMailAction" validate="false" scope="request">
 			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
 		</action>
@@ -141,9 +143,14 @@
 			type="sample.pr.main.KinmuRecordAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
-				<action name="Access_ControlForm" path="/Access_ControlAction"
+		<action name="Access_ControlForm" path="/Access_ControlAction"
 			type="sample.pr.main.Access_Control" validate="false" scope="request">
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
+		</action>
+		<action name="EnterForm" path="/EnterAction" type="sample.pr.main.EnterAction"
+			validate="false" scope="request">
+			<forward name="success" path="/jsp/Main.jsp" />
+			<forward name="success" path="/jsp/Enter_leave.jsp" />
 		</action>
 	</action-mappings>
 

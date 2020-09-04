@@ -2875,7 +2875,7 @@ public class DbAction extends Object{
 			sb.append("  PTIME," + crlf);
 			sb.append("  REMARK," + crlf);
 			sb.append("  PERM," + crlf);
-			sb.append("  DEPART," + crlf);
+			sb.append("  DEPART" + crlf);
 			sb.append(")VALUES(" + crlf);
 			sb.append("'"+form.getCC()+"',"+crlf);
 			sb.append("'"+form.getBcc()+"',"+crlf);
@@ -2885,21 +2885,16 @@ public class DbAction extends Object{
 			sb.append("'"+form.getPtime()+"',"+crlf);
 			sb.append("'"+form.getRemark()+"',"+crlf);
 			sb.append("'"+form.getPerm()+"',"+crlf);
-			sb.append("'"+form.getDepart()+"',"+crlf);
+			sb.append("'"+form.getDepart()+"'"+crlf);
 			sb.append(")"+crlf);
 			String query = sb.toString();
 
 			// 設定値 - 型
-			List<Integer> typeList = new ArrayList<Integer>();
-			typeList.add(dba.DB_STRING);
 
-			// 設定値 - 値
-			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getEmployee_no());
 
 			try {
 
-				dba.executeQuery(query, typeList, bindList);
+				dba.executeQuery(query);
 				dba.commit();
 				dba.closeConnection();
 
@@ -2908,7 +2903,7 @@ public class DbAction extends Object{
 				e.printStackTrace();
 			}
 		}
-
+		ret=true;
 
 		return ret;
 	}
