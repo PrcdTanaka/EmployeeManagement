@@ -183,14 +183,23 @@ position:relative;
 				DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
 
 				out.println("<tr>");
-				out.println(" <td>" + i + "</td><td>"+ JapaneseDate.from(date).format(fmt) +"</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+				out.println("<td>" + i + "</td>");  //日付
+				out.println("<td>" + JapaneseDate.from(date).format(fmt) + "</td>");  //曜日
+				out.println("<td>" + "</td>");
+				out.println("<td>" + "</td>");
+				out.println("<td>" + "</td>");
+				out.println("<td>" + "</td>");
+				out.println("<td>" + "</td>");
+				out.println("<td>" + "</td>");
+				out.println("<td>" + "</td>");
+				out.println("<td>" + "</td>");
+				out.println("<td>" + "</td></tr>");
 			}
 			%>
 		</table>
 
 		<div class="back">
-		<html:submit styleClass="send" styleId="main" property="button" value="戻る"></html:submit>
-
+			<html:submit styleClass="send" styleId="main" property="button" value="戻る"></html:submit>
 		</div>
 
 	</body>
