@@ -175,7 +175,7 @@ public class KintaiMailForm extends ActionForm{
 	public String getPtime(){
 		return ptime;
 	}
-	public void setRmark(String remark){
+	public void setRemark(String remark){
 		this.remark=remark;
 	}
 
