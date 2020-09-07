@@ -1,5 +1,6 @@
 package sample.pr.main;
 
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -52,5 +53,11 @@ public class KinmuRecordAction extends Action{
 		}
 		session.removeAttribute("kForm");
 		return map.findForward(forward);
+
+
+
+
+
 	}
+
 }

@@ -10,9 +10,12 @@
 <%@ page import="sample.pr.main.SearchForm" %>
 <%@ page import="sample.pr.main.LoginForm" %>
 <%@ page import="sample.pr.main.KintaiMainForm" %>
+<%@ page import="sample.pr.main.KinmuRecordAction" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.chrono.JapaneseDate" %>
+
+
 <html lang="ja">
 
 <style>
@@ -76,7 +79,7 @@ table{
 	font-size:12px;
 }
 
-/*勤務管理業テーブルの見出し*/
+/*勤務管理表テーブルの見出し*/
 .KinmuHead{
 	font-size:12px;
 }
@@ -164,9 +167,8 @@ position:relative;
 		<!-- 実際に勤務管理表を入力するテーブル -->
 		<table class="KinmuRecord" border="1" align = "center" style="border-collapse: collapse">
 			<tr  bgcolor="#b0c4de">
-				<th class="kinmuHead"></th>
-				<th class="kinmuHead"></th>
-				<th class="kinmuHead">休/祝</th>
+				<th class="kinmuHead" colspan="2">日付</th>  <!-- 日にち -->
+				<th class="kinmuHead" style="table-layout: auto;">休/祝</th>
 				<th class="kinmuHead">出社</th>
 				<th class="kinmuHead">退社</th>
 				<th class="kinmuHead">予定</th>
@@ -177,26 +179,91 @@ position:relative;
 				<th class="kinmuHead">備考</th>
 			</tr>
 
-			<%
-			for(int i=1; i<=31; i++){
-				LocalDate date = LocalDate.of(2020, 8, i);
-				DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
+			<%-- 修正後の勤務管理表 --%>
 
-				out.println("<tr>");
-				out.println("<td>" + i + "</td>");  //日付
-				out.println("<td>" + JapaneseDate.from(date).format(fmt) + "</td>");  //曜日
-				out.println("<td>" + "</td>");   //休/祝
-				out.println("<td>" + "</td>");   //出社
-				out.println("<td>" + "</td>");   //退社
-				out.println("<td>" + "</td>");   //予定
-				out.println("<td>" + "</td>");   //休A
-				out.println("<td>" + "</td>");   //休B
-				out.println("<td>" + "</td>");   //休暇区分
-				out.println("<td>" + "</td>");   //実働時間
-				out.println("<td>" + "</td></tr>");   //備考
-			}
-			%>
-		</table>
+				<% for(int i=1; i<=31; i++) {
+					LocalDate date = LocalDate.of(2020, 8, i);
+					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
+				%>
+				<tr>
+					<td width="7px"><%= i %></td>   <%-- 日付 --%>
+					<td width="7px"><%= JapaneseDate.from(date).format(fmt) %></td>   <%-- 曜日 --%>
+					<td width="10px">  <%-- 休/祝 --%>
+						<select>
+							<option value="0">-</option>
+							<option value="1">休</option>
+							<option value="2">祝</option>
+						</select>
+					</td>
+					<td><%-- 出社 --%>
+						<select>
+						<% //プルダウンの表示
+						int hour1=0, min1=0;
+						for(int j=0; j<96; j++){ %>
+							<% if(min1==0) { %>
+								<option>
+									<%= hour1 %>:0<%= min1 %>
+								</option>
+							<% } else { %>
+								<option>
+									<%= hour1 %>:<%= min1 %>
+								</option>
+							<% } %>
+
+							<%  //時間の更新
+							min1 += 15;
+							if(min1%60==0){
+								hour1++;
+								min1=0;
+							}
+							%>
+						<%}%>
+						</select>
+					</td>
+					<td>  <%-- 退社 --%>
+						<select>
+						<% //プルダウンの表示
+						int hour2=0, min2=0;
+						for(int j=0; j<96; j++){ %>
+							<% if(min2==0) { %>
+								<option>
+									<%= hour2 %>:0<%= min2 %>
+								</option>
+							<% } else { %>
+								<option>
+									<%= hour2 %>:<%= min2 %>
+								</option>
+							<% } %>
+
+							<%  //時間の更新
+							min2 += 15;
+							if(min2%60==0){
+								hour2++;
+								min2=0;
+							}
+							%>
+						<%}%>
+						</select>
+					</td>
+					<td></td>  <%-- 予定 --%>
+					<td></td>  <%-- 休A --%>
+					<td></td>  <%-- 休B --%>
+					<td width="40%">  <%-- 休暇区分 --%>
+						<input type="radio" name="kubun" value="0">0.出勤
+						<input type="radio" name="kubun" value="1">1.有休/リ休
+						<input type="radio" name="kubun" value="2">2.遅/早
+						<input type="radio" name="kubun" value="3">3.振休
+						<input type="radio" name="kubun" value="4">4.特休
+						<input type="radio" name="kubun" value="5">5.欠勤
+					</td>
+					<td width="6%"></td>  <%-- 実働時間 --%>
+					<td width="20%">  <%-- 備考 --%>
+						<input type="text" name="bikou">
+					</td>
+				</tr>
+				<% } %>
+
+
 
 		<div class="back">
 			<html:submit styleClass="send" styleId="main" property="button" value="戻る"></html:submit>
@@ -205,3 +272,5 @@ position:relative;
 	</body>
 </html:form>
 </html:html>
+
+
