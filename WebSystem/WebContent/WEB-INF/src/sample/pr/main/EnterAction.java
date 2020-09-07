@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -55,15 +56,15 @@ public final class EnterAction extends Action {
 		EnterForm eForm = (EnterForm) frm;
 
 
-
+		HttpSession session=request.getSession();
 		//セッション情報からログイン情報を取得
-		LoginForm lForm = (LoginForm)request.getAttribute("form");
+		LoginForm lForm = (LoginForm)session.getAttribute("form");
 		//ログインした人の社員番号を取得
-		String employee_no = lForm.getEmployee_no();
+		eForm.setEmployee_no(lForm.getEmployee_no());
 		//jsp上で入力されたボタンを取得
 		String b=eForm.getButton();
 		String link=lForm.getLink();
-
+		eForm.setLink(link);
 		Calendar calendar = Calendar.getInstance();
 		String month=(calendar.get(calendar.MONTH)+1)+"";
 		if(month.length()!=2)
@@ -81,17 +82,17 @@ public final class EnterAction extends Action {
 		String cale =month+day;
 
 
-		if (eForm.getButton().equals("退室")) {
+		if (b.equals("退室")) {
 			if(lForm.getEmployee_name()==null) {
 				forward="failure";
 			}
 			else {
 				forward="success";
-
+;				dba.UpdateLeave(eForm, time, cale);
 			}
 
 		}
-		else if(eForm.getButton().equals("入室")){
+		else if(b.equals("入室")){
 			if(lForm.getEmployee_name()!=null) {
 				forward="success";
 				dba.InsertEnter(eForm, cale, time);

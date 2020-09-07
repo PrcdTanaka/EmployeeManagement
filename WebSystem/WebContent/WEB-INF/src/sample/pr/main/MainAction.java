@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -135,6 +136,16 @@ public final class MainAction extends Action {
 				break;
 			case "Access_Control":
 				forward="Access";
+				break;
+			case"1F":
+				forward="Enter";
+				break;
+			case"2F":
+				forward="Enter";
+				HttpSession session = request.getSession();
+				LoginForm lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("2F");
+				session.setAttribute("form", lform);
 				break;
 			}
 		}

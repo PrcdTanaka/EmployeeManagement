@@ -2793,8 +2793,8 @@ public class DbAction extends Object{
 			sb.append("'"+b+"',"+ crlf);
 			sb.append("0,"+ crlf);
 			sb.append("0,"+ crlf);
-			sb.append("'"+form.getLink()+"',"+ crlf);
-			sb.append("0"+crlf);
+			sb.append("'"+form.getLink().substring(0,1)+"',"+ crlf);
+			sb.append("0)"+crlf);
 			String query = sb.toString();
 
 			try {
@@ -2821,16 +2821,20 @@ public class DbAction extends Object{
 		if (dba.conSts) {
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
+			String floor=form.getLink();
+			floor=floor.substring(0,1);
 
 
 			sb.append("UPDATE" + crlf);
 			sb.append("  ROOM_ACCESS_TBL" + crlf);
 			sb.append("SET" + crlf);
-			sb.append("  LEAVING_NO = " + "'"+form.getEmployee_no()+"'" + crlf);
-			sb.append("  LEAVING_TIME = " + "'" +a+"'" + crlf);
+			sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
+			sb.append("  LEAVING_TIME = " + "'" +a+"'," + crlf);
 			sb.append("  CHECK_LIST='"+form.getChecklist()+"'"+ crlf);
 			sb.append("WHERE" + crlf);
 			sb.append(  "DAY = '"+b+"'" + crlf);
+			sb.append("AND"+crlf);
+			sb.append(  "FLOOR ='"+floor+"'"+crlf);
 
 			String query = sb.toString();
 
@@ -2875,7 +2879,7 @@ public class DbAction extends Object{
 			sb.append("  PTIME," + crlf);
 			sb.append("  REMARK," + crlf);
 			sb.append("  PERM," + crlf);
-			sb.append("  DEPART," + crlf);
+			sb.append("  DEPART" + crlf);
 			sb.append(")VALUES(" + crlf);
 			sb.append("'"+form.getCC()+"',"+crlf);
 			sb.append("'"+form.getBcc()+"',"+crlf);
@@ -2885,21 +2889,16 @@ public class DbAction extends Object{
 			sb.append("'"+form.getPtime()+"',"+crlf);
 			sb.append("'"+form.getRemark()+"',"+crlf);
 			sb.append("'"+form.getPerm()+"',"+crlf);
-			sb.append("'"+form.getDepart()+"',"+crlf);
+			sb.append("'"+form.getDepart()+"'"+crlf);
 			sb.append(")"+crlf);
 			String query = sb.toString();
 
 			// 設定値 - 型
-			List<Integer> typeList = new ArrayList<Integer>();
-			typeList.add(dba.DB_STRING);
 
-			// 設定値 - 値
-			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getEmployee_no());
 
 			try {
 
-				dba.executeQuery(query, typeList, bindList);
+				dba.executeQuery(query);
 				dba.commit();
 				dba.closeConnection();
 
@@ -2908,7 +2907,7 @@ public class DbAction extends Object{
 				e.printStackTrace();
 			}
 		}
-
+		ret=true;
 
 		return ret;
 	}
