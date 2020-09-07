@@ -26,8 +26,8 @@
 					LoginForm s = (LoginForm) session.getAttribute("form");
 					KintaiMailForm Form = new KintaiMailForm();
 					String CC = Form.getCC();
-					String Depart = Form.getDepart();
-					String Division = Form.getDivision();
+					String depart = Form.getDepart();
+					String division = Form.getDivision();
 					String bcc = Form.getBcc();
 					String spotcode = Form.getSpotcode();
 					String span = Form.getSpan();
@@ -64,14 +64,13 @@
 			</html:select>
 		</div>
 		<p align="center" class="BCC">
-			BCC：<input type="text" name="namae" size="43" maxlength="40"
-				style="font-size: 15px; width: 60%" placeholder="任意で記入">
+				BCC:<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=bcc%>" />
 		</p>
 
 		<div align="center" class="depert2"
 			style="margin-top: 50px; width: 40%; margin-left: 10%;">
 			所属部署:
-			<html:select property="depart" styleId="Depart" name="KintaiMailForm"
+			<html:select property="depart" styleId="depart" name="KintaiMailForm"
 				style="font-size:15px; width:60%;">
 				<html:option value="" style="text-align:center;">選択</html:option>
 				<html:option value="1">第一技術部</html:option>
@@ -90,13 +89,12 @@
 			氏名：<%=name%>
 		</p>
 		<p align="center" class="code" style="margin-left: -42%">
-			現場コード：<input type="text" name="namae" size="43" maxlength="5"
-				style="width: 17%" placeholder="例 9-0001">
+			現場コード：<html:text property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=spotcode%>" />
 		</p>
 		<div align="center" class="depert2"
 			style="width: 40%; margin-left: 10%">
 			届出区分:
-			<html:select property="CC" styleId="CC" name="KintaiMailForm"
+			<html:select property="division" styleId="division" name="KintaiMailForm"
 				style="font-size:15px; width:60%;">
 				<html:option value="" style="text-align:center;">選択</html:option>
 				<html:option value="1">1</html:option>
@@ -112,21 +110,19 @@
 			</html:select>
 		</div>
 		<p align="center" class="code" style="margin-left: -43%">
-			対象日付/期間：<input type="text" name="namae" size="43" maxlength="4"
+			対象日付/期間：<input type="text" name="namae" size="43" maxlength="20"
 				style="width: 17%" placeholder="例 YYYYMMDD">
 		</p>
 		<p align="center" class="code" style="margin-left: -43%">
-			出勤予定時刻：<input type="text" name="namae" size="43" maxlength="4"
-				style="width: 17%" placeholder="例 13:00">
+			出勤予定時刻：<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
 		</p>
 		<p style="margin-left: 17.5%;">備考:</p>
 		<div style="margin-left: 21%;">
-			<html:textarea property="time" rows="10" cols="40" value=""></html:textarea>
+			<html:textarea property="remark" rows="10" cols="100" value="<%=remark%>"></html:textarea>
 		</div>
 
 		<p align="center" class="code" style="margin-left: -39%">
-			許可：<input type="text" name="namae" size="43" maxlength="4"
-				style="width: 17%" placeholder="姓のみ記入">
+			許可:<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
 		</p>
 
 		<div>
