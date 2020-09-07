@@ -49,7 +49,6 @@
 		<p style="margin-left: -44%;">
 		<p align="center" style="margin-left: -45%">
 			宛先:<%=Email%></p>
-		</p>
 
 		<div align="center" class="depert">
 			CC:
