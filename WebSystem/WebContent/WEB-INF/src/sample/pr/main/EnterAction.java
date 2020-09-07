@@ -64,7 +64,7 @@ public final class EnterAction extends Action {
 		//jsp上で入力されたボタンを取得
 		String b=eForm.getButton();
 		String link=lForm.getLink();
-
+		eForm.setLink(link);
 		Calendar calendar = Calendar.getInstance();
 		String month=(calendar.get(calendar.MONTH)+1)+"";
 		if(month.length()!=2)

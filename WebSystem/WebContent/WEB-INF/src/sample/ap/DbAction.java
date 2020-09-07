@@ -2793,8 +2793,8 @@ public class DbAction extends Object{
 			sb.append("'"+b+"',"+ crlf);
 			sb.append("0,"+ crlf);
 			sb.append("0,"+ crlf);
-			sb.append("'"+form.getLink()+"',"+ crlf);
-			sb.append("0"+crlf);
+			sb.append("'"+form.getLink().substring(0,1)+"',"+ crlf);
+			sb.append("0)"+crlf);
 			String query = sb.toString();
 
 			try {
@@ -2821,6 +2821,8 @@ public class DbAction extends Object{
 		if (dba.conSts) {
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
+			String floor=form.getLink();
+			floor=floor.substring(0,1);
 
 
 			sb.append("UPDATE" + crlf);
@@ -2831,7 +2833,8 @@ public class DbAction extends Object{
 			sb.append("  CHECK_LIST='"+form.getChecklist()+"'"+ crlf);
 			sb.append("WHERE" + crlf);
 			sb.append(  "DAY = '"+b+"'" + crlf);
-			sb.append("");
+			sb.append("AND"+crlf);
+			sb.append(  "FLOOR ='"+floor+"'"+crlf);
 
 			String query = sb.toString();
 
