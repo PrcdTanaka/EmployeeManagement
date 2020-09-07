@@ -2826,11 +2826,12 @@ public class DbAction extends Object{
 			sb.append("UPDATE" + crlf);
 			sb.append("  ROOM_ACCESS_TBL" + crlf);
 			sb.append("SET" + crlf);
-			sb.append("  LEAVING_NO = " + "'"+form.getEmployee_no()+"'" + crlf);
-			sb.append("  LEAVING_TIME = " + "'" +a+"'" + crlf);
+			sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
+			sb.append("  LEAVING_TIME = " + "'" +a+"'," + crlf);
 			sb.append("  CHECK_LIST='"+form.getChecklist()+"'"+ crlf);
 			sb.append("WHERE" + crlf);
 			sb.append(  "DAY = '"+b+"'" + crlf);
+			sb.append("");
 
 			String query = sb.toString();
 

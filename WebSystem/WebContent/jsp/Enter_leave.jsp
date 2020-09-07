@@ -1,3 +1,6 @@
+<%@page import="javax.tools.DocumentationTool.Location"%>
+<%@page import="sample.pr.main.Personal_informationForm"%>
+<%@page import="sample.ap.DbAction"%>
 <%@page import="javax.swing.text.Document"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
 <%@page import="java.util.Iterator"%>
@@ -31,10 +34,11 @@
 
 	<body>
 	 	<%
+
  			LoginForm s = (LoginForm) session.getAttribute("form");
- 			String no=s.getEmployee_no();
- 			String link=s.getLink();
- 			String name =s.getEmployee_name();
+ 			String no   = s.getEmployee_no();
+ 			String name = s.getEmployee_name();
+ 			String link =s.getLink();
  			EnterForm eForm=new EnterForm();
  			String checklist=eForm.getChecklist();
 
@@ -43,24 +47,27 @@
 			<h1>入退室確認画面</h1>
 
 		<h2>1.電気</h2>
-		・<html:multibox property="checklist" value="0" />エアコン
-		・<html:multibox property="checklist" value="1" />照明
-		<% if(link=="2"){ %>
-		・<html:multibox property="checklist" value="2" />ポット
+		<p>　　・エアコン<html:multibox property="checklist" value="0" /></p>
+		<p>　　・照明<html:multibox property="checklist" value="1" /></p>
+		<% if(link=="2F"){ %>
+			<p>　　・ポット<html:multibox property="checklist" value="2" /></p>
 		<% }%>
 		<h2>2.戸締り</h2>
-		 <html:multibox property="checklist" value="3"/>窓
-		 <html:multibox property="checklist" value="4"/>オートロックの施錠確認
+		 <p>　　・窓<html:multibox property="checklist" value="3"/></p>
+		 <p>　　・オートロックの施錠確認<html:multibox property="checklist" value="4"/></p>
 		<h2>3.避難経路の物品放置の有無</h2>
-		 <html:multibox property="checklist" value="5"/>避難口
-		 <html:multibox property="checklist" value="6"/>廊下
-		 <html:multibox property="checklist" value="7"/>避難経路
-		 <html:multibox property="checklist" value="8"/>防火扉
-		4.<html:multibox property="checklist" value="9"/>配線確認
-		5.<html:multibox property="checklist" value="10"/>煙草の吸い殻確認
-		6.<html:multibox property="checklist" value="11"/>トイレに可燃物のゴミがないか確認
-
-		<html:submit styleClass="send" property="button" value="退出"/>
+		 <p>　　・避難口<html:multibox property="checklist" value="5"/></p>
+		 <p>　　・廊下	 <html:multibox property="checklist" value="6"/></p>
+		 <p>　　・避難経路<html:multibox property="checklist" value="7"/></p>
+		 <p>　　・防火扉<html:multibox property="checklist" value="8"/></p>
+		 <br>
+		<h2>4.配線確認<html:multibox property="checklist" value="9"/></h2>
+		<br>
+		<h2>5.煙草の吸い殻確認<html:multibox property="checklist" value="10"/></h2>
+		<br>
+		<h2>6.トイレに可燃物のゴミがないか確認<html:multibox property="checklist" value="11"/></h2>
+		<br>
+		<html:submit styleClass="send" property="button" value="退室"/>
 
  		</html:form>
 	</body>
