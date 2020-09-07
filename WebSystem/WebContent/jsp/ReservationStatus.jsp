@@ -20,7 +20,7 @@
 
 		<tr>
 			<th></th>
-			<td>2F</td>zzzzzzzzzzzzzz
+			<td>2F</td>
 			<td>3F</td>
 			<td>4F</td>
 			<td width="360" height="40" colspan="5"></td>
