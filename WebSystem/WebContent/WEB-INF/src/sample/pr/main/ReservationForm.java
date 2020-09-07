@@ -6,6 +6,8 @@ public final class ReservationForm extends ActionForm {
 
 	/** 社員番号 */
 	private String employee_no;
+	/** 社員名 */
+	private String name;
 	/**会議室名 */
 	private String room_place;
 	/** 席数 */
@@ -26,6 +28,7 @@ public final class ReservationForm extends ActionForm {
 	 */
 	public void initialize() {
 		employee_no = "";
+		name = "";
 		room_place = "";
 		seat_number = "";
 		monitor = "";
@@ -53,6 +56,29 @@ public final class ReservationForm extends ActionForm {
 	 */
 	public void setEmployee_no(String Employee_no) {
 		this.employee_no = Employee_no;
+	}
+
+	/**
+	 * 社員番号取得処理。
+	 * <p>
+	 * メイン画面アクションフォームから社員番号を取得する。
+	 * </p>
+	 *
+	 * @return 社員番号
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * 社員番号設定処理。
+	 * <p>
+	 * メイン画面アクションフォームに社員番号を設定する。
+	 * </p>
+	 * @param employee_no 社員番号
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 

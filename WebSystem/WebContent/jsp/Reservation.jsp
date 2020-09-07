@@ -1,8 +1,12 @@
+<%@page import="sample.pr.main.ReservationForm"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="sample.ap.DbAction"%>
+<%@ page import="sample.pr.main.LoginForm"%>
+<%@ page import="sample.pr.main.ReservationForm"%>
 
 <html:html>
 <head>
@@ -10,6 +14,18 @@
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
 <html:form action="/ReservationAction">
+<%
+					ReservationForm rForm = new ReservationForm();
+					String Employee_no = "";
+					String name = rForm.getName();
+					DbAction dba = new DbAction();
+					LoginForm s = (LoginForm) session.getAttribute("form");
+					try {
+						Employee_no = s.getEmployee_no();
+						name = s.getEmployee_name();
+					} catch (Exception e) {
+					}
+		%>
 <body>
 <center>
 			<h1>会議室予約画面</h1>
@@ -72,310 +88,310 @@
 			</tr>
 			<tr>
 				<td >8:00</td>
-				<td >小牧</td>
-				<td >〇</td>
-				<td >〇</td>
-				<td >〇</td>
-				<td >須永</td>
-				<td >〇</td>
-				<td >後藤</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >8:00</td>
 			</tr>
 			<tr>
 				<td >8:30</td>
-				<td >3-3</td>
-				<td >〇</td>
-				<td >〇</td>
-				<td >〇</td>
-				<td >〇</td>
-				<td >〇</td>
-				<td >〇</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >8:30</td>
 			</tr>
 			<tr>
 				<td >9:00</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >〇</td>
-				<td >2-3</td>
-				<td >〇</td>
-				<td >〇</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >9:00</td>
 			</tr>
 			<tr>
 				<td >9:30</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >9:30</td>
 			</tr>
 			<tr>
 				<td >10:00</td>
-				<td >3-3</td>
-				<td >3-4</td>
-				<td >3-5</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >10:00</td>
 			</tr>
 			<tr>
 				<td >10:30</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >4-4</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >10:30</td>
 			</tr>
 			<tr>
 				<td >11:00</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >11:00</td>
 			</tr>
 			<tr>
 				<td >11:30</td>
-				<td >3-3</td>
-				<td >3-4</td>
-				<td >3-5</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >11:30</td>
 			</tr>
 			<tr>
 				<td >12:00</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >4-4</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >12:00</td>
 			</tr>
 			<tr>
 				<td >12:30</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >12:30</td>
 			</tr>
 			<tr>
 				<td >13:00</td>
-				<td >3-3</td>
-				<td >3-4</td>
-				<td >3-5</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >13:00</td>
 			</tr>
 			<tr>
 				<td >13:30</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >4-4</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >13:30</td>
 			</tr>
 			<tr>
 				<td >14:00</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >14:00</td>
 			</tr>
 			<tr>
 				<td >14:30</td>
-				<td >3-3</td>
-				<td >3-4</td>
-				<td >3-5</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >14:30</td>
 			</tr>
 			<tr>
 				<td >15:00</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >4-4</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >15:00</td>
 			</tr>
 			<tr>
 				<td >15:30</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >15:30</td>
 			</tr>
 			<tr>
 				<td >16:00</td>
-				<td >3-3</td>
-				<td >3-4</td>
-				<td >3-5</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >16:00</td>
 			</tr>
 			<tr>
 				<td >16:30</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >4-4</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >16:30</td>
 			</tr>
 			<tr>
 				<td >17:00</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >17:00</td>
 			</tr>
 			<tr>
 				<td >17:30</td>
-				<td >3-3</td>
-				<td >3-4</td>
-				<td >3-5</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >17:30</td>
 			</tr>
 			<tr>
 				<td >18:00</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >4-4</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >18:00</td>
 			</tr>
 			<tr>
 				<td >18:30</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >18:30</td>
 			</tr>
 			<tr>
 				<td >19:00</td>
-				<td >3-3</td>
-				<td >3-4</td>
-				<td >3-5</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >19:00</td>
 			</tr>
 			<tr>
 				<td >19:30</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >4-4</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >19:30</td>
 			</tr>
 			<tr>
 				<td >20:00</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >4-4</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >20:00</td>
 			</tr>
 			<tr>
 				<td >20:30</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >20:30</td>
 			</tr>
 			<tr>
 				<td >21:00</td>
-				<td >3-3</td>
-				<td >3-4</td>
-				<td >3-5</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >21:00</td>
 			</tr>
 			<tr>
 				<td >21:30</td>
-				<td >4-2</td>
-				<td >4-3</td>
-				<td >4-4</td>
-				<td >2-3</td>
-				<td >2-4</td>
-				<td >2-5</td>
-				<td >2-5</td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
+				<td ><%= name %></td>
 				<td >21:30</td>
 			</tr>
 		</table>
