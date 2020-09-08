@@ -65,6 +65,7 @@
 		</div>
 		<p align="center" class="BCC">
 				BCC:<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=bcc%>" />
+				<p style="color:red;margin-left: 17%">※ 任意で入力
 		</p>
 
 		<div align="center" class="depert2"
@@ -90,6 +91,7 @@
 		</p>
 		<p align="center" class="code" style="margin-left: -42%">
 			現場コード：<html:text property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=spotcode%>" />
+			<p style="color:red;margin-left: 13%">例) 1-2345
 		</p>
 		<div align="center" class="depert2"
 			style="width: 40%; margin-left: 10%">
@@ -111,9 +113,11 @@
 		</div>
 		<p align="center" class="code" style="margin-left: -42%">
 			対象日付/期間：<html:text property="span" size="20" maxlength="17" style="width: 17%" value="<%=span%>" />
+			<p style="color:red;margin-left: 12%">例) 2020年9月1日～2020年9月3日 → 20200901～20200903
 		</p>
 		<p align="center" class="code" style="margin-left: -43%">
 			出勤予定時刻:<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
+			<p style="color:red;margin-left: 12%">例) 12:00
 
 		</p>
 		<p style="margin-left: 17.5%;">備考:</p>
@@ -123,6 +127,7 @@
 
 		<p align="center" class="code" style="margin-left: -39%">
 			許可:<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
+			<p style="color:red;margin-left: 17%">※ 届出区分がA,Bの場合、姓のみ記載
 		</p>
 
 		<div>
