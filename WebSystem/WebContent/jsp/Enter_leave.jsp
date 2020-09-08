@@ -40,32 +40,32 @@
  			String name = s.getEmployee_name();
  			String link =s.getLink();
  			EnterForm eForm=new EnterForm();
- 			String checklist=eForm.getChecklist();
+ 			int checklist=eForm.getChecklist();
 
  	%>
  		<html:form action="/EnterAction">
 			<h1>入退室確認画面</h1>
 
 		<h2>1.電気</h2>
-		<p>　　・エアコン<html:multibox property="checklist" value="0" /></p>
-		<p>　　・照明<html:multibox property="checklist" value="1" /></p>
+		<p>　　・エアコン<html:multibox property="checklist" value="1" /></p>
+		<p>　　・照明<html:multibox property="checklist" value="2" /></p>
 		<% if(link=="2F"){ %>
-			<p>　　・ポット<html:multibox property="checklist" value="2" /></p>
+			<p>　　・ポット<html:multibox property="checklist" value="4" /></p>
 		<% }%>
 		<h2>2.戸締り</h2>
-		 <p>　　・窓<html:multibox property="checklist" value="3"/></p>
-		 <p>　　・オートロックの施錠確認<html:multibox property="checklist" value="4"/></p>
+		 <p>　　・窓<html:multibox property="checklist" value="8"/></p>
+		 <p>　　・オートロックの施錠確認<html:multibox property="checklist" value="16"/></p>
 		<h2>3.避難経路の物品放置の有無</h2>
-		 <p>　　・避難口<html:multibox property="checklist" value="5"/></p>
-		 <p>　　・廊下	 <html:multibox property="checklist" value="6"/></p>
-		 <p>　　・避難経路<html:multibox property="checklist" value="7"/></p>
-		 <p>　　・防火扉<html:multibox property="checklist" value="8"/></p>
+		 <p>　　・避難口<html:multibox property="checklist" value="32"/></p>
+		 <p>　　・廊下	 <html:multibox property="checklist" value="64"/></p>
+		 <p>　　・避難経路<html:multibox property="checklist" value="128"/></p>
+		 <p>　　・防火扉<html:multibox property="checklist" value="256"/></p>
 		 <br>
-		<h2>4.配線確認<html:multibox property="checklist" value="9"/></h2>
+		<h2>4.配線確認<html:multibox property="checklist" value="512"/></h2>
 		<br>
-		<h2>5.煙草の吸い殻確認<html:multibox property="checklist" value="10"/></h2>
+		<h2>5.煙草の吸い殻確認<html:multibox property="checklist" value="1024"/></h2>
 		<br>
-		<h2>6.トイレに可燃物のゴミがないか確認<html:multibox property="checklist" value="11"/></h2>
+		<h2>6.トイレに可燃物のゴミがないか確認<html:multibox property="checklist" value="2048"/></h2>
 		<br>
 		<html:submit styleClass="send" property="button" value="退室"/>
 

@@ -20,7 +20,7 @@ public final class EnterForm extends ActionForm {
 	/** リンク先 */
 	private String link;
 	/**チェックリスト**/
-	private String checklist;
+	private int checklist;
 
 	/**
 	 * 初期化処理。
@@ -32,8 +32,9 @@ public final class EnterForm extends ActionForm {
 		employee_no = "";
 		employee_name = "";
 		button = "";
-		checklist = "";
+		checklist = 0;
 		link = "";
+
 	}
 
 	/**
@@ -116,7 +117,7 @@ public final class EnterForm extends ActionForm {
 	 *
 	 * @return チェックリスト
 	 */
-	public String getChecklist() {
+	public int getChecklist() {
 		return checklist;
 	}
 
@@ -128,8 +129,11 @@ public final class EnterForm extends ActionForm {
 	 *
 	 * @param checklist チェック状況
 	 */
-	public void setChecklist(String checklist) {
-		this.checklist = checklist;
+	public void setChecklist(String[] checklist) {
+		for(String check:checklist)
+		{
+		this.checklist += Integer.parseInt(check);
+		}
 	}
 	/**
 	 * リンク先取得処理。
