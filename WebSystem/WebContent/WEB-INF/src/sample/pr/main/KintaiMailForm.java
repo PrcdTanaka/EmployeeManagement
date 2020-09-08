@@ -15,10 +15,12 @@ public class KintaiMailForm extends ActionForm{
 	private String ptime;
 	private String remark;
 	private String perm;
+	private String message;
 
 	public void initialize(){
 		Button="";
 		Employee_no="";
+		message="";
 	}
 	public void setButton(String button){
 		Button=button;
@@ -188,6 +190,13 @@ public class KintaiMailForm extends ActionForm{
 
 	public String getPerm(){
 		return perm;
+	}
+	public void setMessage(String message){
+		this.message=message;
+	}
+
+	public String getMessage(){
+		return message;
 	}
 
 }
