@@ -97,24 +97,24 @@
 			<html:select property="division" styleId="division" name="KintaiMailForm"
 				style="font-size:15px; width:60%;">
 				<html:option value="" style="text-align:center;">選択</html:option>
-				<html:option value="1">1</html:option>
-				<html:option value="2">2</html:option>
-				<html:option value="3">4</html:option>
-				<html:option value="4">5</html:option>
-				<html:option value="5">6</html:option>
-				<html:option value="6">7</html:option>
-				<html:option value="7">8</html:option>
-				<html:option value="8">9</html:option>
-				<html:option value="9">A</html:option>
-				<html:option value="10">B</html:option>
+				<html:option value="1">1,遅刻</html:option>
+				<html:option value="2">2,有給休暇</html:option>
+				<html:option value="3">4,振替休暇</html:option>
+				<html:option value="4">5,特別休暇</html:option>
+				<html:option value="5">6,シフト勤務</html:option>
+				<html:option value="6">7,早退,その他</html:option>
+				<html:option value="7">8,交通遅延</html:option>
+				<html:option value="8">9,欠席</html:option>
+				<html:option value="9">A,深夜作業</html:option>
+				<html:option value="10">B,休日出勤(振)</html:option>
 			</html:select>
 		</div>
-		<p align="center" class="code" style="margin-left: -43%">
-			対象日付/期間：<input type="text" name="namae" size="43" maxlength="20"
-				style="width: 17%" placeholder="例 YYYYMMDD">
+		<p align="center" class="code" style="margin-left: -42%">
+			対象日付/期間：<html:text property="span" size="20" maxlength="17" style="width: 17%" value="<%=span%>" />
 		</p>
 		<p align="center" class="code" style="margin-left: -43%">
-			出勤予定時刻：<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
+			出勤予定時刻:<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
+
 		</p>
 		<p style="margin-left: 17.5%;">備考:</p>
 		<div style="margin-left: 21%;">
