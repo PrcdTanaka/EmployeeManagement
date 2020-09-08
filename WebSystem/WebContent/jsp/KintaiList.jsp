@@ -8,7 +8,6 @@
 <%@ page import="sample.pr.main.AttendanceForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction"%>
-
 <%@ page import="sample.pr.main.KintaiListForm"%>
 
 <%@ page import="java.util.*" %>
@@ -25,9 +24,9 @@
 <!--
 	*{padding:5px; margin:0px;}
 	body{text-align:center;}
-	table{witdth:800px; backgroound:white; border:2px black solid; border-collapse:callapse;}
-	th{border:1px black solid; background:#CCFFFF;}
-	td{border:1px black solid; text-align:right; padding:5px 20px 5px 20px;}
+	table{witdth:800px; background:white; border:2px black solid;}
+	th{border:1px black solid; background:#00FFFF; padding-left: 10px; padding-right: 10px;}
+	td{border:1px black solid; text-align:center; padding:1px 1px 1px 1px;}
 	br{line-height:1em;}
 -->
 </style>
@@ -94,6 +93,8 @@
 			<%-- カレンダーのプルダウンメニュー作成(月のほう) --%>
 			<select id="Years" name="Years">
 			<%
+				int num1 = 0;
+				int num2 = 0;
 				int Years_Data = cale.get(Calendar.YEAR);
 				int Month_Data = cale.get(Calendar.MONTH)+1;
 				for(int i = Years_Data-1; i <= Years_Data+1; i++){
@@ -108,6 +109,7 @@
 			%>
 			><%=i %>年
 			</option>
+			<%num1 = i; %>
 			<%
 				}
 			%>
@@ -125,14 +127,15 @@
 			<%
 				}
 			%>
-			><%=i %>月</option>
+			><%=i %>月
+			</option>
+			<%num2=i; %>
 			<%
 				}
 			%>
 			</select>
 		</span>
-
-		<a href="KintaiList.jsp?year=<%=intYear %>&month=<%=intMonth %>">移動</a>
+		<a href="KintaiList.jsp?year=<%=num1 %>&month=<%=num2 %>">移動</a>
 		<input type="submit" id="" name="" value="移動"/>
 		</div>
 
@@ -173,10 +176,12 @@
 						k--;
 					}else if(cale.get(Calendar.MONTH)==intMonth-1){
 					%>
-					<%=d++%>
+				<%-- 	<%=d++%> --%>
+					<input type="submit" id="" name="" value="<%=d++ %>"/>
 					<%
 					cale.add(Calendar.DATE, 1);
 					%>
+				<%-- <input type="submit" id="" name="" value="<%=d %>"/> --%>
 					<%}%>
 					</td>
 				<%}%>
