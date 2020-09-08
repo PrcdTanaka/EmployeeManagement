@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="WebContent/WEB-INF/src"/>
+	<classpathentry excluding="sample/pr/main/" kind="src" path="WebContent/WEB-INF/src"/>
+	<classpathentry kind="src" path="WebContent/WEB-INF/src/sample/pr/main"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/antlr-2.7.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
