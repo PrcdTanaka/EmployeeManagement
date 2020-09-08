@@ -24,7 +24,7 @@ public class KintaiMailAction extends Action{
 	}
 	String button;
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
-
+		KintaiMailForm form=new KintaiMailForm();
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
@@ -42,9 +42,16 @@ public class KintaiMailAction extends Action{
 				session.removeAttribute("Form");
 			}
 			else if(button.equals("送信")){
-				forward="kintaimail";
-				dba.setKintaiInfo(Form);
-				session.setAttribute("form", Form);
+				if(form.getCC()!=null&&form.getSpotcode()!=null&&form.getDivision()!=null&&form.getSpan()!=null
+						&&form.getPtime()!=null&&form.getRemark()!=null&&form.getDepart()!=null)
+				{
+					forward="kintaimail";
+					dba.setKintaiInfo(Form);
+					session.setAttribute("form", Form);
+					form.setMessage("送信しました");
+				}
+				else
+					form.setMessage("必須項目を入力してください");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
