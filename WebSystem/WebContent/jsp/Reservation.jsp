@@ -32,7 +32,7 @@
 		</center>
 
 		<div align="right">
-			<a href="RoomReservation.jsp">会議室新規登録画面へ</a>
+			<p><a href="RoomReservation.jsp">会議室新規登録画面へ</a></p>
 		</div>
 	<div align="left">
 		<table border="1">
