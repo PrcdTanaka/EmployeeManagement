@@ -1,4 +1,3 @@
-<%@page import="sample.pr.main.ReservationForm"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
@@ -32,7 +31,8 @@
 		</center>
 
 		<div align="right">
-			<p><a href="RoomReservation.jsp">会議室新規登録画面へ</a></p>
+			<a href="jsp/RoomReservation.jsp">会議室新規登録画面へ</a>
+			<a href="Main.jsp">会議室新規登録画面へ</a>
 		</div>
 	<div align="left">
 		<table border="1">
