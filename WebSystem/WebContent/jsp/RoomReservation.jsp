@@ -49,6 +49,9 @@
 			<div class="space"></div>
 			<br>
 			<center>
+			<!-- 登録ボタン -->
+			<html:submit property="button" styleClass="btn" value="登録"
+				styleId="room"/>
 		<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
 			</center>

@@ -76,17 +76,17 @@ table{
 
 /*合計を表示するテーブルの見出し*/
 .totalHead{
-	font-size:12px;
+	font-size:10px;
 }
 
 /*勤務管理表テーブルの見出し*/
 .KinmuHead{
-	font-size:12px;
+	font-size:10px;
 }
 
 td{
 	text-align: center;
-	font-size:12px;
+	font-size:10px;
 }
 
 
@@ -129,7 +129,7 @@ position:relative;
 	<center><h1>勤務管理表作成</h1></center>
 	</head>
 
-<html:form action="/KinmuRecordAction">
+<html:form action="/KinmuRecordAction" method="post">
 	<body>
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
@@ -246,8 +246,28 @@ position:relative;
 						</select>
 					</td>
 					<td></td>  <%-- 予定 --%>
-					<td></td>  <%-- 休A --%>
-					<td></td>  <%-- 休B --%>
+
+					<td>  <%-- 休A --%>
+					<select>
+					<% double restTimeA = 0.00;
+					   for(int k=0; k<17; k++){ %>
+							<option><%= restTimeA %></option>
+							<% restTimeA += 0.25; %>
+					<% }%>
+					</select>
+					</td>
+
+					<td><%-- 休B --%>
+					<select>
+					<% double restTimeB = 0.00;
+					   for(int l=0; l<17; l++){ %>
+							<option><%= restTimeB %></option>
+							<% restTimeB += 0.25; %>
+					<% }%>
+					</select>
+					</td>
+
+
 					<td width="40%">  <%-- 休暇区分 --%>
 						<input type="radio" name="kubun" value="0">0.出勤
 						<input type="radio" name="kubun" value="1">1.有休/リ休
@@ -262,7 +282,7 @@ position:relative;
 					</td>
 				</tr>
 				<% } %>
-
+		</table>
 
 
 		<div class="back">
