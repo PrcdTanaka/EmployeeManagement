@@ -22,7 +22,7 @@ public class KintaiListAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		prepData(request);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("KintaiList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/KintaiList.jsp");
 		dispatcher.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
