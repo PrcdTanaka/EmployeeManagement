@@ -1,6 +1,9 @@
+<%@page import="sample.ap.DbAction"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
+<%@ page import="sample.pr.main.LoginForm" %>
+<%@ page import="sample.pr.main.EnterForm" %>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
 
@@ -12,6 +15,11 @@
 <html:form action="/MainAction">
 <body>
 
+<%
+	DbAction dba=new DbAction();
+	dba.
+
+%>>
 <h1>floor</h1>
 <center></center><h1>入退室者一覧</h1></center>
 <center></center>
