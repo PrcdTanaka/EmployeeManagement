@@ -2858,6 +2858,23 @@ public class DbAction extends Object{
 
 		// DB接続
 		DbConnector dba = null;
+		Calendar calendar = Calendar.getInstance();
+		String month=(calendar.get(calendar.MONTH)+1)+"";
+		if(month.length()!=2)
+			month="0"+month;
+		String day=""+calendar.get(calendar.DATE);
+		if(day.length()!=2)
+			day="0"+day;
+		String hour=""+calendar.get(calendar.HOUR_OF_DAY);
+		if(hour.length()!=2){
+			hour="0"+hour;
+		}
+		String minutes=""+calendar.get(calendar.MINUTE);
+		if(minutes.length()!=2){
+			minutes="0"+minutes;
+		}
+		String mmdd=month+day;
+		String send_time=hour+minutes;
 		try {
 			dba = new DbConnector(gHost,gSid,gUser,gPass);
 		} catch (IOException e1) {
@@ -2865,7 +2882,6 @@ public class DbAction extends Object{
 		}
 
 		if (dba.conSts) {
-
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
@@ -2879,7 +2895,9 @@ public class DbAction extends Object{
 			sb.append("  PTIME," + crlf);
 			sb.append("  REMARK," + crlf);
 			sb.append("  PERM," + crlf);
-			sb.append("  DEPART" + crlf);
+			sb.append("  DEPART," + crlf);
+			sb.append("  MMDD," + crlf);
+			sb.append("  SEND_TIME" + crlf);
 			sb.append(")VALUES(" + crlf);
 			sb.append("'"+form.getCC()+"',"+crlf);
 			sb.append("'"+form.getBcc()+"',"+crlf);
@@ -2889,7 +2907,9 @@ public class DbAction extends Object{
 			sb.append("'"+form.getPtime()+"',"+crlf);
 			sb.append("'"+form.getRemark()+"',"+crlf);
 			sb.append("'"+form.getPerm()+"',"+crlf);
-			sb.append("'"+form.getDepart()+"'"+crlf);
+			sb.append("'"+form.getDepart()+"',"+crlf);
+			sb.append("'"+mmdd+"',"+crlf);
+			sb.append("'"+send_time+"'"+crlf);
 			sb.append(")"+crlf);
 			String query = sb.toString();
 
@@ -2907,6 +2927,7 @@ public class DbAction extends Object{
 				e.printStackTrace();
 			}
 		}
+
 		ret=true;
 
 		return ret;
