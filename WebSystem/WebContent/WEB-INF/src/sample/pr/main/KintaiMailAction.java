@@ -38,14 +38,13 @@ public class KintaiMailAction extends Action{
 		try{
 			if(button.equals("戻る")){
 				forward="KintaiMain";
-				session.removeAttribute("Form");
+				session.removeAttribute("form");
 			}
 			if(button.equals("送信")){
 				if(form.getCC().equals("")||form.getSpotcode().equals("")||form.getDivision().equals("")||form.getSpan().equals("")
 						||form.getPtime().equals("")||form.getRemark().equals("")||form.getDepart().equals(""))
 				{
 					form.setMessage("必須項目を入力してください");
-
 					//JOptionPane.showMessageDialog(null,"必須項目を入力してください" );
 					forward="kintaimail";
 				}
@@ -60,7 +59,7 @@ public class KintaiMailAction extends Action{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		session.removeAttribute("Form");
+		session.removeAttribute("form");
 		return map.findForward(forward);
 	}
 }
