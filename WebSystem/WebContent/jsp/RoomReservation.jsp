@@ -4,6 +4,7 @@
 
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="sample.pr.main.ReservationForm"%>
+<%@ page import="sample.pr.main.LoginForm"%>
 
 <html:html>
 <html lang="ja">
