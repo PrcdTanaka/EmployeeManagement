@@ -147,6 +147,9 @@ public final class MainAction extends Action {
 				lform.setLink("2F");
 				session.setAttribute("form", lform);
 				break;
+			case"kinmurecord":
+				forward="kinmurecord";
+				break;
 			}
 		}
 

@@ -95,6 +95,12 @@
 							<html:param name="link">reservation</html:param>
 						</html:link>
 					</li>
+										<li>
+						<html:link action="/MainAction">勤務管理表作成画面
+							<html:param name="employee_no"><%=no %></html:param>
+							<html:param name="link">kinmurecord</html:param>
+						</html:link>
+					</li>
 				</p>
 
 				<!-- bean:define id="manager" name="LoginForm" property="manager" type="String" /-->

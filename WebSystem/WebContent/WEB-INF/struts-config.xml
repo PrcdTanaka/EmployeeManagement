@@ -62,7 +62,7 @@
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 			<forward name="Enter" path="/jsp/Enter_leave.jsp" />
-
+			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp"/>
 		</action>
 
 		<action name="PasswordForm" path="/PasswordAction"
