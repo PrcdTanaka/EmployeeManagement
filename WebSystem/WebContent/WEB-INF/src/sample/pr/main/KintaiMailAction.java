@@ -52,6 +52,7 @@ public class KintaiMailAction extends Action{
 				}
 				else
 					form.setMessage("必須項目を入力してください");
+					forward="kintaimail";
 			}
 		}catch(Exception e){
 			e.printStackTrace();

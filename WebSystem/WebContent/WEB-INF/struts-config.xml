@@ -137,6 +137,7 @@
 		<action name="KintaiMailForm" path="/KintaiMailAction"
 			type="sample.pr.main.KintaiMailAction" validate="false" scope="request">
 			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
+			<forward name="kintaimail" path="/jsp/KintaiMail.jsp" />
 		</action>
 		<action name="KintaiListForm" path="/KintaiListAction"
 			type="sample.pr.main.KintaiListAction" validate="false" scope="request">
