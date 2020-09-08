@@ -32,7 +32,6 @@
 
 		<div align="right">
 			<a href="jsp/RoomReservation.jsp">会議室新規登録画面へ</a>
-			<a href="Main.jsp">会議室新規登録画面へ</a>
 		</div>
 	<div align="left">
 		<table border="1">

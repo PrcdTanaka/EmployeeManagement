@@ -70,7 +70,7 @@ table{
    	align-items: center;
     line-height: 2;
 	 border-collapse:collapse;
-	 width:95%;
+	 width:150%;
 	 margin: 20px 0 20px 0;
 }
 
@@ -175,7 +175,7 @@ position:relative;
 				<th class="kinmuHead">休A</th>
 				<th class="kinmuHead">休B</th>
 				<th class="kinmuHead">休暇区分</th>
-				<th class="kinmuHead">実働時間</th>
+				<th class="kinmuHead">実働</th>
 				<th class="kinmuHead">備考</th>
 			</tr>
 
@@ -245,7 +245,12 @@ position:relative;
 						<%}%>
 						</select>
 					</td>
-					<td></td>  <%-- 予定 --%>
+
+					<td><%-- 予定 --%>
+					<% if(!(JapaneseDate.from(date).format(fmt).equals("土")) && !(JapaneseDate.from(date).format(fmt).equals("日"))) { %>
+						8.00
+					<% } %>
+					</td>
 
 					<td>  <%-- 休A --%>
 					<select>
@@ -276,7 +281,13 @@ position:relative;
 						<input type="radio" name="kubun" value="4">4.特休
 						<input type="radio" name="kubun" value="5">5.欠勤
 					</td>
-					<td width="6%"></td>  <%-- 実働時間 --%>
+
+					<td width="6%"><%-- 実働時間 --%>
+					<% if(!(JapaneseDate.from(date).format(fmt).equals("土")) && !(JapaneseDate.from(date).format(fmt).equals("日"))) { %>
+						8.00
+					<% } %>
+					</td>
+
 					<td width="20%">  <%-- 備考 --%>
 						<input type="text" name="bikou">
 					</td>
@@ -286,6 +297,8 @@ position:relative;
 
 
 		<div class="back">
+			<html:submit styleClass="send" styleId="main" property="button" value="入力内容を保存"></html:submit><br>
+			<html:submit styleClass="send" styleId="main" property="button" value="エクセルファイル出力"></html:submit><br>
 			<html:submit styleClass="send" styleId="main" property="button" value="戻る"></html:submit>
 		</div>
 
