@@ -4,6 +4,7 @@
 
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="sample.pr.main.ReservationForm"%>
+<%@ page import="sample.pr.main.LoginForm"%>
 
 <html:html>
 <html lang="ja">
@@ -48,13 +49,13 @@
 			</div>
 			<div class="space"></div>
 			<br>
-			<center>
+			<td align="center">
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="room"/>
 		<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
-			</center>
+			</td>
 		</div>
 
 	</html:form>

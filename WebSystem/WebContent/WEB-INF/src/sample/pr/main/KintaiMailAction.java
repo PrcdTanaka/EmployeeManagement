@@ -6,7 +6,6 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -39,13 +38,14 @@ public class KintaiMailAction extends Action{
 		try{
 			if(button.equals("戻る")){
 				forward="KintaiMain";
-				session.removeAttribute("Form");
+				session.removeAttribute("form");
 			}
 			if(button.equals("送信")){
 				if(form.getCC().equals("")||form.getSpotcode().equals("")||form.getDivision().equals("")||form.getSpan().equals("")
 						||form.getPtime().equals("")||form.getRemark().equals("")||form.getDepart().equals(""))
 				{
-					JOptionPane.showMessageDialog(null,"必須項目を入力してください" );
+					form.setMessage("必須項目を入力してください");
+					//JOptionPane.showMessageDialog(null,"必須項目を入力してください" );
 					forward="kintaimail";
 				}
 				else
@@ -53,13 +53,13 @@ public class KintaiMailAction extends Action{
 					forward="kintaimail";
 					dba.setKintaiInfo(form);
 					session.setAttribute("form", form);
-					form.setMessage("送信しました");
+					//JOptionPane.showMessageDialog(null,"送信しました");
 				}
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		session.removeAttribute("Form");
+		session.removeAttribute("form");
 		return map.findForward(forward);
 	}
 }
