@@ -59,7 +59,7 @@
 			<forward name="search" path="/jsp/search.jsp" />
 			<forward name="password" path="/jsp/Password.jsp" />
 			<forward name="attendance" path="/jsp/Attendance.jsp" />
-			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
+			<forward name="kintailist" path="/jsp/KintaiList.jsp" />
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 			<forward name="Enter" path="/jsp/Enter_leave.jsp" />
@@ -139,7 +139,7 @@
 		</action>
 		<action name="KintaiListForm" path="/KintaiListAction"
 			type="sample.pr.main.KintaiListAction" validate="false" scope="request">
-			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
+			<forward name="Kintaimail" path="/jsp/KintaiMail.jsp" />
 		</action>
 		<action name="ReservationForm" path="/ReservationAction"
 			type="sample.pr.main.ReservationAction" validate="false" scope="request">
