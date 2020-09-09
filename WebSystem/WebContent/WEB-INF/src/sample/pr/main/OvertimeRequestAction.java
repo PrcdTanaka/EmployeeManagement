@@ -14,13 +14,13 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
 
-public class KintaiMailAction extends Action{
+public class OvertimeRequestAction extends Action{
 	private DbAction dba = new DbAction();
 
 	// 遷移先
 	private String forward;
 
-	public KintaiMailAction() throws IOException {
+	public OvertimeRequestAction() throws IOException {
 	}
 	String button;
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {

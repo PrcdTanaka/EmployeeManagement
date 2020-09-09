@@ -18,6 +18,7 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
+import sample.pr.main.ReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
 
@@ -2897,7 +2898,8 @@ public class DbAction extends Object{
 			sb.append("  PERM," + crlf);
 			sb.append("  DEPART," + crlf);
 			sb.append("  MMDD," + crlf);
-			sb.append("  SEND_TIME" + crlf);
+			sb.append("  SEND_TIME," + crlf);
+			sb.append("  SPAN2" + crlf);
 			sb.append(")VALUES(" + crlf);
 			sb.append("'"+form.getCC()+"',"+crlf);
 			sb.append("'"+form.getBcc()+"',"+crlf);
@@ -2909,7 +2911,8 @@ public class DbAction extends Object{
 			sb.append("'"+form.getPerm()+"',"+crlf);
 			sb.append("'"+form.getDepart()+"',"+crlf);
 			sb.append("'"+mmdd+"',"+crlf);
-			sb.append("'"+send_time+"'"+crlf);
+			sb.append("'"+send_time+"',"+crlf);
+			sb.append("'"+form.getSpan2()+"'"+crlf);
 			sb.append(")"+crlf);
 			String query = sb.toString();
 
@@ -2933,7 +2936,178 @@ public class DbAction extends Object{
 		return ret;
 	}
 
+	public boolean InsertReservation(ReservationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO " + crlf);
+			sb.append("  RESERVATION(employee_no,name,room_name,room_place,seat_number,monitor,camera,res_time,mmdd)" + crlf);
+			sb.append("values" + crlf);
+			sb.append("('"+form.getEmployee_no()+"'" +crlf);
+			sb.append(",'"+form.getName()+"'"+crlf);
+			sb.append(",'"+ form.getRoom_place()+"'"+crlf);
+			sb.append(",'"+ form.getSeat_number()+"'"+crlf);
+			sb.append(",'"+ form.getMonitor()+"'"+crlf);
+			sb.append(",'"+ form.getCamera()+"'"+crlf);
+			sb.append(",'"+ form.getEmployee_no()+"'"+crlf);
+			sb.append(",'"+ form.getRes_time()+"'"+crlf);
+			sb.append(",'"+ form.getMmdd()+"');"+crlf);
+			String query = sb.toString();
+
+			try {
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+				ret=true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return ret;
+	}
+	public boolean getAccessControl(EnterForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("ENTRY_EMP");
+			sb.append("DAY");
+			sb.append("ENTRY_TIME");
+			sb.append("LEAVING_TIME");
+			sb.append("LEAVING_EMP");
+			sb.append("FROM");
+			sb.append("ROOM_ACCESS_TBL");
+			sb.append("WHERE");
+			sb.append("FLOOR= ?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("ENTRY_EMP");
+			columnList.add("DAY");
+			columnList.add("ENTRY_TIME");
+			columnList.add("LEAVING_TIME");
+			columnList.add("LEAVING_EMP");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setENTRY_EMP(val.get("ENTRY_EMP"));
+					form.setDAY(val.get("DAY"));
+					form.setENTRY_TIME(val.get("ENTRY_TIME"));
+					form.setLEAVING_TIME(val.get("LEAVING_TIME"));
+					form.setLEAVING_EMP(val.get("LEAVING_EMP"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+	public boolean getEntry_Empl(EnterForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("ENTRY_EMP");
+			sb.append("FROM");
+			sb.append("ROOM_ACCESS_TBL");
+			sb.append("WHERE");
+			sb.append("FLOOR= ?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("ENTRY_EMP");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setENTRY_EMP(val.get("ENTRY_EMP"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
 }
-
-
-

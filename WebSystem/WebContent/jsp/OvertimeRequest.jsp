@@ -4,7 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.KintaiMailForm"%>
+<%@ page import="sample.pr.main.OvertimeRequestForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -17,14 +17,14 @@
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
 <body>
-	<html:form action="/KintaiMailAction">
+	<html:form action="/OvertimeRequestAction">
 		<%
 			String Email = "kintai@procd-k.co.jp";
 					String Employee_no = "";
 					String name = "";
 					DbAction dba = new DbAction();
 					LoginForm s = (LoginForm) session.getAttribute("form");
-					KintaiMailForm Form = new KintaiMailForm();
+					OvertimeRequestForm Form = new OvertimeRequestForm();
 					String CC = Form.getCC();
 					String depart = Form.getDepart();
 					String division = Form.getDivision();
