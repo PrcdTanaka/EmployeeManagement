@@ -31,6 +31,7 @@
 		<form-bean name="EnterForm" type="sample.pr.main.EnterForm" />
 		<form-bean name="Access_ControlForm" type="sample.pr.main.Access_ControlForm" />
 		<form-bean name="ReservationFrom" type="sample.pr.main.ReservationForm" />
+		<form-bean name="Access_Select" type="sample.pr.main.Access_SelectForm" />
 
 	</form-beans>
 
@@ -63,6 +64,7 @@
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 			<forward name="Enter" path="/jsp/Enter_leave.jsp" />
 			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp"/>
+			<forward name="Access_Select" path="/jsp/Access_Select.jsp"/>
 		</action>
 
 		<action name="PasswordForm" path="/PasswordAction"
@@ -169,6 +171,10 @@
 			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
 			<forward name="room" path="/jsp/RoomReservation.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
+		</action>
+				<action name="ReservationForm" path="/Access_SelectAction"
+			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/Access_Control.jsp" />
 		</action>
 	</action-mappings>
 

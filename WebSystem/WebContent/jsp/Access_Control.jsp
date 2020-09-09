@@ -45,9 +45,8 @@
 
 <%
 
-  int year=2020;
-
-  int month=9;
+  int year=0;
+  int month=9; //getlinkで後日とる
 
   int startDay;
 
@@ -56,6 +55,7 @@
   String week[] = {"日","月","火","水","木","金","土"};
 
 Calendar calendar = Calendar.getInstance();
+year=calendar.get(calendar.YEAR);
 // 月の初めの曜日を求めます。
 calendar.set(year, month - 1, 1); // 引数: 1月: 0, 2月: 1, ...
 startDay = calendar.get(Calendar.DAY_OF_WEEK);
