@@ -19,7 +19,7 @@
 
 <%
 	DbAction dba=new DbAction();
-
+	dba.
 %>
 <h1>floor</h1>
 <center></center><h1>入退室者一覧</h1></center>
