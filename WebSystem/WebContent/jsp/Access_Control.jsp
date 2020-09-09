@@ -18,8 +18,11 @@
 <body>
 
 <%
+
+EnterForm a=new EnterForm();;
 	DbAction dba=new DbAction();
-	dba.
+	dba.getAccessControl(a);
+
 %>
 <h1>floor</h1>
 <center></center><h1>入退室者一覧</h1></center>
@@ -71,10 +74,10 @@ for (int date = 1; date <= lastDate; date++) {
  if(startDay>7){
 	 startDay=1;
  }
- 	String a=week[startDay-1];
+ 	String aa=week[startDay-1];
  	%>
  	<tr>
-    <td><%=month+"月"+date %>日</td> <td><%=a %>曜日</td>
+    <td><%=month+"月"+date %>日</td> <td><%=aa %>曜日</td>
     </tr>
     <%
  	startDay++;
@@ -82,12 +85,9 @@ for (int date = 1; date <= lastDate; date++) {
 
 }
 %>
-<%
-EnterForm a=new EnterForm();
 
-%>
-
-      <td><%List<String>Entry_emp=a.getEntry_emp(); %></td> <td>entry_time</td>
+	  <td>date</td> <td>week</td>
+      <td><%dba.getEntry_Empl(a);%></td> <td>entry_time</td>
       <td>exit_name</td> <td>exit_time</td>
       <td>electricity</td> <td>door</td>
       <td>escape_route</td> <td>fire_door</td>
@@ -143,7 +143,7 @@ EnterForm a=new EnterForm();
     </tr>
      <tr>
       <td>date</td> <td>week</td>
-      <td>entry_name</td> <td>entry_time</td>
+      <td> entry_name</td> <td>entry_time</td>
       <td>exit_name</td> <td>exit_time</td>
       <td>electricity</td> <td>door</td>
       <td>escape_route</td> <td>fire_door</td>
