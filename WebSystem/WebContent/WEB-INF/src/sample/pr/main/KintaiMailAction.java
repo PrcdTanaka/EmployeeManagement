@@ -40,7 +40,7 @@ public class KintaiMailAction extends Action{
 				forward="KintaiMain";
 				session.removeAttribute("form");
 			}
-			if(button.equals("送信")){
+			else if(button.equals("送信")){
 				if(form.getCC().equals("")||form.getSpotcode().equals("")||form.getDivision().equals("")||form.getSpan().equals("")
 						||form.getPtime().equals("")||form.getRemark().equals("")||form.getDepart().equals("")||form.getSpan2().equals(""))
 				{
