@@ -193,14 +193,8 @@
 			family_structure_job4 = pForm.getFamily_structure_job4();
 			family_structure_job5 = pForm.getFamily_structure_job5();
 			button = pForm.getButton();
-			document=pForm.getDocument();
 			nb=pForm.getNb();
 			status = "1";
-			try{
-				document=pForm.getDocument();
-			}catch(Exception e){
-
-			}
 			session.setAttribute("rForm",pForm);
 
 		}

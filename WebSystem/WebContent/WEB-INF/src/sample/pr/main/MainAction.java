@@ -150,6 +150,9 @@ public final class MainAction extends Action {
 			case"kinmurecord":
 				forward="kinmurecord";
 				break;
+			case"Access_Select":
+				forward="Access_Select";
+				break;
 			}
 		}
 

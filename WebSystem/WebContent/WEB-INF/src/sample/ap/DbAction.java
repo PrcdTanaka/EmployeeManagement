@@ -2965,7 +2965,7 @@ public class DbAction extends Object{
 			sb.append(",'"+ form.getCamera()+"'"+crlf);
 			sb.append(",'"+ form.getEmployee_no()+"'"+crlf);
 			sb.append(",'"+ form.getRes_time()+"'"+crlf);
-			sb.append(",'"+ form.getMmdd()+"'"+crlf);
+			sb.append(",'"+ form.getMmdd()+"');"+crlf);
 			String query = sb.toString();
 
 			try {
@@ -2979,5 +2979,76 @@ public class DbAction extends Object{
 
 		}
 		return ret;
+	}
+	public boolean getAccessControl(EnterForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("ENTRY_EMP");
+			sb.append("DAY");
+			sb.append("ENTRY_TIME");
+			sb.append("LEAVING_TIME");
+			sb.append("LEAVING_EMP");
+			sb.append("FROM");
+			sb.append("ROOM_ACCESS_TBL");
+			sb.append("WHERE");
+			sb.append("FLOOR= ?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("ENTRY_EMP");
+			columnList.add("DAY");
+			columnList.add("ENTRY_TIME");
+			columnList.add("LEAVING_TIME");
+			columnList.add("LEAVING_EMP");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setEmployee_name(val.get("ENTRY_EMP"));
+					form.setEmployee_name(val.get("DAY"));
+					form.setEmployee_name(val.get("ENTRY_TIME"));
+					form.setEmployee_name(val.get("LEAVING_TIME"));
+					form.setEmployee_name(val.get("LEAVING_EMP"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
 	}
 }

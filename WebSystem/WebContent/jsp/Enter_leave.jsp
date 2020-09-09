@@ -23,6 +23,11 @@
   text-decoration: underline;
   color: #002080;
 }
+body
+{
+	margin-left:30%;
+
+}
 </style>
 
 <html:html>
@@ -30,22 +35,30 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <html:base/>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
-	</head>
 
+	</head>
+	<h1>入退室確認画面</h1>
 	<body>
+
+
+
+ 		<html:form action="/EnterAction">
+
 	 	<%
 
+	 		EnterForm eForm=new EnterForm();
  			LoginForm s = (LoginForm) session.getAttribute("form");
  			String no   = s.getEmployee_no();
  			String name = s.getEmployee_name();
  			String link =s.getLink();
- 			EnterForm eForm=new EnterForm();
- 			int checklist=eForm.getChecklist();
 
- 	%>
- 		<html:form action="/EnterAction">
-			<h1>入退室確認画面</h1>
 
+ 			session.setAttribute("eform", eForm);
+
+ 		%>
+
+		<html:submit styleClass="send" property="button" value="入室"/>
+		<br>
 		<h2>1.電気</h2>
 		<p>　　・エアコン<html:multibox property="checklist" value="1" /></p>
 		<p>　　・照明<html:multibox property="checklist" value="2" /></p>
