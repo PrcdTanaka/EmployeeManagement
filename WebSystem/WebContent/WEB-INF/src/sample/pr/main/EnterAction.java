@@ -82,8 +82,11 @@ public final class EnterAction extends Action {
 		String cale =month+day;
 
 
+
 		if (b.equals("退室")) {
-			if(lForm.getEmployee_name()==null) {
+			String[] checked = request.getParameterValues("checklist");
+			eForm.setChecklist(checked);
+			if(lForm.getEmployee_name()==null||eForm.getChecklist()==4095) {
 				forward="failure";
 			}
 			else {

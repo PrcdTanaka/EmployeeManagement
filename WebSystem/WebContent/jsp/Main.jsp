@@ -134,7 +134,7 @@
 						</html:link>
 						<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Control</html:param>
+							<html:param name="link">Access_Select</html:param>
 						</html:link>
 					</li>
 
@@ -145,7 +145,7 @@
 							</html:link>
 							<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Control</html:param>
+							<html:param name="link">Access_Select</html:param>
 						</html:link>
 						</li>
 
@@ -156,7 +156,7 @@
 						</html:link>
 						<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Control</html:param>
+							<html:param name="link">Access_Select</html:param>
 						</html:link>
 					</li>
 					<li>
@@ -166,7 +166,7 @@
 						</html:link>
 						<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Control</html:param>
+							<html:param name="link">Access_Select</html:param>
 						</html:link>
 					</li>
 				</p>
