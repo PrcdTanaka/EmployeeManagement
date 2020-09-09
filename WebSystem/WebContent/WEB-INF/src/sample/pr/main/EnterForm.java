@@ -1,5 +1,7 @@
 package sample.pr.main;
 
+import java.util.List;
+
 import org.apache.struts.action.ActionForm;
 
 public final class EnterForm extends ActionForm {
@@ -20,7 +22,13 @@ public final class EnterForm extends ActionForm {
 	/** リンク先 */
 	private String link;
 	/**チェックリスト**/
-	private int checklist;
+	private String checklist;
+
+	private List<String> Entry_emp;
+	private List<String> Day;
+	private List<String> Entry_time;
+	private List<String> Leaving_time;
+	private List<String> Leaving_emp;
 
 	/**
 	 * 初期化処理。
@@ -32,9 +40,8 @@ public final class EnterForm extends ActionForm {
 		employee_no = "";
 		employee_name = "";
 		button = "";
-		checklist = 0;
+		checklist = "";
 		link = "";
-
 	}
 
 	/**
@@ -117,7 +124,7 @@ public final class EnterForm extends ActionForm {
 	 *
 	 * @return チェックリスト
 	 */
-	public int getChecklist() {
+	public String getChecklist() {
 		return checklist;
 	}
 
@@ -129,11 +136,8 @@ public final class EnterForm extends ActionForm {
 	 *
 	 * @param checklist チェック状況
 	 */
-	public void setChecklist(String[] checklist) {
-		for(String check:checklist)
-		{
-		this.checklist += Integer.parseInt(check);
-		}
+	public void setChecklist(String checklist) {
+		this.checklist = checklist;
 	}
 	/**
 	 * リンク先取得処理。
@@ -158,5 +162,39 @@ public final class EnterForm extends ActionForm {
 	public void setLink(String link) {
 		this.link = link;
 	}
+
+	public void setENTRY_EMP(String ENTRY_EMP){
+		this.Entry_emp.add(ENTRY_EMP);
+	}
+
+	public void setDAY(String DAY){
+		this.Day.add(DAY);
+	}
+	public void setENTRY_TIME(String ENTRY_TIME){
+		this.Entry_time.add(ENTRY_TIME);
+	}
+	public void setLEAVING_TIME(String LEAVING_TIME){
+		this.Leaving_time.add(LEAVING_TIME);
+	}
+	public void setLEAVING_EMP(String LEAVING_EMP){
+		this.Leaving_emp.add(LEAVING_EMP);
+	}
+
+	public List<String> getENTRY_EMP() {
+		return Entry_emp;
+	}
+	public List<String> getDAY() {
+		return Day;
+	}
+	public List<String> getENTRY_TIME() {
+		return Entry_time;
+	}
+	public List<String>getLEAVING_TIME () {
+		return Leaving_time;
+	}
+	public List<String> getLEAING_EMP() {
+		return Leaving_emp;
+	}
+
 
 }
