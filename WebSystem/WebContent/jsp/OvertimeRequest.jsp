@@ -50,7 +50,7 @@
 
 		<p style="margin-left: -44%;">
 		<p align="center" style="margin-left: -45%">
-			宛先:<%=Email%></p>
+			宛先:</p>
 
 		<div align="center" class="depert">
 			CC:
