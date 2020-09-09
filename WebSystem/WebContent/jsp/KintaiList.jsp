@@ -12,7 +12,26 @@
 
 <%@ page import="java.util.*" %>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="java.sql.*" %>
 
+<%!
+	public void jspInit()
+	{
+		try
+		{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+	}
+%>
 <html lang="ja">
 <html:html>
 
@@ -28,7 +47,6 @@
 	th{border:1px black solid; background:#00FFFF; padding-left: 10px; padding-right: 10px;}
 	td{border:1px black solid; text-align:center; padding:1px 1px 1px 1px;}
 	br{line-height:1em;}
-	btn{border-radius:10px; background-color:transparent;}
 -->
 </style>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/http;charset=Windows-31J">
@@ -42,17 +60,19 @@
 			</center>
 		</div>
 		<br/>
-		<b>カレンダーの変更</b>
 		<br/>
-		<div style="text-align:center;">
-		<form action="CalenderAccess">
 
-		<br/>
-		<br/>
-		<input type="submit" id="ok" name="ok" value="送信"/>
-		</form>
-		</div>
-
+		<%--
+			Connection con = null;
+			Statement stmt = null;
+			ResultSet rs = null;
+			try
+			{
+				con = DriverManager.getConnection("jdbc:oracle:thin:@" + gHost + ":1521:" + gSid,gUser,gPass);
+				stmt = con.createStatement();
+				rs = stmt.executeQuery("select * from kintaiMail");
+			}
+		--%>
 		<%
 		Calendar cale = Calendar.getInstance();
 
@@ -83,9 +103,9 @@
 		int k = cale.get(Calendar.DAY_OF_WEEK) -1;
 		%>
 		<div class="head">
-		<a href="KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth-1 %>">前月</a>
+		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth-1 %>">前月</a>
 		<span class="title"><%= intYear%>年<%=intMonth %>月</span>
-		<a href="KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth+1 %>">翌月</a>
+		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth+1 %>">翌月</a>
 		</div>
 
 		<span class="validity"></span>
@@ -136,8 +156,9 @@
 			%>
 			</select>
 		</span>
-		<a href="KintaiList.jsp?year=<%=num1 %>&month=<%=num2 %>">移動</a>
-		<input type="submit" id="" name="" value="移動"/>
+
+		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=Years_Data %>&month=<%=Month_Data %>">移動</a>
+		<input type="submit" id="btn" name="submit" value="移動"/>
 		</div>
 
 		<br/>
@@ -191,8 +212,18 @@
 				</tr>
 				<%}%>
 		</table>
-		<div>
-			<html:submit property="button" styleClass="btn" value="戻る" styleId="main" />
+
+		<div style="position: relative; margin-top: 5%; align: center;" >
+			<html:submit property="button" style="color:#fff; background-color:#49a9d4; width: 20%;  border-radius: 20px;" value="勤怠連絡入力"
+				styleId="kintaimail"/>
+		</div>
+		<div  style="position: relative; margin-top: 5%; align: center;">
+			<html:submit property="button" style="color:#fff; background-color:#49a9d4; width: 20%;  border-radius: 20px;" value="勤怠月報画面へ"
+				styleId="catalog"/>
+		</div>
+		<div style="position: relative; margin-top: 5%; align: center;">
+			<html:submit property="button" style="color:#fff; background-color:#49a9d4; width: 20%;  border-radius: 20px;" value="戻る"
+				styleId="main"/>
 		</div>
 	</html:form>
 </body>
