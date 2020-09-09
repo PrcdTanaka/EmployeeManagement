@@ -24,7 +24,7 @@ public class KintaiMailForm extends ActionForm{
 		message="";
 	}
 	public void setButton(String button){
-		Button=button;
+		this.Button=button;
 	}
 	public String getButton(){
 		return Button;
