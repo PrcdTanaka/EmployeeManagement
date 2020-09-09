@@ -118,7 +118,7 @@
 						ss = oform.getSs();
 						intr = oform.getIntr();
 
-
+						session.removeAttribute("sForm");
 		%>
 		<div align="right">
 		<a href="search.jsp" style="margin-top:25px;margin-right:25px">ユーザー検索画面へ</a>
