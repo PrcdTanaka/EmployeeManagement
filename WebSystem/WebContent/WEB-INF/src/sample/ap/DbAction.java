@@ -2965,7 +2965,7 @@ public class DbAction extends Object{
 			sb.append(",'"+ form.getCamera()+"'"+crlf);
 			sb.append(",'"+ form.getEmployee_no()+"'"+crlf);
 			sb.append(",'"+ form.getRes_time()+"'"+crlf);
-			sb.append(",'"+ form.getMmdd()+"'"+crlf);
+			sb.append(",'"+ form.getMmdd()+"');"+crlf);
 			String query = sb.toString();
 
 			try {
