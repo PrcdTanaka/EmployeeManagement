@@ -4,7 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.KintaiMailForm"%>
+<%@ page import="sample.pr.main.OvertimeRequestForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -16,30 +16,15 @@
 	href="/WebSystem/css/KintaiMail.css">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
-<style>
-.btn1{
-	font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-    padding: 8px;
-    color: #fff;
-    background-color: #49a9d4;
-    border-radius: 10px;
-    font-weight: bold;
-    color:white;
-  }
-
-</style>
 <body>
-
-	<html:form action="/KintaiMailAction">
+	<html:form action="/OvertimeRequestAction">
 		<%
 			String Email = "kintai@procd-k.co.jp";
 					String Employee_no = "";
 					String name = "";
 					DbAction dba = new DbAction();
 					LoginForm s = (LoginForm) session.getAttribute("form");
-					KintaiMailForm Form = new KintaiMailForm();
+					OvertimeRequestForm Form = new OvertimeRequestForm();
 					String CC = Form.getCC();
 					String depart = Form.getDepart();
 					String division = Form.getDivision();
@@ -152,10 +137,12 @@
 				styleId="kintaimail" style="margin-top:10;" />
 		</div>
 		<div>
-		<ul style="list-style:none;text-align:center;margin-top:14px;">
-			<li><a class="btn1" href="javascript:history.back()" >戻る</a></li>
-		</ul>
+			<html:submit property="button" styleClass="btn" value="戻る"
+				styleId="KintaiMain" style="margin-top:10;" />
 		</div>
+
+
+
 
 
 	</html:form>

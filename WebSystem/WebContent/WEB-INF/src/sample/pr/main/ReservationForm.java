@@ -18,6 +18,10 @@ public final class ReservationForm extends ActionForm {
 	private String camera;
 	/** ボタン */
 	private String button;
+	/** 時間 */
+	private String res_time;
+	/** 日付 */
+	private String mmdd;
 
 
 	/**
@@ -34,6 +38,7 @@ public final class ReservationForm extends ActionForm {
 		monitor = "";
 		camera = "";
 		button = "";
+		res_time = "";
 	}
 	/**
 	 * 社員番号取得処理。
@@ -199,6 +204,54 @@ public final class ReservationForm extends ActionForm {
 	 */
 	public void setButton(String button) {
 		this.button = button;
+	}
+
+	/**
+	 * ボタン名取得処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を取得する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
+	public String getRes_time() {
+		return res_time;
+	}
+
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームにボタン名を設定する。
+	 * </p>
+	 *
+	 * @param button ボタン名
+	 */
+	public void setRes_time(String res_time) {
+		this.res_time = res_time;
+	}
+
+	/**
+	 * ボタン名取得処理。
+	 * <p>
+	 * メイン画面アクションフォームからボタン名を取得する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
+	public String getMmdd() {
+		return mmdd;
+	}
+
+	/**
+	 * ボタン名設定処理。
+	 * <p>
+	 * メイン画面アクションフォームにボタン名を設定する。
+	 * </p>
+	 *
+	 * @param button ボタン名
+	 */
+	public void setMmdd(String mmdd) {
+		this.mmdd = mmdd;
 	}
 
 }

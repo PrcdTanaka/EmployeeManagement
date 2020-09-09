@@ -2,7 +2,7 @@ package sample.pr.main;
 
 import org.apache.struts.action.ActionForm;
 
-public class KintaiMailForm extends ActionForm{
+public class OvertimeRequestForm extends ActionForm{
 	private String Button;
 	private String Employee_no;
 	private String employee_name;
