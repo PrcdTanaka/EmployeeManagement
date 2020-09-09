@@ -128,8 +128,8 @@ public final class MainAction extends Action {
 			case "attendance":
 				forward="attendance";
 				break;
-			case "KintaiMain":
-				forward="KintaiMain";
+			case "KintaiList":
+				forward="kintailist";
 				break;
 			case "reservation":
 				forward="reservation";
@@ -149,6 +149,9 @@ public final class MainAction extends Action {
 				break;
 			case"kinmurecord":
 				forward="kinmurecord";
+				break;
+			case"Access_Select":
+				forward="Access_Select";
 				break;
 			}
 		}

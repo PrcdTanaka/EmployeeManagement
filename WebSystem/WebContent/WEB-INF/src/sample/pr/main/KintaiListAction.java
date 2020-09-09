@@ -1,23 +1,65 @@
 package sample.pr.main;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-@WebServlet("/sample.pr.main/KintaiListAction")
-public class KintaiListAction extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 
-	public KintaiListAction()
+import sample.ap.DbAction;
+
+public class KintaiListAction extends Action {
+
+	private DbAction dba = new DbAction();
+	// 遷移先
+	private String forward;
+
+	public KintaiListAction() throws IOException
 	{
-		super();
 	}
+
+	String button;
+	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
+
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		KintaiMainForm kForm = (KintaiMainForm) frm;
+		HttpSession session = request.getSession();
+		LoginForm lForm = (LoginForm) session.getAttribute("form");
+		lForm.setEmployee_no(lForm.getEmployee_no());
+		forward = "KintaiMain";
+		String button=kForm.getButton();
+		try{
+			if(button.equals("戻る")){
+				forward="main";
+				session.removeAttribute("kForm");
+			}
+			else if(button.equals("勤怠連絡入力")){
+				forward="kintaimail";
+				session.setAttribute("kform", kForm);
+			}
+			else if(button.equals("勤怠一覧画面へ")){
+				forward="kintailist";
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		session.removeAttribute("kForm");
+		return map.findForward(forward);
+	}
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
@@ -114,7 +156,7 @@ public class KintaiListAction extends HttpServlet {
 		sb.append("</table>");
 
 		// パラメータを設定
-		request.setAttribute("calendar", sb);
+		request.setAttribute("calender", sb);
 		return;
 	}
 
