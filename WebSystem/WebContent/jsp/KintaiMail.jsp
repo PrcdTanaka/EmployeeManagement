@@ -16,7 +16,22 @@
 	href="/WebSystem/css/KintaiMail.css">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
+<style>
+.btn1{
+	font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px;
+    color: #fff;
+    background-color: #49a9d4;
+    border-radius: 10px;
+    font-weight: bold;
+    color:white;
+  }
+
+</style>
 <body>
+
 	<html:form action="/KintaiMailAction">
 		<%
 			String Email = "kintai@procd-k.co.jp";
@@ -137,12 +152,10 @@
 				styleId="kintaimail" style="margin-top:10;" />
 		</div>
 		<div>
-			<html:submit property="button" styleClass="btn" value="戻る"
-				styleId="KintaiMain" style="margin-top:10;" />
+		<ul style="list-style:none;text-align:center;margin-top:14px;">
+			<li><a class="btn1" href="javascript:history.back()" >戻る</a></li>
+		</ul>
 		</div>
-
-
-
 
 
 	</html:form>
