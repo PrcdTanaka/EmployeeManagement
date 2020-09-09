@@ -82,10 +82,12 @@ for (int date = 1; date <= lastDate; date++) {
 
 }
 %>
+<%
+EnterForm a=new EnterForm();
 
+%>
 
-
-      <td>entry_name</td> <td>entry_time</td>
+      <td><%List<String>Entry_emp=a.getEntry_emp(); %></td> <td>entry_time</td>
       <td>exit_name</td> <td>exit_time</td>
       <td>electricity</td> <td>door</td>
       <td>escape_route</td> <td>fire_door</td>
