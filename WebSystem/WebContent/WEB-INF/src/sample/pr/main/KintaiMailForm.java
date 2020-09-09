@@ -12,6 +12,7 @@ public class KintaiMailForm extends ActionForm{
 	private String bcc;
 	private String spotcode;
 	private String span;
+	private String span2;
 	private String ptime;
 	private String remark;
 	private String perm;
@@ -23,7 +24,7 @@ public class KintaiMailForm extends ActionForm{
 		message="";
 	}
 	public void setButton(String button){
-		Button=button;
+		this.Button=button;
 	}
 	public String getButton(){
 		return Button;
@@ -166,10 +167,16 @@ public class KintaiMailForm extends ActionForm{
 	public void setSpan(String span){
 		this.span=span;
 	}
-
 	public String getSpan(){
 		return span;
 	}
+	public String getSpan2(){
+		return span2;
+	}
+	public void setSpan2(String span2){
+		this.span2=span2;
+	}
+
 	public void setPtime(String ptime){
 		this.ptime=ptime;
 	}

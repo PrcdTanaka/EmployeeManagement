@@ -24,10 +24,11 @@
 <!--
 	*{padding:5px; margin:0px;}
 	body{text-align:center;}
-	table{witdth:800px; background:white; border:2px black solid;}
+	table{witdth:800px; background:white; border:2px black solid; border-radius:10px; margin-left:auto; margin-right:auto;}
 	th{border:1px black solid; background:#00FFFF; padding-left: 10px; padding-right: 10px;}
 	td{border:1px black solid; text-align:center; padding:1px 1px 1px 1px;}
 	br{line-height:1em;}
+	btn{border-radius:10px; background-color:transparent;}
 -->
 </style>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/http;charset=Windows-31J">
@@ -177,7 +178,9 @@
 					}else if(cale.get(Calendar.MONTH)==intMonth-1){
 					%>
 				<%-- 	<%=d++%> --%>
-					<input type="submit" id="" name="" value="<%=d++ %>"/>
+					<form action="http://localhost:8080/WebSystem/jsp/KintaiMail.jsp" style="padding: 0em;">
+					<input type="submit" id="Button" name="KintaiListForm" style="background-color:transparent; width:30px;" value="<%=d++ %>"/>
+					</form>
 					<%
 					cale.add(Calendar.DATE, 1);
 					%>

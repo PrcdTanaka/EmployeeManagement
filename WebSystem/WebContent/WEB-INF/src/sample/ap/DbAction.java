@@ -18,6 +18,7 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
+import sample.pr.main.ReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
 
@@ -2897,7 +2898,8 @@ public class DbAction extends Object{
 			sb.append("  PERM," + crlf);
 			sb.append("  DEPART," + crlf);
 			sb.append("  MMDD," + crlf);
-			sb.append("  SEND_TIME" + crlf);
+			sb.append("  SEND_TIME," + crlf);
+			sb.append("  SPAN2" + crlf);
 			sb.append(")VALUES(" + crlf);
 			sb.append("'"+form.getCC()+"',"+crlf);
 			sb.append("'"+form.getBcc()+"',"+crlf);
@@ -2909,7 +2911,8 @@ public class DbAction extends Object{
 			sb.append("'"+form.getPerm()+"',"+crlf);
 			sb.append("'"+form.getDepart()+"',"+crlf);
 			sb.append("'"+mmdd+"',"+crlf);
-			sb.append("'"+send_time+"'"+crlf);
+			sb.append("'"+send_time+"',"+crlf);
+			sb.append("'"+form.getSpan2()+"'"+crlf);
 			sb.append(")"+crlf);
 			String query = sb.toString();
 
@@ -2933,7 +2936,48 @@ public class DbAction extends Object{
 		return ret;
 	}
 
+	public boolean InsertReservation(ReservationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO " + crlf);
+			sb.append("  RESERVATION(employee_no,name,room_name,room_place,seat_number,monitor,camera,res_time,mmdd)" + crlf);
+			sb.append("values" + crlf);
+			sb.append("('"+form.getEmployee_no()+"'" +crlf);
+			sb.append(",'"+form.getName()+"'"+crlf);
+			sb.append(",'"+ form.getRoom_place()+"'"+crlf);
+			sb.append(",'"+ form.getSeat_number()+"'"+crlf);
+			sb.append(",'"+ form.getMonitor()+"'"+crlf);
+			sb.append(",'"+ form.getCamera()+"'"+crlf);
+			sb.append(",'"+ form.getEmployee_no()+"'"+crlf);
+			sb.append(",'"+ form.getRes_time()+"'"+crlf);
+			sb.append(",'"+ form.getMmdd()+"'"+crlf);
+			String query = sb.toString();
+
+			try {
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+				ret=true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return ret;
+	}
 }
-
-
-

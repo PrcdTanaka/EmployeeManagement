@@ -133,10 +133,6 @@
 		<action name="KintaiMailForm" path="/KintaiMailAction"
 			type="sample.pr.main.KintaiMailAction" validate="false" scope="request">
 			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
-		</action>
-		<action name="KintaiMailForm" path="/KintaiMailAction"
-			type="sample.pr.main.KintaiMailAction" validate="false" scope="request">
-			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
 			<forward name="kintaimail" path="/jsp/KintaiMail.jsp" />
 		</action>
 		<action name="KintaiListForm" path="/KintaiListAction"
@@ -167,7 +163,8 @@
 		</action>
 		<action name="ReservationForm" path="/RoomReservationAction"
 			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
-			<forward name="RoomReservation" path="/jsp/RoomReservation.jsp" />
+			<forward name="room" path="/jsp/RoomReservation.jsp" />
+			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
 	</action-mappings>
 
