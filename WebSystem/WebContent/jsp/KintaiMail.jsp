@@ -114,7 +114,7 @@
 		</div>
 		<p align="center" class="code" style="margin-left: -6%">
 			対象日付/期間(開始)：<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
-			～対象日付/期間(終了)：<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
+			～対象日付/期間(終了)：<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
 			<p style="color:red;margin-left: 12%">例) 2020年9月1日～2020年9月3日 → 20200901～20200903
 		</p>
 		<p align="center" class="code" style="margin-left: -43%">
