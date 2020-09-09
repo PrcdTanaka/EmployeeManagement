@@ -13,8 +13,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
-import sample.pr.main.LoginForm;
-import sample.pr.main.ReservationForm;
 
 public final class ReservationAction extends Action{
 
@@ -44,7 +42,7 @@ public final class ReservationAction extends Action{
 			if(button.equals("戻る")){
 				forward="main";
 				session.removeAttribute("rForm");
-			}
+			}//if else(button.equals("")){}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
