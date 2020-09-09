@@ -2897,7 +2897,8 @@ public class DbAction extends Object{
 			sb.append("  PERM," + crlf);
 			sb.append("  DEPART," + crlf);
 			sb.append("  MMDD," + crlf);
-			sb.append("  SEND_TIME" + crlf);
+			sb.append("  SEND_TIME," + crlf);
+			sb.append("  SPAN2" + crlf);
 			sb.append(")VALUES(" + crlf);
 			sb.append("'"+form.getCC()+"',"+crlf);
 			sb.append("'"+form.getBcc()+"',"+crlf);
@@ -2909,7 +2910,8 @@ public class DbAction extends Object{
 			sb.append("'"+form.getPerm()+"',"+crlf);
 			sb.append("'"+form.getDepart()+"',"+crlf);
 			sb.append("'"+mmdd+"',"+crlf);
-			sb.append("'"+send_time+"'"+crlf);
+			sb.append("'"+send_time+"',"+crlf);
+			sb.append("'"+form.getSpan2()+"'"+crlf);
 			sb.append(")"+crlf);
 			String query = sb.toString();
 
