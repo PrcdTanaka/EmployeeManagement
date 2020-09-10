@@ -16,29 +16,32 @@
 </head>
 <% //<html:form action="/MonthlyReportAction">%>
 	<body>
+	<%
+		Calendar cal = Calendar.getInstance();
+		int monthlastDay = cal.getActualMaximum(Calendar.DATE);
+		for (int day = 1; day <= monthlastDay; day++) {
+		%>
 		<center>
-			<h1>会議室予約画面</h1>
+			<h1>勤怠月報画面</h1>
 		</center>
 
+<center>
+ <table border="3" bordercolor="#0000ff">
+    <tr bgcolor="#87cefa">
 
 		<tr>
-			<td>/</td>
-			<td>/</td>
+			<td colspan="2">/</td>
 			<td>届出日</td>
 			<td>時刻</td>
 			<td>Limit</td>
 			<td>連絡遅延</td>
-			<td>届出区分</td>
+			<td colspan="2">届出区分</td>
 			<td>作業場所</td>
 			<td>許可</td>
 			<td>備考</td>
 		</tr>
 
-		<%
-		Calendar cal = Calendar.getInstance();
-		int monthlastDay = cal.getActualMaximum(Calendar.DATE);
-		for (int day = 1; day <= monthlastDay; day++) {
-		%>
+
 		<tr>
 			<td><%=day%>日</td>
 			<td>""</td>
@@ -52,6 +55,7 @@
 			<td>""</td>
 			<td>""</td>
 		</tr>
+
 		<%
 			}
 		%>
@@ -80,7 +84,16 @@
 
 
 
-
+</table>
+</center>
+<div  style="position: relative; margin-top: 5%; align: center;">
+			<html:submit property="button" styleClass="btn" value="保存"
+				styleId="MonthlyReport"/>
+		</div>
+		<div style="position: relative; margin-top: 5%; align: center;">
+			<html:submit property="button" styleClass="btn" value="戻る"
+				styleId="kintailist"/>
+		</div>
 	</body>
 <% //</html:form>%>
 </html:html>

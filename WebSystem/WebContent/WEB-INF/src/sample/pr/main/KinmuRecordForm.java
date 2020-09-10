@@ -4,7 +4,7 @@ import org.apache.struts.action.ActionForm;
 
 public class KinmuRecordForm extends ActionForm{
 	//DBのテーブルにあるもの
-	private String Employee_no;
+	private String employeeNum;
 	private String kintaiYMD;
 	private String holidayDiv;
 	private String startTime;
@@ -12,211 +12,105 @@ public class KinmuRecordForm extends ActionForm{
 	private String breakTimeA;
 	private String breakTimeB;
 	private String vacationDiv;
-	private String Remark;
+	private String remark;
 
 	//DBのテーブルにないもの
-	private String Button;
-	private String employee_name;
+	private String button;
+	private String employeeName;
 	private String message;
 
-	//KintaiMailのやつ
-	private String CC;
-	private String depart;
-	private String division;
-	private String bcc;
-	private String spotcode;
-	private String span;
-	private String span2;
-	private String ptime;
-	private String remark;
-	private String perm;
-
 	public void initialize(){
-		Button="";
-		Employee_no="";
-		message="";
-	}
-	public void setButton(String button){
-		this.Button=button;
-	}
-	public String getButton(){
-		return Button;
-	}
-	public void setEmployee_no(String employee_no){
-		this.Employee_no=employee_no;
-	}
-	public String getEmployee_no(){
-		return Employee_no;
+		button="";
+		employeeNum = "";
+		message = "";
 	}
 
-	public String getEmployee_name() {
-		return employee_name;
+	//社員番号
+	public String getEmployeeNum() {
+		return employeeNum;
 	}
-
-	/**
-	 * 社員氏名設定処理。
-	 * <p>
-	 * ログイン画面アクションフォームに社員氏名を設定する。
-	 * </p>
-	 *
-	 * @param employee_name 社員氏名
-	 */
-	public void setEmployee_name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setEmployeeNum(String employeeNum) {
+		this.employeeNum = employeeNum;
 	}
-
-	public void setCC(String CC){
-		switch(CC){
-		case "1":
-			this.CC="1group_admin.ml@procd-k.co.jp";
-			break;
-		case "2":
-			this.CC="2group_admin.ml@procd-k.co.jp";
-			break;
-		case "3":
-			this.CC="3group_admin.ml@procd-k.co.jp";
-			break;
-		case "4":
-			this.CC="4group_admin.ml@procd-k.co.jp";
-			break;
-		case "5":
-			this.CC="5group_admin.ml@procd-k.co.jp";
-			break;
-		case "6":
-			this.CC="solution_admin@procd-k.co.jp";
-			break;
-		}
+	//年月日
+	public String getKintaiYMD() {
+		return kintaiYMD;
 	}
-
-	public String getCC(){
-		return CC;
+	public void setKintaiYMD(String kintaiYMD) {
+		this.kintaiYMD = kintaiYMD;
 	}
-
-	public void setDepart(String depart){
-		switch(depart){
-		case "1":
-			this.depart="第一技術部";
-			break;
-		case "2":
-			this.depart="第二技術部";
-			break;
-		case "3":
-			this.depart="第三技術部";
-			break;
-		case "4":
-			this.depart="第四技術部";
-			break;
-		case "5":
-			this.depart="第五技術部";
-			break;
-		case "6":
-			this.depart="ソリューション技術部";
-			break;
-		}
+	//休日/祝日の区分
+	public String getHolidayDiv() {
+		return holidayDiv;
 	}
-
-	public String getDepart(){
-		return depart;
+	public void setHolidayDiv(String holidayDiv) {
+		this.holidayDiv = holidayDiv;
 	}
-
-	public void setDivision(String division){
-		switch(division){
-		case "1":
-			this.division="1,遅刻";
-			break;
-		case "2":
-			this.division="2,有給休暇";
-			break;
-		case "3":
-			this.division="4,振替休暇";
-			break;
-		case "4":
-			this.division="5,特別休暇";
-			break;
-		case "5":
-			this.division="6,シフト勤務";
-			break;
-		case "6":
-			this.division="7,早退、その他";
-			break;
-		case "7":
-			this.division="8,交通遅延";
-			break;
-		case "8":
-			this.division="9,欠席";
-			break;
-		case "9":
-			this.division="A,深夜作業";
-			break;
-		case "10":
-			this.division="B,休日出勤(振)";
-			break;
-		}
+	//出勤時間
+	public String getStartTime() {
+		return startTime;
 	}
-
-	public String getDivision(){
-		return division;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
-
-
-
-
-	public void setBcc(String bcc){
-		this.bcc=bcc;
+	//退勤時間
+	public String getEndTime() {
+		return endTime;
 	}
-
-	public String getBcc(){
-		return bcc;
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
-
-	public void setSpotcode(String spotcode){
-		this.spotcode=spotcode;
+	//休憩A
+	public String getBreakTimeA() {
+		return breakTimeA;
 	}
-
-	public String getSpotcode(){
-		return spotcode;
+	public void setBreakTimeA(String breakTimeA) {
+		this.breakTimeA = breakTimeA;
 	}
-
-	public void setSpan(String span){
-		this.span=span;
+	//休憩B
+	public String getBreakTimeB() {
+		return breakTimeB;
 	}
-	public String getSpan(){
-		return span;
+	public void setBreakTimeB(String breakTimeB) {
+		this.breakTimeB = breakTimeB;
 	}
-	public String getSpan2(){
-		return span2;
+	//休暇区分
+	public String getVacationDiv() {
+		return vacationDiv;
 	}
-	public void setSpan2(String span2){
-		this.span2=span2;
+	public void setVacationDiv(String vacationDiv) {
+		this.vacationDiv = vacationDiv;
 	}
-
-	public void setPtime(String ptime){
-		this.ptime=ptime;
-	}
-
-	public String getPtime(){
-		return ptime;
-	}
-	public void setRemark(String remark){
-		this.remark=remark;
-	}
-
-	public String getRemark(){
+	//備考
+	public String getRemark() {
 		return remark;
 	}
-	public void setPerm(String perm){
-		this.perm=perm;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
-
-	public String getPerm(){
-		return perm;
+	//ボタン
+	public String getButton() {
+		return button;
 	}
-	public void setMessage(String message){
-		this.message=message;
+	public void setButton(String button) {
+		this.button = button;
 	}
-
-	public String getMessage(){
+	//社員名
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	//メッセージ
+	public String getMessage() {
 		return message;
 	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+
+
 
 }
