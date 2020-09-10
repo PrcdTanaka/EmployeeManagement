@@ -140,6 +140,8 @@
 		<action name="KintaiListForm" path="/KintaiListAction"
 			type="sample.pr.main.KintaiListAction" validate="false" scope="request">
 			<forward name="Kintaimail" path="/jsp/KintaiMail.jsp" />
+			<forward name="MonthlyReport" path="/jsp/MonthlyReport.jsp" />
+			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
 		<action name="ReservationForm" path="/ReservationAction"
 			type="sample.pr.main.ReservationAction" validate="false" scope="request">
