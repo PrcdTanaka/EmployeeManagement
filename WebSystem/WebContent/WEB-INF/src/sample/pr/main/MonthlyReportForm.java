@@ -23,6 +23,4 @@ public class MonthlyReportForm extends ActionForm{
 	public String getEmployee_no(){
 		return Employee_no;
 	}
-
-
 }

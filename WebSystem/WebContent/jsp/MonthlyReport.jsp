@@ -14,7 +14,7 @@
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
-<% //<html:form action="/MonthlyReportAction">%>
+ <html:form action="/MonthlyReportAction">
 	<body>
 	<%
 		Calendar cal = Calendar.getInstance();
@@ -98,5 +98,5 @@
 				styleId="kintailist"/>
 		</div>
 	</body>
-<% //</html:form>%>
+</html:form>
 </html:html>
