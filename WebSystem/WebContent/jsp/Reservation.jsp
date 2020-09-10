@@ -6,7 +6,7 @@
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.ReservationForm"%>
-<%@ page import= "java.util.Calendar;"%>
+<%@ page import="java.util.Calendar"%>
 
 <html:html>
 <head>
@@ -24,29 +24,28 @@
 					Employee_no = s.getEmployee_no();
 					name = s.getEmployee_name();
 				} catch (Exception e) {
+
 				}
 					    String[] week_name = {"(日)", "(月)", "(火)", "(水)",
 					                          "(木)", "(金)", "(土)"};
 
-					    Calendar calendar = Calendar.getInstance();
+					    Calendar cal = Calendar.getInstance();
 
-					    int year = calendar.get(Calendar.YEAR);
-					    int month = calendar.get(Calendar.MONTH) + 1;
-					    int day = calendar.get(Calendar.DATE);
-					    int hour = calendar.get(Calendar.HOUR_OF_DAY);
-					    int minute = calendar.get(Calendar.MINUTE);
-					    int second = calendar.get(Calendar.SECOND);
-					    int week = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+					    int year = cal.get(Calendar.YEAR);
+					    int month = cal.get(Calendar.MONTH) + 1;
+					    int day = cal.get(Calendar.DATE);
+					    int hour = cal.get(Calendar.HOUR_OF_DAY);
+					    int minute = cal.get(Calendar.MINUTE);
+					    int second = cal.get(Calendar.SECOND);
+					    int week = cal.get(Calendar.DAY_OF_WEEK) - 1;
 
-					    int day_of_year = calendar.get(Calendar.DAY_OF_YEAR);
+					    int day_of_year = cal.get(Calendar.DAY_OF_YEAR);
 
-					    System.out.println("現在の日時は");
 					    System.out.println(year + "年" + month + "月" + day + "日");
 					    System.out.println(week_name[week]);
-					    System.out.println(hour + "時" + minute + "分" + second + "秒");
 
 					    System.out.println("今日は今年の" + day_of_year + "日目です");
-					    int max = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 	%>
 	<body>
@@ -104,13 +103,37 @@
 				<tr>
 					<%for(int i=0 ;i<7;i++){
 						if(day>max){%>
-							<td></td>
-						<% }
+					<td></td>
+					<% }
 						else
 						{%>
-							<td><%= day + "日" + week_name[week] %></td>
-						<%day++;}
+					<% switch (cal.get(Calendar.DAY_OF_WEEK)) {
+    						case Calendar.SUNDAY:     // Calendar.SUNDAY:1 （値。意味はない）
+        					//日曜日
+        						break;
+    						case Calendar.MONDAY:     // Calendar.MONDAY:2
+        					//月曜日
+        						break;
+    						case Calendar.TUESDAY:    // Calendar.TUESDAY:3
+        					//火曜日
+        						break;
+    						case Calendar.WEDNESDAY:  // Calendar.WEDNESDAY:4
+        					//水曜日
+        						break;
+    						case Calendar.THURSDAY:   // Calendar.THURSDAY:5
+        					//木曜日
+        						break;
+    						case Calendar.FRIDAY:     // Calendar.FRIDAY:6
+        					//金曜日
+        						break;
+    						case Calendar.SATURDAY:   // Calendar.SATURDAY:7
+        					//土曜日
+       							break;
+						}%>
+					<td><%= day + "日" + week_name[week] %></td>
+					<%day++;
 
+						}
 					 }%>
 
 

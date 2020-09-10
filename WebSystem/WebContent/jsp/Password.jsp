@@ -9,7 +9,7 @@
 <head>
 <title><bean:message key="password.title" /></title>
 <html lang="ja">
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../WebSystem/css/style.css">
 </head>
 
 <table>

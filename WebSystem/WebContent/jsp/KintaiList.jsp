@@ -174,7 +174,7 @@
 				<th class="saturday">土</th>
 			</tr>
 			<%
-				int d=1;
+				int d=0;
 				while(cale.get(Calendar.MONTH)==intMonth-1){
 			%>
 			<tr>
@@ -198,10 +198,15 @@
 						k--;
 					}else if(cale.get(Calendar.MONTH)==intMonth-1){
 					%>
-				<%-- 	<%=d++%> --%>
-					<form action="http://localhost:8080/WebSystem/jsp/KintaiMail.jsp" style="padding: 0em;">
-					<input type="submit" id="Button" name="KintaiListForm" style="background-color:transparent; width:30px;" value="<%=d++ %>"/>
+					<%
+						d++;
+					%>
+					<%-- ボタン式の名残(なんかミスしてる)
+					<form action="http://localhost:8080/WebSystem/jsp/KintaiMail.jsp?button=<%=d %>" style="padding: 0em;">
+					<input type="submit" id="" name="" style="background-color:transparent; width:30px;" value="<%=d++ %>"/>
 					</form>
+				 --%>
+				 	<a href="http://localhost:8080/WebSystem/jsp/KintaiMail.jsp?button=<%=d %>" ><%=d %></a>
 					<%
 					cale.add(Calendar.DATE, 1);
 					%>

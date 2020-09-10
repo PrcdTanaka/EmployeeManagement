@@ -19,6 +19,7 @@ import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
 import sample.pr.main.ReservationForm;
+import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
 
@@ -2794,7 +2795,7 @@ public class DbAction extends Object{
 			sb.append("'"+b+"',"+ crlf);
 			sb.append("0,"+ crlf);
 			sb.append("0,"+ crlf);
-			sb.append("'"+form.getLink().substring(0,1)+"',"+ crlf);
+			sb.append("'"+form.getLink()+"',"+ crlf);
 			sb.append("0)"+crlf);
 			String query = sb.toString();
 
@@ -2829,9 +2830,18 @@ public class DbAction extends Object{
 			sb.append("UPDATE" + crlf);
 			sb.append("  ROOM_ACCESS_TBL" + crlf);
 			sb.append("SET" + crlf);
+			if(form.getButton().equals("退室"))
+			{
 			sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
 			sb.append("  LEAVING_TIME = " + "'" +a+"'," + crlf);
-			sb.append("  CHECK_LIST='"+form.getChecklist()+"'"+ crlf);
+			sb.append("  CHECK_LIST='1'"+ crlf);
+			}
+			else
+			{
+				sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
+				sb.append("  LEAVING_TIME = " + "'0000'," + crlf);
+				sb.append("  CHECK_LIST='0'"+ crlf);
+			}
 			sb.append("WHERE" + crlf);
 			sb.append(  "DAY = '"+b+"'" + crlf);
 			sb.append("AND"+crlf);
@@ -2853,10 +2863,9 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
-	public boolean setKintaiInfo(KintaiMailForm form) {
+	public boolean setKintaiInfo(KintaiMailForm form, LoginForm lform) {
 
 		boolean ret = false;
-
 		// DB接続
 		DbConnector dba = null;
 		Calendar calendar = Calendar.getInstance();
@@ -2886,8 +2895,10 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
+
 			sb.append("INSERT INTO" + crlf);
 			sb.append("  KINTAIMAIL(" + crlf);
+			sb.append("  EMP_NO," + crlf);
 			sb.append("  CC," + crlf);
 			sb.append("  BCC," + crlf);
 			sb.append("  SPOTCODE," + crlf);
@@ -2901,6 +2912,7 @@ public class DbAction extends Object{
 			sb.append("  SEND_TIME," + crlf);
 			sb.append("  SPAN2" + crlf);
 			sb.append(")VALUES(" + crlf);
+			sb.append("'"+lform.getEmployee_no()+"',"+crlf);
 			sb.append("'"+form.getCC()+"',"+crlf);
 			sb.append("'"+form.getBcc()+"',"+crlf);
 			sb.append("'"+form.getSpotcode()+"',"+crlf);
@@ -3109,5 +3121,457 @@ public class DbAction extends Object{
 		}
 		return ret;
 
+	}
+	public boolean getSPAN(KintaiMailForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("SPAN");
+			sb.append("FROM");
+			sb.append("KINTAIMAIL");
+			sb.append("WHERE");
+			sb.append("EMP_NO=?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("SPAN");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setSpan(val.get("SPAN"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+	public boolean getSPAN2(KintaiMailForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("SPAN2");
+			sb.append("FROM");
+			sb.append("KINTAIMAIL");
+			sb.append("WHERE");
+			sb.append("EMP_NO=?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("SPAN2");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setSpan2(val.get("SPAN2"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+	public boolean getMMDD(KintaiMailForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("MMDD");
+			sb.append("FROM");
+			sb.append("KINTAIMAIL");
+			sb.append("WHERE");
+			sb.append("EMP_NO=?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("MMDD");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setMmdd(val.get("MMDD"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+	public boolean getSEND_TIME(KintaiMailForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("SEND_TIME");
+			sb.append("FROM");
+			sb.append("KINTAIMAIL");
+			sb.append("WHERE");
+			sb.append("EMP_NO=?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("SEND_TIME");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setSend_Time(val.get("SEND_TIME"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+	public boolean getDivision(KintaiMailForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("DIVISION");
+			sb.append("FROM");
+			sb.append("KINTAIMAIL");
+			sb.append("WHERE");
+			sb.append("EMP_NO=?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("DIVISION");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setDivision(val.get("DIVISION"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
+	public boolean getPerm(KintaiMailForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("PERM");
+			sb.append("FROM");
+			sb.append("KINTAIMAIL");
+			sb.append("WHERE");
+			sb.append("EMP_NO=?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("PERM");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setPerm(val.get("PERM"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+	public boolean getRemark(KintaiMailForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT");
+			sb.append("REMARK");
+			sb.append("FROM");
+			sb.append("KINTAIMAIL");
+			sb.append("WHERE");
+			sb.append("EMP_NO=?");
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("REMARK");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setRemark(val.get("REMARK"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+	public boolean InsRoomReservation(RoomReservationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO " + crlf);
+			sb.append("  ROOM_RESERVATION(room_name,place,seat,monitor,camera)" + crlf);
+			sb.append("values" + crlf);
+			sb.append("('"+form.getRoom_name()+"'" +crlf);
+			sb.append(",'"+ form.getPlace()+"'"+crlf);
+			sb.append(",'"+ form.getSeat()+"'"+crlf);
+			sb.append(",'"+ form.getMonitor()+"'"+crlf);
+			sb.append(",'"+ form.getCamera()+"'"+crlf);
+			String query = sb.toString();
+
+			try {
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+				ret=true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return ret;
 	}
 }
