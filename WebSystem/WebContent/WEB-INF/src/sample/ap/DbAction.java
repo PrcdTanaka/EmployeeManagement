@@ -2794,7 +2794,7 @@ public class DbAction extends Object{
 			sb.append("'"+b+"',"+ crlf);
 			sb.append("0,"+ crlf);
 			sb.append("0,"+ crlf);
-			sb.append("'"+form.getLink().substring(0,1)+"',"+ crlf);
+			sb.append("'"+form.getLink()+"',"+ crlf);
 			sb.append("0)"+crlf);
 			String query = sb.toString();
 
@@ -2829,9 +2829,18 @@ public class DbAction extends Object{
 			sb.append("UPDATE" + crlf);
 			sb.append("  ROOM_ACCESS_TBL" + crlf);
 			sb.append("SET" + crlf);
+			if(form.getButton().equals("退室"))
+			{
 			sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
 			sb.append("  LEAVING_TIME = " + "'" +a+"'," + crlf);
-			sb.append("  CHECK_LIST='"+form.getChecklist()+"'"+ crlf);
+			sb.append("  CHECK_LIST='1'"+ crlf);
+			}
+			else
+			{
+				sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
+				sb.append("  LEAVING_TIME = " + "'0000'," + crlf);
+				sb.append("  CHECK_LIST='0'"+ crlf);
+			}
 			sb.append("WHERE" + crlf);
 			sb.append(  "DAY = '"+b+"'" + crlf);
 			sb.append("AND"+crlf);
