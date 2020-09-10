@@ -14,7 +14,7 @@
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
-<html:form action="/MonthlyReportAction">
+<% //<html:form action="/MonthlyReportAction">%>
 	<body>
 	<%
 		Calendar cal = Calendar.getInstance();
@@ -29,7 +29,7 @@
  <table border="3" bordercolor="#0000ff">
     <tr bgcolor="#87cefa">
     <tr>
-    	<td><% (cal.get(cal.MONTH)+1); %>月</td>
+    	<td><% String month=(cal.get(cal.MONTH)+1)+""; %>月</td>
     </tr>
 		<tr>
 			<td colspan="2">/</td>
@@ -98,5 +98,5 @@
 				styleId="kintailist"/>
 		</div>
 	</body>
-</html:form>
+<% //</html:form>%>
 </html:html>
