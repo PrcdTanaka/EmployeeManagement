@@ -56,7 +56,7 @@ public class KintaiMailAction extends Action {
 					forward = "kintaimail";
 				} else {
 					forward = "kintaimail";
-					dba.setKintaiInfo(form);
+					dba.setKintaiInfo(form,lForm);
 					session.setAttribute("form", form);
 					// JOptionPane.showMessageDialog(null,"送信しました");
 				}
