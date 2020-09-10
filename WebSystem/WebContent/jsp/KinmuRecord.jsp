@@ -25,23 +25,45 @@
 </head>
 
 <body>
-	<center><h1>勤務管理表作成画面</h1></center>
 	<html:form action="/KinmuRecordAction" method="post">
 		<%
-		String Employee_no="";
-		String name = "";
-		DbAction dba = new DbAction();
-		LoginForm s = (LoginForm) session.getAttribute("form");
-		KinmuRecordForm kinmuRF = new KinmuRecordForm();
+			//インスタンス関連
+			DbAction dba = new DbAction();
+			LoginForm s = (LoginForm) session.getAttribute("form");
+			KinmuRecordForm kinmuRF = new KinmuRecordForm();
+			//ログインユーザーの情報
+			String employeeNum = "";
+			String employeeName = "";
+			String employeeDiv = "";
+			//フォームクラスからゲッターで取得するもの
+			String kintaiYMD = kinmuRF.getKintaiYMD();
+			String holidayDiv = kinmuRF.getHolidayDiv();
+			String startTime = kinmuRF.getStartTime();
+			String endTime = kinmuRF.getEndTime();
+			String breakTimeA = kinmuRF.getBreakTimeA();
+			String breakTimeB = kinmuRF.getBreakTimeB();
+			String vacationDiv = kinmuRF.getVacationDiv();
+			String remark = kinmuRF.getRemark();
+			String button = kinmuRF.getButton();
+			String message = kinmuRF.getMessage();
 
+			//ログインユーザーの社員番号と名前を取得して変数に代入
+			try{
+				employeeNum = s.getEmployee_no();
+				employeeName = s.getEmployee_name();
 
+			} catch (Exception e) {
+
+			}
 		%>
+
+		<center><h1>勤務管理表作成画面</h1></center>
 
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
 			<p class="basicInfo">第5技術部</p>
-			<p class="basicInfo">0329</p>
-			<p class="basicInfo">川越康太郎</p>
+			<p class="basicInfo"><%= employeeNum %></p>
+			<p class="basicInfo"><%= employeeName %></p>
 		</div>
 
 
