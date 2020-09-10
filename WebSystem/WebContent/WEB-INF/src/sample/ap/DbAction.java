@@ -19,6 +19,7 @@ import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
 import sample.pr.main.ReservationForm;
+import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
 
@@ -3532,5 +3533,45 @@ public class DbAction extends Object{
 		}
 		return ret;
 
+	}
+	public boolean InsRoomReservation(RoomReservationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO " + crlf);
+			sb.append("  ROOM_RESERVATION(room_name,place,seat,monitor,camera)" + crlf);
+			sb.append("values" + crlf);
+			sb.append("('"+form.getRoom_name()+"'" +crlf);
+			sb.append(",'"+ form.getPlace()+"'"+crlf);
+			sb.append(",'"+ form.getSeat_number()+"'"+crlf);
+			sb.append(",'"+ form.getMonitor()+"'"+crlf);
+			sb.append(",'"+ form.getCamera()+"'"+crlf);
+			String query = sb.toString();
+
+			try {
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+				ret=true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return ret;
 	}
 }

@@ -6,7 +6,7 @@
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.ReservationForm"%>
-<%@ page import="java.util.Calendar;"%>
+<%@ page import="java.util.Calendar"%>
 
 <html:html>
 <head>
