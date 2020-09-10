@@ -24,7 +24,6 @@
 			<div class="accbox">
 			<!--ラベル1-->
 			<label for="label1">入退室履歴　月選択</label>
-			<input type="checkbox" id="label1" class="cssacc" />
 			<div class="accshow">
 				<!--ここに隠す中身-->
 				<p class="link">
