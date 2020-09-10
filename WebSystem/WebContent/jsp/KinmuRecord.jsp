@@ -36,7 +36,7 @@
 			//ログインユーザーの情報
 			String employeeNum = "";
 			String employeeName = "";
-			String employeeDiv = "";
+			String employeeDivNum = "";
 			//フォームクラスからゲッターで取得するもの
 			String kintaiYMD = kinmuRF.getKintaiYMD();
 			String holidayDiv = kinmuRF.getHolidayDiv();
@@ -53,18 +53,57 @@
 			try{
 				employeeNum = s1.getEmployee_no();
 				employeeName = s1.getEmployee_name();
-				employeeDiv = s2.getTec();
+				employeeDivNum = s2.getTec();
 
 			} catch (Exception e) {
 
 			}
+
+			//ログインユーザーの所属部署を文字にして表示
+			String employeeDivName = "";
+			switch(employeeDivNum){
+				case "00" :
+					employeeDivName = "総務・経理部";
+					break;
+				case "01" :
+					employeeDivName = "第１技術部";
+					break;
+				case "02" :
+					employeeDivName = "第２技術部";
+					break;
+				case "03" :
+					employeeDivName = "第３技術部";
+					break;
+				case "04" :
+					employeeDivName = "第４技術部";
+					break;
+				case "05" :
+					employeeDivName = "第５技術部";
+					break;
+				case "06" :
+					employeeDivName = "ソリューション技術部";
+					break;
+				case "07" :
+					employeeDivName = "システム営業部";
+					break;
+				case "08" :
+					employeeDivName = "人事部";
+					break;
+				case "09" :
+					employeeDivName = "採用マーケティング部";
+					break;
+				default:
+					employeeDivName = "";
+					break;
+			}
+
 		%>
 
 		<center><h1>勤務管理表作成画面</h1></center>
 
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
-			<p class="basicInfo"><%= employeeDiv %></p>
+			<p class="basicInfo"><%= employeeDivName %></p>
 			<p class="basicInfo"><%= employeeNum %></p>
 			<p class="basicInfo"><%= employeeName %></p>
 		</div>
@@ -113,117 +152,33 @@
 			<%-- 修正後の勤務管理表 --%>
 
 				<% for(int i=1; i<=31; i++) {
+
 					LocalDate date = LocalDate.of(2020, 8, i);
-					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
-				%>
+					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");%>
 				<tr>
-					<td width="7px"><%= i %></td>   <%-- 日付 --%>
-					<td width="7px"><%= JapaneseDate.from(date).format(fmt) %></td>   <%-- 曜日 --%>
-					<td width="10px">  <%-- 休/祝 --%>
-						<select>
-							<option value="0">-</option>
-							<option value="1">休</option>
-							<option value="2">祝</option>
-						</select>
-					</td>
-					<td><%-- 出社 --%>
-						<select>
-						<% //プルダウンの表示
-						int hour1=0, min1=0;
-						for(int j=0; j<96; j++){ %>
-							<% if(min1==0) { %>
-								<option>
-									<%= hour1 %>:0<%= min1 %>
-								</option>
-							<% } else { %>
-								<option>
-									<%= hour1 %>:<%= min1 %>
-								</option>
-							<% } %>
+					<td></td>
 
-							<%  //時間の更新
-							min1 += 15;
-							if(min1%60==0){
-								hour1++;
-								min1=0;
-							}
-							%>
-						<%}%>
-						</select>
-					</td>
-					<td>  <%-- 退社 --%>
-						<select>
-						<% //プルダウンの表示
-						int hour2=0, min2=0;
-						for(int j=0; j<96; j++){ %>
-							<% if(min2==0) { %>
-								<option>
-									<%= hour2 %>:0<%= min2 %>
-								</option>
-							<% } else { %>
-								<option>
-									<%= hour2 %>:<%= min2 %>
-								</option>
-							<% } %>
+					<td></td>
 
-							<%  //時間の更新
-							min2 += 15;
-							if(min2%60==0){
-								hour2++;
-								min2=0;
-							}
-							%>
-						<%}%>
-						</select>
-					</td>
+					<td></td>
 
-					<td><%-- 予定 --%>
-					<% if(!(JapaneseDate.from(date).format(fmt).equals("土")) && !(JapaneseDate.from(date).format(fmt).equals("日"))) { %>
-						8.00
-					<% } %>
-					</td>
+					<td></td>
 
-					<td>  <%-- 休A --%>
-					<select>
-					<% double restTimeA = 0.00;
-					   for(int k=0; k<17; k++){ %>
-							<option><%= restTimeA %></option>
-							<% restTimeA += 0.25; %>
-					<% }%>
-					</select>
-					</td>
+					<td></td>
 
-					<td><%-- 休B --%>
-					<select>
-					<% double restTimeB = 0.00;
-					   for(int l=0; l<17; l++){ %>
-							<option><%= restTimeB %></option>
-							<% restTimeB += 0.25; %>
-					<% }%>
-					</select>
-					</td>
+					<td></td>
 
+					<td></td>
 
-					<td width="40%">  <%-- 休暇区分 --%>
-						<input type="radio" name="kubun" value="0">0.出勤
-						<input type="radio" name="kubun" value="1">1.有休/リ休
-						<input type="radio" name="kubun" value="2">2.遅/早
-						<input type="radio" name="kubun" value="3">3.振休
-						<input type="radio" name="kubun" value="4">4.特休
-						<input type="radio" name="kubun" value="5">5.欠勤
-					</td>
+					<td></td>
 
-					<td width="6%"><%-- 実働時間 --%>
-					<% if(!(JapaneseDate.from(date).format(fmt).equals("土")) && !(JapaneseDate.from(date).format(fmt).equals("日"))) { %>
-						8.00
-					<% } %>
-					</td>
+					<td></td>
 
-					<td width="20%">  <%-- 備考 --%>
-						<input type="text" name="bikou">
-					</td>
+					<td></td>
+
+					<td></td>
 				</tr>
-				<% } %>
+				<% }%>
 			</table>
 
 
