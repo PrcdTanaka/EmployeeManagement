@@ -27,6 +27,7 @@
 		<form-bean name="KintaiMainForm" type="sample.pr.main.KintaiMainForm" />
 		<form-bean name="KintaiMailForm" type="sample.pr.main.KintaiMailForm" />
 		<form-bean name="KintaiListForm" type="sample.pr.main.KintaiListForm" />
+		<form-bean name="MonthlyReportForm" type="sample.pr.main.MonthlyReportForm" />
 		<form-bean name="ReservationForm" type="sample.pr.main.ReservationForm" />
 		<form-bean name="EnterForm" type="sample.pr.main.EnterForm" />
 		<form-bean name="Access_ControlForm" type="sample.pr.main.Access_ControlForm" />
@@ -139,7 +140,14 @@
 		</action>
 		<action name="KintaiListForm" path="/KintaiListAction"
 			type="sample.pr.main.KintaiListAction" validate="false" scope="request">
-			<forward name="Kintaimail" path="/jsp/KintaiMail.jsp" />
+			<forward name="kintaimail" path="/jsp/KintaiMail.jsp" />
+			<forward name="MonthlyReport" path="/jsp/MonthlyReport.jsp" />
+			<forward name="main" path="/jsp/Main.jsp" />
+		</action>
+		<action name="MonthlyReportForm" path="/MonthlyReportAction"
+			type="sample.pr.main.MonthlyReportAction" validate="false" scope="request">
+			<forward name="MonthlyReport" path="/jsp/MonthlyReport.jsp" />
+			<forward name="kintailist" path="/jsp/KintaiList.jsp" />
 		</action>
 		<action name="ReservationForm" path="/ReservationAction"
 			type="sample.pr.main.ReservationAction" validate="false" scope="request">
