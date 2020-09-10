@@ -14,7 +14,7 @@
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
-<html:form action="/MonthlyReportAction">
+<% //<html:form action="/MonthlyReportAction">%>
 	<body>
 		<center>
 			<h1>会議室予約画面</h1>
