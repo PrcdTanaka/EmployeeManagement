@@ -27,7 +27,15 @@
 <body>
 	<center><h1>勤務管理表作成画面</h1></center>
 	<html:form action="/KinmuRecordAction" method="post">
+		<%
+		String Employee_no="";
+		String name = "";
+		DbAction dba = new DbAction();
+		LoginForm s = (LoginForm) session.getAttribute("form");
+		KinmuRecordForm kinmuRF = new KinmuRecordForm();
 
+
+		%>
 
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
