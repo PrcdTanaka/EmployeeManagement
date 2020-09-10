@@ -23,7 +23,6 @@ public final class ReservationForm extends ActionForm {
 	/** 日付 */
 	private String mmdd;
 
-
 	/**
 	 * 初期化処理。
 	 * <p>

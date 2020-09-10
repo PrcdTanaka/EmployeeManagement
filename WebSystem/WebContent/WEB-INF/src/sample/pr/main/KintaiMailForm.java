@@ -17,6 +17,8 @@ public class KintaiMailForm extends ActionForm{
 	private String remark;
 	private String perm;
 	private String message;
+	private String Mmdd;
+	private String Send_Time;
 
 	public void initialize(){
 		Button="";
@@ -204,6 +206,20 @@ public class KintaiMailForm extends ActionForm{
 
 	public String getMessage(){
 		return message;
+	}
+	public void setMmdd(String Mmdd){
+		this.Mmdd=Mmdd;
+	}
+
+	public String getMmdd(){
+		return Mmdd;
+	}
+	public void setSend_Time(String Send_Time){
+		this.Send_Time=Send_Time;
+	}
+
+	public String getSend_Time(){
+		return Send_Time;
 	}
 
 }
