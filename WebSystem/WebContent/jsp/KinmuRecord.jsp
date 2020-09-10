@@ -152,30 +152,47 @@
 			<%-- 修正後の勤務管理表 --%>
 
 				<% for(int i=1; i<=31; i++) {
-
+					//指定した年月日が何曜日なのかを表示する用
 					LocalDate date = LocalDate.of(2020, 8, i);
 					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");%>
 				<tr>
+					<%-- 日にち --%>
+					<td width="7px"><%= i %></td>
+
+					<%-- 曜日 --%>
+					<td width="7px"><%= JapaneseDate.from(date).format(fmt) %></td>
+
+					<%-- 休/祝 --%>
+					<td>
+						<html:select property="holidayDiv">
+							<html:option value="0">-</html:option>
+							<html:option value="1">休</html:option>
+							<html:option value="2">祝</html:option>
+						</html:select>
+					</td>
+
+					<%-- 出社時間 --%>
 					<td></td>
 
+					<%-- 退社時間 --%>
 					<td></td>
 
+					<%-- 予定 --%>
 					<td></td>
 
+					<%-- 休A --%>
 					<td></td>
 
+					<%-- 休B --%>
 					<td></td>
 
+					<%-- 休暇区分 --%>
 					<td></td>
 
+					<%-- 実働 --%>
 					<td></td>
 
-					<td></td>
-
-					<td></td>
-
-					<td></td>
-
+					<%-- 備考 --%>
 					<td></td>
 				</tr>
 				<% }%>
