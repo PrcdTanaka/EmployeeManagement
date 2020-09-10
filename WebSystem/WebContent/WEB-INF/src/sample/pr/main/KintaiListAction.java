@@ -35,23 +35,22 @@ public class KintaiListAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		KintaiMainForm kForm = (KintaiMainForm) frm;
+		KintaiListForm kForm = (KintaiListForm) frm;
 		HttpSession session = request.getSession();
-		LoginForm lForm = (LoginForm) session.getAttribute("form");
+		LoginForm lForm = (LoginForm) session.getAttribute("kForm");
 		lForm.setEmployee_no(lForm.getEmployee_no());
-		forward = "KintaiMain";
+		forward = "KintaiList";
 		String button=kForm.getButton();
 		try{
 			if(button.equals("戻る")){
 				forward="main";
-				session.removeAttribute("kForm");
 			}
-			else if(button.equals("勤怠連絡入力")){
-				forward="kintaimail";
+			else if(button.equals("勤怠月報画面へ")){
+				forward="MonthlyReport";
 				session.setAttribute("kform", kForm);
 			}
-			else if(button.equals("勤怠一覧画面へ")){
-				forward="kintailist";
+			else if(button.equals("勤怠連絡入力")){
+				forward="Kintaimail";
 			}
 		}catch(Exception e){
 			e.printStackTrace();

@@ -7,6 +7,7 @@
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="java.util.Calendar"%>
 
 <html:html>
 <head>
@@ -18,6 +19,7 @@
 		<center>
 			<h1>会議室予約画面</h1>
 		</center>
+
 
 		<tr>
 			<td>/</td>
@@ -31,15 +33,15 @@
 			<td>許可</td>
 			<td>備考</td>
 		</tr>
-	<%
-	Calendar cal = Calendar.getInstance();
-	for(int i=1;i<=31;i++)
 
-
-
-	%>
+		<%
+		Calendar cal = Calendar.getInstance();
+		int monthlastDay = cal.getActualMaximum(Calendar.DATE);
+		for (int day = 1; day <= monthlastDay; day++) {
+		%>
 		<tr>
-			<td>1日</td>
+			<td><%=day%>日</td>
+			<td>""</td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
@@ -50,6 +52,12 @@
 			<td>""</td>
 			<td>""</td>
 		</tr>
+		<%
+			}
+		%>
+
+
+
 
 
 
