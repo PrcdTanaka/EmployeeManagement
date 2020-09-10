@@ -139,11 +139,26 @@ public final class MainAction extends Action {
 				break;
 			case"1F":
 				forward="Enter";
+				HttpSession session = request.getSession();
+				LoginForm lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("1F");
+				break;
+			case"3F":
+				forward="Enter";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("3F");
+				break;
+			case"4F":
+				forward="Enter";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("4F");
 				break;
 			case"2F":
 				forward="Enter";
-				HttpSession session = request.getSession();
-				LoginForm lform=(LoginForm) session.getAttribute("form");
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
 				lform.setLink("2F");
 				session.setAttribute("form", lform);
 				break;
