@@ -9,26 +9,26 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.SearchForm" %>
 <%@ page import="sample.pr.main.LoginForm" %>
+<%@ page import="sample.pr.main.KinmuRecordForm" %>
 <%@ page import="sample.pr.main.KintaiMainForm" %>
 <%@ page import="sample.pr.main.KinmuRecordAction" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.chrono.JapaneseDate" %>
+<%@ page import="sample.ap.DbAction" %>
 
 
 <html lang="ja">
 <html:html>
-	<head>
-	<link rel="stylesheet" type="text/css"
-		href="/WebSystem/css/KinmuRecord.css">
-	<link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
-	</head>
+<head>
+	<link rel="stylesheet" type="text/css" href="/WebSystem/css/KinmuRecord.css">
+</head>
+
+<body>
+	<center><h1>勤務管理表作成画面</h1></center>
+	<html:form action="/KinmuRecordAction" method="post">
 
 
-
-
-<html:form action="/KinmuRecordAction" method="post">
-	<body>
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
 			<p class="basicInfo">第5技術部</p>
@@ -191,17 +191,17 @@
 					</td>
 				</tr>
 				<% } %>
-		</table>
+			</table>
 
 
-		<div class="back">
-			<html:submit styleClass="send" styleId="main" property="button" value="入力内容を保存"></html:submit><br>
-			<html:submit styleClass="send" styleId="main" property="button" value="エクセルファイル出力"></html:submit><br>
-			<html:submit styleClass="send" styleId="main" property="button" value="戻る"></html:submit>
-		</div>
+			<div class="back">
+				<html:submit styleClass="send" styleId="main" property="button" value="入力内容を保存"></html:submit><br>
+				<html:submit styleClass="send" styleId="main" property="button" value="エクセルファイル出力"></html:submit><br>
+				<html:submit styleClass="send" styleId="main" property="button" value="戻る"></html:submit>
+			</div>
 
-	</body>
-</html:form>
+	</html:form>
+</body>
 </html:html>
 
 
