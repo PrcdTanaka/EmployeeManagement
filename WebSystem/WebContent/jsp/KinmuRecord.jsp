@@ -17,117 +17,15 @@
 
 
 <html lang="ja">
-
-<style>
-
-body{
-
-	text-align: center;
-	background-color:e9e9e9;
-	}
-a{
-text-decoration:none;
-color:black;
-	}
-h1{
-	margin-top: 8%;
-    font-size: 50px;
-}
-
-table{
-	 border: 1px solid;
-   	align-items: center;
-    line-height: 2;
-	 border-collapse:collapse;
-	 width:40%;
-
-}
-
-/*勤務管理表の年度と月度、及び社員の基本情報*/
-.info{
-	margin: 20px 0 20px 0;
-	text-align: center;
-}
-
-/*上に表示する所属部、社員番号、名前*/
-.basicInfo{
-	text-align: center;
-}
-
-/*合計を表示するテーブル*/
-.total{
-	 border: 1px solid;
-   	align-items: center;
-    line-height: 2;
-	 border-collapse:collapse;
-	 width:80%;
-	 margin: 20px 0 20px 0;
-}
-
-/*実際の勤務管理表のテーブル*/
-.KinmuRecord{
-	 border: 1px solid;
-   	align-items: center;
-    line-height: 2;
-	 border-collapse:collapse;
-	 width:150%;
-	 margin: 20px 0 20px 0;
-}
-
-/*合計を表示するテーブルの見出し*/
-.totalHead{
-	font-size:10px;
-}
-
-/*勤務管理表テーブルの見出し*/
-.KinmuHead{
-	font-size:10px;
-}
-
-td{
-	text-align: center;
-	font-size:10px;
-}
-
-
-h2{
-
-}
-.back{
-margin-top: 4%;
-position:relative;
-
-}
-.send{
-	background-color: #49a9d4;
-	border-radius:8px;
-	font-weight: bold;
-	padding:8px;
-	color:#fff;
-}
-
-.center {
-	text-align:center;
-}
-
-
-.search {
-	position:relative;
-
-	display: inline-block;
-}
-.sarch btn-open{
-	display: none;
-}
-</style>
-
-
-
 <html:html>
 	<head>
-	<link rel="stylesheet"  type="text/css" href="../css/search.css">
-	<center><h1>勤務管理表作成</h1></center>
+	<link rel="stylesheet" type="text/css"
+		href="/WebSystem/css/KinmuRecord.css">
+	<link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 	</head>
+
+
+
 
 <html:form action="/KinmuRecordAction" method="post">
 	<body>
