@@ -44,6 +44,7 @@ public final class RoomReservationAction extends Action{
 				session.removeAttribute("rForm");
 			}else if(button.equals("登録")){
 				forward ="room";
+				
 			}
 		}catch(Exception e){
 			e.printStackTrace();

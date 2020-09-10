@@ -64,6 +64,10 @@ public final class EnterAction extends Action {
 		//jsp上で入力されたボタンを取得
 		String b=eForm.getButton();
 		String link=lForm.getLink();
+		if(link!="2F")
+			link="1";
+		else
+			link="2";
 		eForm.setLink(link);
 		Calendar calendar = Calendar.getInstance();
 		String month=(calendar.get(calendar.MONTH)+1)+"";
@@ -86,7 +90,8 @@ public final class EnterAction extends Action {
 		if (b.equals("退室")) {
 			String[] checked = request.getParameterValues("checklist");
 			eForm.setChecklist(checked);
-			if(lForm.getEmployee_name()==null||eForm.getChecklist()==4095) {
+
+			if(lForm.getEmployee_name()==null||eForm.getChecklist()!=(10+Integer.parseInt(link))) {
 				forward="failure";
 			}
 			else {
@@ -103,7 +108,13 @@ public final class EnterAction extends Action {
 			else {
 				forward="failure";
 			}
+		}
+		else if(b.equals("深夜作業"))
+		{
+			if(lForm.getEmployee_name()!=null)
 
+				dba.UpdateLeave(eForm, time, cale);
+				forward="failure";
 		}
 
 		/* 9.戻り値を返却する。<br>
