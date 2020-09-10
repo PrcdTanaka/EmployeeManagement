@@ -3557,7 +3557,7 @@ public class DbAction extends Object{
 			sb.append("values" + crlf);
 			sb.append("('"+form.getRoom_name()+"'" +crlf);
 			sb.append(",'"+ form.getPlace()+"'"+crlf);
-			sb.append(",'"+ form.getSeat_number()+"'"+crlf);
+			sb.append(",'"+ form.getSeat()+"'"+crlf);
 			sb.append(",'"+ form.getMonitor()+"'"+crlf);
 			sb.append(",'"+ form.getCamera()+"'"+crlf);
 			String query = sb.toString();
