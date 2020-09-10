@@ -12,7 +12,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-public final class MainAction extends Action {
+public final class Access_ControlAction extends Action {
 
 
 	// 遷移先
@@ -34,7 +34,7 @@ public final class MainAction extends Action {
 	 * @throws IOException
 	 *             -
 	 */
-	public MainAction() throws IOException {
+	public Access_ControlAction() throws IOException {
 	}
 
 	/**

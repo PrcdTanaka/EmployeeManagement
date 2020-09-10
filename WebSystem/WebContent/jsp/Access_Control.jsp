@@ -57,9 +57,9 @@ EnterForm a=new EnterForm();;
 		int k = cale.get(Calendar.DAY_OF_WEEK) -1;
 		%>
 		<div class="head">
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth-1 %>">前月</a>
+		<a href="http://localhost:8080/WebSystem/jsp/Access_Control.jsp?year=<%=intYear%>&month=<%=intMonth-1 %>">前月</a>
 		<span class="title"><%= intYear%>年<%=intMonth %>月</span>
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth+1 %>">翌月</a>
+		<a href="http://localhost:8080/WebSystem/jsp/Access_Control.jsp?year=<%=intYear%>&month=<%=intMonth+1 %>">翌月</a>
 		</div>
 
 		<span class="validity"></span>
@@ -111,7 +111,7 @@ EnterForm a=new EnterForm();;
 			</select>
 		</span>
 
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=Years_Data %>&month=<%=Month_Data %>">移動</a>
+		<a href="http://localhost:8080/WebSystem/jsp/Access_Control.jsp?year=<%=Years_Data %>&month=<%=Month_Data %>">移動</a>
 		</div>
 
 <center></center>
@@ -169,7 +169,6 @@ for (int date = 1; date <= lastDate; date++) {
     </tr>
     <%
  	startDay++;
-
 
 }
 %>
