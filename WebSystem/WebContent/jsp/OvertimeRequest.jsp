@@ -18,23 +18,24 @@
 </head>
 <body>
 	<html:form action="/OvertimeRequestAction">
-		<%
-			String Email = "kintai@procd-k.co.jp";
-					String Employee_no = "";
-					String name = "";
-					DbAction dba = new DbAction();
-					LoginForm s = (LoginForm) session.getAttribute("form");
-					OvertimeRequestForm Form = new OvertimeRequestForm();
-					String CC = Form.getCC();
-					String depart = Form.getDepart();
-					String division = Form.getDivision();
-					String bcc = Form.getBcc();
-					String spotcode = Form.getSpotcode();
-					String span = Form.getSpan();
-					String span2 = Form.getSpan2();
-					String ptime = Form.getPtime();
-					String remark = Form.getRemark();
-					String perm = Form.getPerm();
+		<%  //jspで使用する変数を一通り宣言
+			//String 技術部を表示するための変数
+			String Employee_no = "";
+			String name = "";
+			DbAction dba = new DbAction();
+			LoginForm s = (LoginForm) session.getAttribute("form");
+			OvertimeRequestForm Form = new OvertimeRequestForm();
+
+
+			String depart = Form.getDepart();
+			String division = Form.getDivision();
+			String bcc = Form.getBcc();
+			String spotcode = Form.getSpotcode();
+			String span = Form.getSpan();
+			String span2 = Form.getSpan2();
+			String ptime = Form.getPtime();
+			String remark = Form.getRemark();
+			String perm = Form.getPerm();
 					try {
 						Employee_no = s.getEmployee_no();
 						name = s.getEmployee_name();
@@ -49,7 +50,7 @@
 
 		<p style="margin-left: -44%;">
 		<p align="center" style="margin-left: -45%">
-			宛先:<%=Email%></p>
+			宛先:</p>
 
 		<div align="center" class="depert">
 			CC:
