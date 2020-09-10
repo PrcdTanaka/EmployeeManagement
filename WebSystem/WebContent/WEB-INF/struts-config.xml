@@ -33,6 +33,8 @@
 		<form-bean name="Access_ControlForm" type="sample.pr.main.Access_ControlForm" />
 		<form-bean name="ReservationFrom" type="sample.pr.main.ReservationForm" />
 		<form-bean name="Access_Select" type="sample.pr.main.Access_SelectForm" />
+		<form-bean name="RoomReservationForm" type="sample.pr.main.RoomReservationForm" />
+
 
 	</form-beans>
 
@@ -179,6 +181,11 @@
 				<action name="ReservationForm" path="/Access_SelectAction"
 			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Access_Control.jsp" />
+		</action>
+		<action name="RoomReservationForm" path="/RoomReservationAction"
+			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
+			<forward name="room" path="/jsp/RoomReservation.jsp" />
+			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
 	</action-mappings>
 

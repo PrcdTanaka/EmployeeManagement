@@ -25,7 +25,7 @@
 			</div>
 			<div>
 				<center>
-					建物名　：
+					所在地　：
 					<input type ="text" property="roo_place" value="" />
 				</center>
 			</div>
