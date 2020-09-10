@@ -3,9 +3,23 @@ package sample.pr.main;
 import org.apache.struts.action.ActionForm;
 
 public class KinmuRecordForm extends ActionForm{
-	private String Button;
+	//DBのテーブルにあるもの
 	private String Employee_no;
+	private String kintaiYMD;
+	private String holidayDiv;
+	private String startTime;
+	private String endTime;
+	private String breakTimeA;
+	private String breakTimeB;
+	private String vacationDiv;
+	private String Remark;
+
+	//DBのテーブルにないもの
+	private String Button;
 	private String employee_name;
+	private String message;
+
+	//KintaiMailのやつ
 	private String CC;
 	private String depart;
 	private String division;
@@ -16,7 +30,6 @@ public class KinmuRecordForm extends ActionForm{
 	private String ptime;
 	private String remark;
 	private String perm;
-	private String message;
 
 	public void initialize(){
 		Button="";
