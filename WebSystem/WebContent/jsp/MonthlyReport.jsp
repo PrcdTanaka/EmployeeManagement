@@ -14,12 +14,12 @@
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
-<% //<html:form action="/MonthlyReportAction">%>
+<html:form action="/MonthlyReportAction">
 	<body>
 	<%
 		Calendar cal = Calendar.getInstance();
 		int monthlastDay = cal.getActualMaximum(Calendar.DATE);
-		for (int day = 1; day <= monthlastDay; day++) {
+
 		%>
 		<center>
 			<h1>勤怠月報画面</h1>
@@ -28,7 +28,9 @@
 <center>
  <table border="3" bordercolor="#0000ff">
     <tr bgcolor="#87cefa">
-
+    <tr>
+    	<td><% (cal.get(cal.MONTH)+1); %>月</td>
+    </tr>
 		<tr>
 			<td colspan="2">/</td>
 			<td>届出日</td>
@@ -43,6 +45,7 @@
 
 
 		<tr>
+		 <%for (int day = 1; day <= monthlastDay; day++) { %>
 			<td><%=day%>日</td>
 			<td>""</td>
 			<td>""</td>
@@ -95,5 +98,5 @@
 				styleId="kintailist"/>
 		</div>
 	</body>
-<% //</html:form>%>
+</html:form>
 </html:html>
