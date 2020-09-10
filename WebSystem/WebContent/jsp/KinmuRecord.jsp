@@ -16,6 +16,7 @@
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.chrono.JapaneseDate" %>
 <%@ page import="sample.ap.DbAction" %>
+<%@ page import="sample.pr.main.Open_informationForm"%>
 
 
 <html lang="ja">
@@ -29,7 +30,8 @@
 		<%
 			//インスタンス関連
 			DbAction dba = new DbAction();
-			LoginForm s = (LoginForm) session.getAttribute("form");
+			LoginForm s1 = (LoginForm) session.getAttribute("form");
+			Open_informationForm s2 = (Open_informationForm) session.getAttribute("oForm");
 			KinmuRecordForm kinmuRF = new KinmuRecordForm();
 			//ログインユーザーの情報
 			String employeeNum = "";
@@ -49,8 +51,9 @@
 
 			//ログインユーザーの社員番号と名前を取得して変数に代入
 			try{
-				employeeNum = s.getEmployee_no();
-				employeeName = s.getEmployee_name();
+				employeeNum = s1.getEmployee_no();
+				employeeName = s1.getEmployee_name();
+				employeeDiv = s2.getTec();
 
 			} catch (Exception e) {
 
@@ -61,7 +64,7 @@
 
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
-			<p class="basicInfo">第5技術部</p>
+			<p class="basicInfo"><%= employeeDiv %></p>
 			<p class="basicInfo"><%= employeeNum %></p>
 			<p class="basicInfo"><%= employeeName %></p>
 		</div>
