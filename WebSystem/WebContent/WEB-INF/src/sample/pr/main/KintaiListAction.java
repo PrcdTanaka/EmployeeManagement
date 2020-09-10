@@ -38,19 +38,20 @@ public class KintaiListAction extends Action {
 		KintaiListForm kForm = (KintaiListForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("kForm");
-		lForm.setEmployee_no(lForm.getEmployee_no());
+		kForm.setEmployee_no(lForm.getEmployee_no());
 		forward = "KintaiList";
 		String button=kForm.getButton();
 		try{
 			if(button.equals("戻る")){
 				forward="main";
+				session.removeAttribute("form");
 			}
 			else if(button.equals("勤怠月報画面へ")){
 				forward="MonthlyReport";
 				session.setAttribute("kform", kForm);
 			}
 			else if(button.equals("勤怠連絡入力")){
-				forward="Kintaimail";
+				forward="kintaimail";
 			}
 		}catch(Exception e){
 			e.printStackTrace();

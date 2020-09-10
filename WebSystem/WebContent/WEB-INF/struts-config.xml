@@ -139,7 +139,7 @@
 		</action>
 		<action name="KintaiListForm" path="/KintaiListAction"
 			type="sample.pr.main.KintaiListAction" validate="false" scope="request">
-			<forward name="Kintaimail" path="/jsp/KintaiMail.jsp" />
+			<forward name="kintaimail" path="/jsp/KintaiMail.jsp" />
 			<forward name="MonthlyReport" path="/jsp/MonthlyReport.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
 		</action>

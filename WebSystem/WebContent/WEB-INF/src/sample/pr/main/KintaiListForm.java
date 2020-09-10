@@ -5,10 +5,12 @@ import org.apache.struts.action.ActionForm;
 public class KintaiListForm extends ActionForm
 {
 	private String Button;
+	private String Employee_no;
 
 	public void initalize()
 	{
 		Button = "";
+		Employee_no="";
 	}
 
 	public String getButton()
@@ -21,11 +23,19 @@ public class KintaiListForm extends ActionForm
 	 */
 	public void setButton(String button)
 	{
-		switch(button)
-		{
-			case "1":
+		this.Button=button;
+	}
 
-				break;
-		}
+	public String getEmployee_no()
+	{
+		return  Employee_no;
+	}
+
+	/*
+	 *  日付ボタン選択処理
+	 */
+	public void setEmployee_no(String  Employee_no)
+	{
+		this.Button= Employee_no;
 	}
 }
