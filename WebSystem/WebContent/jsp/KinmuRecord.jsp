@@ -1,22 +1,24 @@
-<%@page import="javax.swing.text.Document"%>
-<%@page import="java.io.UnsupportedEncodingException"%>
-<%@page import="java.util.Iterator"%>
-<%@ page import="sample.pr.main.MainForm"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
-<%@ page import="java.util.List"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="sample.pr.main.SearchForm" %>
+
 <%@ page import="sample.pr.main.LoginForm" %>
 <%@ page import="sample.pr.main.KinmuRecordForm" %>
-<%@ page import="sample.pr.main.KintaiMainForm" %>
+<%@ page import="sample.pr.main.MainForm"%>
+<%@ page import="sample.ap.DbAction" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.KinmuRecordAction" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.chrono.JapaneseDate" %>
-<%@ page import="sample.ap.DbAction" %>
 <%@ page import="sample.pr.main.Open_informationForm"%>
+
+
+
+
+
+
+
 
 
 <html lang="ja">
@@ -39,7 +41,11 @@
 			String employeeDivNum = "";
 			//フォームクラスからゲッターで取得するもの
 			String kintaiYMD = kinmuRF.getKintaiYMD();
-			String holidayDiv = kinmuRF.getHolidayDiv();
+
+			String holidayDiv1 = kinmuRF.getHolidayDiv1();
+			String holidayDiv2 = kinmuRF.getHolidayDiv2();
+			String holidayDiv3 = kinmuRF.getHolidayDiv3();
+
 			String startTime = kinmuRF.getStartTime();
 			String endTime = kinmuRF.getEndTime();
 			String breakTimeA = kinmuRF.getBreakTimeA();
@@ -151,24 +157,20 @@
 
 			<%-- 修正後の勤務管理表 --%>
 
-				<% for(int i=1; i<=31; i++) {
+				<% //for(int i=1; i<=3; i++) {
 					//指定した年月日が何曜日なのかを表示する用
-					LocalDate date = LocalDate.of(2020, 8, i);
+					LocalDate date = LocalDate.of(2020, 8, 1);
 					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");%>
 				<tr>
 					<%-- 日にち --%>
-					<td width="7px"><%= i %></td>
+					<td width="7px">1</td>
 
 					<%-- 曜日 --%>
 					<td width="7px"><%= JapaneseDate.from(date).format(fmt) %></td>
 
 					<%-- 休/祝 --%>
 					<td>
-						<html:select property="holidayDiv">
-							<html:option value="0">-</html:option>
-							<html:option value="1">休</html:option>
-							<html:option value="2">祝</html:option>
-						</html:select>
+
 					</td>
 
 					<%-- 出社時間 --%>
@@ -195,7 +197,7 @@
 					<%-- 備考 --%>
 					<td></td>
 				</tr>
-				<% }%>
+				<% //}%>
 			</table>
 
 

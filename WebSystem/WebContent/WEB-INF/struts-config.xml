@@ -34,6 +34,7 @@
 		<form-bean name="ReservationFrom" type="sample.pr.main.ReservationForm" />
 		<form-bean name="Access_Select" type="sample.pr.main.Access_SelectForm" />
 		<form-bean name="RoomReservationForm" type="sample.pr.main.RoomReservationForm" />
+		<form-bean name="KinmuRecordForm" type="sample.pr.main.KinmuRecordForm" />
 
 
 	</form-beans>
@@ -156,9 +157,10 @@
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
-		<action name="KintaiMainForm" path="/KinmuRecordAction"
+		<action name="KinmuRecordForm" path="/KinmuRecordAction"
 			type="sample.pr.main.KinmuRecordAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp" />
 		</action>
 		<action name="Access_ControlForm" path="/Access_ControlAction"
 			type="sample.pr.main.Access_Control" validate="false" scope="request">
