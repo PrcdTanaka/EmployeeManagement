@@ -19,12 +19,13 @@
 
 <%
 
-EnterForm a=new EnterForm();;
+EnterForm a=new EnterForm();
+a = (EnterForm) session.getAttribute("eform");
 	DbAction dba=new DbAction();
 	dba.getAccessControl(a);
 
 %>
-<h1>floor</h1>
+<h1><%=a.getFloor() %>F</h1>
 <center></center><h1>入退室者一覧</h1></center>
 
 		<%
@@ -135,6 +136,7 @@ EnterForm a=new EnterForm();;
     <tr>
 
 <%
+
 
 LoginForm lform = (LoginForm) session.getAttribute("form");
 
