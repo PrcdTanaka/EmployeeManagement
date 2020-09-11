@@ -3,29 +3,26 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.pr.main.KintaiNotificationForm"%>
+<%@ page import="sample.pr.main.KintaiNotificationAction"%>
 <%@ page import="sample.pr.main.LoginForm"%>
+
 <style>
-.link-style-btn {
-	cursor: pointer;
-	border: none;
-	background: none;
-	color: #0033cc;
-}
-
-.link-style-btn:hover {
-	text-decoration: underline;
-	color: #002080;
-}
-
 .back {
 	margin-top: 4%;
 	position: relative;
 }
 
-p.centers {
+.brock {
+	margin: 16px auto;
 	text-align: center;
-	margin: 10px;
+	display: block;
+	border: 1px solid #000;
+}
+.brock .centers {
+	text-align: left;
+	display: inline-block;
 }
 
 textarea {
@@ -48,25 +45,26 @@ p.jyutexts {resize none;
 
 <table>
 	<center>
-		<h1>勤怠届</h1>
+		<h1>勤怠届作成</h1>
 	</center>
 </table>
 
 <body>
 
-	<html:form action="/LoginAction">
+	<html:form action="/KintaiNotificationAction">
 		<div class="block">
 
 			<div class="space"></div>
 
 			<!-- 社員番号入力欄 -->
-			<div>
-				<p class="centers">
+			<div class="centers">
+				<p class="list">
 					社員番号：
 					<html:text property="employee_no" size="5" maxlength="4" />
-					氏名： <input type="text" name="syain_name" size="12" maxlength="20" />
+					氏名：
+					<html:text property="syain_name" size="12" maxlength="20" />
 				</p>
-				<p class="centers">
+				<p>
 					所属部門： <select name="depart">
 						<option value="1">第1技術部</option>
 						<option value="2">第2技術部</option>
@@ -76,43 +74,43 @@ p.jyutexts {resize none;
 						<option value="6">ソリューション技術部</option>
 					</select>
 				</p>
-				<p class="centers">
+				<p>
 					申請日： <input type="date" name="petition_ymd" size="12" maxlength="8">
 				</p>
-				<p class="centers">
+				<p>
 					対象日： <input type="date" name="attendance_startday" size="12">
 					～ <input type="date" name="attendance_endday" size="12">
 				</p>
-				<p class="centers">
+				<p>
 					対象時間： <input type="text" name="attendance_starttime" size="8">
 					～ <input type="text" name="attendance_endtime" size="8">
 				</p>
 
-				<p class="centers">
+				<p>
 					届出事由： <select name="notification_reason">
-						<option value="not1">1：遅刻</option>
-						<option value="not2">3：私用外出</option>
-						<option value="not3">2：早退</option>
-						<option value="not4">4：休暇</option>
-						<option value="not5">5：休職</option>
-						<option value="not6">6：育児休業</option>
-						<option value="not7">7：無断欠勤</option>
+						<option value="1">1：遅刻</option>
+						<option value="2">3：私用外出</option>
+						<option value="3">2：早退</option>
+						<option value="4">4：休暇</option>
+						<option value="5">5：休職</option>
+						<option value="6">6：育児休業</option>
+						<option value="7">7：無断欠勤</option>
 					</select>
 				</p>
-				<p class="centers">
+				<p>
 					休暇区分： <select name="vacation_division">
-						<option value="vac1">1.年次有給休暇/リフ休</option>
-						<option value="vac3">3.振替休暇</option>
-						<option value="vac4">4.特別休暇</option>
-						<option value="vac5">5.欠勤</option>
+						<option value="1">1.年次有給休暇/リフ休</option>
+						<option value="3">3.振替休暇</option>
+						<option value="4">4.特別休暇</option>
+						<option value="5">5.欠勤</option>
 					</select>
 				</p>
 
-				<p class="centers">
+				<p>
 					振替対象日： <input type="date" name="Transfer_Day" size="12" disabled>
 				</p>
 
-				<p class="centers">
+				<p>
 					特休理由： <select name="sp_holiday_reason" disabled>
 						<option value="sph1">1:結婚</option>
 						<option value="sph2">2:産前産後休業</option>
@@ -123,27 +121,30 @@ p.jyutexts {resize none;
 						<option value="sph7">7:そのた</option>
 					</select>
 				</p>
-			</div>
-			<p class="centers" disabled>
+
+			<p disabled>
 				欠勤理由: <input type="radio" value="1" name="absenteeism_reason">
 				病気 <input type="radio" value="2" name="absenteeism_reason">
 				自己都合 <input type="radio" value="3" name="absenteeism_reason">
 				事故
 			</p>
+
+			</div><!-- brock.centers End -->>
 			<br>
-			<p class="centers">事由</p>
-			<p class="centers">
+			<p>事由</p>
+			<p>
 				<textarea name="reason" rows="5" cols="40"></textarea>
 			</p>
 
 			<div class="space"></div>
 			<br>
 			<!-- エクセル出力ボタン -->
-			<span><html:submit property="button" styleClass="btn"
-					value="エクセル作成" styleId="excelOutput" /></span>
+			<div class="back"><html:submit property="button" styleClass="btn"
+					value="エクセル作成" styleId="excelOutput" />
 			<!-- 戻るボタン -->
-			<span><html:submit property="button" styleClass="btn"
-					value="戻る" styleId="back" /></span>
+			<html:submit property="button" styleClass="btn"
+					value="戻る" styleId="login" />
+			</div>
 		</div>
 	</html:form>
 </body>

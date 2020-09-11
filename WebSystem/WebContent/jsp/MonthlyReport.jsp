@@ -1,10 +1,12 @@
+<%@page import="sample.pr.main.MonthlyReportForm"%>
+<%@page import="sample.pr.main.MonthlyReportAction"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.KintaiMailForm"%>
+<%@ page import="sample.pr.main.MonthlyReportForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -19,7 +21,7 @@
 <html:form action="/MonthlyReportAction">
 	<body>
 	<%
-		KintaiMailForm form=new KintaiMailForm();
+		MonthlyReportForm form=new MonthlyReportForm();
 		Calendar cal = Calendar.getInstance();
 		String month=(cal.get(cal.MONTH)+1)+"";
 		int monthlastDay = cal.getActualMaximum(Calendar.DATE);
@@ -35,13 +37,28 @@
 		List<String>perm=form.getPerm();
 		List<String>Mmdd=form.getMmdd();
 		List<String>Send_Time=form.getSend_Time();
+		List<String> spotcode =form.getSpotcode();
 		int listnumber=0;
+		String a="";
+
+
+		for(int i=0;i<spotcode.size();i++){
+			switch(Integer.parseInt(spotcode.get(i))){
+			case 90001:
+				a="本社";
+				break;
+			case 90002:
+				a="大阪事業所";
+				break;
+			}
+		}
+
 
 		%>
 		<center>
 			<h1>勤怠月報画面</h1>
 		</center>
-
+<center>
  <table border="3" bordercolor="#0000ff">
     <tr bgcolor="#87cefa">
     <tr>
@@ -53,7 +70,7 @@
 			<td>時刻</td>
 			<td>Limit</td>
 			<td>連絡遅延</td>
-			<td colspan="2">届出区分</td>
+			<td >届出区分</td>
 			<td>作業場所</td>
 			<td>許可</td>
 			<td>備考</td>
@@ -70,30 +87,50 @@
 			 dada="0"+day;
 		 else
 			 dada=""+day;
-
-		 if(){%>
+		 if(listnumber>Mmdd.size()-1){%>
 				<td><%=day%>日</td>
-				<td><%=span.get(listnumber)%></td>
 				<td>""</td>
 				<td>""</td>
 				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+			</tr>
+
+		 <%}
+		 else if(Mmdd.get(listnumber).equals(month+dada+"")){%>
+				<td><%=day%>日</td>
+				<td>""</td>
+				<td><%=Mmdd.get(listnumber)%></td>
+				<td><%=Send_Time.get(listnumber)%></td>
 				<td>""</td>
 				<td>""</td>
 				<td><%=division.get(listnumber)%></td>
-				<td>""</td>
-				<td>""</td>
-				<td>""</td>
+				<td><%=a%></td>
+				<td><%=perm.get(listnumber)%></td>
+				<td><%=remark.get(listnumber)%></td>
 			</tr>
 		 <%
 		 listnumber++;
 
 		 }
-		 else{
+		 else{%>
+			<td><%=day%>日</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+		</tr>
 
-		 }%>
-
-
-		<%
+	 <%}
 			}
 		%>
 

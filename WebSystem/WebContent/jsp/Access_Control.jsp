@@ -19,12 +19,13 @@
 
 <%
 
-EnterForm a=new EnterForm();;
+EnterForm a=new EnterForm();
+a = (EnterForm) session.getAttribute("eform");
 	DbAction dba=new DbAction();
 	dba.getAccessControl(a);
 
 %>
-<h1>floor</h1>
+<h1><%=a.getFloor() %>F</h1>
 <center></center><h1>入退室者一覧</h1></center>
 
 		<%
@@ -136,8 +137,11 @@ EnterForm a=new EnterForm();;
 
 <%
 
+
+LoginForm lform = (LoginForm) session.getAttribute("form");
+
   int year=0;
-  int month=9; //getlinkで後日とる
+  int month=Integer.valueOf(lform.getLink()); //getlinkでとる
 
   int startDay;
 
