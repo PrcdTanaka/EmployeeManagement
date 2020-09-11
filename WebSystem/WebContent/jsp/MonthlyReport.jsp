@@ -70,8 +70,9 @@
 			 dada="0"+day;
 		 else
 			 dada=""+day;
-
-		 if(){%>
+		 if(listnumber<Mmdd.size()){
+		 }
+		 else if(Mmdd.get(listnumber).equals(month+dada+"")){%>
 				<td><%=day%>日</td>
 				<td><%=span.get(listnumber)%></td>
 				<td>""</td>
@@ -88,9 +89,7 @@
 		 listnumber++;
 
 		 }
-		 else{
-
-		 }%>
+		 %>
 
 
 		<%
