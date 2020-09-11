@@ -6,7 +6,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.KintaiMailForm"%>
+<%@ page import="sample.pr.main.MonthlyReportForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -72,8 +72,21 @@
 			 dada="0"+day;
 		 else
 			 dada=""+day;
-		 if(listnumber>Mmdd.size()-1){
-		 }
+		 if(listnumber>Mmdd.size()-1){%>
+				<td><%=day%>日</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+			</tr>
+
+		 <%}
 		 else if(Mmdd.get(listnumber).equals(month+dada+"")){%>
 				<td><%=day%>日</td>
 				<td><%=span.get(listnumber)%></td>
@@ -91,10 +104,21 @@
 		 listnumber++;
 
 		 }
-		 %>
+		 else{%>
+			<td><%=day%>日</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+			<td>""</td>
+		</tr>
 
-
-		<%
+	 <%}
 			}
 		%>
 
