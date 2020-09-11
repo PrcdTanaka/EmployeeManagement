@@ -44,7 +44,14 @@ public class KinmuRecordForm extends ActionForm{
 		return holidayDiv;
 	}
 	public void setHolidayDiv(String holidayDiv) {
-		this.holidayDiv = holidayDiv;
+		switch(holidayDiv){
+		case "1":
+			this.holidayDiv = "休";
+			break;
+		case"2":
+			this.holidayDiv = "祝日";
+			break;
+		}
 	}
 	//出勤時間
 	public String getStartTime() {
