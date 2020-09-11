@@ -1,8 +1,5 @@
 package sample.pr.main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.struts.action.ActionForm;
 
 public class KintaiMailForm extends ActionForm{
@@ -11,29 +8,29 @@ public class KintaiMailForm extends ActionForm{
 	private String employee_name;
 	private String CC;
 	private String depart;
-	private List<String> division;
+	private String division;
 	private String bcc;
 	private String spotcode;
-	private List<String> span;
-	private List<String> span2;
+	private String span;
+	private String span2;
 	private String ptime;
-	private List<String> remark;
-	private List<String> perm;
+	private String remark;
+	private String perm;
 	private String message;
-	private List<String> Mmdd;
-	private List<String> Send_Time;
+	private String Mmdd;
+	private String Send_Time;
 
 	{
 		Button="";
 		Employee_no="";
 		message="";
-		span=new ArrayList<String>();
-		span2=new ArrayList<String>();
-		division=new ArrayList<String>();
-		remark=new ArrayList<String>();
-		perm=new ArrayList<String>();
-		Mmdd=new  ArrayList<String>();
-		Send_Time=new ArrayList<String>();
+		span="";
+		span2="";
+		division="";
+		remark="";
+		perm="";
+		Mmdd="";
+		Send_Time="";
 	}
 	public void setButton(String button){
 		this.Button=button;
@@ -119,15 +116,12 @@ public class KintaiMailForm extends ActionForm{
 	}
 
 	public void setDivision(String division){
-			this.division.add(division);
+			this.division=division;
 	}
 
-	public List<String> getDivision(){
+	public String getDivision(){
 		return division;
 	}
-
-
-
 
 	public void setBcc(String bcc){
 		this.bcc=bcc;
@@ -146,16 +140,16 @@ public class KintaiMailForm extends ActionForm{
 	}
 
 	public void setSpan(String span){
-		this.span.add(span);
+		this.span=span;
 	}
-	public List<String> getSpan(){
+	public String getSpan(){
 		return span;
 	}
-	public List<String> getSpan2(){
+	public String getSpan2(){
 		return span2;
 	}
 	public void setSpan2(String span2){
-		this.span2.add(span2);
+		this.span2=span2;
 	}
 
 	public void setPtime(String ptime){
@@ -166,17 +160,17 @@ public class KintaiMailForm extends ActionForm{
 		return ptime;
 	}
 	public void setRemark(String remark){
-		this.remark.add(remark);
+		this.remark=remark;
 	}
 
-	public List<String> getRemark(){
+	public String getRemark(){
 		return remark;
 	}
 	public void setPerm(String perm){
-		this.perm.add(perm);
+		this.perm=perm;
 	}
 
-	public List<String> getPerm(){
+	public String getPerm(){
 		return perm;
 	}
 	public void setMessage(String message){
@@ -187,17 +181,17 @@ public class KintaiMailForm extends ActionForm{
 		return message;
 	}
 	public void setMmdd(String Mmdd){
-		this.Mmdd.add(Mmdd);
+		this.Mmdd=Mmdd;
 	}
 
-	public List<String> getMmdd(){
+	public String getMmdd(){
 		return Mmdd;
 	}
 	public void setSend_Time(String Send_Time){
-		this.Send_Time.add(Send_Time);
+		this.Send_Time=Send_Time;
 	}
 
-	public List<String> getSend_Time(){
+	public String getSend_Time(){
 		return Send_Time;
 	}
 
