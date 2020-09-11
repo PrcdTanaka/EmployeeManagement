@@ -48,13 +48,13 @@ p.jyutexts {resize none;
 
 <table>
 	<center>
-		<h1>勤怠届</h1>
+		<h1>勤怠届作成</h1>
 	</center>
 </table>
 
 <body>
 
-	<html:form action="/LoginAction">
+	<html:form action="/KintaiNotificationAction" >
 		<div class="block">
 
 			<div class="space"></div>
@@ -64,7 +64,8 @@ p.jyutexts {resize none;
 				<p class="centers">
 					社員番号：
 					<html:text property="employee_no" size="5" maxlength="4" />
-					氏名： <input type="text" name="syain_name" size="12" maxlength="20" />
+					氏名：
+					<html:text property="syain_name" size="12" maxlength="20" />
 				</p>
 				<p class="centers">
 					所属部門： <select name="depart">
@@ -90,21 +91,21 @@ p.jyutexts {resize none;
 
 				<p class="centers">
 					届出事由： <select name="notification_reason">
-						<option value="not1">1：遅刻</option>
-						<option value="not2">3：私用外出</option>
-						<option value="not3">2：早退</option>
-						<option value="not4">4：休暇</option>
-						<option value="not5">5：休職</option>
-						<option value="not6">6：育児休業</option>
-						<option value="not7">7：無断欠勤</option>
+						<option value="1">1：遅刻</option>
+						<option value="2">3：私用外出</option>
+						<option value="3">2：早退</option>
+						<option value="4">4：休暇</option>
+						<option value="5">5：休職</option>
+						<option value="6">6：育児休業</option>
+						<option value="7">7：無断欠勤</option>
 					</select>
 				</p>
 				<p class="centers">
 					休暇区分： <select name="vacation_division">
-						<option value="vac1">1.年次有給休暇/リフ休</option>
-						<option value="vac3">3.振替休暇</option>
-						<option value="vac4">4.特別休暇</option>
-						<option value="vac5">5.欠勤</option>
+						<option value="1">1.年次有給休暇/リフ休</option>
+						<option value="3">3.振替休暇</option>
+						<option value="4">4.特別休暇</option>
+						<option value="5">5.欠勤</option>
 					</select>
 				</p>
 
@@ -129,11 +130,12 @@ p.jyutexts {resize none;
 				病気 <input type="radio" value="2" name="absenteeism_reason">
 				自己都合 <input type="radio" value="3" name="absenteeism_reason">
 				事故
+
 			</p>
 			<br>
 			<p class="centers">事由</p>
 			<p class="centers">
-				<textarea name="reason" rows="5" cols="40"></textarea>
+				<textarea name="reason" rows="5" cols="40" ></textarea>
 			</p>
 
 			<div class="space"></div>

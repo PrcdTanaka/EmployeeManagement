@@ -14,6 +14,7 @@ import sample.pr.main.EnterForm;
 import sample.pr.main.KintaiMailForm;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
+import sample.pr.main.MonthlyReportForm;
 import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
@@ -3574,7 +3575,7 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
-	public boolean getMonthly_report(KintaiMailForm form) {
+	public boolean getMonthly_report(MonthlyReportForm form) {
 
 		boolean ret = false;
 
