@@ -1,3 +1,5 @@
+<%@page import="sample.pr.main.MonthlyReportForm"%>
+<%@page import="sample.pr.main.MonthlyReportAction"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
@@ -19,7 +21,7 @@
 <html:form action="/MonthlyReportAction">
 	<body>
 	<%
-		KintaiMailForm form=new KintaiMailForm();
+		MonthlyReportForm form=new MonthlyReportForm();
 		Calendar cal = Calendar.getInstance();
 		String month=(cal.get(cal.MONTH)+1)+"";
 		int monthlastDay = cal.getActualMaximum(Calendar.DATE);
@@ -70,7 +72,7 @@
 			 dada="0"+day;
 		 else
 			 dada=""+day;
-		 if(listnumber<Mmdd.size()){
+		 if(listnumber>Mmdd.size()-1){
 		 }
 		 else if(Mmdd.get(listnumber).equals(month+dada+"")){%>
 				<td><%=day%>日</td>
