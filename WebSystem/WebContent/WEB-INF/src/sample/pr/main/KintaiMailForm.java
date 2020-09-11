@@ -1,5 +1,6 @@
 package sample.pr.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts.action.ActionForm;
@@ -22,10 +23,17 @@ public class KintaiMailForm extends ActionForm{
 	private List<String> Mmdd;
 	private List<String> Send_Time;
 
-	public void initialize(){
+	{
 		Button="";
 		Employee_no="";
 		message="";
+		span=new ArrayList<String>();
+		span2=new ArrayList<String>();
+		division=new ArrayList<String>();
+		remark=new ArrayList<String>();
+		perm=new ArrayList<String>();
+		Mmdd=new  ArrayList<String>();
+		Send_Time=new ArrayList<String>();
 	}
 	public void setButton(String button){
 		this.Button=button;
@@ -138,16 +146,16 @@ public class KintaiMailForm extends ActionForm{
 	}
 
 	public void setSpan(String span){
-		this.span=span;
+		this.span.add(span);
 	}
-	public String getSpan(){
+	public List<String> getSpan(){
 		return span;
 	}
-	public String getSpan2(){
+	public List<String> getSpan2(){
 		return span2;
 	}
 	public void setSpan2(String span2){
-		this.span2=span2;
+		this.span2.add(span2);
 	}
 
 	public void setPtime(String ptime){
@@ -158,17 +166,17 @@ public class KintaiMailForm extends ActionForm{
 		return ptime;
 	}
 	public void setRemark(String remark){
-		this.remark=remark;
+		this.remark.add(remark);
 	}
 
-	public String getRemark(){
+	public List<String> getRemark(){
 		return remark;
 	}
 	public void setPerm(String perm){
-		this.perm=perm;
+		this.perm.add(perm);
 	}
 
-	public String getPerm(){
+	public List<String> getPerm(){
 		return perm;
 	}
 	public void setMessage(String message){
@@ -179,17 +187,17 @@ public class KintaiMailForm extends ActionForm{
 		return message;
 	}
 	public void setMmdd(String Mmdd){
-		this.Mmdd=Mmdd;
+		this.Mmdd.add(Mmdd);
 	}
 
-	public String getMmdd(){
+	public List<String> getMmdd(){
 		return Mmdd;
 	}
 	public void setSend_Time(String Send_Time){
-		this.Send_Time=Send_Time;
+		this.Send_Time.add(Send_Time);
 	}
 
-	public String getSend_Time(){
+	public List<String> getSend_Time(){
 		return Send_Time;
 	}
 
