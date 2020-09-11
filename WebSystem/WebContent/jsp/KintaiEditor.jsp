@@ -57,7 +57,7 @@
 					}
 		%>
 		<%
-			boolean flg = true;
+			boolean flg = false;
 		%>
 		<div>
 		<center>
@@ -81,7 +81,11 @@
 
 		<div align="center" class="depert">
 			CC:
-			<html:select property="CC" styleId="CC" name="KintaiMailForm"
+
+			<%
+				if(flg == true){
+			%>
+				<html:select property="CC" styleId="CC" name="KintaiMailForm"
 				style="font-size:15px;width:60%">
 				<html:option value="" style="text-align:center;">選択</html:option>
 				<html:option value="1">第一技術部</html:option>
@@ -91,9 +95,39 @@
 				<html:option value="5">第五技術部</html:option>
 				<html:option value="6">ソリューション技術部</html:option>
 			</html:select>
+			<%
+				}
+				else{
+			%>
+				<html:select disabled="true" property="CC" styleId="CC" name="KintaiMailForm"
+				style="font-size:15px;width:60%">
+				<html:option value="" style="text-align:center;">選択</html:option>
+				<html:option value="1">第一技術部</html:option>
+				<html:option value="2">第二技術部</html:option>
+				<html:option value="3">第三技術部</html:option>
+				<html:option value="4">第四技術部</html:option>
+				<html:option value="5">第五技術部</html:option>
+				<html:option value="6">ソリューション技術部</html:option>
+			</html:select>
+			<%
+				}
+			%>
 		</div>
 		<p align="center" class="BCC">
-				BCC:<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=bcc%>" />
+				BCC:
+
+				<%
+					if(flg == true){
+				%>
+					<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=bcc%>" />
+				<%
+					}
+					else{
+				%>
+					<html:text disabled="true" property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=bcc%>" />
+				<%
+					}
+				%>
 				<p style="color:red;margin-left: 17%">※ 任意で入力
 		</p>
 

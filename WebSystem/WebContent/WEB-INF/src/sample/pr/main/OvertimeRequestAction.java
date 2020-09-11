@@ -51,7 +51,7 @@ public class OvertimeRequestAction extends Action{
 				else
 				{
 					forward="kintaimail";
-					dba.setKintaiInfo(form);
+//					dba.setKintaiInfo(form);
 					session.setAttribute("form", form);
 					//JOptionPane.showMessageDialog(null,"送信しました");
 				}

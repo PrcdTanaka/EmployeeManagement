@@ -6,7 +6,13 @@ public class KinmuRecordForm extends ActionForm{
 	//DBのテーブルにあるもの
 	private String employeeNum;
 	private String kintaiYMD;
-	private String holidayDiv;
+
+	private String holidayDiv1;
+	private String holidayDiv2;
+	private String holidayDiv3;
+
+
+
 	private String startTime;
 	private String endTime;
 	private String breakTimeA;
@@ -40,16 +46,71 @@ public class KinmuRecordForm extends ActionForm{
 		this.kintaiYMD = kintaiYMD;
 	}
 	//休日/祝日の区分
-	public String getHolidayDiv() {
-		return holidayDiv;
+	public void setHolidayDiv1(String holidayDiv1) {
+		switch(holidayDiv1){
+		case "1":
+			this.holidayDiv1 = "休";
+			break;
+		case"2":
+			this.holidayDiv1 = "祝日";
+			break;
+		}
 	}
-	public void setHolidayDiv(String holidayDiv) {
-		this.holidayDiv = holidayDiv;
+
+	public String getHolidayDiv2() {
+		return holidayDiv2;
 	}
+
+	public void setHolidayDiv2(String holidayDiv2) {
+		switch(holidayDiv2){
+		case "1":
+			this.holidayDiv2 = "休";
+			break;
+		case"2":
+			this.holidayDiv2 = "祝日";
+			break;
+		}
+	}
+
+	public String getHolidayDiv3() {
+		return holidayDiv3;
+	}
+
+	public void setHolidayDiv3(String holidayDiv3) {
+		switch(holidayDiv3){
+		case "1":
+			this.holidayDiv3 = "休";
+			break;
+		case"2":
+			this.holidayDiv3 = "祝日";
+			break;
+		}
+	}
+
+//	public String getHolidayDiv() {
+//		return holidayDiv;
+//	}
+//	public void setHolidayDiv(String holidayDiv) {
+//		for(int i=1; i<=31; i++){
+//			switch(holidayDiv){
+//			case "1":
+//				this.holidayDiv = "休";
+//				break;
+//			case"2":
+//				this.holidayDiv = "祝日";
+//				break;
+//			}
+//		}
+//	}
 	//出勤時間
 	public String getStartTime() {
 		return startTime;
 	}
+	public String getHolidayDiv1() {
+		return holidayDiv1;
+	}
+
+
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}

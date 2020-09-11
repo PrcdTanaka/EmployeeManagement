@@ -1,13 +1,17 @@
+<%@page import="sample.pr.main.MonthlyReportForm"%>
+<%@page import="sample.pr.main.MonthlyReportAction"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.KintaiMailForm"%>
+<%@ page import="sample.pr.main.MonthlyReportForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.Calendar"%>
+<%@ page import="java.util.List"%>
 
 <html:html>
 <head>
@@ -17,7 +21,7 @@
 <html:form action="/MonthlyReportAction">
 	<body>
 	<%
-		KintaiMailForm form=new KintaiMailForm();
+		MonthlyReportForm form=new MonthlyReportForm();
 		Calendar cal = Calendar.getInstance();
 		String month=(cal.get(cal.MONTH)+1)+"";
 		int monthlastDay = cal.getActualMaximum(Calendar.DATE);
@@ -26,8 +30,14 @@
 		form.setEmployee_no(lForm.getEmployee_no());
 
 		dba.getMonthly_report(form);
-		String division=form.getDivision();
-		String span=form.getSpan();
+	    List<String> division = form.getDivision();
+		List<String> span = form.getSpan();
+		List<String>span2=form.getSpan2();
+		List<String>remark=form.getRemark();
+		List<String>perm=form.getPerm();
+		List<String>Mmdd=form.getMmdd();
+		List<String>Send_Time=form.getSend_Time();
+		int listnumber=0;
 
 		%>
 		<center>
@@ -62,24 +72,53 @@
 			 dada="0"+day;
 		 else
 			 dada=""+day;
+		 if(listnumber>Mmdd.size()-1){%>
+				<td><%=day%>日</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+			</tr>
 
-		 if(form.getMmdd().equals(month+dada))
-		  {%>
+		 <%}
+		 else if(Mmdd.get(listnumber).equals(month+dada+"")){%>
+				<td><%=day%>日</td>
+				<td><%=span.get(listnumber)%></td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td><%=division.get(listnumber)%></td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+			</tr>
+		 <%
+		 listnumber++;
+
+		 }
+		 else{%>
 			<td><%=day%>日</td>
-			<td><%=span%></td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
-			<td><%=division %></td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
-			<%}%>
+			<td>""</td>
+			<td>""</td>
 		</tr>
 
-		<%
+	 <%}
 			}
 		%>
 

@@ -166,6 +166,10 @@ for (int date = 1; date <= lastDate; date++) {
  	%>
  	<tr>
     <td><%=month+"月"+date %>日</td> <td><%=aa %>曜日</td>
+    <td>visitors</td><td>Entry time</td><td>exit_name</td> <td>exit_time</td>
+      <td>electricity</td> <td>door</td>
+      <td>escape_route</td> <td>fire_door</td>
+      <td>wiring</td> <td>cigarette</td> <td>wc</td>
     </tr>
     <%
  	startDay++;
@@ -173,11 +177,6 @@ for (int date = 1; date <= lastDate; date++) {
 }
 %>
 
-      <td><%dba.getEntry_Empl(a);%></td> <td>entry_time</td>
-      <td>exit_name</td> <td>exit_time</td>
-      <td>electricity</td> <td>door</td>
-      <td>escape_route</td> <td>fire_door</td>
-      <td>wiring</td> <td>cigarette</td> <td>wc</td>
     </tr>
 
         </center>

@@ -1,7 +1,5 @@
 package sample.pr.main;
 
-import java.util.List;
-
 import org.apache.struts.action.ActionForm;
 
 public class KintaiMailForm extends ActionForm{
@@ -10,22 +8,29 @@ public class KintaiMailForm extends ActionForm{
 	private String employee_name;
 	private String CC;
 	private String depart;
-	private List<String> division;
+	private String division;
 	private String bcc;
 	private String spotcode;
-	private List<String> span;
-	private List<String> span2;
+	private String span;
+	private String span2;
 	private String ptime;
-	private List<String> remark;
-	private List<String> perm;
+	private String remark;
+	private String perm;
 	private String message;
-	private List<String> Mmdd;
-	private List<String> Send_Time;
+	private String Mmdd;
+	private String Send_Time;
 
-	public void initialize(){
+	{
 		Button="";
 		Employee_no="";
 		message="";
+		span="";
+		span2="";
+		division="";
+		remark="";
+		perm="";
+		Mmdd="";
+		Send_Time="";
 	}
 	public void setButton(String button){
 		this.Button=button;
@@ -111,15 +116,12 @@ public class KintaiMailForm extends ActionForm{
 	}
 
 	public void setDivision(String division){
-			this.division.add(division);
+			this.division=division;
 	}
 
-	public List<String> getDivision(){
+	public String getDivision(){
 		return division;
 	}
-
-
-
 
 	public void setBcc(String bcc){
 		this.bcc=bcc;
