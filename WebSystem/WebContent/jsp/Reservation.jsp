@@ -41,10 +41,8 @@
 
 					    int day_of_year = cal.get(Calendar.DAY_OF_YEAR);
 
-					    System.out.println(year + "年" + month + "月" + day + "日");
 					    System.out.println(week_name[week]);
 
-					    System.out.println("今日は今年の" + day_of_year + "日目です");
 					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 	%>

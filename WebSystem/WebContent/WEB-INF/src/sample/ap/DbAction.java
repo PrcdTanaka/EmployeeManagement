@@ -3574,4 +3574,81 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
+	public boolean getMonthly_report(KintaiMailForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT "+crlf);
+			sb.append("SPAN,"+crlf);
+			sb.append("SPAN2,"+crlf);
+			sb.append("DIVISION,"+crlf);
+			sb.append("MMDD,"+crlf);
+			sb.append("SEND_TIME,"+crlf);
+			sb.append("PERM,"+crlf);
+			sb.append("REMARK"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append("KINTAIMAIL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append("EMP_NO= ?"+crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("SPAN");
+			columnList.add("SPAN2");
+			columnList.add("DIVISION");
+			columnList.add("MMDD");
+			columnList.add("SEND_TIME");
+			columnList.add("PERM");
+			columnList.add("REMARK");
+
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setSpan(val.get("SPAN"));
+					form.setSpan2(val.get("SPAN2"));
+					form.setDivision(val.get("DIVISION"));
+					form.setMmdd(val.get("MMDD"));
+					form.setSend_Time(val.get("SEND_TIME"));
+					form.setPerm(val.get("PERM"));
+					form.setRemark(val.get("REMARK"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
 }
