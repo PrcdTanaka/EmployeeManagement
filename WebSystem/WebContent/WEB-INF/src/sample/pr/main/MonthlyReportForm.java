@@ -7,6 +7,7 @@ import org.apache.struts.action.ActionForm;
 
 public class MonthlyReportForm extends ActionForm{
 	private String Button;
+	private List<String> spotcode;
 	private String Employee_no;
 	private List<String> division;
 	private List<String> span;
@@ -26,6 +27,7 @@ public class MonthlyReportForm extends ActionForm{
 		perm=new ArrayList<String>();
 		Mmdd=new  ArrayList<String>();
 		Send_Time=new ArrayList<String>();
+		spotcode=new ArrayList<String>();
 	}
 	public void setButton(String button){
 		this.Button=button;
@@ -90,5 +92,12 @@ public class MonthlyReportForm extends ActionForm{
 
 	public List<String> getSend_Time(){
 		return Send_Time;
+	}
+	public void setSpotcode(String spotcode){
+		this.spotcode.add(spotcode);
+	}
+
+	public List<String> getSpotcode(){
+		return spotcode;
 	}
 }

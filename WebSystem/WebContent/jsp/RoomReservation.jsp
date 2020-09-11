@@ -8,7 +8,7 @@
 
 <html:html>
 <html lang="ja">
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 <center>
 	<h1>会議室新規登録画面</h1>
 </center>

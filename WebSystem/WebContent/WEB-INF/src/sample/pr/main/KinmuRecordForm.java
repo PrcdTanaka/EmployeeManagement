@@ -6,15 +6,10 @@ public class KinmuRecordForm extends ActionForm{
 	//DBのテーブルにあるもの
 	private String employeeNum;
 	private String kintaiYMD;
-
-	private String holidayDiv1;
-	private String holidayDiv2;
-	private String holidayDiv3;
-
-
-
+	private String holidayDiv;
 	private String startTime;
 	private String endTime;
+	private String expectation;
 	private String breakTimeA;
 	private String breakTimeB;
 	private String vacationDiv;
@@ -46,71 +41,23 @@ public class KinmuRecordForm extends ActionForm{
 		this.kintaiYMD = kintaiYMD;
 	}
 	//休日/祝日の区分
-	public void setHolidayDiv1(String holidayDiv1) {
-		switch(holidayDiv1){
-		case "1":
-			this.holidayDiv1 = "休";
-			break;
-		case"2":
-			this.holidayDiv1 = "祝日";
-			break;
+	public String getHolidayDiv() {
+		return holidayDiv;
+	}
+	public void setHolidayDiv(String holidayDiv) {
+		switch(holidayDiv){
+			case "1":
+				this.holidayDiv = "休";
+				break;
+			case "2":
+				this.holidayDiv = "祝日";
+				break;
 		}
 	}
-
-	public String getHolidayDiv2() {
-		return holidayDiv2;
-	}
-
-	public void setHolidayDiv2(String holidayDiv2) {
-		switch(holidayDiv2){
-		case "1":
-			this.holidayDiv2 = "休";
-			break;
-		case"2":
-			this.holidayDiv2 = "祝日";
-			break;
-		}
-	}
-
-	public String getHolidayDiv3() {
-		return holidayDiv3;
-	}
-
-	public void setHolidayDiv3(String holidayDiv3) {
-		switch(holidayDiv3){
-		case "1":
-			this.holidayDiv3 = "休";
-			break;
-		case"2":
-			this.holidayDiv3 = "祝日";
-			break;
-		}
-	}
-
-//	public String getHolidayDiv() {
-//		return holidayDiv;
-//	}
-//	public void setHolidayDiv(String holidayDiv) {
-//		for(int i=1; i<=31; i++){
-//			switch(holidayDiv){
-//			case "1":
-//				this.holidayDiv = "休";
-//				break;
-//			case"2":
-//				this.holidayDiv = "祝日";
-//				break;
-//			}
-//		}
-//	}
 	//出勤時間
 	public String getStartTime() {
 		return startTime;
 	}
-	public String getHolidayDiv1() {
-		return holidayDiv1;
-	}
-
-
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
@@ -121,6 +68,16 @@ public class KinmuRecordForm extends ActionForm{
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
+	//予定勤務時間
+	public String getExpectation() {
+		return expectation;
+	}
+	public void setExpectation(String expectation) {
+		if(expectation.equals("0800")){
+			this.expectation = "8:00";
+		}
+	}
+
 	//休憩A
 	public String getBreakTimeA() {
 		return breakTimeA;

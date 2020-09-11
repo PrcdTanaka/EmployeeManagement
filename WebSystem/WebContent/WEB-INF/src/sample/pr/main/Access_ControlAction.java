@@ -97,9 +97,9 @@ public final class Access_ControlAction extends Action {
 			e.printStackTrace();
 		}
 		String Button;
-		MainForm mForm = (MainForm) frm;
+		Access_ControlForm aForm = (Access_ControlForm) frm;
 		try{
-			Button = mForm.getButton();
+			Button = aForm.getButton();
 			if(Button == null)
 				Button = "";
 		} catch(NullPointerException e){
@@ -112,7 +112,7 @@ public final class Access_ControlAction extends Action {
 			// 遷移先を"logout"に設定。
 			forward = "logout";
 		} else if (Button.equals("")) {
-			switch (mForm.getLink()) {
+			switch (aForm.getLink()) {
 			case "edit":
 				forward = "edit";
 				break;
@@ -165,13 +165,82 @@ public final class Access_ControlAction extends Action {
 			case"kinmurecord":
 				forward="kinmurecord";
 				break;
-			case"Access_Select":
+			case"Access_Select_1month":
 				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("1");
+				break;
+			case"Access_Select_2month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("2");
+				break;
+			case"Access_Select_3month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("3");
+				break;
+			case"Access_Select_4month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("4");
+				break;
+			case"Access_Select_5month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("5");
+				break;
+			case"Access_Select_6month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("6");
+				break;
+			case"Access_Select_7month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("7");
+				break;
+				case"Access_Select_8month":
+					forward="Access_Select";
+					session = request.getSession();
+					lform=(LoginForm) session.getAttribute("form");
+					lform.setLink("8");
+					break;
+			case"Access_Select_9month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("9");
+				break;
+			case"Access_Select_10month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("10");
+				break;
+			case"Access_Select_11month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("11");
+				break;
+			case"Access_Select_12month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("12");
 				break;
 			}
 		}
 
-		request.setAttribute("form", mForm);
+		request.setAttribute("form", aForm);
 
 		return map.findForward(forward);
 
