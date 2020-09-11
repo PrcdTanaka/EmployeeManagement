@@ -17,7 +17,6 @@ table{
    	align-items: center;
     line-height: 2;
 	 border-collapse:collapse;
-	 width:40%;
 
 }
 
@@ -35,20 +34,18 @@ table{
 /*合計を表示するテーブル*/
 .total{
 	 border: 1px solid;
-   	align-items: center;
     line-height: 2;
 	 border-collapse:collapse;
 	 width:80%;
-	 margin: 20px 0 20px 0;
+	 margin: 20px auto;
 }
 
 /*実際の勤務管理表のテーブル*/
 .KinmuRecord{
 	 border: 1px solid;
-   	align-items: center;
     line-height: 2;
 	 border-collapse:collapse;
-	 width:150%;
+	 width:100%;
 	 margin: 20px 0 20px 0;
 }
 

@@ -14,13 +14,6 @@
 <%@ page import="sample.pr.main.Open_informationForm"%>
 
 
-
-
-
-
-
-
-
 <html lang="ja">
 <html:html>
 <head>
@@ -436,13 +429,24 @@
 					</td>
 
 					<%-- 休暇区分 --%>
-					<td></td>
+					<td width="22%">
+						<html:radio property="vacationDiv" value=""/>該当なし
+						<html:radio property="vacationDiv" value="1" />有休/リフ休
+						<html:radio property="vacationDiv" value="2" />遅/早
+						<html:radio property="vacationDiv" value="3" />振休
+						<html:radio property="vacationDiv" value="4" />特休
+						<html:radio property="vacationDiv" value="5" />欠勤
+					</td>
 
 					<%-- 実働 --%>
-					<td></td>
+					<td width="4%">
+					<% if(!(JapaneseDate.from(date).format(fmt).equals("土")) && !(JapaneseDate.from(date).format(fmt).equals("日"))) { %>
+						8.00
+					<% } %>
+					</td>
 
 					<%-- 備考 --%>
-					<td></td>
+					<td width="20%"><html:text property="remark" size="30" maxlength="50" /></td>
 				</tr>
 				<% }%>
 			</table>

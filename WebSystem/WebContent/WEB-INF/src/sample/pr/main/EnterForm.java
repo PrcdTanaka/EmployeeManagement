@@ -1,5 +1,6 @@
 package sample.pr.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts.action.ActionForm;
@@ -31,6 +32,7 @@ public final class EnterForm extends ActionForm {
 	private List<String> Entry_time;
 	private List<String> Leaving_time;
 	private List<String> Leaving_emp;
+	private List<String> Check_list;
 
 	/**
 	 * 初期化処理。
@@ -38,7 +40,14 @@ public final class EnterForm extends ActionForm {
 	 * ログイン画面アクションフォームを初期化する。
 	 * </p>
 	 */
-	public void initialize() {
+	{
+		Entry_emp=new ArrayList<String>();
+		Day=new ArrayList<String>();
+		Entry_time=new ArrayList<String>();
+		Leaving_emp=new ArrayList<String>();
+		Leaving_time=new ArrayList<String>();
+		Check_list=new ArrayList<String>();
+
 		employee_no = "";
 		employee_name = "";
 		button = "";
@@ -184,6 +193,10 @@ public final class EnterForm extends ActionForm {
 	public void setLEAVING_EMP(String LEAVING_EMP){
 		this.Leaving_emp.add(LEAVING_EMP);
 	}
+	public void setCHECK_LIST(String CHECK_LIST){
+		this.Check_list.add(CHECK_LIST);
+	}
+
 
 	public List<String> getENTRY_EMP() {
 		return Entry_emp;
@@ -199,6 +212,9 @@ public final class EnterForm extends ActionForm {
 	}
 	public List<String> getLEAING_EMP() {
 		return Leaving_emp;
+	}
+	public List<String> getCHECK_LIST() {
+		return Check_list;
 	}
 
 	public String getFloor() {
