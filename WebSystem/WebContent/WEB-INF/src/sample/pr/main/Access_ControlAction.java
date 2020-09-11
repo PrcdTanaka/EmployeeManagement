@@ -165,8 +165,77 @@ public final class Access_ControlAction extends Action {
 			case"kinmurecord":
 				forward="kinmurecord";
 				break;
-			case"Access_Select":
+			case"Access_Select_1month":
 				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("1month");
+				break;
+			case"Access_Select_2month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("2month");
+				break;
+			case"Access_Select_3month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("3month");
+				break;
+			case"Access_Select_4month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("4month");
+				break;
+			case"Access_Select_5month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("5month");
+				break;
+			case"Access_Select_6month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("7month");
+				break;
+			case"Access_Select_7month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("7month");
+				break;
+				case"Access_Select_8month":
+					forward="Access_Select";
+					session = request.getSession();
+					lform=(LoginForm) session.getAttribute("form");
+					lform.setLink("8month");
+					break;
+			case"Access_Select_9month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("9month");
+				break;
+			case"Access_Select_10month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("10month");
+				break;
+			case"Access_Select_11month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("11month");
+				break;
+			case"Access_Select_12month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("12month");
 				break;
 			}
 		}

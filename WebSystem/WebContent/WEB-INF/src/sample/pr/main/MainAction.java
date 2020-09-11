@@ -134,9 +134,6 @@ public final class MainAction extends Action {
 			case "reservation":
 				forward="reservation";
 				break;
-			case "Access_Control":
-				forward="Access";
-				break;
 			case"1F":
 				forward="Enter";
 				HttpSession session = request.getSession();
