@@ -3560,7 +3560,7 @@ public class DbAction extends Object{
 			sb.append(",'"+ form.getPlace()+"'"+crlf);
 			sb.append(",'"+ form.getSeat()+"'"+crlf);
 			sb.append(",'"+ form.getMonitor()+"'"+crlf);
-			sb.append(",'"+ form.getCamera()+"'"+crlf);
+			sb.append(",'"+ form.getCamera()+"')"+crlf);
 			String query = sb.toString();
 
 			try {
