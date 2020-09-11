@@ -20,22 +20,6 @@ public final class KintaiNotificationAction extends Action {
 	// 遷移先
 	private String forward;
 
-	/**
-	 * <p>
-	 * メイン画面アクションの初期設定を行う。
-	 * </p>
-	 *
-	 * 1.初期設定を行う。<br>
-	 * 　1-1.DB接続クラスのインスタンスを生成する。<br>
-	 * 　1-2.遷移先<br>
-	 * 　　遷移先：""<br>
-	 * 2.例外発生時の処理。<br>
-	 * 　2-1.IOExceptionをthrowする。<br>
-	 * <br>
-	 *
-	 * @throws IOException
-	 *             -
-	 */
 	public KintaiNotificationAction() throws IOException {
 
 	}
@@ -54,19 +38,6 @@ public final class KintaiNotificationAction extends Action {
 		// フォーム情報をキャスト
 		KintaiNotificationForm KNForm = (KintaiNotificationForm) frm;
 
-
-
-		/*
-		 * 3.社員Noの入力チェック<br>
-		 * 　3-1.社員No取得処理をコール。<br>
-		 * 　　　クラス：LoginForm<br>
-		 * 　　メソッド：getEmployee_no<br>
-		 * 　3-2.社員Noが空白の場合。<br>
-		 * 　　3-2-1.メッセージの設定。<br>
-		 * 　　　メッセージ：「社員番号が空白になっています。」<br>
-		 * 　　3-2-2.遷移先設定_ログイン画面<br>
-		 * 　　　遷移先："login"<br>
-		 */
 
 		//チェック要の項目を変数に格納する。
 		String employee_no = KNForm.getEmployee_no();
