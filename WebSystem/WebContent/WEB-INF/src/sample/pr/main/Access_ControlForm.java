@@ -1,36 +1,26 @@
 package sample.pr.main;
 
-import java.util.List;
-
 import org.apache.struts.action.ActionForm;
 
-public final class EnterForm extends ActionForm {
+public final class Access_ControlForm extends ActionForm {
 
-	// コンストラクタ
-	public EnterForm(){
-
-	}
 	/** シリアルバージョンID */
 	private static final long serialVersionUID = 1L;
 
 	/** 社員番号 */
 	private String employee_no;
+	/** パスワード */
+	private String password;
 	/** 社員氏名 */
 	private String employee_name;
 	/** ボタン名 */
 	private String button;
+	/** メッセージ */
+	private String message;
+	/** 管理者フラグ */
+	private String manager;
 	/** リンク先 */
 	private String link;
-	/**チェックリスト**/
-	private int checklist;
-
-	private String floor;
-
-	private List<String> Entry_emp;
-	private List<String> Day;
-	private List<String> Entry_time;
-	private List<String> Leaving_time;
-	private List<String> Leaving_emp;
 
 	/**
 	 * 初期化処理。
@@ -42,7 +32,9 @@ public final class EnterForm extends ActionForm {
 		employee_no = "";
 		employee_name = "";
 		button = "";
-		checklist = 0;
+		message = "";
+		password = "";
+		manager = "";
 		link = "";
 	}
 
@@ -103,7 +95,7 @@ public final class EnterForm extends ActionForm {
 	 * @return ボタン名
 	 */
 	public String getButton() {
-
+		
 		return button;
 	}
 
@@ -120,30 +112,77 @@ public final class EnterForm extends ActionForm {
 	}
 
 	/**
+	 * メッセージ取得処理。
 	 * <p>
-	 * チェックリストを取得する
+	 * ログイン画面アクションフォームからメッセージを取得する。
 	 * </p>
 	 *
-	 * @return チェックリスト
+	 * @return メッセージ
 	 */
-	public int getChecklist() {
-		return checklist;
+	public String getMessage() {
+		return message;
 	}
 
+	/**
+	 * メッセージ設定処理。
+	 * <p>
+	 * ログイン画面アクションフォームにメッセージを設定する。
+	 * </p>
+	 *
+	 * @param message メッセージ
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	/**
+	 * パスワード取得処理。
+	 * <p>
+	 * ログイン画面アクションフォームからパスワードを取得する。
+	 * </p>
+	 *
+	 * @return パスワード
+	 */
+	public String getPassword() {
+		return password;
+	}
+	
+	/**
+	 * パスワード設定処理。
+	 * <p>
+	 * ログイン画面アクションフォームにパスワードを設定する。
+	 * </p>
+	 *
+	 * @param message パスワード
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * 管理者フラグ取得処理。
+	 * <p>
+	 * ログイン画面アクションフォームから管理者フラグを取得する。
+	 * </p>
+	 *
+	 * @return 管理者フラグ
+	 */
+	public String getManager() {
+		return manager;
+	}
+	
 	/**
 	 * 管理者フラグ設定処理。
 	 * <p>
 	 * ログイン画面アクションフォームに管理者フラグを設定する。
 	 * </p>
 	 *
-	 * @param checklist チェック状況
+	 * @param message 管理者フラグ
 	 */
-	public void setChecklist(String[] checklist) {
-		for(String check:checklist)
-		{
-		this.checklist += Integer.parseInt(check);
-		}
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
+	
 	/**
 	 * リンク先取得処理。
 	 * <p>
@@ -155,7 +194,7 @@ public final class EnterForm extends ActionForm {
 	public String getLink() {
 		return link;
 	}
-
+	
 	/**
 	 * リンク先設定処理。
 	 * <p>
@@ -167,55 +206,4 @@ public final class EnterForm extends ActionForm {
 	public void setLink(String link) {
 		this.link = link;
 	}
-
-	public void setENTRY_EMP(String ENTRY_EMP){
-		this.Entry_emp.add(ENTRY_EMP);
-	}
-
-	public void setDAY(String DAY){
-		this.Day.add(DAY);
-	}
-	public void setENTRY_TIME(String ENTRY_TIME){
-		this.Entry_time.add(ENTRY_TIME);
-	}
-	public void setLEAVING_TIME(String LEAVING_TIME){
-		this.Leaving_time.add(LEAVING_TIME);
-	}
-	public void setLEAVING_EMP(String LEAVING_EMP){
-		this.Leaving_emp.add(LEAVING_EMP);
-	}
-
-	public List<String> getENTRY_EMP() {
-		return Entry_emp;
-	}
-	public List<String> getDAY() {
-		return Day;
-	}
-	public List<String> getENTRY_TIME() {
-		return Entry_time;
-	}
-	public List<String>getLEAVING_TIME () {
-		return Leaving_time;
-	}
-	public List<String> getLEAING_EMP() {
-		return Leaving_emp;
-	}
-
-	public String getFloor() {
-		return floor;
-	}
-
-	/**
-	 * リンク先設定処理。
-	 * <p>
-	 * メイン画面アクションフォームにリンク先を設定する。
-	 * </p>
-	 *
-	 * @param message リンク先
-	 */
-	public void setFloor(String floor) {
-		this.floor = floor;
-	}
-
-
 }

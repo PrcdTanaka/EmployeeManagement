@@ -136,8 +136,10 @@ EnterForm a=new EnterForm();;
 
 <%
 
+LoginForm lform = (LoginForm) session.getAttribute("form");
+
   int year=0;
-  int month=9; //getlinkで後日とる
+  int month=Integer.valueOf(lform.getLink()); //getlinkでとる
 
   int startDay;
 

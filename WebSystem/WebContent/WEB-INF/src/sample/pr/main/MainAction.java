@@ -162,8 +162,33 @@ public final class MainAction extends Action {
 			case"kinmurecord":
 				forward="kinmurecord";
 				break;
-			case"Access_Select":
+			case"Access_Select1F":
 				forward="Access_Select";
+				EnterForm eform=new EnterForm();
+				session = request.getSession();
+				eform.setFloor("1");
+				session.setAttribute("eform", eform);
+				break;
+			case"Access_Select2F":
+				forward="Access_Select";
+				eform=new EnterForm();
+				session = request.getSession();
+				eform.setFloor("2");
+				session.setAttribute("eform", eform);
+				break;
+			case"Access_Select3F":
+				forward="Access_Select";
+				eform=new EnterForm();
+				session = request.getSession();
+				eform.setFloor("3");
+				session.setAttribute("eform", eform);
+				break;
+			case"Access_Select4F":
+				forward="Access_Select";
+				eform=new EnterForm();
+				session = request.getSession();
+				eform.setFloor("4");
+				session.setAttribute("eform", eform);
 				break;
 			}
 		}
