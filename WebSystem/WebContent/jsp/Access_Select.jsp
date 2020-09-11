@@ -12,7 +12,7 @@
 
 		<%
 		LoginForm s = (LoginForm) session.getAttribute("form");
-		
+
 		String no = s.getEmployee_no();
 		%>
 
