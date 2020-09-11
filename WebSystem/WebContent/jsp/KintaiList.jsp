@@ -114,8 +114,6 @@
 			<%-- カレンダーのプルダウンメニュー作成(月のほう) --%>
 			<select id="Years" name="Years">
 			<%
-				int num1 = 0;
-				int num2 = 0;
 				int Years_Data = cale.get(Calendar.YEAR);
 				int Month_Data = cale.get(Calendar.MONTH)+1;
 				for(int i = Years_Data-1; i <= Years_Data+1; i++){
@@ -130,7 +128,6 @@
 			%>
 			><%=i %>年
 			</option>
-			<%num1 = i; %>
 			<%
 				}
 			%>
@@ -150,7 +147,6 @@
 			%>
 			><%=i %>月
 			</option>
-			<%num2=i; %>
 			<%
 				}
 			%>
@@ -206,7 +202,7 @@
 					<input type="submit" id="" name="" style="background-color:transparent; width:30px;" value="<%=d++ %>"/>
 					</form>
 				 --%>
-				 	<a href="http://localhost:8080/WebSystem/jsp/KintaiMail.jsp?button=<%=d %>" ><%=d %></a>
+				 	<a href="http://localhost:8080/WebSystem/jsp/KintaiMail.jsp?year=<%=Years_Data %>&month=<%=Month_Data %>&day=<%=d %>" ><%=d %></a>
 					<%
 					cale.add(Calendar.DATE, 1);
 					%>

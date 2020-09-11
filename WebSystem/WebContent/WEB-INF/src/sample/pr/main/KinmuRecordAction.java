@@ -33,7 +33,9 @@ public class KinmuRecordAction extends Action{
 		KintaiMainForm kForm = (KintaiMainForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
+		Open_informationForm oForm = (Open_informationForm) session.getAttribute("oForm");
 		lForm.setEmployee_no(lForm.getEmployee_no());
+		oForm.setTec(oForm.getTec());
 		forward = "KintaiMain";
 		String button=kForm.getButton();
 		try{
