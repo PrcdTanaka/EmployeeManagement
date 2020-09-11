@@ -26,8 +26,6 @@
 				} catch (Exception e) {
 
 				}
-					    String[] week_name = {"(日)", "(月)", "(火)", "(水)",
-					                          "(木)", "(金)", "(土)"};
 
 					    Calendar cal = Calendar.getInstance();
 
@@ -40,8 +38,6 @@
 					    int week = cal.get(Calendar.DAY_OF_WEEK) - 1;
 
 					    int day_of_year = cal.get(Calendar.DAY_OF_YEAR);
-
-					    System.out.println(week_name[week]);
 
 					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 					    String weekname = "";

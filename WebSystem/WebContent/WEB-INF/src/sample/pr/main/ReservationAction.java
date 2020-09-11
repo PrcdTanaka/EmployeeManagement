@@ -42,7 +42,6 @@ public final class ReservationAction extends Action{
 			if(button.equals("戻る")){
 				forward="main";
 				session.removeAttribute("rForm");
-				dba.InsertReservation(rForm);
 			}//if else(button.equals("")){}
 		}catch(Exception e){
 			e.printStackTrace();
