@@ -10,28 +10,15 @@
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="sample.pr.main.KintaiListForm"%>
 
+<%@ page import="sample.pr.main.MonthlyReportForm"%>
+<%@page import="sample.pr.main.MonthlyReportAction"%>
+
+<%@page import="java.util.ArrayList"%>
+
 <%@ page import="java.util.*" %>
 <%@ page import="java.util.Calendar" %>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.util.List" %>
 
-<%!
-	public void jspInit()
-	{
-		try
-		{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-	}
-%>
 <html lang="ja">
 <html:html>
 
@@ -54,6 +41,27 @@
 
 <body>
 	<html:form action="/KintaiListAction">
+	<%
+		Calendar cale = Calendar.getInstance();
+
+		MonthlyReportForm form=new MonthlyReportForm();
+		String month=(cale.get(cale.MONTH)+1)+"";
+		int monthlastDay = cale.getActualMaximum(Calendar.DATE);
+		DbAction dba = new DbAction();
+		LoginForm lForm=(LoginForm)session.getAttribute("form");
+		form.setEmployee_no(lForm.getEmployee_no());
+
+		dba.getMonthly_report(form);
+	    List<String> division = form.getDivision();
+		List<String> span = form.getSpan();
+		List<String>span2=form.getSpan2();
+		List<String>remark=form.getRemark();
+		List<String>perm=form.getPerm();
+		List<String>Mmdd=form.getMmdd();
+		List<String>Send_Time=form.getSend_Time();
+		int listnumber=0;
+	%>
+
 		<div>
 			<center>
 				<h1>勤怠一覧</h1>
@@ -74,7 +82,7 @@
 			}
 		--%>
 		<%
-		Calendar cale = Calendar.getInstance();
+
 
 		String strYear=request.getParameter("year");
 		String strMonth=request.getParameter("month");
@@ -169,12 +177,15 @@
 				<th class="weekday">金</th>
 				<th class="saturday">土</th>
 			</tr>
-			<%-- while文以外、実験物 --%>
+			<%-- while文とint=d以外、実験物 --%>
 			<%
+				int NowDay = cale.get(Calendar.DATE);
 				String link1 = "http://localhost:8080/WebSystem/jsp/KintaiMail.jsp";
-				boolean flg= false;
-				int kari_data=10;
-				int d=0;
+				String link2 = "http://localhost:8080/WebSystem/jsp/KintaiList.jsp";
+				int flg= 0;
+				int kari_data=1; //対象日
+
+				int d=0; //日付(最大31までになる)
 				while(cale.get(Calendar.MONTH)==intMonth-1){
 			%>
 			<tr>
@@ -182,11 +193,32 @@
 				<%
 					for(int j=0; j<7; j++){
 				%>
+				<%-- 以下のif文は実験
+					DBから対象期間の取得し、dが7日以内または、8日以上か確認
+					判定条件は、対象期間 > 今日の日付
+				--%>
 				<%
-					if((d+1) == kari_data)
-					{
-						flg = true;
+					String dada= "";
+				 	for (int day = 1; day <= monthlastDay; day++)
+				 	{
+			 			if(month.length()==1)
+						month="0"+month;
+					 	if(String.valueOf(day).length()==1)
+						 dada="0"+day;
+					 	else
+						 dada=""+day;
+				%>
+				<%
+				 	if(Mmdd.get(listnumber).equals(month + dada))
+				 	{
+				%>
+				<%
+						flg = 1;
+						listnumber++;
 					}
+				%>
+				<%
+				 	}
 				%>
 				<%
 					if(j==0){
@@ -202,7 +234,7 @@
 							dの日付と、DBから取得した日が一致するなら色変えたい
 						 --%>
 						<%
-							if(flg == true){
+							if(flg == 1){
 						%>
 							<td class="weekday" style="background-color:#FFFF00;">
 						<%
@@ -228,14 +260,26 @@
 					<input type="submit" id="" name="" style="background-color:transparent; width:30px;" value="<%=d++ %>"/>
 					</form>
 				 --%>
-				 	<a href="<%=link1 %>?year=<%=Years_Data %>&month=<%=Month_Data %>&day=<%=d %>" ><%=d %></a>
+				 	<%
+				 		if(flg == 1){
+				 	%>
+				 		<a href="<%=link2 %>?year=<%=Years_Data %>&month=<%=Month_Data %>&day=<%=d %>" ><%=d %></a>
+				 	<%
+				 		}
+				 		else{
+				 	%>
+				 		<a href="<%=link1 %>?year=<%=Years_Data %>&month=<%=Month_Data %>&day=<%=d %>" ><%=d %></a>
+				 	<%
+				 		}
+				 	%>
+
 					<%
 					cale.add(Calendar.DATE, 1);
 					%>
 				<%-- <input type="submit" id="" name="" value="<%=d %>"/> --%>
 					<%}%>
 					<%
-						flg = false;
+						flg = 0;
 					%>
 					</td>
 				<%}%>
