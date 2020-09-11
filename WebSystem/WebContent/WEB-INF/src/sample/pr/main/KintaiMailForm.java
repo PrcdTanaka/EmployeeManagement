@@ -1,5 +1,7 @@
 package sample.pr.main;
 
+import java.util.List;
+
 import org.apache.struts.action.ActionForm;
 
 public class KintaiMailForm extends ActionForm{
@@ -8,17 +10,17 @@ public class KintaiMailForm extends ActionForm{
 	private String employee_name;
 	private String CC;
 	private String depart;
-	private String division;
+	private List<String> division;
 	private String bcc;
 	private String spotcode;
-	private String span;
-	private String span2;
+	private List<String> span;
+	private List<String> span2;
 	private String ptime;
-	private String remark;
-	private String perm;
+	private List<String> remark;
+	private List<String> perm;
 	private String message;
-	private String Mmdd;
-	private String Send_Time;
+	private List<String> Mmdd;
+	private List<String> Send_Time;
 
 	public void initialize(){
 		Button="";
@@ -109,41 +111,10 @@ public class KintaiMailForm extends ActionForm{
 	}
 
 	public void setDivision(String division){
-		switch(division){
-		case "1":
-			this.division="1,遅刻";
-			break;
-		case "2":
-			this.division="2,有給休暇";
-			break;
-		case "3":
-			this.division="4,振替休暇";
-			break;
-		case "4":
-			this.division="5,特別休暇";
-			break;
-		case "5":
-			this.division="6,シフト勤務";
-			break;
-		case "6":
-			this.division="7,早退、その他";
-			break;
-		case "7":
-			this.division="8,交通遅延";
-			break;
-		case "8":
-			this.division="9,欠席";
-			break;
-		case "9":
-			this.division="A,深夜作業";
-			break;
-		case "10":
-			this.division="B,休日出勤(振)";
-			break;
-		}
+			this.division.add(division);
 	}
 
-	public String getDivision(){
+	public List<String> getDivision(){
 		return division;
 	}
 

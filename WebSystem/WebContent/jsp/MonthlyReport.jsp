@@ -17,16 +17,23 @@
 <html:form action="/MonthlyReportAction">
 	<body>
 	<%
+		KintaiMailForm form=new KintaiMailForm();
 		Calendar cal = Calendar.getInstance();
-	String month=(cal.get(cal.MONTH)+1)+"";
+		String month=(cal.get(cal.MONTH)+1)+"";
 		int monthlastDay = cal.getActualMaximum(Calendar.DATE);
+		DbAction dba = new DbAction();
+		LoginForm lForm=(LoginForm)session.getAttribute("form");
+		form.setEmployee_no(lForm.getEmployee_no());
+
+		dba.getMonthly_report(form);
+		String division=form.getDivision();
+		String span=form.getSpan();
 
 		%>
 		<center>
 			<h1>勤怠月報画面</h1>
 		</center>
 
-<center>
  <table border="3" bordercolor="#0000ff">
     <tr bgcolor="#87cefa">
     <tr>
@@ -46,25 +53,35 @@
 
 
 		<tr>
-		 <%for (int day = 1; day <= monthlastDay; day++) { %>
+		 <%
+		 	String dada= "";
+		 for (int day = 1; day <= monthlastDay; day++) {
+		 if(month.length()==1)
+			month="0"+month;
+		 if(String.valueOf(day).length()==1)
+			 dada="0"+day;
+		 else
+			 dada=""+day;
+
+		 if(form.getMmdd().equals(month+dada))
+		  {%>
 			<td><%=day%>日</td>
+			<td><%=span%></td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
+			<td><%=division %></td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
-			<td>""</td>
-			<td>""</td>
+			<%}%>
 		</tr>
 
 		<%
 			}
 		%>
-
-
 
 
 
