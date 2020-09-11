@@ -6,10 +6,10 @@ public class KintaiListForm extends ActionForm
 {
 	private String Button;
 	private String Employee_no;
-
 	{
 		Button = "";
 		Employee_no="";
+
 	}
 
 	public String getButton()
