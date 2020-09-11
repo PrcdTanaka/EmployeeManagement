@@ -169,7 +169,11 @@
 				<th class="weekday">金</th>
 				<th class="saturday">土</th>
 			</tr>
+			<%-- while文以外、実験物 --%>
 			<%
+				String link1 = "http://localhost:8080/WebSystem/jsp/KintaiMail.jsp";
+				boolean flg= false;
+				int kari_data=10;
 				int d=0;
 				while(cale.get(Calendar.MONTH)==intMonth-1){
 			%>
@@ -177,6 +181,12 @@
 				<!--  -->
 				<%
 					for(int j=0; j<7; j++){
+				%>
+				<%
+					if((d+1) == kari_data)
+					{
+						flg = true;
+					}
 				%>
 				<%
 					if(j==0){
@@ -187,7 +197,23 @@
 					%>
 					<td class="saturday">
 					<%}else{%>
-					<td class="weekday">
+				<%--	<td class="weekday">  --%>
+						<%-- 以下のif文は実験
+							dの日付と、DBから取得した日が一致するなら色変えたい
+						 --%>
+						<%
+							if(flg == true){
+						%>
+							<td class="weekday" style="background-color:#FFFF00;">
+						<%
+							}
+							else{
+						%>
+							<td class="weekday">
+						<%
+							}
+						%>
+
 					<%}%>
 					<%
 					if(k!=0){
@@ -202,12 +228,15 @@
 					<input type="submit" id="" name="" style="background-color:transparent; width:30px;" value="<%=d++ %>"/>
 					</form>
 				 --%>
-				 	<a href="http://localhost:8080/WebSystem/jsp/KintaiMail.jsp?year=<%=Years_Data %>&month=<%=Month_Data %>&day=<%=d %>" ><%=d %></a>
+				 	<a href="<%=link1 %>?year=<%=Years_Data %>&month=<%=Month_Data %>&day=<%=d %>" ><%=d %></a>
 					<%
 					cale.add(Calendar.DATE, 1);
 					%>
 				<%-- <input type="submit" id="" name="" value="<%=d %>"/> --%>
 					<%}%>
+					<%
+						flg = false;
+					%>
 					</td>
 				<%}%>
 				</tr>
