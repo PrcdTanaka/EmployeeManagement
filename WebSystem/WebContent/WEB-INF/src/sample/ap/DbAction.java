@@ -3441,6 +3441,7 @@ public class DbAction extends Object{
 			sb.append("WHERE");
 			sb.append("EMP_NO=?");
 
+
 			String query = sb.toString();
 
 			// 取得項目

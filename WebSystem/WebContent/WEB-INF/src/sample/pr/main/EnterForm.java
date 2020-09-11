@@ -24,6 +24,8 @@ public final class EnterForm extends ActionForm {
 	/**チェックリスト**/
 	private int checklist;
 
+	private String floor;
+
 	private List<String> Entry_emp;
 	private List<String> Day;
 	private List<String> Entry_time;
@@ -197,6 +199,22 @@ public final class EnterForm extends ActionForm {
 	}
 	public List<String> getLEAING_EMP() {
 		return Leaving_emp;
+	}
+
+	public String getFloor() {
+		return floor;
+	}
+
+	/**
+	 * リンク先設定処理。
+	 * <p>
+	 * メイン画面アクションフォームにリンク先を設定する。
+	 * </p>
+	 *
+	 * @param message リンク先
+	 */
+	public void setFloor(String floor) {
+		this.floor = floor;
 	}
 
 
