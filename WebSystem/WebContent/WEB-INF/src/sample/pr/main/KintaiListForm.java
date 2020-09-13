@@ -6,11 +6,10 @@ public class KintaiListForm extends ActionForm
 {
 	private String Button;
 	private String Employee_no;
-
-	public void initalize()
 	{
 		Button = "";
 		Employee_no="";
+
 	}
 
 	public String getButton()
@@ -38,4 +37,5 @@ public class KintaiListForm extends ActionForm
 	{
 		this.Button= Employee_no;
 	}
+
 }

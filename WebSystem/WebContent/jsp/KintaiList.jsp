@@ -1,8 +1,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.AttendanceForm"%>
@@ -10,28 +8,19 @@
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="sample.pr.main.KintaiListForm"%>
 
+<%@ page import="sample.pr.main.MonthlyReportForm"%>
+<%@ page import="sample.pr.main.MonthlyReportAction"%>
+
+<%@ page import="java.util.ArrayList"%>
+
 <%@ page import="java.util.*" %>
 <%@ page import="java.util.Calendar" %>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.util.List" %>
 
-<%!
-	public void jspInit()
-	{
-		try
-		{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+<%@ page contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-	}
-%>
+
 <html lang="ja">
 <html:html>
 
@@ -54,6 +43,22 @@
 
 <body>
 	<html:form action="/KintaiListAction">
+	<%
+		Calendar cale = Calendar.getInstance();
+
+		MonthlyReportForm form=new MonthlyReportForm();
+		int monthlastDay = cale.getActualMaximum(Calendar.DATE);
+		DbAction dba = new DbAction();
+		LoginForm lForm=(LoginForm)session.getAttribute("form");
+		form.setEmployee_no(lForm.getEmployee_no());
+
+		dba.getMonthly_report(form);
+		List<String> span = form.getSpan();
+		List<String>span2=form.getSpan2();
+		List<String>Mmdd=form.getMmdd();
+		int listnumber=0;
+	%>
+
 		<div>
 			<center>
 				<h1>勤怠一覧</h1>
@@ -74,8 +79,6 @@
 			}
 		--%>
 		<%
-		Calendar cale = Calendar.getInstance();
-
 		String strYear=request.getParameter("year");
 		String strMonth=request.getParameter("month");
 
@@ -112,12 +115,13 @@
 		<div class="fallbackDatePicker">
 		<span>
 			<%-- カレンダーのプルダウンメニュー作成(月のほう) --%>
-			<select id="Years" name="Years">
+			<%--<select id="Years" name="Years">  --%>
 			<%
 				int Years_Data = cale.get(Calendar.YEAR);
 				int Month_Data = cale.get(Calendar.MONTH)+1;
 				for(int i = Years_Data-1; i <= Years_Data+1; i++){
 			%>
+			<%--
 			<option value="<%=i %>"
 			<%
 				if(i == Years_Data){
@@ -128,15 +132,17 @@
 			%>
 			><%=i %>年
 			</option>
+			--%>
 			<%
 				}
 			%>
-			</select>
+			<%-- </select> --%>
 			<%-- カレンダーのプルダウンメニュー作成(日のほう) --%>
-			<select id="Months" name="Months">
+			<%-- <select id="Months" name="Months"> --%>
 			<%
 				for(int i = 1; i<= 12; i++){
 			%>
+			<%--
 			<option value="<%=i %>"
 			<%
 				if(i == Month_Data){
@@ -147,16 +153,30 @@
 			%>
 			><%=i %>月
 			</option>
+			 --%>
 			<%
 				}
 			%>
-			</select>
+			<%-- </select> --%>
 		</span>
 
 		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=Years_Data %>&month=<%=Month_Data %>">移動</a>
 		<input type="submit" id="btn" name="submit" value="移動"/>
 		</div>
 
+		<%--
+			int kintai = 0;
+			String[] kintai_lst = new String[30];
+
+			for(int Target_day = 0; Target_day <= 31; Target_day++)
+			{
+				if(span != null)
+				{
+					kintai_lst[kintai] = span.get(Target_day);
+					kintai++;
+				}
+			}
+		--%>
 		<br/>
 		<table>
 			<tr>
@@ -169,12 +189,15 @@
 				<th class="weekday">金</th>
 				<th class="saturday">土</th>
 			</tr>
-			<%-- while文以外、実験物 --%>
+			<%-- while文とint=d以外、実験物 --%>
 			<%
+				int NowDay = cale.get(Calendar.DATE);
 				String link1 = "http://localhost:8080/WebSystem/jsp/KintaiMail.jsp";
-				boolean flg= false;
-				int kari_data=10;
-				int d=0;
+				String link2 = "http://localhost:8080/WebSystem/jsp/KintaiList.jsp";
+				int flg= 0;
+				int kari_data=1; //対象日
+
+				int d=0; //日付(最大31までになる)
 				while(cale.get(Calendar.MONTH)==intMonth-1){
 			%>
 			<tr>
@@ -182,10 +205,22 @@
 				<%
 					for(int j=0; j<7; j++){
 				%>
+				<%-- 以下のif文は実験
+					DBから対象期間の取得し、dが7日以内または、8日以上か確認
+					判定条件は、対象期間 > 今日の日付
+				--%>
+
 				<%
-					if((d+1) == kari_data)
+					String str_d = "";
+					str_d = String.valueOf(intYear) + "0" + String.valueOf(intMonth) + String.valueOf(d+1);
+					if(span.isEmpty())
 					{
-						flg = true;
+					}
+
+					if(span.get(listnumber).equals(str_d))
+					{
+						flg = 1;
+						listnumber++;
 					}
 				%>
 				<%
@@ -202,7 +237,7 @@
 							dの日付と、DBから取得した日が一致するなら色変えたい
 						 --%>
 						<%
-							if(flg == true){
+							if(flg == 1){
 						%>
 							<td class="weekday" style="background-color:#FFFF00;">
 						<%
@@ -235,7 +270,7 @@
 				<%-- <input type="submit" id="" name="" value="<%=d %>"/> --%>
 					<%}%>
 					<%
-						flg = false;
+						flg = 0;
 					%>
 					</td>
 				<%}%>
@@ -255,6 +290,13 @@
 			<html:submit property="button" style="color:#fff; background-color:#49a9d4; width: 20%;  border-radius: 20px;" value="戻る"
 				styleId="main"/>
 		</div>
+
+		<td><%=span.get(listnumber)%></td>
+		<%
+			String ssss = "";
+		 ssss = String.valueOf(intYear) +"0" +String.valueOf(intMonth) + String.valueOf(d+1);
+		%>
+		<td><%=ssss %></td>
 	</html:form>
 </body>
 </html:html>
