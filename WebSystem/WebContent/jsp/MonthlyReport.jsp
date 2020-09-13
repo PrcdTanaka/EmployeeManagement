@@ -40,32 +40,20 @@
 		List<String> spotcode =form.getSpotcode();
 		int listnumber=0;
 		String a="";
-
-
-		for(int i=0;i<spotcode.size();i++){
-			switch(Integer.parseInt(spotcode.get(i))){
-			case 90001:
-				a="本社";
-				break;
-			case 90002:
-				a="大阪事業所";
-				break;
-			}
-		}
-
+		String limit="";
+		String send="";
 
 		%>
 		<center>
 			<h1>勤怠月報画面</h1>
 		</center>
-<center>
  <table border="3" bordercolor="#0000ff">
     <tr bgcolor="#87cefa">
     <tr>
     	<td><%=month %>月</td>
     </tr>
 		<tr>
-			<td colspan="2">/</td>
+			<td >/</td>
 			<td>届出日</td>
 			<td>時刻</td>
 			<td>Limit</td>
@@ -79,17 +67,16 @@
 
 		<tr>
 		 <%
-		 	String dada= "";
+		String dada="";
 		 for (int day = 1; day <= monthlastDay; day++) {
-		 if(month.length()==1)
-			month="0"+month;
-		 if(String.valueOf(day).length()==1)
-			 dada="0"+day;
-		 else
-			 dada=""+day;
+			 if(month.length()==1)
+					month="0"+month;
+				 if(String.valueOf(day).length()==1)
+					 dada="0"+day;
+				 else
+					 dada=""+day;
 		 if(listnumber>Mmdd.size()-1){%>
-				<td><%=day%>日</td>
-				<td>""</td>
+				<td><%=dada%>日</td>
 				<td>""</td>
 				<td>""</td>
 				<td>""</td>
@@ -101,13 +88,28 @@
 			</tr>
 
 		 <%}
-		 else if(Mmdd.get(listnumber).equals(month+dada+"")){%>
-				<td><%=day%>日</td>
-				<td>""</td>
+		 //Integer.parseIntに変換してみる
+		 else if(span.get(listnumber).substring(6,8).equals(dada)){
+
+		//if文を使用して企業コードから作業場所とlimitを表示
+		 if(spotcode.get(listnumber).equals("9-0001")){
+		 a="本社";
+		 limit="0830";}
+		 else if(spotcode.get(listnumber).equals("9-0002")){
+		 a="大阪事業所";
+		 limit="0840";}
+
+
+		//無届かどうかをif文で記述
+		 if(Integer.parseInt(Send_Time.get(listnumber))>Integer.parseInt(limit)){
+		 send="無届";}else{
+			 send="";
+		 }%>
+				<td><%=dada%>日</td>
 				<td><%=Mmdd.get(listnumber)%></td>
 				<td><%=Send_Time.get(listnumber)%></td>
-				<td>""</td>
-				<td>""</td>
+				<td><%=limit %></td>
+				<td><%=send %></td>
 				<td><%=division.get(listnumber)%></td>
 				<td><%=a%></td>
 				<td><%=perm.get(listnumber)%></td>
@@ -118,8 +120,7 @@
 
 		 }
 		 else{%>
-			<td><%=day%>日</td>
-			<td>""</td>
+			<td><%=dada%>日</td>
 			<td>""</td>
 			<td>""</td>
 			<td>""</td>
