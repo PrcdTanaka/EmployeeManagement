@@ -47,9 +47,9 @@
 
 	%>
 	<body>
-		<center>
+		<div align = "center">
 			<h1>会議室予約画面</h1>
-		</center>
+		</div>
 
 		<div align="right">
 			<a href="jsp/RoomReservation.jsp">会議室新規登録画面へ</a>
