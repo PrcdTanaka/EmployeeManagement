@@ -75,18 +75,6 @@
 		</div>
 		<br/>
 		<br/>
-
-		<%--
-			Connection con = null;
-			Statement stmt = null;
-			ResultSet rs = null;
-			try
-			{
-				con = DriverManager.getConnection("jdbc:oracle:thin:@" + gHost + ":1521:" + gSid,gUser,gPass);
-				stmt = con.createStatement();
-				rs = stmt.executeQuery("select * from kintaiMail");
-			}
-		--%>
 		<%
 		String strYear=request.getParameter("year");
 		String strMonth=request.getParameter("month");
@@ -175,7 +163,6 @@
 					判定条件は、対象期間 > 今日の日付
 				--%>
 				<%
-					int chg_lst = 0;
 					boolean val_flg = true;
 					str_Y = String.valueOf(intYear);
 					str_M = String.valueOf(intMonth);
@@ -207,7 +194,6 @@
 					{
 						for(int t = 0; t < span.size(); t++)
 						{
-							chg_lst = Integer.parseInt(kintai_lst[t]);
 							int str_b_lst = Integer.parseInt(str_B);
 							// 対象期間が本日より7日より前なら黄色表示 (flg = 1)
 							// 対象期間が本日より8日より後なら赤色表示 (flg = 2)
@@ -219,7 +205,6 @@
 									flg = 2;
 								}
 							}
-							listnumber++;
 						}
 					}
 				%>

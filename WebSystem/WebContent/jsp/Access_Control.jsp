@@ -22,6 +22,7 @@
 EnterForm a=new EnterForm();
 a = (EnterForm) session.getAttribute("eform");
 	DbAction dba=new DbAction();
+	a.clearList();
 	dba.getAccessControl(a);
 
 %>
@@ -161,36 +162,79 @@ lastDate = calendar.get(Calendar.DATE);
 // カレンダー表を作成します。
 int row = 0;
 int column = startDay - 1; // startDay: 日曜日 = 1, 月曜日 = 2, ...
+
+
 List<String> checklist=a.getCHECK_LIST();
 String check="";
+String SmallMonth;
+String Smallday;
+String DateAndTime;
+int Column=0;
+int autherColmn=-1;
+List<String> Judgment=a.getDAY();
+List<String> ENRY_EMP=a.getENTRY_EMP();
+List<String> ENRY_TIME=a.getENTRY_TIME();
+List<String> LEAVING_EMP=a.getENTRY_EMP();
+List<String> LEAVING_TIME=a.getLEAVING_TIME();
 List<String> calendarlist = new ArrayList();
+boolean m=false;
+
 for (int date = 1; date <= lastDate; date++) {
  if(startDay>7){
 	 startDay=1;
  }
  	String aa=week[startDay-1];
 
- 	try{
- 		if(checklist.get(0).equals("0")){
- 	 		check = "○";
- 	 	}
- 	 	else {
- 	 		check ="-";
- 	 	}
- 	}catch(Exception e)
- 	{
-		check="-";
+ 	//抽出した月が10未満の場合0付ける
+ 	if(month<10){
+ 		SmallMonth = "0"+month;
  	}
+ 	else{
+ 		SmallMonth = ""+month;
+ 	}
+
+ 	if(date<10){
+		Smallday="0"+date;
+ 	}
+ 	else{
+ 		Smallday=""+date;
+ 	}
+ 	//月日を4桁に変換・格納
+ 	DateAndTime = SmallMonth+Smallday;
+
+ 	//日付分回るforの中で作成
+ 	//㏈月日とカレンダーの月日が同じもの抽出
+
+ 	check="-";
  	%>
  	<tr>
     <td><%=month+"月"+date %>日</td> <td><%=aa %>曜日</td>
-    <td><%=a.getEmployee_name() %></td><td><%=a.getENTRY_TIME() %></td><td><%=a.getLEAING_EMP()%></td> <td><%=a.getLEAVING_TIME()%></td>
+    <%
+   if(Judgment.get(Column).equals(DateAndTime)){
+ 	%>
+ 		<td><%=ENRY_EMP.get(Column)%></td><td><%=ENRY_TIME.get(Column)%></td><td><%=LEAVING_EMP.get(Column)%></td>
+ 		<td><%=LEAVING_TIME.get(Column)%></td>
+ 	<%
+
+ 		if(checklist.get(Column).equals("0")){
+ 	 		check = "○";
+ 	 	}
+ 	if(Column<Judgment.size()-1)
+ 		Column++;
+ 	}
+   else{%>
+   <td></td><td></td><td></td><td></td>
+
+ <%}
+    %>
       <td><%=check%></td> <td><%=check%></td>
       <td><%=check %></td> <td><%=check %></td>
       <td><%=check %></td> <td><%=check %></td> <td><%=check %></td>
     </tr>
     <%
  	startDay++;
+
+
 }
 %>
 
