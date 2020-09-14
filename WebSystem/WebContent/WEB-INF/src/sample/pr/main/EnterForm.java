@@ -230,7 +230,10 @@ public final class EnterForm extends ActionForm {
 	 * @param message リンク先
 	 */
 	public void setFloor(String floor) {
-		this.floor = floor;
+		if(floor.length()<1)
+			this.floor = floor;
+		else
+			this.floor= floor.substring(0,1);
 	}
 
 
