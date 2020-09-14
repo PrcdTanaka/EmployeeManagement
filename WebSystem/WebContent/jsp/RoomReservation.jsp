@@ -9,53 +9,46 @@
 <html:html>
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
-<center>
+<div align= "center">
 	<h1>会議室新規登録画面</h1>
-</center>
+</div>
 <body>
 	<html:form action="/RoomReservationAction">
 		<div class="block">
 			<div class="space"></div>
 			<br>
-			<div>
-				<center>
+			<div align= "center">
 					会議室名：
-					<input type ="text" property="room_name" value="" />
-				</center>
+					<!--  input type ="text" property="room_name" value="" />-->
+					<html:text property="room_name" value="" />
 			</div>
-			<div>
-				<center>
+			<div align= "center">
 					所在地　：
-					<input type ="text" property="roo_place" value="" />
-				</center>
+					<html:text property="place" value="" />
 			</div>
-			<div>
-				<center>
+			<div align= "center">
 					席数　　：
-					<input type ="text" property="seat_number" value="" />
-				</center>
+					<html:text property="seat" value="" />
 			</div>
-			<div>
-				<center>
+			<div align= "center">
 					モニター：
-					<input type ="text" property="monitor" value="" />
-				</center>
+					<html:text property="monitor" value="" />
 			</div>
-			<div>
-				<center>
+			<div align= "center">
 					カメラ　：
-					<input type ="text" property="camera" value="" />
-				</center>
+					<html:text property="camera" value="" />
 			</div>
 			<div class="space"></div>
 			<br>
-			<td align="center">
+			<div align="center">
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="room"/>
+			</div>
+			<div align="center">
 			<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
-			</td>
+			</div>
 		</div>
 
 	</html:form>

@@ -190,6 +190,9 @@ public final class MainAction extends Action {
 				eform.setFloor("4");
 				session.setAttribute("eform", eform);
 				break;
+			case"kintaiNotification":
+				forward="kintaiNotification";
+				break;
 			}
 		}
 

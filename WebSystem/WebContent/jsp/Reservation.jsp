@@ -41,6 +41,9 @@
 
 					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 					    String weekname = "";
+					    String capacity = "";
+					    String monitor = "";
+					    String camera = "";
 
 	%>
 	<body>
@@ -55,7 +58,7 @@
 			<table border="1">
 				<tr>
 					<th></th>
-					<th>キャパ</th>
+					<th>席数</th>
 					<th>モニター</th>
 					<th>カメラ</th>
 				</tr>
