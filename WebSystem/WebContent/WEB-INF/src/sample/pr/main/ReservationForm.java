@@ -38,6 +38,7 @@ public final class ReservationForm extends ActionForm {
 		camera = "";
 		button = "";
 		res_time = "";
+		mmdd = "";
 	}
 	/**
 	 * 社員番号取得処理。
@@ -230,9 +231,9 @@ public final class ReservationForm extends ActionForm {
 	}
 
 	/**
-	 * ボタン名取得処理。
+	 * 日付取得処理。
 	 * <p>
-	 * メイン画面アクションフォームからボタン名を取得する。
+	 * 会議室予約画面アクションフォームから日付を取得する。
 	 * </p>
 	 *
 	 * @return ボタン名
@@ -242,9 +243,9 @@ public final class ReservationForm extends ActionForm {
 	}
 
 	/**
-	 * ボタン名設定処理。
+	 * 日付設定処理。
 	 * <p>
-	 * メイン画面アクションフォームにボタン名を設定する。
+	 * 会議室予約画面アクションフォームに日付を設定する。
 	 * </p>
 	 *
 	 * @param button ボタン名
