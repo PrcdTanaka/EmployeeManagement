@@ -3,7 +3,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="sample.pr.main.ReservationForm"%>
 <%@ page import="sample.pr.main.RoomReservationForm"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 
@@ -11,10 +10,10 @@
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 <div align= "center">
-	<h1>会議室新規登録画面</h1>
+	<h1>新規予約画面</h1>
 </div>
 <body>
-	<html:form action="/RoomReservationAction">
+	<html:form action="/ReservationConfimAction">
 	<%
 		String message;
 		try{
@@ -43,25 +42,16 @@
 					席数　　：
 					<html:text property="seat" value="" />
 			</div>
-			<div align= "center">
-					モニター：
-					<html:text property="monitor" value="" />
-			</div>
-			<div align= "center">
-					カメラ　：
-					<html:text property="camera" value="" />
-			</div>
-			<br>
 			<div align="center">
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="room"/>
-			</div>
 			<div align="center">
 			<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
 			</div>
 		</div>
+
 	</html:form>
 </body>
 </html:html>

@@ -3083,13 +3083,24 @@ public class DbAction extends Object{
 
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
+			Calendar calendar = Calendar.getInstance();
 
-			sb.append("SELECT");
-			sb.append("ENTRY_EMP");
-			sb.append("FROM");
-			sb.append("ROOM_ACCESS_TBL");
-			sb.append("WHERE");
-			sb.append("FLOOR= ?");
+			String month=""+calendar.get(calendar.MONTH);
+			if(month.length()==1)
+				month=0+month;
+			String date=""+calendar.get(calendar.DATE);
+			if(date.length()==1)
+				date=0+date;
+			String day=month+date;
+
+			sb.append("SELECT"+crlf);
+			sb.append(" ENTRY_EMP"+crlf);
+			sb.append(" FROM"+crlf);
+			sb.append(" ROOM_ACCESS_TBL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" FLOOR= ?"+crlf);
+			sb.append("AND"+crlf);
+			sb.append(" DAY='"+day+"'"+crlf);
 
 			String query = sb.toString();
 
@@ -3104,7 +3115,7 @@ public class DbAction extends Object{
 
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getEmployee_no());
+			bindList.add(form.getFloor());
 
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
@@ -3143,12 +3154,12 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("SELECT");
-			sb.append("SPAN");
-			sb.append("FROM");
-			sb.append("KINTAIMAIL");
-			sb.append("WHERE");
-			sb.append("EMP_NO=?");
+			sb.append("SELECT"+crlf);
+			sb.append(" SPAN"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append(" KINTAIMAIL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" EMP_NO=?"+crlf);
 
 			String query = sb.toString();
 
@@ -3202,12 +3213,12 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("SELECT");
-			sb.append("SPAN2");
-			sb.append("FROM");
-			sb.append("KINTAIMAIL");
-			sb.append("WHERE");
-			sb.append("EMP_NO=?");
+			sb.append("SELECT"+crlf);
+			sb.append(" SPAN2"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append(" KINTAIMAIL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" EMP_NO=?"+crlf);
 
 			String query = sb.toString();
 
@@ -3261,12 +3272,12 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("SELECT");
-			sb.append("MMDD");
-			sb.append("FROM");
-			sb.append("KINTAIMAIL");
-			sb.append("WHERE");
-			sb.append("EMP_NO=?");
+			sb.append("SELECT"+crlf);
+			sb.append(" MMDD"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append(" KINTAIMAIL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" EMP_NO=?"+crlf);
 
 			String query = sb.toString();
 
@@ -3320,12 +3331,12 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("SELECT");
-			sb.append("SEND_TIME");
-			sb.append("FROM");
-			sb.append("KINTAIMAIL");
-			sb.append("WHERE");
-			sb.append("EMP_NO=?");
+			sb.append("SELECT"+crlf);
+			sb.append(" SEND_TIME"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append(" KINTAIMAIL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" EMP_NO=?"+crlf);
 
 			String query = sb.toString();
 
@@ -3379,12 +3390,12 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("SELECT");
-			sb.append("DIVISION");
-			sb.append("FROM");
-			sb.append("KINTAIMAIL");
-			sb.append("WHERE");
-			sb.append("EMP_NO=?");
+			sb.append("SELECT"+crlf);
+			sb.append(" DIVISION"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append(" KINTAIMAIL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" EMP_NO=?"+crlf);
 
 			String query = sb.toString();
 
@@ -3437,12 +3448,12 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("SELECT");
-			sb.append("PERM");
-			sb.append("FROM");
-			sb.append("KINTAIMAIL");
-			sb.append("WHERE");
-			sb.append("EMP_NO=?");
+			sb.append("SELECT"+crlf);
+			sb.append(" PERM"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append(" KINTAIMAIL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" EMP_NO=?"+crlf);
 
 
 			String query = sb.toString();
@@ -3497,12 +3508,12 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 
-			sb.append("SELECT");
-			sb.append("REMARK");
-			sb.append("FROM");
-			sb.append("KINTAIMAIL");
-			sb.append("WHERE");
-			sb.append("EMP_NO=?");
+			sb.append("SELECT"+crlf);
+			sb.append(" REMARK"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append(" KINTAIMAIL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" EMP_NO=?"+crlf);
 
 			String query = sb.toString();
 
