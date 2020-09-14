@@ -52,8 +52,8 @@ textarea {
 
 		String employee_no="";
  		try{
- 			KintaiNotificationForm s = (KintaiNotificationForm) session.getAttribute("form");
- 			message =  s.getMessage();
+ 			KintaiNotificationForm KNform = new KintaiNotificationForm();
+ 			message =  KNform.getMessage();
  			if(message == null)
  				message = "";
 
@@ -186,10 +186,10 @@ textarea {
 		<!-- エクセル出力ボタン -->
 		<div class="back">
 			<html:submit property="button" styleClass="btn" value="エクセル作成"
-				styleId="excelOutput" />
+				styleId="kintaiNotification" />
 			<!-- 戻るボタン -->
 			<html:submit property="button" styleClass="btn" value="戻る"
-				styleId="login" />
+				styleId="main" />
 		</div>
 	</html:form>
 </body>

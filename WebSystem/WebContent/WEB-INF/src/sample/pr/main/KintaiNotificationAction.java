@@ -42,18 +42,19 @@ public final class KintaiNotificationAction extends Action {
 		String employee_no = KNForm.getEmployee_no();
 		String petition_ymd = KNForm.getPetition_ymd();
 		String b=KNForm.getButton();
-		if (employee_no.equals("")) {
+		if(b.equals("戻る")){
+			forward ="main";
+		}
+		else if (employee_no.equals("")) {
 			KNForm.setMessage("社員番号が空白になっています。");
-			forward = "excelOutput";
+			forward = "kintaiNotification";
 		}
 		else if(petition_ymd.equals("")){
 			KNForm.setMessage("申請日が空白になっています。");
-			forward = "excelOutput";
+			forward = "kintaiNotification";
 		}
-		else if(b.equals("戻る")){
-			forward ="login";
-		}else{
-			forward="excelOutput";
+		else{
+			forward="kintaiNotification";
 		}
 
 		/*
