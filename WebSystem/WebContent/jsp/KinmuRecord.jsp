@@ -1,21 +1,17 @@
-<%@page import="javax.swing.text.Document"%>
-<%@page import="java.io.UnsupportedEncodingException"%>
-<%@page import="java.util.Iterator"%>
-<%@ page import="sample.pr.main.MainForm"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
-<%@ page import="java.util.List"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="sample.pr.main.SearchForm" %>
+
 <%@ page import="sample.pr.main.LoginForm" %>
 <%@ page import="sample.pr.main.KinmuRecordForm" %>
-<%@ page import="sample.pr.main.KintaiMainForm" %>
+<%@ page import="sample.pr.main.MainForm"%>
+<%@ page import="sample.ap.DbAction" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="sample.pr.main.KinmuRecordAction" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.chrono.JapaneseDate" %>
-<%@ page import="sample.ap.DbAction" %>
+<%@ page import="sample.pr.main.Open_informationForm"%>
 
 
 <html lang="ja">
@@ -29,15 +25,16 @@
 		<%
 			//インスタンス関連
 			DbAction dba = new DbAction();
-			LoginForm s = (LoginForm) session.getAttribute("form");
+			LoginForm s1 = (LoginForm) session.getAttribute("form");
+			Open_informationForm s2 = (Open_informationForm) session.getAttribute("oForm");
 			KinmuRecordForm kinmuRF = new KinmuRecordForm();
 			//ログインユーザーの情報
 			String employeeNum = "";
 			String employeeName = "";
-			String employeeDiv = "";
+			String employeeDivNum = "";
 			//フォームクラスからゲッターで取得するもの
 			String kintaiYMD = kinmuRF.getKintaiYMD();
-			String holidayDiv = kinmuRF.getHolidayDiv();
+			String holidayDiv1 = kinmuRF.getHolidayDiv();
 			String startTime = kinmuRF.getStartTime();
 			String endTime = kinmuRF.getEndTime();
 			String breakTimeA = kinmuRF.getBreakTimeA();
@@ -49,19 +46,59 @@
 
 			//ログインユーザーの社員番号と名前を取得して変数に代入
 			try{
-				employeeNum = s.getEmployee_no();
-				employeeName = s.getEmployee_name();
+				employeeNum = s1.getEmployee_no();
+				employeeName = s1.getEmployee_name();
+				employeeDivNum = s2.getTec();
 
 			} catch (Exception e) {
 
 			}
+
+			//ログインユーザーの所属部署を文字にして表示
+			String employeeDivName = "";
+			switch(employeeDivNum){
+				case "00" :
+					employeeDivName = "総務・経理部";
+					break;
+				case "01" :
+					employeeDivName = "第１技術部";
+					break;
+				case "02" :
+					employeeDivName = "第２技術部";
+					break;
+				case "03" :
+					employeeDivName = "第３技術部";
+					break;
+				case "04" :
+					employeeDivName = "第４技術部";
+					break;
+				case "05" :
+					employeeDivName = "第５技術部";
+					break;
+				case "06" :
+					employeeDivName = "ソリューション技術部";
+					break;
+				case "07" :
+					employeeDivName = "システム営業部";
+					break;
+				case "08" :
+					employeeDivName = "人事部";
+					break;
+				case "09" :
+					employeeDivName = "採用マーケティング部";
+					break;
+				default:
+					employeeDivName = "";
+					break;
+			}
+
 		%>
 
 		<center><h1>勤務管理表作成画面</h1></center>
 
 		<div class="info">
 			<p class="yearMonth">2020年 8月度</p>
-			<p class="basicInfo">第5技術部</p>
+			<p class="basicInfo"><%= employeeDivName %></p>
 			<p class="basicInfo"><%= employeeNum %></p>
 			<p class="basicInfo"><%= employeeName %></p>
 		</div>
@@ -110,117 +147,308 @@
 			<%-- 修正後の勤務管理表 --%>
 
 				<% for(int i=1; i<=31; i++) {
+					//指定した年月日が何曜日なのかを表示する用
 					LocalDate date = LocalDate.of(2020, 8, i);
-					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
-				%>
+					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");%>
 				<tr>
-					<td width="7px"><%= i %></td>   <%-- 日付 --%>
-					<td width="7px"><%= JapaneseDate.from(date).format(fmt) %></td>   <%-- 曜日 --%>
-					<td width="10px">  <%-- 休/祝 --%>
-						<select>
-							<option value="0">-</option>
-							<option value="1">休</option>
-							<option value="2">祝</option>
-						</select>
-					</td>
-					<td><%-- 出社 --%>
-						<select>
-						<% //プルダウンの表示
-						int hour1=0, min1=0;
-						for(int j=0; j<96; j++){ %>
-							<% if(min1==0) { %>
-								<option>
-									<%= hour1 %>:0<%= min1 %>
-								</option>
-							<% } else { %>
-								<option>
-									<%= hour1 %>:<%= min1 %>
-								</option>
-							<% } %>
+					<%-- 日にち --%>
+					<td width="7px"><%= i %></td>
 
-							<%  //時間の更新
-							min1 += 15;
-							if(min1%60==0){
-								hour1++;
-								min1=0;
-							}
-							%>
-						<%}%>
-						</select>
-					</td>
-					<td>  <%-- 退社 --%>
-						<select>
-						<% //プルダウンの表示
-						int hour2=0, min2=0;
-						for(int j=0; j<96; j++){ %>
-							<% if(min2==0) { %>
-								<option>
-									<%= hour2 %>:0<%= min2 %>
-								</option>
-							<% } else { %>
-								<option>
-									<%= hour2 %>:<%= min2 %>
-								</option>
-							<% } %>
+					<%-- 曜日 --%>
+					<td width="7px"><%= JapaneseDate.from(date).format(fmt) %></td>
 
-							<%  //時間の更新
-							min2 += 15;
-							if(min2%60==0){
-								hour2++;
-								min2=0;
-							}
-							%>
-						<%}%>
-						</select>
+					<%-- 休/祝 --%>
+					<td width="7px">
+						<html:select property="holidayDiv" styleId="holidayDiv" name="KinmuRecordForm">
+							<html:option value="" style="text-align:center;">-</html:option>
+							<html:option value="1">休</html:option>
+							<html:option value="2">祝</html:option>
+						</html:select>
 					</td>
 
-					<td><%-- 予定 --%>
+					<%-- 出社時間 --%>
+					<td width="7px">
+						<html:select property="startTime" styleId="startTime" name="KinmuRecordForm">
+							<html:option value="" style="text-align:center;">-</html:option>
+							<html:option value="0000">0:00</html:option>
+							<html:option value="0015">0:15</html:option>
+							<html:option value="0030">0:30</html:option>
+							<html:option value="0045">0:45</html:option>
+							<html:option value="0100">1:00</html:option>
+							<html:option value="0115">1:15</html:option>
+							<html:option value="0130">1:30</html:option>
+							<html:option value="0145">1:45</html:option>
+							<html:option value="0200">2:00</html:option>
+							<html:option value="0215">2:15</html:option>
+							<html:option value="0230">2:30</html:option>
+							<html:option value="0245">2:45</html:option>
+							<html:option value="0300">3:00</html:option>
+							<html:option value="0315">3:15</html:option>
+							<html:option value="0330">3:30</html:option>
+							<html:option value="0345">3:45</html:option>
+							<html:option value="0400">4:00</html:option>
+							<html:option value="0415">4:15</html:option>
+							<html:option value="0430">4:30</html:option>
+							<html:option value="0445">4:45</html:option>
+							<html:option value="0500">5:00</html:option>
+							<html:option value="0515">5:15</html:option>
+							<html:option value="0530">5:30</html:option>
+							<html:option value="0545">5:45</html:option>
+							<html:option value="0600">6:00</html:option>
+							<html:option value="0615">6:15</html:option>
+							<html:option value="0630">6:30</html:option>
+							<html:option value="0645">6:45</html:option>
+							<html:option value="0700">7:00</html:option>
+							<html:option value="0715">7:15</html:option>
+							<html:option value="0730">7:30</html:option>
+							<html:option value="0745">7:45</html:option>
+							<html:option value="0800">8:00</html:option>
+							<html:option value="0815">8:15</html:option>
+							<html:option value="0830">8:30</html:option>
+							<html:option value="0845">8:45</html:option>
+							<html:option value="0900">9:00</html:option>
+							<html:option value="0915">9:15</html:option>
+							<html:option value="0930">9:30</html:option>
+							<html:option value="0945">9:45</html:option>
+							<html:option value="1000">10:00</html:option>
+							<html:option value="1015">10:15</html:option>
+							<html:option value="1030">10:30</html:option>
+							<html:option value="1045">10:45</html:option>
+							<html:option value="1100">11:00</html:option>
+							<html:option value="1115">11:15</html:option>
+							<html:option value="1130">11:30</html:option>
+							<html:option value="1145">11:45</html:option>
+							<html:option value="1200">12:00</html:option>
+							<html:option value="1215">12:15</html:option>
+							<html:option value="1230">12:30</html:option>
+							<html:option value="1245">12:45</html:option>
+							<html:option value="1300">13:00</html:option>
+							<html:option value="1315">13:15</html:option>
+							<html:option value="1330">13:30</html:option>
+							<html:option value="1345">13:45</html:option>
+							<html:option value="1400">14:00</html:option>
+							<html:option value="1415">14:15</html:option>
+							<html:option value="1430">14:30</html:option>
+							<html:option value="1445">14:45</html:option>
+							<html:option value="1500">15:00</html:option>
+							<html:option value="1515">15:15</html:option>
+							<html:option value="1530">15:30</html:option>
+							<html:option value="1545">15:45</html:option>
+							<html:option value="1600">16:00</html:option>
+							<html:option value="1615">16:15</html:option>
+							<html:option value="1630">16:30</html:option>
+							<html:option value="1645">16:45</html:option>
+							<html:option value="1700">17:00</html:option>
+							<html:option value="1715">17:15</html:option>
+							<html:option value="1730">17:30</html:option>
+							<html:option value="1745">17:45</html:option>
+							<html:option value="1800">18:00</html:option>
+							<html:option value="1815">18:15</html:option>
+							<html:option value="1830">18:30</html:option>
+							<html:option value="1845">18:45</html:option>
+							<html:option value="1900">19:00</html:option>
+							<html:option value="1915">19:15</html:option>
+							<html:option value="1930">19:30</html:option>
+							<html:option value="1945">19:45</html:option>
+							<html:option value="2000">20:00</html:option>
+							<html:option value="2015">20:15</html:option>
+							<html:option value="2030">20:30</html:option>
+							<html:option value="2045">20:45</html:option>
+							<html:option value="2100">21:00</html:option>
+							<html:option value="2115">21:15</html:option>
+							<html:option value="2130">21:30</html:option>
+							<html:option value="2145">21:45</html:option>
+							<html:option value="2200">22:00</html:option>
+							<html:option value="2215">22:15</html:option>
+							<html:option value="2230">22:30</html:option>
+							<html:option value="2245">22:45</html:option>
+							<html:option value="2300">23:00</html:option>
+							<html:option value="2315">23:15</html:option>
+							<html:option value="2330">23:30</html:option>
+							<html:option value="2345">23:45</html:option>
+						</html:select>
+					</td>
+
+					<%-- 退社時間 --%>
+					<td width="7px">
+						<html:select property="endTime" styleId="endTime" name="KinmuRecordForm">
+							<html:option value="" style="text-align:center;">-</html:option>
+							<html:option value="0000">0:00</html:option>
+							<html:option value="0015">0:15</html:option>
+							<html:option value="0030">0:30</html:option>
+							<html:option value="0045">0:45</html:option>
+							<html:option value="0100">1:00</html:option>
+							<html:option value="0115">1:15</html:option>
+							<html:option value="0130">1:30</html:option>
+							<html:option value="0145">1:45</html:option>
+							<html:option value="0200">2:00</html:option>
+							<html:option value="0215">2:15</html:option>
+							<html:option value="0230">2:30</html:option>
+							<html:option value="0245">2:45</html:option>
+							<html:option value="0300">3:00</html:option>
+							<html:option value="0315">3:15</html:option>
+							<html:option value="0330">3:30</html:option>
+							<html:option value="0345">3:45</html:option>
+							<html:option value="0400">4:00</html:option>
+							<html:option value="0415">4:15</html:option>
+							<html:option value="0430">4:30</html:option>
+							<html:option value="0445">4:45</html:option>
+							<html:option value="0500">5:00</html:option>
+							<html:option value="0515">5:15</html:option>
+							<html:option value="0530">5:30</html:option>
+							<html:option value="0545">5:45</html:option>
+							<html:option value="0600">6:00</html:option>
+							<html:option value="0615">6:15</html:option>
+							<html:option value="0630">6:30</html:option>
+							<html:option value="0645">6:45</html:option>
+							<html:option value="0700">7:00</html:option>
+							<html:option value="0715">7:15</html:option>
+							<html:option value="0730">7:30</html:option>
+							<html:option value="0745">7:45</html:option>
+							<html:option value="0800">8:00</html:option>
+							<html:option value="0815">8:15</html:option>
+							<html:option value="0830">8:30</html:option>
+							<html:option value="0845">8:45</html:option>
+							<html:option value="0900">9:00</html:option>
+							<html:option value="0915">9:15</html:option>
+							<html:option value="0930">9:30</html:option>
+							<html:option value="0945">9:45</html:option>
+							<html:option value="1000">10:00</html:option>
+							<html:option value="1015">10:15</html:option>
+							<html:option value="1030">10:30</html:option>
+							<html:option value="1045">10:45</html:option>
+							<html:option value="1100">11:00</html:option>
+							<html:option value="1115">11:15</html:option>
+							<html:option value="1130">11:30</html:option>
+							<html:option value="1145">11:45</html:option>
+							<html:option value="1200">12:00</html:option>
+							<html:option value="1215">12:15</html:option>
+							<html:option value="1230">12:30</html:option>
+							<html:option value="1245">12:45</html:option>
+							<html:option value="1300">13:00</html:option>
+							<html:option value="1315">13:15</html:option>
+							<html:option value="1330">13:30</html:option>
+							<html:option value="1345">13:45</html:option>
+							<html:option value="1400">14:00</html:option>
+							<html:option value="1415">14:15</html:option>
+							<html:option value="1430">14:30</html:option>
+							<html:option value="1445">14:45</html:option>
+							<html:option value="1500">15:00</html:option>
+							<html:option value="1515">15:15</html:option>
+							<html:option value="1530">15:30</html:option>
+							<html:option value="1545">15:45</html:option>
+							<html:option value="1600">16:00</html:option>
+							<html:option value="1615">16:15</html:option>
+							<html:option value="1630">16:30</html:option>
+							<html:option value="1645">16:45</html:option>
+							<html:option value="1700">17:00</html:option>
+							<html:option value="1715">17:15</html:option>
+							<html:option value="1730">17:30</html:option>
+							<html:option value="1745">17:45</html:option>
+							<html:option value="1800">18:00</html:option>
+							<html:option value="1815">18:15</html:option>
+							<html:option value="1830">18:30</html:option>
+							<html:option value="1845">18:45</html:option>
+							<html:option value="1900">19:00</html:option>
+							<html:option value="1915">19:15</html:option>
+							<html:option value="1930">19:30</html:option>
+							<html:option value="1945">19:45</html:option>
+							<html:option value="2000">20:00</html:option>
+							<html:option value="2015">20:15</html:option>
+							<html:option value="2030">20:30</html:option>
+							<html:option value="2045">20:45</html:option>
+							<html:option value="2100">21:00</html:option>
+							<html:option value="2115">21:15</html:option>
+							<html:option value="2130">21:30</html:option>
+							<html:option value="2145">21:45</html:option>
+							<html:option value="2200">22:00</html:option>
+							<html:option value="2215">22:15</html:option>
+							<html:option value="2230">22:30</html:option>
+							<html:option value="2245">22:45</html:option>
+							<html:option value="2300">23:00</html:option>
+							<html:option value="2315">23:15</html:option>
+							<html:option value="2330">23:30</html:option>
+							<html:option value="2345">23:45</html:option>
+						</html:select>
+					</td>
+
+					<%-- 予定 --%>
+					<td width="7px">
+						<html:select property="expectation" styleId="expectation" name="KinmuRecordForm">
+							<html:option value="" style="text-align:center;">-</html:option>
+							<html:option value="0800">8:00</html:option>
+						</html:select>
+					</td>
+
+					<%-- 休A --%>
+					<td width="7px">
+						<html:select property="breakTimeA" styleId="breakTimeA" name="KinmuRecordForm">
+							<html:option value="" style="text-align:center;">-</html:option>
+							<html:option value="0000">0:00</html:option>
+							<html:option value="0015">0:15</html:option>
+							<html:option value="0030">0:30</html:option>
+							<html:option value="0045">0:45</html:option>
+							<html:option value="0100">1:00</html:option>
+							<html:option value="0115">1:15</html:option>
+							<html:option value="0130">1:30</html:option>
+							<html:option value="0145">1:45</html:option>
+							<html:option value="0200">2:00</html:option>
+							<html:option value="0215">2:15</html:option>
+							<html:option value="0230">2:30</html:option>
+							<html:option value="0245">2:45</html:option>
+							<html:option value="0300">3:00</html:option>
+							<html:option value="0315">3:15</html:option>
+							<html:option value="0330">3:30</html:option>
+							<html:option value="0345">3:45</html:option>
+							<html:option value="0400">4:00</html:option>
+						</html:select>
+					</td>
+
+					<%-- 休B --%>
+					<td width="7px">
+						<html:select property="breakTimeB" styleId="breakTimeB" name="KinmuRecordForm">
+							<html:option value="" style="text-align:center;">-</html:option>
+							<html:option value="0000">0:00</html:option>
+							<html:option value="0015">0:15</html:option>
+							<html:option value="0030">0:30</html:option>
+							<html:option value="0045">0:45</html:option>
+							<html:option value="0100">1:00</html:option>
+							<html:option value="0115">1:15</html:option>
+							<html:option value="0130">1:30</html:option>
+							<html:option value="0145">1:45</html:option>
+							<html:option value="0200">2:00</html:option>
+							<html:option value="0215">2:15</html:option>
+							<html:option value="0230">2:30</html:option>
+							<html:option value="0245">2:45</html:option>
+							<html:option value="0300">3:00</html:option>
+							<html:option value="0315">3:15</html:option>
+							<html:option value="0330">3:30</html:option>
+							<html:option value="0345">3:45</html:option>
+							<html:option value="0400">4:00</html:option>
+						</html:select>
+					</td>
+
+					<%-- 休暇区分 --%>
+					<td width="22%">
+						<html:radio property="vacationDiv" value=""/>該当なし
+						<html:radio property="vacationDiv" value="1" />有休/リフ休
+						<html:radio property="vacationDiv" value="2" />遅/早
+						<html:radio property="vacationDiv" value="3" />振休
+						<html:radio property="vacationDiv" value="4" />特休
+						<html:radio property="vacationDiv" value="5" />欠勤
+					</td>
+
+					<%-- 実働 --%>
+					<td width="4%">
 					<% if(!(JapaneseDate.from(date).format(fmt).equals("土")) && !(JapaneseDate.from(date).format(fmt).equals("日"))) { %>
 						8.00
 					<% } %>
 					</td>
 
-					<td>  <%-- 休A --%>
-					<select>
-					<% double restTimeA = 0.00;
-					   for(int k=0; k<17; k++){ %>
-							<option><%= restTimeA %></option>
-							<% restTimeA += 0.25; %>
-					<% }%>
-					</select>
-					</td>
-
-					<td><%-- 休B --%>
-					<select>
-					<% double restTimeB = 0.00;
-					   for(int l=0; l<17; l++){ %>
-							<option><%= restTimeB %></option>
-							<% restTimeB += 0.25; %>
-					<% }%>
-					</select>
-					</td>
-
-
-					<td width="40%">  <%-- 休暇区分 --%>
-						<input type="radio" name="kubun" value="0">0.出勤
-						<input type="radio" name="kubun" value="1">1.有休/リ休
-						<input type="radio" name="kubun" value="2">2.遅/早
-						<input type="radio" name="kubun" value="3">3.振休
-						<input type="radio" name="kubun" value="4">4.特休
-						<input type="radio" name="kubun" value="5">5.欠勤
-					</td>
-
-					<td width="6%"><%-- 実働時間 --%>
-					<% if(!(JapaneseDate.from(date).format(fmt).equals("土")) && !(JapaneseDate.from(date).format(fmt).equals("日"))) { %>
-						8.00
-					<% } %>
-					</td>
-
-					<td width="20%">  <%-- 備考 --%>
-						<input type="text" name="bikou">
-					</td>
+					<%-- 備考 --%>
+					<td width="20%"><html:text property="remark" size="30" maxlength="50" /></td>
 				</tr>
-				<% } %>
+				<% }%>
 			</table>
 
 

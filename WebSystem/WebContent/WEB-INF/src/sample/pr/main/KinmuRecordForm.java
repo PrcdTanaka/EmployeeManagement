@@ -9,6 +9,7 @@ public class KinmuRecordForm extends ActionForm{
 	private String holidayDiv;
 	private String startTime;
 	private String endTime;
+	private String expectation;
 	private String breakTimeA;
 	private String breakTimeB;
 	private String vacationDiv;
@@ -44,7 +45,14 @@ public class KinmuRecordForm extends ActionForm{
 		return holidayDiv;
 	}
 	public void setHolidayDiv(String holidayDiv) {
-		this.holidayDiv = holidayDiv;
+		switch(holidayDiv){
+			case "1":
+				this.holidayDiv = "休";
+				break;
+			case "2":
+				this.holidayDiv = "祝日";
+				break;
+		}
 	}
 	//出勤時間
 	public String getStartTime() {
@@ -60,6 +68,14 @@ public class KinmuRecordForm extends ActionForm{
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
+	//予定勤務時間
+	public String getExpectation() {
+		return expectation;
+	}
+	public void setExpectation(String expectation) {
+		this.expectation = expectation;
+	}
+
 	//休憩A
 	public String getBreakTimeA() {
 		return breakTimeA;

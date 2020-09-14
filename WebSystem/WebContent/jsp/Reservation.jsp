@@ -26,8 +26,6 @@
 				} catch (Exception e) {
 
 				}
-					    String[] week_name = {"(日)", "(月)", "(火)", "(水)",
-					                          "(木)", "(金)", "(土)"};
 
 					    Calendar cal = Calendar.getInstance();
 
@@ -41,11 +39,11 @@
 
 					    int day_of_year = cal.get(Calendar.DAY_OF_YEAR);
 
-					    System.out.println(year + "年" + month + "月" + day + "日");
-					    System.out.println(week_name[week]);
-
-					    System.out.println("今日は今年の" + day_of_year + "日目です");
 					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+					    String weekname = "";
+					    String capacity = "";
+					    String monitor = "";
+					    String camera = "";
 
 	%>
 	<body>
@@ -60,7 +58,7 @@
 			<table border="1">
 				<tr>
 					<th></th>
-					<th>キャパ</th>
+					<th>席数</th>
 					<th>モニター</th>
 					<th>カメラ</th>
 				</tr>
@@ -106,33 +104,37 @@
 					<td></td>
 					<% }
 						else
-						{%>
-					<% switch (cal.get(Calendar.DAY_OF_WEEK)) {
-    						case Calendar.SUNDAY:     // Calendar.SUNDAY:1 （値。意味はない）
-        					//日曜日
-        						break;
-    						case Calendar.MONDAY:     // Calendar.MONDAY:2
-        					//月曜日
-        						break;
-    						case Calendar.TUESDAY:    // Calendar.TUESDAY:3
-        					//火曜日
-        						break;
-    						case Calendar.WEDNESDAY:  // Calendar.WEDNESDAY:4
-        					//水曜日
-        						break;
-    						case Calendar.THURSDAY:   // Calendar.THURSDAY:5
-        					//木曜日
-        						break;
-    						case Calendar.FRIDAY:     // Calendar.FRIDAY:6
-        					//金曜日
-        						break;
-    						case Calendar.SATURDAY:   // Calendar.SATURDAY:7
-        					//土曜日
-       							break;
-						}%>
-					<td><%= day + "日" + week_name[week] %></td>
-					<%day++;
-
+						{
+							switch(week){
+							case 0:
+								weekname = "(日)";
+								break;
+							case 1:
+								weekname = "(月)";
+								break;
+							case 2:
+								weekname = "(火)";
+								break;
+							case 3:
+								weekname = "(水)";
+								break;
+							case 4:
+								weekname = "(木)";
+								break;
+							case 5:
+								weekname = "(金)";
+								break;
+							case 6:
+								weekname = "(土)";
+								break;
+							}
+						%>
+					<td><%= day + "日" + weekname %></td>
+					<%week++;
+					if(week == 7){
+						week = 0;
+					}
+					day++;
 						}
 					 }%>
 

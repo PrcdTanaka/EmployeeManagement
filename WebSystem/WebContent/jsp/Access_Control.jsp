@@ -19,12 +19,13 @@
 
 <%
 
-EnterForm a=new EnterForm();;
+EnterForm a=new EnterForm();
+a = (EnterForm) session.getAttribute("eform");
 	DbAction dba=new DbAction();
 	dba.getAccessControl(a);
 
 %>
-<h1>floor</h1>
+<h1><%=a.getFloor() %>F</h1>
 <center></center><h1>入退室者一覧</h1></center>
 
 		<%
@@ -136,8 +137,11 @@ EnterForm a=new EnterForm();;
 
 <%
 
+
+LoginForm lform = (LoginForm) session.getAttribute("form");
+
   int year=0;
-  int month=9; //getlinkで後日とる
+  int month=Integer.valueOf(lform.getLink()); //getlinkでとる
 
   int startDay;
 
@@ -157,27 +161,39 @@ lastDate = calendar.get(Calendar.DATE);
 // カレンダー表を作成します。
 int row = 0;
 int column = startDay - 1; // startDay: 日曜日 = 1, 月曜日 = 2, ...
+List<String> checklist=a.getCHECK_LIST();
+String check="";
 List<String> calendarlist = new ArrayList();
 for (int date = 1; date <= lastDate; date++) {
  if(startDay>7){
 	 startDay=1;
  }
  	String aa=week[startDay-1];
+
+ 	try{
+ 		if(checklist.get(0).equals("0")){
+ 	 		check = "○";
+ 	 	}
+ 	 	else {
+ 	 		check ="-";
+ 	 	}
+ 	}catch(Exception e)
+ 	{
+		check="-";
+ 	}
  	%>
  	<tr>
     <td><%=month+"月"+date %>日</td> <td><%=aa %>曜日</td>
+    <td><%=a.getEmployee_name() %></td><td><%=a.getENTRY_TIME() %></td><td><%=a.getLEAING_EMP()%></td> <td><%=a.getLEAVING_TIME()%></td>
+      <td><%=check%></td> <td><%=check%></td>
+      <td><%=check %></td> <td><%=check %></td>
+      <td><%=check %></td> <td><%=check %></td> <td><%=check %></td>
     </tr>
     <%
  	startDay++;
-
 }
 %>
 
-      <td><%dba.getEntry_Empl(a);%></td> <td>entry_time</td>
-      <td>exit_name</td> <td>exit_time</td>
-      <td>electricity</td> <td>door</td>
-      <td>escape_route</td> <td>fire_door</td>
-      <td>wiring</td> <td>cigarette</td> <td>wc</td>
     </tr>
 
         </center>

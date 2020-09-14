@@ -101,6 +101,12 @@
 							<html:param name="link">kinmurecord</html:param>
 						</html:link>
 					</li>
+					<li>
+						<html:link action="/MainAction">勤怠届作成画面
+							<html:param name="employee_no"><%=no %></html:param>
+							<html:param name="link">kintaiNotification</html:param>
+						</html:link>
+					</li>
 				</p>
 
 				<!-- bean:define id="manager" name="LoginForm" property="manager" type="String" /-->
@@ -134,7 +140,7 @@
 						</html:link>
 						<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Select</html:param>
+							<html:param name="link">Access_Select1F</html:param>
 						</html:link>
 					</li>
 
@@ -145,7 +151,7 @@
 							</html:link>
 							<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Select</html:param>
+							<html:param name="link">Access_Select2F</html:param>
 						</html:link>
 						</li>
 
@@ -156,7 +162,7 @@
 						</html:link>
 						<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Select</html:param>
+							<html:param name="link">Access_Select3F</html:param>
 						</html:link>
 					</li>
 					<li>
@@ -166,7 +172,7 @@
 						</html:link>
 						<html:link action="/MainAction">入退出者履歴
 							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Select</html:param>
+							<html:param name="link">Access_Select4F</html:param>
 						</html:link>
 					</li>
 				</p>

@@ -30,10 +30,12 @@
 		<form-bean name="MonthlyReportForm" type="sample.pr.main.MonthlyReportForm" />
 		<form-bean name="ReservationForm" type="sample.pr.main.ReservationForm" />
 		<form-bean name="EnterForm" type="sample.pr.main.EnterForm" />
-		<form-bean name="Access_ControlForm" type="sample.pr.main.Access_ControlForm" />
 		<form-bean name="ReservationFrom" type="sample.pr.main.ReservationForm" />
 		<form-bean name="Access_Select" type="sample.pr.main.Access_SelectForm" />
-
+		<form-bean name="RoomReservationForm" type="sample.pr.main.RoomReservationForm" />
+		<form-bean name="KinmuRecordForm" type="sample.pr.main.KinmuRecordForm" />
+		<form-bean name="KintaiNotificationForm" type="sample.pr.main.KintaiNotificationForm" />
+		<form-bean name="Access_SelectForm" type="sample.pr.main.Access_ControlForm" />
 	</form-beans>
 
 
@@ -65,6 +67,7 @@
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 			<forward name="Enter" path="/jsp/Enter_leave.jsp" />
 			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp"/>
+			<forward name="kintaiNotification" path="/jsp/KintaiNotification.jsp"/>
 			<forward name="Access_Select" path="/jsp/Access_Select.jsp"/>
 		</action>
 
@@ -154,9 +157,10 @@
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
-		<action name="KintaiMainForm" path="/KinmuRecordAction"
+		<action name="KinmuRecordForm" path="/KinmuRecordAction"
 			type="sample.pr.main.KinmuRecordAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp" />
 		</action>
 		<action name="Access_ControlForm" path="/Access_ControlAction"
 			type="sample.pr.main.Access_Control" validate="false" scope="request">
@@ -179,6 +183,21 @@
 				<action name="ReservationForm" path="/Access_SelectAction"
 			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Access_Control.jsp" />
+		</action>
+		<action name="RoomReservationForm" path="/RoomReservationAction"
+			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
+			<forward name="room" path="/jsp/RoomReservation.jsp" />
+			<forward name="main" path="/jsp/Main.jsp" />
+		</action>
+		<action name="KintaiNotificationForm" path="/KintaiNotificationAction"
+				type="sample.pr.main.KintaiNotificationAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="kintaiNotification" path="/jsp/KintaiNotification.jsp"/>
+		</action>
+		<action name="Access_SelectForm" path="/Access_ControlAction"
+				type="sample.pr.main.Access_ControlAction" validate="false" scope="request">
+			<forward name="Access_Select" path="/jsp/Access_Control.jsp" />
+			<forward name="login" path="/jsp/login.jsp" />
 		</action>
 	</action-mappings>
 
