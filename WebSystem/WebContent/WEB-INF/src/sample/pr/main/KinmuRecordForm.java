@@ -73,9 +73,7 @@ public class KinmuRecordForm extends ActionForm{
 		return expectation;
 	}
 	public void setExpectation(String expectation) {
-		if(expectation.equals("0800")){
-			this.expectation = "8:00";
-		}
+		this.expectation = expectation;
 	}
 
 	//休憩A
