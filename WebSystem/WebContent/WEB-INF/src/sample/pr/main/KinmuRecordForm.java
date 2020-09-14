@@ -15,6 +15,9 @@ public class KinmuRecordForm extends ActionForm{
 	private String vacationDiv;
 	private String remark;
 
+	/** シリアルバージョンID */
+	private static final long serialVersionUID = 1L;
+
 	//DBのテーブルにないもの
 	private String button;
 	private String employeeName;
