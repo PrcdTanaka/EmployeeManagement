@@ -145,9 +145,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>8:00</td>
@@ -157,9 +157,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>8:30</td>
@@ -169,9 +169,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>9:00</td>
@@ -181,9 +181,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>9:30</td>
@@ -193,9 +193,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>10:00</td>
@@ -205,9 +205,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>10:30</td>
@@ -217,9 +217,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>11:00</td>
@@ -229,9 +229,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>11:30</td>
@@ -241,9 +241,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>12:00</td>
@@ -253,9 +253,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>12:30</td>
@@ -265,9 +265,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>13:00</td>
@@ -277,9 +277,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>13:30</td>
@@ -289,9 +289,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>14:00</td>
@@ -301,9 +301,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>14:30</td>
@@ -313,9 +313,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>15:00</td>
@@ -325,9 +325,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>15:30</td>
@@ -337,9 +337,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>16:00</td>
@@ -349,9 +349,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>16:30</td>
@@ -361,9 +361,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>17:00</td>
@@ -373,9 +373,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>17:30</td>
@@ -385,9 +385,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>18:00</td>
@@ -397,9 +397,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>18:30</td>
@@ -409,9 +409,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>19:00</td>
@@ -421,9 +421,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>19:30</td>
@@ -433,9 +433,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>20:00</td>
@@ -445,9 +445,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>20:30</td>
@@ -457,9 +457,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>21:00</td>
@@ -469,9 +469,9 @@
 					<%
 					for(int i= 0;i<7;i++){
 						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/RoomReservation.jsp" onclick="return confirm('予約しますか？');">○</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
 						<%}else{ %>
-							<td><a href="jsp/RoomReservation.jsp">-</a></td>
+							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 						<%}
 					}%>
 					<td>21:30</td>
