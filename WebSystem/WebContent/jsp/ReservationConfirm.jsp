@@ -3,7 +3,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="sample.pr.main.ReservationForm"%>
 <%@ page import="sample.pr.main.RoomReservationForm"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 
@@ -39,7 +38,10 @@
 					所在地　：
 					<html:text property="place" value="" />
 			</div>
-			<br>
+			<div align= "center">
+					席数　　：
+					<html:text property="seat" value="" />
+			</div>
 			<div align="center">
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
