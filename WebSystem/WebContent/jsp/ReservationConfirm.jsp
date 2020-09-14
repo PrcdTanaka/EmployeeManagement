@@ -11,10 +11,10 @@
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 <div align= "center">
-	<h1>会議室新規登録画面</h1>
+	<h1>新規予約画面</h1>
 </div>
 <body>
-	<html:form action="/RoomReservationAction">
+	<html:form action="/ReservationConfimAction">
 	<%
 		String message;
 		try{
@@ -38,18 +38,6 @@
 			<div align= "center">
 					所在地　：
 					<html:text property="place" value="" />
-			</div>
-			<div align= "center">
-					席数　　：
-					<html:text property="seat" value="" />
-			</div>
-			<div align= "center">
-					モニター：
-					<html:text property="monitor" value="" />
-			</div>
-			<div align= "center">
-					カメラ　：
-					<html:text property="camera" value="" />
 			</div>
 			<br>
 			<div align="center">

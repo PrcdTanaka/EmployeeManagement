@@ -16,6 +16,8 @@ public final class RoomReservationForm extends ActionForm {
 	private String camera;
 	/** ボタン */
 	private String button;
+	/** メッセージ */
+	private String message;
 
 	/**
 	 * 初期化処理。
@@ -30,6 +32,7 @@ public final class RoomReservationForm extends ActionForm {
 		monitor = "";
 		camera = "";
 		button = "";
+		message = "";
 	}
 
 	/**
@@ -173,6 +176,29 @@ public final class RoomReservationForm extends ActionForm {
 	 */
 	public void setButton(String button) {
 		this.button = button;
+	}
+	/**
+	 * カメラ取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからカメラを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * カメラ設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにカメラを設定する。
+	 * </p>
+	 *
+	 * @param camera カメラ
+	 */
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

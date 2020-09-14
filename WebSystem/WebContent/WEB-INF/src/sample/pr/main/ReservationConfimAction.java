@@ -14,7 +14,7 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
 
-public final class RoomReservationAction extends Action{
+public final class ReservationConfimAction extends Action{
 
 	// DB接続用オブジェクト
 	private DbAction dba = new DbAction();
@@ -22,7 +22,7 @@ public final class RoomReservationAction extends Action{
 	// 遷移先
 	private String forward;
 
-	public RoomReservationAction() throws IOException {
+	public ReservationConfimAction() throws IOException {
 	}
 	String button;
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
