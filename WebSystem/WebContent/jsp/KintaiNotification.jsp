@@ -14,24 +14,20 @@
 	position: relative;
 }
 
-.brock {
+.block {
 	margin: 16px auto;
 	text-align: center;
 	display: block;
-	border: 1px solid #000;
 }
-.brock .centers {
+
+.block .centers {
 	text-align: left;
 	display: inline-block;
+	padding-bottom: 10px;
 }
 
 textarea {
 	resize: none;
-}
-
-p.jyutexts {resize none;
-	text-align: center;
-	margin: 10px;
 }
 </style>
 
@@ -50,101 +46,150 @@ p.jyutexts {resize none;
 </table>
 
 <body>
+	<%
+ 		String message;
+		LoginForm s1 = (LoginForm) session.getAttribute("form");
+
+		String employee_no="";
+ 		try{
+ 			KintaiNotificationForm s = (KintaiNotificationForm) session.getAttribute("form");
+ 			message =  s.getMessage();
+ 			if(message == null)
+ 				message = "";
+
+ 		}catch(NullPointerException e){
+ 			message = "";
+ 		}
+
+ 		try{
+ 			employee_no = s1.getEmployee_no();
+
+		} catch (Exception e) {
+
+		}
+
+ 		%>
+
 
 	<html:form action="/KintaiNotificationAction">
 		<div class="block">
 
 			<div class="space"></div>
 
+			<div class="centers"><%= message %></div>
+
+
 			<!-- 社員番号入力欄 -->
 			<div class="centers">
 				<p class="list">
-					社員番号：
+					社員番号 ：
 					<html:text property="employee_no" size="5" maxlength="4" />
-					氏名：
-					<html:text property="syain_name" size="12" maxlength="20" />
-				</p>
-				<p>
-					所属部門： <select name="depart">
-						<option value="1">第1技術部</option>
-						<option value="2">第2技術部</option>
-						<option value="3">第3技術部</option>
-						<option value="4">第4技術部</option>
-						<option value="5">第5技術部</option>
-						<option value="6">ソリューション技術部</option>
-					</select>
-				</p>
-				<p>
-					申請日： <input type="date" name="petition_ymd" size="12" maxlength="8">
-				</p>
-				<p>
-					対象日： <input type="date" name="attendance_startday" size="12">
-					～ <input type="date" name="attendance_endday" size="12">
-				</p>
-				<p>
-					対象時間： <input type="text" name="attendance_starttime" size="8">
-					～ <input type="text" name="attendance_endtime" size="8">
+					氏名 ：
+					<html:text property="syain_name" size="12" maxlength="12" />
 				</p>
 
 				<p>
-					届出事由： <select name="notification_reason">
-						<option value="1">1：遅刻</option>
-						<option value="2">3：私用外出</option>
-						<option value="3">2：早退</option>
-						<option value="4">4：休暇</option>
-						<option value="5">5：休職</option>
-						<option value="6">6：育児休業</option>
-						<option value="7">7：無断欠勤</option>
-					</select>
-				</p>
-				<p>
-					休暇区分： <select name="vacation_division">
-						<option value="1">1.年次有給休暇/リフ休</option>
-						<option value="3">3.振替休暇</option>
-						<option value="4">4.特別休暇</option>
-						<option value="5">5.欠勤</option>
-					</select>
+					所属部門 ：
+					<html:select property="depart" name="KintaiNotificationForm">
+						<html:option value="">選択してください</html:option>
+						<html:option value="1">第1技術部</html:option>
+						<html:option value="2">第2技術部</html:option>
+						<html:option value="3">第3技術部</html:option>
+						<html:option value="4">第4技術部</html:option>
+						<html:option value="5">第5技術部</html:option>
+						<html:option value="6">ソリューション技術部</html:option>
+					</html:select>
 				</p>
 
 				<p>
-					振替対象日： <input type="date" name="Transfer_Day" size="12" disabled>
+					申請日 ：
+					<html:text property="petition_ymd" size="10" maxlength="8" />
+
+				</p>
+				<p>
+					対象日 ：
+					<html:text property="attendance_startday" size="10" maxlength="8" />
+					～
+					<html:text property="attendance_endday" size="10" maxlength="8" />
+				</p>
+				<p>
+					対象時間 ： <input type="text" name="attendance_starttime" size="10"
+						maxlength="4"> ～ <input type="text"
+						name="attendance_endtime" size="10" maxlength="4">
 				</p>
 
 				<p>
-					特休理由： <select name="sp_holiday_reason" disabled>
-						<option value="sph1">1:結婚</option>
-						<option value="sph2">2:産前産後休業</option>
-						<option value="sph3">3:忌引き</option>
-						<option value="sph4">4:生理休暇</option>
-						<option value="sph5">5:天災地変</option>
-						<option value="sph6">6:伝染病予防</option>
-						<option value="sph7">7:そのた</option>
-					</select>
+					届出事由 ：
+					<html:select property="notification_reason"
+						name="KintaiNotificationForm">
+						<html:option value="">選択してください</html:option>
+						<html:option value="1">1：遅刻</html:option>
+						<html:option value="2">2：早退</html:option>
+						<html:option value="3">3：私用外出</html:option>
+						<html:option value="4">4：休暇</html:option>
+						<html:option value="5">5：休職</html:option>
+						<html:option value="6">6：育児休業</html:option>
+						<html:option value="7">7：無断欠勤</html:option>
+					</html:select>
+				</p>
+				<p>
+					休暇区分 ：
+					<html:select property="vacation_division"
+						name="KintaiNotificationForm">
+						<html:option value="">選択してください</html:option>
+						<html:option value="1">1.年次有給休暇/リフ休</html:option>
+						<html:option value="3">3.振替休暇</html:option>
+						<html:option value="4">4.特別休暇</html:option>
+						<html:option value="5">5.欠勤</html:option>
+					</html:select>
+
 				</p>
 
-			<p disabled>
-				欠勤理由: <input type="radio" value="1" name="absenteeism_reason">
-				病気 <input type="radio" value="2" name="absenteeism_reason">
-				自己都合 <input type="radio" value="3" name="absenteeism_reason">
-				事故
-			</p>
+				<p>
+					振替対象日：
+					<html:text property="transfer_day" size="10" maxlength="8" />
+				</p>
 
-			</div><!-- brock.centers End -->>
+				<p>
+					特休理由 ：
+					<html:select property="sp_holiday_reason"
+						name="KintaiNotificationForm">
+						<html:option value="">選択してください</html:option>
+						<html:option value="1">1:結婚</html:option>
+						<html:option value="2">2:産前産後休業</html:option>
+						<html:option value="3">3:忌引き</html:option>
+						<html:option value="4">4:生理休暇</html:option>
+						<html:option value="5">5:天災地変</html:option>
+						<html:option value="6">6:伝染病予防</html:option>
+						<html:option value="7">7:そのた</html:option>
+					</html:select>
+				</p>
+
+				<p>
+					欠勤理由 ：
+					<html:radio property="absenteeism_reason" value="1" />
+					病気
+					<html:radio property="absenteeism_reason" value="2" />
+					自己都合
+					<html:radio property="absenteeism_reason" value="3" />
+					事故
+				</p>
+
+			</div>
+			<!-- brock.centers End -->
 			<br>
 			<p>事由</p>
 			<p>
-				<textarea name="reason" rows="5" cols="40"></textarea>
-			</p>
+				<html:textarea property="reason" rows="6" cols="40" />
+		</div>
 
-			<div class="space"></div>
-			<br>
-			<!-- エクセル出力ボタン -->
-			<div class="back"><html:submit property="button" styleClass="btn"
-					value="エクセル作成" styleId="excelOutput" />
+		<!-- エクセル出力ボタン -->
+		<div class="back">
+			<html:submit property="button" styleClass="btn" value="エクセル作成"
+				styleId="excelOutput" />
 			<!-- 戻るボタン -->
-			<html:submit property="button" styleClass="btn"
-					value="戻る" styleId="login" />
-			</div>
+			<html:submit property="button" styleClass="btn" value="戻る"
+				styleId="login" />
 		</div>
 	</html:form>
 </body>

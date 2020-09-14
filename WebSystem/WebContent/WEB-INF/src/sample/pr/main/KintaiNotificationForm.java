@@ -31,6 +31,8 @@ public final class KintaiNotificationForm extends ActionForm {
 	private String notification_reason;
 	/** 休暇区分 */
 	private String vacation_division;
+	/** 振替対象日 */
+	private String transfer_day;
 	/** 特休理由 */
 	private String sp_holiday_reason;
 	/** 欠勤理由 */
@@ -53,17 +55,20 @@ public final class KintaiNotificationForm extends ActionForm {
 	public void initialize() {
 		employee_no="";
 		syain_name="";
-		setDepart("");
-		setPetition_ymd("");
-		setAttendance_startday("");
-		setAttendance_endday("");
-		setAttendance_starttime("");
-		setAttendance_endtime("");
-		setNotification_reason("");
-		setVacation_division("");
-		setSp_holiday_reason("");
-		setAbsenteeism_reason("");
-		setReason("");
+		depart="";
+		petition_ymd="";
+		attendance_startday="";
+		attendance_endday="";
+		attendance_starttime="";
+		attendance_endtime="";
+		notification_reason="";
+		vacation_division="";
+		transfer_day="";;
+		sp_holiday_reason="";
+		absenteeism_reason="";
+		reason="";
+		message="";
+		button="";
 	}
 
 	/**
@@ -125,10 +130,31 @@ public final class KintaiNotificationForm extends ActionForm {
 	 * @param depart セットする depart
 	 */
 	public void setDepart(String depart) {
-		this.depart = depart;
+
+		switch(depart){
+		case "1":
+			this.depart="第1技術部";
+			break;
+		case "2":
+			this.depart="第2技術部";
+			break;
+		case "3":
+			this.depart="第3技術部";
+			break;
+		case "4":
+			this.depart="第4技術部";
+			break;
+		case "5":
+			this.depart="第5技術部";
+			break;
+		case "6":
+			this.depart="ソリューション技術部";
+			break;
+		}
 	}
 
 	/**
+	 * 申請日のgetterメソッド
 	 * @return petition_ymd
 	 */
 	public String getPetition_ymd() {
@@ -317,6 +343,20 @@ public final class KintaiNotificationForm extends ActionForm {
 	 */
 	public void setButton(String button) {
 		this.button = button;
+	}
+
+	/**
+	 * @return transfer_day
+	 */
+	public String getTransfer_day() {
+		return transfer_day;
+	}
+
+	/**
+	 * @param transfer_day セットする transfer_day
+	 */
+	public void setTransfer_day(String transfer_day) {
+		this.transfer_day = transfer_day;
 	}
 
 

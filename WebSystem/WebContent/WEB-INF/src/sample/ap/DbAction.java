@@ -3011,15 +3011,16 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 			sb.append("SELECT");
-			sb.append("ENTRY_EMP");
-			sb.append("DAY");
-			sb.append("ENTRY_TIME");
-			sb.append("LEAVING_TIME");
-			sb.append("LEAVING_EMP");
-			sb.append("FROM");
-			sb.append("ROOM_ACCESS_TBL");
-			sb.append("WHERE");
-			sb.append("FLOOR= ?");
+			sb.append(" ENTRY_EMP,"+crlf);
+			sb.append(" DAY,"+crlf);
+			sb.append(" ENTRY_TIME,"+crlf);
+			sb.append(" LEAVING_TIME,"+crlf);
+			sb.append(" LEAVING_EMP,"+crlf);
+			sb.append(" CHECK_LIST"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append(" ROOM_ACCESS_TBL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" FLOOR= ?"+crlf);
 
 			String query = sb.toString();
 
@@ -3030,6 +3031,7 @@ public class DbAction extends Object{
 			columnList.add("ENTRY_TIME");
 			columnList.add("LEAVING_TIME");
 			columnList.add("LEAVING_EMP");
+			columnList.add("CHECK_LIST");
 
 
 			// 設定値 - 型
@@ -3038,7 +3040,7 @@ public class DbAction extends Object{
 
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getEmployee_no());
+			bindList.add(form.getFloor());
 
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
@@ -3054,6 +3056,7 @@ public class DbAction extends Object{
 					form.setENTRY_TIME(val.get("ENTRY_TIME"));
 					form.setLEAVING_TIME(val.get("LEAVING_TIME"));
 					form.setLEAVING_EMP(val.get("LEAVING_EMP"));
+					form.setCHECK_LIST(val.get("CHECK_LIST"));
 					ret = true;
 				}
 
@@ -3440,6 +3443,7 @@ public class DbAction extends Object{
 			sb.append("KINTAIMAIL");
 			sb.append("WHERE");
 			sb.append("EMP_NO=?");
+
 
 			String query = sb.toString();
 

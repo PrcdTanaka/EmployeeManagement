@@ -101,6 +101,12 @@
 							<html:param name="link">kinmurecord</html:param>
 						</html:link>
 					</li>
+					<li>
+						<html:link action="/MainAction">勤怠届作成画面
+							<html:param name="employee_no"><%=no %></html:param>
+							<html:param name="link">kintaiNotification</html:param>
+						</html:link>
+					</li>
 				</p>
 
 				<!-- bean:define id="manager" name="LoginForm" property="manager" type="String" /-->

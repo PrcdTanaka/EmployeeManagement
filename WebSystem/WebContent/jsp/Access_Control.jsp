@@ -161,23 +161,36 @@ lastDate = calendar.get(Calendar.DATE);
 // カレンダー表を作成します。
 int row = 0;
 int column = startDay - 1; // startDay: 日曜日 = 1, 月曜日 = 2, ...
+List<String> checklist=a.getCHECK_LIST();
+String check="";
 List<String> calendarlist = new ArrayList();
 for (int date = 1; date <= lastDate; date++) {
  if(startDay>7){
 	 startDay=1;
  }
  	String aa=week[startDay-1];
+
+ 	try{
+ 		if(checklist.get(0).equals("0")){
+ 	 		check = "○";
+ 	 	}
+ 	 	else {
+ 	 		check ="-";
+ 	 	}
+ 	}catch(Exception e)
+ 	{
+		check="-";
+ 	}
  	%>
  	<tr>
     <td><%=month+"月"+date %>日</td> <td><%=aa %>曜日</td>
-    <td>visitors</td><td>Entry time</td><td>exit_name</td> <td>exit_time</td>
-      <td>electricity</td> <td>door</td>
-      <td>escape_route</td> <td>fire_door</td>
-      <td>wiring</td> <td>cigarette</td> <td>wc</td>
+    <td><%=a.getEmployee_name() %></td><td><%=a.getENTRY_TIME() %></td><td><%=a.getLEAING_EMP()%></td> <td><%=a.getLEAVING_TIME()%></td>
+      <td><%=check%></td> <td><%=check%></td>
+      <td><%=check %></td> <td><%=check %></td>
+      <td><%=check %></td> <td><%=check %></td> <td><%=check %></td>
     </tr>
     <%
  	startDay++;
-
 }
 %>
 

@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -45,19 +44,19 @@ public final class KintaiNotificationAction extends Action {
 		String b=KNForm.getButton();
 		if (employee_no.equals("")) {
 			KNForm.setMessage("社員番号が空白になっています。");
-			forward = "login";
+			forward = "excelOutput";
 		}
 		else if(petition_ymd.equals("")){
 			KNForm.setMessage("申請日が空白になっています。");
+			forward = "excelOutput";
+		}
+		else if(b.equals("戻る")){
+			forward ="login";
+		}else{
+			forward="excelOutput";
 		}
 
-		/* 8.アクションフォームをインプットパラメータ.リクエスト情報に設定する。<br>
-		 * 　8-1.リクエスト情報登録処理をコール。<br>
-		 * 　　　クラス：HttpServletRequest<br>
-		 * 　　メソッド：setAttribute()<br>
-		 * 　　　引数１："form"<br>
-		 * 　　　引数２：メイン画面アクションフォーム<br>
-		 */
+		/*
 		request.setAttribute("form", KNForm);
 
 
@@ -65,14 +64,18 @@ public final class KintaiNotificationAction extends Action {
 
 		session.setAttribute("form", KNForm);
 
-		if(forward.equals("login")){
-//			JOptionPane.showMessageDialog(null,KNForm.getMessage());
-		}
+		 */
+
+		/*if(forward.equals("login")){
+		//	JOptionPane.showMessageDialog(null,KNForm.getMessage());
+		}*/
 		/* 9.戻り値を返却する。<br>
 		 * 　9-1.遷移先情報取得処理をコール。<br>
 		 * 　　クラス　：ActionMapping<br>
 		 * 　　メソッド：findForward(遷移先)<br>
 		 */
+
+
 		return map.findForward(forward);
 	}
 }
