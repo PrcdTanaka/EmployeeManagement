@@ -67,6 +67,7 @@
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 			<forward name="Enter" path="/jsp/Enter_leave.jsp" />
 			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp"/>
+			<forward name="kintaiNotification" path="/jsp/KintaiNotification.jsp"/>
 			<forward name="Access_Select" path="/jsp/Access_Select.jsp"/>
 		</action>
 
@@ -191,8 +192,7 @@
 		<action name="KintaiNotificationForm" path="/KintaiNotificationAction"
 				type="sample.pr.main.KintaiNotificationAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Main.jsp" />
-			<forward name="login" path="/jsp/login.jsp" />
-			<forward name="excelOutput" path="/jsp/KintaiNotification.jsp" />
+			<forward name="kintaiNotification" path="/jsp/KintaiNotification.jsp"/>
 		</action>
 		<action name="Access_SelectForm" path="/Access_ControlAction"
 				type="sample.pr.main.Access_ControlAction" validate="false" scope="request">
