@@ -11,7 +11,7 @@
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 <div align= "center">
-	<h1>会議室新規登録画面</h1>
+	<h1>新規予約画面</h1>
 </div>
 <body>
 	<html:form action="/ReservationConfimAction">
