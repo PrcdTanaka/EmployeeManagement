@@ -42,16 +42,9 @@ public final class RoomReservationAction extends Action{
 				forward="main";
 				session.removeAttribute("rForm");
 			}else if(button.equals("登録")){
-				//空白判定
-				if(roForm.getRoom_name() == null){
-					roForm.setMessage("会議室名を入力してください。");
-					if(roForm.getSeat()==null){
-						roForm.setMessage("席数を入力してください");
-					}else{
-						forward ="room";
-						dba.InsRoomReservation(roForm);
-					}
-				}
+				forward ="room";
+				dba.InsRoomReservation(roForm);
+				roForm.setMessage("登録しました");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
