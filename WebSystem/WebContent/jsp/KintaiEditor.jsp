@@ -5,7 +5,12 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.KintaiMailForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
+<%@ page import="sample.pr.main.MonthlyReportForm"%>
 <%@ page import="sample.ap.DbAction"%>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.lang.String" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -58,6 +63,24 @@
 		%>
 		<%
 			boolean flg = false;
+
+			Calendar cale = Calendar.getInstance();
+			MonthlyReportForm form=new MonthlyReportForm();
+			int monthlastDay = cale.getActualMaximum(Calendar.DATE);
+			LoginForm lForm=(LoginForm)session.getAttribute("form");
+			form.setEmployee_no(lForm.getEmployee_no());
+
+			dba.getMonthly_report(form);
+			List<String> Span = form.getSpan();
+			List<String>Span2=form.getSpan2();
+			List<String>Mmdd=form.getMmdd();
+			int listnumber=0;
+		%>
+		<%
+			StringBuffer url = request.getRequestURL();
+			url.append("?").append(request.getQueryString());
+			String MyUrl = url.substring(53);
+			String[] fMyUrl = MyUrl.split("year", 0);
 		%>
 		<div>
 		<center>
@@ -81,7 +104,6 @@
 
 		<div align="center" class="depert">
 			CC:
-
 			<%
 				if(flg == true){
 			%>
@@ -134,6 +156,9 @@
 		<div align="center" class="depert2"
 			style="margin-top: 50px; width: 40%; margin-left: 10%;">
 			所属部署:
+			<%
+				if(flg == true){
+			%>
 			<html:select property="depart" styleId="depart" name="KintaiMailForm"
 				style="font-size:15px; width:60%;">
 				<html:option value="" style="text-align:center;">選択</html:option>
@@ -144,6 +169,23 @@
 				<html:option value="5">第五技術部</html:option>
 				<html:option value="6">ソリューション技術部</html:option>
 			</html:select>
+			<%
+				}
+				else{
+			%>
+			<html:select disabled="true" property="depart" styleId="depart" name="KintaiMailForm"
+				style="font-size:15px; width:60%;">
+				<html:option value="" style="text-align:center;">選択</html:option>
+				<html:option value="1">第一技術部</html:option>
+				<html:option value="2">第二技術部</html:option>
+				<html:option value="3">第三技術部</html:option>
+				<html:option value="4">第四技術部</html:option>
+				<html:option value="5">第五技術部</html:option>
+				<html:option value="6">ソリューション技術部</html:option>
+			</html:select>
+			<%
+				}
+			%>
 		</div>
 
 		<p align="center" style="margin-left: -60%;">
@@ -153,12 +195,27 @@
 			氏名：<%=name%>
 		</p>
 		<p align="center" class="code" style="margin-left: -42%">
-			現場コード：<html:text property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=spotcode%>" />
+			現場コード：
+			<%
+				if(flg == true){
+			%>
+			<html:text property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=spotcode%>" />
+			<%
+				}
+				else{
+			%>
+			<html:text disabled="true" property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=spotcode%>" />
+			<%
+				}
+			%>
 			<p style="color:red;margin-left: 13%">例) 1-2345
 		</p>
 		<div align="center" class="depert2"
 			style="width: 40%; margin-left: 10%">
 			届出区分:
+			<%
+				if(flg == true){
+			%>
 			<html:select property="division" styleId="division" name="KintaiMailForm"
 				style="font-size:15px; width:60%;">
 				<html:option value="" style="text-align:center;">選択</html:option>
@@ -173,24 +230,104 @@
 				<html:option value="9">A,深夜作業</html:option>
 				<html:option value="10">B,休日出勤(振)</html:option>
 			</html:select>
+			<%
+				}
+				else{
+			%>
+			<html:select disabled="true" property="division" styleId="division" name="KintaiMailForm"
+				style="font-size:15px; width:60%;">
+				<html:option value="" style="text-align:center;">選択</html:option>
+				<html:option value="1">1,遅刻</html:option>
+				<html:option value="2">2,有給休暇</html:option>
+				<html:option value="3">4,振替休暇</html:option>
+				<html:option value="4">5,特別休暇</html:option>
+				<html:option value="5">6,シフト勤務</html:option>
+				<html:option value="6">7,早退,その他</html:option>
+				<html:option value="7">8,交通遅延</html:option>
+				<html:option value="8">9,欠席</html:option>
+				<html:option value="9">A,深夜作業</html:option>
+				<html:option value="10">B,休日出勤(振)</html:option>
+			</html:select>
+			<%
+				}
+			%>
 		</div>
 		<p align="center" class="code" style="margin-left: -6%">
-			対象日付/期間(開始)：<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
-			～対象日付/期間(終了)：<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
+			対象日付/期間(開始)：
+			<%
+				if(flg == true){
+			%>
+				<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
+			<%
+				}
+				else{
+			%>
+				<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
+			<%
+				}
+			%>
+			～対象日付/期間(終了)：
+			<%
+				if(flg == true){
+			%>
+				<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
+			<%
+				}
+				else{
+			%>
+				<html:text disabled="true" property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
+			<%
+				}
+			%>
 			<p style="color:red;margin-left: 12%">例) 2020年9月1日～2020年9月3日 → 20200901～20200903
 		</p>
 		<p align="center" class="code" style="margin-left: -43%">
-			出勤予定時刻:<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
+			出勤予定時刻:
+			<%
+				if(flg == true){
+			%>
+				<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
+			<%
+				}
+				else{
+			%>
+			<html:text disabled="true" property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
+			<%
+				}
+			%>
 			<p style="color:red;margin-left: 12%">例) 12:00
 
 		</p>
 		<p style="margin-left: 17.5%;">備考:</p>
 		<div style="margin-left: 21%;">
+			<%
+				if(flg == true){
+			%>
 			<html:textarea property="remark" rows="10" cols="100" value="<%=remark%>"></html:textarea>
+			<%
+				}
+				else{
+			%>
+			<html:textarea disabled="true" property="remark" rows="10" cols="100" value="<%=remark%>"></html:textarea>
+			<%
+				}
+			%>
 		</div>
 
 		<p align="center" class="code" style="margin-left: -39%">
-			許可:<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
+			許可:
+			<%
+				if(flg == true){
+			%>
+			<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
+			<%
+				}
+				else{
+			%>
+			<html:text disabled="true" property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
+			<%
+				}
+			%>
 			<p style="color:red;margin-left: 17%">※ 届出区分がA,Bの場合、姓のみ記載
 		</p>
 <%--
@@ -204,7 +341,7 @@
 			<li><a class="btn1" href="javascript:history.back()" >戻る</a></li>
 		</ul>
 		</div>
-
+		<%=fMyUrl[0] %>
 
 	</html:form>
 </body>
