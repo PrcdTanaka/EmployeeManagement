@@ -16,6 +16,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -57,7 +58,14 @@
 		List<String>span2=form.getSpan2();
 		List<String>Mmdd=form.getMmdd();
 		int listnumber=0;
+
+		String str_Y = "";
+		String str_M = "";
+		String str_D = "";
 		String zero = "0";
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		int now_days = Integer.parseInt(sdf.format(cale.getTime()));
 	%>
 
 		<div>
@@ -67,18 +75,6 @@
 		</div>
 		<br/>
 		<br/>
-
-		<%--
-			Connection con = null;
-			Statement stmt = null;
-			ResultSet rs = null;
-			try
-			{
-				con = DriverManager.getConnection("jdbc:oracle:thin:@" + gHost + ":1521:" + gSid,gUser,gPass);
-				stmt = con.createStatement();
-				rs = stmt.executeQuery("select * from kintaiMail");
-			}
-		--%>
 		<%
 		String strYear=request.getParameter("year");
 		String strMonth=request.getParameter("month");
@@ -120,65 +116,10 @@
 			<%
 				int Years_Data = cale.get(Calendar.YEAR);
 				int Month_Data = cale.get(Calendar.MONTH)+1;
-				for(int i = Years_Data-1; i <= Years_Data+1; i++){
 			%>
-			<%--
-			<option value="<%=i %>"
-			<%
-				if(i == Years_Data){
-			%>
-			selected
-			<%
-				}
-			%>
-			><%=i %>年
-			</option>
-			--%>
-			<%
-				}
-			%>
-			<%-- </select> --%>
-			<%-- カレンダーのプルダウンメニュー作成(日のほう) --%>
-			<%-- <select id="Months" name="Months"> --%>
-			<%
-				for(int i = 1; i<= 12; i++){
-			%>
-			<%--
-			<option value="<%=i %>"
-			<%
-				if(i == Month_Data){
-			%>
-			selected
-			<%
-				}
-			%>
-			><%=i %>月
-			</option>
-			 --%>
-			<%
-				}
-			%>
-			<%-- </select> --%>
 		</span>
-
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=Years_Data %>&month=<%=Month_Data %>">移動</a>
-		<input type="submit" id="btn" name="submit" value="移動"/>
 		</div>
 
-		<%--
-			勤怠のDBから今月分を配列で格納したい
-			int kintai = 0;
-			String[] kintai_lst = new String[30];
-
-			for(int Target_day = 0; Target_day <= 31; Target_day++)
-			{
-				if(span != null)
-				{
-					kintai_lst[kintai] = span.get(Target_day);
-					kintai++;
-				}
-			}
-		--%>
 		<br/>
 		<table>
 			<tr>
@@ -195,17 +136,25 @@
 			<%
 				int NowDay = cale.get(Calendar.DATE);
 				String link1 = "http://localhost:8080/WebSystem/jsp/KintaiMail.jsp";
-				String link2 = "http://localhost:8080/WebSystem/jsp/KintaiList.jsp";
+				String link2 = "http://localhost:8080/WebSystem/jsp/KintaiEditor.jsp";
 				int flg= 0;
 				int kari_data=1; //対象日
-				boolean val_flg = true;
 
 				int d=0; //日付(最大31までになる)
 				while(cale.get(Calendar.MONTH)==intMonth-1){
 			%>
 			<tr>
-				<!--  -->
+				<%-- spanのサイズ分for分を回し、配列に要素を格納 --%>
+				<%
+					int kintai = 0;
+					String[] kintai_lst = new String[30];
 
+					for(int Target_day = 0; Target_day < span.size(); Target_day++)
+					{
+						kintai_lst[kintai] = span.get(Target_day);
+						kintai++;
+					}
+				%>
 				<%
 					for(int j=0; j<7; j++){
 				%>
@@ -214,12 +163,11 @@
 					判定条件は、対象期間 > 今日の日付
 				--%>
 				<%
-					String str_Y = "";
-					String str_M = "";
-					String str_D = "";
+					boolean val_flg = true;
 					str_Y = String.valueOf(intYear);
 					str_M = String.valueOf(intMonth);
 					str_D = String.valueOf(d+1);
+					String str_Lmt = String.valueOf(d+8);
 					if(str_M.length() == 1)
 					{
 						str_M = zero + str_M;
@@ -228,26 +176,38 @@
 					{
 						str_D = zero + str_D;
 					}
-
+					if(str_Lmt.length() == 1)
+					{
+						str_Lmt = zero + str_Lmt;
+					}
 					String str_A = str_Y + str_M + str_D;
+					String str_B = str_Y + str_M + str_Lmt;
 
 					// ガード処理
 					// 現ユーザの勤怠連絡がなければDBからの取得処理を行わない。
-					if(span.isEmpty())
+					// 配列要素を毎日for文で回し、対象期間の日付があればフラグを立てる
+					if(span.isEmpty() || k!=0)
 					{
 						val_flg = false;
 					}
-
 					if(val_flg == true)
 					{
-						if(span.get(listnumber).equals(str_A))
+						for(int t = 0; t < span.size(); t++)
 						{
-							flg = 1;
-							listnumber++;
+							int str_b_lst = Integer.parseInt(str_B);
+							// 対象期間が本日より7日より前なら黄色表示 (flg = 1)
+							// 対象期間が本日より8日より後なら赤色表示 (flg = 2)
+							if(kintai_lst[t].equals(str_A))
+							{
+								flg = 1;
+								if(now_days > str_b_lst)
+								{
+									flg = 2;
+								}
+							}
 						}
 					}
 				%>
-
 				<%
 					if(j==0){
 				%>
@@ -257,14 +217,19 @@
 					%>
 					<td class="saturday">
 					<%}else{%>
-				<%--	<td class="weekday">  --%>
-						<%-- 以下のif文は実験
-							dの日付と、DBから取得した日が一致するなら色変えたい
-						 --%>
+						<%--
+							flg == 1なら枠は黄色表示
+							flg == 2なら枠はピンク表示
+						--%>
 						<%
 							if(flg == 1){
 						%>
 							<td class="weekday" style="background-color:#FFFF00;">
+						<%
+							}
+							else if(flg == 2) {
+						%>
+							<td class="weekday" style="background-color:#FFAABE;">
 						<%
 							}
 							else{
@@ -288,15 +253,31 @@
 					<input type="submit" id="" name="" style="background-color:transparent; width:30px;" value="<%=d++ %>"/>
 					</form>
 				 --%>
-				 	<a href="<%=link1 %>?year=<%=Years_Data %>&month=<%=Month_Data %>&day=<%=d %>" ><%=d %></a>
+				 	<%--
+				 		flg == 1またはflg == 2なら、勤怠画面のリンク表示
+				 		flg == 0なら勤怠連絡画面のリンク表示
+				 	--%>
+					<%
+						if(flg == 1 || flg == 2){
+					%>
+					<a href="<%=link2 %>?year=<%=Years_Data %>&month=<%=Month_Data %>&day=<%=d %>" ><%=d %></a>
+					<%
+						}
+						else{
+					%>
+					<a href="<%=link1 %>?year=<%=Years_Data %>&month=<%=Month_Data %>&day=<%=d %>" ><%=d %></a>
+					<%
+						}
+					%>
+				 	<%
+				 		// flgの初期化
+						flg = 0;
+					%>
 					<%
 					cale.add(Calendar.DATE, 1);
 					%>
 				<%-- <input type="submit" id="" name="" value="<%=d %>"/> --%>
 					<%}%>
-					<%
-						flg = 0;
-					%>
 					</td>
 				<%}%>
 				</tr>
