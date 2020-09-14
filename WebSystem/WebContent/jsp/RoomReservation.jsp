@@ -51,13 +51,11 @@
 					カメラ　：
 					<html:text property="camera" value="" />
 			</div>
-			<div class="space"></div>
 			<br>
 			<div align="center">
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="room"/>
-			</div>
 			<div align="center">
 			<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
