@@ -3104,7 +3104,7 @@ public class DbAction extends Object{
 
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getEmployee_no());
+			bindList.add(form.getFloor());
 
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
