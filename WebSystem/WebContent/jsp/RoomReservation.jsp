@@ -4,6 +4,7 @@
 
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="sample.pr.main.ReservationForm"%>
+<%@ page import="sample.pr.main.RoomReservationForm"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 
 <html:html>
@@ -14,6 +15,18 @@
 </div>
 <body>
 	<html:form action="/RoomReservationAction">
+	<%
+		String message;
+		try{
+			RoomReservationForm roForm = (RoomReservationForm) session.getAttribute("pForm");
+			message =  roForm.getMessage();
+			if(message == null)
+				message = "";
+
+		}catch(NullPointerException e){
+			message = "";
+		}
+	%>
 		<div class="block">
 			<div class="space"></div>
 			<br>
