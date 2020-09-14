@@ -8,15 +8,24 @@
 
 
 <html:html>
-		<body>
-
+	<head>
 		<%
 		LoginForm s = (LoginForm) session.getAttribute("form");
 
 		String no = s.getEmployee_no();
 		%>
 
-			<form id="frm1" name="frm1a" action="/jsp/Main.jsp">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title><bean:message key="main.title"/></title>
+		<html:base/>
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/main.css"/>
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<tr>
+
+		</head>
+		<body>
+			<form id="frm1" name="frm1a" action="/jsp/Access_Select.jsp">
 
 			</form>
 			<br>
@@ -25,6 +34,7 @@
 			<div class="accbox">
 			<!--ラベル1-->
 			<label for="label1">入退室履歴　月選択</label>
+			<input type="checkbox" id="label1" class="cssacc" />
 			<div class="accshow">
 				<!--ここに隠す中身-->
 				<p class="link">
