@@ -56,12 +56,12 @@
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="room"/>
+			</div>
 			<div align="center">
 			<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
 			</div>
 		</div>
-
 	</html:form>
 </body>
 </html:html>

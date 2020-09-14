@@ -30,30 +30,42 @@ public class KinmuRecordAction extends Action{
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		KintaiMainForm kForm = (KintaiMainForm) frm;
+
+		//必要かどうか不明
+//		KintaiMainForm kForm = (KintaiMainForm) frm;
+
+		// 1.ログイン画面のアクションフォーム情報をインプットパラメータ.アクションフォームから取得する。
+		// アクションフォームBeanより入力フォームのデータを取り出す処理
+		// フォーム情報をキャスト
+		KinmuRecordForm KRForm = (KinmuRecordForm) frm;
+
+		//セッションインスタンスをまず取得()
 		HttpSession session = request.getSession();
+
+		//ログインユーザーの社員番号と名前をセッションスコープから取得
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		Open_informationForm oForm = (Open_informationForm) session.getAttribute("oForm");
 		lForm.setEmployee_no(lForm.getEmployee_no());
+		//ログインユーザーの所属部署をセッションスコープから取得
+		Open_informationForm oForm = (Open_informationForm) session.getAttribute("oForm");
 		oForm.setTec(oForm.getTec());
-		forward = "KintaiMain";
-		String button=kForm.getButton();
+
+
+		String button=KRForm.getButton();
 		try{
 			if(button.equals("戻る")){
 				forward="main";
-				session.removeAttribute("kForm");
 			}
-			else if(button.equals("勤怠連絡入力")){
-				forward="kintaimail";
-				session.setAttribute("kform", kForm);
-			}
-			else if(button.equals("勤怠一覧画面へ")){
-				forward="kintailist";
-			}
+//			else if(button.equals("勤怠連絡入力")){
+//				forward="kintaimail";
+//				session.setAttribute("kform", kForm);
+//			}
+//			else if(button.equals("勤怠一覧画面へ")){
+//				forward="kintailist";
+//			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		session.removeAttribute("kForm");
+//		session.removeAttribute("kForm");
 		return map.findForward(forward);
 
 
