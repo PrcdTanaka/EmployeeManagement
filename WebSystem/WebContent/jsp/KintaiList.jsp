@@ -57,6 +57,7 @@
 		List<String>span2=form.getSpan2();
 		List<String>Mmdd=form.getMmdd();
 		int listnumber=0;
+		String zero = "0";
 	%>
 
 		<div>
@@ -165,6 +166,7 @@
 		</div>
 
 		<%--
+			勤怠のDBから今月分を配列で格納したい
 			int kintai = 0;
 			String[] kintai_lst = new String[30];
 
@@ -196,12 +198,14 @@
 				String link2 = "http://localhost:8080/WebSystem/jsp/KintaiList.jsp";
 				int flg= 0;
 				int kari_data=1; //対象日
+				boolean val_flg = true;
 
 				int d=0; //日付(最大31までになる)
 				while(cale.get(Calendar.MONTH)==intMonth-1){
 			%>
 			<tr>
 				<!--  -->
+
 				<%
 					for(int j=0; j<7; j++){
 				%>
@@ -209,20 +213,41 @@
 					DBから対象期間の取得し、dが7日以内または、8日以上か確認
 					判定条件は、対象期間 > 今日の日付
 				--%>
-
 				<%
-					String str_d = "";
-					str_d = String.valueOf(intYear) + "0" + String.valueOf(intMonth) + String.valueOf(d+1);
+					String str_Y = "";
+					String str_M = "";
+					String str_D = "";
+					str_Y = String.valueOf(intYear);
+					str_M = String.valueOf(intMonth);
+					str_D = String.valueOf(d+1);
+					if(str_M.length() == 1)
+					{
+						str_M = zero + str_M;
+					}
+					if(str_D.length() == 1)
+					{
+						str_D = zero + str_D;
+					}
+
+					String str_A = str_Y + str_M + str_D;
+
+					// ガード処理
+					// 現ユーザの勤怠連絡がなければDBからの取得処理を行わない。
 					if(span.isEmpty())
 					{
+						val_flg = false;
 					}
 
-					if(span.get(listnumber).equals(str_d))
+					if(val_flg == true)
 					{
-						flg = 1;
-						listnumber++;
+						if(span.get(listnumber).equals(str_A))
+						{
+							flg = 1;
+							listnumber++;
+						}
 					}
 				%>
+
 				<%
 					if(j==0){
 				%>
@@ -291,12 +316,9 @@
 				styleId="main"/>
 		</div>
 
+		<%--
 		<td><%=span.get(listnumber)%></td>
-		<%
-			String ssss = "";
-		 ssss = String.valueOf(intYear) +"0" +String.valueOf(intMonth) + String.valueOf(d+1);
-		%>
-		<td><%=ssss %></td>
+		 --%>
 	</html:form>
 </body>
 </html:html>

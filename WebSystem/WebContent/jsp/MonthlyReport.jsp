@@ -89,6 +89,7 @@
 
 		 <%}
 		 //Integer.parseIntに変換してみる
+
 		 else if(span.get(listnumber).substring(6,8).equals(dada)){
 
 		//if文を使用して企業コードから作業場所とlimitを表示
