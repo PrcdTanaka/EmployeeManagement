@@ -233,5 +233,14 @@ public final class EnterForm extends ActionForm {
 		this.floor = floor;
 	}
 
+	public void clearList(){
+		Entry_emp.clear();
+		Day.clear();
+		Entry_time.clear();
+		Leaving_time.clear();
+		Leaving_emp.clear();
+		Leaving_time.clear();
+		Check_list.clear();
 
+	}
 }
