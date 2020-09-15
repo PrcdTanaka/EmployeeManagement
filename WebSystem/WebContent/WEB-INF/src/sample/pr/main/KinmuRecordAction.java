@@ -32,12 +32,16 @@ public class KinmuRecordAction extends Action{
 	private String forward;
 
 	//クリックされたボタンを判定し、遷移先情報を返す
+	//①フォームから送られるURLエンコードを元に戻す
+	//  (1)UnsupporrtedEncodingExeception(文字のエンコーディングがサポートされていない)が発生したらスタックとレースの出力
 	String button;
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
 
 		try {
+			//①フォームから送られるURLエンコードを元に戻す
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
+			//(1)文字のエンコーディングサポートの例外発生時はスタックとレースを出力
 			e.printStackTrace();
 		}
 
