@@ -189,6 +189,11 @@
 			<forward name="room" path="/jsp/RoomReservation.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
+		<action name="RoomReservationForm" path="/ReservationConfirmAction"
+			type="sample.pr.main.ReservationConfirmAction" validate="false" scope="request">
+			<forward name="main" path="/jsp/Reservation.jsp" />
+			<forward name="confirm" path="/jsp/ReservationConfirm.jsp" />
+		</action>
 		<action name="KintaiNotificationForm" path="/KintaiNotificationAction"
 				type="sample.pr.main.KintaiNotificationAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Main.jsp" />

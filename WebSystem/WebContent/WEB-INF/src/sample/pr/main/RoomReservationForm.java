@@ -18,6 +18,14 @@ public final class RoomReservationForm extends ActionForm {
 	private String button;
 	/** メッセージ */
 	private String message;
+	/** 社員番号 */
+	private String emp_no;
+	/** 社員名 */
+	private String name;
+	/** 社員名 */
+	private String mmdd;
+	/** 社員名 */
+	private String use;
 
 	/**
 	 * 初期化処理。
@@ -33,6 +41,10 @@ public final class RoomReservationForm extends ActionForm {
 		camera = "";
 		button = "";
 		message = "";
+		emp_no = "";
+		name = "";
+		mmdd = "";
+		use = "";
 	}
 
 	/**
@@ -200,5 +212,98 @@ public final class RoomReservationForm extends ActionForm {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	/**
+	 * カメラ取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからカメラを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getEmp_no() {
+		return emp_no;
+	}
+
+	/**
+	 * カメラ設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにカメラを設定する。
+	 * </p>
+	 *
+	 * @param camera カメラ
+	 */
+	public void setEmp_no(String emp_no) {
+		this.emp_no = emp_no;
+	}
+	/**
+	 * カメラ取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからカメラを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * カメラ設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにカメラを設定する。
+	 * </p>
+	 *
+	 * @param camera カメラ
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * カメラ取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからカメラを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getMmdd() {
+		return mmdd;
+	}
+
+	/**
+	 * カメラ設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにカメラを設定する。
+	 * </p>
+	 *
+	 * @param camera カメラ
+	 */
+	public void setMmdd(String mmdd) {
+		this.mmdd = mmdd;
+	}
+	/**
+	 * カメラ取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからカメラを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getUse() {
+		return use;
+	}
+
+	/**
+	 * カメラ設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにカメラを設定する。
+	 * </p>
+	 *
+	 * @param camera カメラ
+	 */
+	public void setUse(String use) {
+		this.use = use;
+	}
+
 
 }

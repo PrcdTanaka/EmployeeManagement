@@ -9,7 +9,7 @@
 
 <html:html>
 <html lang="ja">
-<link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
+<link rel="stylesheet" type="text/css" href="/WebSystem/css/Reservation.css">
 <div align= "center">
 	<h1>会議室新規登録画面</h1>
 </div>
@@ -27,6 +27,11 @@
 			message = "";
 		}
 	%>
+<style>
+.btn{
+text-align:center;
+}
+</style>
 		<div class="block">
 			<div class="space"></div>
 			<br>

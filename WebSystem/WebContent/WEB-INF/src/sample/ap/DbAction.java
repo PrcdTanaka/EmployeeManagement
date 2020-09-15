@@ -11,6 +11,7 @@ import java.util.Map;
 import sample.db.DbConnector;
 import sample.pr.main.AttendanceForm;
 import sample.pr.main.EnterForm;
+import sample.pr.main.KinmuRecordForm;
 import sample.pr.main.KintaiMailForm;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
@@ -19,7 +20,6 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
-import sample.pr.main.ReservationForm;
 import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
@@ -2949,7 +2949,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
-	public boolean InsertReservation(ReservationForm form) {
+	public boolean InsReservation(RoomReservationForm form) {
 
 		boolean ret = false;
 
@@ -2968,17 +2968,13 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 			sb.append("INSERT INTO " + crlf);
-			sb.append("  RESERVATION(employee_no,name,room_name,room_place,seat_number,monitor,camera,res_time,mmdd)" + crlf);
+			sb.append("  RESERVATION(employee_no,name,room_name,mmdd,member,use)" + crlf);
 			sb.append("values" + crlf);
-			sb.append("('"+form.getEmployee_no()+"'" +crlf);
-			sb.append(",'"+form.getName()+"'"+crlf);
-			sb.append(",'"+ form.getRoom_place()+"'"+crlf);
-			sb.append(",'"+ form.getSeat_number()+"'"+crlf);
-			sb.append(",'"+ form.getMonitor()+"'"+crlf);
-			sb.append(",'"+ form.getCamera()+"'"+crlf);
-			sb.append(",'"+ form.getEmployee_no()+"'"+crlf);
-			sb.append(",'"+ form.getRes_time()+"'"+crlf);
-			sb.append(",'"+ form.getMmdd()+"');"+crlf);
+			sb.append("('"+form.getEmp_no()+"'" +crlf);
+			sb.append(",'"+ form.getName()+"'"+crlf);
+			sb.append(",'"+ form.getRoom_name()+"'"+crlf);
+			sb.append(",'"+ form.getMmdd()+"'"+crlf);
+			sb.append(",'"+ form.getUse()+"')"+crlf);
 			String query = sb.toString();
 
 			try {
@@ -3085,7 +3081,7 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 			Calendar calendar = Calendar.getInstance();
 
-			String month=""+calendar.get(calendar.MONTH);
+			String month=""+(calendar.get(calendar.MONTH)+1);
 			if(month.length()==1)
 				month=0+month;
 			String date=""+calendar.get(calendar.DATE);
@@ -3727,4 +3723,58 @@ public class DbAction extends Object{
 		return ret;
 
 	}
+
+	//勤務管理表の入力内容を登録する
+	public boolean kinmuRecordRegister(KinmuRecordForm form){
+		boolean ret = true;
+		//DB接続
+		DbConnector dba = null;
+		try{
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch(IOException e1){
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if(dba.conSts){
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO KINMU_RECORD_TBL(" + crlf);
+			sb.append("  EMPLOYEE_NO," + crlf);
+			sb.append("  KINTAI_YMD," + crlf);
+			sb.append("  HOLIDAY_DIVISION," + crlf);
+			sb.append("  START_TIME," + crlf);
+			sb.append("  END_TIME," + crlf);
+			sb.append("  BREAK_TIMEA," + crlf);
+			sb.append("  BREAK_TIMEB," + crlf);
+			sb.append("  VACATION_DIVISION," + crlf);
+			sb.append("  REMARK" + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("  '" + form.getEmployeeNum() + "'," + crlf);
+			sb.append("  '" + form.getKintaiYMD() + "'," + crlf);
+			sb.append("  '" + form.getHolidayDiv() + "'," + crlf);
+			sb.append("  '" + form.getStartTime() + "'," + crlf);
+			sb.append("  '" + form.getEndTime() + "'," + crlf);
+			sb.append("  '" + form.getBreakTimeA() + "'," + crlf);
+			sb.append("  '" + form.getBreakTimeB() + "'," + crlf);
+			sb.append("  '" + form.getVacationDiv() + "'," + crlf);
+			sb.append("  '" + form.getRemark() + "'" + crlf);
+			sb.append(")" + crlf);
+
+			String query = sb.toString();
+
+			try{
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+
+		}
+		return ret;
+	}
+
 }
