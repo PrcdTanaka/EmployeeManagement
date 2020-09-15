@@ -19,6 +19,7 @@ public final class RoomReservationForm extends ActionForm {
 	/** メッセージ */
 	private String message;
 
+
 	/**
 	 * 初期化処理。
 	 * <p>
@@ -200,5 +201,6 @@ public final class RoomReservationForm extends ActionForm {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
 
 }

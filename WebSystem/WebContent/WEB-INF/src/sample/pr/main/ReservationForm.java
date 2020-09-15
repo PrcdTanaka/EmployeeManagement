@@ -22,6 +22,11 @@ public final class ReservationForm extends ActionForm {
 	private String res_time;
 	/** 日付 */
 	private String mmdd;
+	/** メンバー */
+	private String member;
+	/** 用途 */
+	private String use;
+
 
 	/**
 	 * 初期化処理。
@@ -39,6 +44,9 @@ public final class ReservationForm extends ActionForm {
 		button = "";
 		res_time = "";
 		mmdd = "";
+		member = "";
+		use = "";
+
 	}
 	/**
 	 * 社員番号取得処理。
@@ -253,5 +261,52 @@ public final class ReservationForm extends ActionForm {
 	public void setMmdd(String mmdd) {
 		this.mmdd = mmdd;
 	}
+	/**
+	 * メンバー取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからメンバーを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getMember() {
+		return member;
+	}
+
+	/**
+	 * メンバー設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにメンバーを設定する。
+	 * </p>
+	 *
+	 * @param camera メンバー
+	 */
+	public void setMember(String member) {
+		this.member = member;
+	}
+	/**
+	 * 用途取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームから用途を取得する。
+	 * </p>
+	 *
+	 * @return 用途
+	 */
+	public String getUse() {
+		return use;
+	}
+
+	/**
+	 * 用途設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームに用途を設定する。
+	 * </p>
+	 *
+	 * @param camera 用途
+	 */
+	public void setUse(String use) {
+		this.use = use;
+	}
+
 
 }
