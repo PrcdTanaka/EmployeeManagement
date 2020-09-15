@@ -58,6 +58,7 @@
 		List<String>span2=form.getSpan2();
 		List<String>Mmdd=form.getMmdd();
 		int listnumber=0;
+		int Max_Days = 30;
 
 		String str_Y = "";
 		String str_M = "";
@@ -139,6 +140,7 @@
 				String link2 = "http://localhost:8080/WebSystem/jsp/KintaiEditor.jsp";
 				int flg= 0;
 				int kari_data=1; //対象日
+				int days_val = 0;
 
 				int d=0; //日付(最大31までになる)
 				while(cale.get(Calendar.MONTH)==intMonth-1){
@@ -146,13 +148,25 @@
 			<tr>
 				<%-- spanのサイズ分for分を回し、配列に要素を格納 --%>
 				<%
-					int kintai = 0;
-					String[] kintai_lst = new String[30];
+					int between_day = 0;
+				%>
+				<%
+					int kintai_span = 0;
+					String[] kintai_span_lst = new String[Max_Days];
 
 					for(int Target_day = 0; Target_day < span.size(); Target_day++)
 					{
-						kintai_lst[kintai] = span.get(Target_day);
-						kintai++;
+						kintai_span_lst[kintai_span] = span.get(Target_day);
+						kintai_span++;
+					}
+				%>
+				<%
+					int kintai_span2 = 0;
+					String[] kintai_span2_lst = new String[Max_Days];
+					for(int Target_span2_day = 0; Target_span2_day < span2.size(); Target_span2_day++)
+					{
+						kintai_span2_lst[kintai_span2] = span2.get(Target_span2_day);
+						kintai_span2++;
 					}
 				%>
 				<%
@@ -163,7 +177,12 @@
 					判定条件は、対象期間 > 今日の日付
 				--%>
 				<%
+					boolean Span2_flg = false;
 					boolean val_flg = true;
+					int int_Span1_Lst = 0;
+					int int_Span2_Lst = 0;
+					int int_Chk_Span2 = 0;
+
 					str_Y = String.valueOf(intYear);
 					str_M = String.valueOf(intMonth);
 					str_D = String.valueOf(d+1);
@@ -183,6 +202,8 @@
 					String str_A = str_Y + str_M + str_D;
 					String str_B = str_Y + str_M + str_Lmt;
 
+					int int_str_A = Integer.parseInt(str_A);
+
 					// ガード処理
 					// 現ユーザの勤怠連絡がなければDBからの取得処理を行わない。
 					// 配列要素を毎日for文で回し、対象期間の日付があればフラグを立てる
@@ -195,16 +216,61 @@
 						for(int t = 0; t < span.size(); t++)
 						{
 							int str_b_lst = Integer.parseInt(str_B);
+
 							// 対象期間が本日より7日より前なら黄色表示 (flg = 1)
 							// 対象期間が本日より8日より後なら赤色表示 (flg = 2)
-							if(kintai_lst[t].equals(str_A))
+							if(kintai_span_lst[t].equals(str_A) || between_day >= 1)
 							{
+								int_Span1_Lst = Integer.parseInt(kintai_span_lst[t]);
+								for(int span2_calm = 0; span2_calm < span2.size(); span2_calm++)
+								{
+									if(Span2_flg == true)
+									{
+										break;
+									}
+									int_Span2_Lst = Integer.parseInt(kintai_span2_lst[span2_calm]);
+
+									if(int_Span2_Lst == int_Span1_Lst)
+									{
+										Span2_flg = false;
+									}
+									else if(int_Span2_Lst > int_Span1_Lst)
+									{
+										between_day = (int_Span2_Lst - int_Span1_Lst);
+
+										// 勤怠連絡は土日を挟めないので、最大5日をガード
+										if(between_day >= 5)
+										{
+											Span2_flg = false;
+											between_day = 0;
+										}
+										else
+										{
+											Span2_flg = true;
+										}
+									}
+								}
 								flg = 1;
 								if(now_days > str_b_lst)
 								{
 									flg = 2;
 								}
 							}
+
+							if(kintai_span2_lst[t].equals(str_A))
+							{
+								flg = 1;
+								if(now_days > str_b_lst)
+								{
+									flg = 2;
+								}
+							//	int_Chk_Span2 = Integer.parseInt(kintai_span2_lst[t]);
+								between_day = 0;
+							}
+						}
+						if(between_day > 0)
+						{
+							between_day--;
 						}
 					}
 				%>
@@ -271,7 +337,7 @@
 					%>
 				 	<%
 				 		// flgの初期化
-						flg = 0;
+						 flg = 0;
 					%>
 					<%
 					cale.add(Calendar.DATE, 1);
