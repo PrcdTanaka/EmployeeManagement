@@ -3085,7 +3085,7 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 			Calendar calendar = Calendar.getInstance();
 
-			String month=""+calendar.get(calendar.MONTH);
+			String month=""+(calendar.get(calendar.MONTH)+1);
 			if(month.length()==1)
 				month=0+month;
 			String date=""+calendar.get(calendar.DATE);
