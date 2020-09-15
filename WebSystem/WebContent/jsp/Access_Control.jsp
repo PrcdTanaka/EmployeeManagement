@@ -202,21 +202,22 @@ for (int date = 1; date <= lastDate; date++) {
  	//月日を4桁に変換・格納
  	DateAndTime = SmallMonth+Smallday;
 
- 	//日付分回るforの中で作成
- 	//㏈月日とカレンダーの月日が同じもの抽出
+
 
  	check="-";
  	%>
  	<tr>
     <td><%=month+"月"+date %>日</td> <td><%=aa %>曜日</td>
     <%
+
+  //㏈月日とカレンダーの月日が同じもの抽出
    if(Judgment.get(Column).equals(DateAndTime)){
  	%>
  		<td><%=ENRY_EMP.get(Column)%></td><td><%=ENRY_TIME.get(Column)%></td><td><%=LEAVING_EMP.get(Column)%></td>
  		<td><%=LEAVING_TIME.get(Column)%></td>
  	<%
 
- 		if(checklist.get(Column).equals("0")){
+ 		if(checklist.get(Column).equals("1")){
  	 		check = "○";
  	 	}
  	if(Column<Judgment.size()-1)

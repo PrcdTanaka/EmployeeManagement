@@ -6,6 +6,7 @@
 <%@ page import="sample.pr.main.KintaiMailForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.pr.main.MonthlyReportForm"%>
+<%@ page import="sample.pr.main.MonthlyReportAction"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.ArrayList"%>
@@ -77,10 +78,46 @@
 			int listnumber=0;
 		%>
 		<%
+			// 現在のURLを取得して、年月日を切り抜く
+			String Year = "";
+			String Month = "";
+			String Day = "";
 			StringBuffer url = request.getRequestURL();
 			url.append("?").append(request.getQueryString());
 			String MyUrl = url.substring(53);
-			String[] fMyUrl = MyUrl.split("year", 0);
+			String[] fMyUrl = MyUrl.split("year=", 0);
+			String[] fMyUrl2 = fMyUrl[1].split("&month=", 0);
+			Year = fMyUrl2[0];
+			String[] fMyUrl3 = fMyUrl2[1].split("&day=", 0);
+			Month = fMyUrl3[0];
+			Day = fMyUrl3[1];
+
+			int Max_Days = 30;
+			String Zero = "0";
+			boolean val_flg = false;
+			int int_span1_lst = 0;
+		%>
+		<%
+			if(Month.length() == 1)
+			{
+				Month = Zero + Month;
+			}
+			if(Day.length() == 1)
+			{
+				Day = Zero + Day;
+			}
+			String str_Date = Year + Month + Day;
+		%>
+		<%
+			// DBのspan1のデータを配列の要素に格納
+			int kintai_span = 0;
+			String[] kintai_span_lst = new String[Max_Days];
+
+			for(int Target_day = 0; Target_day < Span.size(); Target_day++)
+			{
+				kintai_span_lst[kintai_span] = Span.get(Target_day);
+				kintai_span++;
+			}
 		%>
 		<div>
 		<center>
@@ -97,7 +134,24 @@
 			%>
 		</center>
 		</div>
-
+		<%
+			// 配列の要素に対象期間のspanがあるか確認
+			// 対象期間があれば、DBの情報表示
+			for(int span1_calm = 0; span1_calm < Span.size(); span1_calm++)
+			{
+				// 2回目以降の実施を防ぐガード
+				if(val_flg == true)
+				{
+					break;
+				}
+		%>
+			<%
+				//int int_span1_lst = Integer.parseInt(kintai_span_lst[span1_calm]);
+				if(kintai_span_lst[span1_calm].equals(str_Date))
+				{
+					val_flg = true;
+					int_span1_lst = Integer.parseInt(kintai_span_lst[span1_calm]);
+			%>
 		<p style="margin-left: -44%;">
 		<p align="center" style="margin-left: -45%">
 			宛先:<%=Email%></p>
@@ -254,7 +308,14 @@
 		</div>
 		<p align="center" class="code" style="margin-left: -6%">
 			対象日付/期間(開始)：
-			<%
+
+
+						<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=kintai_span_lst[span1_calm]%>" />
+
+
+
+
+			<%-- <%
 				if(flg == true){
 			%>
 				<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
@@ -265,7 +326,7 @@
 				<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
 			<%
 				}
-			%>
+			%> --%>
 			～対象日付/期間(終了)：
 			<%
 				if(flg == true){
@@ -330,6 +391,12 @@
 			%>
 			<p style="color:red;margin-left: 17%">※ 届出区分がA,Bの場合、姓のみ記載
 		</p>
+			<%
+				}
+			%>
+		<%
+			}
+		%>
 <%--
 		<div>
 			<html:submit property="button" styleClass="btn" value="送信"
@@ -341,8 +408,6 @@
 			<li><a class="btn1" href="javascript:history.back()" >戻る</a></li>
 		</ul>
 		</div>
-		<%=fMyUrl[0] %>
-
 	</html:form>
 </body>
 </html:html>

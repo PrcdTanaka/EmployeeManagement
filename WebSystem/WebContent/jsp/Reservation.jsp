@@ -11,7 +11,7 @@
 <html:html>
 <head>
 <html lang="ja">
-<link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
+<link rel="stylesheet" type="text/css" href="/WebSystem/css/Reservation.css">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/Res_tab.css">
 </head>
 <html:form action="/ReservationAction">
