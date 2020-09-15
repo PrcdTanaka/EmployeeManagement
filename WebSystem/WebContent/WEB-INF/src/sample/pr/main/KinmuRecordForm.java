@@ -23,10 +23,20 @@ public class KinmuRecordForm extends ActionForm{
 	private String employeeName;
 	private String message;
 
-	public void initialize(){
+	{
 		button="";
-		employeeNum = "";
+		employeeNum = "4321";
 		message = "";
+
+		kintaiYMD="20200801";
+		holidayDiv="";
+		startTime="";
+		endTime="";
+		expectation="";
+		breakTimeA="";
+		breakTimeB="";
+		vacationDiv="";
+		remark="";
 	}
 
 	//社員番号

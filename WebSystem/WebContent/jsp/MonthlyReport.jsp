@@ -900,9 +900,9 @@
  				<td><%=remark.get(listnumber)%></td>
  			</tr>
  			<%
+ 			flg=1;
+ 			day = i;
         	 }
-        	 flg=2;
-        	 break;
          }
          }
          }

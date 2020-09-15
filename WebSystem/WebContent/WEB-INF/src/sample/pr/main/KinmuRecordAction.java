@@ -64,11 +64,32 @@ public class KinmuRecordAction extends Action{
 //		oForm.setTec(oForm.getTec());
 
 
+
 		String button=KRForm.getButton();
 		try{
 			if(button.equals("戻る")){
 				forward="main";
 			} else if(button.equals("入力内容を保存")){
+				//リクエストパラメーターを取得
+				String holidayDiv = request.getParameter("holidayDiv");
+				String startTime = request.getParameter("startTime");
+				String endTime = request.getParameter("endTime");
+				String expectation = request.getParameter("expectation");
+				String breakTimeA = request.getParameter("breakTimeA");
+				String breakTimeB = request.getParameter("breakTimeB");
+				String vacationDiv = request.getParameter("vacationDiv");
+				String remark = request.getParameter("remark");
+
+				//セッターでインスタンスのフィールド変数を更新
+				KRForm.setHolidayDiv(holidayDiv);
+				KRForm.setStartTime(startTime);
+				KRForm.setEndTime(endTime);
+				KRForm.setExpectation(expectation);
+				KRForm.setBreakTimeA(breakTimeA);
+				KRForm.setBreakTimeB(breakTimeB);
+				KRForm.setVacationDiv(vacationDiv);
+				KRForm.setRemark(remark);
+
 				forward = save(KRForm);
 			}
 //			else if(button.equals("勤怠連絡入力")){
@@ -88,8 +109,7 @@ public class KinmuRecordAction extends Action{
 
 	//入力された情報を保存するsaveメソッド
 	public String save(KinmuRecordForm form){
-//		dba.kinmuRecordRegister(form);
-
+		dba.kinmuRecordRegister(form);
 		return "kinmurecord";
 	}
 
