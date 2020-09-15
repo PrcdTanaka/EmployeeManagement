@@ -1,3 +1,5 @@
+<%@page import="oracle.net.aso.e"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="javax.tools.DocumentationTool.Location"%>
 <%@page import="sample.pr.main.Personal_informationForm"%>
 <%@page import="sample.ap.DbAction"%>
@@ -45,19 +47,28 @@ body
  		<html:form action="/EnterAction">
 
 	 	<%
-
-	 		EnterForm eForm=new EnterForm();
+	 		Boolean Midnight=false;
+	 		Boolean Entry=false;
+ 			EnterForm eForm=new EnterForm();
  			LoginForm s = (LoginForm) session.getAttribute("form");
  			String no   = s.getEmployee_no();
  			String name = s.getEmployee_name();
  			String link =s.getLink();
-
-
+ 			eForm.setFloor(link);
+			DbAction dba=new DbAction();
+			if(!dba.getEntry_Empl(eForm))
+			{
+				Entry=true;
+			}
  			session.setAttribute("eform", eForm);
 
  		%>
+ 		<%if(Midnight=true) %>
 		<html:submit styleClass="send" property="button" value="深夜作業"/>
-		<html:submit styleClass="send" property="button" value="入室"/>
+		<%if(Entry){%>
+			<html:submit styleClass="send" property="button" value="入室"/>
+		<% }
+		else{%>
 		<br>
 		<h2>1.電気</h2>
 		<p>　　・エアコン<html:multibox property="checklist" value="1" /></p>
@@ -81,7 +92,7 @@ body
 		<h2>6.トイレに可燃物のゴミがないか確認<html:multibox property="checklist" value="1"/></h2>
 		<br>
 		<html:submit styleClass="send" property="button" value="退室"/>
-
+		<%} %>
  		</html:form>
 	</body>
 </html:html>

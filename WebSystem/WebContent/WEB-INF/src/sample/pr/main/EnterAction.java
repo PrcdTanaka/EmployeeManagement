@@ -116,7 +116,7 @@ public final class EnterAction extends Action {
 				dba.UpdateLeave(eForm, time, cale);
 				forward="failure";
 		}
-
+		session.removeAttribute("eform");
 		/* 9.戻り値を返却する。<br>
 		 * 　9-1.遷移先情報取得処理をコール。<br>
 		 * 　　クラス　：ActionMapping<br>

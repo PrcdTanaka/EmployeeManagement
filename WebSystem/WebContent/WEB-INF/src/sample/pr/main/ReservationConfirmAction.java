@@ -24,7 +24,6 @@ public final class ReservationConfirmAction extends Action{
 
 	public ReservationConfirmAction() throws IOException {
 	}
-	String button;
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
 
 		try {
@@ -35,14 +34,14 @@ public final class ReservationConfirmAction extends Action{
 		RoomReservationForm roForm = (RoomReservationForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		forward="reservation";
+		forward="confirm";
 		String button=roForm.getButton();
 		try{
 			if(button.equals("戻る")){
 				forward="main";
 				session.removeAttribute("rForm");
 			}else if(button.equals("登録")){
-				forward ="room";
+				forward ="confirm";
 				dba.InsRoomReservation(roForm);
 				roForm.setMessage("登録しました");
 			}
