@@ -157,6 +157,8 @@
 		</ul>
 		</div>
 
+		<a href="mailto:hello@example.com?cc=mana@example.com&?subject=Hello">お問い合わせ</a>
+
 
 	</html:form>
 </body>

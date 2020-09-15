@@ -38,6 +38,8 @@
         List<String>Mmdd=form.getMmdd();
         List<String>Send_Time=form.getSend_Time();
         List<String> spotcode =form.getSpotcode();
+
+        //spanを配列へ入れる
         int listspan=0;
         String []kintai_s=new String[30];
         for(int Target_day = 0; Target_day < span.size(); Target_day++)
@@ -45,6 +47,15 @@
             kintai_s[listspan] = span.get(Target_day);
             listspan++;
        }
+        //span2を配列へ入れる
+         int listspan2=0;
+        String []kintai_s2=new String[30];
+        for(int Target_day = 0; Target_day < span2.size(); Target_day++)
+       {
+            kintai_s2[listspan2] = span2.get(Target_day);
+            listspan2++;
+       }
+
         String a="";
         String limit="";
         String send="";
@@ -82,14 +93,14 @@
                  else
                      dada=""+day;
        int flg=0;
-       for(int listnumber=0;listnumber<span.size();listnumber++){
+         for(int listnumber=0;listnumber<span.size();listnumber++){
 
 
          if(kintai_s[listnumber].substring(6,8).equals(dada)&&flg==0){
 
         //switch文を使用して企業コードから作業場所とlimitを表示
         switch(spotcode.get(listnumber)){
-        case "9-0001":
+            case "9-0001":
         	a="本社";
         	limit="0830";
         	break;
@@ -849,6 +860,8 @@
         	a="オペラシティタワー";
         	limit="0930";
         	break;
+        	default:
+        	a="無効なコードです";
         }
 
 
@@ -857,6 +870,8 @@
          send="無届";}else{
              send="";
          }%>
+         <%-- span==span2だった場合--%>
+        <%  if(kintai_s[listnumber].substring(6,8).equals(kintai_s2[listnumber].substring(6,8))){%>
 				<td><%=dada%>日</td>
 				<td><%=Mmdd.get(listnumber)%></td>
 				<td><%=Send_Time.get(listnumber)%></td>
@@ -870,20 +885,40 @@
 			<%
 			flg=1;
 			break;
+
+			//span<span2だった場合
+         }else{
+        	 for(int i=Integer.parseInt(kintai_s[listnumber].substring(6,8));i<=(Integer.parseInt(kintai_s2[listnumber].substring(6,8)));i++){%>
+ 				<td><%=i%>日</td>
+ 				<td><%=Mmdd.get(listnumber)%></td>
+ 				<td><%=Send_Time.get(listnumber)%></td>
+ 				<td><%=limit %></td>
+ 				<td><%=send %></td>
+ 				<td><%=division.get(listnumber)%></td>
+ 				<td><%=a%></td>
+ 				<td><%=perm.get(listnumber)%></td>
+ 				<td><%=remark.get(listnumber)%></td>
+ 			</tr>
+ 			<%
+ 			flg=1;
+ 			day = i;
+        	 }
+         }
          }
          }
        if(flg==0){%>
     	   <td><%=dada%>日</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
 			</tr>
       <% }
+
             }
         %>
 
