@@ -8,7 +8,7 @@
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 <div align= "center">
-	<h1>新規予約画面</h1>
+	<h1>予約確認画面</h1>
 </div>
 <body>
 	<html:form action="/ReservationConfirmAction">
