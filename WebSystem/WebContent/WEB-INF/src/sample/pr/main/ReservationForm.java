@@ -1,5 +1,8 @@
 package sample.pr.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.struts.action.ActionForm;
 
 public final class ReservationForm extends ActionForm {
@@ -19,9 +22,9 @@ public final class ReservationForm extends ActionForm {
 	/** ボタン */
 	private String button;
 	/** 時間 */
-	private String res_time;
+	private List<String> res_time;
 	/** 日付 */
-	private String mmdd;
+	private List<String> mmdd;
 	/** 用途 */
 	private String use;
 
@@ -40,8 +43,8 @@ public final class ReservationForm extends ActionForm {
 		monitor = "";
 		camera = "";
 		button = "";
-		res_time = "";
-		mmdd = "";
+		res_time =new ArrayList<String>();
+		mmdd = new ArrayList<String>();
 		use = "";
 	}
 	/**
@@ -218,7 +221,7 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @return ボタン名
 	 */
-	public String getRes_time() {
+	public List<String> getRes_time() {
 		return res_time;
 	}
 
@@ -231,7 +234,7 @@ public final class ReservationForm extends ActionForm {
 	 * @param button ボタン名
 	 */
 	public void setRes_time(String res_time) {
-		this.res_time = res_time;
+		this.res_time.add(res_time);
 	}
 
 	/**
@@ -242,7 +245,7 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @return ボタン名
 	 */
-	public String getMmdd() {
+	public List<String> getMmdd() {
 		return mmdd;
 	}
 
@@ -255,7 +258,7 @@ public final class ReservationForm extends ActionForm {
 	 * @param button ボタン名
 	 */
 	public void setMmdd(String mmdd) {
-		this.mmdd = mmdd;
+		this.mmdd.add(mmdd);
 	}
 	/**
 	 * 日付取得処理。
