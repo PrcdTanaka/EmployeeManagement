@@ -87,16 +87,20 @@
 		<div align="center">
 			<table border="2" cellpadding="0" cellspacing="0">
 				<tr>
-					<th></th>
+					<td><a href="jsp/Reservation.jsp">前の月へ</a></td>
 					<td>2F</td>
 					<td>3F</td>
 					<td>4F</td>
-					<td width="360" height="40" colspan="5"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
-					<td rowspan="2">前の週へ</td>
+					<td rowspan="2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
 					<td width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
-					<td rowspan="2">次の週へ</td>
+					<td rowspan="2"><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
 					<%for(int i=0 ;i<7;i++){
