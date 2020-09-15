@@ -13,21 +13,35 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import sample.ap.DbAction;
+
 public class KinmuRecordAction extends Action{
 
-//	private DbAction dba = new DbAction();
+
+	//初期設定を行う
+	//DB接続クラスのインスタンスを生成
+	//遷移先
+	//例外発生時はIOExceptionをthrowする
+	public KinmuRecordAction() throws IOException {
+
+	}
+	//DB接続用オブジェクト
+	private DbAction dba = new DbAction();
 
 	// 遷移先
 	private String forward;
 
-	public KinmuRecordAction() throws IOException {
-	}
+	//クリックされたボタンを判定し、遷移先情報を返す
+	//①フォームから送られるURLエンコードを元に戻す
+	//  (1)UnsupporrtedEncodingExeception(文字のエンコーディングがサポートされていない)が発生したらスタックとレースの出力
 	String button;
 	public ActionForward execute (ActionMapping map,ActionForm frm,HttpServletRequest request,HttpServletResponse response) {
 
 		try {
+			//①フォームから送られるURLエンコードを元に戻す
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
+			//(1)文字のエンコーディングサポートの例外発生時はスタックとレースを出力
 			e.printStackTrace();
 		}
 
@@ -46,14 +60,16 @@ public class KinmuRecordAction extends Action{
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		lForm.setEmployee_no(lForm.getEmployee_no());
 		//ログインユーザーの所属部署をセッションスコープから取得
-		Open_informationForm oForm = (Open_informationForm) session.getAttribute("oForm");
-		oForm.setTec(oForm.getTec());
+//		Open_informationForm oForm = (Open_informationForm) session.getAttribute("oForm");
+//		oForm.setTec(oForm.getTec());
 
 
 		String button=KRForm.getButton();
 		try{
 			if(button.equals("戻る")){
 				forward="main";
+			} else if(button.equals("入力内容を保存")){
+				forward = save(KRForm);
 			}
 //			else if(button.equals("勤怠連絡入力")){
 //				forward="kintaimail";
@@ -67,11 +83,14 @@ public class KinmuRecordAction extends Action{
 		}
 //		session.removeAttribute("kForm");
 		return map.findForward(forward);
+	}
 
 
+	//入力された情報を保存するsaveメソッド
+	public String save(KinmuRecordForm form){
+//		dba.kinmuRecordRegister(form);
 
-
-
+		return "kinmurecord";
 	}
 
 }
