@@ -41,8 +41,8 @@ public final class ReservationConfirmAction extends Action{
 				forward="main";
 				session.removeAttribute("rForm");
 			}else if(button.equals("登録")){
-				forward ="confirm";
-				dba.InsRoomReservation(roForm);
+				//forward ="confirm";
+				dba.InsReservation(roForm);
 				roForm.setMessage("登録しました");
 			}
 		}catch(Exception e){

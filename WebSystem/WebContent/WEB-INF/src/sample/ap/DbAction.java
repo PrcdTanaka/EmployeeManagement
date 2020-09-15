@@ -20,7 +20,6 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
-import sample.pr.main.ReservationForm;
 import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
@@ -2950,7 +2949,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
-	public boolean InsertReservation(ReservationForm form) {
+	public boolean InsReservation(RoomReservationForm form) {
 
 		boolean ret = false;
 
@@ -2969,17 +2968,13 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 			sb.append("INSERT INTO " + crlf);
-			sb.append("  RESERVATION(employee_no,name,room_name,room_place,seat_number,monitor,camera,res_time,mmdd)" + crlf);
+			sb.append("  RESERVATION(employee_no,name,room_name,mmdd,member,use)" + crlf);
 			sb.append("values" + crlf);
-			sb.append("('"+form.getEmployee_no()+"'" +crlf);
-			sb.append(",'"+form.getName()+"'"+crlf);
-			sb.append(",'"+ form.getRoom_place()+"'"+crlf);
-			sb.append(",'"+ form.getSeat_number()+"'"+crlf);
-			sb.append(",'"+ form.getMonitor()+"'"+crlf);
-			sb.append(",'"+ form.getCamera()+"'"+crlf);
-			sb.append(",'"+ form.getEmployee_no()+"'"+crlf);
-			sb.append(",'"+ form.getRes_time()+"'"+crlf);
-			sb.append(",'"+ form.getMmdd()+"');"+crlf);
+			sb.append("('"+form.getEmp_no()+"'" +crlf);
+			sb.append(",'"+ form.getName()+"'"+crlf);
+			sb.append(",'"+ form.getRoom_name()+"'"+crlf);
+			sb.append(",'"+ form.getMmdd()+"'"+crlf);
+			sb.append(",'"+ form.getUse()+"')"+crlf);
 			String query = sb.toString();
 
 			try {
@@ -3754,7 +3749,7 @@ public class DbAction extends Object{
 			sb.append("  BREAK_TIMEA," + crlf);
 			sb.append("  BREAK_TIMEB," + crlf);
 			sb.append("  VACATION_DIVISION," + crlf);
-			sb.append("  REMARK," + crlf);
+			sb.append("  REMARK" + crlf);
 			sb.append(")VALUES(" + crlf);
 			sb.append("  '" + form.getEmployeeNum() + "'," + crlf);
 			sb.append("  '" + form.getKintaiYMD() + "'," + crlf);
@@ -3780,6 +3775,6 @@ public class DbAction extends Object{
 
 		}
 		return ret;
-
 	}
+
 }
