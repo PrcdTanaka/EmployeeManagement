@@ -159,7 +159,7 @@
 
 					<%-- 休/祝 --%>
 					<td width="7px">
-						<html:select property="holidayDiv" styleId="holidayDiv" name="KinmuRecordForm">
+						<html:select property="holidayDiv<%= i %>" styleId="holidayDiv<%= i %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="1">休</html:option>
 							<html:option value="2">祝</html:option>
@@ -168,7 +168,7 @@
 
 					<%-- 出社時間 --%>
 					<td width="7px">
-						<html:select property="startTime" styleId="startTime" name="KinmuRecordForm">
+						<html:select property="startTime<%= i %>" styleId="startTime<%= i %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
 							<html:option value="0015">0:15</html:option>
@@ -271,7 +271,7 @@
 
 					<%-- 退社時間 --%>
 					<td width="7px">
-						<html:select property="endTime" styleId="endTime" name="KinmuRecordForm">
+						<html:select property="endTime<%= i %>" styleId="endTime<%= i %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
 							<html:option value="0015">0:15</html:option>
@@ -374,7 +374,7 @@
 
 					<%-- 予定 --%>
 					<td width="7px">
-						<html:select property="expectation" styleId="expectation" name="KinmuRecordForm">
+						<html:select property="expectation<%= i %>" styleId="expectation<%= i %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0800">8:00</html:option>
 						</html:select>
@@ -382,7 +382,7 @@
 
 					<%-- 休A --%>
 					<td width="7px">
-						<html:select property="breakTimeA" styleId="breakTimeA" name="KinmuRecordForm">
+						<html:select property="breakTimeA<%= i %>" styleId="breakTimeA<%= i %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
 							<html:option value="0015">0:15</html:option>
@@ -406,7 +406,7 @@
 
 					<%-- 休B --%>
 					<td width="7px">
-						<html:select property="breakTimeB" styleId="breakTimeB" name="KinmuRecordForm">
+						<html:select property="breakTimeB<%= i %>" styleId="breakTimeB<%= i %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
 							<html:option value="0015">0:15</html:option>
@@ -430,12 +430,12 @@
 
 					<%-- 休暇区分 --%>
 					<td width="22%">
-						<html:radio property="vacationDiv" value=""/>該当なし
-						<html:radio property="vacationDiv" value="1" />有休/リフ休
-						<html:radio property="vacationDiv" value="2" />遅/早
-						<html:radio property="vacationDiv" value="3" />振休
-						<html:radio property="vacationDiv" value="4" />特休
-						<html:radio property="vacationDiv" value="5" />欠勤
+						<html:radio property="vacationDiv<%= i %>" value=""/>該当なし
+						<html:radio property="vacationDiv<%= i %>" value="1" />有休/リフ休
+						<html:radio property="vacationDiv<%= i %>" value="2" />遅/早
+						<html:radio property="vacationDiv<%= i %>" value="3" />振休
+						<html:radio property="vacationDiv<%= i %>" value="4" />特休
+						<html:radio property="vacationDiv<%= i %>" value="5" />欠勤
 					</td>
 
 					<%-- 実働 --%>
@@ -446,7 +446,7 @@
 					</td>
 
 					<%-- 備考 --%>
-					<td width="20%"><html:text property="remark" size="30" maxlength="50" /></td>
+					<td width="20%"><html:text property="remark<%= i %>" size="30" maxlength="50" /></td>
 				</tr>
 				<% }%>
 			</table>
