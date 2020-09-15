@@ -2789,7 +2789,7 @@ public class DbAction extends Object{
 
 			//日付、入室時間を登録する(	"ENTRY_EMP" CHAR(4) NOT NULL ENABLE,
 			sb.append("INSERT INTO " + crlf);
-			sb.append("  ROOM_ACCESS_TBL(ENTRY_EMP,DAY,ENTRY_TIME,LEAVING_TIME,CHECK_LIST,FLOOR,LEAVING_EMP)" + crlf);
+			sb.append("  ROOM_ACCESS_TBL(ENTRY_EMP,DAY,ENTRY_TIME,LEAVING_TIME,CHECK_LIST,FLOOR,LEAVING_EMP,EMPLOYEE_NAME)" + crlf);
 			sb.append("values" + crlf);
 			sb.append("('"+form.getEmployee_no()+"'," +crlf);
 			sb.append("'"+a+"',"+ crlf);
@@ -2797,7 +2797,8 @@ public class DbAction extends Object{
 			sb.append("0,"+ crlf);
 			sb.append("0,"+ crlf);
 			sb.append("'"+form.getLink()+"',"+ crlf);
-			sb.append("0)"+crlf);
+			sb.append("0,"+crlf);
+			sb.append("'"+form.getEmployee_name()+"')"+crlf);
 			String query = sb.toString();
 
 			try {
@@ -3021,6 +3022,14 @@ public class DbAction extends Object{
 			sb.append(" ROOM_ACCESS_TBL"+crlf);
 			sb.append("WHERE"+crlf);
 			sb.append(" FLOOR= ?"+crlf);
+
+			//社員情報から氏名遷移
+			//sb.append("SELECT");
+			//sb.append(" NAME,"+crlf);
+			//sb.append("FROM"+crlf);
+			//sb.append(" PERSONAL_INFORMATION_TBL"+crlf);
+			//sb.append("WHERE"+crlf);
+			//sb.append(" ENTRY_EMP"=="ENPLOYEE_EMP"+crlf);
 
 			String query = sb.toString();
 
