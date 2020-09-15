@@ -18,18 +18,14 @@ public final class RoomReservationForm extends ActionForm {
 	private String button;
 	/** メッセージ */
 	private String message;
-	/** メンバー */
-	private String member;
-	/** 用途 */
-	private String use;
-	/** 時間 */
-	private String res_time;
-	/** 日付 */
-	private String mmdd;
 	/** 社員番号 */
 	private String emp_no;
-
-
+	/** 社員名 */
+	private String name;
+	/** 社員名 */
+	private String mmdd;
+	/** 社員名 */
+	private String use;
 
 	/**
 	 * 初期化処理。
@@ -45,12 +41,10 @@ public final class RoomReservationForm extends ActionForm {
 		camera = "";
 		button = "";
 		message = "";
-		member = "";
-		use = "";
-		res_time = "";
-		mmdd = "";
 		emp_no = "";
-
+		name = "";
+		mmdd = "";
+		use = "";
 	}
 
 	/**
@@ -219,120 +213,97 @@ public final class RoomReservationForm extends ActionForm {
 		this.message = message;
 	}
 	/**
-	 * メンバー取得処理。
+	 * カメラ取得処理。
 	 * <p>
-	 * 会議室予約画面アクションフォームからメンバーを取得する。
+	 * 会議室予約画面アクションフォームからカメラを取得する。
 	 * </p>
 	 *
 	 * @return カメラ
-	 */
-	public String getMember() {
-		return member;
-	}
-
-	/**
-	 * メンバー設定処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームにメンバーを設定する。
-	 * </p>
-	 *
-	 * @param camera メンバー
-	 */
-	public void setMember(String member) {
-		this.member = member;
-	}
-	/**
-	 * 用途取得処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームから用途を取得する。
-	 * </p>
-	 *
-	 * @return 用途
-	 */
-	public String getUse() {
-		return use;
-	}
-
-	/**
-	 * 用途設定処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームに用途を設定する。
-	 * </p>
-	 *
-	 * @param camera 用途
-	 */
-	public void setUse(String use) {
-		this.use = use;
-	}
-	/**
-	 * ボタン名取得処理。
-	 * <p>
-	 * メイン画面アクションフォームからボタン名を取得する。
-	 * </p>
-	 *
-	 * @return ボタン名
-	 */
-	public String getRes_time() {
-		return res_time;
-	}
-
-	/**
-	 * ボタン名設定処理。
-	 * <p>
-	 * メイン画面アクションフォームにボタン名を設定する。
-	 * </p>
-	 *
-	 * @param button ボタン名
-	 */
-	public void setRes_time(String res_time) {
-		this.res_time = res_time;
-	}
-
-	/**
-	 * 日付取得処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームから日付を取得する。
-	 * </p>
-	 *
-	 * @return ボタン名
-	 */
-	public String getMmdd() {
-		return mmdd;
-	}
-
-	/**
-	 * 日付設定処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームに日付を設定する。
-	 * </p>
-	 *
-	 * @param button ボタン名
-	 */
-	public void setMmdd(String mmdd) {
-		this.mmdd = mmdd;
-	}
-	/**
-	 * 日付取得処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームから日付を取得する。
-	 * </p>
-	 *
-	 * @return ボタン名
 	 */
 	public String getEmp_no() {
 		return emp_no;
 	}
 
 	/**
-	 * 日付設定処理。
+	 * カメラ設定処理。
 	 * <p>
-	 * 会議室予約画面アクションフォームに日付を設定する。
+	 * 会議室予約画面アクションフォームにカメラを設定する。
 	 * </p>
 	 *
-	 * @param button ボタン名
+	 * @param camera カメラ
 	 */
 	public void setEmp_no(String emp_no) {
 		this.emp_no = emp_no;
 	}
+	/**
+	 * カメラ取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからカメラを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * カメラ設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにカメラを設定する。
+	 * </p>
+	 *
+	 * @param camera カメラ
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * カメラ取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからカメラを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getMmdd() {
+		return mmdd;
+	}
+
+	/**
+	 * カメラ設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにカメラを設定する。
+	 * </p>
+	 *
+	 * @param camera カメラ
+	 */
+	public void setMmdd(String mmdd) {
+		this.mmdd = mmdd;
+	}
+	/**
+	 * カメラ取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからカメラを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getUse() {
+		return use;
+	}
+
+	/**
+	 * カメラ設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにカメラを設定する。
+	 * </p>
+	 *
+	 * @param camera カメラ
+	 */
+	public void setUse(String use) {
+		this.use = use;
+	}
+
 
 }

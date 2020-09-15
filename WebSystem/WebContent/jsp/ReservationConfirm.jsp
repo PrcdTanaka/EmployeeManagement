@@ -6,7 +6,7 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <html:html>
 <html lang="ja">
-<link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
+<link rel="stylesheet" type="text/css" href="/WebSystem/css/Reservation.css">
 <div align= "center">
 	<h1>予約確認画面</h1>
 </div>
@@ -36,14 +36,19 @@
 					メンバー：
 					<html:text property="place" value="" />
 			</div>
-			<div align="center">
+			<!--div align="center"-->
+			<center>
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="confirm"/>
+				</center>
+			<!--  /div>-->
+			<center>
 			<div align="center">
 			<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
-			</div>
+			</center>
+			<!--/div>-->
 		</div>
 	</html:form>
 </body>
