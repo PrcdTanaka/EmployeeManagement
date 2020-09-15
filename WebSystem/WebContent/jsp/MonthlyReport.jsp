@@ -93,14 +93,14 @@
                  else
                      dada=""+day;
        int flg=0;
-       for(int listnumber=0;listnumber<span.size();listnumber++){
+         for(int listnumber=0;listnumber<span.size();listnumber++){
 
 
          if(kintai_s[listnumber].substring(6,8).equals(dada)&&flg==0){
 
         //switch文を使用して企業コードから作業場所とlimitを表示
         switch(spotcode.get(listnumber)){
-        case "9-0001":
+            case "9-0001":
         	a="本社";
         	limit="0830";
         	break;
@@ -860,6 +860,8 @@
         	a="オペラシティタワー";
         	limit="0930";
         	break;
+        	default:
+        	a="無効なコードです";
         }
 
 
@@ -906,16 +908,17 @@
          }
        if(flg==0){%>
     	   <td><%=dada%>日</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
-			<td>""</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
 			</tr>
       <% }
+
             }
         %>
 
