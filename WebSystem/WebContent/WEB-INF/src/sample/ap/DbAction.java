@@ -11,6 +11,7 @@ import java.util.Map;
 import sample.db.DbConnector;
 import sample.pr.main.AttendanceForm;
 import sample.pr.main.EnterForm;
+import sample.pr.main.KinmuRecordForm;
 import sample.pr.main.KintaiMailForm;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
@@ -3723,6 +3724,60 @@ public class DbAction extends Object{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+		return ret;
+
+	}
+
+	//勤務管理表の入力内容を登録する
+	public boolean kinmuRecordRegister(KinmuRecordForm form){
+		boolean ret = true;
+		//DB接続
+		DbConnector dba = null;
+		try{
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch(IOException e1){
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if(dba.conSts){
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO KINMU_RECORD_TBL(" + crlf);
+			sb.append("  EMPLOYEE_NO," + crlf);
+			sb.append("  KINTAI_YMD," + crlf);
+			sb.append("  HOLIDAY_DIVISION," + crlf);
+			sb.append("  START_TIME," + crlf);
+			sb.append("  END_TIME," + crlf);
+			sb.append("  BREAK_TIMEA," + crlf);
+			sb.append("  BREAK_TIMEB," + crlf);
+			sb.append("  VACATION_DIVISION," + crlf);
+			sb.append("  REMARK," + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("  '" + form.getEmployeeNum() + "'," + crlf);
+			sb.append("  '" + form.getKintaiYMD() + "'," + crlf);
+			sb.append("  '" + form.getHolidayDiv() + "'," + crlf);
+			sb.append("  '" + form.getStartTime() + "'," + crlf);
+			sb.append("  '" + form.getEndTime() + "'," + crlf);
+			sb.append("  '" + form.getBreakTimeA() + "'," + crlf);
+			sb.append("  '" + form.getBreakTimeB() + "'," + crlf);
+			sb.append("  '" + form.getVacationDiv() + "'," + crlf);
+			sb.append("  '" + form.getRemark() + "'" + crlf);
+			sb.append(")" + crlf);
+
+			String query = sb.toString();
+
+			try{
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+
 		}
 		return ret;
 
