@@ -70,15 +70,25 @@ public class KinmuRecordAction extends Action{
 			} else if(button.equals("入力内容を保存")){
 				//31日分のインスタンスを保存
 				for(int i=1; i<=31; i++){
+					//リクパラ用
+//					String holidayDivReq = "\"" + "holidayDiv" + String.valueOf(i) + "\"";
+
 					//リクエストパラメーターを取得
-					String holidayDiv = request.getParameter("holidayDiv" + String.valueOf(i));
-					String startTime = request.getParameter("startTime" + String.valueOf(i));
-					String endTime = request.getParameter("endTime" + String.valueOf(i));
-					String expectation = request.getParameter("expectation" + String.valueOf(i));
-					String breakTimeA = request.getParameter("breakTimeA" + String.valueOf(i));
-					String breakTimeB = request.getParameter("breakTimeB" + String.valueOf(i));
-					String vacationDiv = request.getParameter("vacationDiv" + String.valueOf(i));
-					String remark = request.getParameter("remark" + String.valueOf(i));
+					String holidayDiv = request.getParameter("holidayDiv");
+					String startTime = request.getParameter("startTime");
+					String endTime = request.getParameter("endTime");
+					String expectation = request.getParameter("expectation");
+					String breakTimeA = request.getParameter("breakTimeA");
+					String breakTimeB = request.getParameter("breakTimeB");
+					String vacationDiv = request.getParameter("vacationDiv");
+					String remark = request.getParameter("remark");
+//					String startTime = request.getParameter("startTime" + String.valueOf(i));
+//					String endTime = request.getParameter("endTime" + String.valueOf(i));
+//					String expectation = request.getParameter("expectation" + String.valueOf(i));
+//					String breakTimeA = request.getParameter("breakTimeA" + String.valueOf(i));
+//					String breakTimeB = request.getParameter("breakTimeB" + String.valueOf(i));
+//					String vacationDiv = request.getParameter("vacationDiv" + String.valueOf(i));
+//					String remark = request.getParameter("remark" + String.valueOf(i));
 
 					StringBuffer sb = new StringBuffer();
 					sb.append(holidayDiv + startTime + endTime + expectation + breakTimeA + breakTimeB + vacationDiv + remark);
