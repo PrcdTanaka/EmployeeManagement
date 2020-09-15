@@ -9,7 +9,7 @@ public final class ReservationForm extends ActionForm {
 	/** 社員名 */
 	private String name;
 	/**会議室名 */
-	private String room_place;
+	private String room_name;
 	/** 席数 */
 	private String seat_number;
 	/** モニター */
@@ -18,10 +18,9 @@ public final class ReservationForm extends ActionForm {
 	private String camera;
 	/** ボタン */
 	private String button;
-	/** 時間 */
-	private String res_time;
-	/** 日付 */
-	private String mmdd;
+
+
+
 
 	/**
 	 * 初期化処理。
@@ -32,13 +31,13 @@ public final class ReservationForm extends ActionForm {
 	public void initialize() {
 		employee_no = "";
 		name = "";
-		room_place = "";
+		room_name = "";
 		seat_number = "";
 		monitor = "";
 		camera = "";
 		button = "";
-		res_time = "";
-		mmdd = "";
+
+
 	}
 	/**
 	 * 社員番号取得処理。
@@ -95,8 +94,8 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @return 会議室名
 	 */
-	public String getRoom_place() {
-		return room_place;
+	public String getRoom_name() {
+		return room_name;
 	}
 
 	/**
@@ -107,8 +106,8 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @param oldpassword 会議室名
 	 */
-	public void setRoom_place(String room_place) {
-		this.room_place = room_place;
+	public void setRoom_place(String room_name) {
+		this.room_name = room_name;
 	}
 
 	/**
@@ -206,52 +205,7 @@ public final class ReservationForm extends ActionForm {
 		this.button = button;
 	}
 
-	/**
-	 * ボタン名取得処理。
-	 * <p>
-	 * メイン画面アクションフォームからボタン名を取得する。
-	 * </p>
-	 *
-	 * @return ボタン名
-	 */
-	public String getRes_time() {
-		return res_time;
-	}
 
-	/**
-	 * ボタン名設定処理。
-	 * <p>
-	 * メイン画面アクションフォームにボタン名を設定する。
-	 * </p>
-	 *
-	 * @param button ボタン名
-	 */
-	public void setRes_time(String res_time) {
-		this.res_time = res_time;
-	}
 
-	/**
-	 * 日付取得処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームから日付を取得する。
-	 * </p>
-	 *
-	 * @return ボタン名
-	 */
-	public String getMmdd() {
-		return mmdd;
-	}
-
-	/**
-	 * 日付設定処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームに日付を設定する。
-	 * </p>
-	 *
-	 * @param button ボタン名
-	 */
-	public void setMmdd(String mmdd) {
-		this.mmdd = mmdd;
-	}
 
 }

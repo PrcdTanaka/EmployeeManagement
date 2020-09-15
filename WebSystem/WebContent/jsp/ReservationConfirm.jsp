@@ -28,18 +28,18 @@
 			<div class="space"></div>
 			<br>
 			<div align= "center">
-					会議室名：
+					用途　　：
 					<!--  input type ="text" property="room_name" value="" />-->
 					<html:text property="room_name" value="" />
 			</div>
 			<div align= "center">
-					所在地　：
+					メンバー：
 					<html:text property="place" value="" />
 			</div>
 			<div align="center">
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
-				styleId="room"/>
+				styleId="confirm"/>
 			<div align="center">
 			<html:submit property="button" styleClass="btn" value="戻る"
 			styleId="main" />
