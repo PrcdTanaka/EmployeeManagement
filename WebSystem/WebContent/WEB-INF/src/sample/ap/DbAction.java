@@ -3618,6 +3618,8 @@ public class DbAction extends Object{
 			sb.append("SPAN2,"+crlf);
 			sb.append("CC,"+crlf);
 			sb.append("BCC," + crlf);
+			sb.append("DEPART," + crlf);
+			sb.append("PTIME," + crlf);
 			sb.append("DIVISION,"+crlf);
 			sb.append("MMDD,"+crlf);
 			sb.append("SPOTCODE,"+crlf);
@@ -3637,6 +3639,8 @@ public class DbAction extends Object{
 			columnList.add("SPAN2");
 			columnList.add("CC");
 			columnList.add("BCC");
+			columnList.add("DEPART");
+			columnList.add("PTIME");
 			columnList.add("DIVISION");
 			columnList.add("MMDD");
 			columnList.add("SPOTCODE");
@@ -3666,6 +3670,8 @@ public class DbAction extends Object{
 					form.setSpan2(val.get("SPAN2"));
 					form.setCc(val.get("CC"));
 					form.setBcc(val.get("BCC"));
+					form.setDepart(val.get("DEPART"));
+					form.setPtime(val.get("PTIME"));
 					form.setDivision(val.get("DIVISION"));
 					form.setMmdd(val.get("MMDD"));
 					form.setSpotcode(val.get("SPOTCODE"));
