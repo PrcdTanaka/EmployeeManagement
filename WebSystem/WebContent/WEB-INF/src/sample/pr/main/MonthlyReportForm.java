@@ -9,7 +9,10 @@ public class MonthlyReportForm extends ActionForm{
 	private String Button;
 	private List<String> spotcode;
 	private String Employee_no;
-	private List<String> cc;
+	private List<String> CC;
+	private List<String> BCC;
+	private List<String> Depart;
+	private List<String> Ptime;
 	private List<String> division;
 	private List<String> span;
 	private List<String> span2;
@@ -21,7 +24,10 @@ public class MonthlyReportForm extends ActionForm{
 	{
 		Button="";
 		Employee_no="";
-		cc = new ArrayList<String>();
+		CC = new ArrayList<String>();
+		BCC = new ArrayList<String>();
+		Depart = new ArrayList<String>();
+		Ptime = new ArrayList<String>();
 		span=new ArrayList<String>();
 		span2=new ArrayList<String>();
 		division=new ArrayList<String>();
@@ -44,13 +50,34 @@ public class MonthlyReportForm extends ActionForm{
 		return Employee_no;
 	}
 
-	public void setCc(String cc){
-		this.cc.add(cc);
+	public void setCc(String CC){
+		this.CC.add(CC);
+	}
+	public List<String> getCc(){
+		return CC;
 	}
 
-	public List<String> getCc(){
-		return cc;
+	public void setBcc(String BCC){
+		this.BCC.add(BCC);
 	}
+	public List<String> getBcc(){
+		return BCC;
+	}
+
+	public void setDepart(String Depart){
+		this.Depart.add(Depart);
+	}
+	public List<String> getDepart(){
+		return Depart;
+	}
+
+	public void setPtime(String Ptime){
+		this.Ptime.add(Ptime);
+	}
+	public List<String> getPtime(){
+		return Ptime;
+	}
+
 	public void setDivision(String division){
 			this.division.add(division);
 	}

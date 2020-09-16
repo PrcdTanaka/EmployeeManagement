@@ -20,6 +20,7 @@ p.tabs a.tab3 { background-color: red; color: white; }
 p.tabs a:hover { color: yellow; }
 
 /* タブ中身のボックス */
+div.details { border-collapse: collapse; width: 50%;}
 div.tab { height: 150px; overflow: auto; clear: left; }
 div#tab1 {
 border: 2px solid blue; background-color: #ccffff;
@@ -31,7 +32,7 @@ div#tab3 {
 border: 2px solid red; background-color: #ffcccc;
 }
 div.tab p { margin: 0.5em; }
-table { border-collapse: collapse; width: 100%;}
+table { border-collapse: collapse; width: 70%;}
 td { border: solid 1px #000; }
 </style>
 <script type="text/javascript"><!--
@@ -50,7 +51,7 @@ document.getElementById(tabname).style.display = 'block';
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 700px;
+  width: 300px;
   margin: 0 auto;}
 
 /*タブのスタイル*/

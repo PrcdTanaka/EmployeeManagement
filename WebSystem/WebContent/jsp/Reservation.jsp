@@ -57,8 +57,9 @@
 		<div align="right">
 			<a href="jsp/RoomReservation.jsp">会議室新規登録画面へ</a>
 		</div>
-		<div align="left">
-			<table border="1">
+		<div class = "details">
+			<div align="left">
+			<table border="1" width="20">
 				<tr>
 					<th></th>
 					<th>席数</th>
@@ -84,6 +85,7 @@
 					<td>〇</td>
 				</tr>
 			</table>
+			</div>
 		</div>
 		<br>
 		<span id="view_today"></span>
@@ -1291,7 +1293,7 @@
 
 
 		</div>
-		<p>
+		<p align = "center">
 			<html:submit property="button" styleClass="btn" value="戻る"
 				styleId="main" />
 		</p>
