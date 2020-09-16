@@ -39,7 +39,7 @@ public final class RoomReservationAction extends Action{
 		String button=roForm.getButton();
 		try{
 			if(button.equals("戻る")){
-				forward="main";
+				forward="reservation";
 				session.removeAttribute("rForm");
 			}else if(button.equals("登録")){
 				forward ="room";

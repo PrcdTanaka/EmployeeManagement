@@ -64,7 +64,7 @@ text-align:center;
 			</div>
 			<div align="center">
 			<html:submit property="button" styleClass="btn" value="戻る"
-			styleId="main" />
+			styleId="reservation" />
 			</div>
 		</div>
 	</html:form>
