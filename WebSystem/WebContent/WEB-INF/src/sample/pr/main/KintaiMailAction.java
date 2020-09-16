@@ -45,21 +45,21 @@ public class KintaiMailAction extends Action {
 				session.removeAttribute("form");
 			}
 			if (button.equals("送信")) {
-				if ((form.getCC().equals("") || form.getSpotcode().equals("")
+				if ((((form.getCC().equals("") || form.getSpotcode().equals("")
 						|| form.getDivision().equals("")
 						|| form.getSpan().equals("")
 						|| form.getPtime().equals("")
 						|| form.getRemark().equals("")
 						|| form.getDepart().equals("")
-						|| form.getSpan2().equals(""))) {
+						|| form.getSpan2().equals(""))))
+						|| !(form.getSpan().equals(form.getSpan()))
+						|| !(form.getSpan2().equals(form.getSpan2()))){
 					session.setAttribute("form", form);
 					forward = "kintaimail";
-				}
-				else if(!(form.getSpan().equals(form.getSpan()))&&!(form.getSpan2().equals(form.getSpan2()))) {
-
+				}else{
 					session.setAttribute("form", form);
 					dba.setKintaiInfo(form, lForm);
-					forward = "kintaimail";
+					response.sendRedirect("http://localhost:8080/WebSystem/jsp/login.jsp");
 					session.removeAttribute("form");
 					// JOptionPane.showMessageDialog(null,"送信しました");
 				}
