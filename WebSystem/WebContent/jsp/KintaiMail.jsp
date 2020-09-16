@@ -75,22 +75,33 @@
 			// カレンダーから呼ばれたときに表示する年月日を作成
 			if(Url_Flg == false)
 			{
-				String[] lMyUrl1 = MyUrl.split("year=", 0);
-				String[] lMyUrl2 = lMyUrl1[1].split("&month=", 0);
-				Year = lMyUrl2[0];
-				String[] lMyUrl3 = lMyUrl2[1].split("&day=", 0);
-				Month = lMyUrl3[0];
-				Day = lMyUrl3[1];
+				String[] lMyUrl1 = new String[1];
+				lMyUrl1 = MyUrl.split("year=", 0);
+				String[] lMyUrl2 = new String[1];
+				if(lMyUrl1[0].equals("year="))
+				{
+					lMyUrl2 = lMyUrl1[1].split("&month=", 0);
+					Year = lMyUrl2[0];
+					String[] lMyUrl3 = new String[1];
+					lMyUrl3 = lMyUrl2[1].split("&day=", 0);
+					Month = lMyUrl3[0];
+					Day = lMyUrl3[1];
 
-				if(Month.length() == 1)
-				{
-					Month = Zero + Month;
+					if(Month.length() == 1)
+					{
+						Month = Zero + Month;
+					}
+					if(Day.length() == 1)
+					{
+						Day = Zero + Day;
+					}
+					str_Date = Year + Month + Day;
 				}
-				if(Day.length() == 1)
+				else
 				{
-					Day = Zero + Day;
+					Url_Flg = true;
 				}
-				str_Date = Year + Month + Day;
+
 			}
 		%>
 		<div>
