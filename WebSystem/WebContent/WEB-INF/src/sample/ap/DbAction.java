@@ -13,6 +13,7 @@ import sample.pr.main.AttendanceForm;
 import sample.pr.main.EnterForm;
 import sample.pr.main.KinmuRecordForm;
 import sample.pr.main.KintaiMailForm;
+import sample.pr.main.KintaiNotificationForm;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
 import sample.pr.main.MonthlyReportForm;
@@ -20,6 +21,7 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
+import sample.pr.main.ReservationForm;
 import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
@@ -2789,7 +2791,7 @@ public class DbAction extends Object{
 
 			//日付、入室時間を登録する(	"ENTRY_EMP" CHAR(4) NOT NULL ENABLE,
 			sb.append("INSERT INTO " + crlf);
-			sb.append("  ROOM_ACCESS_TBL(ENTRY_EMP,DAY,ENTRY_TIME,LEAVING_TIME,CHECK_LIST,FLOOR,LEAVING_EMP)" + crlf);
+			sb.append("  ROOM_ACCESS_TBL(ENTRY_EMP,DAY,ENTRY_TIME,LEAVING_TIME,CHECK_LIST,FLOOR,LEAVING_EMP,EMPLOYEE_NAME)" + crlf);
 			sb.append("values" + crlf);
 			sb.append("('"+form.getEmployee_no()+"'," +crlf);
 			sb.append("'"+a+"',"+ crlf);
@@ -2797,7 +2799,8 @@ public class DbAction extends Object{
 			sb.append("0,"+ crlf);
 			sb.append("0,"+ crlf);
 			sb.append("'"+form.getLink()+"',"+ crlf);
-			sb.append("0)"+crlf);
+			sb.append("0,"+crlf);
+			sb.append("'"+form.getEmployee_name()+"')"+crlf);
 			String query = sb.toString();
 
 			try {
@@ -2968,7 +2971,7 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 			sb.append("INSERT INTO " + crlf);
-			sb.append("  RESERVATION(employee_no,name,room_name,mmdd,member,use)" + crlf);
+			sb.append("  RESERVATION(name,room_name,mmdd,res_time,member,use)" + crlf);
 			sb.append("values" + crlf);
 			sb.append("('"+form.getEmp_no()+"'" +crlf);
 			sb.append(",'"+ form.getName()+"'"+crlf);
@@ -3017,6 +3020,14 @@ public class DbAction extends Object{
 			sb.append(" ROOM_ACCESS_TBL"+crlf);
 			sb.append("WHERE"+crlf);
 			sb.append(" FLOOR= ?"+crlf);
+
+			//社員情報から氏名遷移
+			//sb.append("SELECT");
+			//sb.append(" NAME,"+crlf);
+			//sb.append("FROM"+crlf);
+			//sb.append(" PERSONAL_INFORMATION_TBL"+crlf);
+			//sb.append("WHERE"+crlf);
+			//sb.append(" ENTRY_EMP"=="ENPLOYEE_EMP"+crlf);
 
 			String query = sb.toString();
 
@@ -3606,6 +3617,8 @@ public class DbAction extends Object{
 			sb.append("SELECT "+crlf);
 			sb.append("SPAN,"+crlf);
 			sb.append("SPAN2,"+crlf);
+			sb.append("CC,"+crlf);
+			sb.append("BCC," + crlf);
 			sb.append("DIVISION,"+crlf);
 			sb.append("MMDD,"+crlf);
 			sb.append("SPOTCODE,"+crlf);
@@ -3623,6 +3636,8 @@ public class DbAction extends Object{
 			List<String> columnList = new ArrayList<String>();
 			columnList.add("SPAN");
 			columnList.add("SPAN2");
+			columnList.add("CC");
+			columnList.add("BCC");
 			columnList.add("DIVISION");
 			columnList.add("MMDD");
 			columnList.add("SPOTCODE");
@@ -3650,6 +3665,8 @@ public class DbAction extends Object{
 				for (Map<String, String> val : rsList) {
 					form.setSpan(val.get("SPAN"));
 					form.setSpan2(val.get("SPAN2"));
+					form.setCc(val.get("CC"));
+					form.setBcc(val.get("BCC"));
 					form.setDivision(val.get("DIVISION"));
 					form.setMmdd(val.get("MMDD"));
 					form.setSpotcode(val.get("SPOTCODE"));
@@ -3717,6 +3734,129 @@ public class DbAction extends Object{
 
 		}
 		return ret;
+	}
+	//勤怠届画面の入力内容を登録する
+	public boolean KintaiNotification_INSERT(KintaiNotificationForm form){
+		boolean ret = true;
+		//DB接続
+		DbConnector dba = null;
+		try{
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch(IOException e1){
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if(dba.conSts){
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO KINTAI_NOTIFICATION_TBL(" + crlf);
+			sb.append("EMPLOYEE_NO," + crlf);
+			sb.append("SYAIN_NAME," + crlf);
+			sb.append("DEPART," + crlf);
+			sb.append("PETITION_YMD," + crlf);
+			sb.append("ATTENDANCE_STARTDAY," + crlf);
+			sb.append("ATTENDANCE_ENDDAY," + crlf);
+			sb.append("ATTENDANCE_STARTTIME," + crlf);
+			sb.append("ATTENDANCE_ENDTIME," + crlf);
+			sb.append("NOTIFICATION_REASON," + crlf);
+			sb.append("VACATION_DIVISION," + crlf);
+			sb.append("TRANSFER_DAY," + crlf);
+			sb.append("SP_HOLIDAY_REASON," + crlf);
+			sb.append("ABSENTEEISM_REASON," + crlf);
+			sb.append("REASON" + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("  '" + form.getEmployee_no() + "'," + crlf);
+			sb.append("  '" + form.getSyain_name() + "'," + crlf);
+			sb.append("  '" + form.getDepart() + "'," + crlf);
+			sb.append("  '" + form.getPetition_ymd() + "'," + crlf);
+			sb.append("  '" + form.getAttendance_startday() + "'," + crlf);
+			sb.append("  '" + form.getAttendance_endday() + "'," + crlf);
+			sb.append("  '" + form.getAttendance_starttime() + "'," + crlf);
+			sb.append("  '" + form.getAttendance_endtime() + "'," + crlf);
+			sb.append("  '" + form.getNotification_reason() + "'," + crlf);
+			sb.append("  '" + form.getVacation_division() + "'," + crlf);
+			sb.append("  '" + form.getTransfer_day() + "'," + crlf);
+			sb.append("  '" + form.getSp_holiday_reason() + "'," + crlf);
+			sb.append("  '" + form.getAbsenteeism_reason() + "'," + crlf);
+			sb.append("  '" + form.getReason() + "'" + crlf);
+			sb.append(")" + crlf);
+
+			String query = sb.toString();
+
+			try{
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+
+		}
+		return ret;
+	}
+	public boolean getReservation(ReservationForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("SELECT "+crlf);
+			sb.append("MMDD"+crlf);
+			sb.append(",RES_TIME"+crlf);
+			sb.append("FROM"+crlf);
+			sb.append("RESERVATION" + crlf);
+			sb.append("WHERE"+crlf);
+			sb.append("ROOM_NAME = '2F';"+crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("MMDD");
+			columnList.add("RES_TIME");
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				for (Map<String, String> val : rsList) {
+					form.setMmdd(val.get("MMDD"));
+					form.setRes_time(val.get("RES_TIME"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
 	}
 
 }

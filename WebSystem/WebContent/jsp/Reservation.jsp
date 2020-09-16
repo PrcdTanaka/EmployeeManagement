@@ -57,8 +57,9 @@
 		<div align="right">
 			<a href="jsp/RoomReservation.jsp">会議室新規登録画面へ</a>
 		</div>
-		<div align="left">
-			<table border="1">
+		<div class = "details">
+			<div align="left">
+			<table border="1" width="20">
 				<tr>
 					<th></th>
 					<th>席数</th>
@@ -84,6 +85,7 @@
 					<td>〇</td>
 				</tr>
 			</table>
+			</div>
 		</div>
 		<br>
 		<span id="view_today"></span>
@@ -93,32 +95,26 @@
 
 <div class="tabs">
   <input id="all" type="radio" name="tab_item" checked>
-  <label class="tab_item" for="all">総合</label>
+  <label class="tab_item" for="all">2F</label>
   <input id="programming" type="radio" name="tab_item">
-  <label class="tab_item" for="programming">プログラミング</label>
+  <label class="tab_item" for="programming">3F</label>
   <input id="design" type="radio" name="tab_item">
-  <label class="tab_item" for="design">デザイン</label>
+  <label class="tab_item" for="design">4F</label>
   <div class="tab_content" id="all_content">
     <div class="tab_content_description">
       <p class="c-txtsp">
       <table border="2" cellpadding="0" cellspacing="0">
 				<tr>
 					<td><a href="jsp/Reservation.jsp">前の月へ</a></td>
-					<td>2F</td>
-					<td>3F</td>
-					<td>4F</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td rowspan = "2" width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
 					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
-					<td rowspan="2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
-					<td width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
-					<td rowspan="2"><a href="jsp/Reservation.jsp">次の週へ</a></td>
+					<td rowspan = "2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
+					<td rowspan = "2"><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
+
 					<%for(int i=0 ;i<7;i++){
 						if(day>max){%>
 					<td></td>
@@ -506,21 +502,15 @@
       <table border="2" cellpadding="0" cellspacing="0">
 				<tr>
 					<td><a href="jsp/Reservation.jsp">前の月へ</a></td>
-					<td>2F</td>
-					<td>3F</td>
-					<td>4F</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td rowspan = "2" width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
 					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
-					<td rowspan="2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
-					<td width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
-					<td rowspan="2"><a href="jsp/Reservation.jsp">次の週へ</a></td>
+					<td rowspan = "2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
+					<td rowspan = "2"><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
+
 					<%for(int i=0 ;i<7;i++){
 						if(day2>max){%>
 					<td></td>
@@ -908,21 +898,15 @@
       <table border="2" cellpadding="0" cellspacing="0">
 				<tr>
 					<td><a href="jsp/Reservation.jsp">前の月へ</a></td>
-					<td>2F</td>
-					<td>3F</td>
-					<td>4F</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td rowspan = "2" width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
 					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
-					<td rowspan="2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
-					<td width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
-					<td rowspan="2"><a href="jsp/Reservation.jsp">次の週へ</a></td>
+					<td rowspan = "2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
+					<td rowspan = "2"><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
+
 					<%for(int i=0 ;i<7;i++){
 						if(day3>max){%>
 					<td></td>
@@ -1309,7 +1293,7 @@
 
 
 		</div>
-		<p>
+		<p align = "center">
 			<html:submit property="button" styleClass="btn" value="戻る"
 				styleId="main" />
 		</p>

@@ -187,7 +187,7 @@
 		<action name="RoomReservationForm" path="/RoomReservationAction"
 			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
 			<forward name="room" path="/jsp/RoomReservation.jsp" />
-			<forward name="main" path="/jsp/Main.jsp" />
+			<forward name="reservation" path="/jsp/Reservation.jsp" />
 		</action>
 		<action name="RoomReservationForm" path="/ReservationConfirmAction"
 			type="sample.pr.main.ReservationConfirmAction" validate="false" scope="request">

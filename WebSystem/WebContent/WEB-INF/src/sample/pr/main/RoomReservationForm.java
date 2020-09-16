@@ -22,9 +22,9 @@ public final class RoomReservationForm extends ActionForm {
 	private String emp_no;
 	/** 社員名 */
 	private String name;
-	/** 社員名 */
+	/** 日付 */
 	private String mmdd;
-	/** 社員名 */
+	/** 用途 */
 	private String use;
 
 	/**
