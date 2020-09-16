@@ -3696,35 +3696,62 @@ public class DbAction extends Object{
 		}
 
 		if(dba.conSts){
-			StringBuffer sb = new StringBuffer();
+			StringBuffer sb1 = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
+			//〇月1日分
+			sb1.append("INSERT INTO KINMU_RECORD_TBL(" + crlf);
+			sb1.append("  EMPLOYEE_NO," + crlf);
+			sb1.append("  KINTAI_YMD," + crlf);
+			sb1.append("  HOLIDAY_DIVISION," + crlf);
+			sb1.append("  START_TIME," + crlf);
+			sb1.append("  END_TIME," + crlf);
+			sb1.append("  BREAK_TIMEA," + crlf);
+			sb1.append("  BREAK_TIMEB," + crlf);
+			sb1.append("  VACATION_DIVISION," + crlf);
+			sb1.append("  REMARK" + crlf);
+			sb1.append(")VALUES(" + crlf);
+			sb1.append("  '" + form.getEmployeeNum() + "'," + crlf);
+			sb1.append("  '" + form.getKintaiYMD1() + "'," + crlf);
+			sb1.append("  '" + form.getHolidayDiv1() + "'," + crlf);
+			sb1.append("  '" + form.getStartTime1() + "'," + crlf);
+			sb1.append("  '" + form.getEndTime1() + "'," + crlf);
+			sb1.append("  '" + form.getBreakTimeA1() + "'," + crlf);
+			sb1.append("  '" + form.getBreakTimeB1() + "'," + crlf);
+			sb1.append("  '" + form.getVacationDiv1() + "'," + crlf);
+			sb1.append("  '" + form.getRemark1() + "'" + crlf);
+			sb1.append(")" + crlf);
 
-			sb.append("INSERT INTO KINMU_RECORD_TBL(" + crlf);
-			sb.append("  EMPLOYEE_NO," + crlf);
-			sb.append("  KINTAI_YMD," + crlf);
-			sb.append("  HOLIDAY_DIVISION," + crlf);
-			sb.append("  START_TIME," + crlf);
-			sb.append("  END_TIME," + crlf);
-			sb.append("  BREAK_TIMEA," + crlf);
-			sb.append("  BREAK_TIMEB," + crlf);
-			sb.append("  VACATION_DIVISION," + crlf);
-			sb.append("  REMARK" + crlf);
-			sb.append(")VALUES(" + crlf);
-			sb.append("  '" + form.getEmployeeNum() + "'," + crlf);
-			sb.append("  '" + form.getKintaiYMD() + "'," + crlf);
-			sb.append("  '" + form.getHolidayDiv() + "'," + crlf);
-			sb.append("  '" + form.getStartTime() + "'," + crlf);
-			sb.append("  '" + form.getEndTime() + "'," + crlf);
-			sb.append("  '" + form.getBreakTimeA() + "'," + crlf);
-			sb.append("  '" + form.getBreakTimeB() + "'," + crlf);
-			sb.append("  '" + form.getVacationDiv() + "'," + crlf);
-			sb.append("  '" + form.getRemark() + "'" + crlf);
-			sb.append(")" + crlf);
+			//〇月2日分
+			StringBuffer sb2 = new StringBuffer();
+			sb2.append("INSERT INTO KINMU_RECORD_TBL(" + crlf);
+			sb2.append("  EMPLOYEE_NO," + crlf);
+			sb2.append("  KINTAI_YMD," + crlf);
+			sb2.append("  HOLIDAY_DIVISION," + crlf);
+			sb2.append("  START_TIME," + crlf);
+			sb2.append("  END_TIME," + crlf);
+			sb2.append("  BREAK_TIMEA," + crlf);
+			sb2.append("  BREAK_TIMEB," + crlf);
+			sb2.append("  VACATION_DIVISION," + crlf);
+			sb2.append("  REMARK" + crlf);
+			sb2.append(")VALUES(" + crlf);
+			sb2.append("  '" + form.getEmployeeNum() + "'," + crlf);
+			sb2.append("  '" + form.getKintaiYMD2() + "'," + crlf);
+			sb2.append("  '" + form.getHolidayDiv2() + "'," + crlf);
+			sb2.append("  '" + form.getStartTime2() + "'," + crlf);
+			sb2.append("  '" + form.getEndTime2() + "'," + crlf);
+			sb2.append("  '" + form.getBreakTimeA2() + "'," + crlf);
+			sb2.append("  '" + form.getBreakTimeB2() + "'," + crlf);
+			sb2.append("  '" + form.getVacationDiv2() + "'," + crlf);
+			sb2.append("  '" + form.getRemark2() + "'" + crlf);
+			sb2.append(")" + crlf);
 
-			String query = sb.toString();
+			String query1 = sb1.toString();
+			String query2 = sb2.toString();
 
 			try{
-				dba.executeQuery(query);
+				dba.executeQuery(query1);
+				dba.commit();
+				dba.executeQuery(query2);
 				dba.commit();
 				dba.closeConnection();
 			} catch (SQLException e) {
