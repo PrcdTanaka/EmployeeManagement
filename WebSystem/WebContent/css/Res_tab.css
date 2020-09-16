@@ -47,7 +47,7 @@ document.getElementById(tabname).style.display = 'block';
 // --></script>
 /*タブ切り替え全体のスタイル*/
 .tabs {
-  margin-top: 50px;
+  margin-left: 50px;
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -56,7 +56,7 @@ document.getElementById(tabname).style.display = 'block';
 
 /*タブのスタイル*/
 .tab_item {
-  width: calc(100%/3);
+  width: calc(50%/3);
   height: 50px;
   border-bottom: 3px solid #5ab4bd;
   background-color: #d9d9d9;
