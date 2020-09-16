@@ -13,6 +13,7 @@ import sample.pr.main.AttendanceForm;
 import sample.pr.main.EnterForm;
 import sample.pr.main.KinmuRecordForm;
 import sample.pr.main.KintaiMailForm;
+import sample.pr.main.KintaiNotificationForm;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
 import sample.pr.main.MonthlyReportForm;
@@ -3717,6 +3718,68 @@ public class DbAction extends Object{
 			sb.append("  '" + form.getBreakTimeB() + "'," + crlf);
 			sb.append("  '" + form.getVacationDiv() + "'," + crlf);
 			sb.append("  '" + form.getRemark() + "'" + crlf);
+			sb.append(")" + crlf);
+
+			String query = sb.toString();
+
+			try{
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+
+		}
+		return ret;
+	}
+	//勤怠届画面の入力内容を登録する
+	public boolean KintaiNotification_INSERT(KintaiNotificationForm form){
+		boolean ret = true;
+		//DB接続
+		DbConnector dba = null;
+		try{
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch(IOException e1){
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		if(dba.conSts){
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("INSERT INTO KINTAI_NOTIFICATION_TBL(" + crlf);
+			sb.append("EMPLOYEE_NO," + crlf);
+			sb.append("SYAIN_NAME," + crlf);
+			sb.append("DEPART," + crlf);
+			sb.append("PETITION_YMD," + crlf);
+			sb.append("ATTENDANCE_STARTDAY," + crlf);
+			sb.append("ATTENDANCE_ENDDAY," + crlf);
+			sb.append("ATTENDANCE_STARTTIME," + crlf);
+			sb.append("ATTENDANCE_ENDTIME," + crlf);
+			sb.append("NOTIFICATION_REASON," + crlf);
+			sb.append("VACATION_DIVISION," + crlf);
+			sb.append("TRANSFER_DAY," + crlf);
+			sb.append("SP_HOLIDAY_REASON," + crlf);
+			sb.append("ABSENTEEISM_REASON," + crlf);
+			sb.append("REASON" + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("  '" + form.getEmployee_no() + "'," + crlf);
+			sb.append("  '" + form.getSyain_name() + "'," + crlf);
+			sb.append("  '" + form.getDepart() + "'," + crlf);
+			sb.append("  '" + form.getPetition_ymd() + "'," + crlf);
+			sb.append("  '" + form.getAttendance_startday() + "'," + crlf);
+			sb.append("  '" + form.getAttendance_endday() + "'," + crlf);
+			sb.append("  '" + form.getAttendance_starttime() + "'," + crlf);
+			sb.append("  '" + form.getAttendance_endtime() + "'," + crlf);
+			sb.append("  '" + form.getNotification_reason() + "'," + crlf);
+			sb.append("  '" + form.getVacation_division() + "'," + crlf);
+			sb.append("  '" + form.getTransfer_day() + "'," + crlf);
+			sb.append("  '" + form.getSp_holiday_reason() + "'," + crlf);
+			sb.append("  '" + form.getAbsenteeism_reason() + "'," + crlf);
+			sb.append("  '" + form.getReason() + "'" + crlf);
 			sb.append(")" + crlf);
 
 			String query = sb.toString();
