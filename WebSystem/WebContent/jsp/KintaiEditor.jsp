@@ -6,6 +6,7 @@
 <%@ page import="sample.pr.main.KintaiMailForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.pr.main.MonthlyReportForm"%>
+<%@ page import="sample.pr.main.MonthlyReportAction"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.ArrayList"%>
@@ -71,16 +72,55 @@
 			form.setEmployee_no(lForm.getEmployee_no());
 
 			dba.getMonthly_report(form);
+			List<String> l_CC = form.getCc();
+			List<String> Division = form.getDivision();
 			List<String> Span = form.getSpan();
 			List<String>Span2=form.getSpan2();
+			List<String>Perm=form.getPerm();
 			List<String>Mmdd=form.getMmdd();
 			int listnumber=0;
 		%>
 		<%
+			// 現在のURLを取得して、年月日を切り抜く
+			String Year = "";
+			String Month = "";
+			String Day = "";
 			StringBuffer url = request.getRequestURL();
 			url.append("?").append(request.getQueryString());
 			String MyUrl = url.substring(53);
-			String[] fMyUrl = MyUrl.split("year", 0);
+			String[] fMyUrl = MyUrl.split("year=", 0);
+			String[] fMyUrl2 = fMyUrl[1].split("&month=", 0);
+			Year = fMyUrl2[0];
+			String[] fMyUrl3 = fMyUrl2[1].split("&day=", 0);
+			Month = fMyUrl3[0];
+			Day = fMyUrl3[1];
+
+			int Max_Days = 30;
+			String Zero = "0";
+			boolean val_flg = false;
+			int int_span1_lst = 0;
+		%>
+		<%
+			if(Month.length() == 1)
+			{
+				Month = Zero + Month;
+			}
+			if(Day.length() == 1)
+			{
+				Day = Zero + Day;
+			}
+			String str_Date = Year + Month + Day;
+		%>
+		<%
+			// DBのspan1のデータを配列の要素に格納
+			int kintai_span = 0;
+			String[] kintai_span_lst = new String[Max_Days];
+
+			for(int Target_day = 0; Target_day < Span.size(); Target_day++)
+			{
+				kintai_span_lst[kintai_span] = Span.get(Target_day);
+				kintai_span++;
+			}
 		%>
 		<div>
 		<center>
@@ -97,14 +137,41 @@
 			%>
 		</center>
 		</div>
-
+		<%
+			// 配列の要素に対象期間のspanがあるか確認
+			// 対象期間があれば、DBの情報表示
+			for(int span1_calm = 0; span1_calm < Span.size(); span1_calm++)
+			{
+				// 2回目以降の実施を防ぐガード
+				if(val_flg == true)
+				{
+					break;
+				}
+		%>
+			<%
+				//int int_span1_lst = Integer.parseInt(kintai_span_lst[span1_calm]);
+				if(kintai_span_lst[span1_calm].equals(str_Date))
+				{
+					val_flg = true;
+					int_span1_lst = Integer.parseInt(kintai_span_lst[span1_calm]);
+			%>
 		<p style="margin-left: -44%;">
 		<p align="center" style="margin-left: -45%">
 			宛先:<%=Email%></p>
 
 		<div align="center" class="depert">
 			CC:
-			<%
+			<html:select disabled="true" property="CC" styleId="CC" name="KintaiMailForm"
+				style="font-size:15px;width:60%">
+				<html:option value="" style="text-align:center;"><%=5 %></html:option>
+				<html:option value="1">第一技術部</html:option>
+				<html:option value="2">第二技術部</html:option>
+				<html:option value="3">第三技術部</html:option>
+				<html:option value="4">第四技術部</html:option>
+				<html:option value="5">第五技術部</html:option>
+				<html:option value="6">ソリューション技術部</html:option>
+			</html:select>
+			<%-- <%
 				if(flg == true){
 			%>
 				<html:select property="CC" styleId="CC" name="KintaiMailForm"
@@ -133,7 +200,7 @@
 			</html:select>
 			<%
 				}
-			%>
+			%> --%>
 		</div>
 		<p align="center" class="BCC">
 				BCC:
@@ -213,7 +280,21 @@
 		<div align="center" class="depert2"
 			style="width: 40%; margin-left: 10%">
 			届出区分:
-			<%
+			<html:select disabled="true" property="division" styleId="division" name="KintaiMailForm"
+				style="font-size:15px; width:60%;">
+				<html:option value="" style="text-align:center;"><%=Division.get(span1_calm) %></html:option>
+				<html:option value="1">1,遅刻</html:option>
+				<html:option value="2">2,有給休暇</html:option>
+				<html:option value="3">4,振替休暇</html:option>
+				<html:option value="4">5,特別休暇</html:option>
+				<html:option value="5">6,シフト勤務</html:option>
+				<html:option value="6">7,早退,その他</html:option>
+				<html:option value="7">8,交通遅延</html:option>
+				<html:option value="8">9,欠席</html:option>
+				<html:option value="9">A,深夜作業</html:option>
+				<html:option value="10">B,休日出勤(振)</html:option>
+			</html:select>
+<%-- 			<%
 				if(flg == true){
 			%>
 			<html:select property="division" styleId="division" name="KintaiMailForm"
@@ -233,28 +314,16 @@
 			<%
 				}
 				else{
-			%>
-			<html:select disabled="true" property="division" styleId="division" name="KintaiMailForm"
-				style="font-size:15px; width:60%;">
-				<html:option value="" style="text-align:center;">選択</html:option>
-				<html:option value="1">1,遅刻</html:option>
-				<html:option value="2">2,有給休暇</html:option>
-				<html:option value="3">4,振替休暇</html:option>
-				<html:option value="4">5,特別休暇</html:option>
-				<html:option value="5">6,シフト勤務</html:option>
-				<html:option value="6">7,早退,その他</html:option>
-				<html:option value="7">8,交通遅延</html:option>
-				<html:option value="8">9,欠席</html:option>
-				<html:option value="9">A,深夜作業</html:option>
-				<html:option value="10">B,休日出勤(振)</html:option>
-			</html:select>
-			<%
+			%> --%>
+			<%--
 				}
-			%>
+			--%>
 		</div>
 		<p align="center" class="code" style="margin-left: -6%">
 			対象日付/期間(開始)：
-			<%
+			<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=kintai_span_lst[span1_calm]%>" />
+
+			<%-- <%
 				if(flg == true){
 			%>
 				<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
@@ -265,9 +334,10 @@
 				<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
 			<%
 				}
-			%>
+			%> --%>
 			～対象日付/期間(終了)：
-			<%
+				<html:text disabled="true" property="span2" size="20" maxlength="8" style="width: 17%" value="<%=Span2.get(span1_calm) %>" />
+			<%-- <%
 				if(flg == true){
 			%>
 				<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
@@ -278,7 +348,7 @@
 				<html:text disabled="true" property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
 			<%
 				}
-			%>
+			%> --%>
 			<p style="color:red;margin-left: 12%">例) 2020年9月1日～2020年9月3日 → 20200901～20200903
 		</p>
 		<p align="center" class="code" style="margin-left: -43%">
@@ -330,6 +400,12 @@
 			%>
 			<p style="color:red;margin-left: 17%">※ 届出区分がA,Bの場合、姓のみ記載
 		</p>
+			<%
+				}
+			%>
+		<%
+			}
+		%>
 <%--
 		<div>
 			<html:submit property="button" styleClass="btn" value="送信"
@@ -341,8 +417,6 @@
 			<li><a class="btn1" href="javascript:history.back()" >戻る</a></li>
 		</ul>
 		</div>
-		<%=fMyUrl[0] %>
-
 	</html:form>
 </body>
 </html:html>
