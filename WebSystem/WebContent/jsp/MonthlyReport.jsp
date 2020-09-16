@@ -39,6 +39,10 @@
         List<String>Send_Time=form.getSend_Time();
         List<String> spotcode =form.getSpotcode();
 
+
+        String link1 = "http://localhost:8080/WebSystem/KintaiListAction.do";
+
+
         //spanを配列へ入れる
         int listspan=0;
         String []kintai_s=new String[30];
