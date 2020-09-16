@@ -100,7 +100,7 @@
 
 <div class="tabs">
   <input id="all" type="radio" name="tab_item" checked>
-  <label class="tab_item" for="all">2F</label>
+  <label class="tab_item" for="all" style = "margin-left: 15%">2F</label>
   <input id="programming" type="radio" name="tab_item">
   <label class="tab_item" for="programming">3F</label>
   <input id="design" type="radio" name="tab_item">
@@ -552,7 +552,6 @@
 				<td>21:30</td>
 				</tr>
 			</table>
-      </p>
     </div>
   </div>
   <div class="tab_content" id="programming_content">
@@ -610,345 +609,398 @@
 					 }%>
 
 
+				<tr>
+				<td>8:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日8:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
+					}%>
+				<td>8:00</td>
 				</tr>
 				<tr>
-					<td>8:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>8:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日8:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>8:00</td>
+				<td>8:30</td>
 				</tr>
 				<tr>
-					<td>8:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>9:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日9:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>8:30</td>
+				<td>9:00</td>
 				</tr>
 				<tr>
-					<td>9:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>9:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日9:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>9:00</td>
+				<td>9:30</td>
 				</tr>
 				<tr>
-					<td>9:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>10:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日10:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>9:30</td>
+				<td>10:00</td>
 				</tr>
 				<tr>
-					<td>10:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>10:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日10:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>10:00</td>
+				<td>10:30</td>
 				</tr>
 				<tr>
-					<td>10:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>11:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日11:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>10:30</td>
+				<td>11:00</td>
 				</tr>
 				<tr>
-					<td>11:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>11:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日11:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>11:00</td>
+				<td>11:30</td>
 				</tr>
 				<tr>
-					<td>11:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>12:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日12:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>11:30</td>
+				<td>12:00</td>
 				</tr>
 				<tr>
-					<td>12:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>12:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日12:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>12:00</td>
+				<td>12:30</td>
 				</tr>
 				<tr>
-					<td>12:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>13:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日13:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>12:30</td>
+				<td>13:00</td>
 				</tr>
 				<tr>
-					<td>13:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>13:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日13:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>13:00</td>
+				<td>13:30</td>
 				</tr>
 				<tr>
-					<td>13:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>14:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日14:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>13:30</td>
+				<td>14:00</td>
 				</tr>
 				<tr>
-					<td>14:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>14:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日14:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>14:00</td>
+				<td>14:30</td>
 				</tr>
 				<tr>
-					<td>14:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>15:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日15:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>14:30</td>
+				<td>15:00</td>
 				</tr>
 				<tr>
-					<td>15:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>15:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日15:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>15:00</td>
+				<td>15:30</td>
 				</tr>
 				<tr>
-					<td>15:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>16:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日16:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>15:30</td>
+				<td>16:00</td>
 				</tr>
 				<tr>
-					<td>16:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>16:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日16:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>16:00</td>
+				<td>16:30</td>
 				</tr>
 				<tr>
-					<td>16:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>17:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日17:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>16:30</td>
+				<td>17:00</td>
 				</tr>
 				<tr>
-					<td>17:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>17:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日17:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>17:00</td>
+				<td>17:30</td>
 				</tr>
 				<tr>
-					<td>17:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>18:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日18:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>17:30</td>
+				<td>18:00</td>
 				</tr>
 				<tr>
-					<td>18:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>18:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日18:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>18:00</td>
+				<td>18:30</td>
 				</tr>
 				<tr>
-					<td>18:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>19:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日19:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>18:30</td>
+				<td>19:00</td>
 				</tr>
 				<tr>
-					<td>19:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>19:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日19:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>19:00</td>
+				<td>19:30</td>
 				</tr>
 				<tr>
-					<td>19:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>20:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日20:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>19:30</td>
+				<td>20:00</td>
 				</tr>
 				<tr>
-					<td>20:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>20:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日20:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>20:00</td>
+				<td>20:30</td>
+				<tr>
+				<td>21:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日21:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
+					}%>
+				<td>21:00</td>
 				</tr>
 				<tr>
-					<td>20:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>21:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日21:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>20:30</td>
-				</tr>
-				<tr>
-					<td>21:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
-					}%>
-					<td>21:00</td>
-				</tr>
-				<tr>
-					<td>21:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
-					}%>
-					<td>21:30</td>
+				<td>21:30</td>
 				</tr>
 			</table>
-      </p>
     </div>
   </div>
   <div class="tab_content" id="design_content">
@@ -1008,343 +1060,397 @@
 
 				</tr>
 				<tr>
-					<td>8:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>8:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日8:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>8:00</td>
+				<td>8:00</td>
 				</tr>
 				<tr>
-					<td>8:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>8:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日8:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>8:30</td>
+				<td>8:30</td>
 				</tr>
 				<tr>
-					<td>9:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>9:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日9:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>9:00</td>
+				<td>9:00</td>
 				</tr>
 				<tr>
-					<td>9:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>9:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日9:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>9:30</td>
+				<td>9:30</td>
 				</tr>
 				<tr>
-					<td>10:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>10:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日10:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>10:00</td>
+				<td>10:00</td>
 				</tr>
 				<tr>
-					<td>10:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>10:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日10:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>10:30</td>
+				<td>10:30</td>
 				</tr>
 				<tr>
-					<td>11:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>11:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日11:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>11:00</td>
+				<td>11:00</td>
 				</tr>
 				<tr>
-					<td>11:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>11:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日11:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>11:30</td>
+				<td>11:30</td>
 				</tr>
 				<tr>
-					<td>12:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>12:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日12:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>12:00</td>
+				<td>12:00</td>
 				</tr>
 				<tr>
-					<td>12:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>12:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日12:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>12:30</td>
+				<td>12:30</td>
 				</tr>
 				<tr>
-					<td>13:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>13:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日13:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>13:00</td>
+				<td>13:00</td>
 				</tr>
 				<tr>
-					<td>13:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>13:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日13:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>13:30</td>
+				<td>13:30</td>
 				</tr>
 				<tr>
-					<td>14:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>14:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日14:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>14:00</td>
+				<td>14:00</td>
 				</tr>
 				<tr>
-					<td>14:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>14:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日14:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>14:30</td>
+				<td>14:30</td>
 				</tr>
 				<tr>
-					<td>15:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>15:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日15:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>15:00</td>
+				<td>15:00</td>
 				</tr>
 				<tr>
-					<td>15:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>15:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日15:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>15:30</td>
+				<td>15:30</td>
 				</tr>
 				<tr>
-					<td>16:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>16:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日16:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>16:00</td>
+				<td>16:00</td>
 				</tr>
 				<tr>
-					<td>16:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>16:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日16:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>16:30</td>
+				<td>16:30</td>
 				</tr>
 				<tr>
-					<td>17:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>17:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日17:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>17:00</td>
+				<td>17:00</td>
 				</tr>
 				<tr>
-					<td>17:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>17:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日17:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>17:30</td>
+				<td>17:30</td>
 				</tr>
 				<tr>
-					<td>18:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>18:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日18:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>18:00</td>
+				<td>18:00</td>
 				</tr>
 				<tr>
-					<td>18:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>18:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日18:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>18:30</td>
+				<td>18:30</td>
 				</tr>
 				<tr>
-					<td>19:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>19:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日19:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>19:00</td>
+				<td>19:00</td>
 				</tr>
 				<tr>
-					<td>19:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>19:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日19:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>19:30</td>
+				<td>19:30</td>
 				</tr>
 				<tr>
-					<td>20:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>20:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日20:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>20:00</td>
+				<td>20:00</td>
 				</tr>
 				<tr>
-					<td>20:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>20:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日20:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>20:30</td>
+				<td>20:30</td>
+				<tr>
+				<td>21:00</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日21:00に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
+					}%>
+				<td>21:00</td>
 				</tr>
 				<tr>
-					<td>21:00</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
+				<td>21:30</td>
+				<%for(int i= 0;i<7;i++){
+						for(int j=0 ;i<7;i++){
+							if(rForm.getMmdd()==null){%>
+								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日21:30に予約しますか？');">○</a></td>
+							<% }else{%>
+								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
+							<%}
+							dayalert = cal.get(Calendar.DATE);
+						}
 					}%>
-					<td>21:00</td>
-				</tr>
-				<tr>
-					<td>21:30</td>
-					<%
-					for(int i= 0;i<7;i++){
-						if(rForm.getMmdd()==null){%>
-							<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('予約しますか？');">○</a></td>
-						<%}else{ %>
-							<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
-						<%}
-					}%>
-					<td>21:30</td>
+				<td>21:30</td>
 				</tr>
 			</table>
-      </p>
     </div>
   </div>
 </div>
