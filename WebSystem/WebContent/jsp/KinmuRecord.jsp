@@ -33,16 +33,25 @@
 			String employeeName = "";
 			String employeeDivNum = "";
 			//フォームクラスからゲッターで取得するもの
-			String kintaiYMD = kinmuRF.getKintaiYMD();
-			String holidayDiv = kinmuRF.getHolidayDiv();
-			String startTime = kinmuRF.getStartTime();
-			String endTime = kinmuRF.getEndTime();
-			String breakTimeA = kinmuRF.getBreakTimeA();
-			String breakTimeB = kinmuRF.getBreakTimeB();
-			String vacationDiv = kinmuRF.getVacationDiv();
-			String remark = kinmuRF.getRemark();
+			String kintaiYMD1 = kinmuRF.getKintaiYMD1();
+			String kintaiYMD2 = kinmuRF.getKintaiYMD2();
+			String holidayDiv1 = kinmuRF.getHolidayDiv1();
+			String holidayDiv2 = kinmuRF.getHolidayDiv2();
+			String startTime1 = kinmuRF.getStartTime1();
+			String startTime2 = kinmuRF.getStartTime2();
+			String endTime1 = kinmuRF.getEndTime1();
+			String endTime2 = kinmuRF.getEndTime2();
+			String breakTimeA1 = kinmuRF.getBreakTimeA1();
+			String breakTimeA2 = kinmuRF.getBreakTimeA2();
+			String breakTimeB1 = kinmuRF.getBreakTimeB1();
+			String breakTimeB2 = kinmuRF.getBreakTimeB2();
+			String vacationDiv1 = kinmuRF.getVacationDiv1();
+			String vacationDiv2 = kinmuRF.getVacationDiv2();
+			String remark1 = kinmuRF.getRemark1();
+			String remark2 = kinmuRF.getRemark2();
 			String button = kinmuRF.getButton();
 			String message = kinmuRF.getMessage();
+
 
 			//ログインユーザーの社員番号と名前を取得して変数に代入
 			try{
@@ -146,20 +155,20 @@
 
 			<%-- 修正後の勤務管理表 --%>
 
-				<% for(int i=1; i<=31; i++) {
+				<% for(int i=1; i<=2; i++) {
 					//指定した年月日が何曜日なのかを表示する用
 					LocalDate date = LocalDate.of(2020, 8, i);
 					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
 					//各入力フォームのstyleIdは以下を指定する
-					String holidayDivId = "holidayDiv" + String.valueOf(i);
-					String startTimeId = "startTime" + String.valueOf(i);
-					String endTimeId = "endTime" + String.valueOf(i);
-					String expectationId = "expectation" + String.valueOf(i);
-					String breakTimeAId = "breakTimeA" + String.valueOf(i);
-					String breakTimeBId = "breakTimeB" + String.valueOf(i);
-					String vacationDivId = "vacationDiv" + String.valueOf(i);
-					String remarkId = "remark" + String.valueOf(i);
-					%>
+					String holidayDivPro = "holidayDiv" + String.valueOf(i);
+					String startTimePro = "startTime" + String.valueOf(i);
+					String endTimePro = "endTime" + String.valueOf(i);
+					String expectationPro = "expectation" + String.valueOf(i);
+					String breakTimeAPro = "breakTimeA" + String.valueOf(i);
+					String breakTimeBPro = "breakTimeB" + String.valueOf(i);
+					String vacationDivPro = "vacationDiv" + String.valueOf(i);
+					String remarkPro = "remark" + String.valueOf(i);
+				%>
 				<tr>
 					<%-- 日にち --%>
 					<td width="7px"><%= i %></td>
@@ -169,7 +178,7 @@
 
 					<%-- 休/祝 --%>
 					<td width="7px">
-						<html:select property="holidayDiv" styleId="<%= holidayDivId %>" name="KinmuRecordForm">
+						<html:select property="<%= holidayDivPro %>" styleId="<%= holidayDivPro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="1">休</html:option>
 							<html:option value="2">祝</html:option>
@@ -178,7 +187,7 @@
 
 					<%-- 出社時間 --%>
 					<td width="7px">
-						<html:select property="startTime" styleId="<%= startTimeId %>" name="KinmuRecordForm">
+						<html:select property="<%= startTimePro %>" styleId="<%= startTimePro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
 							<html:option value="0015">0:15</html:option>
@@ -281,7 +290,7 @@
 
 					<%-- 退社時間 --%>
 					<td width="7px">
-						<html:select property="endTime" styleId="<%= endTimeId %>" name="KinmuRecordForm">
+						<html:select property="<%= endTimePro %>" styleId="<%= startTimePro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
 							<html:option value="0015">0:15</html:option>
@@ -384,7 +393,7 @@
 
 					<%-- 予定 --%>
 					<td width="7px">
-						<html:select property="expectation" styleId="<%= expectationId %>" name="KinmuRecordForm">
+						<html:select property="<%= expectationPro %>" styleId="<%= expectationPro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0800">8:00</html:option>
 						</html:select>
@@ -392,7 +401,7 @@
 
 					<%-- 休A --%>
 					<td width="7px">
-						<html:select property="breakTimeA" styleId="<%= breakTimeAId %>" name="KinmuRecordForm">
+						<html:select property="<%= breakTimeAPro %>" styleId="<%= breakTimeAPro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
 							<html:option value="0015">0:15</html:option>
@@ -416,7 +425,7 @@
 
 					<%-- 休B --%>
 					<td width="7px">
-						<html:select property="breakTimeB" styleId="<%= breakTimeBId %>" name="KinmuRecordForm">
+						<html:select property="<%= breakTimeBPro %>" styleId="<%= breakTimeBPro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
 							<html:option value="0015">0:15</html:option>
@@ -440,12 +449,12 @@
 
 					<%-- 休暇区分 --%>
 					<td width="22%">
-						<html:radio property="vacationDiv" styleId="<%= vacationDivId %>" value=""/>該当なし
-						<html:radio property="vacationDiv" styleId="<%= vacationDivId %>" value="1" />有休/リフ休
-						<html:radio property="vacationDiv" styleId="<%= vacationDivId %>" value="2" />遅/早
-						<html:radio property="vacationDiv" styleId="<%= vacationDivId %>" value="3" />振休
-						<html:radio property="vacationDiv" styleId="<%= vacationDivId %>" value="4" />特休
-						<html:radio property="vacationDiv" styleId="<%= vacationDivId %>" value="5" />欠勤
+						<html:radio property="<%= vacationDivPro %>" styleId="<%= vacationDivPro %>" value=""/>該当なし
+						<html:radio property="<%= vacationDivPro %>" styleId="<%= vacationDivPro %>" value="1" />有休/リフ休
+						<html:radio property="<%= vacationDivPro %>" styleId="<%= vacationDivPro %>" value="2" />遅/早
+						<html:radio property="<%= vacationDivPro %>" styleId="<%= vacationDivPro %>" value="3" />振休
+						<html:radio property="<%= vacationDivPro %>" styleId="<%= vacationDivPro %>" value="4" />特休
+						<html:radio property="<%= vacationDivPro %>" styleId="<%= vacationDivPro %>" value="5" />欠勤
 					</td>
 
 					<%-- 実働 --%>
@@ -456,7 +465,7 @@
 					</td>
 
 					<%-- 備考 --%>
-					<td width="20%"><html:text property="remark" styleId="<%= remarkId %>" size="30" maxlength="50" /></td>
+					<td width="20%"><html:text property="<%= remarkPro %>" styleId="<%= remarkPro %>" size="30" maxlength="50" /></td>
 				</tr>
 				<% }%>
 			</table>
