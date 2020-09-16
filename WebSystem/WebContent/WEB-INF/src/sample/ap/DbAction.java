@@ -3616,6 +3616,8 @@ public class DbAction extends Object{
 			sb.append("SELECT "+crlf);
 			sb.append("SPAN,"+crlf);
 			sb.append("SPAN2,"+crlf);
+			sb.append("CC,"+crlf);
+			sb.append("BCC," + crlf);
 			sb.append("DIVISION,"+crlf);
 			sb.append("MMDD,"+crlf);
 			sb.append("SPOTCODE,"+crlf);
@@ -3633,6 +3635,8 @@ public class DbAction extends Object{
 			List<String> columnList = new ArrayList<String>();
 			columnList.add("SPAN");
 			columnList.add("SPAN2");
+			columnList.add("CC");
+			columnList.add("BCC");
 			columnList.add("DIVISION");
 			columnList.add("MMDD");
 			columnList.add("SPOTCODE");
@@ -3660,6 +3664,8 @@ public class DbAction extends Object{
 				for (Map<String, String> val : rsList) {
 					form.setSpan(val.get("SPAN"));
 					form.setSpan2(val.get("SPAN2"));
+					form.setCc(val.get("CC"));
+					form.setBcc(val.get("BCC"));
 					form.setDivision(val.get("DIVISION"));
 					form.setMmdd(val.get("MMDD"));
 					form.setSpotcode(val.get("SPOTCODE"));
