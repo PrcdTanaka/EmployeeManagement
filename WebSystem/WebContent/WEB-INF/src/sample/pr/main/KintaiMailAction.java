@@ -48,7 +48,6 @@ public class KintaiMailAction extends Action {
 				if ((((form.getCC().equals("") || form.getSpotcode().equals("")
 						|| form.getDivision().equals("")
 						|| form.getSpan().equals("")
-						|| form.getPtime().equals("")
 						|| form.getRemark().equals("")
 						|| form.getDepart().equals("")
 						|| form.getSpan2().equals(""))))
@@ -56,6 +55,9 @@ public class KintaiMailAction extends Action {
 						|| !(form.getSpan2().equals(form.getSpan2()))){
 					session.setAttribute("form", form);
 					forward = "kintaimail";
+				//	request.setAttribute("errowMsg", "必須項目を入力してください");
+				//	String errorMsg=(String)request.getAttribute("errorMsg");
+				//	JOptionPane.showMessageDialog(null, errorMsg);
 				}else{
 					session.setAttribute("form", form);
 					dba.setKintaiInfo(form, lForm);
