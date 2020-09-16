@@ -632,11 +632,10 @@
 					</td>
 
 					<%-- 予定 --%>
-					<td width="7px">
-						<html:select property="<%= expectationPro %>" styleId="<%= expectationPro %>" name="KinmuRecordForm">
-							<html:option value="" style="text-align:center;">-</html:option>
-							<html:option value="0800">8:00</html:option>
-						</html:select>
+					<td width="4%">
+					<% if(!(JapaneseDate.from(date).format(fmt).equals("土")) && !(JapaneseDate.from(date).format(fmt).equals("日"))) { %>
+						8:00
+					<% } %>
 					</td>
 
 					<%-- 休A --%>
