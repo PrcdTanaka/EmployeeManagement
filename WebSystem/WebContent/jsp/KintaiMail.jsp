@@ -45,7 +45,7 @@
 					String division = Form.getDivision();
 					String bcc = Form.getBcc();
 					String spotcode = Form.getSpotcode();
-					String span = Form.getSpan();
+				    String span = Form.getSpan();
 					String span2 = Form.getSpan2();
 					String ptime = Form.getPtime();
 					String remark = Form.getRemark();
@@ -55,6 +55,54 @@
 						name = s.getEmployee_name();
 					} catch (Exception e) {
 					}
+		%>
+		<%
+			// 現在のURLを取得して、年月日を切り抜く
+			boolean Url_Flg = false;	// 遷移元確認フラグ false:カレンダー true:ボタン
+			String Year = "";
+			String Month = "";
+			String Day = "";
+			String str_Date = "";
+			String Zero = "0";
+			StringBuffer url = request.getRequestURL();
+			url.append("?").append(request.getQueryString());
+			String MyUrl = url.substring(51);
+			if(MyUrl.equals("null"))
+			{
+				Url_Flg = true;
+			}
+
+			// カレンダーから呼ばれたときに表示する年月日を作成
+			if(Url_Flg == false)
+			{
+				String[] lMyUrl1 = new String[1];
+				lMyUrl1 = MyUrl.split("year=", 0);
+				String[] lMyUrl2 = new String[1];
+				if(lMyUrl1[0].equals("year="))
+				{
+					lMyUrl2 = lMyUrl1[1].split("&month=", 0);
+					Year = lMyUrl2[0];
+					String[] lMyUrl3 = new String[1];
+					lMyUrl3 = lMyUrl2[1].split("&day=", 0);
+					Month = lMyUrl3[0];
+					Day = lMyUrl3[1];
+
+					if(Month.length() == 1)
+					{
+						Month = Zero + Month;
+					}
+					if(Day.length() == 1)
+					{
+						Day = Zero + Day;
+					}
+					str_Date = Year + Month + Day;
+				}
+				else
+				{
+					Url_Flg = true;
+				}
+
+			}
 		%>
 		<div>
 			<center>
@@ -128,7 +176,20 @@
 			</html:select>
 		</div>
 		<p align="center" class="code" style="margin-left: -6%">
-			対象日付/期間(開始)：<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
+			対象日付/期間(開始)：
+			<%
+				// カレンダーから呼ばれた時は対象日付(開始)に、カレンダーの値を入れる
+				if(Url_Flg == false){
+			%>
+				<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=str_Date%>" />
+			<%
+				}
+				else if(Url_Flg == true){
+			%>
+				<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
+			<%
+				}
+			%>
 			～対象日付/期間(終了)：<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
 			<p style="color:red;margin-left: 12%">例) 2020年9月1日～2020年9月3日 → 20200901～20200903
 		</p>
@@ -158,7 +219,6 @@
 		</div>
 
 		<a href="mailto:hello@example.com?cc=mana@example.com&?subject=Hello">お問い合わせ</a>
-
 
 	</html:form>
 </body>

@@ -36,6 +36,7 @@ public class KintaiMailAction extends Action {
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		form.setEmployee_no(lForm.getEmployee_no());
+		form.setEmployee_name(lForm.getEmployee_name());
 		forward = "kintaimail";
 		String button = form.getButton();
 		try {
@@ -44,27 +45,32 @@ public class KintaiMailAction extends Action {
 				session.removeAttribute("form");
 			}
 			if (button.equals("送信")) {
-				if ((form.getCC().equals("") || form.getSpotcode().equals("")
+				if ((((form.getCC().equals("") || form.getSpotcode().equals("")
 						|| form.getDivision().equals("")
 						|| form.getSpan().equals("")
-						|| form.getPtime().equals("")
 						|| form.getRemark().equals("")
-						|| form.getDepart().equals("") || form.getSpan2()
-						.equals(""))) {
-					form.setMessage("必須項目を入力してください");
-					// JOptionPane.showMessageDialog(null,"必須項目を入力してください" );
-					forward = "kintaimail";
-				} else {
-					forward = "kintaimail";
-					dba.setKintaiInfo(form, lForm);
+						|| form.getDepart().equals("")
+						|| form.getSpan2().equals(""))))
+						|| !(form.getSpan().equals(form.getSpan()))
+						|| !(form.getSpan2().equals(form.getSpan2()))){
 					session.setAttribute("form", form);
+					forward = "kintaimail";
+				//	request.setAttribute("errowMsg", "必須項目を入力してください");
+				//	String errorMsg=(String)request.getAttribute("errorMsg");
+				//	JOptionPane.showMessageDialog(null, errorMsg);
+				}else{
+					session.setAttribute("form", form);
+					dba.setKintaiInfo(form, lForm);
+					response.sendRedirect("http://localhost:8080/WebSystem/jsp/login.jsp");
+					session.removeAttribute("form");
 					// JOptionPane.showMessageDialog(null,"送信しました");
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.removeAttribute("form");
+//		session.removeAttribute("form");
 		return map.findForward(forward);
+
 	}
 }
