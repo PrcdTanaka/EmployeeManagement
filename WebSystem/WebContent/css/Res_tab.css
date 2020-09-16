@@ -50,7 +50,7 @@ document.getElementById(tabname).style.display = 'block';
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 700px;
+  width: 300px;
   margin: 0 auto;}
 
 /*タブのスタイル*/
