@@ -73,6 +73,7 @@
 
 			dba.getMonthly_report(form);
 			List<String> l_CC = form.getCc();
+			List<String> l_BCC = form.getBcc();
 			List<String> Division = form.getDivision();
 			List<String> Span = form.getSpan();
 			List<String>Span2=form.getSpan2();
@@ -163,7 +164,7 @@
 			CC:
 			<html:select disabled="true" property="CC" styleId="CC" name="KintaiMailForm"
 				style="font-size:15px;width:60%">
-				<html:option value="" style="text-align:center;"><%=5 %></html:option>
+				<html:option value="" style="text-align:center;"><%=l_CC.get(span1_calm) %></html:option>
 				<html:option value="1">第一技術部</html:option>
 				<html:option value="2">第二技術部</html:option>
 				<html:option value="3">第三技術部</html:option>
@@ -213,7 +214,7 @@
 					}
 					else{
 				%>
-					<html:text disabled="true" property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=bcc%>" />
+					<html:text disabled="true" property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(span1_calm) %>" />
 				<%
 					}
 				%>
