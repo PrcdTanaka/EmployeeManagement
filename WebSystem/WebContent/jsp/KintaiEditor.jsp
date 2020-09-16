@@ -117,8 +117,11 @@
 
 			int Max_Days = 30;
 			String Zero = "0";
-			boolean val_flg = false;
+			boolean val_flg = false; //確認フラグ
+			boolean chk_flg = false;
 			int int_span1_lst = 0;
+			int dayss = 0;
+			//int save_val = 0;
 		%>
 		<%
 			if(Month.length() == 1)
@@ -142,21 +145,7 @@
 				kintai_span++;
 			}
 		%>
-		<div>
-		<center>
-			<%
-				if(flg == false){
-			%>
-				<h1>勤怠画面</h1>
-			<%
-				}else{
-			%>
-				<h1>勤怠編集画面</h1>
-			<%
-				}
-			%>
-		</center>
-		</div>
+
 		<%
 			// 配列の要素に対象期間のspanがあるか確認
 			// 対象期間があれば、DBの情報表示
@@ -173,313 +162,296 @@
 				if(kintai_span_lst[span1_calm].equals(str_Date))
 				{
 					val_flg = true;
+					//save_val = span1_calm;
 					int_span1_lst = Integer.parseInt(kintai_span_lst[span1_calm]);
 			%>
-		<p style="margin-left: -44%;">
-		<p align="center" style="margin-left: -45%">
-			宛先:<%=Email%></p>
-
-		<div align="center" class="depert">
-			CC:
 			<%
-				String CC_Add = "";
-				switch(l_CC.get(span1_calm))
+				dayss = now_days - int_span1_lst;
+				if(dayss <= 7)
 				{
-					case "1group_admin.ml@procd-k.co.jp" :
-						CC_Add = "第一技術部";
-						break;
-
-					case "2group_admin.ml@procd-k.co.jp" :
-						CC_Add = "第二技術部";
-						break;
-
-					case "3group_admin.ml@procd-k.co.jp" :
-						CC_Add = "第三技術部";
-						break;
-
-					case "4group_admin.ml@procd-k.co.jp" :
-						CC_Add = "第四技術部";
-						break;
-
-					case "5group_admin.ml@procd-k.co.jp" :
-						CC_Add = "第五技術部";
-						break;
-
-					case "solution_admin@procd-k.co.jp" :
-						CC_Add = "ソリューション技術部";
-						break;
-
-					default :
-						CC_Add = "";
-						break;
+					chk_flg = true;
+				}
+				else
+				{
+					chk_flg = false;
 				}
 			%>
-			<html:select disabled="true" property="CC" styleId="CC" name="KintaiMailForm"
-				style="font-size:15px;width:60%">
-				<html:option value="" style="text-align:center;"><%=CC_Add %></html:option>
-				<html:option value="1">第一技術部</html:option>
-				<html:option value="2">第二技術部</html:option>
-				<html:option value="3">第三技術部</html:option>
-				<html:option value="4">第四技術部</html:option>
-				<html:option value="5">第五技術部</html:option>
-				<html:option value="6">ソリューション技術部</html:option>
-			</html:select>
-			<%-- <%
-				if(flg == true){
-			%>
-				<html:select property="CC" styleId="CC" name="KintaiMailForm"
-				style="font-size:15px;width:60%">
-				<html:option value="" style="text-align:center;">選択</html:option>
-				<html:option value="1">第一技術部</html:option>
-				<html:option value="2">第二技術部</html:option>
-				<html:option value="3">第三技術部</html:option>
-				<html:option value="4">第四技術部</html:option>
-				<html:option value="5">第五技術部</html:option>
-				<html:option value="6">ソリューション技術部</html:option>
-			</html:select>
-			<%
-				}
-				else{
-			%>
-				<html:select disabled="true" property="CC" styleId="CC" name="KintaiMailForm"
-				style="font-size:15px;width:60%">
-				<html:option value="" style="text-align:center;">選択</html:option>
-				<html:option value="1">第一技術部</html:option>
-				<html:option value="2">第二技術部</html:option>
-				<html:option value="3">第三技術部</html:option>
-				<html:option value="4">第四技術部</html:option>
-				<html:option value="5">第五技術部</html:option>
-				<html:option value="6">ソリューション技術部</html:option>
-			</html:select>
-			<%
-				}
-			%> --%>
-		</div>
-		<p align="center" class="BCC">
-				BCC:
-				<html:text disabled="true" property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(span1_calm) %>" />
-
-<%-- 				<%
-					if(flg == true){
+			<div>
+			<center>
+				<%
+					if(chk_flg == false){
 				%>
-					<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=bcc%>" />
+					<h1>勤怠画面</h1>
+				<%
+					}else{
+				%>
+					<h1>勤怠編集画面</h1>
 				<%
 					}
-					else{
+				%>
+			</center>
+			</div>
+			<p style="margin-left: -44%;">
+			<p align="center" style="margin-left: -45%">
+				宛先:<%=Email%></p>
+
+			<div align="center" class="depert">
+				CC:
+				<%
+					String CC_Add = "";
+					switch(l_CC.get(span1_calm))
+					{
+						case "1group_admin.ml@procd-k.co.jp" :
+							CC_Add = "第一技術部";
+							break;
+
+						case "2group_admin.ml@procd-k.co.jp" :
+							CC_Add = "第二技術部";
+							break;
+
+						case "3group_admin.ml@procd-k.co.jp" :
+							CC_Add = "第三技術部";
+							break;
+
+						case "4group_admin.ml@procd-k.co.jp" :
+							CC_Add = "第四技術部";
+							break;
+
+						case "5group_admin.ml@procd-k.co.jp" :
+							CC_Add = "第五技術部";
+							break;
+
+						case "solution_admin@procd-k.co.jp" :
+							CC_Add = "ソリューション技術部";
+							break;
+
+						default :
+							CC_Add = "";
+							break;
+					}
+				%>
+				<%
+					if(chk_flg == false){
+				%>
+					<html:select disabled="true" property="CC" styleId="CC" name="KintaiMailForm"
+						style="font-size:15px;width:60%">
+						<html:option value="" style="text-align:center;"><%=CC_Add %></html:option>
+					</html:select>
+				<%
+					}
+					else if(chk_flg == true){
+				%>
+					<html:select property="CC" styleId="CC" name="KintaiMailForm"
+						style="font-size:15px;width:60%">
+						<html:option value="" style="text-align:center;"><%=CC_Add %></html:option>
+						<html:option value="1">第一技術部</html:option>
+						<html:option value="2">第二技術部</html:option>
+						<html:option value="3">第三技術部</html:option>
+						<html:option value="4">第四技術部</html:option>
+						<html:option value="5">第五技術部</html:option>
+						<html:option value="6">ソリューション技術部</html:option>
+					</html:select>
+				<%
+					}
+				%>
+			</div>
+			<p align="center" class="BCC">
+				BCC:
+				<%
+					if(chk_flg == false){
 				%>
 					<html:text disabled="true" property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(span1_calm) %>" />
 				<%
 					}
-				%> --%>
+					else if(chk_flg == true){
+				%>
+					<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(span1_calm) %>" />
+				<%
+					}
+				%>
 				<p style="color:red;margin-left: 17%">※ 任意で入力
-		</p>
+			</p>
 
-		<div align="center" class="depert2"
-			style="margin-top: 50px; width: 40%; margin-left: 10%;">
-			所属部署:
-			<%
-				if(flg == true){
-			%>
-			<html:select property="depart" styleId="depart" name="KintaiMailForm"
-				style="font-size:15px; width:60%;">
-				<html:option value="" style="text-align:center;">選択</html:option>
-				<html:option value="1">第一技術部</html:option>
-				<html:option value="2">第二技術部</html:option>
-				<html:option value="3">第三技術部</html:option>
-				<html:option value="4">第四技術部</html:option>
-				<html:option value="5">第五技術部</html:option>
-				<html:option value="6">ソリューション技術部</html:option>
-			</html:select>
-			<%
-				}
-				else{
-			%>
-			<html:select disabled="true" property="depart" styleId="depart" name="KintaiMailForm"
-				style="font-size:15px; width:60%;">
-				<html:option value="" style="text-align:center;"><%=Depart.get(span1_calm) %> </html:option>
-				<html:option value="1">第一技術部</html:option>
-				<html:option value="2">第二技術部</html:option>
-				<html:option value="3">第三技術部</html:option>
-				<html:option value="4">第四技術部</html:option>
-				<html:option value="5">第五技術部</html:option>
-				<html:option value="6">ソリューション技術部</html:option>
-			</html:select>
-			<%
-				}
-			%>
-		</div>
+			<div align="center" class="depert2"
+				style="margin-top: 50px; width: 40%; margin-left: 10%;">
+				所属部署:
+				<%
+					if(chk_flg == false){
+				%>
+					<html:select disabled="true" property="depart" styleId="depart" name="KintaiMailForm"
+						style="font-size:15px; width:60%;">
+						<html:option value="" style="text-align:center;"><%=Depart.get(span1_calm) %></html:option>
+					</html:select>
+				<%
+					}
+					else if(chk_flg == true){
+				%>
+					<html:select property="depart" styleId="depart" name="KintaiMailForm"
+						style="font-size:15px; width:60%;">
+						<html:option value="" style="text-align:center;"><%=Depart.get(span1_calm) %></html:option>
+						<html:option value="1">第一技術部</html:option>
+						<html:option value="2">第二技術部</html:option>
+						<html:option value="3">第三技術部</html:option>
+						<html:option value="4">第四技術部</html:option>
+						<html:option value="5">第五技術部</html:option>
+						<html:option value="6">ソリューション技術部</html:option>
+					</html:select>
+				<%
+					}
+				%>
+			</div>
 
-		<p align="center" style="margin-left: -60%;">
-			社員番号：<%=Employee_no%>
-		</p>
-		<p align="center" class="BCC" style="margin-left: -55%;">
-			氏名：<%=name%>
-		</p>
-		<p align="center" class="code" style="margin-left: -42%">
-			現場コード：
-			<html:text disabled="true" property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=SpotCode.get(span1_calm) %>" />
-<%--
-			<%
-				if(flg == true){
-			%>
-			<html:text property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=spotcode%>" />
-			<%
-				}
-				else{
-			%>
-			<html:text disabled="true" property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=spotcode%>" />
-			<%
-				}
-			%> --%>
-			<p style="color:red;margin-left: 13%">例) 1-2345
-		</p>
-		<div align="center" class="depert2"
-			style="width: 40%; margin-left: 10%">
-			届出区分:
-			<html:select disabled="true" property="division" styleId="division" name="KintaiMailForm"
-				style="font-size:15px; width:60%;">
-				<html:option value="" style="text-align:center;"><%=Division.get(span1_calm) %></html:option>
-				<html:option value="1">1,遅刻</html:option>
-				<html:option value="2">2,有給休暇</html:option>
-				<html:option value="3">4,振替休暇</html:option>
-				<html:option value="4">5,特別休暇</html:option>
-				<html:option value="5">6,シフト勤務</html:option>
-				<html:option value="6">7,早退,その他</html:option>
-				<html:option value="7">8,交通遅延</html:option>
-				<html:option value="8">9,欠席</html:option>
-				<html:option value="9">A,深夜作業</html:option>
-				<html:option value="10">B,休日出勤(振)</html:option>
-			</html:select>
-<%-- 			<%
-				if(flg == true){
-			%>
-			<html:select property="division" styleId="division" name="KintaiMailForm"
-				style="font-size:15px; width:60%;">
-				<html:option value="" style="text-align:center;">選択</html:option>
-				<html:option value="1">1,遅刻</html:option>
-				<html:option value="2">2,有給休暇</html:option>
-				<html:option value="3">4,振替休暇</html:option>
-				<html:option value="4">5,特別休暇</html:option>
-				<html:option value="5">6,シフト勤務</html:option>
-				<html:option value="6">7,早退,その他</html:option>
-				<html:option value="7">8,交通遅延</html:option>
-				<html:option value="8">9,欠席</html:option>
-				<html:option value="9">A,深夜作業</html:option>
-				<html:option value="10">B,休日出勤(振)</html:option>
-			</html:select>
-			<%
-				}
-				else{
-			%> --%>
-			<%--
-				}
-			--%>
-		</div>
-		<p align="center" class="code" style="margin-left: -6%">
-			対象日付/期間(開始)：
-			<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=kintai_span_lst[span1_calm]%>" />
+			<p align="center" style="margin-left: -60%;">
+				社員番号：<%=Employee_no%>
+			</p>
+			<p align="center" class="BCC" style="margin-left: -55%;">
+				氏名：<%=name%>
+			</p>
+			<p align="center" class="code" style="margin-left: -42%">
+				現場コード：
+				<%
+					if(chk_flg == false){
+				%>
+					<html:text disabled="true" property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=SpotCode.get(span1_calm) %>" />
+				<%
+					}
+					else if(chk_flg == true){
+				%>
+					<html:text property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=SpotCode.get(span1_calm) %>" />
+				<%
+					}
+				%>
+				<p style="color:red;margin-left: 13%">例) 1-2345
+			</p>
+			<div align="center" class="depert2"
+				style="width: 40%; margin-left: 10%">
+				届出区分:
+				<%
+					if(chk_flg == false){
+				%>
+					<html:select disabled="true" property="division" styleId="division" name="KintaiMailForm"
+						style="font-size:15px; width:60%;">
+						<html:option value="" style="text-align:center;"><%=Division.get(span1_calm) %></html:option>
+					</html:select>
+				<%
+					}
+					else if(chk_flg == true){
+				%>
+					<html:select property="division" styleId="division" name="KintaiMailForm"
+						style="font-size:15px; width:60%;">
+						<html:option value="" style="text-align:center;"><%=Division.get(span1_calm) %></html:option>
+						<html:option value="1">1,遅刻</html:option>
+						<html:option value="2">2,有給休暇</html:option>
+						<html:option value="3">4,振替休暇</html:option>
+						<html:option value="4">5,特別休暇</html:option>
+						<html:option value="5">6,シフト勤務</html:option>
+						<html:option value="6">7,早退,その他</html:option>
+						<html:option value="7">8,交通遅延</html:option>
+						<html:option value="8">9,欠席</html:option>
+						<html:option value="9">A,深夜作業</html:option>
+						<html:option value="10">B,休日出勤(振)</html:option>
+					</html:select>
+				<%
+					}
+				%>
+			</div>
+			<p align="center" class="code" style="margin-left: -6%">
+				対象日付/期間(開始)：
+				<%
+					if(chk_flg == false){
+				%>
+					<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=kintai_span_lst[span1_calm]%>" />
+				<%
+					}
+					else if(chk_flg == true){
+				%>
+					<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=kintai_span_lst[span1_calm]%>" />
+				<%
+					}
+				%>
+				～対象日付/期間(終了)：
+				<%
+					if(chk_flg == false){
+				%>
+					<html:text disabled="true" property="span2" size="20" maxlength="8" style="width: 17%" value="<%=Span2.get(span1_calm) %>" />
+				<%
+					}
+					else if(chk_flg == true){
+				%>
+					<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=Span2.get(span1_calm) %>" />
+				<%
+					}
+				%>
+				<p style="color:red;margin-left: 12%">例) 2020年9月1日～2020年9月3日 → 20200901～20200903
+			</p>
+			<p align="center" class="code" style="margin-left: -43%">
+				出勤予定時刻:
+				<%
+					if(chk_flg == false){
+				%>
+					<html:text disabled="true" property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=Ptime.get(span1_calm) %>" />
+				<%
+					}
+					else if(chk_flg == true){
+				%>
+					<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=Ptime.get(span1_calm) %>" />
+				<%
+					}
+				%>
+				<p style="color:red;margin-left: 12%">例) 12:00
 
-			<%-- <%
-				if(flg == true){
+			</p>
+			<p style="margin-left: 17.5%;">備考:</p>
+			<div style="margin-left: 21%;">
+			<%
+				if(chk_flg == false){
 			%>
-				<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
+				<html:textarea disabled="true" property="remark" rows="10" cols="100" value="<%=Remark.get(span1_calm) %>"></html:textarea>
 			<%
 				}
-				else{
+				else if(chk_flg == true){
 			%>
-				<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
-			<%
-				}
-			%> --%>
-			～対象日付/期間(終了)：
-				<html:text disabled="true" property="span2" size="20" maxlength="8" style="width: 17%" value="<%=Span2.get(span1_calm) %>" />
-			<%-- <%
-				if(flg == true){
-			%>
-				<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
-			<%
-				}
-				else{
-			%>
-				<html:text disabled="true" property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
-			<%
-				}
-			%> --%>
-			<p style="color:red;margin-left: 12%">例) 2020年9月1日～2020年9月3日 → 20200901～20200903
-		</p>
-		<p align="center" class="code" style="margin-left: -43%">
-			出勤予定時刻:
-			<%
-				if(flg == true){
-			%>
-				<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
-			<%
-				}
-				else{
-			%>
-			<html:text disabled="true" property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=Ptime.get(span1_calm) %>" />
+				<html:textarea property="remark" rows="10" cols="100" value="<%=Remark.get(span1_calm) %>"></html:textarea>
 			<%
 				}
 			%>
-			<p style="color:red;margin-left: 12%">例) 12:00
+			</div>
 
-		</p>
-		<p style="margin-left: 17.5%;">備考:</p>
-		<div style="margin-left: 21%;">
-		<html:textarea disabled="true" property="remark" rows="10" cols="100" value="<%=Remark.get(span1_calm) %>"></html:textarea>
-		<%--
-			<%
-				if(flg == true){
-			%>
-			<html:textarea property="remark" rows="10" cols="100" value="<%=remark%>"></html:textarea>
-			<%
-				}
-				else{
-			%>
-			<html:textarea disabled="true" property="remark" rows="10" cols="100" value="<%=remark%>"></html:textarea>
-			<%
-				}
-			%> --%>
-		</div>
-
-		<p align="center" class="code" style="margin-left: -39%">
-			許可:
-			<html:text disabled="true" property="perm" size="43" maxlength="4" style="width: 17%" value="<%=Perm.get(span1_calm) %>" />
-
-			<%-- <%
-				if(flg == true){
-			%>
-			<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
-			<%
-				}
-				else{
-			%>
-			<html:text disabled="true" property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
-			<%
-				}
-			%> --%>
-			<p style="color:red;margin-left: 17%">※ 届出区分がA,Bの場合、姓のみ記載
-		</p>
+			<p align="center" class="code" style="margin-left: -39%">
+				許可:
+				<%
+					if(chk_flg == false){
+				%>
+					<html:text disabled="true" property="perm" size="43" maxlength="4" style="width: 17%" value="<%=Perm.get(span1_calm) %>" />
+				<%
+					}
+					else if(chk_flg == true){
+				%>
+					<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=Perm.get(span1_calm) %>" />
+				<%
+					}
+				%>
+				<p style="color:red;margin-left: 17%">※ 届出区分がA,Bの場合、姓のみ記載
+			</p>
 			<%
 				}
 			%>
-		<%
-			}
-		%>
-		<div>
-		<%
-			int dayss = now_days - int_span1_lst;
-			if(dayss <= 7){
-		%>
-			<html:submit property="button" styleClass="btn" value="編集/登録"
-				styleId="kintaimail" style="margin-top:10;" />
-		<%
-			}
-			else {
-		%>
-		<%
-			}
-		%>
+			<%
+				}
+			%>
+			<div>
+			<%
+				if(chk_flg == true){
+			%>
+				<html:submit property="button" styleClass="btn" value="編集/登録"
+					styleId="kintaimail" style="margin-top:10;" />
+			<%
+				}
+				else {
+			%>
+			<%
+				}
+			%>
 <%-- 			<html:submit property="button" styleClass="btn" value="編集/登録"
 				styleId="kintaimail" style="margin-top:10;" /> --%>
 		</div>
