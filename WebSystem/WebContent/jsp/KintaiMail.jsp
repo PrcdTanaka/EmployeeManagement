@@ -45,7 +45,7 @@
 					String division = Form.getDivision();
 					String bcc = Form.getBcc();
 					String spotcode = Form.getSpotcode();
-					String span = Form.getSpan();
+				    String span = Form.getSpan();
 					String span2 = Form.getSpan2();
 					String ptime = Form.getPtime();
 					String remark = Form.getRemark();

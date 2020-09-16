@@ -6,7 +6,6 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -53,18 +52,15 @@ public class KintaiMailAction extends Action {
 						|| form.getRemark().equals("")
 						|| form.getDepart().equals("")
 						|| form.getSpan2().equals(""))) {
-					JOptionPane.showMessageDialog(null,"必須項目を入力してください" );
 					session.setAttribute("form", form);
 					forward = "kintaimail";
-				} else {
+				}
+				else if(!(form.getSpan().equals(form.getSpan()))&&!(form.getSpan2().equals(form.getSpan2()))) {
 
 					session.setAttribute("form", form);
 					dba.setKintaiInfo(form, lForm);
 					forward = "kintaimail";
 					session.removeAttribute("form");
-
-
-
 					// JOptionPane.showMessageDialog(null,"送信しました");
 				}
 			}
