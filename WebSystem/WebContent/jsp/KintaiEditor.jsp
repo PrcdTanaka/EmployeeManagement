@@ -4,6 +4,7 @@
 
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.KintaiMailForm"%>
+<%@ page import="sample.pr.main.KintaiMailAction"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.pr.main.MonthlyReportForm"%>
 <%@ page import="sample.pr.main.MonthlyReportAction"%>
@@ -12,6 +13,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.lang.String" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -72,14 +74,31 @@
 			form.setEmployee_no(lForm.getEmployee_no());
 
 			dba.getMonthly_report(form);
+			// CC
 			List<String> l_CC = form.getCc();
+			// BCC
 			List<String> l_BCC = form.getBcc();
+			// 届出区分
 			List<String> Division = form.getDivision();
+			// 	現場コード
+			List<String> SpotCode = form.getSpotcode();
+			// 対象日付(開始)
 			List<String> Span = form.getSpan();
-			List<String>Span2=form.getSpan2();
+			// 対象日付(終了)
+			List<String> Span2=form.getSpan2();
+			// 備考
+			List<String> Remark = form.getRemark();
+			// 許可
 			List<String>Perm=form.getPerm();
+			// 所属部
+			List<String> Depart = form.getDepart();
+			// 出勤予定時間
+			List<String> Ptime = form.getPtime();
+
 			List<String>Mmdd=form.getMmdd();
 			int listnumber=0;
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			int now_days = Integer.parseInt(sdf.format(cale.getTime()));
 		%>
 		<%
 			// 現在のURLを取得して、年月日を切り抜く
@@ -162,9 +181,42 @@
 
 		<div align="center" class="depert">
 			CC:
+			<%
+				String CC_Add = "";
+				switch(l_CC.get(span1_calm))
+				{
+					case "1group_admin.ml@procd-k.co.jp" :
+						CC_Add = "第一技術部";
+						break;
+
+					case "2group_admin.ml@procd-k.co.jp" :
+						CC_Add = "第二技術部";
+						break;
+
+					case "3group_admin.ml@procd-k.co.jp" :
+						CC_Add = "第三技術部";
+						break;
+
+					case "4group_admin.ml@procd-k.co.jp" :
+						CC_Add = "第四技術部";
+						break;
+
+					case "5group_admin.ml@procd-k.co.jp" :
+						CC_Add = "第五技術部";
+						break;
+
+					case "solution_admin@procd-k.co.jp" :
+						CC_Add = "ソリューション技術部";
+						break;
+
+					default :
+						CC_Add = "";
+						break;
+				}
+			%>
 			<html:select disabled="true" property="CC" styleId="CC" name="KintaiMailForm"
 				style="font-size:15px;width:60%">
-				<html:option value="" style="text-align:center;"><%=l_CC.get(span1_calm) %></html:option>
+				<html:option value="" style="text-align:center;"><%=CC_Add %></html:option>
 				<html:option value="1">第一技術部</html:option>
 				<html:option value="2">第二技術部</html:option>
 				<html:option value="3">第三技術部</html:option>
@@ -205,8 +257,9 @@
 		</div>
 		<p align="center" class="BCC">
 				BCC:
+				<html:text disabled="true" property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(span1_calm) %>" />
 
-				<%
+<%-- 				<%
 					if(flg == true){
 				%>
 					<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=bcc%>" />
@@ -217,7 +270,7 @@
 					<html:text disabled="true" property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(span1_calm) %>" />
 				<%
 					}
-				%>
+				%> --%>
 				<p style="color:red;margin-left: 17%">※ 任意で入力
 		</p>
 
@@ -243,7 +296,7 @@
 			%>
 			<html:select disabled="true" property="depart" styleId="depart" name="KintaiMailForm"
 				style="font-size:15px; width:60%;">
-				<html:option value="" style="text-align:center;">選択</html:option>
+				<html:option value="" style="text-align:center;"><%=Depart.get(span1_calm) %> </html:option>
 				<html:option value="1">第一技術部</html:option>
 				<html:option value="2">第二技術部</html:option>
 				<html:option value="3">第三技術部</html:option>
@@ -264,6 +317,8 @@
 		</p>
 		<p align="center" class="code" style="margin-left: -42%">
 			現場コード：
+			<html:text disabled="true" property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=SpotCode.get(span1_calm) %>" />
+<%--
 			<%
 				if(flg == true){
 			%>
@@ -275,7 +330,7 @@
 			<html:text disabled="true" property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=spotcode%>" />
 			<%
 				}
-			%>
+			%> --%>
 			<p style="color:red;margin-left: 13%">例) 1-2345
 		</p>
 		<div align="center" class="depert2"
@@ -362,7 +417,7 @@
 				}
 				else{
 			%>
-			<html:text disabled="true" property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
+			<html:text disabled="true" property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=Ptime.get(span1_calm) %>" />
 			<%
 				}
 			%>
@@ -371,6 +426,8 @@
 		</p>
 		<p style="margin-left: 17.5%;">備考:</p>
 		<div style="margin-left: 21%;">
+		<html:textarea disabled="true" property="remark" rows="10" cols="100" value="<%=Remark.get(span1_calm) %>"></html:textarea>
+		<%--
 			<%
 				if(flg == true){
 			%>
@@ -382,12 +439,14 @@
 			<html:textarea disabled="true" property="remark" rows="10" cols="100" value="<%=remark%>"></html:textarea>
 			<%
 				}
-			%>
+			%> --%>
 		</div>
 
 		<p align="center" class="code" style="margin-left: -39%">
 			許可:
-			<%
+			<html:text disabled="true" property="perm" size="43" maxlength="4" style="width: 17%" value="<%=Perm.get(span1_calm) %>" />
+
+			<%-- <%
 				if(flg == true){
 			%>
 			<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
@@ -398,7 +457,7 @@
 			<html:text disabled="true" property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
 			<%
 				}
-			%>
+			%> --%>
 			<p style="color:red;margin-left: 17%">※ 届出区分がA,Bの場合、姓のみ記載
 		</p>
 			<%
@@ -407,12 +466,23 @@
 		<%
 			}
 		%>
-<%--
 		<div>
-			<html:submit property="button" styleClass="btn" value="送信"
+		<%
+			int dayss = now_days - int_span1_lst;
+			if(dayss <= 7){
+		%>
+			<html:submit property="button" styleClass="btn" value="編集/登録"
 				styleId="kintaimail" style="margin-top:10;" />
+		<%
+			}
+			else {
+		%>
+		<%
+			}
+		%>
+<%-- 			<html:submit property="button" styleClass="btn" value="編集/登録"
+				styleId="kintaimail" style="margin-top:10;" /> --%>
 		</div>
---%>
 		<div>
 		<ul style="list-style:none;text-align:center;margin-top:14px;">
 			<li><a class="btn1" href="javascript:history.back()" >戻る</a></li>
