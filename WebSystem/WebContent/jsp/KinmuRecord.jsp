@@ -411,10 +411,10 @@
 				%>
 				<tr>
 					<%-- 日にち --%>
-					<td width="7px"><%= i %></td>
+					<td width="3%"><%= i %></td>
 
 					<%-- 曜日 --%>
-					<td width="7px"><%= JapaneseDate.from(date).format(fmt) %></td>
+					<td width="3%"><%= JapaneseDate.from(date).format(fmt) %></td>
 
 					<%-- 休/祝 --%>
 					<td width="5%">
