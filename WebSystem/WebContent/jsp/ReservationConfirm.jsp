@@ -27,13 +27,15 @@
 		String res_time = request.getParameter("res_time");
 		String mmdd = request.getParameter("mmdd");
 		String room_name = request.getParameter("room_name");
+		String emp_name = request.getParameter("emp_name");
 	%>
 		<div class="block">
 			<div class="space"></div>
 			<br>
-			<div align= "center">会議室名：<%= room_name %></div>
-			<div align= "center">予約日　：<%= mmdd %></div>
-			<div align= "center">予約時間：<%= res_time %></div>
+			<div align= "center">会議室名：<input type="text" name="room_name" value="<%=room_name %>" readonly></div>
+			<div align= "center">予約日　：<input type="text" name="mmdd" value="<%=mmdd %>" readonly></div>
+			<div align= "center">予約時間：<input type="text" name="res_time" value="<%=res_time %>" readonly></div>
+			<div align= "center">代表者　：<input type="text" name="name" value="<%=emp_name %>" readonly></div>
 			<div align= "center">
 					用途　　：
 					<!--  input type ="text" property="room_name" value="" />-->
@@ -48,7 +50,7 @@
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="confirm"/>
-				</center>
+			</center>
 			<!--  /div>-->
 			<center>
 			<div align="center">

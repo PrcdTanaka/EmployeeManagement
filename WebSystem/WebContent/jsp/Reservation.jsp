@@ -19,6 +19,7 @@
 <html:form action="/ReservationAction">
 	<%
 		ReservationForm rForm = new ReservationForm();
+		LoginForm lForm = new LoginForm();
 				String Employee_no = "";
 				String name = rForm.getName();
 				DbAction dba = new DbAction();
@@ -42,6 +43,8 @@
 					    int minute = cal.get(Calendar.MINUTE);
 					    int second = cal.get(Calendar.SECOND);
 					    int week = cal.get(Calendar.DAY_OF_WEEK) - 1;
+					    LoginForm ss = (LoginForm) session.getAttribute("form");
+					    String emp_name = ss.getEmployee_name();
 
 					    int day_of_year = cal.get(Calendar.DAY_OF_YEAR);
 
@@ -112,7 +115,7 @@
 				<tr>
 					<td><a href="jsp/Reservation.jsp">前の月へ</a></td>
 					<td rowspan = "2" width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
-					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の週へ</a></td>
+					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の月へ</a></td>
 				</tr>
 				<tr>
 					<td rowspan = "2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
@@ -166,7 +169,7 @@
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
 							<%if(month >= 10){}%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:00&mmdd=<%=month+"月"%><%=dayalert + i+"日"%>&room_name=2F" onclick="return confirm('<%= dayalert + i %>日8:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:00&mmdd=<%=month+"月"%><%=dayalert + i+"日"%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日8:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
