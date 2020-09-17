@@ -34,6 +34,7 @@
 		<form-bean name="Access_Select" type="sample.pr.main.Access_SelectForm" />
 		<form-bean name="RoomReservationForm" type="sample.pr.main.RoomReservationForm" />
 		<form-bean name="KinmuRecordForm" type="sample.pr.main.KinmuRecordForm" />
+		<form-bean name="KinmuRecordSendForm" type="sample.pr.main.KinmuRecordSendForm" />
 		<form-bean name="KintaiNotificationForm" type="sample.pr.main.KintaiNotificationForm" />
 		<form-bean name="Access_SelectForm" type="sample.pr.main.Access_ControlForm" />
 	</form-beans>

@@ -45,16 +45,7 @@ public class KinmuRecordSendForm extends ActionForm{
 	public void setKintaiYMD(String kintaiYMD) {this.kintaiYMD = kintaiYMD;}
 	//休日/祝日
 	public String getHolidayDiv() {return holidayDiv;}
-	public void setHolidayDiv(String holidayDiv) {
-		switch(holidayDiv){
-		case "1":
-			this.holidayDiv = "休";
-			break;
-		case "2":
-			this.holidayDiv = "祝日";
-			break;
-		}
-	}
+	public void setHolidayDiv(String holidayDiv) {this.holidayDiv = holidayDiv;}
 	//出社時間
 	public String getStartTime() {return startTime;}
 	public void setStartTime(String startTime) {this.startTime = startTime;}
