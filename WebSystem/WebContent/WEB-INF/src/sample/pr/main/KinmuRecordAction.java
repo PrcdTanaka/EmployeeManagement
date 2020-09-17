@@ -296,6 +296,8 @@ public class KinmuRecordAction extends Action{
 				String remark31 = request.getParameter("ramark31");
 				//バッファー
 				StringBuffer sb = new StringBuffer();
+				//SendFormインスタンスを新規生成
+				KinmuRecordSendForm KRSForm = (KinmuRecordSendForm) frm;
 				//〇月1日が入力されているかチェック
 				sb.append(holidayDiv1 + startTime1 + endTime1 + breakTimeA1 + breakTimeB1 + vacationDiv1 + remark1);
 				String query1 = sb.toString();
@@ -308,8 +310,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB1(breakTimeB1);
 					KRForm.setVacationDiv1(vacationDiv1);
 					KRForm.setRemark1(remark1);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv1());
+					KRSForm.setHolidayDiv(KRForm.getStartTime1());
+					KRSForm.setHolidayDiv(KRForm.getEndTime1());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA1());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB1());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv1());
+					KRSForm.setHolidayDiv(KRForm.getRemark1());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月2日が入力されているかチェック
 				sb.append(holidayDiv2 + startTime2 + endTime2 + breakTimeA2 + breakTimeB2 + vacationDiv2 + remark2);
@@ -323,8 +333,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB2(breakTimeB2);
 					KRForm.setVacationDiv2(vacationDiv2);
 					KRForm.setRemark2(remark2);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv2());
+					KRSForm.setHolidayDiv(KRForm.getStartTime2());
+					KRSForm.setHolidayDiv(KRForm.getEndTime2());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA2());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB2());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv2());
+					KRSForm.setHolidayDiv(KRForm.getRemark2());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月3日が入力されているかチェック
 				sb.append(holidayDiv3 + startTime3 + endTime3 + breakTimeA3 + breakTimeB3 + vacationDiv3 + remark3);
@@ -338,8 +356,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB3(breakTimeB3);
 					KRForm.setVacationDiv3(vacationDiv3);
 					KRForm.setRemark3(remark3);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv3());
+					KRSForm.setHolidayDiv(KRForm.getStartTime3());
+					KRSForm.setHolidayDiv(KRForm.getEndTime3());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA3());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB3());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv3());
+					KRSForm.setHolidayDiv(KRForm.getRemark3());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月4日が入力されているかチェック
 				sb.append(holidayDiv4 + startTime4 + endTime4 + breakTimeA4 + breakTimeB4 + vacationDiv4 + remark4);
@@ -353,8 +379,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB4(breakTimeB4);
 					KRForm.setVacationDiv4(vacationDiv4);
 					KRForm.setRemark4(remark4);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv4());
+					KRSForm.setHolidayDiv(KRForm.getStartTime4());
+					KRSForm.setHolidayDiv(KRForm.getEndTime4());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA4());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB4());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv4());
+					KRSForm.setHolidayDiv(KRForm.getRemark4());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月5日が入力されているかチェック
 				sb.append(holidayDiv5 + startTime5 + endTime5 + breakTimeA5 + breakTimeB5 + vacationDiv5 + remark5);
@@ -368,8 +402,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB5(breakTimeB5);
 					KRForm.setVacationDiv5(vacationDiv5);
 					KRForm.setRemark5(remark5);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv5());
+					KRSForm.setHolidayDiv(KRForm.getStartTime5());
+					KRSForm.setHolidayDiv(KRForm.getEndTime5());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA5());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB5());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv5());
+					KRSForm.setHolidayDiv(KRForm.getRemark5());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月6日が入力されているかチェック
 				sb.append(holidayDiv6 + startTime6 + endTime6 + breakTimeA6 + breakTimeB6 + vacationDiv6 + remark6);
@@ -383,8 +425,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB6(breakTimeB6);
 					KRForm.setVacationDiv6(vacationDiv6);
 					KRForm.setRemark6(remark6);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv6());
+					KRSForm.setHolidayDiv(KRForm.getStartTime6());
+					KRSForm.setHolidayDiv(KRForm.getEndTime6());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA6());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB6());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv6());
+					KRSForm.setHolidayDiv(KRForm.getRemark6());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月7日が入力されているかチェック
 				sb.append(holidayDiv7 + startTime7 + endTime7 + breakTimeA7 + breakTimeB7 + vacationDiv7 + remark7);
@@ -398,8 +448,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB7(breakTimeB7);
 					KRForm.setVacationDiv7(vacationDiv7);
 					KRForm.setRemark7(remark7);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv7());
+					KRSForm.setHolidayDiv(KRForm.getStartTime7());
+					KRSForm.setHolidayDiv(KRForm.getEndTime7());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA7());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB7());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv7());
+					KRSForm.setHolidayDiv(KRForm.getRemark7());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月8日が入力されているかチェック
 				sb.append(holidayDiv8 + startTime8 + endTime8 + breakTimeA8 + breakTimeB8 + vacationDiv8 + remark8);
@@ -413,8 +471,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB8(breakTimeB8);
 					KRForm.setVacationDiv8(vacationDiv8);
 					KRForm.setRemark8(remark8);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv8());
+					KRSForm.setHolidayDiv(KRForm.getStartTime8());
+					KRSForm.setHolidayDiv(KRForm.getEndTime8());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA8());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB8());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv8());
+					KRSForm.setHolidayDiv(KRForm.getRemark8());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月9日が入力されているかチェック
 				sb.append(holidayDiv9 + startTime9 + endTime9 + breakTimeA9 + breakTimeB9 + vacationDiv9 + remark9);
@@ -428,8 +494,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB9(breakTimeB9);
 					KRForm.setVacationDiv9(vacationDiv9);
 					KRForm.setRemark9(remark9);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv9());
+					KRSForm.setHolidayDiv(KRForm.getStartTime9());
+					KRSForm.setHolidayDiv(KRForm.getEndTime9());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA9());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB9());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv9());
+					KRSForm.setHolidayDiv(KRForm.getRemark9());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月10日が入力されているかチェック
 				sb.append(holidayDiv10 + startTime10 + endTime10 + breakTimeA10 + breakTimeB10 + vacationDiv10 + remark10);
@@ -443,8 +517,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB10(breakTimeB10);
 					KRForm.setVacationDiv10(vacationDiv10);
 					KRForm.setRemark10(remark10);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv10());
+					KRSForm.setHolidayDiv(KRForm.getStartTime10());
+					KRSForm.setHolidayDiv(KRForm.getEndTime10());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA10());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB10());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv10());
+					KRSForm.setHolidayDiv(KRForm.getRemark10());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月11日が入力されているかチェック
 				sb.append(holidayDiv11 + startTime11 + endTime11 + breakTimeA11 + breakTimeB11 + vacationDiv11 + remark11);
@@ -458,8 +540,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB11(breakTimeB11);
 					KRForm.setVacationDiv11(vacationDiv11);
 					KRForm.setRemark11(remark11);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv11());
+					KRSForm.setHolidayDiv(KRForm.getStartTime11());
+					KRSForm.setHolidayDiv(KRForm.getEndTime11());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA11());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB11());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv11());
+					KRSForm.setHolidayDiv(KRForm.getRemark11());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月12日が入力されているかチェック
 				sb.append(holidayDiv12 + startTime12 + endTime12 + breakTimeA12 + breakTimeB12 + vacationDiv12 + remark12);
@@ -473,8 +563,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB12(breakTimeB12);
 					KRForm.setVacationDiv12(vacationDiv12);
 					KRForm.setRemark12(remark12);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv12());
+					KRSForm.setHolidayDiv(KRForm.getStartTime12());
+					KRSForm.setHolidayDiv(KRForm.getEndTime12());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA12());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB12());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv12());
+					KRSForm.setHolidayDiv(KRForm.getRemark12());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月13日が入力されているかチェック
 				sb.append(holidayDiv13 + startTime13 + endTime13 + breakTimeA13 + breakTimeB13 + vacationDiv13 + remark13);
@@ -488,8 +586,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB13(breakTimeB13);
 					KRForm.setVacationDiv13(vacationDiv13);
 					KRForm.setRemark13(remark13);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv13());
+					KRSForm.setHolidayDiv(KRForm.getStartTime13());
+					KRSForm.setHolidayDiv(KRForm.getEndTime13());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA13());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB13());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv13());
+					KRSForm.setHolidayDiv(KRForm.getRemark13());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月14日が入力されているかチェック
 				sb.append(holidayDiv14 + startTime14 + endTime14 + breakTimeA14 + breakTimeB14 + vacationDiv14 + remark14);
@@ -503,8 +609,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB14(breakTimeB14);
 					KRForm.setVacationDiv14(vacationDiv14);
 					KRForm.setRemark14(remark14);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv14());
+					KRSForm.setHolidayDiv(KRForm.getStartTime14());
+					KRSForm.setHolidayDiv(KRForm.getEndTime14());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA14());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB14());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv14());
+					KRSForm.setHolidayDiv(KRForm.getRemark14());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月15日が入力されているかチェック
 				sb.append(holidayDiv15 + startTime15 + endTime15 + breakTimeA15 + breakTimeB15 + vacationDiv15 + remark15);
@@ -518,8 +632,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB15(breakTimeB15);
 					KRForm.setVacationDiv15(vacationDiv15);
 					KRForm.setRemark15(remark15);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv15());
+					KRSForm.setHolidayDiv(KRForm.getStartTime15());
+					KRSForm.setHolidayDiv(KRForm.getEndTime15());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA15());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB15());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv15());
+					KRSForm.setHolidayDiv(KRForm.getRemark15());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月16日が入力されているかチェック
 				sb.append(holidayDiv16 + startTime16 + endTime16 + breakTimeA16 + breakTimeB16 + vacationDiv16 + remark16);
@@ -533,8 +655,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB16(breakTimeB16);
 					KRForm.setVacationDiv16(vacationDiv16);
 					KRForm.setRemark16(remark16);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv16());
+					KRSForm.setHolidayDiv(KRForm.getStartTime16());
+					KRSForm.setHolidayDiv(KRForm.getEndTime16());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA16());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB16());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv16());
+					KRSForm.setHolidayDiv(KRForm.getRemark16());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月17日が入力されているかチェック
 				sb.append(holidayDiv17 + startTime17 + endTime17 + breakTimeA17 + breakTimeB17 + vacationDiv17 + remark17);
@@ -548,8 +678,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB17(breakTimeB17);
 					KRForm.setVacationDiv17(vacationDiv17);
 					KRForm.setRemark17(remark17);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv17());
+					KRSForm.setHolidayDiv(KRForm.getStartTime17());
+					KRSForm.setHolidayDiv(KRForm.getEndTime17());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA17());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB17());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv17());
+					KRSForm.setHolidayDiv(KRForm.getRemark17());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月18日が入力されているかチェック
 				sb.append(holidayDiv18 + startTime18 + endTime18 + breakTimeA18 + breakTimeB18 + vacationDiv18 + remark18);
@@ -563,8 +701,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB18(breakTimeB18);
 					KRForm.setVacationDiv18(vacationDiv18);
 					KRForm.setRemark18(remark18);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv18());
+					KRSForm.setHolidayDiv(KRForm.getStartTime18());
+					KRSForm.setHolidayDiv(KRForm.getEndTime18());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA18());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB18());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv18());
+					KRSForm.setHolidayDiv(KRForm.getRemark18());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月19日が入力されているかチェック
 				sb.append(holidayDiv19 + startTime19 + endTime19 + breakTimeA19 + breakTimeB19 + vacationDiv19 + remark19);
@@ -578,8 +724,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB19(breakTimeB19);
 					KRForm.setVacationDiv19(vacationDiv19);
 					KRForm.setRemark19(remark19);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv19());
+					KRSForm.setHolidayDiv(KRForm.getStartTime19());
+					KRSForm.setHolidayDiv(KRForm.getEndTime19());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA19());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB19());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv19());
+					KRSForm.setHolidayDiv(KRForm.getRemark19());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月20日が入力されているかチェック
 				sb.append(holidayDiv20 + startTime20 + endTime20 + breakTimeA20 + breakTimeB20 + vacationDiv20 + remark20);
@@ -593,8 +747,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB20(breakTimeB20);
 					KRForm.setVacationDiv20(vacationDiv20);
 					KRForm.setRemark20(remark20);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv20());
+					KRSForm.setHolidayDiv(KRForm.getStartTime20());
+					KRSForm.setHolidayDiv(KRForm.getEndTime20());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA20());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB20());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv20());
+					KRSForm.setHolidayDiv(KRForm.getRemark20());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月21日が入力されているかチェック
 				sb.append(holidayDiv21 + startTime21 + endTime21 + breakTimeA21 + breakTimeB21 + vacationDiv21 + remark21);
@@ -608,8 +770,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB21(breakTimeB21);
 					KRForm.setVacationDiv21(vacationDiv21);
 					KRForm.setRemark21(remark21);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv21());
+					KRSForm.setHolidayDiv(KRForm.getStartTime21());
+					KRSForm.setHolidayDiv(KRForm.getEndTime21());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA21());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB21());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv21());
+					KRSForm.setHolidayDiv(KRForm.getRemark21());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月22日が入力されているかチェック
 				sb.append(holidayDiv22 + startTime22 + endTime22 + breakTimeA22 + breakTimeB22 + vacationDiv22 + remark22);
@@ -623,8 +793,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB22(breakTimeB22);
 					KRForm.setVacationDiv22(vacationDiv22);
 					KRForm.setRemark22(remark22);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv22());
+					KRSForm.setHolidayDiv(KRForm.getStartTime22());
+					KRSForm.setHolidayDiv(KRForm.getEndTime22());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA22());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB22());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv22());
+					KRSForm.setHolidayDiv(KRForm.getRemark22());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月23日が入力されているかチェック
 				sb.append(holidayDiv23 + startTime23 + endTime23 + breakTimeA23 + breakTimeB23 + vacationDiv23 + remark23);
@@ -638,8 +816,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB23(breakTimeB23);
 					KRForm.setVacationDiv23(vacationDiv23);
 					KRForm.setRemark23(remark23);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv23());
+					KRSForm.setHolidayDiv(KRForm.getStartTime23());
+					KRSForm.setHolidayDiv(KRForm.getEndTime23());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA23());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB23());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv23());
+					KRSForm.setHolidayDiv(KRForm.getRemark23());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月24日が入力されているかチェック
 				sb.append(holidayDiv24 + startTime24 + endTime24 + breakTimeA24 + breakTimeB24 + vacationDiv24 + remark24);
@@ -653,8 +839,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB24(breakTimeB24);
 					KRForm.setVacationDiv24(vacationDiv24);
 					KRForm.setRemark24(remark24);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv24());
+					KRSForm.setHolidayDiv(KRForm.getStartTime24());
+					KRSForm.setHolidayDiv(KRForm.getEndTime24());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA24());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB24());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv24());
+					KRSForm.setHolidayDiv(KRForm.getRemark24());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月25日が入力されているかチェック
 				sb.append(holidayDiv25 + startTime25 + endTime25 + breakTimeA25 + breakTimeB25 + vacationDiv25 + remark25);
@@ -668,8 +862,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB25(breakTimeB25);
 					KRForm.setVacationDiv25(vacationDiv25);
 					KRForm.setRemark25(remark25);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv25());
+					KRSForm.setHolidayDiv(KRForm.getStartTime25());
+					KRSForm.setHolidayDiv(KRForm.getEndTime25());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA25());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB25());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv25());
+					KRSForm.setHolidayDiv(KRForm.getRemark25());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月26日が入力されているかチェック
 				sb.append(holidayDiv26 + startTime26 + endTime26 + breakTimeA26 + breakTimeB26 + vacationDiv26 + remark26);
@@ -683,8 +885,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB26(breakTimeB26);
 					KRForm.setVacationDiv26(vacationDiv26);
 					KRForm.setRemark26(remark26);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv26());
+					KRSForm.setHolidayDiv(KRForm.getStartTime26());
+					KRSForm.setHolidayDiv(KRForm.getEndTime26());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA26());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB26());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv26());
+					KRSForm.setHolidayDiv(KRForm.getRemark26());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月27日が入力されているかチェック
 				sb.append(holidayDiv27 + startTime27 + endTime27 + breakTimeA27 + breakTimeB27 + vacationDiv27 + remark27);
@@ -698,8 +908,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB27(breakTimeB27);
 					KRForm.setVacationDiv27(vacationDiv27);
 					KRForm.setRemark27(remark27);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv27());
+					KRSForm.setHolidayDiv(KRForm.getStartTime27());
+					KRSForm.setHolidayDiv(KRForm.getEndTime27());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA27());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB27());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv27());
+					KRSForm.setHolidayDiv(KRForm.getRemark27());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月28日が入力されているかチェック
 				sb.append(holidayDiv28 + startTime28 + endTime28 + breakTimeA28 + breakTimeB28 + vacationDiv28 + remark28);
@@ -713,8 +931,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB28(breakTimeB28);
 					KRForm.setVacationDiv28(vacationDiv28);
 					KRForm.setRemark28(remark28);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv28());
+					KRSForm.setHolidayDiv(KRForm.getStartTime28());
+					KRSForm.setHolidayDiv(KRForm.getEndTime28());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA28());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB28());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv28());
+					KRSForm.setHolidayDiv(KRForm.getRemark28());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月29日が入力されているかチェック
 				sb.append(holidayDiv29 + startTime29 + endTime29 + breakTimeA29 + breakTimeB29 + vacationDiv29 + remark29);
@@ -728,8 +954,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB29(breakTimeB29);
 					KRForm.setVacationDiv29(vacationDiv29);
 					KRForm.setRemark29(remark29);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv29());
+					KRSForm.setHolidayDiv(KRForm.getStartTime29());
+					KRSForm.setHolidayDiv(KRForm.getEndTime29());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA29());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB29());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv29());
+					KRSForm.setHolidayDiv(KRForm.getRemark29());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月30日が入力されているかチェック
 				sb.append(holidayDiv30 + startTime30 + endTime30 + breakTimeA30 + breakTimeB30 + vacationDiv30 + remark30);
@@ -743,8 +977,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB30(breakTimeB30);
 					KRForm.setVacationDiv30(vacationDiv30);
 					KRForm.setRemark30(remark30);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv30());
+					KRSForm.setHolidayDiv(KRForm.getStartTime30());
+					KRSForm.setHolidayDiv(KRForm.getEndTime30());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA30());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB30());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv30());
+					KRSForm.setHolidayDiv(KRForm.getRemark30());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 				//〇月31日が入力されているかチェック
 				sb.append(holidayDiv31 + startTime31 + endTime31 + breakTimeA31 + breakTimeB31 + vacationDiv31 + remark31);
@@ -758,8 +1000,16 @@ public class KinmuRecordAction extends Action{
 					KRForm.setBreakTimeB31(breakTimeB31);
 					KRForm.setVacationDiv31(vacationDiv31);
 					KRForm.setRemark31(remark31);
+					//ゲッターでKRFormのフィールド変数を取得し、それとセッターでKRSFormのフィールド変数を更新
+					KRSForm.setHolidayDiv(KRForm.getHolidayDiv31());
+					KRSForm.setHolidayDiv(KRForm.getStartTime31());
+					KRSForm.setHolidayDiv(KRForm.getEndTime31());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeA31());
+					KRSForm.setHolidayDiv(KRForm.getBreakTimeB31());
+					KRSForm.setHolidayDiv(KRForm.getVacationDiv31());
+					KRSForm.setHolidayDiv(KRForm.getRemark31());
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
-					forward = save(KRForm);
+					forward = save(KRSForm);
 				}
 			}
 //			else if(button.equals("勤怠連絡入力")){
@@ -778,8 +1028,8 @@ public class KinmuRecordAction extends Action{
 
 
 	//入力された情報を保存するsaveメソッド
-	public String save(KinmuRecordForm form){
-		dba.kinmuRecordRegister(form);
+	public String save(KinmuRecordSendForm form){
+//		dba.kinmuRecordRegister(form);
 		return "kinmurecord";
 	}
 
