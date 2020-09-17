@@ -36,14 +36,9 @@
 			<div align= "center">予約日　：<input type="text" name="mmdd" value="<%=mmdd %>" readonly></div>
 			<div align= "center">予約時間：<input type="text" name="res_time" value="<%=res_time %>" readonly></div>
 			<div align= "center">代表者　：<input type="text" name="name" value="<%=emp_name %>" readonly></div>
-			<div align= "center">
-					用途　　：
-					<!--  input type ="text" property="room_name" value="" />-->
-					<html:text property="use" value="" />
+			<div align= "center">用途　　：<html:text property="use" value="" />
 			</div>
-			<div align= "center">
-					メンバー：
-					<html:text property="member" value="" />
+			<div align= "center">メンバー：<html:text property="member" value="" />
 			</div>
 			<!--div align="center"-->
 			<center>

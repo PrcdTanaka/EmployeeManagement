@@ -221,7 +221,20 @@
 		</ul>
 		</div>
 
-		<a href="mailto:hello@example.com?cc=mana@example.com&?subject=Hello">お問い合わせ</a>
+		<a href="mailto:kintai@procd-k.co.jp
+		?subject=勤怠連絡
+		＆amp;?cc=<%=CC%>
+		＆amp;?bcc=<%=bcc %>
+		＆amp;?body=
+		・所属部署：<%=depart%>%0D%0A
+ 		・社員番号：<%=Employee_no%>%0D%0A
+		・氏名：<%=name%>%0D%0A
+		・現場コード：<%=spotcode%>%0D%0A
+		・届出区分：<%=division%>%0D%0A
+		・対象日付／期間：<%=span%>～<%=span2%>%0D%0A
+		・出勤予定時間：<%=ptime%>%0D%0A
+		・備考：<%=remark%>%0D%0A
+		・許可:<%=perm%>">メール送信フォーム</a>
 
 	</html:form>
 </body>
