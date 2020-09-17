@@ -631,317 +631,37 @@ public class KinmuRecordForm extends ActionForm{
 	public String getHolidayDiv29() {return holidayDiv29;}
 	public String getHolidayDiv30() {return holidayDiv30;}
 	public String getHolidayDiv31() {return holidayDiv31;}
-	public void setHolidayDiv1(String holidayDiv1) {
-		switch(holidayDiv1){
-		case "1":
-			this.holidayDiv1 = "休";
-			break;
-		case "2":
-			this.holidayDiv1 = "祝日";
-			break;
-		}
-	}
-	public void setHolidayDiv2(String holidayDiv2) {
-		switch(holidayDiv2){
-			case "1":
-				this.holidayDiv2 = "休";
-				break;
-			case "2":
-				this.holidayDiv2 = "祝日";
-				break;
-		}
-	}
-	public void setHolidayDiv3(String holidayDiv3){
-		switch(holidayDiv3){
-			case "1":
-				this.holidayDiv3 = "休";
-				break;
-			case "2":
-				this.holidayDiv3 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv4(String holidayDiv4){
-		switch(holidayDiv4){
-			case "1":
-				this.holidayDiv4 = "休";
-				break;
-			case"2":
-				this.holidayDiv4 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv5(String holidayDiv5){
-		switch(holidayDiv5){
-			case "1":
-				this.holidayDiv5 = "休";
-				break;
-			case"2":
-				this.holidayDiv5 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv6(String holidayDiv6){
-		switch(holidayDiv6){
-			case "1":
-				this.holidayDiv6 = "休";
-				break;
-			case"2":
-				this.holidayDiv6 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv7(String holidayDiv7){
-		switch(holidayDiv7){
-			case "1":
-				this.holidayDiv7 = "休";
-				break;
-			case"2":
-				this.holidayDiv7 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv8(String holidayDiv8){
-		switch(holidayDiv8){
-			case "1":
-				this.holidayDiv8 = "休";
-				break;
-			case"2":
-				this.holidayDiv8 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv9(String holidayDiv9){
-		switch(holidayDiv9){
-			case "1":
-				this.holidayDiv9 = "休";
-				break;
-			case"2":
-				this.holidayDiv9 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv10(String holidayDiv10){
-		switch(holidayDiv10){
-			case "1":
-				this.holidayDiv10 = "休";
-				break;
-			case"2":
-				this.holidayDiv10 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv11(String holidayDiv11){
-		switch(holidayDiv11){
-			case "1":
-				this.holidayDiv11 = "休";
-				break;
-			case"2":
-				this.holidayDiv11 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv12(String holidayDiv12){
-		switch(holidayDiv12){
-			case "1":
-				this.holidayDiv12 = "休";
-				break;
-			case"2":
-				this.holidayDiv12 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv13(String holidayDiv13){
-		switch(holidayDiv13){
-			case "1":
-				this.holidayDiv13 = "休";
-				break;
-			case"2":
-				this.holidayDiv13 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv14(String holidayDiv14){
-		switch(holidayDiv14){
-			case "1":
-				this.holidayDiv14 = "休";
-				break;
-			case"2":
-				this.holidayDiv14 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv15(String holidayDiv15){
-		switch(holidayDiv15){
-			case "1":
-				this.holidayDiv15 = "休";
-				break;
-			case"2":
-				this.holidayDiv15 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv16(String holidayDiv16){
-		switch(holidayDiv16){
-			case "1":
-				this.holidayDiv16 = "休";
-				break;
-			case"2":
-				this.holidayDiv16 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv17(String holidayDiv17){
-		switch(holidayDiv17){
-			case "1":
-				this.holidayDiv17 = "休";
-				break;
-			case"2":
-				this.holidayDiv17 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv18(String holidayDiv18){
-		switch(holidayDiv18){
-			case "1":
-				this.holidayDiv18 = "休";
-				break;
-			case"2":
-				this.holidayDiv18 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv19(String holidayDiv19){
-		switch(holidayDiv19){
-			case "1":
-				this.holidayDiv19 = "休";
-				break;
-			case"2":
-				this.holidayDiv19 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv20(String holidayDiv20){
-		switch(holidayDiv20){
-			case "1":
-				this.holidayDiv20 = "休";
-				break;
-			case"2":
-				this.holidayDiv20 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv21(String holidayDiv21){
-		switch(holidayDiv21){
-			case "1":
-				this.holidayDiv21 = "休";
-				break;
-			case"2":
-				this.holidayDiv21 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv22(String holidayDiv22){
-		switch(holidayDiv22){
-			case "1":
-				this.holidayDiv22 = "休";
-				break;
-			case"2":
-				this.holidayDiv22 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv23(String holidayDiv23){
-		switch(holidayDiv23){
-			case "1":
-				this.holidayDiv23 = "休";
-				break;
-			case"2":
-				this.holidayDiv23 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv24(String holidayDiv24){
-		switch(holidayDiv24){
-			case "1":
-				this.holidayDiv24 = "休";
-				break;
-			case"2":
-				this.holidayDiv24 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv25(String holidayDiv25){
-		switch(holidayDiv25){
-			case "1":
-				this.holidayDiv25 = "休";
-				break;
-			case"2":
-				this.holidayDiv25 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv26(String holidayDiv26){
-		switch(holidayDiv26){
-			case "1":
-				this.holidayDiv26 = "休";
-				break;
-			case"2":
-				this.holidayDiv26 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv27(String holidayDiv27){
-		switch(holidayDiv27){
-			case "1":
-				this.holidayDiv27 = "休";
-				break;
-			case"2":
-				this.holidayDiv27 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv28(String holidayDiv28){
-		switch(holidayDiv28){
-			case "1":
-				this.holidayDiv28 = "休";
-				break;
-			case"2":
-				this.holidayDiv28 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv29(String holidayDiv29){
-		switch(holidayDiv29){
-			case "1":
-				this.holidayDiv29 = "休";
-				break;
-			case"2":
-				this.holidayDiv29 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv30(String holidayDiv30){
-		switch(holidayDiv30){
-			case "1":
-				this.holidayDiv30 = "休";
-				break;
-			case"2":
-				this.holidayDiv30 = "祝";
-				break;
-		}
-	}
-	public void setHolidayDiv31(String holidayDiv31){
-		switch(holidayDiv31){
-			case "1":
-				this.holidayDiv31 = "休";
-				break;
-			case"2":
-				this.holidayDiv31 = "祝";
-				break;
-		}
-	}
-
+	public void setHolidayDiv1(String holidayDiv1) {this.holidayDiv1 = holidayDiv1;}
+	public void setHolidayDiv2(String holidayDiv2) {this.holidayDiv2 = holidayDiv2;}
+	public void setHolidayDiv3(String holidayDiv3) {this.holidayDiv3 = holidayDiv3;}
+	public void setHolidayDiv4(String holidayDiv4) {this.holidayDiv4 = holidayDiv4;}
+	public void setHolidayDiv5(String holidayDiv5) {this.holidayDiv5 = holidayDiv5;}
+	public void setHolidayDiv6(String holidayDiv6) {this.holidayDiv6 = holidayDiv6;}
+	public void setHolidayDiv7(String holidayDiv7) {this.holidayDiv7 = holidayDiv7;}
+	public void setHolidayDiv8(String holidayDiv8) {this.holidayDiv8 = holidayDiv8;}
+	public void setHolidayDiv9(String holidayDiv9) {this.holidayDiv9 = holidayDiv9;}
+	public void setHolidayDiv10(String holidayDiv10) {this.holidayDiv10 = holidayDiv10;}
+	public void setHolidayDiv11(String holidayDiv11) {this.holidayDiv11 = holidayDiv11;}
+	public void setHolidayDiv12(String holidayDiv12) {this.holidayDiv12 = holidayDiv12;}
+	public void setHolidayDiv13(String holidayDiv13) {this.holidayDiv13 = holidayDiv13;}
+	public void setHolidayDiv14(String holidayDiv14) {this.holidayDiv14 = holidayDiv14;}
+	public void setHolidayDiv15(String holidayDiv15) {this.holidayDiv15 = holidayDiv15;}
+	public void setHolidayDiv16(String holidayDiv16) {this.holidayDiv16 = holidayDiv16;}
+	public void setHolidayDiv17(String holidayDiv17) {this.holidayDiv17 = holidayDiv17;}
+	public void setHolidayDiv18(String holidayDiv18) {this.holidayDiv18 = holidayDiv18;}
+	public void setHolidayDiv19(String holidayDiv19) {this.holidayDiv19 = holidayDiv19;}
+	public void setHolidayDiv20(String holidayDiv20) {this.holidayDiv20 = holidayDiv20;}
+	public void setHolidayDiv21(String holidayDiv21) {this.holidayDiv21 = holidayDiv21;}
+	public void setHolidayDiv22(String holidayDiv22) {this.holidayDiv22 = holidayDiv22;}
+	public void setHolidayDiv23(String holidayDiv23) {this.holidayDiv23 = holidayDiv23;}
+	public void setHolidayDiv24(String holidayDiv24) {this.holidayDiv24 = holidayDiv24;}
+	public void setHolidayDiv25(String holidayDiv25) {this.holidayDiv25 = holidayDiv25;}
+	public void setHolidayDiv26(String holidayDiv26) {this.holidayDiv26 = holidayDiv26;}
+	public void setHolidayDiv27(String holidayDiv27) {this.holidayDiv27 = holidayDiv27;}
+	public void setHolidayDiv28(String holidayDiv28) {this.holidayDiv28 = holidayDiv28;}
+	public void setHolidayDiv29(String holidayDiv29) {this.holidayDiv29 = holidayDiv29;}
+	public void setHolidayDiv30(String holidayDiv30) {this.holidayDiv30 = holidayDiv30;}
+	public void setHolidayDiv31(String holidayDiv31) {this.holidayDiv31 = holidayDiv31;}
 	//出社時間
 	public String getStartTime1() {return startTime1;}
 	public String getStartTime2() {return startTime2;}
