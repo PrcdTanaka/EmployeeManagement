@@ -112,7 +112,7 @@
 				<tr>
 					<td><a href="jsp/Reservation.jsp">前の月へ</a></td>
 					<td rowspan = "2" width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
-					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の週へ</a></td>
+					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の月へ</a></td>
 				</tr>
 				<tr>
 					<td rowspan = "2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
