@@ -170,16 +170,12 @@
 				int_span1_lst = Integer.parseInt(kintai_span_lst[spans_calm]);
 				int_span2_lst = Integer.parseInt(kintai_span2_lst[spans_calm]);
 				int int_Date = Integer.parseInt(str_Date);
-				int AA = 0;
-				int BB = 0;
 				boolean Btwn_Flg = false;
-				AA = int_Date - int_span1_lst;
-				BB = int_span2_lst - int_Date;
-				if(AA == 0 || BB == 0)
+				if(int_Date == int_span1_lst || int_span2_lst == int_Date)
 				{
 					Btwn_Flg = false;
 				}
-				else if(AA >= 2 || BB >= 2)
+				else if(int_Date >= int_span1_lst && int_span2_lst >= int_Date)
 				{
 					Btwn_Flg = true;
 				}

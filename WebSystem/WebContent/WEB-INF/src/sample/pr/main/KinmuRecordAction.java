@@ -1029,7 +1029,7 @@ public class KinmuRecordAction extends Action{
 
 	//入力された情報を保存するsaveメソッド
 	public String save(KinmuRecordSendForm form){
-//		dba.kinmuRecordRegister(form);
+		dba.kinmuRecordRegister(form);
 		return "kinmurecord";
 	}
 

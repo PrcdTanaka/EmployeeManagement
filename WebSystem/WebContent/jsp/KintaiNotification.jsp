@@ -46,25 +46,19 @@ textarea {
 </table>
 
 <body>
-	<%
-		String message;
-			String employee_no;
-			LoginForm s1 = (LoginForm) session.getAttribute("form");
-			try {
-				KintaiNotificationForm KNform = (KintaiNotificationForm) session
-						.getAttribute("frm");
-				message = KNform.getMessage();
-				employee_no = s1.getEmployee_no();
+	 	<%
+ 		String message;
+ 		try{
+ 			KintaiNotificationForm kn = (KintaiNotificationForm) session.getAttribute("knform");
+ 			message =  kn.getMessage();
+ 			if(message == null)
+ 				message = "";
 
-				if (message.equals("")) {
-					message = "";
-				}
+ 		}catch(NullPointerException e){
+ 			message = "";
+ 		}
 
-			} catch (NullPointerException e) {
-				message = "";
-				employee_no = "";
 
-			}
 	%>
 
 
@@ -78,11 +72,24 @@ textarea {
 			<!-- 社員番号入力欄 -->
 			<div class="centers">
 				<p class="list">
+				<%
+				String employee_no;
+				try {
+					LoginForm s1 = (LoginForm) session.getAttribute("form");
+					employee_no = s1.getEmployee_no();
+					if (employee_no.equals("")) {
+						employee_no = "";
+					}
+				} catch (NullPointerException e) {
+					employee_no = "";
+				}
+				%>
 					社員番号 ：
 					<html:text property="employee_no" size="5" maxlength="4"
 						value="<%=employee_no%>" styleId="employee_no" />
 					氏名 ：
 					<html:text property="syain_name" size="12" maxlength="12"
+						value="氏名"
 						styleId="syain_name" />
 				</p>
 
@@ -90,8 +97,8 @@ textarea {
 					所属部門 ：
 					<html:select property="depart" name="KintaiNotificationForm"
 						styleId="depart">
-						<html:option value="">選択してください</html:option>
-						<html:option value="1">第1技術部</html:option>
+			<!--		<html:option value="">選択してください</html:option>	-->
+						<html:option value="1" >第1技術部</html:option >
 						<html:option value="2">第2技術部</html:option>
 						<html:option value="3">第3技術部</html:option>
 						<html:option value="4">第4技術部</html:option>
@@ -103,32 +110,32 @@ textarea {
 				<p>
 					申請日 ：
 					<html:text property="petition_ymd" size="10" maxlength="8"
-						styleId="petition_ymd" />
+						styleId="petition_ymd" value="20200917" />
 
 				</p>
 				<p>
 					対象日 ：
 					<html:text property="attendance_startday" size="10" maxlength="8"
-						styleId="attendance_startday" />
+						styleId="attendance_startday" value="20200917" />
 					～
 					<html:text property="attendance_endday" size="10" maxlength="8"
-						styleId="attendance_endday" />
+						styleId="attendance_endday" value="20200917" />
 				</p>
 				<p>
 					対象時間 ：
 					<html:text property="attendance_starttime" size="10" maxlength="4"
-						styleId="attendance_starttime" />
+						styleId="attendance_starttime" value="1800"/>
 					～
 					<html:text property="attendance_endtime" size="10" maxlength="4"
-						styleId="attendance_endtime" />
+						styleId="attendance_endtime" value="2000" />
 				</p>
 
 				<p>
 					届出事由 ：
 					<html:select property="notification_reason"
 						name="KintaiNotificationForm" styleId="notification_reason">
-						<html:option value="">選択してください</html:option>
-						<html:option value="1">1：遅刻</html:option>
+				<!--		<html:option value="">選択してください</html:option>	-->
+						<html:option value="1">1：遅刻</html:option >
 						<html:option value="2">2：早退</html:option>
 						<html:option value="3">3：私用外出</html:option>
 						<html:option value="4">4：休暇</html:option>
@@ -141,8 +148,8 @@ textarea {
 					休暇区分 ：
 					<html:select property="vacation_division"
 						name="KintaiNotificationForm" styleId="vacation_division">
-						<html:option value="">選択してください</html:option>
-						<html:option value="1">1.年次有給休暇/リフ休</html:option>
+				<!-- 		<html:option value="">選択してください</html:option> -->
+						<html:option value="1" >1.年次有給休暇/リフ休</html:option>
 						<html:option value="3">3.振替休暇</html:option>
 						<html:option value="4">4.特別休暇</html:option>
 						<html:option value="5">5.欠勤</html:option>
@@ -153,7 +160,7 @@ textarea {
 				<p>
 					振替対象日：
 					<html:text property="transfer_day" size="10" maxlength="8"
-						styleId="transfer_day" />
+						styleId="transfer_day" value="20200917" />
 				</p>
 
 				<p>
@@ -161,7 +168,7 @@ textarea {
 					<html:select property="sp_holiday_reason"
 						name="KintaiNotificationForm" styleId="sp_holiday_reason">
 						<html:option value="">選択してください</html:option>
-						<html:option value="1">1:結婚</html:option>
+						<html:option value="1" >1:結婚</html:option>
 						<html:option value="2">2:産前産後休業</html:option>
 						<html:option value="3">3:忌引き</html:option>
 						<html:option value="4">4:生理休暇</html:option>
@@ -189,7 +196,7 @@ textarea {
 			<br>
 			<p>事由</p>
 			<p>
-				<html:textarea property="reason" styleId="reason" rows="6" cols="40" />
+				<html:textarea property="reason" styleId="reason" rows="6" cols="40" value="事由を記載"/>
 		</div>
 
 		<!-- エクセル出力ボタン -->
