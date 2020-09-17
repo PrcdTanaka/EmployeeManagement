@@ -871,10 +871,20 @@
 
 
         //無届かどうかをif文で記述
-         if(Integer.parseInt(Send_Time.get(listnumber))>Integer.parseInt(limit)){
-         send="無届";}else{
-             send="";
-         }%>
+        if(Integer.parseInt(span.get(listnumber).substring(4,8))<=Integer.parseInt(Mmdd.get(listnumber))){
+            if(Integer.parseInt(Send_Time.get(listnumber))>Integer.parseInt(limit)){
+                send="無届";}else{
+                    send="";
+                }
+        	}else{
+        		send="";
+        	}
+ %>
+
+
+
+
+
          <%-- span==span2だった場合--%>
         <%  if(kintai_s[listnumber].substring(6,8).equals(kintai_s2[listnumber].substring(6,8))){%>
 				<td><%=dada%>日</td>

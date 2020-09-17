@@ -2973,10 +2973,10 @@ public class DbAction extends Object{
 			sb.append("INSERT INTO " + crlf);
 			sb.append("  RESERVATION(name,room_name,mmdd,res_time,member,use)" + crlf);
 			sb.append("values" + crlf);
-			sb.append("('"+form.getEmp_no()+"'" +crlf);
-			sb.append(",'"+ form.getName()+"'"+crlf);
+			sb.append("('"+ form.getName()+"'"+crlf);
 			sb.append(",'"+ form.getRoom_name()+"'"+crlf);
 			sb.append(",'"+ form.getMmdd()+"'"+crlf);
+			sb.append(",'"+ form.getRes_time()+"'"+crlf);
 			sb.append(",'"+ form.getUse()+"')"+crlf);
 			String query = sb.toString();
 

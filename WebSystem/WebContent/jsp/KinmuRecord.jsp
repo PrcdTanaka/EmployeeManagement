@@ -411,13 +411,13 @@
 				%>
 				<tr>
 					<%-- 日にち --%>
-					<td width="7px"><%= i %></td>
+					<td width="3%"><%= i %></td>
 
 					<%-- 曜日 --%>
-					<td width="7px"><%= JapaneseDate.from(date).format(fmt) %></td>
+					<td width="3%"><%= JapaneseDate.from(date).format(fmt) %></td>
 
 					<%-- 休/祝 --%>
-					<td width="7px">
+					<td width="5%">
 						<html:select property="<%= holidayDivPro %>" styleId="<%= holidayDivPro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="1">休</html:option>
@@ -426,7 +426,7 @@
 					</td>
 
 					<%-- 出社時間 --%>
-					<td width="7px">
+					<td width="5%">
 						<html:select property="<%= startTimePro %>" styleId="<%= startTimePro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
@@ -529,7 +529,7 @@
 					</td>
 
 					<%-- 退社時間 --%>
-					<td width="7px">
+					<td width="5%">
 						<html:select property="<%= endTimePro %>" styleId="<%= startTimePro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
@@ -632,15 +632,14 @@
 					</td>
 
 					<%-- 予定 --%>
-					<td width="7px">
-						<html:select property="<%= expectationPro %>" styleId="<%= expectationPro %>" name="KinmuRecordForm">
-							<html:option value="" style="text-align:center;">-</html:option>
-							<html:option value="0800">8:00</html:option>
-						</html:select>
+					<td width="4%">
+					<% if(!(JapaneseDate.from(date).format(fmt).equals("土")) && !(JapaneseDate.from(date).format(fmt).equals("日"))) { %>
+						8:00
+					<% } %>
 					</td>
 
 					<%-- 休A --%>
-					<td width="7px">
+					<td width="5%">
 						<html:select property="<%= breakTimeAPro %>" styleId="<%= breakTimeAPro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
@@ -664,7 +663,7 @@
 					</td>
 
 					<%-- 休B --%>
-					<td width="7px">
+					<td width="5%">
 						<html:select property="<%= breakTimeBPro %>" styleId="<%= breakTimeBPro %>" name="KinmuRecordForm">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
