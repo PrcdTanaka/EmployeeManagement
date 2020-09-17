@@ -948,7 +948,18 @@
 				<td><%=send %></td>
 				<td><%=division.get(listnumber)%></td>
 				<td><%=a%></td>
-				<td><%=perm.get(listnumber)%></td>
+				<%
+					if(perm.get(listnumber)==null){
+				%>
+					<td><%=""%></td>
+				<%
+					}
+					else{
+				%>
+					<td><%=perm.get(listnumber)%></td>
+				<%
+					}
+				%>
 				<td><%=remark.get(listnumber)%></td>
 			</tr>
 			<%
@@ -965,7 +976,18 @@
  				<td><%=send %></td>
  				<td><%=division.get(listnumber)%></td>
  				<td><%=a%></td>
- 				<td><%=perm.get(listnumber)%></td>
+ 				<%
+					if(perm.get(listnumber)==null){
+				%>
+					<td><%=""%></td>
+				<%
+					}
+					else{
+				%>
+					<td><%=perm.get(listnumber)%></td>
+				<%
+					}
+				%>
  				<td><%=remark.get(listnumber)%></td>
  			</tr>
  			<%
