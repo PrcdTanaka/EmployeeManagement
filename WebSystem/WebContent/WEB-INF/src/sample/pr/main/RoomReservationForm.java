@@ -26,6 +26,9 @@ public final class RoomReservationForm extends ActionForm {
 	private String mmdd;
 	/** 用途 */
 	private String use;
+	/** 時間 */
+	private String res_time;
+
 
 	/**
 	 * 初期化処理。
@@ -45,6 +48,7 @@ public final class RoomReservationForm extends ActionForm {
 		name = "";
 		mmdd = "";
 		use = "";
+		res_time = "";
 	}
 
 	/**
@@ -304,6 +308,28 @@ public final class RoomReservationForm extends ActionForm {
 	public void setUse(String use) {
 		this.use = use;
 	}
+	/**
+	 * カメラ取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームからカメラを取得する。
+	 * </p>
+	 *
+	 * @return カメラ
+	 */
+	public String getRes_time() {
+		return res_time;
+	}
 
+	/**
+	 * カメラ設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームにカメラを設定する。
+	 * </p>
+	 *
+	 * @param camera カメラ
+	 */
+	public void setRes_time(String res_time) {
+		this.res_time = res_time;
+	}
 
 }

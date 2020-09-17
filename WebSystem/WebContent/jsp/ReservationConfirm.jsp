@@ -31,7 +31,7 @@
 		<div class="block">
 			<div class="space"></div>
 			<br>
-			<div align= "center">会議室名：<%= room_name %></div>
+			<div align= "center" property="room_name">会議室名：<%= room_name %></div>
 			<div align= "center">予約日　：<%= mmdd %></div>
 			<div align= "center">予約時間：<%= res_time %></div>
 			<div align= "center">
@@ -48,7 +48,7 @@
 			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="confirm"/>
-				</center>
+			</center>
 			<!--  /div>-->
 			<center>
 			<div align="center">
