@@ -419,9 +419,9 @@
 					<%-- 休/祝 --%>
 					<td width="5%">
 						<html:select property="<%= holidayDivPro %>" styleId="<%= holidayDivPro %>" name="KinmuRecordForm">
-							<html:option value="" style="text-align:center;">-</html:option>
-							<html:option value="1">休</html:option>
-							<html:option value="2">祝</html:option>
+							<html:option value="0">出勤</html:option>
+							<html:option value="1">休日</html:option>
+							<html:option value="2">祝日</html:option>
 						</html:select>
 					</td>
 
