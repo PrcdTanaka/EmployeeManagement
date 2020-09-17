@@ -120,8 +120,8 @@
 			boolean val_flg = false; //確認フラグ
 			boolean chk_flg = false;
 			int int_span1_lst = 0;
+			int int_span2_lst = 0;
 			int dayss = 0;
-			//int save_val = 0;
 		%>
 		<%
 			if(Month.length() == 1)
@@ -158,7 +158,7 @@
 		<%
 			// 配列の要素に対象期間のspanがあるか確認
 			// 対象期間があれば、DBの情報表示
-			for(int span1_calm = 0; span1_calm < Span.size(); span1_calm++)
+			for(int spans_calm = 0; spans_calm < Span.size(); spans_calm++)
 			{
 				// 2回目以降の実施を防ぐガード
 				if(val_flg == true)
@@ -167,12 +167,33 @@
 				}
 		%>
 			<%
-				//int int_span1_lst = Integer.parseInt(kintai_span_lst[span1_calm]);
-				if(kintai_span_lst[span1_calm].equals(str_Date) || kintai_span2_lst[span1_calm].equals(str_Date))
+				int_span1_lst = Integer.parseInt(kintai_span_lst[spans_calm]);
+				int_span2_lst = Integer.parseInt(kintai_span2_lst[spans_calm]);
+				int int_Date = Integer.parseInt(str_Date);
+				int AA = 0;
+				int BB = 0;
+				boolean Btwn_Flg = false;
+				AA = int_Date - int_span1_lst;
+				BB = int_span2_lst - int_Date;
+				if(AA == 0 || BB == 0)
+				{
+					Btwn_Flg = false;
+				}
+				else if(AA >= 2 || BB >= 2)
+				{
+					Btwn_Flg = true;
+				}
+
+				// 次の条件の時に表示する
+				// 選択日が対象期間(開始日)と一致
+				// 選択日が対象期間(終了日)と一致
+				// 選択日が対象期間(開始日)と対象期間(終了日)の間
+				if(kintai_span_lst[spans_calm].equals(str_Date) ||
+						kintai_span2_lst[spans_calm].equals(str_Date) || Btwn_Flg == true)
 				{
 					val_flg = true;
-					//save_val = span1_calm;
-					int_span1_lst = Integer.parseInt(kintai_span_lst[span1_calm]);
+					//save_val = spans_calm;
+					//int_span1_lst = Integer.parseInt(kintai_span_lst[spans_calm]);
 			%>
 			<%
 				dayss = now_days - int_span1_lst;
@@ -208,7 +229,7 @@
 				CC:
 				<%
 					String CC_Add = "";
-					switch(l_CC.get(span1_calm))
+					switch(l_CC.get(spans_calm))
 					{
 						case "1group_admin.ml@procd-k.co.jp" :
 							CC_Add = "第一技術部";
@@ -269,12 +290,12 @@
 				<%
 					if(chk_flg == false){
 				%>
-					<html:text disabled="true" property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(span1_calm) %>" />
+					<html:text disabled="true" property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(spans_calm) %>" />
 				<%
 					}
 					else if(chk_flg == true){
 				%>
-					<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(span1_calm) %>" />
+					<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=l_BCC.get(spans_calm) %>" />
 				<%
 					}
 				%>
@@ -289,7 +310,7 @@
 				%>
 					<html:select disabled="true" property="depart" styleId="depart" name="KintaiMailForm"
 						style="font-size:15px; width:60%;">
-						<html:option value="" style="text-align:center;"><%=Depart.get(span1_calm) %></html:option>
+						<html:option value="" style="text-align:center;"><%=Depart.get(spans_calm) %></html:option>
 					</html:select>
 				<%
 					}
@@ -297,7 +318,7 @@
 				%>
 					<html:select property="depart" styleId="depart" name="KintaiMailForm"
 						style="font-size:15px; width:60%;">
-						<html:option value="" style="text-align:center;"><%=Depart.get(span1_calm) %></html:option>
+						<html:option value="" style="text-align:center;"><%=Depart.get(spans_calm) %></html:option>
 						<html:option value="1">第一技術部</html:option>
 						<html:option value="2">第二技術部</html:option>
 						<html:option value="3">第三技術部</html:option>
@@ -321,12 +342,12 @@
 				<%
 					if(chk_flg == false){
 				%>
-					<html:text disabled="true" property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=SpotCode.get(span1_calm) %>" />
+					<html:text disabled="true" property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=SpotCode.get(spans_calm) %>" />
 				<%
 					}
 					else if(chk_flg == true){
 				%>
-					<html:text property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=SpotCode.get(span1_calm) %>" />
+					<html:text property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=SpotCode.get(spans_calm) %>" />
 				<%
 					}
 				%>
@@ -340,7 +361,7 @@
 				%>
 					<html:select disabled="true" property="division" styleId="division" name="KintaiMailForm"
 						style="font-size:15px; width:60%;">
-						<html:option value="" style="text-align:center;"><%=Division.get(span1_calm) %></html:option>
+						<html:option value="" style="text-align:center;"><%=Division.get(spans_calm) %></html:option>
 					</html:select>
 				<%
 					}
@@ -348,7 +369,7 @@
 				%>
 					<html:select property="division" styleId="division" name="KintaiMailForm"
 						style="font-size:15px; width:60%;">
-						<html:option value="" style="text-align:center;"><%=Division.get(span1_calm) %></html:option>
+						<html:option value="" style="text-align:center;"><%=Division.get(spans_calm) %></html:option>
 						<html:option value="1">1,遅刻</html:option>
 						<html:option value="2">2,有給休暇</html:option>
 						<html:option value="3">4,振替休暇</html:option>
@@ -369,12 +390,12 @@
 				<%
 					if(chk_flg == false){
 				%>
-					<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=kintai_span_lst[span1_calm]%>" />
+					<html:text disabled="true" property="span" size="20" maxlength="8" style="width: 17%" value="<%=kintai_span_lst[spans_calm]%>" />
 				<%
 					}
 					else if(chk_flg == true){
 				%>
-					<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=kintai_span_lst[span1_calm]%>" />
+					<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=kintai_span_lst[spans_calm]%>" />
 				<%
 					}
 				%>
@@ -382,12 +403,12 @@
 				<%
 					if(chk_flg == false){
 				%>
-					<html:text disabled="true" property="span2" size="20" maxlength="8" style="width: 17%" value="<%=Span2.get(span1_calm) %>" />
+					<html:text disabled="true" property="span2" size="20" maxlength="8" style="width: 17%" value="<%=Span2.get(spans_calm) %>" />
 				<%
 					}
 					else if(chk_flg == true){
 				%>
-					<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=Span2.get(span1_calm) %>" />
+					<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=Span2.get(spans_calm) %>" />
 				<%
 					}
 				%>
@@ -398,12 +419,12 @@
 				<%
 					if(chk_flg == false){
 				%>
-					<html:text disabled="true" property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=Ptime.get(span1_calm) %>" />
+					<html:text disabled="true" property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=Ptime.get(spans_calm) %>" />
 				<%
 					}
 					else if(chk_flg == true){
 				%>
-					<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=Ptime.get(span1_calm) %>" />
+					<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=Ptime.get(spans_calm) %>" />
 				<%
 					}
 				%>
@@ -415,12 +436,12 @@
 			<%
 				if(chk_flg == false){
 			%>
-				<html:textarea disabled="true" property="remark" rows="10" cols="100" value="<%=Remark.get(span1_calm) %>"></html:textarea>
+				<html:textarea disabled="true" property="remark" rows="10" cols="100" value="<%=Remark.get(spans_calm) %>"></html:textarea>
 			<%
 				}
 				else if(chk_flg == true){
 			%>
-				<html:textarea property="remark" rows="10" cols="100" value="<%=Remark.get(span1_calm) %>"></html:textarea>
+				<html:textarea property="remark" rows="10" cols="100" value="<%=Remark.get(spans_calm) %>"></html:textarea>
 			<%
 				}
 			%>
@@ -431,12 +452,12 @@
 				<%
 					if(chk_flg == false){
 				%>
-					<html:text disabled="true" property="perm" size="43" maxlength="4" style="width: 17%" value="<%=Perm.get(span1_calm) %>" />
+					<html:text disabled="true" property="perm" size="43" maxlength="4" style="width: 17%" value="<%=Perm.get(spans_calm) %>" />
 				<%
 					}
 					else if(chk_flg == true){
 				%>
-					<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=Perm.get(span1_calm) %>" />
+					<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=Perm.get(spans_calm) %>" />
 				<%
 					}
 				%>
