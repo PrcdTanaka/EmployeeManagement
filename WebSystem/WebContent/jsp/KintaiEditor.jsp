@@ -144,6 +144,15 @@
 				kintai_span_lst[kintai_span] = Span.get(Target_day);
 				kintai_span++;
 			}
+
+			// DBのspan2のデータを配列の要素に格納
+			int kintai_span2 = 0;
+			String[] kintai_span2_lst = new String[Max_Days];
+			for(int Target_span2_day = 0; Target_span2_day < Span2.size(); Target_span2_day++)
+			{
+				kintai_span2_lst[kintai_span2] = Span2.get(Target_span2_day);
+				kintai_span2++;
+			}
 		%>
 
 		<%
@@ -159,7 +168,7 @@
 		%>
 			<%
 				//int int_span1_lst = Integer.parseInt(kintai_span_lst[span1_calm]);
-				if(kintai_span_lst[span1_calm].equals(str_Date))
+				if(kintai_span_lst[span1_calm].equals(str_Date) || kintai_span2_lst[span1_calm].equals(str_Date))
 				{
 					val_flg = true;
 					//save_val = span1_calm;
