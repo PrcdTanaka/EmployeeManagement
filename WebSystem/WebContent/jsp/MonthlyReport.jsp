@@ -146,13 +146,21 @@
 			<tr>
 				<%
         String dada="";
+		cal.set(Integer.parseInt(year), Integer.parseInt(month), 0);
+		monthlastDay = cal.getActualMaximum(Calendar.DATE);
          for (int day = 1; day <= monthlastDay; day++) {
              if(month.length()==1)
-                    month="0"+month;
-                 if(String.valueOf(day).length()==1)
-                     dada="0"+day;
-                 else
-                     dada=""+day;
+             {
+            	 month="0"+month;
+             }
+             if(String.valueOf(day).length()==1)
+             {
+            	 dada="0"+day;
+             }
+             else
+             {
+            	 dada=""+day;
+             }
 
                 // カレンダーから呼び出された時は、次の処理をする。
 				if(Chk_flg == true)
