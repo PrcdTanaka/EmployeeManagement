@@ -28,6 +28,8 @@ public final class RoomReservationForm extends ActionForm {
 	private String use;
 	/** 時間 */
 	private String res_time;
+	/** メンバー */
+	private String member;
 
 
 	/**
@@ -49,6 +51,7 @@ public final class RoomReservationForm extends ActionForm {
 		mmdd = "";
 		use = "";
 		res_time = "";
+		member = "";
 	}
 
 	/**
@@ -330,6 +333,16 @@ public final class RoomReservationForm extends ActionForm {
 	 */
 	public void setRes_time(String res_time) {
 		this.res_time = res_time;
+	}
+	/**
+	 * メンバー
+	 * @return
+	 */
+	public String getMember() {
+		return member;
+	}
+	public void setMember(String member) {
+		this.member = member;
 	}
 
 }
