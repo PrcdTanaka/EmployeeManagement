@@ -12,6 +12,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.lang.String" %>
+<%@ page import="java.lang.StringBuffer" %>
 
 <html:html>
 <head>
@@ -19,6 +21,12 @@
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
 </head>
 <html:form action="/MonthlyReportAction">
+	<%!
+		boolean Chk_flg = false;
+		boolean month_flg = true;
+		String Year_Data = "";
+  		String Month_Data = "";
+	%>
 	<body>
 		<%
         MonthlyReportForm form=new MonthlyReportForm();
@@ -65,13 +73,60 @@
         String send="";
 
         %>
+		 <%
+	 		// 前の画面よりリンク取得し、月に反映させる
+			StringBuffer sb = new StringBuffer();
+			sb.append(new String(request.getHeader("REFERER")));
+
+			String BeforeUrl = sb.substring(51);
+			if(BeforeUrl.equals("null"))
+			{
+				month_flg = false;
+			}
+			else if(BeforeUrl.isEmpty())
+			{
+				month_flg = false;
+			}
+			else if(BeforeUrl.substring(0, 5).equals("year="))
+			{
+				if(month_flg == true || Chk_flg == false)
+				{
+					String[] lBeforeUrl1 = new String[1];
+					lBeforeUrl1 = BeforeUrl.split("year=", 0);
+					String[] lBeforeUrl2 = new String[1];
+					lBeforeUrl2 = lBeforeUrl1[1].split("&month=", 0);
+					Year_Data = lBeforeUrl2[0];
+					Month_Data = lBeforeUrl2[1];
+
+					month_flg = true;
+				}
+			}
+			else
+			{
+				month_flg = false;
+			}
+
+		%>
 		<center>
 			<h1>勤怠月報画面</h1>
 		</center>
 		<table border="3" bordercolor="#0000ff">
 			<tr bgcolor="#87cefa">
 			<tr>
-				<td><%=month %>月</td>
+				<%
+					if(month_flg == false){
+				%>
+					<td><%=month %>月</td>
+				<%
+					}
+					else if(month_flg == true){
+				%>
+					<td><%=Month_Data %>月</td>
+				<%
+					Chk_flg = true;
+					month = Month_Data +"";
+					}
+				%>
 			</tr>
 			<tr>
 				<td>/</td>
@@ -942,14 +997,18 @@
 
 		</table>
 		</center>
-		<div style="position: relative; margin-top: 5%; align: center;">
+<%-- 		<div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="保存"
 				styleId="MonthlyReport" />
-		</div>
+		</div> --%>
 		<div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="戻る"
 				styleId="kintailist" />
 		</div>
 	</body>
+	<%
+		Chk_flg = false;
+	%>
+
 </html:form>
 </html:html>
