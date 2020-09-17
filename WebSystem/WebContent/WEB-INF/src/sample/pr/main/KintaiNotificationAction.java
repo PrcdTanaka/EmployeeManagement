@@ -43,8 +43,8 @@ public final class KintaiNotificationAction extends Action {
 		HttpSession session = request.getSession();
 
 		//ログインユーザーの社員番号と名前をセッションスコープから取得
-		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		lForm.setEmployee_no(lForm.getEmployee_no());
+//		LoginForm lForm = (LoginForm) session.getAttribute("form");
+//		KNForm.setEmployee_no(lForm.getEmployee_no());
 
 		//チェック要の項目を変数に格納する。
 		String check_employee_no = request.getParameter("employee_no");
@@ -56,6 +56,13 @@ public final class KintaiNotificationAction extends Action {
 		if(b.equals("戻る")){
 			forward ="main";
 		}
+		/*
+		 * 確認用
+		 * Excel更新機能
+		 *
+		 */
+/*		else if(b.equals("エクセル作成")){
+					}*/
 		else if (check_employee_no.equals("")) {
 			KNForm.setMessage("社員番号が空白になっています。");
 			forward = "kintaiNotification";
@@ -71,7 +78,8 @@ public final class KintaiNotificationAction extends Action {
 			forward = "kintaiNotification";
 		}
 		else{
-			KNForm.setMessage("エクセル出力しました。");
+			/*Excel出力ボタンを押下し、空欄がない場合。*/
+			KNForm.setMessage("データを保存します。");
 			forward="kintaiNotification";
 
 			/* ここからは構想上のプログラム
@@ -96,15 +104,28 @@ public final class KintaiNotificationAction extends Action {
 			String absenteeism_reason = request.getParameter("absenteeism_reason");
 			String reason = request.getParameter("reason");
 
+
 			/*確認するカラムをSELECTで確認する。
 			 * 確認カラム
 			 * 社員番号、対象開始日、対象終了日、届出事由
 			 *
 			 * StringBuffer sb = new StringBuffer();
 			 * sb.append(employee_no + attendance_startday + attendance_endday + notification_reason);
+			 * String marges = sb.toString();
+			 *
+			 * dba.getMargeNotification(form);
+			 *
+			 *
+			 *一致していたら、UPDATE処理
+			 *if(marges.equals("DBAでセレクトした値")){
+			 *
+			 *一致していない場合はINSERT処理
+			 *}else{
+			 *
 			 *
 			 */
 			//セッターでインスタンスのフィールド変数を更新
+
 			KNForm.setEmployee_no(employee_no);
 			KNForm.setSyain_name(syain_name);
 			KNForm.setDepart(depart);
@@ -139,25 +160,51 @@ public final class KintaiNotificationAction extends Action {
 				KNForm.setSp_holiday_reason(sp_holiday_reason);
 				KNForm.setAbsenteeism_reason("");
 				break;
+
+			//休暇区分が5(欠勤)の場合
 			case "5":
 				KNForm.setTransfer_day("");
 				KNForm.setSp_holiday_reason("");
 				KNForm.setAbsenteeism_reason(absenteeism_reason);
-			case "null":
+				break;
+
+			//休暇区分が入力されていない場合
+			default:
 				KNForm.setTransfer_day("");
 				KNForm.setSp_holiday_reason("");
 				KNForm.setAbsenteeism_reason("");
 				break;
 			}
 
-			forward = saveInsert(KNForm);
+//			forward = saveInsert(KNForm);
 
+
+			ExcelOutputActionNT excelOut = new ExcelOutputActionNT();
+			try {
+				forward= excelOut.exceloutput(KNForm);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return map.findForward(forward);
 	}
-
+	/*
+	 *
+	 */
 	public String saveInsert(KintaiNotificationForm form){
 		dba.KintaiNotification_INSERT(form);
 		return "kintaiNotification";
 	}
+
+	/*
+	 * UPDATE
+	 *
+	 *public String saveInsert(KintaiNotificationForm form){
+	 *	dba.KintaiNotification_INSERT(form);
+	 *	return "kintaiNotification";
+	 *}
+	 *
+	 */
+
 }
