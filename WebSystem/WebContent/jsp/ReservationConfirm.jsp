@@ -23,18 +23,25 @@
 		}catch(NullPointerException e){
 			message = "";
 		}
+
+		String res_time = request.getParameter("res_time");
+		String mmdd = request.getParameter("mmdd");
+		String room_name = request.getParameter("room_name");
 	%>
 		<div class="block">
 			<div class="space"></div>
 			<br>
+			<div align= "center">会議室名：<%= room_name %></div>
+			<div align= "center">予約日　：<%= mmdd %></div>
+			<div align= "center">予約時間：<%= res_time %></div>
 			<div align= "center">
 					用途　　：
 					<!--  input type ="text" property="room_name" value="" />-->
-					<html:text property="room_name" value="" />
+					<html:text property="use" value="" />
 			</div>
 			<div align= "center">
 					メンバー：
-					<html:text property="place" value="" />
+					<html:text property="member" value="" />
 			</div>
 			<!--div align="center"-->
 			<center>

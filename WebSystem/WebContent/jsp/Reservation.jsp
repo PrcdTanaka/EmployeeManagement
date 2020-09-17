@@ -165,7 +165,8 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp" onclick="return confirm('<%= dayalert + i %>日8:00に予約しますか？');">○</a></td>
+							<%if(month >= 10){}%>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:00&mmdd=<%=month+"月"%><%=dayalert + i+"日"%>&room_name=2F" onclick="return confirm('<%= dayalert + i %>日8:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
