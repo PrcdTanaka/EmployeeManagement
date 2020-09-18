@@ -34,7 +34,6 @@ public final class RoomReservationAction extends Action{
 		}
 		RoomReservationForm roForm = (RoomReservationForm) frm;
 		HttpSession session = request.getSession();
-		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		forward="reservation";
 		String button=roForm.getButton();
 		try{
