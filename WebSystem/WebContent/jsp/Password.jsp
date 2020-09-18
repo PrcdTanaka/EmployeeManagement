@@ -41,7 +41,7 @@
 			<br>
 			<div>
 				<center>
-					古いパスワード：
+					古いパスワード　：
 					<html:text property="oldpassword" value="" />
 				</center>
 			</div>

@@ -4,6 +4,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="sample.pr.main.RoomReservationForm"%>
 <%@ page import="sample.pr.main.LoginForm"%>
+<%@ page import="sample.ap.DbAction"%>
+
 <html:html>
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/Reservation.css">
@@ -13,6 +15,10 @@
 <body>
 	<html:form action="/ReservationConfirmAction">
 	<%
+	DbAction dba = new DbAction();
+	RoomReservationForm rForm = new RoomReservationForm();
+	LoginForm s = (LoginForm) session.getAttribute("form");
+
 		String message;
 		try{
 			RoomReservationForm roForm = (RoomReservationForm) session.getAttribute("pForm");
@@ -28,6 +34,8 @@
 		String mmdd = request.getParameter("mmdd");
 		String room_name = request.getParameter("room_name");
 		String emp_name = request.getParameter("emp_name");
+
+		emp_name = s.getEmployee_name();
 	%>
 		<div class="block">
 			<div class="space"></div>

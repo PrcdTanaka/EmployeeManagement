@@ -6,6 +6,7 @@
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.ReservationForm"%>
+<%@ page import="sample.pr.main.RoomReservationForm"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
@@ -19,6 +20,7 @@
 <html:form action="/ReservationAction">
 	<%
 		ReservationForm rForm = new ReservationForm();
+		RoomReservationForm roForm = new RoomReservationForm();
 		LoginForm lForm = new LoginForm();
 				String Employee_no = "";
 				String name = rForm.getName();
@@ -55,6 +57,8 @@
 					    String camera = "";
 					    List<String> mmdd = rForm.getMmdd();
 				        List<String> res_time = rForm.getRes_time();
+				        dba.getMMDD(roForm);
+
 
 	%>
 	<body>
