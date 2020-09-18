@@ -51,7 +51,7 @@
 
 				<!-- 社員番号入力欄 -->
 				<div>
-					<center>　　社員No：
+					<center>　社員NO：
 						<html:text property="employee_no" maxlength="4" />
 					</center>
 				</div>
