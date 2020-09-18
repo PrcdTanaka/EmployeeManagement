@@ -465,12 +465,18 @@
 			<%
 				}
 			%>
-			<div>
+
 			<%
 				if(chk_flg == true){
 			%>
-				<html:submit property="button" styleClass="btn" value="編集/登録"
+				<div  style="position: relative; margin-top: 10%; align: center;">
+					<html:submit property="button" style="color:#fff; background-color:#49a9d4; width: 20%;  border-radius: 20px;" value="勤怠取消し"
+					styleId=""/>
+				</div>
+				<div>
+					<html:submit property="button" styleClass="btn" value="編集/登録"
 					styleId="kintaimail" style="margin-top:10;" />
+				</div>
 			<%
 				}
 				else {
@@ -480,7 +486,6 @@
 			%>
 <%-- 			<html:submit property="button" styleClass="btn" value="編集/登録"
 				styleId="kintaimail" style="margin-top:10;" /> --%>
-		</div>
 		<div>
 		<ul style="list-style:none;text-align:center;margin-top:14px;">
 			<li><a class="btn1" href="javascript:history.back()" >戻る</a></li>
