@@ -2953,6 +2953,94 @@ public class DbAction extends Object{
 		return ret;
 	}
 
+	/*
+	 * 勤怠編集メソッド
+	 */
+	public boolean setKintaiEdit(KintaiMailForm form, LoginForm lform) {
+
+		boolean ret = false;
+		// DB接続
+		DbConnector dba = null;
+		Calendar calendar = Calendar.getInstance();
+		String month=(calendar.get(calendar.MONTH)+1)+"";
+		if(month.length()!=2)
+			month="0"+month;
+		String day=""+calendar.get(calendar.DATE);
+		if(day.length()!=2)
+			day="0"+day;
+		String hour=""+calendar.get(calendar.HOUR_OF_DAY);
+		if(hour.length()!=2){
+			hour="0"+hour;
+		}
+		String minutes=""+calendar.get(calendar.MINUTE);
+		if(minutes.length()!=2){
+			minutes="0"+minutes;
+		}
+		String mmdd=month+day;
+		String send_time=hour+minutes;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("UPDATE" + crlf);
+			sb.append("  KINTAIMAIL" + crlf);
+			sb.append("  SET" + crlf);
+			sb.append("  EMP_NO," + crlf);
+			sb.append("  CC," + crlf);
+			sb.append("  BCC," + crlf);
+			sb.append("  SPOTCODE," + crlf);
+			sb.append("  DIVISION," + crlf);
+			sb.append("  SPAN," + crlf);
+			sb.append("  PTIME," + crlf);
+			sb.append("  REMARK," + crlf);
+			sb.append("  PERM," + crlf);
+			sb.append("  DEPART," + crlf);
+			sb.append("  MMDD," + crlf);
+			sb.append("  SEND_TIME," + crlf);
+			sb.append("  SPAN2" + crlf);
+			sb.append(")VALUES(" + crlf);
+			sb.append("'"+lform.getEmployee_no()+"',"+crlf);
+			sb.append("'"+form.getCC()+"',"+crlf);
+			sb.append("'"+form.getBcc()+"',"+crlf);
+			sb.append("'"+form.getSpotcode()+"',"+crlf);
+			sb.append("'"+form.getDivision()+"',"+crlf);
+			sb.append("'"+form.getSpan()+"',"+crlf);
+			sb.append("'"+form.getPtime()+"',"+crlf);
+			sb.append("'"+form.getRemark()+"',"+crlf);
+			sb.append("'"+form.getPerm()+"',"+crlf);
+			sb.append("'"+form.getDepart()+"',"+crlf);
+			sb.append("'"+mmdd+"',"+crlf);
+			sb.append("'"+send_time+"',"+crlf);
+			sb.append("'"+form.getSpan2()+"'"+crlf);
+			sb.append(")"+crlf);
+			String query = sb.toString();
+
+			// 設定値 - 型
+
+
+			try {
+
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		ret=true;
+
+		return ret;
+	}
+
 	public boolean InsReservation(RoomReservationForm form) {
 
 		boolean ret = false;

@@ -172,7 +172,7 @@
 				<html:option value="5">6,シフト勤務</html:option>
 				<html:option value="6">7,早退,その他</html:option>
 				<html:option value="7">8,交通遅延</html:option>
-				<html:option value="8">9,欠席</html:option>
+				<html:option value="8">9,欠勤</html:option>
 				<html:option value="9">A,深夜作業</html:option>
 				<html:option value="10">B,休日出勤(振)</html:option>
 			</html:select>
