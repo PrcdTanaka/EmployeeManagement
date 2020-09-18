@@ -474,7 +474,7 @@
 					styleId=""/>
 				</div>
 				<div>
-					<html:submit property="button" styleClass="btn" value="編集/登録"
+					<html:submit property="button" styleClass="btn" value="編集"
 					styleId="kintaimail" style="margin-top:10;" />
 				</div>
 			<%
