@@ -36,7 +36,6 @@ public final class ReservationAction extends Action{
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		rForm.setEmployee_no(lForm.getEmployee_no());
-		dba.getReservation(rForm);
 		dba.getEmployeeName(lForm);
 		forward="reservation";
 		String button=rForm.getButton();

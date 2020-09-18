@@ -22,7 +22,6 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
-import sample.pr.main.ReservationForm;
 import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
@@ -3352,7 +3351,7 @@ public class DbAction extends Object{
 		return ret;
 
 	}
-	public boolean getMMDD(KintaiMailForm form) {
+	public boolean getMMDD(RoomReservationForm form) {
 
 		boolean ret = false;
 
@@ -3371,16 +3370,18 @@ public class DbAction extends Object{
 
 			sb.append("SELECT"+crlf);
 			sb.append(" MMDD"+crlf);
+			sb.append(",RES_TIME"+crlf);
 			sb.append("FROM"+crlf);
-			sb.append(" KINTAIMAIL"+crlf);
+			sb.append("RESERVATION"+crlf);
 			sb.append("WHERE"+crlf);
-			sb.append(" EMP_NO=?"+crlf);
+			sb.append("ROOM_NAME = '2F';"+crlf);
 
 			String query = sb.toString();
 
 			// 取得項目
 			List<String> columnList = new ArrayList<String>();
 			columnList.add("MMDD");
+			columnList.add("RES_TIME");
 
 
 			// 設定値 - 型
@@ -3389,7 +3390,7 @@ public class DbAction extends Object{
 
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getEmployee_no());
+			bindList.add(form.getRoom_name());
 
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
@@ -3896,66 +3897,4 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
-	public boolean getReservation(ReservationForm form) {
-
-		boolean ret = false;
-
-		// DB接続
-		DbConnector dba = null;
-		try {
-			dba = new DbConnector(gHost,gSid,gUser,gPass);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-
-		if (dba.conSts) {
-
-			StringBuffer sb = new StringBuffer();
-			String crlf = System.getProperty("line.separator");
-
-			sb.append("SELECT "+crlf);
-			sb.append("MMDD"+crlf);
-			sb.append(",RES_TIME"+crlf);
-			sb.append("FROM"+crlf);
-			sb.append("RESERVATION" + crlf);
-			sb.append("WHERE"+crlf);
-			sb.append("ROOM_NAME = '2F';"+crlf);
-
-			String query = sb.toString();
-
-			// 取得項目
-			List<String> columnList = new ArrayList<String>();
-			columnList.add("MMDD");
-			columnList.add("RES_TIME");
-
-			// 設定値 - 型
-			List<Integer> typeList = new ArrayList<Integer>();
-			typeList.add(dba.DB_STRING);
-
-			// 設定値 - 値
-			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getEmployee_no());
-
-			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
-
-			try {
-
-				dba.executeQuery(query, columnList, typeList, bindList, rsList);
-				dba.commit();
-				dba.closeConnection();
-
-				for (Map<String, String> val : rsList) {
-					form.setMmdd(val.get("MMDD"));
-					form.setRes_time(val.get("RES_TIME"));
-					ret = true;
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return ret;
-
-	}
-
 }
