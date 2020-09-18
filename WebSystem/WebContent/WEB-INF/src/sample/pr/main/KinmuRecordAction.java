@@ -70,7 +70,7 @@ public class KinmuRecordAction extends Action{
 			} else if(button.equals("入力内容を保存")){
 				//31日分のインスタンスを保存
 				//リクエストパラメーターを取得
-				//休暇区分
+				//休日区分
 				String holidayDiv1 = request.getParameter("holidayDiv1");
 				String holidayDiv2 = request.getParameter("holidayDiv2");
 				String holidayDiv3 = request.getParameter("holidayDiv3");
@@ -300,9 +300,9 @@ public class KinmuRecordAction extends Action{
 //				KinmuRecordSendForm KRSForm = (KinmuRecordSendForm) frm;
 				KinmuRecordSendForm KRSForm = new KinmuRecordSendForm();
 				//〇月1日が入力されているかチェック
-				sb.append(holidayDiv1 + startTime1 + endTime1 + breakTimeA1 + breakTimeB1 + vacationDiv1 + remark1);
+				sb.append(startTime1 + endTime1 + breakTimeA1 + breakTimeB1 + vacationDiv1 + remark1);
 				String query1 = sb.toString();
-				if(query1.length() > 1){
+				if(!(holidayDiv1.equals("0")) || query1.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv1(holidayDiv1);
 					KRForm.setStartTime1(startTime1);
