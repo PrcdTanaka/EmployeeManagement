@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -19,13 +20,11 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 public class ExcelOutputActionNT {
 
 	//エクセルファイルを置いているフォルダー
-	static final String INPUT_DIR = "C:/Temp//excelInput/";
 	static final String OUTPUT_DIR = "C:/Temp//excelOutput/";
 
 	public String exceloutput(KintaiNotificationForm knform) throws IOException {
 
 		// 変更するエクセルファイルを指定
-		FileInputStream in  = new FileInputStream(INPUT_DIR + "勤怠届(Ver3.2).xlsm");
 		Workbook wb = null;
 
 		//遷移先指定
@@ -70,51 +69,31 @@ public class ExcelOutputActionNT {
 
 		System.out.println("Excel出力処理開始");
 
-		try {
-			// 既存のエクセルファイルを編集する際は、WorkbookFactoryを使用
-			wb = WorkbookFactory.create(in);
-
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		//勤務表.xlsxの勤務表シートを取得
-		Sheet sheet = wb.getSheet("勤怠届");
-
-	    Row row1 = sheet.getRow(1);
-	    Row row2 = sheet.getRow(2);
-
-	    Cell cell1_0 = row1.getCell(0);
-	    Cell cell1_1 = row1.getCell(1);
-	    Cell cell1_2 = row1.getCell(2);
-
-	    Cell cell2_0 = row2.getCell(0);
-	    Cell cell2_1 = row2.getCell(1);
-	    Cell cell2_2 = row2.getCell(2);
-
-	    cell1_0.setCellValue(10);
-	    cell1_1.setCellValue(-8.5);
-	    cell1_2.setCellValue(3.14);
-
-	    cell2_0.setCellValue("Hello");
-	    cell2_1.setCellValue("表形式");
-	    cell2_2.setCellValue("3.14");
-
-//		//社員番号を入力するセルの行(P)を取得
-//		Row row = sheet.createRow(11);
-//
-//		//6行目の3こ目のセルを取得
-//		Cell cell = row.createCell(12);
-//
-//		//取得したセルにセットする値を指定
-//		cell.setCellValue(employee_no);
-//
+		FileInputStream in = null;
 		FileOutputStream out = null;
+
+		String OutputFile=OUTPUT_DIR + sendFileName;
 
 		try {
 			// 変更するエクセルファイルを指定
-			out = new FileOutputStream(OUTPUT_DIR + sendFileName);
+			in = new FileInputStream(OutputFile);
+			// 既存のエクセルファイルを編集する際は、WorkbookFactoryを使用
+			wb = WorkbookFactory.create(in);
+
+			//勤怠届.xlsxの勤怠届シートを取得
+			Sheet sheet = wb.getSheet("勤怠届");
+
+			//社員番号を入力するセルの行(P)を取得
+			Row row = sheet.createRow(11);
+
+			//6行目の3こ目のセルを取得
+			Cell cell = row.createCell(12);
+
+			//取得したセルにセットする値を指定
+			cell.setCellValue(employee_no);
+
+			// 変更するエクセルファイルを指定
+			out= new FileOutputStream(OutputFile);
 
 			// 書き込み
 			wb.write(out);
@@ -141,47 +120,34 @@ public class ExcelOutputActionNT {
 
 		String timename=localDateTime.format(dateTimeFormatter);
 
-		//コピー元ディレクトリパス
-		String path_To = "C:\\Temp\\excelInput\\";
-
-		//コピー先ディレクトリパス
-		String path_From = "C:\\Temp\\excelOutput\\";
-
 		//コピー元ファイル名
 		String fileNameGen="勤怠届(Ver3.2).xlsm";
 
 		//コピー先ファイル名
 		sendFileName ="勤怠届(Ver3.2)_" +  empNo + "_"+ timename +".xlsm";
 
-		File file = new File(path_To);
+		//コピー元ディレクトリパス
+		String path_To = "C:\\Temp\\excelInput\\";
 
-		// ファイルが存在するか確認
-		if (file.exists()) {
+		//コピー先ディレクトリパス
+		String path_From = "C:\\Temp\\excelOutput\\";
 
-			File dir = new File(path_From);
+		File dir = new File(path_From);
 
-			// フォルダが存在するか確認
-			if (!dir.exists()) {
+		// フォルダが存在するか確認
+		if (!dir.exists()) {
 
-				// フォルダを作成
-				dir.mkdirs();
-			}
-
-			// パスを連結
-			Path filePathFrom = Paths.get(path_From, sendFileName);
-
-			Path filePathTo = Paths.get(path_From, fileNameGen);
-			File fileFrom = new File(filePathFrom.toString());
-			File fileTo = new File(filePathTo.toString());
-			if (fileTo.exists()) {
-
-				// ファイルを削除
-				fileTo.delete();
-			}
-
-			// ファイルを名前変更(移動)
-			fileFrom.renameTo(fileTo);
+			// フォルダを作成
+			dir.mkdirs();
 		}
+
+		// パスを連結
+		Path filePathFrom = Paths.get(path_From, sendFileName);
+		Path filePathTo = Paths.get(path_To, fileNameGen);
+
+		// ファイルを名前変更(コピー移動)
+		Files.copy(filePathTo, filePathFrom);
+
 		return sendFileName;
 	}
 

@@ -31,6 +31,7 @@
 		<%
         MonthlyReportForm form=new MonthlyReportForm();
         Calendar cal = Calendar.getInstance();
+        String year = (cal.get(cal.YEAR))+"";
         String month=(cal.get(cal.MONTH)+1)+"";
         int monthlastDay = cal.getActualMaximum(Calendar.DATE);
         DbAction dba = new DbAction();
@@ -75,6 +76,7 @@
         %>
 		 <%
 	 		// 前の画面よりリンク取得し、月に反映させる
+	 		String str_Date = "";
 			StringBuffer sb = new StringBuffer();
 			sb.append(new String(request.getHeader("REFERER")));
 
@@ -144,18 +146,41 @@
 			<tr>
 				<%
         String dada="";
+		cal.set(Integer.parseInt(year), Integer.parseInt(month), 0);
+		monthlastDay = cal.getActualMaximum(Calendar.DATE);
          for (int day = 1; day <= monthlastDay; day++) {
              if(month.length()==1)
-                    month="0"+month;
-                 if(String.valueOf(day).length()==1)
-                     dada="0"+day;
-                 else
-                     dada=""+day;
+             {
+            	 month="0"+month;
+             }
+             if(String.valueOf(day).length()==1)
+             {
+            	 dada="0"+day;
+             }
+             else
+             {
+            	 dada=""+day;
+             }
+
+                // カレンダーから呼び出された時は、次の処理をする。
+				if(Chk_flg == true)
+				{
+					str_Date = Year_Data + month;
+				}
+				else if(Chk_flg == false)
+				{
+					str_Date = year + month;
+				}
+
        int flg=0;
          for(int listnumber=0;listnumber<span.size();listnumber++){
 
-
-         if(kintai_s[listnumber].substring(6,8).equals(dada)&&flg==0){
+        	 boolean Chk_Selected_Flg = false;
+        	 if(kintai_s[listnumber].substring(0,6).equals(str_Date))
+        	 {
+        		 Chk_Selected_Flg = true;
+        	 }
+         if(kintai_s[listnumber].substring(6,8).equals(dada)&&flg==0 && Chk_Selected_Flg == true){
 
         //switch文を使用して企業コードから作業場所とlimitを表示
         switch(spotcode.get(listnumber)){
