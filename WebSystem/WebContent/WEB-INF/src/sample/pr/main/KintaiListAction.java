@@ -39,14 +39,17 @@ public class KintaiListAction extends Action {
 		forward = "KintaiList";
 		String button=kForm.getButton();
 		try{
+			// 勤怠一覧画面から選択されたのが「戻る」の場合
 			if(button.equals("戻る")){
 				forward="main";
 				session.removeAttribute("kform");
 			}
+			// 勤怠一覧画面から選択されたのが「勤怠月報画面へ」の場合
 			else if(button.equals("勤怠月報画面へ")){
 				forward="MonthlyReport";
 				session.setAttribute("kform", kForm);
 			}
+			// 勤怠一覧画面から選択されたのが「勤怠連絡入力」の場合
 			else if(button.equals("勤怠連絡入力")){
 				forward="kintaimail";
 			}

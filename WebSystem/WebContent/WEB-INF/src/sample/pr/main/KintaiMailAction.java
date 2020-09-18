@@ -46,8 +46,15 @@ public class KintaiMailAction extends Action {
 				forward = "KintaiMain";
 				session.removeAttribute("form");
 			}
+			if(button.equals("勤怠取消し"))
+			{
+				forward = "Kintailist";
+				response.sendRedirect("http://localhost:8080/WebSystem/jsp/KintaiList.jsp");
+				session.removeAttribute("form");
+			}
 			if (button.equals("編集"))
 			{
+				forward = "kintaieditor";
 				/*Span1とSpan2と被っていないか確認*/
 				MonthlyReportForm FORM=new MonthlyReportForm();
 				FORM.setEmployee_no(lForm.getEmployee_no());
@@ -93,7 +100,6 @@ public class KintaiMailAction extends Action {
 						|| !(form.getSpan().equals(form.getSpan()))
 						|| !(form.getSpan2().equals(form.getSpan2()))){
 					session.setAttribute("form", form);
-					forward = "kintaimail";
 				}
 				else{
 					if(chk_bukking_flg == false)
