@@ -2991,21 +2991,21 @@ public class DbAction extends Object{
 			sb.append("UPDATE" + crlf);
 			sb.append("  KINTAIMAIL" + crlf);
 			sb.append("  SET" + crlf);
-			sb.append("  EMP_NO," + crlf);
-			sb.append("  CC," + crlf);
-			sb.append("  BCC," + crlf);
-			sb.append("  SPOTCODE," + crlf);
-			sb.append("  DIVISION," + crlf);
-			sb.append("  SPAN," + crlf);
-			sb.append("  PTIME," + crlf);
-			sb.append("  REMARK," + crlf);
-			sb.append("  PERM," + crlf);
-			sb.append("  DEPART," + crlf);
-			sb.append("  MMDD," + crlf);
-			sb.append("  SEND_TIME," + crlf);
-			sb.append("  SPAN2" + crlf);
-			sb.append(")VALUES(" + crlf);
-			sb.append("'"+lform.getEmployee_no()+"',"+crlf);
+			sb.append("  EMP_NO = '"  + lform.getEmployee_no() + "'," + crlf);
+			sb.append("  CC ='" + form.getCC()+"',"+crlf);
+			sb.append("  BCC ='" + form.getBcc()+"',"+crlf);
+			sb.append("  SPOTCODE ='" + form.getSpotcode()+"',"+crlf);
+			sb.append("  DIVISION ='" + form.getDivision()+"',"+crlf);
+			sb.append("  SPAN ='" + form.getSpan()+"',"+crlf);
+			sb.append("  PTIME ='" + form.getPtime()+"',"+crlf);
+			sb.append("  REMARK ='" + form.getRemark()+"',"+crlf);
+			sb.append("  PERM ='" + form.getPerm()+"',"+crlf);
+			sb.append("  DEPART ='" + form.getDepart()+"',"+crlf);
+			sb.append("  MMDD ='" + mmdd+"',"+crlf);
+			sb.append("  SEND_TIME ='" + send_time+"',"+crlf);
+			sb.append("  SPAN2 ='" + form.getSpan2()+"'"+crlf);
+
+/*			sb.append("'"+lform.getEmployee_no()+"',"+crlf);
 			sb.append("'"+form.getCC()+"',"+crlf);
 			sb.append("'"+form.getBcc()+"',"+crlf);
 			sb.append("'"+form.getSpotcode()+"',"+crlf);
@@ -3017,16 +3017,24 @@ public class DbAction extends Object{
 			sb.append("'"+form.getDepart()+"',"+crlf);
 			sb.append("'"+mmdd+"',"+crlf);
 			sb.append("'"+send_time+"',"+crlf);
-			sb.append("'"+form.getSpan2()+"'"+crlf);
-			sb.append(")"+crlf);
+			sb.append("'"+form.getSpan2()+"'"+crlf);*/
+
+			sb.append("WHERE" + crlf);
+			sb.append("  EMP_NO = ?" + crlf);
 			String query = sb.toString();
 
 			// 設定値 - 型
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
 
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
 
 			try {
 
-				dba.executeQuery(query);
+				dba.executeQuery(query, typeList, bindList);
 				dba.commit();
 				dba.closeConnection();
 

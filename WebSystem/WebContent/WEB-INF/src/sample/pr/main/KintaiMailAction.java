@@ -55,8 +55,11 @@ public class KintaiMailAction extends Action {
 			if (button.equals("編集"))
 			{
 				forward = "kintaieditor";
+				int Send_Edit_val = 1;
+				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, form, Send_Edit_val);
+
 				/*Span1とSpan2と被っていないか確認*/
-				MonthlyReportForm FORM=new MonthlyReportForm();
+	/*			MonthlyReportForm FORM=new MonthlyReportForm();
 				FORM.setEmployee_no(lForm.getEmployee_no());
 				dba.getMonthly_report(FORM);
 				List<String> FSpan1 = FORM.getSpan();
@@ -91,7 +94,7 @@ public class KintaiMailAction extends Action {
 						chk_bukking_flg = true;
 					}
 				}
-				if ((((form.getCC().equals("") || form.getSpotcode().equals("")
+	*/			if ((((form.getCC().equals("") || form.getSpotcode().equals("")
 						|| form.getDivision().equals("")
 						|| form.getSpan().equals("")
 						|| form.getRemark().equals("")
@@ -102,7 +105,7 @@ public class KintaiMailAction extends Action {
 					session.setAttribute("form", form);
 				}
 				else{
-					if(chk_bukking_flg == false)
+					if(Send_Chk_Flg == false)
 					{
 						session.setAttribute("form", form);
 						dba.setKintaiEdit(form, lForm);
@@ -113,6 +116,10 @@ public class KintaiMailAction extends Action {
 			}
 			if (button.equals("送信")) {
 				/*Span1とSpan2と被っていないか確認*/
+				int Send_Edit_val = 0;
+				// 対象期間/日付がDBの既存情報と被っていないか確認
+				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, form, Send_Edit_val);
+/*
 				MonthlyReportForm FORM=new MonthlyReportForm();
 				FORM.setEmployee_no(lForm.getEmployee_no());
 				dba.getMonthly_report(FORM);
@@ -144,7 +151,7 @@ public class KintaiMailAction extends Action {
 						chk_bukking_flg = true;
 					}
 				}
-
+*/
 				if ((((form.getCC().equals("") || form.getSpotcode().equals("")
 						|| form.getDivision().equals("")
 						|| form.getSpan().equals("")
@@ -160,7 +167,7 @@ public class KintaiMailAction extends Action {
 				//	JOptionPane.showMessageDialog(null, errorMsg);
 				}
 				else{
-					if(chk_bukking_flg == false)
+					if(Send_Chk_Flg == false)
 					{
 						session.setAttribute("form", form);
 						dba.setKintaiInfo(form, lForm);
@@ -176,5 +183,65 @@ public class KintaiMailAction extends Action {
 //		session.removeAttribute("form");
 		return map.findForward(forward);
 
+	}
+
+	/*
+	 * 対象期間/日付の被り確認メソッド
+	 * 入力
+	 * I : lForm
+	 * I : form
+	 * I : Send_Edit_val
+	 * 出力
+	 * O : chk_bukiing_flg (true・・被りあり / false・・被りなし)
+	 */
+	public boolean Send_Edit_Chk(LoginForm lForm, KintaiMailForm form, int Send_Edit_val)
+	{
+		MonthlyReportForm FORM=new MonthlyReportForm();
+		FORM.setEmployee_no(lForm.getEmployee_no());
+		dba.getMonthly_report(FORM);
+		List<String> FSpan1 = FORM.getSpan();
+		List<String> FSpan2 = FORM.getSpan2();
+		int lSpan1 = 0;
+		int lSpan2 = 0;
+		String[] Kintai_lst_Span1 = new String[30];
+		String[] Kintai_lst_Span2 = new String[30];
+		for(int Target_span1_day = 0; Target_span1_day < FSpan1.size(); Target_span1_day++)
+		{
+			Kintai_lst_Span1[lSpan1] = FSpan1.get(Target_span1_day);
+			lSpan1++;
+		}
+		for(int Target_span2_day = 0; Target_span2_day < FSpan2.size(); Target_span2_day++)
+		{
+			Kintai_lst_Span2[lSpan2] = FSpan2.get(Target_span2_day);
+			lSpan2++;
+		}
+		boolean chk_bukking_flg = false;
+		for(int spans_culm = 0; spans_culm < FSpan1.size(); spans_culm++)
+		{
+			int int_Span1_List = Integer.parseInt(Kintai_lst_Span1[spans_culm]);
+			int int_Span2_List = Integer.parseInt(Kintai_lst_Span2[spans_culm]);
+			int int_date = Integer.parseInt(form.getSpan());
+
+			if(Send_Edit_val == 1)
+			{
+				if(int_date == int_Span1_List && int_Span2_List == int_date)
+				{
+					chk_bukking_flg = false;
+				}
+				else if(int_date >= int_Span1_List && int_Span2_List >= int_date)
+				{
+					chk_bukking_flg = true;
+				}
+			}
+			else if(Send_Edit_val == 0)
+			{
+				if(int_date >= int_Span1_List && int_Span2_List >= int_date)
+				{
+					chk_bukking_flg = true;
+				}
+			}
+
+		}
+		return chk_bukking_flg;
 	}
 }
