@@ -61,6 +61,8 @@ public final class EnterAction extends Action {
 		LoginForm lForm = (LoginForm)session.getAttribute("form");
 		//ログインした人の社員番号を取得
 		eForm.setEmployee_no(lForm.getEmployee_no());
+		//ログインした人の社員名取得
+		eForm.setEmployee_name(lForm.getEmployee_name());
 		//jsp上で入力されたボタンを取得
 		String b=eForm.getButton();
 		String link=lForm.getLink();
@@ -70,6 +72,7 @@ public final class EnterAction extends Action {
 			link="2";
 		eForm.setLink(link);
 		Calendar calendar = Calendar.getInstance();
+		String year=(calendar.get(calendar.YEAR))+"";
 		String month=(calendar.get(calendar.MONTH)+1)+"";
 		if(month.length()!=2)
 			month="0"+month;
@@ -84,6 +87,7 @@ public final class EnterAction extends Action {
 			minutes="0"+minutes;
 		String time=hour+minutes;
 		String cale =month+day;
+		String ymd = year+cale;
 
 
 
@@ -96,14 +100,14 @@ public final class EnterAction extends Action {
 			}
 			else {
 				forward="success";
-;				dba.UpdateLeave(eForm, time, cale);
+;				dba.UpdateLeave(eForm, time, ymd);
 			}
 
 		}
 		else if(b.equals("入室")){
 			if(lForm.getEmployee_name()!=null) {
 				forward="success";
-				dba.InsertEnter(eForm, cale, time);
+				dba.InsertEnter(eForm, ymd, time);
 			}
 			else {
 				forward="failure";
@@ -113,7 +117,7 @@ public final class EnterAction extends Action {
 		{
 			if(lForm.getEmployee_name()!=null)
 
-				dba.UpdateLeave(eForm, time, cale);
+				dba.UpdateLeave(eForm, time, ymd);
 				forward="failure";
 		}
 		session.removeAttribute("eform");

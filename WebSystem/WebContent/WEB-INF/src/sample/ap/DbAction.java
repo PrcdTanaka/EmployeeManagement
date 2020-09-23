@@ -2789,9 +2789,10 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 
-			//日付、入室時間を登録する(	"ENTRY_EMP" CHAR(4) NOT NULL ENABLE,
+
+			//日付、入室時間を登録する(	"ENTRY_EMP" NUMBER(8) NOT NULL ENABLE,
 			sb.append("INSERT INTO " + crlf);
-			sb.append("  ROOM_ACCESS_TBL(ENTRY_EMP,DAY,ENTRY_TIME,LEAVING_TIME,CHECK_LIST,FLOOR,LEAVING_EMP,EMPLOYEE_NAME)" + crlf);
+			sb.append("  ROOM_ACCESS_TBL(ENTRY_EMP,DAY,ENTRY_TIME,LEAVING_TIME,CHECK_LIST,FLOOR,LEAVING_NAME,EMPLOYEE_NAME)" + crlf);
 			sb.append("values" + crlf);
 			sb.append("('"+form.getEmployee_no()+"'," +crlf);
 			sb.append("'"+a+"',"+ crlf);
@@ -2836,13 +2837,13 @@ public class DbAction extends Object{
 			sb.append("SET" + crlf);
 			if(form.getButton().equals("退室"))
 			{
-			sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
+			sb.append("  LEAVING_NAME = " + "'"+form.getLeaving_name()+"'," + crlf);
 			sb.append("  LEAVING_TIME = " + "'" +a+"'," + crlf);
 			sb.append("  CHECK_LIST='1'"+ crlf);
 			}
 			else
 			{
-				sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
+				sb.append("  LEAVING_NAME = " + "'"+form.getEmployee_no()+"'," + crlf);
 				sb.append("  LEAVING_TIME = " + "'0000'," + crlf);
 				sb.append("  CHECK_LIST='0'"+ crlf);
 			}
@@ -2990,21 +2991,21 @@ public class DbAction extends Object{
 			sb.append("UPDATE" + crlf);
 			sb.append("  KINTAIMAIL" + crlf);
 			sb.append("  SET" + crlf);
-			sb.append("  EMP_NO," + crlf);
-			sb.append("  CC," + crlf);
-			sb.append("  BCC," + crlf);
-			sb.append("  SPOTCODE," + crlf);
-			sb.append("  DIVISION," + crlf);
-			sb.append("  SPAN," + crlf);
-			sb.append("  PTIME," + crlf);
-			sb.append("  REMARK," + crlf);
-			sb.append("  PERM," + crlf);
-			sb.append("  DEPART," + crlf);
-			sb.append("  MMDD," + crlf);
-			sb.append("  SEND_TIME," + crlf);
-			sb.append("  SPAN2" + crlf);
-			sb.append(")VALUES(" + crlf);
-			sb.append("'"+lform.getEmployee_no()+"',"+crlf);
+			sb.append("  EMP_NO = '"  + lform.getEmployee_no() + "'," + crlf);
+			sb.append("  CC ='" + form.getCC()+"',"+crlf);
+			sb.append("  BCC ='" + form.getBcc()+"',"+crlf);
+			sb.append("  SPOTCODE ='" + form.getSpotcode()+"',"+crlf);
+			sb.append("  DIVISION ='" + form.getDivision()+"',"+crlf);
+			sb.append("  SPAN ='" + form.getSpan()+"',"+crlf);
+			sb.append("  PTIME ='" + form.getPtime()+"',"+crlf);
+			sb.append("  REMARK ='" + form.getRemark()+"',"+crlf);
+			sb.append("  PERM ='" + form.getPerm()+"',"+crlf);
+			sb.append("  DEPART ='" + form.getDepart()+"',"+crlf);
+			sb.append("  MMDD ='" + mmdd+"',"+crlf);
+			sb.append("  SEND_TIME ='" + send_time+"',"+crlf);
+			sb.append("  SPAN2 ='" + form.getSpan2()+"'"+crlf);
+
+/*			sb.append("'"+lform.getEmployee_no()+"',"+crlf);
 			sb.append("'"+form.getCC()+"',"+crlf);
 			sb.append("'"+form.getBcc()+"',"+crlf);
 			sb.append("'"+form.getSpotcode()+"',"+crlf);
@@ -3016,16 +3017,24 @@ public class DbAction extends Object{
 			sb.append("'"+form.getDepart()+"',"+crlf);
 			sb.append("'"+mmdd+"',"+crlf);
 			sb.append("'"+send_time+"',"+crlf);
-			sb.append("'"+form.getSpan2()+"'"+crlf);
-			sb.append(")"+crlf);
+			sb.append("'"+form.getSpan2()+"'"+crlf);*/
+
+			sb.append("WHERE" + crlf);
+			sb.append("  EMP_NO = ?" + crlf);
 			String query = sb.toString();
 
 			// 設定値 - 型
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
 
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getEmployee_no());
 
 			try {
 
-				dba.executeQuery(query);
+				dba.executeQuery(query, typeList, bindList);
 				dba.commit();
 				dba.closeConnection();
 
@@ -3099,34 +3108,27 @@ public class DbAction extends Object{
 			String crlf = System.getProperty("line.separator");
 
 			sb.append("SELECT");
-			sb.append(" ENTRY_EMP,"+crlf);
+			sb.append(" EMPLOYEE_NAME,"+crlf);
 			sb.append(" DAY,"+crlf);
 			sb.append(" ENTRY_TIME,"+crlf);
 			sb.append(" LEAVING_TIME,"+crlf);
-			sb.append(" LEAVING_EMP,"+crlf);
+			sb.append(" LEAVING_NAME,"+crlf);
 			sb.append(" CHECK_LIST"+crlf);
 			sb.append("FROM"+crlf);
 			sb.append(" ROOM_ACCESS_TBL"+crlf);
 			sb.append("WHERE"+crlf);
 			sb.append(" FLOOR= ?"+crlf);
 
-			//社員情報から氏名遷移
-			//sb.append("SELECT");
-			//sb.append(" NAME,"+crlf);
-			//sb.append("FROM"+crlf);
-			//sb.append(" PERSONAL_INFORMATION_TBL"+crlf);
-			//sb.append("WHERE"+crlf);
-			//sb.append(" ENTRY_EMP"=="ENPLOYEE_EMP"+crlf);
 
 			String query = sb.toString();
 
 			// 取得項目
 			List<String> columnList = new ArrayList<String>();
-			columnList.add("ENTRY_EMP");
+			columnList.add("EMPLOYEE_NAME");
 			columnList.add("DAY");
 			columnList.add("ENTRY_TIME");
 			columnList.add("LEAVING_TIME");
-			columnList.add("LEAVING_EMP");
+			columnList.add("LEAVING_NAME");
 			columnList.add("CHECK_LIST");
 
 
@@ -3147,11 +3149,11 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setENTRY_EMP(val.get("ENTRY_EMP"));
+					form.setEMPLOYEE_NAME(val.get("EMPLOYEE_NAME"));
 					form.setDAY(val.get("DAY"));
 					form.setENTRY_TIME(val.get("ENTRY_TIME"));
 					form.setLEAVING_TIME(val.get("LEAVING_TIME"));
-					form.setLEAVING_EMP(val.get("LEAVING_EMP"));
+					form.setLEAVING_NAME(val.get("LEAVING_NAME"));
 					form.setCHECK_LIST(val.get("CHECK_LIST"));
 					ret = true;
 				}
@@ -3190,11 +3192,11 @@ public class DbAction extends Object{
 			String day=month+date;
 
 			sb.append("SELECT"+crlf);
-			sb.append(" ENTRY_EMP"+crlf);
+			sb.append(" EMPLOYEE_NAME"+crlf);
 			sb.append(" FROM"+crlf);
 			sb.append(" ROOM_ACCESS_TBL"+crlf);
 			sb.append("WHERE"+crlf);
-			sb.append(" FLOOR= ?"+crlf);
+			//sb.append(" FLOOR= ?"+crlf);
 			sb.append("AND"+crlf);
 			sb.append(" DAY='"+day+"'"+crlf);
 
@@ -3222,7 +3224,7 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setENTRY_EMP(val.get("ENTRY_EMP"));
+					form.setEMPLOYEE_NO(val.get("EMPLOYEE_NO"));
 					ret = true;
 				}
 
