@@ -2956,7 +2956,7 @@ public class DbAction extends Object{
 	/*
 	 * 勤怠編集メソッド
 	 */
-	public boolean setKintaiEdit(KintaiMailForm form, LoginForm lform) {
+	public boolean setKintaiEdit(KintaiMailForm form, LoginForm lform, String MMdd, String SendTime) {
 
 		boolean ret = false;
 		// DB接続
@@ -3004,23 +3004,10 @@ public class DbAction extends Object{
 			sb.append("  MMDD ='" + mmdd+"',"+crlf);
 			sb.append("  SEND_TIME ='" + send_time+"',"+crlf);
 			sb.append("  SPAN2 ='" + form.getSpan2()+"'"+crlf);
-
-/*			sb.append("'"+lform.getEmployee_no()+"',"+crlf);
-			sb.append("'"+form.getCC()+"',"+crlf);
-			sb.append("'"+form.getBcc()+"',"+crlf);
-			sb.append("'"+form.getSpotcode()+"',"+crlf);
-			sb.append("'"+form.getDivision()+"',"+crlf);
-			sb.append("'"+form.getSpan()+"',"+crlf);
-			sb.append("'"+form.getPtime()+"',"+crlf);
-			sb.append("'"+form.getRemark()+"',"+crlf);
-			sb.append("'"+form.getPerm()+"',"+crlf);
-			sb.append("'"+form.getDepart()+"',"+crlf);
-			sb.append("'"+mmdd+"',"+crlf);
-			sb.append("'"+send_time+"',"+crlf);
-			sb.append("'"+form.getSpan2()+"'"+crlf);*/
-
 			sb.append("WHERE" + crlf);
 			sb.append("  EMP_NO = ?" + crlf);
+			sb.append("  AND MMDD =" + MMdd + crlf);
+			sb.append("  AND SEND_TIME =" + SendTime + crlf);
 			String query = sb.toString();
 
 			// 設定値 - 型
