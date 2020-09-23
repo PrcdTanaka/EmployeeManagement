@@ -95,7 +95,7 @@ public final class MainForm extends ActionForm {
 	 * @return ボタン名
 	 */
 	public String getButton() {
-		
+
 		return button;
 	}
 
@@ -146,7 +146,7 @@ public final class MainForm extends ActionForm {
 	public String getPassword() {
 		return password;
 	}
-	
+
 	/**
 	 * パスワード設定処理。
 	 * <p>
@@ -170,7 +170,7 @@ public final class MainForm extends ActionForm {
 	public String getManager() {
 		return manager;
 	}
-	
+
 	/**
 	 * 管理者フラグ設定処理。
 	 * <p>
@@ -182,7 +182,7 @@ public final class MainForm extends ActionForm {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
-	
+
 	/**
 	 * リンク先取得処理。
 	 * <p>
@@ -194,7 +194,7 @@ public final class MainForm extends ActionForm {
 	public String getLink() {
 		return link;
 	}
-	
+
 	/**
 	 * リンク先設定処理。
 	 * <p>
