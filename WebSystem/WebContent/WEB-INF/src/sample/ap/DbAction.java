@@ -3035,6 +3035,15 @@ public class DbAction extends Object{
 
 		return ret;
 	}
+	/*
+	 * 勤怠連絡削除メソッド
+	 */
+	public boolean setKintaiDelete(KintaiMailForm form, LoginForm lform, String MMdd, String SendTime)
+	{
+		boolean ret = false;
+		ret = true;
+		return ret;
+	}
 
 	public boolean InsReservation(RoomReservationForm form) {
 
