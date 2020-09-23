@@ -55,10 +55,14 @@
 					    String capacity = "";
 					    String monitor = "";
 					    String camera = "";
+					    List<String> res_name = roForm.getName();
+					    List<String> room_name = roForm.getRoom_name();
+					    List<String> res_time = roForm.getRes_time();
 					    List<String> mmdd = rForm.getMmdd();
-				        List<String> res_time = rForm.getRes_time();
-				        dba.getMMDD(roForm);
-
+					    List<String> member = roForm.getMember();
+					    List<String> use = roForm.getUse();
+						dba.getMMDD(roForm);
+						List<String> status =roForm.getRes_time();
 
 	%>
 	<body>
