@@ -225,34 +225,42 @@
 				CC:
 				<%
 					String CC_Add = "";
+					String CC_Val = "";
 					switch(l_CC.get(spans_calm))
 					{
 						case "1group_admin.ml@procd-k.co.jp" :
 							CC_Add = "第一技術部";
+							CC_Val = "1";
 							break;
 
 						case "2group_admin.ml@procd-k.co.jp" :
 							CC_Add = "第二技術部";
+							CC_Val = "2";
 							break;
 
 						case "3group_admin.ml@procd-k.co.jp" :
 							CC_Add = "第三技術部";
+							CC_Val = "3";
 							break;
 
 						case "4group_admin.ml@procd-k.co.jp" :
 							CC_Add = "第四技術部";
+							CC_Val = "4";
 							break;
 
 						case "5group_admin.ml@procd-k.co.jp" :
 							CC_Add = "第五技術部";
+							CC_Val = "5";
 							break;
 
 						case "solution_admin@procd-k.co.jp" :
 							CC_Add = "ソリューション技術部";
+							CC_Val = "6";
 							break;
 
 						default :
 							CC_Add = "";
+							CC_Val = "";
 							break;
 					}
 				%>
@@ -269,7 +277,9 @@
 				%>
 					<html:select property="CC" styleId="CC" name="KintaiMailForm"
 						style="font-size:15px;width:60%">
-						<html:option value="" style="text-align:center;"><%=CC_Add %></html:option>
+						<html>
+						<option value=<%=CC_Val %> style="text-align:center;"><%=CC_Add %></option>
+						</html>
 						<html:option value="1">第一技術部</html:option>
 						<html:option value="2">第二技術部</html:option>
 						<html:option value="3">第三技術部</html:option>
@@ -302,6 +312,39 @@
 				style="margin-top: 50px; width: 40%; margin-left: 10%;">
 				所属部署:
 				<%
+					String Depart_Val = "";
+					switch(Depart.get(spans_calm))
+					{
+						case "第一技術部" :
+							Depart_Val = "1";
+							break;
+
+						case "第二技術部" :
+							Depart_Val = "2";
+							break;
+
+						case "第三技術部" :
+							Depart_Val = "3";
+							break;
+
+						case "第四技術部" :
+							Depart_Val = "4";
+							break;
+
+						case "第五技術部" :
+							Depart_Val = "5";
+							break;
+
+						case "ソリューション技術部" :
+							Depart_Val = "6";
+							break;
+
+						default:
+							Depart_Val = "";
+							break;
+					}
+				%>
+				<%
 					if(chk_flg == false){
 				%>
 					<html:select disabled="true" property="depart" styleId="depart" name="KintaiMailForm"
@@ -314,7 +357,9 @@
 				%>
 					<html:select property="depart" styleId="depart" name="KintaiMailForm"
 						style="font-size:15px; width:60%;">
-						<html:option value="" style="text-align:center;"><%=Depart.get(spans_calm) %></html:option>
+						<html>
+						<option value=<%=Depart_Val %> style="text-align:center;"><%=Depart.get(spans_calm) %></option>
+						</html>
 						<html:option value="1">第一技術部</html:option>
 						<html:option value="2">第二技術部</html:option>
 						<html:option value="3">第三技術部</html:option>
@@ -353,11 +398,60 @@
 				style="width: 40%; margin-left: 10%">
 				届出区分:
 				<%
+					String Division_Lavel = "";
+					switch (Division.get(spans_calm))
+					{
+						case "1" :
+							Division_Lavel = "1,遅刻";
+							break;
+
+						case "2" :
+							Division_Lavel = "2,有給休暇";
+							break;
+
+						case "3" :
+							Division_Lavel = "4,振替休暇";
+							break;
+
+						case "4" :
+							Division_Lavel = "5,特別休暇";
+							break;
+
+						case "5" :
+							Division_Lavel = "6,シフト勤務";
+							break;
+
+						case "6" :
+							Division_Lavel = "7,早退,その他";
+							break;
+
+						case "7" :
+							Division_Lavel = "8,交通遅延";
+							break;
+
+						case "8" :
+							Division_Lavel = "9,欠勤";
+							break;
+
+						case "9" :
+							Division_Lavel = "A,深夜作業";
+							break;
+
+						case "10" :
+							Division_Lavel = "B,休日出勤(振)";
+							break;
+
+						default :
+							Division_Lavel = "";
+							break;
+					}
+				%>
+				<%
 					if(chk_flg == false){
 				%>
 					<html:select disabled="true" property="division" styleId="division" name="KintaiMailForm"
 						style="font-size:15px; width:60%;">
-						<html:option value="" style="text-align:center;"><%=Division.get(spans_calm) %></html:option>
+						<html:option value="" style="text-align:center;"><%=Division_Lavel %></html:option>
 					</html:select>
 				<%
 					}
@@ -365,7 +459,9 @@
 				%>
 					<html:select property="division" styleId="division" name="KintaiMailForm"
 						style="font-size:15px; width:60%;">
-						<html:option value="" style="text-align:center;"><%=Division.get(spans_calm) %></html:option>
+						<html>
+						<option value=<%=Division.get(spans_calm) %> style="text-align:center;"><%=Division_Lavel %></option>
+						</html>
 						<html:option value="1">1,遅刻</html:option>
 						<html:option value="2">2,有給休暇</html:option>
 						<html:option value="3">4,振替休暇</html:option>
