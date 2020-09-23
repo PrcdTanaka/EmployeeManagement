@@ -1,19 +1,22 @@
 package sample.pr.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.struts.action.ActionForm;
 
 public final class RoomReservationForm extends ActionForm {
 
 	/** 会議室 */
-	private String room_name;
+	private List<String> room_name;
 	/** 所在地 */
-	private String place;
+	private List<String> place;
 	/** 席数 */
-	private String seat;
+	private List<String> seat;
 	/** モニター */
-	private String monitor;
+	private List<String> monitor;
 	/** カメラ */
-	private String camera;
+	private List<String> camera;
 	/** ボタン */
 	private String button;
 	/** メッセージ */
@@ -21,15 +24,15 @@ public final class RoomReservationForm extends ActionForm {
 	/** 社員番号 */
 	private String emp_no;
 	/** 社員名 */
-	private String name;
+	private List<String> name;
 	/** 日付 */
-	private String mmdd;
+	private List<String> mmdd;
 	/** 用途 */
-	private String use;
+	private List<String> use;
 	/** 時間 */
-	private String res_time;
+	private List<String> res_time;
 	/** メンバー */
-	private String member;
+	private List<String> member;
 
 
 	/**
@@ -39,19 +42,19 @@ public final class RoomReservationForm extends ActionForm {
 	 * </p>
 	 */
 	public void initialize() {
-		room_name = "";
-		place = "";
-		seat = "";
-		monitor = "";
-		camera = "";
+		room_name = new ArrayList<String>();
+		place = new ArrayList<String>();
+		seat = new ArrayList<String>();
+		monitor = new ArrayList<String>();
+		camera = new ArrayList<String>();
 		button = "";
 		message = "";
 		emp_no = "";
-		name = "";
-		mmdd = "";
-		use = "";
-		res_time = "";
-		member = "";
+		name = new ArrayList<String>();
+		mmdd = new ArrayList<String>();
+		use = new ArrayList<String>();
+		res_time = new ArrayList<String>();
+		member = new ArrayList<String>();
 	}
 
 	/**
@@ -62,7 +65,7 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return 会議室名
 	 */
-	public String getRoom_name() {
+	public List<String> getRoom_name(){
 		return room_name;
 	}
 
@@ -74,8 +77,8 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @param room_name 会議室名
 	 */
-	public void setRoom_name(String room_name) {
-		this.room_name = room_name;
+	public void setRoom_name(String room_name){
+		this.room_name.add(room_name);
 	}
 
 	/**
@@ -86,7 +89,7 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return 所在地名
 	 */
-	public String getPlace() {
+	public List<String> getPlace(){
 		return place;
 	}
 
@@ -98,31 +101,31 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @param place 所在地
 	 */
-	public void setPlace(String place) {
-		this.place = place;
+	public void setPlace(String place){
+		this.place.add(place);
 	}
 
+	/**
+	 * 席数取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームに席数を取得する。
+	 * </p>
+	 *
+	 * @param seat 席
+	 */
+	public List<String> getSeat(){
+		return seat;
+	}
 	/**
 	 * 席数設定処理。
 	 * <p>
 	 * 会議室予約画面アクションフォームに席数を設定する。
 	 * </p>
 	 *
-	 * @param seat 席
-	 */
-	public void setSeat(String seat) {
-		this.seat = seat;
-	}
-	/**
-	 * 席数取得処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームから席数を取得する。
-	 * </p>
-	 *
 	 * @return 席数
 	 */
-	public String getSeat() {
-		return seat;
+	public void setSeat(String seat){
+		this.seat.add(seat);
 	}
 
 	/**
@@ -133,7 +136,7 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return モニター
 	 */
-	public String getMonitor() {
+	public List<String> getMonitor(){
 		return monitor;
 	}
 
@@ -145,8 +148,8 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @param monitor モニター
 	 */
-	public void setMonitor(String monitor) {
-		this.monitor = monitor;
+	public void setMonitor(String monitor){
+		this.monitor.add(monitor);
 	}
 
 	/**
@@ -157,7 +160,7 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return カメラ
 	 */
-	public String getCamera() {
+	public List<String> getCamera(){
 		return camera;
 	}
 
@@ -169,8 +172,8 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @param camera カメラ
 	 */
-	public void setCamera(String camera) {
-		this.camera = camera;
+	public void setCamera(String camera){
+		this.camera.add(camera);
 	}
 
 	/**
@@ -250,8 +253,8 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return カメラ
 	 */
-	public String getName() {
-		return name;
+	public List<String> getName(){
+		return camera;
 	}
 
 	/**
@@ -262,19 +265,8 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @param camera カメラ
 	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**
-	 * カメラ取得処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームからカメラを取得する。
-	 * </p>
-	 *
-	 * @return カメラ
-	 */
-	public String getMmdd() {
-		return mmdd;
+	public void setName(String name){
+		this.name.add(name);
 	}
 
 	/**
@@ -285,8 +277,8 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @param camera カメラ
 	 */
-	public void setMmdd(String mmdd) {
-		this.mmdd = mmdd;
+	public void setUse(String use){
+		this.use.add(use);
 	}
 	/**
 	 * カメラ取得処理。
@@ -296,7 +288,7 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return カメラ
 	 */
-	public String getUse() {
+	public List<String> getUse(){
 		return use;
 	}
 
@@ -308,9 +300,13 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @param camera カメラ
 	 */
-	public void setUse(String use) {
-		this.use = use;
+	public void setMmdd(String mmdd){
+		this.mmdd.add(mmdd);
 	}
+	public List<String> getMmdd(){
+		return mmdd;
+	}
+
 	/**
 	 * カメラ取得処理。
 	 * <p>
@@ -319,30 +315,17 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return カメラ
 	 */
-	public String getRes_time() {
+	public List<String> getRes_time(){
 		return res_time;
 	}
-
-	/**
-	 * カメラ設定処理。
-	 * <p>
-	 * 会議室予約画面アクションフォームにカメラを設定する。
-	 * </p>
-	 *
-	 * @param camera カメラ
-	 */
-	public void setRes_time(String res_time) {
-		this.res_time = res_time;
+	public void setRes_time(String res_time){
+		this.res_time.add(res_time);
 	}
-	/**
-	 * メンバー
-	 * @return
-	 */
-	public String getMember() {
+	public List<String> getMember(){
 		return member;
 	}
-	public void setMember(String member) {
-		this.member = member;
+	public void setMember(String member){
+		this.member.add(member);
 	}
 
 }
