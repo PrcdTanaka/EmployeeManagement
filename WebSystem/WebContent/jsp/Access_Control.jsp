@@ -166,27 +166,43 @@ int column = startDay - 1; // startDay: 日曜日 = 1, 月曜日 = 2, ...
 
 List<String> checklist=a.getCHECK_LIST();
 String check="";
-String SmallMonth;
-String Smallday;
+//String SmallMonth;
+//String Smallday;
 String DateAndTime;
-int Column=0;
+
 int autherColmn=-1;
+//String paddingMonth;
+//String paddingDate;
+
 List<String> Judgment=a.getDAY();
-List<String> ENRY_EMP=a.getENTRY_EMP();
-List<String> ENRY_TIME=a.getENTRY_TIME();
-List<String> LEAVING_EMP=a.getENTRY_EMP();
+List<String> EMPLOYEE_NAME=a.getEMPLOYEE_NAME();
+List<String> ENTRY_TIME=a.getENTRY_TIME();
 List<String> LEAVING_TIME=a.getLEAVING_TIME();
+List<String> LEAVING_NAME=a.getLEAVING_NANE();
 List<String> calendarlist = new ArrayList();
+
+
+
 boolean m=false;
 
+//Date date = new Date();
+//曜日と日付を取得
 for (int date = 1; date <= lastDate; date++) {
  if(startDay>7){
 	 startDay=1;
  }
  	String aa=week[startDay-1];
+ 	int Column=0;
+ 	boolean exists = false;
+ 	//月日を4桁に変換・格納
+ 	//String PaddingMonth= String.format("%02d",month);
+ 	//String PaddingDate= String.format("%03d",date);
+
+
+
 
  	//抽出した月が10未満の場合0付ける
- 	if(month<10){
+ 	/*if(month<10){
  		SmallMonth = "0"+month;
  	}
  	else{
@@ -198,12 +214,12 @@ for (int date = 1; date <= lastDate; date++) {
  	}
  	else{
  		Smallday=""+date;
- 	}
- 	//月日を4桁に変換・格納
- 	DateAndTime = SmallMonth+Smallday;
+ 	}*/
 
-
-
+ 	//実行日の日付の出力
+	DateAndTime = ""+year+String.format("%02d",month)+String.format("%02d",date);
+ 	Column = Judgment.indexOf(DateAndTime);
+ 	exists = Judgment.contains(DateAndTime);
  	check="-";
  	%>
  	<tr>
@@ -211,17 +227,18 @@ for (int date = 1; date <= lastDate; date++) {
     <%
 
   //㏈月日とカレンダーの月日が同じもの抽出
-   if(Judgment.get(Column).equals(DateAndTime)){
+   //if(Judgment.get(Column).equals(DateAndTime)){
+	   if(exists){
  	%>
- 		<td><%=ENRY_EMP.get(Column)%></td><td><%=ENRY_TIME.get(Column)%></td><td><%=LEAVING_EMP.get(Column)%></td>
+ 		<td><%=EMPLOYEE_NAME.get(Column)%></td><td><%=ENTRY_TIME.get(Column)%></td><td><%=LEAVING_NAME.get(Column)%></td>
  		<td><%=LEAVING_TIME.get(Column)%></td>
  	<%
 
  		if(checklist.get(Column).equals("1")){
  	 		check = "○";
  	 	}
- 	if(Column<Judgment.size()-1)
- 		Column++;
+ 	//if(Column<Judgment.size()-1)
+ 		//Column++;
  	}
    else{%>
    <td></td><td></td><td></td><td></td>

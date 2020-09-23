@@ -38,8 +38,9 @@ public class KinmuRecordAction extends Action{
 		try {
 			//①フォームから送られるURLエンコードを元に戻す
 			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			//(1)文字のエンコーディングサポートの例外発生時はスタックとレースを出力
+		}
+		//(1)文字のエンコーディングサポートの例外発生時はスタックとレースを出力
+		catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 
@@ -70,7 +71,7 @@ public class KinmuRecordAction extends Action{
 			} else if(button.equals("入力内容を保存")){
 				//31日分のインスタンスを保存
 				//リクエストパラメーターを取得
-				//休暇区分
+				//休日区分
 				String holidayDiv1 = request.getParameter("holidayDiv1");
 				String holidayDiv2 = request.getParameter("holidayDiv2");
 				String holidayDiv3 = request.getParameter("holidayDiv3");
@@ -300,9 +301,9 @@ public class KinmuRecordAction extends Action{
 //				KinmuRecordSendForm KRSForm = (KinmuRecordSendForm) frm;
 				KinmuRecordSendForm KRSForm = new KinmuRecordSendForm();
 				//〇月1日が入力されているかチェック
-				sb.append(holidayDiv1 + startTime1 + endTime1 + breakTimeA1 + breakTimeB1 + vacationDiv1 + remark1);
+				sb.append(startTime1 + endTime1 + breakTimeA1 + breakTimeB1 + vacationDiv1 + remark1);
 				String query1 = sb.toString();
-				if(query1.length() > 1){
+				if(!(holidayDiv1.equals("0")) || query1.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv1(holidayDiv1);
 					KRForm.setStartTime1(startTime1);
@@ -323,10 +324,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月2日が入力されているかチェック
-				sb.append(holidayDiv2 + startTime2 + endTime2 + breakTimeA2 + breakTimeB2 + vacationDiv2 + remark2);
+				sb.append(startTime2 + endTime2 + breakTimeA2 + breakTimeB2 + vacationDiv2 + remark2);
 				String query2 = sb.toString();
-				if(query2.length() > 1){
+				if(!(holidayDiv2.equals("0")) || query2.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv2(holidayDiv2);
 					KRForm.setStartTime2(startTime2);
@@ -347,10 +350,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月3日が入力されているかチェック
-				sb.append(holidayDiv3 + startTime3 + endTime3 + breakTimeA3 + breakTimeB3 + vacationDiv3 + remark3);
+				sb.append(startTime3 + endTime3 + breakTimeA3 + breakTimeB3 + vacationDiv3 + remark3);
 				String query3 = sb.toString();
-				if(query3.length() > 1){
+				if(!(holidayDiv3.equals("0")) || query3.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv3(holidayDiv3);
 					KRForm.setStartTime3(startTime3);
@@ -371,10 +376,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月4日が入力されているかチェック
-				sb.append(holidayDiv4 + startTime4 + endTime4 + breakTimeA4 + breakTimeB4 + vacationDiv4 + remark4);
+				sb.append(startTime4 + endTime4 + breakTimeA4 + breakTimeB4 + vacationDiv4 + remark4);
 				String query4 = sb.toString();
-				if(query4.length() > 1){
+				if(!(holidayDiv4.equals("0")) || query4.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv4(holidayDiv4);
 					KRForm.setStartTime4(startTime4);
@@ -395,10 +402,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月5日が入力されているかチェック
-				sb.append(holidayDiv5 + startTime5 + endTime5 + breakTimeA5 + breakTimeB5 + vacationDiv5 + remark5);
+				sb.append(startTime5 + endTime5 + breakTimeA5 + breakTimeB5 + vacationDiv5 + remark5);
 				String query5 = sb.toString();
-				if(query5.length() > 1){
+				if(!(holidayDiv5.equals("0")) || query5.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv5(holidayDiv5);
 					KRForm.setStartTime5(startTime5);
@@ -419,10 +428,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月6日が入力されているかチェック
-				sb.append(holidayDiv6 + startTime6 + endTime6 + breakTimeA6 + breakTimeB6 + vacationDiv6 + remark6);
+				sb.append(startTime6 + endTime6 + breakTimeA6 + breakTimeB6 + vacationDiv6 + remark6);
 				String query6 = sb.toString();
-				if(query6.length() > 1){
+				if(!(holidayDiv6.equals("0")) || query6.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv6(holidayDiv6);
 					KRForm.setStartTime6(startTime6);
@@ -443,10 +454,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月7日が入力されているかチェック
-				sb.append(holidayDiv7 + startTime7 + endTime7 + breakTimeA7 + breakTimeB7 + vacationDiv7 + remark7);
+				sb.append(startTime7 + endTime7 + breakTimeA7 + breakTimeB7 + vacationDiv7 + remark7);
 				String query7 = sb.toString();
-				if(query7.length() > 1){
+				if(!(holidayDiv7.equals("0")) || query7.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv7(holidayDiv7);
 					KRForm.setStartTime7(startTime7);
@@ -467,10 +480,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月8日が入力されているかチェック
-				sb.append(holidayDiv8 + startTime8 + endTime8 + breakTimeA8 + breakTimeB8 + vacationDiv8 + remark8);
+				sb.append(startTime8 + endTime8 + breakTimeA8 + breakTimeB8 + vacationDiv8 + remark8);
 				String query8 = sb.toString();
-				if(query8.length() > 1){
+				if(!(holidayDiv8.equals("0")) || query8.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv8(holidayDiv8);
 					KRForm.setStartTime8(startTime8);
@@ -491,10 +506,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月9日が入力されているかチェック
-				sb.append(holidayDiv9 + startTime9 + endTime9 + breakTimeA9 + breakTimeB9 + vacationDiv9 + remark9);
+				sb.append(startTime9 + endTime9 + breakTimeA9 + breakTimeB9 + vacationDiv9 + remark9);
 				String query9 = sb.toString();
-				if(query9.length() > 1){
+				if(!(holidayDiv9.equals("0")) || query9.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv9(holidayDiv9);
 					KRForm.setStartTime9(startTime9);
@@ -515,10 +532,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月10日が入力されているかチェック
-				sb.append(holidayDiv10 + startTime10 + endTime10 + breakTimeA10 + breakTimeB10 + vacationDiv10 + remark10);
+				sb.append(startTime10 + endTime10 + breakTimeA10 + breakTimeB10 + vacationDiv10 + remark10);
 				String query10 = sb.toString();
-				if(query10.length() > 1){
+				if(!(holidayDiv10.equals("0")) || query10.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv10(holidayDiv10);
 					KRForm.setStartTime10(startTime10);
@@ -539,10 +558,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月11日が入力されているかチェック
-				sb.append(holidayDiv11 + startTime11 + endTime11 + breakTimeA11 + breakTimeB11 + vacationDiv11 + remark11);
+				sb.append(startTime11 + endTime11 + breakTimeA11 + breakTimeB11 + vacationDiv11 + remark11);
 				String query11 = sb.toString();
-				if(query11.length() > 1){
+				if(!(holidayDiv11.equals("0")) || query11.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv11(holidayDiv11);
 					KRForm.setStartTime11(startTime11);
@@ -563,10 +584,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月12日が入力されているかチェック
-				sb.append(holidayDiv12 + startTime12 + endTime12 + breakTimeA12 + breakTimeB12 + vacationDiv12 + remark12);
+				sb.append(startTime12 + endTime12 + breakTimeA12 + breakTimeB12 + vacationDiv12 + remark12);
 				String query12 = sb.toString();
-				if(query12.length() > 1){
+				if(!(holidayDiv12.equals("0")) || query12.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv12(holidayDiv12);
 					KRForm.setStartTime12(startTime12);
@@ -587,10 +610,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月13日が入力されているかチェック
-				sb.append(holidayDiv13 + startTime13 + endTime13 + breakTimeA13 + breakTimeB13 + vacationDiv13 + remark13);
+				sb.append(startTime13 + endTime13 + breakTimeA13 + breakTimeB13 + vacationDiv13 + remark13);
 				String query13 = sb.toString();
-				if(query13.length() > 1){
+				if(!(holidayDiv13.equals("0")) || query13.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv13(holidayDiv13);
 					KRForm.setStartTime13(startTime13);
@@ -611,10 +636,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月14日が入力されているかチェック
-				sb.append(holidayDiv14 + startTime14 + endTime14 + breakTimeA14 + breakTimeB14 + vacationDiv14 + remark14);
+				sb.append(startTime14 + endTime14 + breakTimeA14 + breakTimeB14 + vacationDiv14 + remark14);
 				String query14 = sb.toString();
-				if(query14.length() > 1){
+				if(!(holidayDiv14.equals("0")) || query14.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv14(holidayDiv14);
 					KRForm.setStartTime14(startTime14);
@@ -635,10 +662,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月15日が入力されているかチェック
-				sb.append(holidayDiv15 + startTime15 + endTime15 + breakTimeA15 + breakTimeB15 + vacationDiv15 + remark15);
+				sb.append(startTime15 + endTime15 + breakTimeA15 + breakTimeB15 + vacationDiv15 + remark15);
 				String query15 = sb.toString();
-				if(query15.length() > 1){
+				if(!(holidayDiv15.equals("0")) || query15.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv15(holidayDiv15);
 					KRForm.setStartTime15(startTime15);
@@ -659,10 +688,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月16日が入力されているかチェック
-				sb.append(holidayDiv16 + startTime16 + endTime16 + breakTimeA16 + breakTimeB16 + vacationDiv16 + remark16);
+				sb.append(startTime16 + endTime16 + breakTimeA16 + breakTimeB16 + vacationDiv16 + remark16);
 				String query16 = sb.toString();
-				if(query16.length() > 1){
+				if(!(holidayDiv16.equals("0")) || query16.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv16(holidayDiv16);
 					KRForm.setStartTime16(startTime16);
@@ -683,10 +714,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月17日が入力されているかチェック
-				sb.append(holidayDiv17 + startTime17 + endTime17 + breakTimeA17 + breakTimeB17 + vacationDiv17 + remark17);
+				sb.append(startTime17 + endTime17 + breakTimeA17 + breakTimeB17 + vacationDiv17 + remark17);
 				String query17 = sb.toString();
-				if(query17.length() > 1){
+				if(!(holidayDiv17.equals("0")) || query17.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv17(holidayDiv17);
 					KRForm.setStartTime17(startTime17);
@@ -707,10 +740,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月18日が入力されているかチェック
-				sb.append(holidayDiv18 + startTime18 + endTime18 + breakTimeA18 + breakTimeB18 + vacationDiv18 + remark18);
+				sb.append(startTime18 + endTime18 + breakTimeA18 + breakTimeB18 + vacationDiv18 + remark18);
 				String query18 = sb.toString();
-				if(query18.length() > 1){
+				if(!(holidayDiv18.equals("0")) || query18.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv18(holidayDiv18);
 					KRForm.setStartTime18(startTime18);
@@ -731,10 +766,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月19日が入力されているかチェック
-				sb.append(holidayDiv19 + startTime19 + endTime19 + breakTimeA19 + breakTimeB19 + vacationDiv19 + remark19);
+				sb.append(startTime19 + endTime19 + breakTimeA19 + breakTimeB19 + vacationDiv19 + remark19);
 				String query19 = sb.toString();
-				if(query19.length() > 1){
+				if(!(holidayDiv19.equals("0")) || query19.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv19(holidayDiv19);
 					KRForm.setStartTime19(startTime19);
@@ -755,10 +792,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月20日が入力されているかチェック
-				sb.append(holidayDiv20 + startTime20 + endTime20 + breakTimeA20 + breakTimeB20 + vacationDiv20 + remark20);
+				sb.append(startTime20 + endTime20 + breakTimeA20 + breakTimeB20 + vacationDiv20 + remark20);
 				String query20 = sb.toString();
-				if(query20.length() > 1){
+				if(!(holidayDiv20.equals("0")) || query20.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv20(holidayDiv20);
 					KRForm.setStartTime20(startTime20);
@@ -779,10 +818,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月21日が入力されているかチェック
-				sb.append(holidayDiv21 + startTime21 + endTime21 + breakTimeA21 + breakTimeB21 + vacationDiv21 + remark21);
+				sb.append(startTime21 + endTime21 + breakTimeA21 + breakTimeB21 + vacationDiv21 + remark21);
 				String query21 = sb.toString();
-				if(query21.length() > 1){
+				if(!(holidayDiv21.equals("0")) || query21.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv21(holidayDiv21);
 					KRForm.setStartTime21(startTime21);
@@ -803,10 +844,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月22日が入力されているかチェック
-				sb.append(holidayDiv22 + startTime22 + endTime22 + breakTimeA22 + breakTimeB22 + vacationDiv22 + remark22);
+				sb.append(startTime22 + endTime22 + breakTimeA22 + breakTimeB22 + vacationDiv22 + remark22);
 				String query22 = sb.toString();
-				if(query22.length() > 1){
+				if(!(holidayDiv22.equals("0")) || query22.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv22(holidayDiv22);
 					KRForm.setStartTime22(startTime22);
@@ -827,10 +870,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月23日が入力されているかチェック
-				sb.append(holidayDiv23 + startTime23 + endTime23 + breakTimeA23 + breakTimeB23 + vacationDiv23 + remark23);
+				sb.append(startTime23 + endTime23 + breakTimeA23 + breakTimeB23 + vacationDiv23 + remark23);
 				String query23 = sb.toString();
-				if(query23.length() > 1){
+				if(!(holidayDiv23.equals("0")) || query23.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv23(holidayDiv23);
 					KRForm.setStartTime23(startTime23);
@@ -851,10 +896,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月24日が入力されているかチェック
-				sb.append(holidayDiv24 + startTime24 + endTime24 + breakTimeA24 + breakTimeB24 + vacationDiv24 + remark24);
+				sb.append(startTime24 + endTime24 + breakTimeA24 + breakTimeB24 + vacationDiv24 + remark24);
 				String query24 = sb.toString();
-				if(query24.length() > 1){
+				if(!(holidayDiv24.equals("0")) || query24.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv24(holidayDiv24);
 					KRForm.setStartTime24(startTime24);
@@ -875,10 +922,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月25日が入力されているかチェック
-				sb.append(holidayDiv25 + startTime25 + endTime25 + breakTimeA25 + breakTimeB25 + vacationDiv25 + remark25);
+				sb.append(startTime25 + endTime25 + breakTimeA25 + breakTimeB25 + vacationDiv25 + remark25);
 				String query25 = sb.toString();
-				if(query25.length() > 1){
+				if(!(holidayDiv25.equals("0")) || query25.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv25(holidayDiv25);
 					KRForm.setStartTime25(startTime25);
@@ -899,10 +948,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月26日が入力されているかチェック
-				sb.append(holidayDiv26 + startTime26 + endTime26 + breakTimeA26 + breakTimeB26 + vacationDiv26 + remark26);
+				sb.append(startTime26 + endTime26 + breakTimeA26 + breakTimeB26 + vacationDiv26 + remark26);
 				String query26 = sb.toString();
-				if(query26.length() > 1){
+				if(!(holidayDiv26.equals("0")) || query26.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv26(holidayDiv26);
 					KRForm.setStartTime26(startTime26);
@@ -923,10 +974,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月27日が入力されているかチェック
-				sb.append(holidayDiv27 + startTime27 + endTime27 + breakTimeA27 + breakTimeB27 + vacationDiv27 + remark27);
+				sb.append(startTime27 + endTime27 + breakTimeA27 + breakTimeB27 + vacationDiv27 + remark27);
 				String query27 = sb.toString();
-				if(query27.length() > 1){
+				if(!(holidayDiv27.equals("0")) || query27.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv27(holidayDiv27);
 					KRForm.setStartTime27(startTime27);
@@ -947,10 +1000,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月28日が入力されているかチェック
-				sb.append(holidayDiv28 + startTime28 + endTime28 + breakTimeA28 + breakTimeB28 + vacationDiv28 + remark28);
+				sb.append(startTime28 + endTime28 + breakTimeA28 + breakTimeB28 + vacationDiv28 + remark28);
 				String query28 = sb.toString();
-				if(query28.length() > 1){
+				if(!(holidayDiv28.equals("0")) || query28.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv28(holidayDiv28);
 					KRForm.setStartTime28(startTime28);
@@ -971,10 +1026,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月29日が入力されているかチェック
-				sb.append(holidayDiv29 + startTime29 + endTime29 + breakTimeA29 + breakTimeB29 + vacationDiv29 + remark29);
+				sb.append(startTime29 + endTime29 + breakTimeA29 + breakTimeB29 + vacationDiv29 + remark29);
 				String query29 = sb.toString();
-				if(query29.length() > 1){
+				if(!(holidayDiv29.equals("0")) || query29.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv29(holidayDiv29);
 					KRForm.setStartTime29(startTime29);
@@ -995,10 +1052,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月30日が入力されているかチェック
-				sb.append(holidayDiv30 + startTime30 + endTime30 + breakTimeA30 + breakTimeB30 + vacationDiv30 + remark30);
+				sb.append(startTime30 + endTime30 + breakTimeA30 + breakTimeB30 + vacationDiv30 + remark30);
 				String query30 = sb.toString();
-				if(query30.length() > 1){
+				if(!(holidayDiv30.equals("0")) || query30.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv30(holidayDiv30);
 					KRForm.setStartTime30(startTime30);
@@ -1019,10 +1078,12 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 				//〇月31日が入力されているかチェック
-				sb.append(holidayDiv31 + startTime31 + endTime31 + breakTimeA31 + breakTimeB31 + vacationDiv31 + remark31);
+				sb.append(startTime31 + endTime31 + breakTimeA31 + breakTimeB31 + vacationDiv31 + remark31);
 				String query31 = sb.toString();
-				if(query31.length() > 1){
+				if(!(holidayDiv31.equals("0")) || query31.length() > 1){
 					//セッターでインスタンスのフィールド変数を更新
 					KRForm.setHolidayDiv31(holidayDiv31);
 					KRForm.setStartTime31(startTime31);
@@ -1043,6 +1104,8 @@ public class KinmuRecordAction extends Action{
 					//インスタンスのフィールド変数が更新された状態で保存処理を実行
 					forward = save(KRSForm);
 				}
+				//StringBufferの中身を削除する
+				sb.delete(0, sb.length());
 			}
 //			else if(button.equals("勤怠連絡入力")){
 //				forward="kintaimail";

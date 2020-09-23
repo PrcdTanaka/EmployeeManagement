@@ -27,11 +27,11 @@ public final class EnterForm extends ActionForm {
 
 	private String floor;
 
-	private List<String> Entry_emp;
+	private List<String> Employee_name;
 	private List<String> Day;
 	private List<String> Entry_time;
 	private List<String> Leaving_time;
-	private List<String> Leaving_emp;
+	private List<String> Leaving_name;
 	private List<String> Check_list;
 
 	/**
@@ -41,10 +41,10 @@ public final class EnterForm extends ActionForm {
 	 * </p>
 	 */
 	{
-		Entry_emp=new ArrayList<String>();
+		Employee_name=new ArrayList<String>();
 		Day=new ArrayList<String>();
 		Entry_time=new ArrayList<String>();
-		Leaving_emp=new ArrayList<String>();
+		Leaving_name=new ArrayList<String>();
 		Leaving_time=new ArrayList<String>();
 		Check_list=new ArrayList<String>();
 
@@ -177,8 +177,8 @@ public final class EnterForm extends ActionForm {
 		this.link = link;
 	}
 
-	public void setENTRY_EMP(String ENTRY_EMP){
-		this.Entry_emp.add(ENTRY_EMP);
+	public void setEMPLOYEE_NAME(String EMPLOYEE_NAME){
+		this.Employee_name.add(EMPLOYEE_NAME);
 	}
 
 	public void setDAY(String DAY){
@@ -190,16 +190,16 @@ public final class EnterForm extends ActionForm {
 	public void setLEAVING_TIME(String LEAVING_TIME){
 		this.Leaving_time.add(LEAVING_TIME);
 	}
-	public void setLEAVING_EMP(String LEAVING_EMP){
-		this.Leaving_emp.add(LEAVING_EMP);
+	public void setLEAVING_NAME(String LEAVING_NAME){
+		this.Leaving_name.add(LEAVING_NAME);
 	}
 	public void setCHECK_LIST(String CHECK_LIST){
 		this.Check_list.add(CHECK_LIST);
 	}
 
 
-	public List<String> getENTRY_EMP() {
-		return Entry_emp;
+	public List<String> getEMPLOYEE_NAME() {
+		return Employee_name;
 	}
 	public List<String> getDAY() {
 		return Day;
@@ -210,8 +210,8 @@ public final class EnterForm extends ActionForm {
 	public List<String>getLEAVING_TIME () {
 		return Leaving_time;
 	}
-	public List<String> getLEAING_EMP() {
-		return Leaving_emp;
+	public List<String> getLEAVING_NANE() {
+		return Leaving_name;
 	}
 	public List<String> getCHECK_LIST() {
 		return Check_list;
@@ -237,13 +237,23 @@ public final class EnterForm extends ActionForm {
 	}
 
 	public void clearList(){
-		Entry_emp.clear();
+		Employee_name.clear();
 		Day.clear();
 		Entry_time.clear();
 		Leaving_time.clear();
-		Leaving_emp.clear();
+		Leaving_name.clear();
 		Leaving_time.clear();
 		Check_list.clear();
 
+	}
+
+	public void setEMPLOYEE_NO(String string) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+	public String getLeaving_name() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 }

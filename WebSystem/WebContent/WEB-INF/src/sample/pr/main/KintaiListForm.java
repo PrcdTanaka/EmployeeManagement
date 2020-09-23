@@ -35,7 +35,7 @@ public class KintaiListForm extends ActionForm
 	 */
 	public void setEmployee_no(String  Employee_no)
 	{
-		this.Button= Employee_no;
+		this.Employee_no= Employee_no;
 	}
 
 }
