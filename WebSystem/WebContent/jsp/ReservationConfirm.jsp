@@ -4,6 +4,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="sample.pr.main.RoomReservationForm"%>
 <%@ page import="sample.pr.main.LoginForm"%>
+<%@ page import="sample.ap.DbAction"%>
+
 <html:html>
 <html lang="ja">
 <link rel="stylesheet" type="text/css" href="/WebSystem/css/Reservation.css">
@@ -13,6 +15,10 @@
 <body>
 	<html:form action="/ReservationConfirmAction">
 	<%
+	DbAction dba = new DbAction();
+	RoomReservationForm rForm = new RoomReservationForm();
+	LoginForm s = (LoginForm) session.getAttribute("form");
+
 		String message;
 		try{
 			RoomReservationForm roForm = (RoomReservationForm) session.getAttribute("pForm");
@@ -28,6 +34,8 @@
 		String mmdd = request.getParameter("mmdd");
 		String room_name = request.getParameter("room_name");
 		String emp_name = request.getParameter("emp_name");
+
+		emp_name = s.getEmployee_name();
 	%>
 		<div class="block">
 			<div class="space"></div>
@@ -36,14 +44,9 @@
 			<div align= "center">予約日　：<input type="text" name="mmdd" value="<%=mmdd %>" readonly></div>
 			<div align= "center">予約時間：<input type="text" name="res_time" value="<%=res_time %>" readonly></div>
 			<div align= "center">代表者　：<input type="text" name="name" value="<%=emp_name %>" readonly></div>
-			<div align= "center">
-					用途　　：
-					<!--  input type ="text" property="room_name" value="" />-->
-					<html:text property="use" value="" />
+			<div align= "center">用途　　：<html:text property="use" value="" />
 			</div>
-			<div align= "center">
-					メンバー：
-					<html:text property="member" value="" />
+			<div align= "center">メンバー：<html:text property="member" value="" />
 			</div>
 			<!--div align="center"-->
 			<center>

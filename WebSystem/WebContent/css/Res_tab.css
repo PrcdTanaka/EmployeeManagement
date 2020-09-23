@@ -19,6 +19,7 @@ p.tabs a.tab2 { background-color: #aaaa00; color:white;}
 p.tabs a.tab3 { background-color: red; color: white; }
 p.tabs a:hover { color: yellow; }
 
+
 /* タブ中身のボックス */
 div.details { border-collapse: collapse; width: 50%;}
 div.tab { height: 150px; overflow: auto; clear: left; }
@@ -47,7 +48,6 @@ document.getElementById(tabname).style.display = 'block';
 // --></script>
 /*タブ切り替え全体のスタイル*/
 .tabs {
-  margin-left: 50px;
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

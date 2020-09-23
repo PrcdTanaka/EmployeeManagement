@@ -172,7 +172,7 @@
 				<html:option value="5">6,シフト勤務</html:option>
 				<html:option value="6">7,早退,その他</html:option>
 				<html:option value="7">8,交通遅延</html:option>
-				<html:option value="8">9,欠席</html:option>
+				<html:option value="8">9,欠勤</html:option>
 				<html:option value="9">A,深夜作業</html:option>
 				<html:option value="10">B,休日出勤(振)</html:option>
 			</html:select>
@@ -221,21 +221,34 @@
 		</ul>
 		</div>
 
-		<a href="mailto:kintai@procd-k.co.jp
-		?subject=勤怠連絡
-		＆amp;?cc=<%=CC%>
-		＆amp;?bcc=<%=bcc %>
-		＆amp;?body=
+
+		<%-- メール送信機能--%>
+		<a href="mailto:ryosuke_yamaki@procd-k.co.jp?
+		subject=勤怠連絡
+		&cc=<%if (CC== null) {%>
+			<%=""%>
+			<%} else {%>
+					<%=CC%>
+				<%}%>
+		&bcc=<%if(bcc==null){%>
+			<%=""%>
+			<%} else {%>
+			<%=bcc%>
+			 <%}%> %0D%0A
+		&body=
 		・所属部署：<%=depart%>%0D%0A
  		・社員番号：<%=Employee_no%>%0D%0A
 		・氏名：<%=name%>%0D%0A
 		・現場コード：<%=spotcode%>%0D%0A
 		・届出区分：<%=division%>%0D%0A
 		・対象日付／期間：<%=span%>～<%=span2%>%0D%0A
-		・出勤予定時間：<%=ptime%>%0D%0A
+		・出勤予定時間：<%if(ptime==null){%>
+						<%=""%>
+						<%}else{ %>
+						<%=ptime%>
+						<%}%>%0D%0A
 		・備考：<%=remark%>%0D%0A
 		・許可:<%=perm%>">メール送信フォーム</a>
-
 	</html:form>
 </body>
 </html:html>
