@@ -3373,6 +3373,10 @@ public class DbAction extends Object{
 			sb.append("SELECT"+crlf);
 			sb.append(" MMDD"+crlf);
 			sb.append(",RES_TIME"+crlf);
+			sb.append(",NAME"+crlf);
+			sb.append(",ROOM_NAME"+crlf);
+			sb.append(",MEMBER"+crlf);
+			sb.append(",USE"+crlf);
 			sb.append("FROM"+crlf);
 			sb.append("RESERVATION"+crlf);
 			sb.append("WHERE"+crlf);
@@ -3384,6 +3388,10 @@ public class DbAction extends Object{
 			List<String> columnList = new ArrayList<String>();
 			columnList.add("MMDD");
 			columnList.add("RES_TIME");
+			columnList.add("NAME");
+			columnList.add("ROOM_NAME");
+			columnList.add("MEMBER");
+			columnList.add("USE");
 
 
 			// 設定値 - 型
@@ -3403,7 +3411,12 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setMmdd(val.get("MMDD"));
+					form.setMmdd(val.get("Mmdd"));
+					form.setRes_time(val.get("RES_TIME"));
+					form.setName(val.get("NAME"));
+					form.setRoom_name(val.get("ROOM_NAME"));
+					form.setMember(val.get("MEMBER"));
+					form.setUse(val.get("USE"));
 					ret = true;
 				}
 
