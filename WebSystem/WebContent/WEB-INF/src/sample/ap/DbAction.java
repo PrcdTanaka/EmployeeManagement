@@ -3796,22 +3796,53 @@ public class DbAction extends Object{
 
 	}
 
-	//勤務管理表の入力内容を登録する
+
+	//kinmuRecordRegisterメソッド
+	//機能：勤務管理表の入力内容をDBへ登録
+	//引数：KinmuRecordSendFormクラスのインスタンス(ここに入力内容が入っている)
+	//戻り値：boolean型(DBへの登録が成功ならtrue、失敗ならfalseを返す)
 	public boolean kinmuRecordRegister(KinmuRecordSendForm form){
 		boolean ret = true;
-		//DB接続
+		//まずDBに接続
 		DbConnector dba = null;
 		try{
 			dba = new DbConnector(gHost,gSid,gUser,gPass);
-		} catch(IOException e1){
+		}
+		//例外発生時は以下の処理を実行
+		catch(IOException e1){
 			ret = false;
 			e1.printStackTrace();
 		}
 
+		//DB接続が問題なければif文の中を実行
 		if(dba.conSts){
+			//DELETE文作成
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
-			//〇月1日分
+			//appendメソッドで文字列を連結
+			sb.append("DELETE FROM KINMU_RECORD_TBL" + crlf);
+			sb.append(" WHERE" + crlf);
+			sb.append(" EMPLOYEE_NO = '" + form.getEmployeeNum() + "'" + crlf);
+			sb.append(" AND" + crlf);
+			sb.append(" KINTAI_YMD = '" + form.getKintaiYMD() + "'" + crlf );
+			//連結した文字列を変数に代入
+			String query = sb.toString();
+			//DBに保存されているレコードをいったん削除
+			try{
+				//DELETE文の発行
+				dba.executeQuery(query);
+				//COMMIT実行
+				dba.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+			//StringBufferの中身を削除
+			sb.delete(0, sb.length());
+
+
+			//INSERT文作成
+			//appendメソッドで文字列を連結
 			sb.append("INSERT INTO KINMU_RECORD_TBL(" + crlf);
 			sb.append("  EMPLOYEE_NO," + crlf);
 			sb.append("  KINTAI_YMD," + crlf);
@@ -3833,22 +3864,26 @@ public class DbAction extends Object{
 			sb.append("  '" + form.getVacationDiv() + "'," + crlf);
 			sb.append("  '" + form.getRemark() + "'" + crlf);
 			sb.append(")" + crlf);
-
-
-			String query = sb.toString();
-
+			//連結した文字列を変数に代入
+			query = sb.toString();
+			//DBへ入力内容をINSERT
 			try{
+				//INSERT文の発行
 				dba.executeQuery(query);
+				//COMMIT実行
 				dba.commit();
+				//DB接続を解除
 				dba.closeConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				ret = false;
 			}
-
 		}
 		return ret;
 	}
+
+
+
 
 	//勤怠届画面の入力内容を登録する
 	public boolean KintaiNotification_INSERT(KintaiNotificationForm form){
