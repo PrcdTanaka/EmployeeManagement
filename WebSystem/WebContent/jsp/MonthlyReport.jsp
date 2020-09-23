@@ -1043,10 +1043,10 @@
 
 		</table>
 		</center>
-<%-- 		<div style="position: relative; margin-top: 5%; align: center;">
+ 		<div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="保存"
 				styleId="MonthlyReport" />
-		</div> --%>
+		</div>
 		<div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="戻る"
 				styleId="kintailist" />

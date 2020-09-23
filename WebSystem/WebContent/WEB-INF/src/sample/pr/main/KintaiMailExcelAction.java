@@ -11,14 +11,13 @@ import sample.ap.DbAction;
 
 public class KintaiMailExcelAction {
 
-  //カンマ
-  private static final String COMMA = ",";
-  //改行
-  private static final String NEW_LINE= "\r\n";
+	  //カンマ
+	  private static final String COMMA = ",";
+	  //改行
+	  private static final String NEW_LINE= "\r\n";
 
 
-
-  public static void main(String[] args) throws IOException {
+  public boolean Output_Csv(LoginForm lForm,MonthlyReportForm kForm) throws IOException {
 
 
 
@@ -75,5 +74,6 @@ public class KintaiMailExcelAction {
       }
 
     }
+	return true;
   }
 }
