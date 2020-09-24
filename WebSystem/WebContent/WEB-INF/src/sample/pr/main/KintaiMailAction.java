@@ -21,9 +21,9 @@ public class KintaiMailAction extends Action {
 	// 遷移先
 	private String forward;
 	// 送信日(メンバ変数)
-	private String MMdd = "";
+	private String Action_MMdd = "";
 	// 送信時間(メンバ変数)
-	private String SendTime = "";
+	private String Action_SendTime = "";
 
 	public KintaiMailAction() throws IOException {
 	}
@@ -52,15 +52,21 @@ public class KintaiMailAction extends Action {
 			}
 			if(button.equals("勤怠取消し"))
 			{
-				forward = "Kintailist";
-				response.sendRedirect("http://localhost:8080/WebSystem/jsp/KintaiList.jsp");
-				session.removeAttribute("form");
+				int Send_Edit_val = 2;
+				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, form, Send_Edit_val);
+				if(Send_Chk_Flg == false)
+				{
+				//	session.setAttribute("form", form);
+				//	session.removeAttribute("form");
+					forward = "main";
+				}
 			}
 			if (button.equals("編集"))
 			{
-				forward = "kintaieditor";
+				//forward = "kintaieditor";
+				// Send_Edit_valを1にする。
 				int Send_Edit_val = 1;
-				/*Span1とSpan2と被っていないか確認*/
+				// 対象期間/日付がDBの既存情報と被っていないか確認
 				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, form, Send_Edit_val);
 
 				if ((((form.getCC().equals("") || form.getSpotcode().equals("")
@@ -74,17 +80,19 @@ public class KintaiMailAction extends Action {
 					session.setAttribute("form", form);
 				}
 				else{
+					// DB上のデータと対象期間に被りが無い場合にDBの編集処理を行う
 					if(Send_Chk_Flg == false)
 					{
-						session.setAttribute("form", form);
-						dba.setKintaiEdit(form, lForm, MMdd, SendTime);
-						response.sendRedirect("http://localhost:8080/WebSystem/jsp/KintaiList.jsp");
-						session.removeAttribute("form");
+					//	session.setAttribute("form", form);
+						dba.setKintaiEdit(form, lForm, Action_MMdd, Action_SendTime);
+					//	response.sendRedirect("http://localhost:8080/WebSystem/jsp/KintaiList.jsp");
+					//	session.removeAttribute("form");
+						forward = "kintailist";
 					}
 				}
 			}
 			if (button.equals("送信")) {
-				/*Span1とSpan2と被っていないか確認*/
+				// Send_Edit_valを0にする。
 				int Send_Edit_val = 0;
 				// 対象期間/日付がDBの既存情報と被っていないか確認
 				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, form, Send_Edit_val);
@@ -104,6 +112,7 @@ public class KintaiMailAction extends Action {
 				//	JOptionPane.showMessageDialog(null, errorMsg);
 				}
 				else{
+					// DB上のデータと対象期間に被りが無い場合にDBの追加処理を行う
 					if(Send_Chk_Flg == false)
 					{
 						session.setAttribute("form", form);
@@ -118,8 +127,9 @@ public class KintaiMailAction extends Action {
 			e.printStackTrace();
 		}
 //		session.removeAttribute("form");
+		Action_MMdd = "";
+		Action_SendTime = "";
 		return map.findForward(forward);
-
 	}
 
 	/*
@@ -127,7 +137,7 @@ public class KintaiMailAction extends Action {
 	 * 入力
 	 * I : lForm
 	 * I : form
-	 * I : Send_Edit_val
+	 * I : Send_Edit_val (0・・送信 / 1・・編集 / 2・・勤怠取り消し)
 	 * 出力
 	 * O : chk_bukiing_flg (true・・被りあり / false・・被りなし)
 	 */
@@ -173,8 +183,8 @@ public class KintaiMailAction extends Action {
 					chk_bukking_flg = false;
 					List<String> MMDD = FORM.getMmdd();
 					List<String> SENDTIME = FORM.getSend_Time();
-					MMdd = MMDD.get(spans_culm);
-					SendTime = SENDTIME.get(spans_culm);
+					Action_MMdd = MMDD.get(spans_culm);
+					Action_SendTime = SENDTIME.get(spans_culm);
 
 				}
 				else if(int_date == int_Span1_List && int_Span2_List >= int_date)
@@ -182,8 +192,8 @@ public class KintaiMailAction extends Action {
 					chk_bukking_flg = false;
 					List<String> MMDD = FORM.getMmdd();
 					List<String> SENDTIME = FORM.getSend_Time();
-					MMdd = MMDD.get(spans_culm);
-					SendTime = SENDTIME.get(spans_culm);
+					Action_MMdd = MMDD.get(spans_culm);
+					Action_SendTime = SENDTIME.get(spans_culm);
 				}
 				else if(int_date >= int_Span1_List && int_Span2_List >= int_date)
 				{
@@ -196,6 +206,18 @@ public class KintaiMailAction extends Action {
 				if(int_date >= int_Span1_List && int_Span2_List >= int_date)
 				{
 					chk_bukking_flg = true;
+				}
+			}
+			else if(Send_Edit_val == 2)
+			{
+				if(int_date == int_Span1_List && int_Span2_List == int_date)
+				{
+					chk_bukking_flg = false;
+					List<String> MMDD = FORM.getMmdd();
+					List<String> SENDTIME = FORM.getSend_Time();
+					Action_MMdd = MMDD.get(spans_culm);
+					Action_SendTime = SENDTIME.get(spans_culm);
+
 				}
 			}
 

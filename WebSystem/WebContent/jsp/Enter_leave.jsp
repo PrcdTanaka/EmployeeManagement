@@ -56,6 +56,7 @@ body
  			String link =s.getLink();
  			eForm.setFloor(link);
 			DbAction dba=new DbAction();
+			//初回入室処理
 			if(!dba.getEntry_Empl(eForm))
 			{
 				Entry=true;

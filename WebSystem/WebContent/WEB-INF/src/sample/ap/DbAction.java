@@ -3178,7 +3178,7 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 			Calendar calendar = Calendar.getInstance();
-
+			String year=""+(calendar.get(calendar.YEAR));
 			String month=""+(calendar.get(calendar.MONTH)+1);
 			if(month.length()==1)
 				month=0+month;
@@ -3193,15 +3193,14 @@ public class DbAction extends Object{
 			sb.append(" ROOM_ACCESS_TBL"+crlf);
 			sb.append("WHERE"+crlf);
 			//sb.append(" FLOOR= ?"+crlf);
-			sb.append("AND"+crlf);
-			sb.append(" DAY='"+day+"'"+crlf);
+			sb.append(" DAY='"+year+day+"'"+crlf);
 
 			String query = sb.toString();
 
 			// 取得項目
 			List<String> columnList = new ArrayList<String>();
-			columnList.add("ENTRY_EMP");
-
+			columnList.add("EMPLOYEE_NAME");
+			//columnList.add(dba.getEMPLOYEE_NAME);
 
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
@@ -3210,6 +3209,7 @@ public class DbAction extends Object{
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
 			bindList.add(form.getFloor());
+			//bindList.add(form.getEMPLOYEE_NAME);
 
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
@@ -3220,7 +3220,7 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setEMPLOYEE_NO(val.get("EMPLOYEE_NO"));
+					form.setEmployee_name(val.get("EMPLOYEE_NAME"));
 					ret = true;
 				}
 
