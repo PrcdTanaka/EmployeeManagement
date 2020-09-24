@@ -140,14 +140,19 @@ public class ExcelOutputActionNT {
 			br.append(attendance_starttime.substring(2,4));
 			KNitem[6] = br.toString();
 		}
-		//文字列初期化
-		br.setLength(0);
 
-		//対象時間(終了)を[hhmm]⇒[hh:mm]形式にする。
-		br.append(attendance_endtime.substring(0,2)+":");
-		br.append(attendance_endtime.substring(2,4));
-		KNitem[7] = br.toString();
+		//対象時間(終了)を設定
+		if(attendance_endtime.equals("")){
+			KNitem[7] = "";
+		}else{
+			//文字列初期化
+			br.setLength(0);
 
+			//対象時間(終了)を[hhmm]⇒[hh:mm]形式にする。
+			br.append(attendance_endtime.substring(0,2)+":");
+			br.append(attendance_endtime.substring(2,4));
+			KNitem[7] = br.toString();
+		}
 		//申請事由を設定
 		KNitem[8] = notification_reason;
 
