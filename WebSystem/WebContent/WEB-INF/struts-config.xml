@@ -142,6 +142,8 @@
 			<forward name="KintaiMain" path="/jsp/KintaiMain.jsp" />
 			<forward name="kintaimail" path="/jsp/KintaiMail.jsp" />
 			<forward name="kintaieditor" path="/jsp/KintaiEditor.jsp" />
+			<forward name="kintailist" path="/jsp/KintaiList.jsp" />
+			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
 		<action name="KintaiListForm" path="/KintaiListAction"
 			type="sample.pr.main.KintaiListAction" validate="false" scope="request">

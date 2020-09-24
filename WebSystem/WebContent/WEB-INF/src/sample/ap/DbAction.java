@@ -2956,7 +2956,7 @@ public class DbAction extends Object{
 	/*
 	 * 勤怠編集メソッド
 	 */
-	public boolean setKintaiEdit(KintaiMailForm form, LoginForm lform) {
+	public boolean setKintaiEdit(KintaiMailForm form, LoginForm lform, String MMdd, String SendTime) {
 
 		boolean ret = false;
 		// DB接続
@@ -3004,23 +3004,10 @@ public class DbAction extends Object{
 			sb.append("  MMDD ='" + mmdd+"',"+crlf);
 			sb.append("  SEND_TIME ='" + send_time+"',"+crlf);
 			sb.append("  SPAN2 ='" + form.getSpan2()+"'"+crlf);
-
-/*			sb.append("'"+lform.getEmployee_no()+"',"+crlf);
-			sb.append("'"+form.getCC()+"',"+crlf);
-			sb.append("'"+form.getBcc()+"',"+crlf);
-			sb.append("'"+form.getSpotcode()+"',"+crlf);
-			sb.append("'"+form.getDivision()+"',"+crlf);
-			sb.append("'"+form.getSpan()+"',"+crlf);
-			sb.append("'"+form.getPtime()+"',"+crlf);
-			sb.append("'"+form.getRemark()+"',"+crlf);
-			sb.append("'"+form.getPerm()+"',"+crlf);
-			sb.append("'"+form.getDepart()+"',"+crlf);
-			sb.append("'"+mmdd+"',"+crlf);
-			sb.append("'"+send_time+"',"+crlf);
-			sb.append("'"+form.getSpan2()+"'"+crlf);*/
-
 			sb.append("WHERE" + crlf);
 			sb.append("  EMP_NO = ?" + crlf);
+			sb.append("  AND MMDD =" + MMdd + crlf);
+			sb.append("  AND SEND_TIME =" + SendTime + crlf);
 			String query = sb.toString();
 
 			// 設定値 - 型
@@ -3046,6 +3033,15 @@ public class DbAction extends Object{
 
 		ret=true;
 
+		return ret;
+	}
+	/*
+	 * 勤怠連絡削除メソッド
+	 */
+	public boolean setKintaiDelete(KintaiMailForm form, LoginForm lform, String MMdd, String SendTime)
+	{
+		boolean ret = false;
+		ret = true;
 		return ret;
 	}
 
@@ -3182,7 +3178,7 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 			Calendar calendar = Calendar.getInstance();
-
+			String year=""+(calendar.get(calendar.YEAR));
 			String month=""+(calendar.get(calendar.MONTH)+1);
 			if(month.length()==1)
 				month=0+month;
@@ -3197,15 +3193,14 @@ public class DbAction extends Object{
 			sb.append(" ROOM_ACCESS_TBL"+crlf);
 			sb.append("WHERE"+crlf);
 			//sb.append(" FLOOR= ?"+crlf);
-			sb.append("AND"+crlf);
-			sb.append(" DAY='"+day+"'"+crlf);
+			sb.append(" DAY='"+year+day+"'"+crlf);
 
 			String query = sb.toString();
 
 			// 取得項目
 			List<String> columnList = new ArrayList<String>();
-			columnList.add("ENTRY_EMP");
-
+			columnList.add("EMPLOYEE_NAME");
+			//columnList.add(dba.getEMPLOYEE_NAME);
 
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
@@ -3214,6 +3209,7 @@ public class DbAction extends Object{
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
 			bindList.add(form.getFloor());
+			//bindList.add(form.getEMPLOYEE_NAME);
 
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
@@ -3224,7 +3220,7 @@ public class DbAction extends Object{
 				dba.closeConnection();
 
 				for (Map<String, String> val : rsList) {
-					form.setEMPLOYEE_NO(val.get("EMPLOYEE_NO"));
+					form.setEmployee_name(val.get("EMPLOYEE_NAME"));
 					ret = true;
 				}
 
@@ -3796,22 +3792,53 @@ public class DbAction extends Object{
 
 	}
 
-	//勤務管理表の入力内容を登録する
+
+	//kinmuRecordRegisterメソッド
+	//機能：勤務管理表の入力内容をDBへ登録
+	//引数：KinmuRecordSendFormクラスのインスタンス(ここに入力内容が入っている)
+	//戻り値：boolean型(DBへの登録が成功ならtrue、失敗ならfalseを返す)
 	public boolean kinmuRecordRegister(KinmuRecordSendForm form){
 		boolean ret = true;
-		//DB接続
+		//まずDBに接続
 		DbConnector dba = null;
 		try{
 			dba = new DbConnector(gHost,gSid,gUser,gPass);
-		} catch(IOException e1){
+		}
+		//例外発生時は以下の処理を実行
+		catch(IOException e1){
 			ret = false;
 			e1.printStackTrace();
 		}
 
+		//DB接続が問題なければif文の中を実行
 		if(dba.conSts){
+			//DELETE文作成
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
-			//〇月1日分
+			//appendメソッドで文字列を連結
+			sb.append("DELETE FROM KINMU_RECORD_TBL" + crlf);
+			sb.append(" WHERE" + crlf);
+			sb.append(" EMPLOYEE_NO = '" + form.getEmployeeNum() + "'" + crlf);
+			sb.append(" AND" + crlf);
+			sb.append(" KINTAI_YMD = '" + form.getKintaiYMD() + "'" + crlf );
+			//連結した文字列を変数に代入
+			String query = sb.toString();
+			//DBに保存されているレコードをいったん削除
+			try{
+				//DELETE文の発行
+				dba.executeQuery(query);
+				//COMMIT実行
+				dba.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+			//StringBufferの中身を削除
+			sb.delete(0, sb.length());
+
+
+			//INSERT文作成
+			//appendメソッドで文字列を連結
 			sb.append("INSERT INTO KINMU_RECORD_TBL(" + crlf);
 			sb.append("  EMPLOYEE_NO," + crlf);
 			sb.append("  KINTAI_YMD," + crlf);
@@ -3833,22 +3860,26 @@ public class DbAction extends Object{
 			sb.append("  '" + form.getVacationDiv() + "'," + crlf);
 			sb.append("  '" + form.getRemark() + "'" + crlf);
 			sb.append(")" + crlf);
-
-
-			String query = sb.toString();
-
+			//連結した文字列を変数に代入
+			query = sb.toString();
+			//DBへ入力内容をINSERT
 			try{
+				//INSERT文の発行
 				dba.executeQuery(query);
+				//COMMIT実行
 				dba.commit();
+				//DB接続を解除
 				dba.closeConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				ret = false;
 			}
-
 		}
 		return ret;
 	}
+
+
+
 
 	//勤怠届画面の入力内容を登録する
 	public boolean KintaiNotification_INSERT(KintaiNotificationForm form){
