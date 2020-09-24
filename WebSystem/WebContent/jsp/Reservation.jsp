@@ -123,19 +123,19 @@
       <p class="c-txtsp">
       <table border="2" cellpadding="0" cellspacing="0">
 				<tr>
-					<td><a href="jsp/Reservation.jsp">前の月へ</a></td>
+					<td width=90px><a href="jsp/Reservation.jsp">前の月へ</a></td>
 					<td rowspan = "2" width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
-					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の月へ</a></td>
+					<td height="40" colspan="5"width=90px><a href="jsp/Reservation.jsp">次の月へ</a></td>
 				</tr>
 				<tr>
-					<td rowspan = "2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
-					<td rowspan = "2"><a href="jsp/Reservation.jsp">次の週へ</a></td>
+					<td rowspan = "2" width=90px><a href="jsp/Reservation.jsp">前の週へ</a></td>
+					<td rowspan = "2" width=90px><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
 
 					<%for(int i=0 ;i<7;i++){
 						if(day>max){%>
-					<td></td>
+					<td width=90px></td>
 					<% }
 						else
 						{
@@ -163,7 +163,7 @@
 								break;
 							}
 						%>
-					<td><%= day + "日" + weekname %></td>
+					<td width=90px><%= day + "日" + weekname %></td>
 					<%week++;
 					if(week == 7){
 						week = 0;
