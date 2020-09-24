@@ -104,12 +104,6 @@ public final class KintaiNotificationAction extends Action {
 
 			//休暇区分によって、入力不要なデータを消す。
 			switch(kintaiItem[9]){
-			//休暇区分が1(年次有給休暇/リフ休)の場合
-			case "1":
-				KNForm.setTransfer_day("");
-				KNForm.setSp_holiday_reason("");
-				KNForm.setAbsenteeism_reason("");
-				break;
 
 				//休暇区分が3(振替休暇)の場合
 			case "3":
@@ -132,7 +126,7 @@ public final class KintaiNotificationAction extends Action {
 				KNForm.setAbsenteeism_reason(kintaiItem[12]);
 				break;
 
-				//休暇区分が入力されていない場合
+				//休暇区分が1(年次有給休暇/リフ休)または、入力されていない場合
 			default:
 				KNForm.setTransfer_day("");
 				KNForm.setSp_holiday_reason("");
@@ -144,10 +138,10 @@ public final class KintaiNotificationAction extends Action {
 				KNForm.setMessage("社員番号が正しく入力されていません。");
 			}
 			else if(kintaiItem[4].length()<8){
-				KNForm.setMessage("対象日(開始)が入力されていません。");
+				KNForm.setMessage("対象日(開始)が正しく入力されていません。");
 
 			}else if(kintaiItem[5].length()<8){
-				KNForm.setMessage("対象日(終了)が入力されていません。");
+				KNForm.setMessage("対象日(終了)が正しく入力されていません。");
 
 			}else if(kintaiItem[8].length()<1){
 				KNForm.setMessage("届出事由が入力されていません。");
@@ -161,7 +155,6 @@ public final class KintaiNotificationAction extends Action {
 				 * 社員番号と対象開始日と対象終了日と届出事由をDBから取得して、画面入力値と比較し
 				 * 完全一致ならUPDATE文、それ以外であればINSERT文でDBに登録する。
 				 */
-
 
 				//DB登録処理を実行する。
 				result = saveInsert(KNForm);
