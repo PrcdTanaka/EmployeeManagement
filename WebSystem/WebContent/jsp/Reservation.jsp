@@ -35,6 +35,7 @@
 
 					    Calendar cal = Calendar.getInstance();
 
+					    dba.getRoom_name(roForm);
 					    int year = cal.get(Calendar.YEAR);
 					    int month = cal.get(Calendar.MONTH) + 1;
 					    int day = cal.get(Calendar.DATE);
@@ -57,6 +58,7 @@
 					    String camera = "";
 
 						dba.getMMDD(roForm);
+						String res = rForm.getRoom_name();
 					    List<String> res_name = roForm.getName();
 					    List<String> room_name = roForm.getRoom_name();
 					    List<String> res_time = roForm.getRes_time();
@@ -70,6 +72,7 @@
 	<body>
 		<div align = "center">
 			<h1>会議室予約画面</h1>
+			<%=res %>
 		</div>
 
 		<div align="right">
