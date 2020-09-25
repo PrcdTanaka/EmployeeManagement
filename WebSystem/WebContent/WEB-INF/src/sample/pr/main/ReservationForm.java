@@ -13,8 +13,6 @@ public final class ReservationForm extends ActionForm {
 	private String name;
 	/**会議室名 */
 	private String room_name;
-	/** 席数 */
-	private String seat_number;
 	/** モニター */
 	private String monitor;
 	/** カメラ */
@@ -39,7 +37,6 @@ public final class ReservationForm extends ActionForm {
 		employee_no = "";
 		name = "";
 		room_name = "";
-		seat_number = "";
 		monitor = "";
 		camera = "";
 		button = "";
@@ -116,30 +113,6 @@ public final class ReservationForm extends ActionForm {
 	 */
 	public void setRoom_name(String room_name) {
 		this.room_name = room_name;
-	}
-
-	/**
-	 * 席数取得処理。
-	 * <p>
-	 * メイン画面アクションフォームから席数を取得する。
-	 * </p>
-	 *
-	 * @return 席数
-	 */
-	public String getSeat_number() {
-		return seat_number;
-	}
-
-	/**
-	 * 新しいパスワード1設定処理。
-	 * <p>
-	 * パスワードフォーム新しいパスワード1を設定する。
-	 * </p>
-	 *
-	 * @param newpassword 新しいパスワード1
-	 */
-	public void setSeat_number(String seat_number) {
-		this.seat_number = seat_number;
 	}
 
 	/**
