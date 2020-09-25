@@ -47,6 +47,7 @@ public class KinmuRecordAction extends Action{
 		//必要かどうか不明
 //		KintaiMainForm kForm = (KintaiMainForm) frm;
 
+
 		// 1.ログイン画面のアクションフォーム情報をインプットパラメータ.アクションフォームから取得する。
 		// アクションフォームBeanより入力フォームのデータを取り出す処理
 		// フォーム情報をキャスト
