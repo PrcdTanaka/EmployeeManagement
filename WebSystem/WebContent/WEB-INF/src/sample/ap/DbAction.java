@@ -11,6 +11,7 @@ import java.util.Map;
 import sample.db.DbConnector;
 import sample.pr.main.AttendanceForm;
 import sample.pr.main.EnterForm;
+import sample.pr.main.KinmuRecordGetForm;
 //import sample.pr.main.KinmuRecordForm;
 import sample.pr.main.KinmuRecordSendForm;
 import sample.pr.main.KintaiMailForm;
@@ -3880,6 +3881,97 @@ public class DbAction extends Object{
 	}
 
 
+	//getKinmuRecordメソッド
+	//機能：DBから勤務履歴の情報を取得し、勤務管理表作成画面に反映させる
+	//引数：KinmuRecordFormクラス(DBから取得した情報をここに格納する)
+	//戻り値：boolean型(情報の取得が成功ならtrue、失敗ならfalseを返す)
+	public boolean getKinmuRecord(KinmuRecordGetForm KRGForm, int num){
+		//戻り値用の変数(とりあえずtrueを代入しておく)
+		boolean ret = true;
+		//DbConnectorクラスのインスタンスを新規生成し、DB接続を実行。
+		DbConnector dba = null;
+		try{
+			dba = new DbConnector(gHost, gSid, gUser, gPass);
+		}
+		//例外発生時はスタックトレースを表示させる。
+		catch(IOException e){
+			ret = false;
+			e.printStackTrace();
+		}
+
+		//DB接続が成功ならif文の中身を実行
+		if(dba.conSts){
+			//StringBufferを新規生成
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+			//引数で受け取ったint型の変数numをString型に変換
+			String date = String.valueOf(num);
+			//appendメソッドで文字列を連結
+			sb.append("SELECT" + crlf);
+			sb.append("HOLIDAY_DIVISION," + crlf);
+			sb.append("START_TIME," + crlf);
+			sb.append("END_TIME," + crlf);
+			sb.append("BREAK_TIMEA," + crlf);
+			sb.append("BREAK_TIMEB," + crlf);
+			sb.append("VACATION_DIVISION," + crlf);
+			sb.append("REMARK" + crlf);
+			sb.append("FROM" + crlf);
+			sb.append("KINMU_RECORD_TBL" + crlf);
+			sb.append("WHERE" + crlf);
+			sb.append("EMPLOYEE_NO = " + "'" + KRGForm.getEmployeeNum() + "'" + crlf);
+			sb.append("AND" + crlf);
+			sb.append("KINTAI_YMD LIKE '2020080"+ date + "'" + crlf);
+			//連結した文字列を変数に代入
+			String query = sb.toString();
+
+			//DBから取得するカラムをArrayListに格納
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("HOLIDAY_DIVISION");
+			columnList.add("START_TIME");
+			columnList.add("END_TIME");
+			columnList.add("BREAK_TIMEA");
+			columnList.add("BREAK_TIMEB");
+			columnList.add("VACATION_DIVISION");
+			columnList.add("REMARK");
+
+			//dbaクラスのフィールド変数DB_STRINGをArrayListに格納
+			//DBから取得する情報のデータ型がString型だからDB_STRINGを格納(1が格納される)
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			//ログインユーザーの社員番号をArrayListに格納
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(KRGForm.getEmployeeNum());
+
+			//SELECT文でDBから取得した情報を格納するArrayListを作成
+			//要素はMap(key＝カラム名 / value＝具体的なデータ)
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();
+
+			//tryブロック：SELECT文実行→DBから情報取得→KRSFormのフィールド変数へ代入
+			//catchブロック：SQLException(DB処理の例外)をキャッチ→スタックトレースを表示
+			try{
+				//SELECT文実行＆DBから情報取得
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+				//取得した情報をKRSFormのフィールド変数へ代入
+				for(Map<String, String> map : rsList){
+					KRGForm.setHolidayDiv(map.get("HOLIDAY_DIVISION"));
+					KRGForm.setStartTime(map.get("START_TIME"));
+					KRGForm.setEndTime(map.get("END_TIME"));
+					KRGForm.setBreakTimeA(map.get("BREAK_TIMEA"));
+					KRGForm.setBreakTimeB(map.get("BREAK_TIMEB"));
+					KRGForm.setVacationDiv(map.get("VACATION_DIVISION"));
+					KRGForm.setRemark(map.get("REMARK"));
+				}
+			} catch(SQLException e){
+				e.printStackTrace();
+				ret = false;
+			}
+		}
+		return ret;
+	}
 
 
 	//勤怠届画面の入力内容を登録する
