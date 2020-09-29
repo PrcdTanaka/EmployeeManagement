@@ -48,7 +48,6 @@
 		Calendar cale = Calendar.getInstance();
 
 		MonthlyReportForm form=new MonthlyReportForm();
-		int monthlastDay = cale.getActualMaximum(Calendar.DATE);
 		DbAction dba = new DbAction();
 		LoginForm lForm=(LoginForm)session.getAttribute("form");
 		form.setEmployee_no(lForm.getEmployee_no());
@@ -139,8 +138,6 @@
 				String link1 = "http://localhost:8080/WebSystem/jsp/KintaiMail.jsp";
 				String link2 = "http://localhost:8080/WebSystem/jsp/KintaiEditor.jsp";
 				int flg= 0;
-				int kari_data=1; //対象日
-				int days_val = 0;
 
 				int d=0; //日付(最大31までになる)
 				while(cale.get(Calendar.MONTH)==intMonth-1){
