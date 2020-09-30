@@ -35,6 +35,8 @@ public final class KintaiNotificationAction extends Action {
 			e.printStackTrace();
 		}
 
+		HttpSession session = request.getSession();
+
 		// フォーム情報をキャスト
 		KintaiNotificationForm KNForm = (KintaiNotificationForm) frm;
 
@@ -105,7 +107,7 @@ public final class KintaiNotificationAction extends Action {
 			//休暇区分によって、入力不要なデータを消す。
 			switch(kintaiItem[9]){
 
-				//休暇区分が3(振替休暇)の場合
+			//休暇区分が3(振替休暇)の場合
 			case "3":
 				KNForm.setTransfer_day(kintaiItem[10]);
 				KNForm.setSp_holiday_reason("");
@@ -159,35 +161,28 @@ public final class KintaiNotificationAction extends Action {
 				//DB登録処理を実行する。
 				result = saveInsert(KNForm);
 				if(!result){
-					KNForm.setMessage("DB処理に失敗しました。"
-							+ "問い合わせについては管理者へ報告ください");
-				}
+					KNForm.setMessage("DB処理に失敗しました。");
 
-				//Excelを出力する処理
-				ExcelOutputActionNT excelOut = new ExcelOutputActionNT();
-				try {
-					result = excelOut.exceloutput(kintaiItem);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				}else{
 
-				//Excel出力に失敗した場合
-				if(!result){
-					KNForm.setMessage("エクセル出力に失敗しました。"
-							+ "問い合わせについては管理者へ報告ください");
+					//Excelを出力する処理
+					ExcelOutputActionNT excelOut = new ExcelOutputActionNT();
+					try {
+						result = excelOut.exceloutput(kintaiItem);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					//Excel出力に失敗した場合
+					if(!result){
+						KNForm.setMessage("エクセル出力に失敗しました。");
+					}else {
+						KNForm.setMessage("出力が完了しました。");
+					}
 				}
 			}
 		}
-
-		//エラーの場合はスキップ
-		if(KNForm.getMessage() == null){
-			KNForm.setMessage("出力が完了しました。");
-		}
-
-		request.setAttribute("KNForm", KNForm);
-
-		HttpSession session = request.getSession();
-
+		//セッション情報を設定する。
 		session.setAttribute("KNForm", KNForm);
 
 		//遷移先を返却する

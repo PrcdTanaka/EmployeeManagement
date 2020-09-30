@@ -77,8 +77,8 @@ textarea {
 			<div class="centers">
 				<p class="list">
 				<%
-				String employee_no_login;
-				String employee_no;
+				String employee_no_login="";
+				String employee_no="";
 				try {
 					LoginForm s1 = (LoginForm) session.getAttribute("form");
 					KintaiNotificationForm kn = (KintaiNotificationForm) session.getAttribute("KNForm");
@@ -104,8 +104,7 @@ textarea {
 
 				<p>
 					所属部門 ：
-					<html:select property="depart" name="KintaiNotificationForm"
-						styleId="depart">
+					<html:select property="depart" name="KintaiNotificationForm" styleId="depart">
 						<html:option value="">選択してください</html:option>
 						<html:option value="1" >第1技術部</html:option >
 						<html:option value="2">第2技術部</html:option>

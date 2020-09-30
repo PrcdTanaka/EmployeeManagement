@@ -24,13 +24,16 @@ public class ExcelOutputActionNT {
 
 	public boolean exceloutput(String[] kintaiItem) throws IOException {
 
-		// 変更するエクセルファイルを指定
+		// 編集するエクセルファイルを指定
 		Workbook wb = null;
 
-		//編集後の名前を格納する変数
+		//出力するエクセルの名前を格納する変数
 		String sendFileName = "";
+
+		//時刻・日付を変換するための変数を定義する
 		StringBuffer br = new StringBuffer();
 
+		//引数を基に各項目に値を設定する。
 		String employee_no = kintaiItem[0];
 		String syain_name = kintaiItem[1];
 		String depart = kintaiItem[2];
@@ -48,7 +51,7 @@ public class ExcelOutputActionNT {
 
 
 
-		//値確認用
+		//値確認用 あとで削除
 		System.out.println(employee_no);
 		System.out.println(syain_name);
 		System.out.println(depart);
@@ -158,7 +161,7 @@ public class ExcelOutputActionNT {
 
 		//振替対象日を設定
 		if(transfer_day.equals("")){
-			KNitem[9]=transfer_day;
+			KNitem[9]="";
 
 		}else{
 			//文字列初期化
@@ -170,6 +173,7 @@ public class ExcelOutputActionNT {
 			br.append(transfer_day.substring(6,8));
 			KNitem[9] = br.toString();
 		}
+		//事由を設定
 		KNitem[10] = reason;
 
 
@@ -247,7 +251,7 @@ public class ExcelOutputActionNT {
 				//配列をずらす。
 				j++;
 
-				//6行目の3こ目のセルを取得
+				//12行目のセルを取得
 				Cell cell = row.createCell(KNitemCell[i][j]);
 
 				//値がNullである場合は次のレコードへ
@@ -317,6 +321,7 @@ public class ExcelOutputActionNT {
 
 		// コピーしたファイルが存在するか確認
 		if (!filefrom.exists()) {
+			sendFileName="";
 			return sendFileName;
 		}
 		return sendFileName;
