@@ -75,39 +75,51 @@
 
         %>
 		 <%
-	 		// 前の画面よりリンク取得し、月に反映させる
-	 		String str_Date = "";
-			StringBuffer sb = new StringBuffer();
-			sb.append(new String(request.getHeader("REFERER")));
-
-			String BeforeUrl = sb.substring(51);
-			if(BeforeUrl.equals("null"))
-			{
-				month_flg = false;
-			}
-			else if(BeforeUrl.isEmpty())
-			{
-				month_flg = false;
-			}
-			else if(BeforeUrl.substring(0, 5).equals("year="))
-			{
-				if(month_flg == true || Chk_flg == false)
+		 	String str_Date = "";
+		 	if(MonthlyReportAction.OutputFlg == false)
+		 	{
+		 		// 前の画面よりリンク取得し、月に反映させる
+				StringBuffer sb = new StringBuffer();
+				sb.append(new String(request.getHeader("REFERER")));
+				String kouho_str = sb.substring(sb.length() - 2);
+				// 末尾がdoの場合は、今月の月報画面
+				if(kouho_str.equals("do"))
 				{
-					String[] lBeforeUrl1 = new String[1];
-					lBeforeUrl1 = BeforeUrl.split("year=", 0);
-					String[] lBeforeUrl2 = new String[1];
-					lBeforeUrl2 = lBeforeUrl1[1].split("&month=", 0);
-					Year_Data = lBeforeUrl2[0];
-					Month_Data = lBeforeUrl2[1];
-
-					month_flg = true;
+					Chk_flg = true;
 				}
-			}
-			else
-			{
-				month_flg = false;
-			}
 
+				if(Chk_flg == false)
+				{
+					String BeforeUrl = sb.substring(51);
+					if(BeforeUrl.equals("null"))
+					{
+						month_flg = false;
+					}
+					else if(BeforeUrl.isEmpty())
+					{
+						month_flg = false;
+					}
+					else if(BeforeUrl.substring(0, 5).equals("year="))
+					{
+						if(month_flg == true || Chk_flg == false)
+						{
+							String[] lBeforeUrl1 = new String[1];
+							lBeforeUrl1 = BeforeUrl.split("year=", 0);
+							String[] lBeforeUrl2 = new String[1];
+							lBeforeUrl2 = lBeforeUrl1[1].split("&month=", 0);
+							Year_Data = lBeforeUrl2[0];
+							Month_Data = lBeforeUrl2[1];
+							MonthlyReportAction.mnt = Month_Data;
+
+							month_flg = true;
+						}
+					}
+					else
+					{
+						month_flg = false;
+					}
+				}
+		 	}
 		%>
 		<center>
 			<h1>勤怠月報画面</h1>
@@ -116,17 +128,18 @@
 			<tr bgcolor="#87cefa">
 			<tr>
 				<%
-					if(month_flg == false){
+					if(month_flg == false || Chk_flg == true){
+						MonthlyReportAction.mnt = month;
 				%>
-					<td><%=month %>月</td>
+					<td><%=MonthlyReportAction.mnt %>月</td>
 				<%
 					}
 					else if(month_flg == true){
 				%>
-					<td><%=Month_Data %>月</td>
+					<td><%=MonthlyReportAction.mnt %>月</td>
 				<%
 					Chk_flg = true;
-					month = Month_Data +"";
+					month = MonthlyReportAction.mnt +"";
 					}
 				%>
 			</tr>
@@ -1046,10 +1059,16 @@
  		<div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="保存"
 				styleId="MonthlyReport" />
+			<%
+				MonthlyReportAction.OutputFlg = true;
+			%>
 		</div>
 		<div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="戻る"
 				styleId="kintailist" />
+			<%
+				MonthlyReportAction.OutputFlg = false;
+			%>
 		</div>
 	</body>
 	<%
