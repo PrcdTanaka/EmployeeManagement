@@ -47,24 +47,26 @@
 	<%
 		Calendar cale = Calendar.getInstance();
 
-		MonthlyReportForm form=new MonthlyReportForm();
-		DbAction dba = new DbAction();
-		LoginForm lForm=(LoginForm)session.getAttribute("form");
-		form.setEmployee_no(lForm.getEmployee_no());
+		MonthlyReportForm form=new MonthlyReportForm();		//MonthlyReportFormを使用するために宣言
+		DbAction dba = new DbAction();						// DbActionを使用するために宣言
+		LoginForm lForm=(LoginForm)session.getAttribute("form");	// LoginForm型の変数lFormにsessionのformを取得
+		form.setEmployee_no(lForm.getEmployee_no());				// formにlFormのログイン中の社員番号を取得
 
 		dba.getMonthly_report(form);
-		List<String> span = form.getSpan();
-		List<String>span2=form.getSpan2();
-		List<String>Mmdd=form.getMmdd();
+		List<String> span = form.getSpan();		// List型にMonthlyReportFormのSpanを格納
+		List<String>span2=form.getSpan2();		// List型にMonthlyReportFormのSpa2nを格納
+		List<String>Mmdd=form.getMmdd();		// List型にMonthlyReportFormのMmddを格納
 		int listnumber=0;
-		int Max_Days = 30;
+		int Max_Days = 30;						// 配列の要素数
 
-		String str_Y = "";
-		String str_M = "";
-		String str_D = "";
-		String zero = "0";
+		String str_Y = "";						// カレンダーで表示するYearを代入する変数
+		String str_M = "";						// カレンダーで表示するMonthを代入する変数
+		String str_D = "";						// カレンダーで表示するDayを代入する変数
+		String zero = "0";						// MonthとDyaが1～9の場合に、01～09にするための文字列"0"
 
+		// カレンダーの表示方式を設定(yyyyMMddの方式にする)
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		// 本日の日付を取得(形式はyyyyMMdd)
 		int now_days = Integer.parseInt(sdf.format(cale.getTime()));
 	%>
 
@@ -76,17 +78,19 @@
 		<br/>
 		<br/>
 		<%
-		String strYear=request.getParameter("year");
-		String strMonth=request.getParameter("month");
+		String strYear=request.getParameter("year");		// 変数request内のyearを取得
+		String strMonth=request.getParameter("month");		// 変数request内のmonthを取得
 
 		int intYear;
 		int intMonth;
 
+		// yearがnullかつ、monthがnullか判定
 		if(strYear != null && strMonth != null)
 		{
-			int intMonthTemp=Integer.parseInt(strMonth);
+			int intMonthTemp=Integer.parseInt(strMonth);	// strMonthをint型にキャスト
 
-			intMonth = intMonthTemp%12;
+			intMonth = intMonthTemp%12;		// intMonthTemp/12の余りを代入
+			// strYaerをint型にキャストして、intMonthTemp/12の値を代入
 			intYear = Integer.parseInt(strYear)+intMonthTemp/12;
 			if(intMonth==0)
 			{
@@ -102,6 +106,7 @@
 
 		int k = cale.get(Calendar.DAY_OF_WEEK) -1;
 		%>
+		<!-- 前月・来月移動のリンク表示と、今の月を表示 -->
 		<div class="head">
 		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth-1 %>">前月</a>
 		<span class="title"><%= intYear%>年<%=intMonth %>月</span>
@@ -112,10 +117,9 @@
 		<div class="fallbackDatePicker">
 		<span>
 			<%-- カレンダーのプルダウンメニュー作成(月のほう) --%>
-			<%--<select id="Years" name="Years">  --%>
 			<%
-				int Years_Data = cale.get(Calendar.YEAR);
-				int Month_Data = cale.get(Calendar.MONTH)+1;
+				int Years_Data = cale.get(Calendar.YEAR);		// int型変数にカレンダー関数の年を取得
+				int Month_Data = cale.get(Calendar.MONTH)+1;	// int型変数にカレンダー関数の月を取得し+1する
 			%>
 		</span>
 		</div>
@@ -123,6 +127,7 @@
 		<br/>
 		<table>
 			<tr>
+				<!-- カレンダーの曜日を表示 -->
 				<!--TH:Table Header-->
 				<th class="holiday">日</th>
 				<th class="weekday">月</th>
@@ -132,20 +137,22 @@
 				<th class="weekday">金</th>
 				<th class="saturday">土</th>
 			</tr>
-			<%-- while文とint=d以外、実験物 --%>
 			<%
-				int NowDay = cale.get(Calendar.DATE);
+				//int NowDay = cale.get(Calendar.DATE);
+				// KintaiMail.jspに遷移するリンクを設定
 				String link1 = "http://localhost:8080/WebSystem/jsp/KintaiMail.jsp";
+				// KintaiEditor.jspに遷移するリンクを設定
 				String link2 = "http://localhost:8080/WebSystem/jsp/KintaiEditor.jsp";
-				int flg= 0;
+				int flg= 0;		// 編集可能・不可判定フラグ。初期値:0
+				int d=0; 		// 日付(最大31までになる)
 
-				int d=0; //日付(最大31までになる)
+				// カレンダー関数の月と、変数intMonth-1が同じならwhile文実施
 				while(cale.get(Calendar.MONTH)==intMonth-1){
 			%>
 			<tr>
 				<%-- spanのサイズ分for分を回し、配列に要素を格納 --%>
 				<%
-					int between_day = 0;
+					int between_day = 0;		// span1とspan2の差分数を格納する変数
 				%>
 				<%
 					int kintai_span = 0;
@@ -157,6 +164,7 @@
 						kintai_span++;
 					}
 				%>
+				<%-- span2のサイズ分for分を回し、配列に要素を格納 --%>
 				<%
 					int kintai_span2 = 0;
 					String[] kintai_span2_lst = new String[Max_Days];
@@ -174,32 +182,34 @@
 					判定条件は、対象期間 > 今日の日付
 				--%>
 				<%
-					boolean Span2_flg = false;
-					boolean val_flg = true;
-					int int_Span1_Lst = 0;
-					int int_Span2_Lst = 0;
-					int int_Chk_Span2 = 0;
+					boolean Span2_flg = false;		// 複数回実行確認フラグ(Span2が被るので、何度も実行するのを抑止)
+					boolean val_flg = true;			// 対象期間/日付の空チェックフラグ 初期値:true
+					int int_Span1_Lst = 0;			// 対象期間/日付(開始)のキャスト用変数
+					int int_Span2_Lst = 0;			// 対象期間/日付(終了)のキャスト用変数
 
-					str_Y = String.valueOf(intYear);
-					str_M = String.valueOf(intMonth);
-					str_D = String.valueOf(d+1);
-					String str_Lmt = String.valueOf(d+8);
+					str_Y = String.valueOf(intYear);		// intYearをString型にキャスト
+					str_M = String.valueOf(intMonth);		// intMonthをString型にキャスト
+					str_D = String.valueOf(d+1);			// d+1をString型にキャスト
+					String str_Lmt = String.valueOf(d+8);	// intYearをString型にキャスト(編集不可確認で使用)
+					// str_Mが1月～9月の場合、01月～09月と設定(MMに合わせるため)
 					if(str_M.length() == 1)
 					{
 						str_M = zero + str_M;
 					}
+					// str_Mが1日～9日の場合、01日～09日と設定(ddに合わせるため)
 					if(str_D.length() == 1)
 					{
 						str_D = zero + str_D;
 					}
+					// str_Mが1日～9日の場合、01日～09日と設定(ddに合わせるため)
 					if(str_Lmt.length() == 1)
 					{
 						str_Lmt = zero + str_Lmt;
 					}
-					String str_A = str_Y + str_M + str_D;
-					String str_B = str_Y + str_M + str_Lmt;
+					String str_A = str_Y + str_M + str_D;		// yyyyMMddで年月日を結合(例:20200101)
+					String str_B = str_Y + str_M + str_Lmt;		// yyyyMMddで年月日を結合(例:20200101)
 
-					int int_str_A = Integer.parseInt(str_A);
+					int int_str_A = Integer.parseInt(str_A);	// 変数str_Aをint型にキャスト
 
 					// ガード処理
 					// 現ユーザの勤怠連絡がなければDBからの取得処理を行わない。
@@ -212,10 +222,12 @@
 					{
 						for(int t = 0; t < span.size(); t++)
 						{
-							int str_b_lst = Integer.parseInt(str_B);
+							int str_b_lst = Integer.parseInt(str_B);	// 変数str_Bをint型にキャスト
 
 							// 対象期間が本日より7日より前なら黄色表示 (flg = 1)
 							// 対象期間が本日より8日より後なら赤色表示 (flg = 2)
+
+							// Span1とカレンダー表示日付が同一または、span1とspan2の差分数が1以上か判定
 							if(kintai_span_lst[t].equals(str_A) || between_day >= 1)
 							{
 								int_Span1_Lst = Integer.parseInt(kintai_span_lst[t]);
@@ -247,35 +259,38 @@
 										}
 									}
 								}
-								flg = 1;
+								flg = 1;	// 編集可能・不可確認フラグを1にする
+								// カレンダー表示日+8日が現在の日付より8日以上であるか判定
 								if(now_days > str_b_lst)
 								{
-									flg = 2;
+									flg = 2;	// 編集可能・不可確認フラグを2にする
 								}
 							}
-
+							// Span2とカレンダー表示日付が同一か判定
 							if(kintai_span2_lst[t].equals(str_A))
 							{
-								flg = 1;
+								flg = 1;	// 編集可能・不可確認フラグを1にする
+								// カレンダー表示日+8日が現在の日付より8日以上であるか判定
 								if(now_days > str_b_lst)
 								{
-									flg = 2;
+									flg = 2;	// 編集可能・不可確認フラグを2にする
 								}
-							//	int_Chk_Span2 = Integer.parseInt(kintai_span2_lst[t]);
-								between_day = 0;
+								between_day = 0;	// span1とspan2の差分数を0にする(複数回実施の防止)
 							}
 						}
 						if(between_day > 0)
 						{
-							between_day--;
+							between_day--;	// span1とspan2の差分数が0になるまでspan1とspan2の間の日もマスを色づける
 						}
 					}
 				%>
 				<%
+					// j==0なら、日曜日とする
 					if(j==0){
 				%>
 					<td class="holiday">
 					<%
+					// j==6なら、土曜日とする
 					}else if(j==6){
 					%>
 					<td class="saturday">
@@ -311,11 +326,6 @@
 					<%
 						d++;
 					%>
-					<%-- ボタン式の名残(なんかミスしてる)
-					<form action="http://localhost:8080/WebSystem/jsp/KintaiMail.jsp?button=<%=d %>" style="padding: 0em;">
-					<input type="submit" id="" name="" style="background-color:transparent; width:30px;" value="<%=d++ %>"/>
-					</form>
-				 --%>
 				 	<%--
 				 		flg == 1またはflg == 2なら、勤怠画面のリンク表示
 				 		flg == 0なら勤怠連絡画面のリンク表示
