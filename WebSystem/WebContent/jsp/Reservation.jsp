@@ -35,7 +35,7 @@
 
 					    Calendar cal = Calendar.getInstance();
 
-					    dba.getRoom_name(roForm);
+					    dba.getRoomstatus(roForm);
 					    int year = cal.get(Calendar.YEAR);
 					    int month = cal.get(Calendar.MONTH) + 1;
 					    int day = cal.get(Calendar.DATE);
