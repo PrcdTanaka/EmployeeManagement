@@ -35,6 +35,7 @@
 
 					    Calendar cal = Calendar.getInstance();
 
+					    dba.getRoomstatus(roForm);
 					    int year = cal.get(Calendar.YEAR);
 					    int month = cal.get(Calendar.MONTH) + 1;
 					    int day = cal.get(Calendar.DATE);
@@ -55,15 +56,23 @@
 					    String capacity = "";
 					    String monitor = "";
 					    String camera = "";
+
+						dba.getMMDD(roForm);
+						String res = rForm.getRoom_name();
+					    List<String> res_name = roForm.getName();
+					    List<String> room_name = roForm.getRoom_name();
+					    List<String> res_time = roForm.getRes_time();
 					    List<String> mmdd = rForm.getMmdd();
-				        List<String> res_time = rForm.getRes_time();
-				        dba.getMMDD(roForm);
+					    List<String> member = roForm.getMember();
+					    List<String> use = roForm.getUse();
+						List<String> status =roForm.getRes_time();
 
 
 	%>
 	<body>
 		<div align = "center">
 			<h1>会議室予約画面</h1>
+			<%=res %>
 		</div>
 
 		<div align="right">
@@ -117,19 +126,19 @@
       <p class="c-txtsp">
       <table border="2" cellpadding="0" cellspacing="0">
 				<tr>
-					<td><a href="jsp/Reservation.jsp">前の月へ</a></td>
+					<td width=90px><a href="jsp/Reservation.jsp">前の月へ</a></td>
 					<td rowspan = "2" width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
-					<td height="40" colspan="5"><a href="jsp/Reservation.jsp">次の月へ</a></td>
+					<td height="40" colspan="5"width=90px><a href="jsp/Reservation.jsp">次の月へ</a></td>
 				</tr>
 				<tr>
-					<td rowspan = "2"><a href="jsp/Reservation.jsp">前の週へ</a></td>
-					<td rowspan = "2"><a href="jsp/Reservation.jsp">次の週へ</a></td>
+					<td rowspan = "2" width=90px><a href="jsp/Reservation.jsp">前の週へ</a></td>
+					<td rowspan = "2" width=90px><a href="jsp/Reservation.jsp">次の週へ</a></td>
 				</tr>
 				<tr>
 
 					<%for(int i=0 ;i<7;i++){
 						if(day>max){%>
-					<td></td>
+					<td width=90px></td>
 					<% }
 						else
 						{
@@ -157,7 +166,7 @@
 								break;
 							}
 						%>
-					<td><%= day + "日" + weekname %></td>
+					<td width=90px><%= day + "日" + weekname %></td>
 					<%week++;
 					if(week == 7){
 						week = 0;

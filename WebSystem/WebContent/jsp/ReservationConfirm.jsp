@@ -19,9 +19,9 @@
 	RoomReservationForm rForm = new RoomReservationForm();
 	LoginForm s = (LoginForm) session.getAttribute("form");
 
-		String message;
+		String message = null;
 		try{
-			RoomReservationForm roForm = (RoomReservationForm) session.getAttribute("pForm");
+			RoomReservationForm roForm = (RoomReservationForm) session.getAttribute("roForm");
 			message =  roForm.getMessage();
 			if(message == null)
 				message = "";

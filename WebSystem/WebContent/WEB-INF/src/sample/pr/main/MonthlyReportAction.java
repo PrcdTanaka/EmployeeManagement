@@ -24,6 +24,8 @@ public class MonthlyReportAction extends Action {
 
 	// 遷移先
 	private String forward;
+	public static String mnt = "";
+	public static boolean OutputFlg = false;
 	// カンマ
 	private static final String COMMA = ",";
 	// 改行
@@ -126,6 +128,26 @@ public class MonthlyReportAction extends Action {
 
 			fileWriter = new FileWriter("C:\\kintaiExcel\\person.csv");
 			request.setCharacterEncoding("UTF-8");
+
+			fileWriter.append("/");
+			fileWriter.append(COMMA);
+			fileWriter.append("届出日");
+			fileWriter.append(COMMA);
+			fileWriter.append("時刻");
+			fileWriter.append(COMMA);
+			fileWriter.append("Limit");
+			fileWriter.append(COMMA);
+			fileWriter.append("連絡遅延");
+			fileWriter.append(COMMA);
+			fileWriter.append("届出区分");
+			fileWriter.append(COMMA);
+			fileWriter.append("作業場所");
+			fileWriter.append(COMMA);
+			fileWriter.append("許可");
+			fileWriter.append(COMMA);
+			fileWriter.append("備考");
+			fileWriter.append(COMMA);
+			fileWriter.append(NEW_LINE);
 
 			// リストの内容を順に処理
 			String dada = "";
@@ -923,7 +945,8 @@ public class MonthlyReportAction extends Action {
 							send = "";
 						}
 
-						fileWriter.append(dada);
+				 if(kintai_s[i].substring(6,8).equals(kintai_s2[i].substring(6,8))){
+						fileWriter.append(dada+"日");
 						fileWriter.append(COMMA);
 						fileWriter.append(mmdd.get(i));
 						fileWriter.append(COMMA);
@@ -945,11 +968,36 @@ public class MonthlyReportAction extends Action {
 
 						flg = 1;
 						break;
+				 }else{
+					 for(int k=Integer.parseInt(kintai_s[i].substring(6,8));k<=(Integer.parseInt(kintai_s2[i].substring(6,8)));k++){
+						fileWriter.append(k+"日");
+						fileWriter.append(COMMA);
+						fileWriter.append(mmdd.get(i));
+						fileWriter.append(COMMA);
+						fileWriter.append(send_time.get(i));
+						fileWriter.append(COMMA);
+						fileWriter.append(limit);
+						fileWriter.append(COMMA);
+						fileWriter.append(send);
+						fileWriter.append(COMMA);
+						fileWriter.append(division.get(i));
+						fileWriter.append(COMMA);
+						fileWriter.append(a);
+						fileWriter.append(COMMA);
+						fileWriter.append(perm.get(i));
+						fileWriter.append(COMMA);
+						fileWriter.append(remark.get(i));
+						fileWriter.append(COMMA);
+						fileWriter.append(NEW_LINE);
 
+						flg=1;
+						day=k;
+					 }
+				 }
 					}
 				}
 				if (flg == 0) {
-					fileWriter.append(dada);
+					fileWriter.append(dada+"日");
 					fileWriter.append(COMMA);
 					fileWriter.append("");
 					fileWriter.append(COMMA);
