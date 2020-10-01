@@ -4,6 +4,7 @@
 
 <%@ page import="sample.pr.main.LoginForm" %>
 <%@ page import="sample.pr.main.KinmuRecordForm" %>
+<%@ page import="sample.pr.main.KinmuRecordGetForm" %>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -396,6 +397,13 @@
 			<%-- 修正後の勤務管理表 --%>
 
 				<% for(int i=1; i<=31; i++) {
+					//KinmuRecordGetFormクラスのインスタンスを新規生成
+					KinmuRecordGetForm KRGForm = new KinmuRecordGetForm();
+					//DbActionクラスのgetKinmuRecordメソッドで
+					//以前に保存した入力内容をDBから取得し、
+					//画面上に反映させる
+					dba.getKinmuRecord(KRGForm, i);
+
 					//指定した年月日が何曜日なのかを表示する用
 					LocalDate date = LocalDate.of(2020, 8, i);
 					DateTimeFormatter fmt = DateTimeFormatter.ofPattern("eee");
@@ -427,7 +435,11 @@
 
 					<%-- 出社時間 --%>
 					<td width="5%">
-						<html:select property="<%= startTimePro %>" styleId="<%= startTimePro %>" name="KinmuRecordForm">
+						<%
+						//以前の入力内容を画面に反映させる
+						String savedStartTime = KRGForm.getStartTime();
+						%>
+						<html:select property="<%= startTimePro %>" styleId="<%= startTimePro %>" name="KinmuRecordForm" value="<%= savedStartTime %>">
 							<html:option value="" style="text-align:center;">-</html:option>
 							<html:option value="0000">0:00</html:option>
 							<html:option value="0015">0:15</html:option>
