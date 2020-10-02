@@ -24,13 +24,16 @@ public class ExcelOutputActionNT {
 
 	public boolean exceloutput(String[] kintaiItem) throws IOException {
 
-		// 変更するエクセルファイルを指定
+		// 編集するエクセルファイルを指定
 		Workbook wb = null;
 
-		//編集後の名前を格納する変数
+		//出力するエクセルの名前を格納する変数
 		String sendFileName = "";
+
+		//時刻・日付を変換するための変数を定義する
 		StringBuffer br = new StringBuffer();
 
+		//引数を基に各項目に値を設定する。
 		String employee_no = kintaiItem[0];
 		String syain_name = kintaiItem[1];
 		String depart = kintaiItem[2];
@@ -48,7 +51,7 @@ public class ExcelOutputActionNT {
 
 
 
-		//値確認用
+		//値確認用 あとで削除
 		System.out.println(employee_no);
 		System.out.println(syain_name);
 		System.out.println(depart);
@@ -158,7 +161,7 @@ public class ExcelOutputActionNT {
 
 		//振替対象日を設定
 		if(transfer_day.equals("")){
-			KNitem[9]=transfer_day;
+			KNitem[9]="";
 
 		}else{
 			//文字列初期化
@@ -170,6 +173,7 @@ public class ExcelOutputActionNT {
 			br.append(transfer_day.substring(6,8));
 			KNitem[9] = br.toString();
 		}
+		//事由を設定
 		KNitem[10] = reason;
 
 
@@ -214,7 +218,7 @@ public class ExcelOutputActionNT {
 
 
 		//編集するために原本をコピーする
-		sendFileName = Filecopy(employee_no,sendFileName);
+		sendFileName = Filecopy(employee_no,sendFileName	);
 
 		//コピーに失敗した場合は出力せず返却する
 		if(sendFileName.equals("")){
@@ -226,12 +230,14 @@ public class ExcelOutputActionNT {
 		FileInputStream in = null;
 		FileOutputStream out = null;
 
+		//エクセルファイルの出力先を指定。(これはユーザーが任意のディレクトリに設定できるように改修予定)
 		String OutputFile=OUTPUT_DIR + sendFileName;
 
 		try {
-			// 変更するエクセルファイルを指定
+			// 出力するエクセルファイルを指定
 			in = new FileInputStream(OutputFile);
-			// 既存のエクセルファイルを編集する際は、WorkbookFactoryを使用
+
+			// ファイル編集用(WorkbookFactory)クラスを使用して、出力するエクセルファイルを開く
 			wb = WorkbookFactory.create(in);
 
 			//勤怠届.xlsxの勤怠届シートを取得
@@ -241,13 +247,13 @@ public class ExcelOutputActionNT {
 			//入力された値だけ入力する
 			for (int i=0;i<11;i++){
 				int j=0;
-				//社員番号を入力するセルの行(P)を取得
+				//項目を入力するセルの行(P)を取得
 				Row row = sheet.createRow(KNitemCell[i][j]);
 
 				//配列をずらす。
 				j++;
 
-				//6行目の3こ目のセルを取得
+				//項目を入力するセルの列を取得する
 				Cell cell = row.createCell(KNitemCell[i][j]);
 
 				//値がNullである場合は次のレコードへ
@@ -266,14 +272,10 @@ public class ExcelOutputActionNT {
 		}catch(Exception e){
 			e.printStackTrace();
 		} finally{
-			if(out!=null){
-				out.close();
-			}
-			if(wb!=null){
-				wb.close();
-			}
-
+			out.close();
+			wb.close();
 		}
+		//エクセル出力が完了したことを文字列で確認する。
 		System.out.println("Excel出力処理完了");
 
 		return true;
@@ -317,6 +319,7 @@ public class ExcelOutputActionNT {
 
 		// コピーしたファイルが存在するか確認
 		if (!filefrom.exists()) {
+			sendFileName="";
 			return sendFileName;
 		}
 		return sendFileName;

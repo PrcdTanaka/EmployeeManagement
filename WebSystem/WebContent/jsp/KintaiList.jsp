@@ -56,7 +56,6 @@
 		List<String> span = form.getSpan();		// List型にMonthlyReportFormのSpanを格納
 		List<String>span2=form.getSpan2();		// List型にMonthlyReportFormのSpa2nを格納
 		List<String>Mmdd=form.getMmdd();		// List型にMonthlyReportFormのMmddを格納
-		int listnumber=0;
 		int Max_Days = 30;						// 配列の要素数
 
 		String str_Y = "";						// カレンダーで表示するYearを代入する変数
@@ -108,9 +107,32 @@
 		%>
 		<!-- 前月・来月移動のリンク表示と、今の月を表示 -->
 		<div class="head">
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth-1 %>">前月</a>
+		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=
+		<%
+			int LinkYear = 0;		// リンク用の年
+			int LinkMonth = 0;		// リンク用の月
+			LinkYear = intYear;		// リンク用の年にintYearを格納
+			LinkMonth = intMonth;	// リンク用の月にintMonthを格納
+			// intMonth -1が0の時
+			if(intMonth -1 == 0)
+			{
+				LinkYear = intYear -1;	// リンク用の年を現在-1にする。
+				LinkMonth = 13;			// リンク時に12を表示するために、リンク用の月に13を格納
+			}
+		%>
+		<%=LinkYear%>&month=<%=LinkMonth-1 %>">前月</a>
 		<span class="title"><%= intYear%>年<%=intMonth %>月</span>
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth+1 %>">翌月</a>
+		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=
+		<%
+			// intMonth +1が13の場合
+			if(intMonth +1 == 13)
+			{
+				LinkYear = intYear + 1;			// リンク用の年を現在+1にする。
+				LinkMonth = 0;					// リンク時に1を表示するために、リンク用の月に0を格納
+			}
+		%>
+		<%=LinkYear%>
+		&month=<%=LinkMonth+1 %>">翌月</a>
 		</div>
 
 		<span class="validity"></span>
@@ -138,7 +160,6 @@
 				<th class="saturday">土</th>
 			</tr>
 			<%
-				//int NowDay = cale.get(Calendar.DATE);
 				// KintaiMail.jspに遷移するリンクを設定
 				String link1 = "http://localhost:8080/WebSystem/jsp/KintaiMail.jsp";
 				// KintaiEditor.jspに遷移するリンクを設定
@@ -296,8 +317,8 @@
 					<td class="saturday">
 					<%}else{%>
 						<%--
-							flg == 1なら枠は黄色表示
-							flg == 2なら枠はピンク表示
+							flg == 1ならマスは黄色表示
+							flg == 2ならマスはピンク表示
 						--%>
 						<%
 							if(flg == 1){
@@ -370,9 +391,6 @@
 				styleId="main"/>
 		</div>
 
-		<%--
-		<td><%=span.get(listnumber)%></td>
-		 --%>
 	</html:form>
 </body>
 </html:html>

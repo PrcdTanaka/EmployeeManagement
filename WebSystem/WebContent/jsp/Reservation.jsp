@@ -35,7 +35,7 @@
 
 					    Calendar cal = Calendar.getInstance();
 
-					    dba.getRoomstatus(roForm);
+					    dba.getRoom_name(rForm);
 					    int year = cal.get(Calendar.YEAR);
 					    int month = cal.get(Calendar.MONTH) + 1;
 					    int day = cal.get(Calendar.DATE);
@@ -59,20 +59,20 @@
 
 						dba.getMMDD(roForm);
 						String res = rForm.getRoom_name();
-					    List<String> res_name = roForm.getName();
-					    List<String> room_name = roForm.getRoom_name();
-					    List<String> res_time = roForm.getRes_time();
+					    String res_name = roForm.getName();
+					    String seat_number = rForm.getRoom_number();
+					    String res_time = roForm.getRes_time();
 					    List<String> mmdd = rForm.getMmdd();
-					    List<String> member = roForm.getMember();
-					    List<String> use = roForm.getUse();
-						List<String> status =roForm.getRes_time();
+					    String member = roForm.getMember();
+					    String use = roForm.getUse();
+						String status =roForm.getRes_time();
 
 
 	%>
 	<body>
 		<div align = "center">
 			<h1>会議室予約画面</h1>
-			<%=res %>
+			<%= seat_number %>
 		</div>
 
 		<div align="right">
@@ -89,7 +89,7 @@
 				</tr>
 				<tr>
 					<td>2F</td>
-					<td>〇〇人</td>
+					<td>12人</td>
 					<td>〇</td>
 					<td>×</td>
 				</tr>

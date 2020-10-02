@@ -109,7 +109,8 @@
 							lBeforeUrl2 = lBeforeUrl1[1].split("&month=", 0);
 							Year_Data = lBeforeUrl2[0];
 							Month_Data = lBeforeUrl2[1];
-							MonthlyReportAction.mnt = Month_Data;
+							MonthlyReportAction.mnt_month = Month_Data;
+							MonthlyReportAction.mnt_year = Year_Data;
 
 							month_flg = true;
 						}
@@ -129,17 +130,19 @@
 			<tr>
 				<%
 					if(month_flg == false || Chk_flg == true){
-						MonthlyReportAction.mnt = month;
+						MonthlyReportAction.mnt_month = month;
+						MonthlyReportAction.mnt_year = year;
 				%>
-					<td><%=MonthlyReportAction.mnt %>月</td>
+					<td><%=MonthlyReportAction.mnt_month %>月</td>
 				<%
 					}
 					else if(month_flg == true){
 				%>
-					<td><%=MonthlyReportAction.mnt %>月</td>
+					<td><%=MonthlyReportAction.mnt_month %>月</td>
 				<%
 					Chk_flg = true;
-					month = MonthlyReportAction.mnt +"";
+					month = MonthlyReportAction.mnt_month +"";
+					year = MonthlyReportAction.mnt_year;
 					}
 				%>
 			</tr>
@@ -175,9 +178,10 @@
             	 dada=""+day;
              }
 
-                // カレンダーから呼び出された時は、次の処理をする。
+                // Chk_flg == trueの場合は現在月を連続表示か確認
 				if(Chk_flg == true)
 				{
+					Year_Data = MonthlyReportAction.mnt_year;
 					str_Date = Year_Data + month;
 				}
 				else if(Chk_flg == false)
