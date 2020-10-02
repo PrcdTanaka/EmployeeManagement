@@ -29,12 +29,17 @@ public final class KintaiNotificationAction extends Action {
 	public ActionForward execute(ActionMapping map, ActionForm frm,
 			HttpServletRequest request, HttpServletResponse response){
 
+		//遷移先設定
+		forward="kintaiNotification";
+
 		try {
+			//データ文字コードを「UTF-8」に変換する。
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 
+		//セッションを取得するオブジェクト新規作成する。
 		HttpSession session = request.getSession();
 
 		// フォーム情報をキャスト
@@ -42,9 +47,6 @@ public final class KintaiNotificationAction extends Action {
 
 		//判定する変数定義
 		boolean result = true ;
-
-		//遷移先設定
-		forward="kintaiNotification";
 
 		//チェック要の項目を変数に格納する。
 		String b=KNForm.getButton();
@@ -171,6 +173,8 @@ public final class KintaiNotificationAction extends Action {
 						result = excelOut.exceloutput(kintaiItem);
 					} catch (IOException e) {
 						e.printStackTrace();
+						//遷移先を返却する
+						return map.findForward(forward);
 					}
 
 					//Excel出力に失敗した場合
