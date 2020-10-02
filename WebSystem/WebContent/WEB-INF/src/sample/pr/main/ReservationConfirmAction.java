@@ -37,18 +37,20 @@ public final class ReservationConfirmAction extends Action{
 		forward="confirm";
 		String button=roForm.getButton();
 		try{
-			if(button.equals("登録")){
+
+			if(button.equals("戻る")){
+				forward="main";
+				session.removeAttribute("rForm");
+			}else if(button.equals("登録")){
 				forward ="confirm";
 				dba.InsReservation(roForm);
 				roForm.setMessage("登録しました");
-			}else if(button.equals("戻る")){
-				forward="main";
-				session.removeAttribute("rForm");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		session.removeAttribute("roForm");
 		return map.findForward(forward);
+
 	}
 }

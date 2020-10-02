@@ -70,6 +70,18 @@ public final class EnterAction extends Action {
 			link="1";
 		else
 			link="2";
+
+		/*if(link=="1F")
+			link="1";
+				else
+					if(link=="2F")
+					link="2";
+
+					if(link=="3")
+					link="3";
+		else
+			link="4";*/
+
 		eForm.setLink(link);
 		Calendar calendar = Calendar.getInstance();
 		String year=(calendar.get(calendar.YEAR))+"";

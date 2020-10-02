@@ -59,13 +59,13 @@
 
 						dba.getMMDD(roForm);
 						String res = rForm.getRoom_name();
-					    List<String> res_name = roForm.getName();
-					    List<String> room_name = roForm.getRoom_name();
-					    List<String> res_time = roForm.getRes_time();
+					    String res_name = roForm.getName();
+					    String room_name = roForm.getRoom_name();
+					    String res_time = roForm.getRes_time();
 					    List<String> mmdd = rForm.getMmdd();
-					    List<String> member = roForm.getMember();
-					    List<String> use = roForm.getUse();
-						List<String> status =roForm.getRes_time();
+					    String member = roForm.getMember();
+					    String use = roForm.getUse();
+						String status =roForm.getRes_time();
 
 
 	%>
