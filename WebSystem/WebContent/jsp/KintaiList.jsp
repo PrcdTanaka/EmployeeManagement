@@ -56,7 +56,6 @@
 		List<String> span = form.getSpan();		// List型にMonthlyReportFormのSpanを格納
 		List<String>span2=form.getSpan2();		// List型にMonthlyReportFormのSpa2nを格納
 		List<String>Mmdd=form.getMmdd();		// List型にMonthlyReportFormのMmddを格納
-		int listnumber=0;
 		int Max_Days = 30;						// 配列の要素数
 
 		String str_Y = "";						// カレンダーで表示するYearを代入する変数
@@ -370,9 +369,6 @@
 				styleId="main"/>
 		</div>
 
-		<%--
-		<td><%=span.get(listnumber)%></td>
-		 --%>
 	</html:form>
 </body>
 </html:html>
