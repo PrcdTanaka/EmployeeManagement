@@ -107,9 +107,32 @@
 		%>
 		<!-- 前月・来月移動のリンク表示と、今の月を表示 -->
 		<div class="head">
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth-1 %>">前月</a>
+		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=
+		<%
+			int LinkYear = 0;		// リンク用の年
+			int LinkMonth = 0;		// リンク用の月
+			LinkYear = intYear;		// リンク用の年にintYearを格納
+			LinkMonth = intMonth;	// リンク用の月にintMonthを格納
+			// intMonth -1が0の時
+			if(intMonth -1 == 0)
+			{
+				LinkYear = intYear -1;	// リンク用の年を現在-1にする。
+				LinkMonth = 13;			// リンク時に12を表示するために、リンク用の月に13を格納
+			}
+		%>
+		<%=LinkYear%>&month=<%=LinkMonth-1 %>">前月</a>
 		<span class="title"><%= intYear%>年<%=intMonth %>月</span>
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=<%=intYear%>&month=<%=intMonth+1 %>">翌月</a>
+		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=
+		<%
+			// intMonth +1が13の場合
+			if(intMonth +1 == 13)
+			{
+				LinkYear = intYear + 1;			// リンク用の年を現在+1にする。
+				LinkMonth = 0;					// リンク時に1を表示するために、リンク用の月に0を格納
+			}
+		%>
+		<%=LinkYear%>
+		&month=<%=LinkMonth+1 %>">翌月</a>
 		</div>
 
 		<span class="validity"></span>
