@@ -89,7 +89,7 @@
 				</tr>
 				<tr>
 					<td>2F</td>
-					<td>〇〇人</td>
+					<td>12人</td>
 					<td>〇</td>
 					<td>×</td>
 				</tr>
