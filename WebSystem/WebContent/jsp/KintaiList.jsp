@@ -137,7 +137,6 @@
 				<th class="saturday">土</th>
 			</tr>
 			<%
-				//int NowDay = cale.get(Calendar.DATE);
 				// KintaiMail.jspに遷移するリンクを設定
 				String link1 = "http://localhost:8080/WebSystem/jsp/KintaiMail.jsp";
 				// KintaiEditor.jspに遷移するリンクを設定
@@ -295,8 +294,8 @@
 					<td class="saturday">
 					<%}else{%>
 						<%--
-							flg == 1なら枠は黄色表示
-							flg == 2なら枠はピンク表示
+							flg == 1ならマスは黄色表示
+							flg == 2ならマスはピンク表示
 						--%>
 						<%
 							if(flg == 1){
