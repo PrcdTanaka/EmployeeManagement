@@ -115,10 +115,15 @@ public class KintaiMailAction extends Action {
 					// DB上のデータと対象期間に被りが無い場合にDBの追加処理を行う
 					if(Send_Chk_Flg == false)
 					{
-						session.setAttribute("form", form);
+						// DBへの登録作業以外をコメント化
+						//session.setAttribute("form", form);
 						dba.setKintaiInfo(form, lForm);
-						response.sendRedirect("http://localhost:8080/WebSystem/jsp/login.jsp");
-						session.removeAttribute("form");
+						// DBへの登録作業以外をコメント化
+						//forward = "kintailist";
+						// DBへの登録作業以外をコメント化
+						//response.sendRedirect("http://localhost:8080/WebSystem/jsp/login.jsp");
+						// DBへの登録作業以外をコメント化
+						//session.removeAttribute("form");
 						// JOptionPane.showMessageDialog(null,"送信しました");
 					}
 				}

@@ -2838,7 +2838,7 @@ public class DbAction extends Object{
 			sb.append("SET" + crlf);
 			if(form.getButton().equals("退室"))
 			{
-			sb.append("  LEAVING_NAME = " + "'"+form.getLeaving_name()+"'," + crlf);
+			sb.append("  LEAVING_NAME = " + "'"+form.getEmployee_no()+"'," + crlf);
 			sb.append("  LEAVING_TIME = " + "'" +a+"'," + crlf);
 			sb.append("  CHECK_LIST='1'"+ crlf);
 			}
@@ -3182,19 +3182,21 @@ public class DbAction extends Object{
 			String year=""+(calendar.get(calendar.YEAR));
 			String month=""+(calendar.get(calendar.MONTH)+1);
 			if(month.length()==1)
-				month=0+month;
+				month="0"+month;
 			String date=""+calendar.get(calendar.DATE);
 			if(date.length()==1)
-				date=0+date;
+				date="0"+date;
 			String day=month+date;
 
+			String yearday = year+day;
 			sb.append("SELECT"+crlf);
 			sb.append(" EMPLOYEE_NAME"+crlf);
 			sb.append(" FROM"+crlf);
 			sb.append(" ROOM_ACCESS_TBL"+crlf);
 			sb.append("WHERE"+crlf);
-			//sb.append(" FLOOR= ?"+crlf);
-			sb.append(" DAY='"+year+day+"'"+crlf);
+			sb.append(" FLOOR= ?"+crlf);
+			sb.append(" AND"+crlf);
+			sb.append(" DAY="+"'"+yearday+"'"+crlf);
 
 			String query = sb.toString();
 
@@ -3210,7 +3212,7 @@ public class DbAction extends Object{
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
 			bindList.add(form.getFloor());
-			//bindList.add(form.getEMPLOYEE_NAME);
+			//bindList.add(form.getEMPLOYEE_NAME());
 
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
@@ -3219,6 +3221,8 @@ public class DbAction extends Object{
 				dba.executeQuery(query, columnList, typeList, bindList, rsList);
 				dba.commit();
 				dba.closeConnection();
+
+
 
 				for (Map<String, String> val : rsList) {
 					form.setEmployee_name(val.get("EMPLOYEE_NAME"));

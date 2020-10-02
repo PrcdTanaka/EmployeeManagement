@@ -252,7 +252,7 @@ public final class EnterForm extends ActionForm {
 
 	}
 
-	public String getLeaving_name() {
+	public String getEMPLOYEE_NO() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
