@@ -27,6 +27,8 @@ public final class ReservationForm extends ActionForm {
 	private List<String> mmdd;
 	/** 用途 */
 	private String use;
+	/** 部屋数 */
+	private String room_number;
 
 
 	/**
@@ -46,6 +48,7 @@ public final class ReservationForm extends ActionForm {
 		res_time =new ArrayList<String>();
 		mmdd = new ArrayList<String>();
 		use = "";
+		room_number = "";
 	}
 	/**
 	 * 社員番号取得処理。
@@ -282,6 +285,29 @@ public final class ReservationForm extends ActionForm {
 	 */
 	public void setUse(String use) {
 		this.use = use;
+	}
+	/**
+	 * 日付取得処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームから日付を取得する。
+	 * </p>
+	 *
+	 * @return ボタン名
+	 */
+	public String getRoom_number() {
+		return room_number;
+	}
+
+	/**
+	 * 日付設定処理。
+	 * <p>
+	 * 会議室予約画面アクションフォームに日付を設定する。
+	 * </p>
+	 *
+	 * @param button ボタン名
+	 */
+	public void setRoom_number(String room_number) {
+		this.room_number = room_number;
 	}
 
 }
