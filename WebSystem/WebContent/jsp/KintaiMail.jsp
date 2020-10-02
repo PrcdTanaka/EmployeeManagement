@@ -103,6 +103,7 @@
 						Employee_no = s.getEmployee_no();
 						name = s.getEmployee_name();
 					} catch (Exception e) {
+						e.printStackTrace();
 					}
 		%>
 

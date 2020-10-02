@@ -57,6 +57,8 @@ body
  			eForm.setFloor(link);
 			DbAction dba=new DbAction();
 			//初回入室処理
+			//String name1 = null;
+			//name1 = dba.getEntry_Empl(eForm);
 			if(!dba.getEntry_Empl(eForm))
 			{
 				Entry=true;
@@ -64,9 +66,10 @@ body
  			session.setAttribute("eform", eForm);
 
  		%>
- 		<%if(Midnight=true) %>
+ 		<%if(Midnight==true) {%>
 		<html:submit styleClass="send" property="button" value="深夜作業"/>
-		<%if(Entry){%>
+		<% }
+		if(Entry){%>
 			<html:submit styleClass="send" property="button" value="入室"/>
 		<% }
 		else{%>

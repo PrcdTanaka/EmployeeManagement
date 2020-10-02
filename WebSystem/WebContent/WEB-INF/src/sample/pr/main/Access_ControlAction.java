@@ -165,6 +165,8 @@ public final class Access_ControlAction extends Action {
 			case"kinmurecord":
 				forward="kinmurecord";
 				break;
+				
+				
 			case"Access_Select_1month":
 				forward="Access_Select";
 				session = request.getSession();
