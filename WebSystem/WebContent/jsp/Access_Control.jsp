@@ -12,7 +12,7 @@
 <html:html>
 <head>
 <html lang="ja">
-<link rel="stylesheet" type="text/css" href="/WebSystem/css/style.css">
+<link rel="stylesheet" type="text/css" href="/WebSystem/css/Access_Control.css">
 </head>
 <html:form action="/MainAction">
 <body>

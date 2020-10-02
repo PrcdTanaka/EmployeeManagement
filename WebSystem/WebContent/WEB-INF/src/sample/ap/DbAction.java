@@ -2838,7 +2838,8 @@ public class DbAction extends Object{
 			sb.append("SET" + crlf);
 			if(form.getButton().equals("退室"))
 			{
-			sb.append("  LEAVING_NAME = " + "'"+form.getEmployee_no()+"'," + crlf);
+			sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
+			sb.append("  LEAVING_NAME = " + "'"+form.getEmployee_name()+"'," + crlf);
 			sb.append("  LEAVING_TIME = " + "'" +a+"'," + crlf);
 			sb.append("  CHECK_LIST='1'"+ crlf);
 			}
