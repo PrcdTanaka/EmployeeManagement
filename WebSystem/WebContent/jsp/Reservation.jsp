@@ -23,12 +23,13 @@
 		RoomReservationForm roForm = new RoomReservationForm();
 		LoginForm lForm = new LoginForm();
 				String Employee_no = "";
-				String name = rForm.getName();
+				List<String> name = rForm.getName();
+				String sname = "";
 				DbAction dba = new DbAction();
 				LoginForm s = (LoginForm) session.getAttribute("form");
 				try {
 					Employee_no = s.getEmployee_no();
-					name = s.getEmployee_name();
+					sname = s.getEmployee_name();
 				} catch (Exception e) {
 
 				}
@@ -36,26 +37,24 @@
 					    Calendar cal = Calendar.getInstance();
 
 					    dba.getRoomstatus(roForm);
-					    int year = cal.get(Calendar.YEAR);
-					    int month = cal.get(Calendar.MONTH) + 1;
-					    int day = cal.get(Calendar.DATE);
+					    int year = cal.get(Calendar.YEAR);			//年取得
+					    int month = cal.get(Calendar.MONTH) + 1;	//月取得
+					    int day = cal.get(Calendar.DATE);			//日付取得
 					    int day2 = cal.get(Calendar.DATE);
 					    int day3 = cal.get(Calendar.DATE);
 					    int dayalert = cal.get(Calendar.DATE);
-					    int hour = cal.get(Calendar.HOUR_OF_DAY);
-					    int minute = cal.get(Calendar.MINUTE);
-					    int second = cal.get(Calendar.SECOND);
-					    int week = cal.get(Calendar.DAY_OF_WEEK) - 1;
+					    int hour = cal.get(Calendar.HOUR_OF_DAY);	//時間取得
+					    int minute = cal.get(Calendar.MINUTE);		//分取得
+					    int week = cal.get(Calendar.DAY_OF_WEEK) - 1;	//曜日取得
 					    LoginForm ss = (LoginForm) session.getAttribute("form");
-					    String emp_name = ss.getEmployee_name();
+					    String emp_name = ss.getEmployee_name();		//社員名取得
 
-					    int day_of_year = cal.get(Calendar.DAY_OF_YEAR);
 
-					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);//末尾取得
 					    String weekname = "";
 					    String capacity = "";
 
-						dba.getMMDD(roForm);
+						dba.getMMDD(rForm);
 						dba.getRoomstatus(roForm);
 						dba.getRoom_name(rForm);
 					    String res_name = roForm.getName();

@@ -3356,7 +3356,7 @@ public class DbAction extends Object{
 		return ret;
 
 	}
-	public boolean getMMDD(RoomReservationForm form) {
+	public boolean getMMDD(ReservationForm form) {
 
 		boolean ret = false;
 
