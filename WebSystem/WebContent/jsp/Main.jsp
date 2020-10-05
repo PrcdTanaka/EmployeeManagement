@@ -138,7 +138,7 @@
 							<html:param name="employee_no"><%= no %></html:param>
 							<html:param name="link">1F</html:param>
 						</html:link>
-						<html:link action="/MainAction">入退出者履歴
+						<html:link action="/MainAction">入退出者履歴(1F)
 							<html:param name="employee_no"><%= no %></html:param>
 							<html:param name="link">Access_Select1F</html:param>
 						</html:link>
@@ -149,7 +149,7 @@
 								<html:param name="employee_no"><%= no %></html:param>
 								<html:param name="link">2F</html:param>
 							</html:link>
-							<html:link action="/MainAction">入退出者履歴
+							<html:link action="/MainAction">入退出者履歴(2F)
 							<html:param name="employee_no"><%= no %></html:param>
 							<html:param name="link">Access_Select2F</html:param>
 						</html:link>
@@ -160,7 +160,7 @@
 							<html:param name="employee_no"><%= no %></html:param>
 							<html:param name="link">3F</html:param>
 						</html:link>
-						<html:link action="/MainAction">入退出者履歴
+						<html:link action="/MainAction">入退出者履歴(3F)
 							<html:param name="employee_no"><%= no %></html:param>
 							<html:param name="link">Access_Select3F</html:param>
 						</html:link>
@@ -170,7 +170,7 @@
 							<html:param name="employee_no"><%= no %></html:param>
 							<html:param name="link">4F</html:param>
 						</html:link>
-						<html:link action="/MainAction">入退出者履歴
+						<html:link action="/MainAction">入退出者履歴(4F)
 							<html:param name="employee_no"><%= no %></html:param>
 							<html:param name="link">Access_Select4F</html:param>
 						</html:link>

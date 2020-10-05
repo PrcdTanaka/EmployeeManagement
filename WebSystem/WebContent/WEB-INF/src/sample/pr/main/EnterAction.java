@@ -73,13 +73,11 @@ public final class EnterAction extends Action {
 
 		/*if(link=="1F")
 			link="1";
-				else
-					if(link=="2F")
-					link="2";
-
-					if(link=="3")
-					link="3";
-		else
+		else if(link=="2F")
+			link="2";
+		else if(link=="3F")
+			link="3";
+		else if(link=="4F")
 			link="4";*/
 
 		eForm.setLink(link);
