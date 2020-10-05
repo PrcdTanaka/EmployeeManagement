@@ -37,7 +37,7 @@
         LoginForm lForm=(LoginForm)session.getAttribute("form");
         form.setEmployee_no(lForm.getEmployee_no());
 
-        dba.getMonthly_report(form);
+        dba.getMonthly_report(form, String.valueOf(KintaiManagement.Cale_Date_Year), String.valueOf(KintaiManagement.Cale_Date_Month));
         List<String> division = form.getDivision();
         List<String> span = form.getSpan();
         List<String>span2=form.getSpan2();

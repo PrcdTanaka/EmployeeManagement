@@ -65,15 +65,17 @@
 					}
 		%>
 		<%
-			boolean flg = false;
-
+		//カレンダークラスを取得
 			Calendar cale = Calendar.getInstance();
+		//MonthlyReportForm情報を取得
 			MonthlyReportForm form=new MonthlyReportForm();
+		//現在の月の最後の日を取得
 			int monthlastDay = cale.getActualMaximum(Calendar.DATE);
+		//ログイン情報を取得
 			LoginForm lForm=(LoginForm)session.getAttribute("form");
 			form.setEmployee_no(lForm.getEmployee_no());
 
-			dba.getMonthly_report(form);
+			dba.getMonthly_report(form,"","");
 			// CC
 			List<String> l_CC = form.getCc();
 			// BCC

@@ -31,8 +31,9 @@ a = (EnterForm) session.getAttribute("eform");
 
 
 <center></center>
- <table border="3" bordercolor="#0000ff">
-    <tr bgcolor="#87cefa">
+ <table border=3>
+
+    <tr>
       <th>日付</th>
       <th>曜日</th>
       <th>入室者</th>

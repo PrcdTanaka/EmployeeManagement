@@ -150,7 +150,7 @@ public class KintaiMailAction extends Action {
 	{
 		MonthlyReportForm FORM=new MonthlyReportForm();
 		FORM.setEmployee_no(lForm.getEmployee_no());
-		dba.getMonthly_report(FORM);
+		dba.getMonthly_report(FORM,"","");
 		List<String> FSpan1 = FORM.getSpan();
 		List<String> FSpan2 = FORM.getSpan2();
 
