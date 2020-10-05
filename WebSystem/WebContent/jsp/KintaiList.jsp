@@ -10,6 +10,7 @@
 
 <%@ page import="sample.pr.main.MonthlyReportForm"%>
 <%@ page import="sample.pr.main.MonthlyReportAction"%>
+<%@ page import="sample.pr.main.KintaiManagement"%>
 
 <%@ page import="java.util.ArrayList"%>
 
@@ -56,7 +57,7 @@
 		List<String> span = form.getSpan();		// List型にMonthlyReportFormのSpanを格納
 		List<String>span2=form.getSpan2();		// List型にMonthlyReportFormのSpa2nを格納
 		List<String>Mmdd=form.getMmdd();		// List型にMonthlyReportFormのMmddを格納
-		int Max_Days = 30;						// 配列の要素数
+		int Max_Days = 31;						// 配列の要素数
 
 		String str_Y = "";						// カレンダーで表示するYearを代入する変数
 		String str_M = "";						// カレンダーで表示するMonthを代入する変数
@@ -133,6 +134,10 @@
 		%>
 		<%=LinkYear%>
 		&month=<%=LinkMonth+1 %>">翌月</a>
+		<%
+			KintaiManagement.Cale_Date_Year = intYear;
+			KintaiManagement.Cale_Date_Month = intMonth;
+		%>
 		</div>
 
 		<span class="validity"></span>
