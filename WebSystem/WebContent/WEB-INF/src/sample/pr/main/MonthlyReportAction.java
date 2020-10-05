@@ -78,7 +78,7 @@ public class MonthlyReportAction extends Action {
 		int monthlastDay = cal.getActualMaximum(Calendar.DATE);
 
 		// Monthly_reportのDB情報取得
-		dba.getMonthly_report(kForm);
+		dba.getMonthly_report(kForm,String.valueOf(KintaiManagement.Cale_Date_Year),String.valueOf(KintaiManagement.Cale_Date_Month));
 
 		// リスト化を行う
 		ArrayList<String> MForm = new ArrayList<String>();
@@ -125,7 +125,7 @@ public class MonthlyReportAction extends Action {
 
 		try {
 
-			fileWriter = new FileWriter("C:\\kintaiExcel\\person.csv");
+			fileWriter = new FileWriter("C:\\kintaiExcel\\person.txt");
 			request.setCharacterEncoding("UTF-8");
 
 			fileWriter.append("/");

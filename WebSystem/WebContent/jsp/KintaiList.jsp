@@ -53,7 +53,7 @@
 		LoginForm lForm=(LoginForm)session.getAttribute("form");	// LoginForm型の変数lFormにsessionのformを取得
 		form.setEmployee_no(lForm.getEmployee_no());				// formにlFormのログイン中の社員番号を取得
 
-		dba.getMonthly_report(form);
+		dba.getMonthly_report(form, "", "");
 		List<String> span = form.getSpan();		// List型にMonthlyReportFormのSpanを格納
 		List<String>span2=form.getSpan2();		// List型にMonthlyReportFormのSpa2nを格納
 		List<String>Mmdd=form.getMmdd();		// List型にMonthlyReportFormのMmddを格納

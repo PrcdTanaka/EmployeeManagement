@@ -24,7 +24,7 @@ public class KintaiMailExcelAction {
       //MonthlyReportFormクラスのインスタンスに各値を設定
 	  DbAction dba = new DbAction();
 	  MonthlyReportForm form=new MonthlyReportForm();
-	  dba.getMonthly_report(form);
+	  dba.getMonthly_report(form,"","");
 
     //リスト化を行う
     ArrayList<String> MForm = new ArrayList<String>();

@@ -3706,7 +3706,7 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
-	public boolean getMonthly_report(MonthlyReportForm form) {
+	public boolean getMonthly_report(MonthlyReportForm form, String year, String month) {
 
 		boolean ret = false;
 
@@ -3717,6 +3717,13 @@ public class DbAction extends Object{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		String Monthly_Month = "";
+		Monthly_Month = month;
+		if(Monthly_Month.length()==1)
+        {
+			Monthly_Month="0"+Monthly_Month;
+        }
+		String Monthly_Date = year + Monthly_Month;
 
 		if (dba.conSts) {
 
@@ -3740,6 +3747,16 @@ public class DbAction extends Object{
 			sb.append("KINTAIMAIL"+crlf);
 			sb.append("WHERE"+crlf);
 			sb.append("EMP_NO= ?"+crlf);
+			// 引数が空で呼ばれた場合は、検索処理を行わない
+			if(year == "" && month == "")
+			{
+
+			}
+			// 引数がKintaiList.jspのカレンダーで選択した月だった場合、検索処理を行う。
+			else
+			{
+				sb.append("AND SPAN LIKE '" + Monthly_Date +"%'"+crlf);
+			}
 
 			String query = sb.toString();
 
