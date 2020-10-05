@@ -33,6 +33,7 @@ public final class ReservationAction extends Action{
 			e.printStackTrace();
 		}
 		ReservationForm rForm = (ReservationForm) frm;
+		RoomReservationForm roForm = (RoomReservationForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		rForm.setEmployee_no(lForm.getEmployee_no());

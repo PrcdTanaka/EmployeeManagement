@@ -35,7 +35,7 @@
 
 					    Calendar cal = Calendar.getInstance();
 
-					    dba.getRoom_name(rForm);
+					    dba.getRoomstatus(roForm);
 					    int year = cal.get(Calendar.YEAR);
 					    int month = cal.get(Calendar.MONTH) + 1;
 					    int day = cal.get(Calendar.DATE);
@@ -54,25 +54,25 @@
 					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 					    String weekname = "";
 					    String capacity = "";
-					    String monitor = "";
-					    String camera = "";
 
 						dba.getMMDD(roForm);
-						String res = rForm.getRoom_name();
+						dba.getRoomstatus(roForm);
+						dba.getRoom_name(rForm);
 					    String res_name = roForm.getName();
-					    String seat_number = rForm.getRoom_number();
 					    String res_time = roForm.getRes_time();
 					    List<String> mmdd = rForm.getMmdd();
 					    String member = roForm.getMember();
 					    String use = roForm.getUse();
 						String status =roForm.getRes_time();
-
-
+						List<String> room_name = roForm.getRoom_name();
+						List<String> monitor = roForm.getMonitor();
+						List<String> seat = roForm.getSeat();
+						List<String> camera = roForm.getCamera();
+						String room_number = rForm.getRoom_number();
 	%>
 	<body>
 		<div align = "center">
 			<h1>会議室予約画面</h1>
-			<%= seat_number %>
 		</div>
 
 		<div align="right">
@@ -81,15 +81,23 @@
 		<div class = "details">
 			<div align="left">
 			<table border="1" width="20">
+
 				<tr>
+				<%//for(int i=0 ;room_number<7;i++){
+						//}%>
 					<th></th>
 					<th>席数</th>
 					<th>モニター</th>
 					<th>カメラ</th>
 				</tr>
 				<tr>
-					<td>2F</td>
-					<td>12人</td>
+					<td>
+					<%//try{
+						//System.out.println(room_name.get(0));
+					//}catch( NullPointerException e ){
+						//System.out.println("null");
+					//} %></td>
+					<td>〇〇人</td>
 					<td>〇</td>
 					<td>×</td>
 				</tr>

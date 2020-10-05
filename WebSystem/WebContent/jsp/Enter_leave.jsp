@@ -56,28 +56,39 @@ body
  			String link =s.getLink();
  			eForm.setFloor(link);
 			DbAction dba=new DbAction();
-			//初回入室処理
-			//String name1 = null;
-			//name1 = dba.getEntry_Empl(eForm);
-			if(!dba.getEntry_Empl(eForm))
+
+			//入室処理 ROOM_ACCESS_TBLにEMPLOYEE_NAMEが存在するか判定
+			if(dba.getEntry_Empl(eForm))
 			{
 				Entry=true;
+			}
+			//深夜作業判定 ROOM_ACCESS_TBLのCHECK_LISTが1かどうかの判定
+			if(dba.getAccessControl(eForm)){
+				List<String> Check_list = eForm.getCHECK_LIST();
+				if(Check_list.get(0).equals("1")){
+					Midnight=true;
+				}
 			}
  			session.setAttribute("eform", eForm);
 
  		%>
- 		<%if(Midnight==true) {%>
+ 		<%
+
+ 		//深夜作業 Midnightがtrueの場合表示
+ 		if(Midnight==true) {%>
 		<html:submit styleClass="send" property="button" value="深夜作業"/>
 		<% }
-		if(Entry){%>
-			<html:submit styleClass="send" property="button" value="入室"/>
-		<% }
-		else{%>
+
+ 		//退室 ROOM_ACCESS_TBLに既に値が入っている場合表示
+ 		else if(Entry==true){%>
 		<br>
 		<h2>1.電気</h2>
 		<p>　　・エアコン<html:multibox property="checklist" value="1" /></p>
 		<p>　　・照明<html:multibox property="checklist" value="1" /></p>
-		<% if(link=="2F"){ %>
+		 <%
+
+		 //2階のみここに遷移
+		 if(link=="2F"){ %>
 			<p>　　・ポット<html:multibox property="checklist" value="1" /></p>
 		<% }%>
 		<h2>2.戸締り</h2>
@@ -96,7 +107,13 @@ body
 		<h2>6.トイレに可燃物のゴミがないか確認<html:multibox property="checklist" value="1"/></h2>
 		<br>
 		<html:submit styleClass="send" property="button" value="退室"/>
-		<%} %>
+		<%}
+
+ 		//入室 ROOM_ACCESS_TBLに値が入っていない場合表示
+ 		else{%>
+			<html:submit styleClass="send" property="button" value="入室"/>
+		<% }%>
+
  		</html:form>
 	</body>
 </html:html>
