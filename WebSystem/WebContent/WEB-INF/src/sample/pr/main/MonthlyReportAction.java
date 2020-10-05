@@ -24,7 +24,6 @@ public class MonthlyReportAction extends Action {
 
 	// 遷移先
 	private String forward;
-	public static String mnt = "";
 	public static boolean OutputFlg = false;
 	// カンマ
 	private static final String COMMA = ",";
