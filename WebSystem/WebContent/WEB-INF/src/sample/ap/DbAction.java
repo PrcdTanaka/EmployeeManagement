@@ -3238,6 +3238,7 @@ public class DbAction extends Object{
 		return ret;
 
 	}
+
 	public boolean getSPAN(KintaiMailForm form) {
 
 		boolean ret = false;
