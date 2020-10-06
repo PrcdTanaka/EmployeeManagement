@@ -125,7 +125,7 @@ public class MonthlyReportAction extends Action {
 
 		try {
 
-			fileWriter = new FileWriter("C:\\kintaiExcel\\person.txt");
+			fileWriter = new FileWriter("C:\\kintaiExcel\\person.csv");
 			request.setCharacterEncoding("UTF-8");
 
 			fileWriter.append("/");

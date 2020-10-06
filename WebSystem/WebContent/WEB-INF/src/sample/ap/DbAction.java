@@ -3044,8 +3044,48 @@ public class DbAction extends Object{
 	 */
 	public boolean setKintaiDelete(KintaiMailForm form, LoginForm lform, String MMdd, String SendTime)
 	{
-		boolean ret = false;
-		ret = true;
+		boolean ret = true;
+
+		//DB接続
+		DbConnector dba = null;
+
+		try{
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		}
+		//例外発生時は以下の処理を実行
+		catch(IOException e1){
+			ret = false;
+			e1.printStackTrace();
+		}
+
+		//DB接続が問題なければif文の中を実行
+		if(dba.conSts){
+			//DELETE文作成
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+			//appendメソッドで文字列を連結
+			sb.append("DELETE FROM KINTAIMAIL"+crlf);
+			sb.append(" WHERE"+crlf);
+			sb.append("  EMP_NO = ?" + crlf);
+			sb.append(" AND"+crlf);
+			sb.append(" SPAN='"+form.getSpan()+"'"+crlf);
+//			sb.append(" AND"+crlf);
+//			sb.append(" SEND_TIME='"+SendTime+"'"+crlf);
+			//連結した文字列を変数に代入
+			String query =sb.toString();
+			//DBに保存されているレコードを削除
+			try{
+				//DELETE文の発行
+				dba.executeQuery(query);
+				//COMMIT実行
+				dba.commit();
+				dba.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ret = false;
+			}
+		}
+
 		return ret;
 	}
 
