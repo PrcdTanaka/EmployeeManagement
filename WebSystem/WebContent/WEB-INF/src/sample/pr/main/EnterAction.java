@@ -129,10 +129,14 @@ public final class EnterAction extends Action {
 		}
 		else if(b.equals("深夜作業"))
 		{
-			if(lForm.getEmployee_name()!=null)
+			if(lForm.getEmployee_name()!=null){
 
 				dba.UpdateLeave(eForm, time, ymd);
+				forward="success";
+			}
+			else {
 				forward="failure";
+			}
 		}
 		session.removeAttribute("eform");
 		/* 9.戻り値を返却する。<br>

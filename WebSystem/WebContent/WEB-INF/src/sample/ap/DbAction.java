@@ -2846,8 +2846,9 @@ public class DbAction extends Object{
 			}
 			else
 			{
-				sb.append("  LEAVING_NAME = " + "'"+form.getEmployee_no()+"'," + crlf);
-				sb.append("  LEAVING_TIME = " + "'0000'," + crlf);
+				sb.append("  LEAVING_EMP = " + "'0'," + crlf);
+				sb.append("  LEAVING_NAME = " + "'"+"未退室"+"'," + crlf);
+				sb.append("  LEAVING_TIME = " + "'"+"未退室"+"'," + crlf);
 				sb.append("  CHECK_LIST='0'"+ crlf);
 			}
 			sb.append("WHERE" + crlf);
