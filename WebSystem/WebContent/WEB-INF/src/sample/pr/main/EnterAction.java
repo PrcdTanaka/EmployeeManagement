@@ -66,19 +66,23 @@ public final class EnterAction extends Action {
 		//jsp上で入力されたボタンを取得
 		String b=eForm.getButton();
 		String link=lForm.getLink();
-		if(link!="2F")
-			link="1";
-		else
-			link="2";
 
-		/*if(link=="1F")
+		//メイン画面で押されたボタンから、階数指定
+		if(link.equals("1F"))
 			link="1";
-		else if(link=="2F")
+		else if(link.equals("2F"))
 			link="2";
-		else if(link=="3F")
+		else if(link.equals("3F"))
 			link="3";
-		else if(link=="4F")
-			link="4";*/
+		else if(link.equals("4F"))
+			link="4";
+
+		//チェックリストの判定
+		String check = lForm.getLink();
+		if(check!="2F")
+			check="1";
+		else
+			check="2";
 
 		eForm.setLink(link);
 		Calendar calendar = Calendar.getInstance();
@@ -104,8 +108,8 @@ public final class EnterAction extends Action {
 		if (b.equals("退室")) {
 			String[] checked = request.getParameterValues("checklist");
 			eForm.setChecklist(checked);
-
-			if(lForm.getEmployee_name()==null||eForm.getChecklist()!=(10+Integer.parseInt(link))) {
+																			//チェックリストの判定結果
+			if(lForm.getEmployee_name()==null||eForm.getChecklist()!=(10+Integer.parseInt(check))) {
 				forward="failure";
 			}
 			else {

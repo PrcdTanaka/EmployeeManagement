@@ -10,9 +10,9 @@ public final class ReservationForm extends ActionForm {
 	/** 社員番号 */
 	private String employee_no;
 	/** 社員名 */
-	private String name;
+	private List<String> name;
 	/**会議室名 */
-	private String room_name;
+	private List<String> room_name;
 	/** 席数 */
 	private String seat_number;
 	/** モニター */
@@ -26,9 +26,11 @@ public final class ReservationForm extends ActionForm {
 	/** 日付 */
 	private List<String> mmdd;
 	/** 用途 */
-	private String use;
+	private List<String> use;
 	/** 部屋数 */
 	private String room_number;
+	/**メンバー */
+	private List<String> member;
 
 
 	/**
@@ -39,15 +41,15 @@ public final class ReservationForm extends ActionForm {
 	 */
 	public void initialize() {
 		employee_no = "";
-		name = "";
-		room_name = "";
+		name = new ArrayList<String>();
+		room_name = new ArrayList<String>();
 		seat_number = "";
 		monitor = "";
 		camera = "";
 		button = "";
 		res_time =new ArrayList<String>();
 		mmdd = new ArrayList<String>();
-		use = "";
+		use = new ArrayList<String>();
 		room_number = "";
 	}
 	/**
@@ -81,7 +83,7 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @return 社員番号
 	 */
-	public String getName() {
+	public List<String> getName() {
 		return name;
 	}
 
@@ -93,7 +95,7 @@ public final class ReservationForm extends ActionForm {
 	 * @param employee_no 社員番号
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.name.add(name);
 	}
 
 
@@ -105,7 +107,7 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @return 会議室名
 	 */
-	public String getRoom_name() {
+	public List<String> getRoom_name() {
 		return room_name;
 	}
 
@@ -117,8 +119,8 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @param oldpassword 会議室名
 	 */
-	public void setRoom_name(String room_name) {
-		this.room_name = room_name;
+	public void setRoom_name(String name) {
+		this.name.add(name);
 	}
 
 	/**
@@ -271,7 +273,7 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @return ボタン名
 	 */
-	public String getUse() {
+	public List<String> getUse() {
 		return use;
 	}
 
@@ -284,7 +286,7 @@ public final class ReservationForm extends ActionForm {
 	 * @param button ボタン名
 	 */
 	public void setUse(String use) {
-		this.use = use;
+		this.use.add(use);
 	}
 	/**
 	 * 日付取得処理。
@@ -308,6 +310,13 @@ public final class ReservationForm extends ActionForm {
 	 */
 	public void setRoom_number(String room_number) {
 		this.room_number = room_number;
+	}
+	public void setMember(String member) {
+		this.member.add(member);
+	}
+
+	public List<String> getMember() {
+		return member;
 	}
 
 }

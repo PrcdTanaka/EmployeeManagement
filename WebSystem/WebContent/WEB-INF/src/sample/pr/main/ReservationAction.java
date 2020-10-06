@@ -2,6 +2,7 @@ package sample.pr.main;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,5 +52,64 @@ public final class ReservationAction extends Action{
 		}
 		session.removeAttribute("rForm");
 		return map.findForward(forward);
+	}
+
+	//1か月先の月を取得
+	public static int lastmonth(){
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH+1);
+		month -= 1;
+		if(month == 0){
+			year -= 1;
+			month =12;
+		}
+		return month;
+	}
+
+	//1週間前の日付を取得する
+	public static int lastweek(){
+		Calendar cal = Calendar.getInstance();
+		int day = cal.get(Calendar.DATE);
+		int month = cal.get(Calendar.MONTH+1);
+		day -= 7;
+		if(day <= 7){
+			month -= 1;
+			if(month == -1){
+			month = 12;
+			}
+		}
+		return day;
+	}
+
+	//1か月先の月を取得する
+	public static int nextmonth(){
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH+1);
+		month += 1;
+		if(month == 13){
+			year += 1;
+			month =1;
+		}
+		return month;
+	}
+
+	//1週間先の日付を取得する
+	public static int nextweek(){
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH);
+		int day = cal.get(Calendar.DATE);
+		int max = cal.getActualMaximum(Calendar.DATE);
+		day += 7;
+		if(day >= max){
+			month += 1;
+			if(month == 13){
+				month = 1;
+				year += 1;
+			}
+		}
+		return month;
 	}
 }

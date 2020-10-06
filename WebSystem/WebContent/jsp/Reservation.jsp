@@ -23,12 +23,13 @@
 		RoomReservationForm roForm = new RoomReservationForm();
 		LoginForm lForm = new LoginForm();
 				String Employee_no = "";
-				String name = rForm.getName();
+				List<String> name = rForm.getName();
+				String sname = "";
 				DbAction dba = new DbAction();
 				LoginForm s = (LoginForm) session.getAttribute("form");
 				try {
 					Employee_no = s.getEmployee_no();
-					name = s.getEmployee_name();
+					sname = s.getEmployee_name();
 				} catch (Exception e) {
 
 				}
@@ -36,26 +37,24 @@
 					    Calendar cal = Calendar.getInstance();
 
 					    dba.getRoomstatus(roForm);
-					    int year = cal.get(Calendar.YEAR);
-					    int month = cal.get(Calendar.MONTH) + 1;
-					    int day = cal.get(Calendar.DATE);
+					    int year = cal.get(Calendar.YEAR);			//年取得
+					    int month = cal.get(Calendar.MONTH) + 1;	//月取得
+					    int day = cal.get(Calendar.DATE);			//日付取得
 					    int day2 = cal.get(Calendar.DATE);
 					    int day3 = cal.get(Calendar.DATE);
 					    int dayalert = cal.get(Calendar.DATE);
-					    int hour = cal.get(Calendar.HOUR_OF_DAY);
-					    int minute = cal.get(Calendar.MINUTE);
-					    int second = cal.get(Calendar.SECOND);
-					    int week = cal.get(Calendar.DAY_OF_WEEK) - 1;
+					    int hour = cal.get(Calendar.HOUR_OF_DAY);	//時間取得
+					    int minute = cal.get(Calendar.MINUTE);		//分取得
+					    int week = cal.get(Calendar.DAY_OF_WEEK) - 1;	//曜日取得
 					    LoginForm ss = (LoginForm) session.getAttribute("form");
-					    String emp_name = ss.getEmployee_name();
+					    String emp_name = ss.getEmployee_name();		//社員名取得
 
-					    int day_of_year = cal.get(Calendar.DAY_OF_YEAR);
 
-					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+					    int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);//末尾取得
 					    String weekname = "";
 					    String capacity = "";
 
-						dba.getMMDD(roForm);
+						dba.getMMDD(rForm);
 						dba.getRoomstatus(roForm);
 						dba.getRoom_name(rForm);
 					    String res_name = roForm.getName();
@@ -144,43 +143,47 @@
 				</tr>
 				<tr>
 
-					<%for(int i=0 ;i<7;i++){
+					<%for(int i=0 ;i<7;i++){		//7セル分
 						if(day>max){%>
 					<td width=90px></td>
-					<% }
-						else
-						{
-							switch(week){
-							case 0:
-								weekname = "(日)";
-								break;
-							case 1:
-								weekname = "(月)";
-								break;
-							case 2:
-								weekname = "(火)";
-								break;
-							case 3:
-								weekname = "(水)";
-								break;
-							case 4:
-								weekname = "(木)";
-								break;
-							case 5:
-								weekname = "(金)";
-								break;
-							case 6:
-								weekname = "(土)";
-								break;
-							}
-						%>
+					<% }else{
+						switch(week){
+						case 0:
+							weekname = "(日)";
+							break;
+						case 1:
+							weekname = "(月)";
+							break;
+						case 2:
+							weekname = "(火)";
+							break;
+						case 3:
+							weekname = "(水)";
+							break;
+						case 4:
+							weekname = "(木)";
+							break;
+						case 5:
+							weekname = "(金)";
+							break;
+						case 6:
+							weekname = "(土)";
+							break;
+						}%>
+
+					<%if(weekname == "(土)"){ %>
+					<td width=90px bgcolor="#D7EEFF"><%= day + "日" + weekname %></td>
+					<%}else if(weekname == "(日)"){%>
+					<td width=90px bgcolor="#FFBEDA"><%= day + "日" + weekname %></td>
+					<%}else{ %>
 					<td width=90px><%= day + "日" + weekname %></td>
+					<%}
+					}%>
 					<%week++;
 					if(week == 7){
 						week = 0;
 					}
 					day++;
-						}
 					 }%>
 				</tr>
 
@@ -189,7 +192,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日08:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%=dayalert + i %>日08:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -203,7 +206,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日08:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日08:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -217,7 +220,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日09:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日09:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -231,7 +234,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日09:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日09:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -245,7 +248,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日10:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日10:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -259,7 +262,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日10:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日10:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -273,7 +276,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日11:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日11:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -287,7 +290,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日11:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日11:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -301,7 +304,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日12:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日12:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -315,7 +318,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日12:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日12:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -329,7 +332,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日13:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日13:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -343,7 +346,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日13:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日13:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -357,7 +360,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日14:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日14:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -371,7 +374,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日14:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日14:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -385,7 +388,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日15:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日15:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -399,7 +402,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日15:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日15:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -413,7 +416,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日16:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日16:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -427,7 +430,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日16:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日16:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -441,7 +444,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日17:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日17:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -455,7 +458,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日17:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日17:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -469,7 +472,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日18:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日18:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -483,7 +486,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日18:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日18:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -497,7 +500,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日19:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日19:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -511,7 +514,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日19:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日19:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -525,7 +528,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日20:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日20:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -539,7 +542,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日20:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日20:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -552,7 +555,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日21:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:00&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日21:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -566,7 +569,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日21:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:30&mmdd=<%=month%><%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日21:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -638,7 +641,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日08:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日08:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -652,7 +655,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日08:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日08:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -666,7 +669,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日09:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日09:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -680,7 +683,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日09:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日09:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -694,7 +697,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日10:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日10:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -708,7 +711,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日10:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日10:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -722,7 +725,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日11:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日11:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -736,7 +739,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日11:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日11:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -750,7 +753,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日12:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日12:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -764,7 +767,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日12:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日12:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -778,7 +781,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日13:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日13:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -792,7 +795,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日13:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日13:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -806,7 +809,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日14:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日14:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -820,7 +823,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日14:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日14:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -834,7 +837,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日15:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日15:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -848,7 +851,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日15:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日15:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -862,7 +865,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日16:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日16:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -876,7 +879,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日16:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日16:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -890,7 +893,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日17:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日17:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -904,7 +907,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日17:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日17:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -918,7 +921,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日18:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日18:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -932,7 +935,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日18:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日18:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -946,7 +949,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日19:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日19:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -960,7 +963,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日19:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日19:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -974,7 +977,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日20:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日20:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -988,7 +991,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日20:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日20:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1001,7 +1004,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日21:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:00&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日21:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1015,7 +1018,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日21:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:30&mmdd=<%=month%><%=dayalert + i%>&room_name=3F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日21:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1088,7 +1091,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日08:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日08:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1102,7 +1105,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日08:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=08:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日08:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1116,7 +1119,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日09:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日09:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1130,7 +1133,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日09:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=09:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日09:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1144,7 +1147,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日10:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日10:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1158,7 +1161,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日10:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=10:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日10:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1172,7 +1175,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日11:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日11:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1186,7 +1189,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日11:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=11:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日11:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1200,7 +1203,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日12:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日12:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1214,7 +1217,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日12:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=12:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日12:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1228,7 +1231,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日13:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日13:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1242,7 +1245,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日13:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=13:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日13:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1256,7 +1259,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日14:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日14:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1270,7 +1273,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日14:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=14:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日14:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1284,7 +1287,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日15:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日15:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1298,7 +1301,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日15:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=15:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日15:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1312,7 +1315,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日16:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日16:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1326,7 +1329,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日16:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=16:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日16:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1340,7 +1343,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日17:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日17:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1354,7 +1357,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日17:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=17:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日17:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1368,7 +1371,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日18:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日18:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1382,7 +1385,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日18:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=18:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日18:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1396,7 +1399,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日19:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日19:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1410,7 +1413,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日19:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=19:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日19:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1424,7 +1427,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日20:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日20:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1438,7 +1441,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日20:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=20:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日20:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1451,7 +1454,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日21:00に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:00&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日21:00に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
@@ -1465,7 +1468,7 @@
 				<%for(int i= 0;i<7;i++){
 						for(int j=0 ;i<7;i++){
 							if(rForm.getMmdd()==null){%>
-								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= dayalert + i %>日21:30に予約しますか？');">○</a></td>
+								<td><a href="jsp/ReservationConfirm.jsp?res_time=21:30&mmdd=<%=month%><%=dayalert + i%>&room_name=4F&emp_name=<%=emp_name %>" onclick="return confirm('<%= month + "月"%><%= dayalert + i %>日21:30に予約しますか？');">○</a></td>
 							<% }else{%>
 								<td><a href="jsp/ReservationConfirm.jsp">-</a></td>
 							<%}
