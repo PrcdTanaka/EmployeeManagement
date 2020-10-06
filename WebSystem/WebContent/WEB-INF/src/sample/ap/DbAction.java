@@ -3065,11 +3065,11 @@ public class DbAction extends Object{
 			//appendメソッドで文字列を連結
 			sb.append("DELETE FROM KINTAIMAIL"+crlf);
 			sb.append(" WHERE"+crlf);
-			sb.append(" EMP_NO='"+lform.getEmployee_no()+"'"+crlf);
+			sb.append("  EMP_NO = ?" + crlf);
 			sb.append(" AND"+crlf);
-			sb.append(" MMDD='"+form.getMmdd()+"'"+crlf);
-			sb.append(" AND"+crlf);
-			sb.append(" SEND_TIME='"+form.getSend_Time()+"'"+crlf);
+			sb.append(" SPAN='"+form.getSpan()+"'"+crlf);
+//			sb.append(" AND"+crlf);
+//			sb.append(" SEND_TIME='"+SendTime+"'"+crlf);
 			//連結した文字列を変数に代入
 			String query =sb.toString();
 			//DBに保存されているレコードを削除
