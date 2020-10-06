@@ -569,7 +569,7 @@
 			%>
 				<div  style="position: relative; margin-top: 10%; align: center;">
 					<html:submit property="button" style="color:#fff; background-color:#49a9d4; width: 20%;  border-radius: 20px;" value="勤怠取消し"
-					styleId=""/>
+					styleId="kintaimail"/>
 				</div>
 				<div>
 					<html:submit property="button" styleClass="btn" value="編集"
