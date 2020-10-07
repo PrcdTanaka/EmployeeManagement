@@ -221,35 +221,6 @@
 			<li><a class="btn1" href="javascript:history.back()" >戻る</a></li>
 		</ul>
 		</div>
-
-
-		<%-- メール送信機能--%>
-		<a href="mailto:ryosuke_yamaki@procd-k.co.jp?
-		subject=勤怠連絡
-		&cc=<%if (CC== null) {%>
-			<%=""%>
-			<%} else {%>
-					<%=CC%>
-				<%}%>
-		&bcc=<%if(bcc==null){%>
-			<%=""%>
-			<%} else {%>
-			<%=bcc%>
-			 <%}%> %0D%0A
-		&body=
-		・所属部署：<%=depart%>%0D%0A
- 		・社員番号：<%=Employee_no%>%0D%0A
-		・氏名：<%=name%>%0D%0A
-		・現場コード：<%=spotcode%>%0D%0A
-		・届出区分：<%=division%>%0D%0A
-		・対象日付／期間：<%=span%>～<%=span2%>%0D%0A
-		・出勤予定時間：<%if(ptime==null){%>
-						<%=""%>
-						<%}else{ %>
-						<%=ptime%>
-						<%}%>%0D%0A
-		・備考：<%=remark%>%0D%0A
-		・許可:<%=perm%>">メール送信フォーム</a>
 	</html:form>
 </body>
 </html:html>
