@@ -124,9 +124,8 @@ public class MonthlyReportAction extends Action {
 		}
 
 		try {
-
-			fileWriter = new FileWriter("C:\\kintaiExcel\\person.txt");
-			request.setCharacterEncoding("UTF-8");
+			request.setCharacterEncoding("utf-8");
+			fileWriter = new FileWriter("C:\\kintaiExcel\\person.csv");
 
 			fileWriter.append("/");
 			fileWriter.append(COMMA);
@@ -147,6 +146,7 @@ public class MonthlyReportAction extends Action {
 			fileWriter.append("備考");
 			fileWriter.append(COMMA);
 			fileWriter.append(NEW_LINE);
+
 
 			// リストの内容を順に処理
 			String dada = "";

@@ -58,6 +58,7 @@ public class KintaiMailAction extends Action {
 				{
 				//	session.setAttribute("form", form);
 				//	session.removeAttribute("form");
+					dba.setKintaiDelete(form,lForm,Action_MMdd,Action_SendTime);
 					forward = "main";
 				}
 			}
