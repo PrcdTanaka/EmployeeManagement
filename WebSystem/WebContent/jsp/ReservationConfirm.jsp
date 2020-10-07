@@ -30,10 +30,16 @@
 			message = "";
 		}
 
+		//String dd = "";
 		String res_time = request.getParameter("res_time");
-		String mmdd = request.getParameter("mmdd");
+		String mm = request.getParameter("mm");
+		String dd = request.getParameter("dd");
+		//if(dd.length()==1){
+			//dd = "0" + dd;
+		//}
 		String room_name = request.getParameter("room_name");
 		String emp_name = request.getParameter("emp_name");
+
 
 		emp_name = s.getEmployee_name();
 	%>
@@ -41,7 +47,7 @@
 			<div class="space"></div>
 			<br>
 			<div align= "center">会議室名：<input type="text" name="room_name" value="<%=room_name %>" readonly></div>
-			<div align= "center">予約日　：<input type="text" name="mmdd" value="<%=mmdd %>" readonly></div>
+			<div align= "center">予約日　：<input type="text" name="mmdd" value="<%=mm + dd %>" readonly></div>
 			<div align= "center">予約時間：<input type="text" name="res_time" value="<%=res_time %>" readonly></div>
 			<div align= "center">代表者　：<input type="text" name="name" value="<%=emp_name %>" readonly></div>
 			<div align= "center">用途　　：<html:text property="use" value="" />
