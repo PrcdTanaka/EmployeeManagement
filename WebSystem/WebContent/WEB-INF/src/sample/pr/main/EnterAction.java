@@ -99,7 +99,7 @@ public final class EnterAction extends Action {
 		String minutes=""+calendar.get(calendar.MINUTE);
 		if(minutes.length()!=2)
 			minutes="0"+minutes;
-		String time=hour+minutes;
+		//String time=hour+minutes;
 		String cale =month+day;
 		String ymd = year+cale;
 
@@ -114,14 +114,14 @@ public final class EnterAction extends Action {
 			}
 			else {
 				forward="success";
-;				dba.UpdateLeave(eForm, time, ymd);
+;				dba.UpdateLeave(eForm, hour,minutes, ymd);
 			}
 
 		}
 		else if(b.equals("入室")){
 			if(lForm.getEmployee_name()!=null) {
 				forward="success";
-				dba.InsertEnter(eForm, ymd, time);
+				dba.InsertEnter(eForm, ymd, hour,minutes);
 			}
 			else {
 				forward="failure";
@@ -131,7 +131,7 @@ public final class EnterAction extends Action {
 		{
 			if(lForm.getEmployee_name()!=null){
 
-				dba.UpdateLeave(eForm, time, ymd);
+				dba.UpdateLeave(eForm, hour,minutes, ymd);
 				forward="success";
 			}
 			else {
