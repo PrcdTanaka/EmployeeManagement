@@ -31,6 +31,8 @@ public final class ReservationForm extends ActionForm {
 	private String room_number;
 	/**メンバー */
 	private List<String> member;
+	/** メッセージ */
+	private String message;
 
 
 	/**
@@ -51,6 +53,7 @@ public final class ReservationForm extends ActionForm {
 		mmdd = new ArrayList<String>();
 		use = new ArrayList<String>();
 		room_number = "";
+		message = "";
 	}
 	/**
 	 * 社員番号取得処理。
@@ -317,6 +320,13 @@ public final class ReservationForm extends ActionForm {
 
 	public List<String> getMember() {
 		return member;
+	}
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

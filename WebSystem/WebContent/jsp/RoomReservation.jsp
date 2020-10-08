@@ -27,6 +27,7 @@
 			message = "";
 		}
 	%>
+	<%= message %>
 <style>
 .btn{
 text-align:center;
