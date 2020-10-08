@@ -36,7 +36,6 @@
 
 					    Calendar cal = Calendar.getInstance();
 
-					    dba.getRoomstatus(roForm);
 					    int year = cal.get(Calendar.YEAR);			//年取得
 					    int month = cal.get(Calendar.MONTH) + 1;	//月取得
 					    int day = cal.get(Calendar.DATE);			//日付取得
@@ -55,18 +54,18 @@
 					    String capacity = "";
 
 						dba.getMMDD(rForm);
-						dba.getRoomstatus(roForm);
-						dba.getRoom_name(rForm);
+						//dba.getRoomstatus(roForm);
+						//dba.getRoom_name(rForm);
 					    String res_name = roForm.getName();
 					    String res_time = roForm.getRes_time();
 					    List<String> mmdd = rForm.getMmdd();
 					    String member = roForm.getMember();
 					    String use = roForm.getUse();
 						String status =roForm.getRes_time();
-						List<String> room_name = roForm.getRoom_name();
-						List<String> monitor = roForm.getMonitor();
-						List<String> seat = roForm.getSeat();
-						List<String> camera = roForm.getCamera();
+						//List<String> room_name = roForm.getRoom_name();
+						//List<String> monitor = roForm.getMonitor();
+						//List<String> seat = roForm.getSeat();
+						//List<String> camera = roForm.getCamera();
 						String room_number = rForm.getRoom_number();
 
 						String mon = Integer.toString(month);

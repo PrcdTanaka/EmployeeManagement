@@ -1,22 +1,19 @@
 package sample.pr.main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.struts.action.ActionForm;
 
 public final class RoomReservationForm extends ActionForm {
 
 	/** 会議室 */
-	private List<String> room_name;
+	private String room_name;
 	/** 所在地 */
 	private String place;
 	/** 席数 */
-	private List<String> seat;
+	private String seat;
 	/** モニター */
-	private List<String> monitor;
+	private String monitor;
 	/** カメラ */
-	private List<String> camera;
+	private String camera;
 	/** ボタン */
 	private String button;
 	/** メッセージ */
@@ -42,11 +39,11 @@ public final class RoomReservationForm extends ActionForm {
 	 * </p>
 	 */
 	public void initialize() {
-		room_name = new ArrayList<String>();
+		room_name = "";
 		place = "";
-		seat = new ArrayList<String>();
-		monitor = new ArrayList<String>();
-		camera = new ArrayList<String>();
+		seat = "";
+		monitor = "";
+		camera = "";
 		button = "";
 		message = "";
 		emp_no = "";
@@ -65,7 +62,7 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return 会議室名
 	 */
-	public List<String> getRoom_name() {
+	public String getRoom_name() {
 		return room_name;
 	}
 
@@ -78,8 +75,9 @@ public final class RoomReservationForm extends ActionForm {
 	 * @param room_name 会議室名
 	 */
 	public void setRoom_name(String room_name) {
-		this.room_name.add(room_name);
+		this.room_name = room_name;
 	}
+
 
 	/**
 	 * 所在地取得処理。
@@ -113,8 +111,8 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @param seat 席
 	 */
-	public void setSeat(String seat) {
-		this.seat.add(seat);
+	public String getSeat() {
+		return seat;
 	}
 	/**
 	 * 席数取得処理。
@@ -124,8 +122,8 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return 席数
 	 */
-	public List<String> getSeat() {
-		return seat;
+	public void setSeat(String seat) {
+		this.seat = seat;
 	}
 
 	/**
@@ -136,7 +134,7 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return モニター
 	 */
-	public List<String> getMonitor() {
+	public String getMonitor() {
 		return monitor;
 	}
 
@@ -149,7 +147,7 @@ public final class RoomReservationForm extends ActionForm {
 	 * @param monitor モニター
 	 */
 	public void setMonitor(String monitor) {
-		this.monitor.add(monitor);
+		this.monitor = monitor;
 	}
 
 	/**
@@ -160,7 +158,7 @@ public final class RoomReservationForm extends ActionForm {
 	 *
 	 * @return カメラ
 	 */
-	public List<String> getCamera() {
+	public String getCamera() {
 		return camera;
 	}
 
@@ -173,7 +171,7 @@ public final class RoomReservationForm extends ActionForm {
 	 * @param camera カメラ
 	 */
 	public void setCamera(String camera) {
-		this.camera.add(camera);
+		this.camera = camera;
 	}
 
 	/**
