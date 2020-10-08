@@ -1,7 +1,10 @@
 package sample.pr.main;
 
+import java.awt.Desktop;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -85,6 +88,13 @@ public class KintaiMailAction extends Action {
 					if(Send_Chk_Flg == false)
 					{
 					//	session.setAttribute("form", form);
+						//メール機能
+						boolean mailflg = Send_Mail(form,lForm);
+						if(mailflg==true){
+							System.out.println("メールフォーム出力完了");
+						}else{
+							System.out.println("メールフォーム出力失敗");
+						}
 						dba.setKintaiEdit(form, lForm, Action_MMdd, Action_SendTime);
 					//	response.sendRedirect("http://localhost:8080/WebSystem/jsp/KintaiList.jsp");
 					//	session.removeAttribute("form");
@@ -116,9 +126,17 @@ public class KintaiMailAction extends Action {
 					// DB上のデータと対象期間に被りが無い場合にDBの追加処理を行う
 					if(Send_Chk_Flg == false)
 					{
+						//メール機能
+						boolean mailflg = Send_Mail(form,lForm);
+						if(mailflg==true){
+							System.out.println("メールフォーム出力完了");
+						}else{
+							System.out.println("メールフォーム出力失敗");
+						}
 						// DBへの登録作業以外をコメント化
 						//session.setAttribute("form", form);
 						dba.setKintaiInfo(form, lForm);
+
 						// DBへの登録作業以外をコメント化
 						//forward = "kintailist";
 						// DBへの登録作業以外をコメント化
@@ -136,6 +154,32 @@ public class KintaiMailAction extends Action {
 		Action_MMdd = "";
 		Action_SendTime = "";
 		return map.findForward(forward);
+	}
+
+	//メール機能
+	public boolean Send_Mail(KintaiMailForm form, LoginForm lForm) throws IOException, URISyntaxException {
+		// TODO 自動生成されたメソッド・スタブ
+
+		String string = String.format("mailto:%s?subject=%s&body=%s&cc=%s&bcc=%s",
+				"test@test.test",
+				"勤怠連絡",
+				"所属部署:"   +form.getDepart()+"%0D%0A"+
+				"社員番号:"	  +lForm.getEmployee_no()+"%0D%0A"+
+				"氏名:"  	  +lForm.getEmployee_name()+"%0D%0A"+
+				"現場コード:" +form.getSpotcode()+"%0D%0A"+
+				"届出区分:"   +form.getDivision()+"%0D%0A"+
+				"対象日付/期間"+form.getSpan()+"～"+form.getSpan2()+"%0D%0A"+
+				"出勤予定時間:"+form.getPtime()+"%0D%0A"+
+				"備考:"        +form.getRemark()+"%0D%0A"+
+				"許可:"        +form.getPerm()+"%0D%0A"+
+				"【届出区分】"+"%0D%0A"+
+				"1:遅刻,2:有給休暇,4:振替休暇,5:特別休暇,6:シフト勤務,7:早退,その他,8:交通遅延,9:欠勤,A:深夜作業,B:休日出勤(振)",
+				form.getCC(),
+				form.getBcc());
+		Desktop desktop = Desktop.getDesktop();
+		// メール作成ウィンドウを起動
+		desktop.mail(new URI(string));
+		return true;
 	}
 
 	/*

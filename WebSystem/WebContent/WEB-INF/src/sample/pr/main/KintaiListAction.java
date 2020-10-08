@@ -47,7 +47,7 @@ public class KintaiListAction extends Action {
 			// 勤怠一覧画面から選択されたのが「勤怠月報画面へ」の場合
 			else if(button.equals("勤怠月報画面へ")){
 				forward="MonthlyReport";
-				session.setAttribute("kform", kForm);
+				session.setAttribute("lform", lForm);
 			}
 			// 勤怠一覧画面から選択されたのが「勤怠連絡入力」の場合
 			else if(button.equals("勤怠連絡入力")){
