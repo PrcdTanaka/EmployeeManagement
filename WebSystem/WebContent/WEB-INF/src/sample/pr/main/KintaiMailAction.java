@@ -156,11 +156,12 @@ public class KintaiMailAction extends Action {
 		return map.findForward(forward);
 	}
 
-	//メール機能
+	//メール機能(outlookのみ対応)
 	public boolean Send_Mail(KintaiMailForm form, LoginForm lForm) throws IOException, URISyntaxException {
 		// TODO 自動生成されたメソッド・スタブ
 
 		String string = String.format("mailto:%s?subject=%s&body=%s&cc=%s&bcc=%s",
+				//	実際のアドレスkintai@procd-k.co.jp
 				"test@test.test",
 				"勤怠連絡",
 				"所属部署:"   +form.getDepart()+"%0D%0A"+
