@@ -1,7 +1,9 @@
 package sample.pr.main;
 
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -56,7 +58,7 @@ public class MonthlyReportAction extends Action {
 			} else if (button.equals("保存")) {
 				forward = "MonthlyReport";
 				session.setAttribute("kform", kForm);
-				boolean chkflg = Output_Csv(kForm, request);
+				boolean chkflg = Output_Csv(kForm, request,lForm);
 				if (chkflg == true) {
 					System.out.println("CSVファイル出力完了");
 				}
@@ -69,8 +71,7 @@ public class MonthlyReportAction extends Action {
 	}
 
 	public boolean Output_Csv(MonthlyReportForm kForm,
-			HttpServletRequest request) throws IOException {
-
+			HttpServletRequest request,LoginForm lForm) throws IOException {
 		// カレンダークラスを取得
 		Calendar cal = Calendar.getInstance();
 		String year = (cal.get(cal.YEAR)) + "";
@@ -101,6 +102,11 @@ public class MonthlyReportAction extends Action {
 		MForm.addAll(span2);
 		FileWriter fileWriter = null;
 
+		// ファイル出力方法の変更案
+		FileOutputStream FOS = null;
+		OutputStreamWriter OSW = null;
+
+
 		// 現場名
 		String a = "";
 		// limit
@@ -124,29 +130,33 @@ public class MonthlyReportAction extends Action {
 		}
 
 		try {
-			request.setCharacterEncoding("utf-8");
-			fileWriter = new FileWriter("C:\\kintaiExcel\\person.csv");
+			// FileOutputStreamでファイル書き出しと、、ファイル名指定
+			FOS = new FileOutputStream("C:\\kintaiExcel\\person.csv");
+			// 出力をShift_JISで指定
+			OSW = new OutputStreamWriter(FOS, "Shift_JIS");
 
-			fileWriter.append("/");
-			fileWriter.append(COMMA);
-			fileWriter.append("届出日");
-			fileWriter.append(COMMA);
-			fileWriter.append("時刻");
-			fileWriter.append(COMMA);
-			fileWriter.append("Limit");
-			fileWriter.append(COMMA);
-			fileWriter.append("連絡遅延");
-			fileWriter.append(COMMA);
-			fileWriter.append("届出区分");
-			fileWriter.append(COMMA);
-			fileWriter.append("作業場所");
-			fileWriter.append(COMMA);
-			fileWriter.append("許可");
-			fileWriter.append(COMMA);
-			fileWriter.append("備考");
-			fileWriter.append(COMMA);
-			fileWriter.append(NEW_LINE);
+//			fileWriter = new FileWriter("C:\\kintaiExcel\\person.txt");
+//			request.setCharacterEncoding("UTF-8");
 
+			OSW.append("/");
+			OSW.append(COMMA);
+			OSW.append("届出日");
+			OSW.append(COMMA);
+			OSW.append("時刻");
+			OSW.append(COMMA);
+			OSW.append("Limit");
+			OSW.append(COMMA);
+			OSW.append("連絡遅延");
+			OSW.append(COMMA);
+			OSW.append("届出区分");
+			OSW.append(COMMA);
+			OSW.append("作業場所");
+			OSW.append(COMMA);
+			OSW.append("許可");
+			OSW.append(COMMA);
+			OSW.append("備考");
+			OSW.append(COMMA);
+			OSW.append(NEW_LINE);
 
 			// リストの内容を順に処理
 			String dada = "";
@@ -945,49 +955,49 @@ public class MonthlyReportAction extends Action {
 						}
 
 				 if(kintai_s[i].substring(6,8).equals(kintai_s2[i].substring(6,8))){
-						fileWriter.append(dada+"日");
-						fileWriter.append(COMMA);
-						fileWriter.append(mmdd.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(send_time.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(limit);
-						fileWriter.append(COMMA);
-						fileWriter.append(send);
-						fileWriter.append(COMMA);
-						fileWriter.append(division.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(a);
-						fileWriter.append(COMMA);
-						fileWriter.append(perm.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(remark.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(NEW_LINE);
+						OSW.append(dada+"日");
+						OSW.append(COMMA);
+						OSW.append(mmdd.get(i));
+						OSW.append(COMMA);
+						OSW.append(send_time.get(i));
+						OSW.append(COMMA);
+						OSW.append(limit);
+						OSW.append(COMMA);
+						OSW.append(send);
+						OSW.append(COMMA);
+						OSW.append(division.get(i));
+						OSW.append(COMMA);
+						OSW.append(a);
+						OSW.append(COMMA);
+						OSW.append(perm.get(i));
+						OSW.append(COMMA);
+						OSW.append(remark.get(i));
+						OSW.append(COMMA);
+						OSW.append(NEW_LINE);
 
 						flg = 1;
 						break;
 				 }else{
 					 for(int k=Integer.parseInt(kintai_s[i].substring(6,8));k<=(Integer.parseInt(kintai_s2[i].substring(6,8)));k++){
-						fileWriter.append(k+"日");
-						fileWriter.append(COMMA);
-						fileWriter.append(mmdd.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(send_time.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(limit);
-						fileWriter.append(COMMA);
-						fileWriter.append(send);
-						fileWriter.append(COMMA);
-						fileWriter.append(division.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(a);
-						fileWriter.append(COMMA);
-						fileWriter.append(perm.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(remark.get(i));
-						fileWriter.append(COMMA);
-						fileWriter.append(NEW_LINE);
+						OSW.append(k+"日");
+						OSW.append(COMMA);
+						OSW.append(mmdd.get(i));
+						OSW.append(COMMA);
+						OSW.append(send_time.get(i));
+						OSW.append(COMMA);
+						OSW.append(limit);
+						OSW.append(COMMA);
+						OSW.append(send);
+						OSW.append(COMMA);
+						OSW.append(division.get(i));
+						OSW.append(COMMA);
+						OSW.append(a);
+						OSW.append(COMMA);
+						OSW.append(perm.get(i));
+						OSW.append(COMMA);
+						OSW.append(remark.get(i));
+						OSW.append(COMMA);
+						OSW.append(NEW_LINE);
 
 						flg=1;
 						day=k;
@@ -996,25 +1006,25 @@ public class MonthlyReportAction extends Action {
 					}
 				}
 				if (flg == 0) {
-					fileWriter.append(dada+"日");
-					fileWriter.append(COMMA);
-					fileWriter.append("");
-					fileWriter.append(COMMA);
-					fileWriter.append("");
-					fileWriter.append(COMMA);
-					fileWriter.append("");
-					fileWriter.append(COMMA);
-					fileWriter.append("");
-					fileWriter.append(COMMA);
-					fileWriter.append("");
-					fileWriter.append(COMMA);
-					fileWriter.append("");
-					fileWriter.append(COMMA);
-					fileWriter.append("");
-					fileWriter.append(COMMA);
-					fileWriter.append("");
-					fileWriter.append(COMMA);
-					fileWriter.append(NEW_LINE);
+					OSW.append(dada+"日");
+					OSW.append(COMMA);
+					OSW.append("");
+					OSW.append(COMMA);
+					OSW.append("");
+					OSW.append(COMMA);
+					OSW.append("");
+					OSW.append(COMMA);
+					OSW.append("");
+					OSW.append(COMMA);
+					OSW.append("");
+					OSW.append(COMMA);
+					OSW.append("");
+					OSW.append(COMMA);
+					OSW.append("");
+					OSW.append(COMMA);
+					OSW.append("");
+					OSW.append(COMMA);
+					OSW.append(NEW_LINE);
 				}
 			}
 
@@ -1023,8 +1033,11 @@ public class MonthlyReportAction extends Action {
 		} finally {
 
 			try {
-				fileWriter.flush();
-				fileWriter.close();
+				// フィニッシュとクローズ処理
+				OSW.flush();
+				OSW.close();
+				FOS.flush();
+				FOS.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -1032,4 +1045,4 @@ public class MonthlyReportAction extends Action {
 		}
 		return true;
 	}
-}
+	}
