@@ -2,8 +2,9 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="sample.pr.main.RoomReservationForm"%>
+<%@ page import="sample.pr.main.ReservConForm"%>
 <%@ page import="sample.pr.main.LoginForm"%>
+<%@ page import="sample.pr.main.ReservConForm"%>
 <%@ page import="sample.ap.DbAction"%>
 
 <html:html>
@@ -16,13 +17,13 @@
 	<html:form action="/ReservationConfirmAction">
 	<%
 	DbAction dba = new DbAction();
-	RoomReservationForm rForm = new RoomReservationForm();
+	ReservConForm rcForm = new ReservConForm();
 	LoginForm s = (LoginForm) session.getAttribute("form");
 
 		String message = null;
 		try{
-			RoomReservationForm roForm = (RoomReservationForm) session.getAttribute("roForm");
-			message =  roForm.getMessage();
+			rcForm = (ReservConForm) session.getAttribute("rcForm");
+			message = rcForm.getMessage();
 			if(message == null)
 				message = "";
 

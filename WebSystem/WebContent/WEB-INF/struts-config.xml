@@ -29,6 +29,7 @@
 		<form-bean name="KintaiListForm" type="sample.pr.main.KintaiListForm" />
 		<form-bean name="MonthlyReportForm" type="sample.pr.main.MonthlyReportForm" />
 		<form-bean name="ReservationForm" type="sample.pr.main.ReservationForm" />
+		<form-bean name="ReservConForm" type="sample.pr.main.ReservConForm" />
 		<form-bean name="EnterForm" type="sample.pr.main.EnterForm" />
 		<form-bean name="ReservationFrom" type="sample.pr.main.ReservationForm" />
 		<form-bean name="Access_Select" type="sample.pr.main.Access_SelectForm" />
@@ -195,7 +196,7 @@
 			<forward name="room" path="/jsp/RoomReservation.jsp" />
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
 		</action>
-		<action name="RoomReservationForm" path="/ReservationConfirmAction"
+		<action name="ReservConForm" path="/ReservationConfirmAction"
 			type="sample.pr.main.ReservationConfirmAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Reservation.jsp" />
 			<forward name="confirm" path="/jsp/ReservationConfirm.jsp" />

@@ -23,6 +23,7 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
+import sample.pr.main.ReservConForm;
 import sample.pr.main.ReservationForm;
 import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
@@ -3049,7 +3050,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
-	public boolean InsReservation(RoomReservationForm form) {
+	public boolean InsReservation(ReservConForm form) {
 
 		boolean ret = false;
 
