@@ -4,6 +4,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="sample.pr.main.ReservConForm"%>
 <%@ page import="sample.pr.main.LoginForm"%>
+<%@ page import="sample.pr.main.ReservConForm"%>
 <%@ page import="sample.ap.DbAction"%>
 
 <html:html>
