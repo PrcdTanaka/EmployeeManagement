@@ -50,12 +50,18 @@ text-align:center;
 					<html:text property="seat" value="" />
 			</div>
 			<div align= "center">
-					モニター：
-					<html:text property="monitor" value="" />
+				<p>
+				モニター：
+					<input type="radio" name="monitor" value="0">あり
+					<input type="radio" name="monitor" value="1">なし
+				</p>
 			</div>
 			<div align= "center">
-					カメラ　：
-					<html:text property="camera" value="" />
+					<p>
+				カメラ：
+					<input type="radio" name="camera" value="0">あり
+					<input type="radio" name="camera" value="1">なし
+				</p>
 			</div>
 			<br>
 			<div align="center">

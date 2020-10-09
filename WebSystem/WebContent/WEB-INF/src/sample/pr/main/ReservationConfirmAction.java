@@ -31,25 +31,25 @@ public final class ReservationConfirmAction extends Action{
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		RoomReservationForm roForm = (RoomReservationForm) frm;
+		ReservConForm rcForm = (ReservConForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		forward="confirm";
-		String button=roForm.getButton();
+		String button=rcForm.getButton();
 		try{
 
 			if(button.equals("戻る")){
 				forward="main";
-				session.removeAttribute("rForm");
+				session.removeAttribute("rcForm");
 			}else if(button.equals("登録")){
 				forward ="confirm";
-				dba.InsReservation(roForm);
-				roForm.setMessage("登録しました");
+				dba.InsReservation(rcForm);
+				rcForm.setMessage("登録しました");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		session.removeAttribute("roForm");
+		session.removeAttribute("rcForm");
 		return map.findForward(forward);
 
 	}
