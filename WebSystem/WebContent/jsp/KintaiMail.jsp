@@ -216,10 +216,9 @@
 			<html:submit property="button" styleClass="btn" value="送信"
 				styleId="kintaimail" style="margin-top:10;" />
 		</div>
-		<div>
-		<ul style="list-style:none;text-align:center;margin-top:14px;">
-			<li><a class="btn1" href="javascript:history.back()" >戻る</a></li>
-		</ul>
+        <div style="position: relative; margin-top: 5%; align: center;">
+			<html:submit property="button" styleClass="btn" value="戻る"
+				styleId="kintailist" />
 		</div>
 	</html:form>
 </body>

@@ -107,6 +107,7 @@ public class MonthlyReportAction extends Action {
 		OutputStreamWriter OSW = null;
 
 
+
 		// 現場名
 		String a = "";
 		// limit
@@ -131,13 +132,18 @@ public class MonthlyReportAction extends Action {
 
 		try {
 			// FileOutputStreamでファイル書き出しと、、ファイル名指定
-			FOS = new FileOutputStream("C:\\kintaiExcel\\person.csv");
+			FOS = new FileOutputStream("C:\\kintaiExcel\\"+String.valueOf(KintaiManagement.Cale_Date_Year)+""+String.valueOf(KintaiManagement.Cale_Date_Month)+"_勤怠連絡月報_"+lForm.getEmployee_no()+lForm.getEmployee_name()+".csv");
 			// 出力をShift_JISで指定
 			OSW = new OutputStreamWriter(FOS, "Shift_JIS");
 
 //			fileWriter = new FileWriter("C:\\kintaiExcel\\person.txt");
 //			request.setCharacterEncoding("UTF-8");
 
+			OSW.append(String.valueOf(KintaiManagement.Cale_Date_Year)+"年度");
+			OSW.append(COMMA);
+			OSW.append(String.valueOf(KintaiManagement.Cale_Date_Month)+"月度");
+			OSW.append(COMMA);
+			OSW.append(NEW_LINE);
 			OSW.append("/");
 			OSW.append(COMMA);
 			OSW.append("届出日");
