@@ -46,12 +46,12 @@ public class KintaiMailAction extends Action {
 		form.setEmployee_no(lForm.getEmployee_no());
 		form.setEmployee_name(lForm.getEmployee_name());
 
-		forward = "kintaimail";
+		//forward = "kintaimail";
 		String button = form.getButton();
 		try {
 			if (button.equals("戻る")) {
-				forward = "KintaiMain";
-				session.removeAttribute("form");
+
+				forward = "kintailist";
 			}
 			if(button.equals("勤怠取消し"))
 			{
