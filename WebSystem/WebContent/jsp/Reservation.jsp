@@ -6,7 +6,6 @@
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.ReservationForm"%>
-<%@ page import="sample.pr.main.RoomReservationForm"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
@@ -20,7 +19,6 @@
 <html:form action="/ReservationAction">
 	<%
 		ReservationForm rForm = new ReservationForm();
-		RoomReservationForm roForm = new RoomReservationForm();
 		LoginForm lForm = new LoginForm();
 				String Employee_no = "";
 				List<String> name = rForm.getName();
@@ -54,18 +52,19 @@
 					    String capacity = "";
 
 						dba.getMMDD(rForm);
-						//dba.getRoomstatus(roForm);
-						//dba.getRoom_name(rForm);
-					    String res_name = roForm.getName();
-					    String res_time = roForm.getRes_time();
+						//dba.getRoomstatus(rForm);
+						dba.getRoom_name(rForm);
+					    List<String> res_name = rForm.getName();
+					    List<String> res_time = rForm.getRes_time();
 					    List<String> mmdd = rForm.getMmdd();
-					    String member = roForm.getMember();
-					    String use = roForm.getUse();
-						String status =roForm.getRes_time();
-						//List<String> room_name = roForm.getRoom_name();
-						//List<String> monitor = roForm.getMonitor();
-						//List<String> seat = roForm.getSeat();
-						//List<String> camera = roForm.getCamera();
+					    List<String> member = rForm.getMember();
+					    List<String> use = rForm.getUse();
+						List<String> status =rForm.getRes_time();
+
+						List<String> room_name = rForm.getRoom_name();
+						//List<String> monitor = rForm.getMonitor();
+						//List<String> seat = rForm.getSeat();
+						//List<String> camera = rForm.getCamera();
 						String room_number = rForm.getRoom_number();
 
 						String mon = Integer.toString(month);

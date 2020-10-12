@@ -2,9 +2,8 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="sample.pr.main.ReservConForm"%>
+<%@ page import="sample.pr.main.ReservationConfirmForm"%>
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.ReservConForm"%>
 <%@ page import="sample.ap.DbAction"%>
 
 <html:html>
@@ -16,33 +15,33 @@
 <body>
 	<html:form action="/ReservationConfirmAction">
 	<%
-	DbAction dba = new DbAction();
-	ReservConForm rcForm = new ReservConForm();
-	LoginForm s = (LoginForm) session.getAttribute("form");
+		DbAction dba = new DbAction();
+		ReservationConfirmForm rcForm = new ReservationConfirmForm();
+		LoginForm s = (LoginForm) session.getAttribute("form");
 
-		String message = null;
-		try{
-			rcForm = (ReservConForm) session.getAttribute("rcForm");
-			message = rcForm.getMessage();
-			if(message == null)
-				message = "";
-
-		}catch(NullPointerException e){
+			String message = null;
+			try{
+		rcForm = (ReservationConfirmForm) session.getAttribute("rcForm");
+		message = rcForm.getMessage();
+		if(message == null)
 			message = "";
-		}
 
-		//String dd = "";
-		String res_time = request.getParameter("res_time");
-		String mm = request.getParameter("mm");
-		String dd = request.getParameter("dd");
-		//if(dd.length()==1){
-			//dd = "0" + dd;
-		//}
-		String room_name = request.getParameter("room_name");
-		String emp_name = request.getParameter("emp_name");
+			}catch(NullPointerException e){
+		message = "";
+			}
+
+			//String dd = "";
+			String res_time = request.getParameter("res_time");
+			String mm = request.getParameter("mm");
+			String dd = request.getParameter("dd");
+			//if(dd.length()==1){
+		//dd = "0" + dd;
+			//}
+			String room_name = request.getParameter("room_name");
+			String emp_name = request.getParameter("emp_name");
 
 
-		emp_name = s.getEmployee_name();
+			emp_name = s.getEmployee_name();
 	%>
 		<div class="block">
 			<div class="space"></div>

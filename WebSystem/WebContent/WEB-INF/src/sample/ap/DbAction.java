@@ -23,7 +23,7 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
-import sample.pr.main.ReservConForm;
+import sample.pr.main.ReservationConfirmForm;
 import sample.pr.main.ReservationForm;
 import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
@@ -3090,7 +3090,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
-	public boolean InsReservation(ReservConForm form) {
+	public boolean InsReservation(ReservationConfirmForm form) {
 
 		boolean ret = false;
 
@@ -4122,7 +4122,7 @@ public class DbAction extends Object{
 			sb.append("  COUNT" + crlf);
 			sb.append("  (ROOM_NAME)" + crlf);
 			sb.append("FROM" + crlf);
-			sb.append("  ROOM_RESERVATION;" + crlf);
+			sb.append("  ROOM_RESERVATION" + crlf);
 
 			String query = sb.toString();
 
@@ -4131,10 +4131,10 @@ public class DbAction extends Object{
 			columnList.add("ROOM_NAME");
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
-			typeList.add(dba.DB_STRING);
+			typeList.add(dba.DB_INT);
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getRoom_number());
+			//bindList.add(form.getRoom_number());
 
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
