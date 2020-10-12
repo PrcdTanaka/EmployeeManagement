@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -3183,6 +3184,13 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 			Calendar calendar = Calendar.getInstance();
+			int nowHour=calendar.get(calendar.HOUR_OF_DAY);
+			if(nowHour<7){
+				Date nowDate = new Date();
+				calendar.setTime(nowDate);
+				calendar.add(Calendar.DAY_OF_MONTH, -1);
+			}
+
 			String year=""+(calendar.get(calendar.YEAR));
 			String month=""+(calendar.get(calendar.MONTH)+1);
 			if(month.length()==1)
@@ -3259,6 +3267,12 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 			Calendar calendar = Calendar.getInstance();
+			int nowHour=calendar.get(calendar.HOUR_OF_DAY);
+			if(nowHour<7){
+				Date nowDate = new Date();
+				calendar.setTime(nowDate);
+				calendar.add(Calendar.DAY_OF_MONTH, -1);
+			}
 			String year=""+(calendar.get(calendar.YEAR));
 			String month=""+(calendar.get(calendar.MONTH)+1);
 			if(month.length()==1)

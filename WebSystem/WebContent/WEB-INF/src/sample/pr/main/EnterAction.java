@@ -3,6 +3,7 @@ package sample.pr.main;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -84,8 +85,18 @@ public final class EnterAction extends Action {
 		else
 			check="2";
 
+		Calendar cal = Calendar.getInstance();
+		int branchHour=cal.get(cal.HOUR_OF_DAY);
+
 		eForm.setLink(link);
 		Calendar calendar = Calendar.getInstance();
+
+		if(branchHour<7){
+			Date nowDate = new Date();
+			calendar.setTime(nowDate);
+			calendar.add(Calendar.DAY_OF_MONTH, -1);
+		}
+
 		String year=(calendar.get(calendar.YEAR))+"";
 		String month=(calendar.get(calendar.MONTH)+1)+"";
 		if(month.length()!=2)
@@ -93,16 +104,23 @@ public final class EnterAction extends Action {
 		String day=""+calendar.get(calendar.DATE);
 		if(day.length()!=2)
 			day="0"+day;
-		String hour=""+calendar.get(calendar.HOUR_OF_DAY);
-		if(hour.length()!=2)
-			hour="0"+hour;
+		String hour;
+		if(branchHour<7){
+			hour=""+(24+calendar.get(calendar.HOUR_OF_DAY));
+			if(hour.length()!=2)
+				hour="0"+hour;
+		}
+			else{
+			hour=""+calendar.get(calendar.HOUR_OF_DAY);
+			if(hour.length()!=2)
+				hour="0"+hour;
+		}
 		String minutes=""+calendar.get(calendar.MINUTE);
 		if(minutes.length()!=2)
 			minutes="0"+minutes;
 		//String time=hour+minutes;
 		String cale =month+day;
 		String ymd = year+cale;
-
 
 
 		if (b.equals("退室")) {
@@ -119,6 +137,7 @@ public final class EnterAction extends Action {
 
 		}
 		else if(b.equals("入室")){
+
 			if(lForm.getEmployee_name()!=null) {
 				forward="success";
 				dba.InsertEnter(eForm, ymd, hour,minutes);
