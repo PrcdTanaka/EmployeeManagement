@@ -31,7 +31,7 @@ public final class ReservationConfirmAction extends Action{
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		ReservConForm rcForm = (ReservConForm) frm;
+		ReservationConfirmForm rcForm = (ReservationConfirmForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		forward="confirm";

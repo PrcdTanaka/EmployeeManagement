@@ -137,6 +137,8 @@ public final class Access_ControlAction extends Action {
 			case "Access_Control":
 				forward="Access";
 				break;
+
+			//入退室、階数遷移
 			case"1F":
 				forward="Enter";
 				HttpSession session = request.getSession();
@@ -165,8 +167,8 @@ public final class Access_ControlAction extends Action {
 			case"kinmurecord":
 				forward="kinmurecord";
 				break;
-				
-				
+
+			//入退室、履歴月選択
 			case"Access_Select_1month":
 				forward="Access_Select";
 				session = request.getSession();
@@ -209,12 +211,12 @@ public final class Access_ControlAction extends Action {
 				lform=(LoginForm) session.getAttribute("form");
 				lform.setLink("7");
 				break;
-				case"Access_Select_8month":
-					forward="Access_Select";
-					session = request.getSession();
-					lform=(LoginForm) session.getAttribute("form");
-					lform.setLink("8");
-					break;
+			case"Access_Select_8month":
+				forward="Access_Select";
+				session = request.getSession();
+				lform=(LoginForm) session.getAttribute("form");
+				lform.setLink("8");
+				break;
 			case"Access_Select_9month":
 				forward="Access_Select";
 				session = request.getSession();

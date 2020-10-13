@@ -63,7 +63,7 @@ body
 				Entry=true;
 			}
 			//深夜作業判定 ROOM_ACCESS_TBLのCHECK_LISTが1かどうかの判定
-			if(dba.getAccessControl(eForm)){
+			if(dba.getJudgment_CheckList(eForm)){
 				List<String> Check_list = eForm.getCHECK_LIST();
 				//0番目が1だったら
 				if(Check_list.get(0).equals("1")){

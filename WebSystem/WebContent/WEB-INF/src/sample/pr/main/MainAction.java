@@ -134,6 +134,8 @@ public final class MainAction extends Action {
 			case "reservation":
 				forward="reservation";
 				break;
+				
+				
 			case"1F":
 				forward="Enter";
 				HttpSession session = request.getSession();
@@ -159,9 +161,12 @@ public final class MainAction extends Action {
 				lform.setLink("2F");
 				session.setAttribute("form", lform);
 				break;
+				
+				
 			case"kinmurecord":
 				forward="kinmurecord";
 				break;
+				
 			case"Access_Select1F":
 				forward="Access_Select";
 				EnterForm eform=new EnterForm();

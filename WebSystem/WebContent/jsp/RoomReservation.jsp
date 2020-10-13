@@ -3,7 +3,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="sample.pr.main.ReservationForm"%>
 <%@ page import="sample.pr.main.RoomReservationForm"%>
 <%@ page import="sample.pr.main.LoginForm"%>
 
@@ -38,7 +37,6 @@ text-align:center;
 			<br>
 			<div align= "center">
 					会議室名：
-					<!--  input type ="text" property="room_name" value="" />-->
 					<html:text property="room_name" value="" />
 			</div>
 			<div align= "center">

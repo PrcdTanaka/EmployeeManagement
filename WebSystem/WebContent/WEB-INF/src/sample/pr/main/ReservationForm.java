@@ -38,7 +38,7 @@ public final class ReservationForm extends ActionForm {
 	/**
 	 * 初期化処理。
 	 * <p>
-	 * メイン画面アクションフォームを初期化する。
+	 * 画面アクションフォームを初期化する。
 	 * </p>
 	 */
 	public void initialize() {

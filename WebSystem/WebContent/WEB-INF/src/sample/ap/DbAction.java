@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
-import sample.pr.main.ReservConForm;
+import sample.pr.main.ReservationConfirmForm;
 import sample.pr.main.ReservationForm;
 import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
@@ -2773,7 +2774,7 @@ public class DbAction extends Object{
 		return ret;
 	}
 
-	public boolean InsertEnter(EnterForm form,String a,String b) {
+	public boolean InsertEnter(EnterForm form,String a,String hour,String minutes) {
 
 		boolean ret = false;
 
@@ -2799,11 +2800,11 @@ public class DbAction extends Object{
 			sb.append("values" + crlf);
 			sb.append("('"+form.getEmployee_no()+"'," +crlf);
 			sb.append("'"+a+"',"+ crlf);
-			sb.append("'"+b+"',"+ crlf);
-			sb.append("0,"+ crlf);
+			sb.append("'"+hour+":"+minutes+"',"+ crlf);
+			sb.append("'"+"未退室"+"',"+ crlf);
 			sb.append("0,"+ crlf);
 			sb.append("'"+form.getLink()+"',"+ crlf);
-			sb.append("0,"+crlf);
+			sb.append("'"+"未退室"+"',"+crlf);
 			sb.append("'"+form.getEmployee_name()+"')"+crlf);
 			String query = sb.toString();
 
@@ -2818,7 +2819,7 @@ public class DbAction extends Object{
 		}
 		return ret;
 	}
-	public boolean UpdateLeave(EnterForm form,String a,String b){
+	public boolean UpdateLeave(EnterForm form,String hour,String minutes,String b){
 		// DB接続
 		boolean ret=false;
 		DbConnector dba = null;
@@ -2842,14 +2843,14 @@ public class DbAction extends Object{
 			{
 			sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
 			sb.append("  LEAVING_NAME = " + "'"+form.getEmployee_name()+"'," + crlf);
-			sb.append("  LEAVING_TIME = " + "'" +a+"'," + crlf);
+			sb.append("  LEAVING_TIME = " + "'" +hour+":"+minutes+"'," + crlf);
 			sb.append("  CHECK_LIST='1'"+ crlf);
 			}
 			else
 			{
-				sb.append("  LEAVING_EMP = " + "'0'," + crlf);
-				sb.append("  LEAVING_NAME = " + "'"+"未退室"+"'," + crlf);
-				sb.append("  LEAVING_TIME = " + "'"+"未退室"+"'," + crlf);
+				sb.append("  LEAVING_EMP = " + "'"+form.getEmployee_no()+"'," + crlf);
+				sb.append("  LEAVING_NAME = " + "'"+form.getEmployee_name()+"'," + crlf);
+				sb.append("  LEAVING_TIME = " + "'0'," + crlf);
 				sb.append("  CHECK_LIST='0'"+ crlf);
 			}
 			sb.append("WHERE" + crlf);
@@ -3045,52 +3046,12 @@ public class DbAction extends Object{
 	 */
 	public boolean setKintaiDelete(KintaiMailForm form, LoginForm lform, String MMdd, String SendTime)
 	{
-		boolean ret = true;
-
-		//DB接続
-		DbConnector dba = null;
-
-		try{
-			dba = new DbConnector(gHost,gSid,gUser,gPass);
-		}
-		//例外発生時は以下の処理を実行
-		catch(IOException e1){
-			ret = false;
-			e1.printStackTrace();
-		}
-
-		//DB接続が問題なければif文の中を実行
-		if(dba.conSts){
-			//DELETE文作成
-			StringBuffer sb = new StringBuffer();
-			String crlf = System.getProperty("line.separator");
-			//appendメソッドで文字列を連結
-			sb.append("DELETE FROM KINTAIMAIL"+crlf);
-			sb.append(" WHERE"+crlf);
-			sb.append("  EMP_NO = '" +lform.getEmployee_no()+"'"+ crlf);
-			sb.append(" AND"+crlf);
-			sb.append(" MMDD ='" + MMdd +"'"+ crlf);
-			sb.append(" AND"+crlf);
-			sb.append(" SEND_TIME='"+SendTime+"'"+crlf);
-			//連結した文字列を変数に代入
-			String query =sb.toString();
-			//DBに保存されているレコードを削除
-			try{
-				//DELETE文の発行
-				dba.executeQuery(query);
-				//COMMIT実行
-				dba.commit();
-				dba.closeConnection();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				ret = false;
-			}
-		}
-
+		boolean ret = false;
+		ret = true;
 		return ret;
 	}
 
-	public boolean InsReservation(ReservConForm form) {
+	public boolean InsReservation(ReservationConfirmForm form) {
 
 		boolean ret = false;
 
@@ -3223,6 +3184,13 @@ public class DbAction extends Object{
 			StringBuffer sb = new StringBuffer();
 			String crlf = System.getProperty("line.separator");
 			Calendar calendar = Calendar.getInstance();
+			int nowHour=calendar.get(calendar.HOUR_OF_DAY);
+			if(nowHour<7){
+				Date nowDate = new Date();
+				calendar.setTime(nowDate);
+				calendar.add(Calendar.DAY_OF_MONTH, -1);
+			}
+
 			String year=""+(calendar.get(calendar.YEAR));
 			String month=""+(calendar.get(calendar.MONTH)+1);
 			if(month.length()==1)
@@ -3280,6 +3248,89 @@ public class DbAction extends Object{
 		return ret;
 
 	}
+
+
+	public boolean getJudgment_CheckList(EnterForm form) {
+
+		boolean ret = false;
+
+		// DB接続
+		DbConnector dba = null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if (dba.conSts) {
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+			Calendar calendar = Calendar.getInstance();
+			int nowHour=calendar.get(calendar.HOUR_OF_DAY);
+			if(nowHour<7){
+				Date nowDate = new Date();
+				calendar.setTime(nowDate);
+				calendar.add(Calendar.DAY_OF_MONTH, -1);
+			}
+			String year=""+(calendar.get(calendar.YEAR));
+			String month=""+(calendar.get(calendar.MONTH)+1);
+			if(month.length()==1)
+				month="0"+month;
+			String date=""+calendar.get(calendar.DATE);
+			if(date.length()==1)
+				date="0"+date;
+			String day=month+date;
+
+			String yearday = year+day;
+			sb.append("SELECT"+crlf);
+			sb.append(" CHECK_LIST"+crlf);
+			sb.append(" FROM"+crlf);
+			sb.append(" ROOM_ACCESS_TBL"+crlf);
+			sb.append("WHERE"+crlf);
+			sb.append(" FLOOR= ?"+crlf);
+			sb.append(" AND"+crlf);
+			sb.append(" DAY="+"'"+yearday+"'"+crlf);
+
+			String query = sb.toString();
+
+			// 取得項目
+			List<String> columnList = new ArrayList<String>();
+			columnList.add("CHECK_LIST");
+			//columnList.add(dba.getEMPLOYEE_NAME);
+
+			// 設定値 - 型
+			List<Integer> typeList = new ArrayList<Integer>();
+			typeList.add(dba.DB_STRING);
+
+			// 設定値 - 値
+			List<Object> bindList = new ArrayList<Object>();
+			bindList.add(form.getFloor());
+			//bindList.add(form.getEMPLOYEE_NAME());
+
+			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
+
+			try {
+
+				dba.executeQuery(query, columnList, typeList, bindList, rsList);
+				dba.commit();
+				dba.closeConnection();
+
+
+
+				for (Map<String, String> val : rsList) {
+					form.setCHECK_LIST(val.get("CHECK_LIST"));
+					ret = true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
+
+	}
+
 
 	public boolean getSPAN(KintaiMailForm form) {
 
@@ -4122,7 +4173,7 @@ public class DbAction extends Object{
 			sb.append("  COUNT" + crlf);
 			sb.append("  (ROOM_NAME)" + crlf);
 			sb.append("FROM" + crlf);
-			sb.append("  ROOM_RESERVATION;" + crlf);
+			sb.append("  ROOM_RESERVATION" + crlf);
 
 			String query = sb.toString();
 
@@ -4131,10 +4182,10 @@ public class DbAction extends Object{
 			columnList.add("ROOM_NAME");
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
-			typeList.add(dba.DB_STRING);
+			typeList.add(dba.DB_INT);
 			// 設定値 - 値
 			List<Object> bindList = new ArrayList<Object>();
-			bindList.add(form.getRoom_number());
+			//bindList.add(form.getRoom_number());
 
 			List<Map<String, String>> rsList = new ArrayList<Map<String, String>>();;
 
