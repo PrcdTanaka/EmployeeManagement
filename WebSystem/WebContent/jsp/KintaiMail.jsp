@@ -128,6 +128,8 @@
 				<html:option value="4">第四技術部</html:option>
 				<html:option value="5">第五技術部</html:option>
 				<html:option value="6">ソリューション技術部</html:option>
+				<html:option value="7">システム営業部</html:option>
+				<html:option value="8">総務部</html:option>
 			</html:select>
 		</div>
 		<p align="center" class="BCC">
@@ -147,6 +149,8 @@
 				<html:option value="4">第四技術部</html:option>
 				<html:option value="5">第五技術部</html:option>
 				<html:option value="6">ソリューション技術部</html:option>
+				<html:option value="7">システム営業部</html:option>
+				<html:option value="8">総務部</html:option>
 			</html:select>
 		</div>
 

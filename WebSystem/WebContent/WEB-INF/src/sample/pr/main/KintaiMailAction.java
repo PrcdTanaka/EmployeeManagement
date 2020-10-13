@@ -62,7 +62,7 @@ public class KintaiMailAction extends Action {
 				//	session.setAttribute("form", form);
 				//	session.removeAttribute("form");
 					dba.setKintaiDelete(form,lForm,Action_MMdd,Action_SendTime);
-					forward = "main";
+					forward = "kintailist";;
 				}
 			}
 			if (button.equals("編集"))
@@ -136,6 +136,7 @@ public class KintaiMailAction extends Action {
 						// DBへの登録作業以外をコメント化
 						//session.setAttribute("form", form);
 						dba.setKintaiInfo(form, lForm);
+						forward = "kintailist";
 
 						// DBへの登録作業以外をコメント化
 						//forward = "kintailist";

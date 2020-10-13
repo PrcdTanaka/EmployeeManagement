@@ -1,9 +1,7 @@
 package sample.pr.main;
 
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,6 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -70,8 +75,10 @@ public class MonthlyReportAction extends Action {
 		return map.findForward(forward);
 	}
 
+	//csv出力メソッド
 	public boolean Output_Csv(MonthlyReportForm kForm,
 			HttpServletRequest request,LoginForm lForm) throws IOException {
+
 		// カレンダークラスを取得
 		Calendar cal = Calendar.getInstance();
 		String year = (cal.get(cal.YEAR)) + "";
@@ -80,6 +87,7 @@ public class MonthlyReportAction extends Action {
 
 		// Monthly_reportのDB情報取得
 		dba.getMonthly_report(kForm,String.valueOf(KintaiManagement.Cale_Date_Year),String.valueOf(KintaiManagement.Cale_Date_Month));
+
 
 		// リスト化を行う
 		ArrayList<String> MForm = new ArrayList<String>();
@@ -100,18 +108,14 @@ public class MonthlyReportAction extends Action {
 		MForm.addAll(remark);
 		MForm.addAll(span);
 		MForm.addAll(span2);
-		FileWriter fileWriter = null;
-
-		// ファイル出力方法の変更案
-		FileOutputStream FOS = null;
-		OutputStreamWriter OSW = null;
-
 
 
 		// 現場名
 		String a = "";
+
 		// limit
 		String limit = "";
+
 		// 無届かどうか
 		String send = "";
 
@@ -122,6 +126,7 @@ public class MonthlyReportAction extends Action {
 			kintai_s[listspan] = span.get(Target_day);
 			listspan++;
 		}
+
 		// span2を配列へ入れる
 		int listspan2 = 0;
 		String[] kintai_s2 = new String[30];
@@ -130,925 +135,1014 @@ public class MonthlyReportAction extends Action {
 			listspan2++;
 		}
 
-		try {
-			// FileOutputStreamでファイル書き出しと、、ファイル名指定
-			FOS = new FileOutputStream("C:\\kintaiExcel\\"+String.valueOf(KintaiManagement.Cale_Date_Year)+""+String.valueOf(KintaiManagement.Cale_Date_Month)+"_勤怠連絡月報_"+lForm.getEmployee_no()+lForm.getEmployee_name()+".csv");
-			// 出力をShift_JISで指定
-			OSW = new OutputStreamWriter(FOS, "Shift_JIS");
 
-//			fileWriter = new FileWriter("C:\\kintaiExcel\\person.txt");
-//			request.setCharacterEncoding("UTF-8");
+		//ファイル出力方法
+        Workbook workbook = null;
+        FileOutputStream out = null;
 
-			OSW.append(String.valueOf(KintaiManagement.Cale_Date_Year)+"年度");
-			OSW.append(COMMA);
-			OSW.append(String.valueOf(KintaiManagement.Cale_Date_Month)+"月度");
-			OSW.append(COMMA);
-			OSW.append(NEW_LINE);
-			OSW.append("/");
-			OSW.append(COMMA);
-			OSW.append("届出日");
-			OSW.append(COMMA);
-			OSW.append("時刻");
-			OSW.append(COMMA);
-			OSW.append("Limit");
-			OSW.append(COMMA);
-			OSW.append("連絡遅延");
-			OSW.append(COMMA);
-			OSW.append("届出区分");
-			OSW.append(COMMA);
-			OSW.append("作業場所");
-			OSW.append(COMMA);
-			OSW.append("許可");
-			OSW.append(COMMA);
-			OSW.append("備考");
-			OSW.append(COMMA);
-			OSW.append(NEW_LINE);
+        try {
+            // Excel2007以降の「.xlsx」形式のファイル作成
+            workbook = new XSSFWorkbook();
+            // シートを「サンプル」という名前で作成
+			org.apache.poi.ss.usermodel.Sheet sheet =  workbook.createSheet("勤怠月報画面");
 
-			// リストの内容を順に処理
-			String dada = "";
-			cal.set(Integer.parseInt(year), Integer.parseInt(month), 0);
-			monthlastDay = cal.getActualMaximum(Calendar.DATE);
-			for (int day = 1; day <= monthlastDay; day++) {
-				if (month.length() == 1) {
-					month = "0" + month;
-				}
-				if (String.valueOf(day).length() == 1) {
-					dada = "0" + day;
-				} else {
-					dada = "" + day;
-				}
-				int flg = 0;
-				for (int i = 0; i < mmdd.size(); i++) {
-					if (kintai_s[i].substring(6, 8).equals(dada) && flg == 0) {
+            //罫線のスタイルを黒に指定
+            CellStyle cellStyle = null;
+            cellStyle = setStyle(workbook, BorderStyle.THIN, IndexedColors.BLACK.getIndex());
 
-						// 現場コードからlimit,現場名を取得
-						switch (spotcode.get(i)) {
-						case "9-0001":
-							a = "本社";
-							limit = "0830";
-							break;
-						case "9-0002":
-							a = "大阪事業所";
-							limit = "0830";
-							break;
-						case "1-0001":
-							a = "アルカウェスト（AIU）";
-							limit = "0830";
-							break;
-						case "1-0002":
-							a = "サンシャイン（そんぽ２４）";
-							limit = "0830";
-							break;
-						case "1-0003":
-							a = "上野フジタエステート（えきねっと）";
-							limit = "0930";
-							break;
-						case "1-0004":
-							a = "日生三田ビル";
-							limit = "0830";
-							break;
-						case "1-0005":
-							a = "三鷹高木ビル(システムテスト)";
-							limit = "0900";
-							break;
-						case "1-0006":
-							a = "宝印刷";
-							limit = "0900";
-							break;
-						case "1-0007":
-							a = "紀尾井町パークビル（福利厚生）";
-							limit = "0830";
-							break;
-						case "1-0008":
-							a = "コムシス新横浜";
-							limit = "0830";
-							break;
-						case "1-0009":
-							a = "虎ノ門ヒルズ";
-							limit = "0830";
-							break;
-						case "1-0010":
-							a = "JA川崎(普及)";
-							limit = "0830";
-							break;
-						case "1-0011":
-							a = "武蔵小杉タワープレイス";
-							limit = "0830";
-							break;
-						case "1-0012":
-							a = "ニッセイアロマスクウェア";
-							limit = "0830";
-							break;
-						case "1-0013":
-							a = "三菱電機製作所";
-							limit = "0900";
-							break;
-						case "1-0014":
-							a = "日本ユニシス";
-							limit = "0830";
-							break;
-						case "1-0015":
-							a = "虎ノ門ヒルズ";
-							limit = "0930";
-							break;
-						case "1-0016":
-							a = "蒲田INAビル";
-							limit = "0930";
-							break;
-						case "1-0017":
-							a = "三田NNビル";
-							limit = "0830";
-							break;
-						case "1-0018":
-							a = "府中Jタワー";
-							limit = "0830";
-							break;
-						case "1-0019":
-							a = "三田NNビル";
-							limit = "0810";
-							break;
-						case "1-0020":
-							a = "蒲田アロマスクエア";
-							limit = "0930";
-							break;
-						case "1-0021":
-							a = "リバーサイド読売ビル";
-							limit = "0830";
-							break;
-						case "1-0022":
-							a = "東京ダイヤビルディング";
-							limit = "0830";
-							break;
-						case "1-0023":
-							a = "高崎ルネサス";
-							limit = "0800";
-							break;
-						case "1-0024":
-							a = "イヌイビル";
-							limit = "0830";
-							break;
-						case "1-0025":
-							a = "グラスシティ晴海";
-							limit = "0830";
-							break;
-						case "1-0026":
-							a = "中野セントラルパークサウス";
-							limit = "0830";
-							break;
-						case "1-0027":
-							a = "新光ビルディング日本橋";
-							limit = "0810";
-							break;
-						case "1-0028":
-							a = "ランディック第2新橋ビル";
-							limit = "0830";
-							break;
-						case "1-0029":
-							a = "新宿ガーデンタワー";
-							limit = "0830";
-							break;
-						case "1-0030":
-							a = "新宿ガーデンタワー";
-							limit = "0830";
-							break;
-						case "1-0031":
-							a = "オリナスタワー";
-							limit = "0830";
-							break;
-						case "1-0032":
-							a = "日立愛宕別館";
-							limit = "0830";
-							break;
-						case "1-0033":
-							a = "アークヒルズビル";
-							limit = "0830";
-							break;
-						case "1-0034":
-							a = "パナソニック佐江戸事業所";
-							limit = "0830";
-							break;
-						case "1-0035":
-							a = "蒲田アロマスクエア";
-							limit = "0900";
-							break;
-						case "1-0036":
-							a = "蒲田アロマスクエア";
-							limit = "0900";
-							break;
-						case "1-0037":
-							a = "SGシステム";
-							limit = "0830";
-							break;
-						case "1-0038":
-							a = "KDX晴海ビル，晴海トリトンスクエア";
-							limit = "0830";
-							break;
-						case "1-0039":
-							a = "浜松町ビルディング";
-							limit = "0900";
-							break;
-						case "1-0040":
-							a = "アプラス　東京ダイヤビル5号館";
-							limit = "0845";
-							break;
-						case "1-0041":
-							a = "一番町東急ビル";
-							limit = "0830";
-							break;
-						case "1-0042":
-							a = "新宿グリーンタワービル";
-							limit = "0930";
-							break;
-						case "1-0043":
-							a = "浜松町ビルディング";
-							limit = "0830";
-							break;
-						case "1-0044":
-							a = "目白台ビル";
-							limit = "0830";
-							break;
-						case "1-0045":
-							a = "トレードピアお台場";
-							limit = "0930";
-							break;
-						case "1-0046":
-							a = "NRIタワー";
-							limit = "0930";
-							break;
-						case "1-0047":
-							a = "目白台ビル";
-							limit = "0810";
-							break;
-						case "2-0001":
-							a = "日立　戸塚";
-							limit = "0815";
-							break;
-						case "2-0002":
-							a = "横浜西ビル（NSKJひまわり）";
-							limit = "0900";
-							break;
-						case "2-0003":
-							a = "NTTS横浜(IC標準)";
-							limit = "0930";
-							break;
-						case "2-0004":
-							a = "NTTS横浜(OCN)";
-							limit = "0830";
-							break;
-						case "2-0005":
-							a = "ドコモR＆Dセンタ（Cカテゴリ）";
-							limit = "0930";
-							break;
-						case "2-0006":
-							a = "明治安田生命ビル(基盤)";
-							limit = "0830";
-							break;
-						case "2-0007":
-							a = "明治安田生命ビル(アプリ営業)";
-							limit = "0830";
-							break;
-						case "2-0008":
-							a = "明治安田生命ビル(活動基盤)";
-							limit = "0830";
-							break;
-						case "2-0009":
-							a = "JA川崎(普及)";
-							limit = "0830";
-							break;
-						case "2-0010":
-							a = "JA川崎(再構築)";
-							limit = "0830";
-							break;
-						case "2-0011":
-							a = "東京情報センター";
-							limit = "0830";
-							break;
-						case "2-0012":
-							a = "NTTS横浜(OCN)";
-							limit = "0830";
-							break;
-						case "2-0013":
-							a = "NTTS横浜(IC標準)";
-							limit = "0930";
-							break;
-						case "2-0014":
-							a = "NTTS横浜(OCN)";
-							limit = "0830";
-							break;
-						case "2-0015":
-							a = "穴守稲荷(ID)";
-							limit = "0900";
-							break;
-						case "2-0016":
-							a = "FBS（CEQ)";
-							limit = "0810";
-							break;
-						case "2-0017":
-							a = "日新火災";
-							limit = "0830";
-							break;
-						case "2-0018":
-							a = "ｱｸｾｽPF―光ｺﾗﾎﾞ対応/#P#FUTURE_F27-1";
-							limit = "0900";
-							break;
-						case "2-0019":
-							a = "移動機試験";
-							limit = "0830";
-							break;
-						case "2-0020":
-							a = "HiICS戸塚";
-							limit = "0815";
-							break;
-						case "2-0021":
-							a = "コンカード横浜";
-							limit = "0830";
-							break;
-						case "2-0022":
-							a = "三菱電機(湘セン)";
-							limit = "0900";
-							break;
-						case "2-0023":
-							a = "丸の内中央ビル(JR)";
-							limit = "0830";
-							break;
-						case "2-0024":
-							a = "情報総研（大船）";
-							limit = "0800";
-							break;
-						case "2-0025":
-							a = "ワテラスタワー";
-							limit = "0830";
-							break;
-						case "2-0026":
-							a = "コンカード横浜";
-							limit = "0815";
-							break;
-						case "2-0027":
-							a = "神谷町MTビル";
-							limit = "0830";
-							break;
-						case "2-0028":
-							a = "NEC別館ビル";
-							limit = "0900";
-							break;
-						case "2-0029":
-							a = "ソフトバンクテレコム東京イーストセンター";
-							limit = "0930";
-							break;
-						case "2-0030":
-							a = "HIENG戸塚";
-							limit = "0815";
-							break;
-						case "2-0031":
-							a = "コープ共済プラザ";
-							limit = "0830";
-							break;
-						case "2-0032":
-							a = "楽天クリムゾンハウス";
-							limit = "0900";
-							break;
-						case "2-0033":
-							a = "三菱電機鎌倉製作所";
-							limit = "0815";
-							break;
-						case "3-0001":
-							a = "GA多摩ビル（TNK）";
-							limit = "0830";
-							break;
-						case "3-0002":
-							a = "GA多摩ビル（情報H）";
-							limit = "0830";
-							break;
-						case "3-0003":
-							a = "明治安田生命ビル(業務管理)";
-							limit = "0845";
-							break;
-						case "3-0004":
-							a = "明治安田生命ビル(ネットワーク基盤Ｇ)";
-							limit = "0830";
-							break;
-						case "3-0005":
-							a = "明治安田生命ビル(ＢＩ開発営業)";
-							limit = "0830";
-							break;
-						case "3-0006":
-							a = "KSP（富士通）";
-							limit = "0820";
-							break;
-						case "3-0007":
-							a = "三菱電機(鎌電)";
-							limit = "0815";
-							break;
-						case "3-0008":
-							a = "ZENITAKAANNEXビル(三菱電機)";
-							limit = "0830";
-							break;
-						case "3-0009":
-							a = "勝どき（運用）";
-							limit = "0930";
-							break;
-						case "3-0010":
-							a = "マイテクノ新人研修";
-							limit = "0830";
-							break;
-						case "3-0011":
-							a = "イーストネットビル(コープ共済)";
-							limit = "0830";
-							break;
-						case "3-0012":
-							a = "クラフト";
-							limit = "0930";
-							break;
-						case "3-0013":
-							a = "新東京ビル";
-							limit = "0830";
-							break;
-						case "3-0014":
-							a = "東京ファッションタウンビル(みずほ総研)";
-							limit = "0810";
-							break;
-						case "3-0015":
-							a = "芝浦ルネサイトタワー";
-							limit = "0830";
-							break;
-						case "3-0016":
-							a = "コープ共済";
-							limit = "0830";
-							break;
-						case "3-0017":
-							a = "東芝府中";
-							limit = "0830";
-							break;
-						case "3-0018":
-							a = "丸の内一丁目みずほビル";
-							limit = "0810";
-							break;
-						case "3-0019":
-							a = "アークヒルズビル";
-							limit = "0930";
-							break;
-						case "3-0020":
-							a = "横浜東口ウィスポートビル３F";
-							limit = "0830";
-							break;
-						case "3-0021":
-							a = "楽天ビル２号館";
-							limit = "0810";
-							break;
-						case "3-0022":
-							a = "ガーデンシティ品川御殿山";
-							limit = "0830";
-							break;
-						case "3-0023":
-							a = "日新ビル";
-							limit = "0830";
-							break;
-						case "3-0024":
-							a = "新川崎三井ビルディング";
-							limit = "0820";
-							break;
-						case "3-0025":
-							a = "品川アレア";
-							limit = "0900";
-							break;
-						case "3-0026":
-							a = "横浜ビジネスパーク";
-							limit = "0830";
-							break;
-						case "3-0027":
-							a = "NEC玉川事業場ルネッサンスシティN棟";
-							limit = "0830";
-							break;
-						case "3-0028":
-							a = "コープ共済プラザ";
-							limit = "0900";
-							break;
-						case "4-0001":
-							a = "AXA";
-							limit = "0830";
-							break;
-						case "4-0002":
-							a = "NTTDATAビル（航空管制）";
-							limit = "0900";
-							break;
-						case "4-0003":
-							a = "住友ツインビル（NSOL）";
-							limit = "0830";
-							break;
-						case "4-0004":
-							a = "東京電力";
-							limit = "0900";
-							break;
-						case "4-0005":
-							a = "コニカミノルタ";
-							limit = "0830";
-							break;
-						case "4-0006":
-							a = "アルファ2号館";
-							limit = "0830";
-							break;
-						case "4-0007":
-							a = "コムシス";
-							limit = "0830";
-							break;
-						case "4-0008":
-							a = "住友芝浦ビル";
-							limit = "0900";
-							break;
-						case "4-0009":
-							a = "DNP五反田ビル";
-							limit = "0830";
-							break;
-						case "4-0010":
-							a = "パナソニック";
-							limit = "0830";
-							break;
-						case "4-0011":
-							a = "虎ノ門ビル";
-							limit = "0830";
-							break;
-						case "4-0012":
-							a = "井門九段北ビル";
-							limit = "0830";
-							break;
-						case "4-0013":
-							a = "NRIセキュア";
-							limit = "0930";
-							break;
-						case "4-0014":
-							a = "T社向け電力システム開発";
-							limit = "0930";
-							break;
-						case "4-0015":
-							a = "日本HP本社ビル（ドライバー端末アプリ開発）";
-							limit = "0930";
-							break;
-						case "4-0016":
-							a = "日本HP本社ビル（電力システム開発）";
-							limit = "0900";
-							break;
-						case "4-0017":
-							a = "図研　センター南ビル";
-							limit = "0830";
-							break;
-						case "4-0018":
-							a = "NTT横浜山下ビル";
-							limit = "0830";
-							break;
-						case "4-0019":
-							a = "横浜ダイヤビル";
-							limit = "0830";
-							break;
-						case "4-0020":
-							a = "五洋芝浦ビル";
-							limit = "0830";
-							break;
-						case "4-0021":
-							a = "新駿河台ビル";
-							limit = "0830";
-							break;
-						case "4-0022":
-							a = "東京ガーデンテラス紀尾井町";
-							limit = "0930";
-							break;
-						case "4-0023":
-							a = "NRI";
-							limit = "0830";
-							break;
-						case "4-0024":
-							a = "アイマーク";
-							limit = "0830";
-							break;
-						case "4-0025":
-							a = "中島商事ビル";
-							limit = "0930";
-							break;
-						case "4-0026":
-							a = "新東京センター";
-							limit = "0930";
-							break;
-						case "4-0027":
-							a = "新宿ガーデンタワー";
-							limit = "0830";
-							break;
-						case "4-0028":
-							a = "第３アルファテクノセンター";
-							limit = "0830";
-							break;
-						case "4-0029":
-							a = "mBAYPOINT幕張";
-							limit = "0900";
-							break;
-						case "4-0030":
-							a = "パークタワー";
-							limit = "0900";
-							break;
-						case "4-0031":
-							a = "日本HP本社ビル";
-							limit = "0930";
-							break;
-						case "4-0032":
-							a = "太陽生命浦和ビル";
-							limit = "0830";
-							break;
-						case "4-0033":
-							a = "NTT品川TWINSアネックス";
-							limit = "0900";
-							break;
-						case "4-0034":
-							a = "品川シーサイドサウスタワー";
-							limit = "0900";
-							break;
-						case "4-0035":
-							a = "豊洲フロント";
-							limit = "0930";
-							break;
-						case "4-0036":
-							a = "KDX晴海ビル，晴海トリトンスクエア";
-							limit = "0830";
-							break;
-						case "4-0037":
-							a = "日本HP本社ビル";
-							limit = "0900";
-							break;
-						case "4-0038":
-							a = "KDX晴海ビル，晴海トリトンスクエア";
-							limit = "0930";
-							break;
-						case "4-0039":
-							a = "I・Sビル";
-							limit = "0830";
-							break;
-						case "5-0001":
-							a = "中之島フェスティバルタワー（DKI）";
-							limit = "0830";
-							break;
-						case "5-0002":
-							a = "東京建物梅田ビル（CTC）";
-							limit = "0830";
-							break;
-						case "5-0003":
-							a = "日本流通システム";
-							limit = "0830";
-							break;
-						case "5-0004":
-							a = "オージス総研　千里オフィス";
-							limit = "0830";
-							break;
-						case "5-0005":
-							a = "日本IBM　大阪京橋事業所";
-							limit = "0830";
-							break;
-						case "5-0006":
-							a = "パナソニックスマートファクトリーソリューションズ";
-							limit = "0800";
-							break;
-						case "5-0007":
-							a = "梅田センタービル（NTTﾃﾞｰﾀｾｷｽｲｼｽﾃﾑ）";
-							limit = "0900";
-							break;
-						case "5-0008":
-							a = "新ダイビル（日立ｼｽﾃﾑｽﾞ）";
-							limit = "0820";
-							break;
-						case "5-0009":
-							a = "東洋紡ビル（ｿﾌﾟﾗ）";
-							limit = "0830";
-							break;
-						case "5-0010":
-							a = "新大阪ニッセイビル（住友電工情報ｼｽﾃﾑ）";
-							limit = "0800";
-							break;
-						case "5-0011":
-							a = "大津市役所（日立ｼｽﾃﾑｽﾞ）";
-							limit = "0820";
-							break;
-						case "5-0012":
-							a = "和田岬（三菱電機製作所）";
-							limit = "0815";
-							break;
-						case "5-0013":
-							a = "三井住友信託銀行";
-							limit = "0820";
-							break;
-						case "5-0014":
-							a = "オージス総研千里オフィス";
-							limit = "0830";
-							break;
-						case "5-0015":
-							a = "三井住友信託銀行";
-							limit = "0830";
-							break;
-						case "5-0016":
-							a = "アートヴィレッジ大崎セントラルタワー";
-							limit = "0930";
-							break;
-						case "5-0017":
-							a = "ニッセイアロマスクウェア";
-							limit = "0930";
-							break;
-						case "5-0018":
-							a = "品川シーサイドサウスタワー";
-							limit = "0900";
-							break;
-						case "5-0019":
-							a = "イヌイビル";
-							limit = "0830";
-							break;
-						case "5-0020":
-							a = "SLC";
-							limit = "0830";
-							break;
-						case "5-0021":
-							a = "新大阪ニッセイビル（ニッセイ情報テクノロジー）";
-							limit = "0830";
-							break;
-						case "5-0022":
-							a = "大阪中之島ビル（ｱｸｾﾝﾁｭｱ）";
-							limit = "0830";
-							break;
-						case "5-0023":
-							a = "中之島セントラルタワー";
-							limit = "0830";
-							break;
-						case "5-0024":
-							a = "大阪日興ビル";
-							limit = "0830";
-							break;
-						case "5-0025":
-							a = "北浜東森田ビル";
-							limit = "0830";
-							break;
-						case "6-0001":
-							a = "横浜ダイヤビル（NRI）";
-							limit = "0830";
-							break;
-						case "6-0002":
-							a = "アルカウェスト（AIU）";
-							limit = "0830";
-							break;
-						case "6-0003":
-							a = "日新火災";
-							limit = "0830";
-							break;
-						case "6-0004":
-							a = "住友生命";
-							limit = "0820";
-							break;
-						case "6-0005":
-							a = "イーストネットビル(コープ共済)";
-							limit = "0830";
-							break;
-						case "6-0006":
-							a = "FBS（CEQ)";
-							limit = "0810";
-							break;
-						case "6-0007":
-							a = "三菱電機製作所";
-							limit = "0830";
-							break;
-						case "6-0008":
-							a = "日興システムソリューションズ";
-							limit = "0900";
-							break;
-						case "7-0001":
-							a = "トレードピアお台場";
-							limit = "0830";
-							break;
-						case "7-0002":
-							a = "NTTDOCOMOR&Dセンター２号館";
-							limit = "0900";
-							break;
-						case "7-0003":
-							a = "ソフトバンク";
-							limit = "0830";
-							break;
-						case "7-0004":
-							a = "日立ソリューションズタワー";
-							limit = "0830";
-							break;
-						case "7-0005":
-							a = "SLC";
-							limit = "0730";
-							break;
-						case "7-0006":
-							a = "SLC";
-							limit = "0930";
-							break;
-						case "7-0007":
-							a = "NTT西日本";
-							limit = "0830";
-							break;
-						case "7-0008":
-							a = "オペラシティタワー";
-							limit = "0930";
-							break;
-						default:
-							a = "無効なコードです";
-						}
+            //行を指定する変数
+             Row row;
+             //列を指定する変数
+             Cell cell;
 
-						// 無届かどうかをif文で表示
-						if (Integer.parseInt(span.get(i).substring(4, 8)) <= Integer
-								.parseInt(mmdd.get(i))) {
-							if (Integer.parseInt(send_time.get(i)) > Integer
-									.parseInt(limit)) {
-								send = "無届";
-							} else {
-								send = "";
-							}
-						} else {
-							send = "";
-						}
+             //excel出力時のフォーム作成
+             //年度
+             row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(0);
+             cell = row.createCell(0);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)+"年度");
 
-				 if(kintai_s[i].substring(6,8).equals(kintai_s2[i].substring(6,8))){
-						OSW.append(dada+"日");
-						OSW.append(COMMA);
-						OSW.append(mmdd.get(i));
-						OSW.append(COMMA);
-						OSW.append(send_time.get(i));
-						OSW.append(COMMA);
-						OSW.append(limit);
-						OSW.append(COMMA);
-						OSW.append(send);
-						OSW.append(COMMA);
-						OSW.append(division.get(i));
-						OSW.append(COMMA);
-						OSW.append(a);
-						OSW.append(COMMA);
-						OSW.append(perm.get(i));
-						OSW.append(COMMA);
-						OSW.append(remark.get(i));
-						OSW.append(COMMA);
-						OSW.append(NEW_LINE);
+             //月
+             row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(1);
+             cell = row.createCell(0);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Month)+"月度");
 
-						flg = 1;
-						break;
-				 }else{
-					 for(int k=Integer.parseInt(kintai_s[i].substring(6,8));k<=(Integer.parseInt(kintai_s2[i].substring(6,8)));k++){
-						OSW.append(k+"日");
-						OSW.append(COMMA);
-						OSW.append(mmdd.get(i));
-						OSW.append(COMMA);
-						OSW.append(send_time.get(i));
-						OSW.append(COMMA);
-						OSW.append(limit);
-						OSW.append(COMMA);
-						OSW.append(send);
-						OSW.append(COMMA);
-						OSW.append(division.get(i));
-						OSW.append(COMMA);
-						OSW.append(a);
-						OSW.append(COMMA);
-						OSW.append(perm.get(i));
-						OSW.append(COMMA);
-						OSW.append(remark.get(i));
-						OSW.append(COMMA);
-						OSW.append(NEW_LINE);
+             row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(2);
+             cell = row.createCell(0);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue("/");
+             cell = row.createCell(1);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue("届出日");
+             cell = row.createCell(2);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue("時刻");
+             cell = row.createCell(3);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue("Limit");
+             cell = row.createCell(4);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue("連絡遅延");
+             cell = row.createCell(5);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue("届出区分");
+             cell = row.createCell(6);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue("作業場所");
+             cell = row.createCell(7);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue("許可");
+             cell = row.createCell(8);
+             cell.setCellStyle(cellStyle);
+             cell.setCellValue("備考");
 
-						flg=1;
-						day=k;
-					 }
-				 }
-					}
-				}
-				if (flg == 0) {
-					OSW.append(dada+"日");
-					OSW.append(COMMA);
-					OSW.append("");
-					OSW.append(COMMA);
-					OSW.append("");
-					OSW.append(COMMA);
-					OSW.append("");
-					OSW.append(COMMA);
-					OSW.append("");
-					OSW.append(COMMA);
-					OSW.append("");
-					OSW.append(COMMA);
-					OSW.append("");
-					OSW.append(COMMA);
-					OSW.append("");
-					OSW.append(COMMA);
-					OSW.append("");
-					OSW.append(COMMA);
-					OSW.append(NEW_LINE);
-				}
-			}
+             //日にちを作成
+ 			// リストの内容を順に処理
+ 			String dada = "";
+ 			cal.set(Integer.parseInt(year), Integer.parseInt(month), 0);
+ 			monthlastDay = cal.getActualMaximum(Calendar.DATE);
+ 			for (int day = 1; day <= monthlastDay; day++) {
+ 				if (month.length() == 1) {
+ 					month = "0" + month;
+ 				}
+ 				if (String.valueOf(day).length() == 1) {
+ 					dada = "0" + day;
+ 				} else {
+ 					dada = "" + day;
+ 				}
+ 				int flg = 0;
+ 				for (int i = 0; i < mmdd.size(); i++) {
+ 					if (kintai_s[i].substring(6, 8).equals(dada) && flg == 0) {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+ 						// 現場コードからlimit,現場名を取得
+ 						switch (spotcode.get(i)) {
+ 						case "9-0001":
+ 							a = "本社";
+ 							limit = "0830";
+ 							break;
+ 						case "9-0002":
+ 							a = "大阪事業所";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0001":
+ 							a = "アルカウェスト（AIU）";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0002":
+ 							a = "サンシャイン（そんぽ２４）";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0003":
+ 							a = "上野フジタエステート（えきねっと）";
+ 							limit = "0930";
+ 							break;
+ 						case "1-0004":
+ 							a = "日生三田ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0005":
+ 							a = "三鷹高木ビル(システムテスト)";
+ 							limit = "0900";
+ 							break;
+ 						case "1-0006":
+ 							a = "宝印刷";
+ 							limit = "0900";
+ 							break;
+ 						case "1-0007":
+ 							a = "紀尾井町パークビル（福利厚生）";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0008":
+ 							a = "コムシス新横浜";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0009":
+ 							a = "虎ノ門ヒルズ";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0010":
+ 							a = "JA川崎(普及)";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0011":
+ 							a = "武蔵小杉タワープレイス";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0012":
+ 							a = "ニッセイアロマスクウェア";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0013":
+ 							a = "三菱電機製作所";
+ 							limit = "0900";
+ 							break;
+ 						case "1-0014":
+ 							a = "日本ユニシス";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0015":
+ 							a = "虎ノ門ヒルズ";
+ 							limit = "0930";
+ 							break;
+ 						case "1-0016":
+ 							a = "蒲田INAビル";
+ 							limit = "0930";
+ 							break;
+ 						case "1-0017":
+ 							a = "三田NNビル";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0018":
+ 							a = "府中Jタワー";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0019":
+ 							a = "三田NNビル";
+ 							limit = "0810";
+ 							break;
+ 						case "1-0020":
+ 							a = "蒲田アロマスクエア";
+ 							limit = "0930";
+ 							break;
+ 						case "1-0021":
+ 							a = "リバーサイド読売ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0022":
+ 							a = "東京ダイヤビルディング";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0023":
+ 							a = "高崎ルネサス";
+ 							limit = "0800";
+ 							break;
+ 						case "1-0024":
+ 							a = "イヌイビル";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0025":
+ 							a = "グラスシティ晴海";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0026":
+ 							a = "中野セントラルパークサウス";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0027":
+ 							a = "新光ビルディング日本橋";
+ 							limit = "0810";
+ 							break;
+ 						case "1-0028":
+ 							a = "ランディック第2新橋ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0029":
+ 							a = "新宿ガーデンタワー";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0030":
+ 							a = "新宿ガーデンタワー";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0031":
+ 							a = "オリナスタワー";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0032":
+ 							a = "日立愛宕別館";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0033":
+ 							a = "アークヒルズビル";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0034":
+ 							a = "パナソニック佐江戸事業所";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0035":
+ 							a = "蒲田アロマスクエア";
+ 							limit = "0900";
+ 							break;
+ 						case "1-0036":
+ 							a = "蒲田アロマスクエア";
+ 							limit = "0900";
+ 							break;
+ 						case "1-0037":
+ 							a = "SGシステム";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0038":
+ 							a = "KDX晴海ビル，晴海トリトンスクエア";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0039":
+ 							a = "浜松町ビルディング";
+ 							limit = "0900";
+ 							break;
+ 						case "1-0040":
+ 							a = "アプラス　東京ダイヤビル5号館";
+ 							limit = "0845";
+ 							break;
+ 						case "1-0041":
+ 							a = "一番町東急ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0042":
+ 							a = "新宿グリーンタワービル";
+ 							limit = "0930";
+ 							break;
+ 						case "1-0043":
+ 							a = "浜松町ビルディング";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0044":
+ 							a = "目白台ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "1-0045":
+ 							a = "トレードピアお台場";
+ 							limit = "0930";
+ 							break;
+ 						case "1-0046":
+ 							a = "NRIタワー";
+ 							limit = "0930";
+ 							break;
+ 						case "1-0047":
+ 							a = "目白台ビル";
+ 							limit = "0810";
+ 							break;
+ 						case "2-0001":
+ 							a = "日立　戸塚";
+ 							limit = "0815";
+ 							break;
+ 						case "2-0002":
+ 							a = "横浜西ビル（NSKJひまわり）";
+ 							limit = "0900";
+ 							break;
+ 						case "2-0003":
+ 							a = "NTTS横浜(IC標準)";
+ 							limit = "0930";
+ 							break;
+ 						case "2-0004":
+ 							a = "NTTS横浜(OCN)";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0005":
+ 							a = "ドコモR＆Dセンタ（Cカテゴリ）";
+ 							limit = "0930";
+ 							break;
+ 						case "2-0006":
+ 							a = "明治安田生命ビル(基盤)";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0007":
+ 							a = "明治安田生命ビル(アプリ営業)";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0008":
+ 							a = "明治安田生命ビル(活動基盤)";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0009":
+ 							a = "JA川崎(普及)";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0010":
+ 							a = "JA川崎(再構築)";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0011":
+ 							a = "東京情報センター";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0012":
+ 							a = "NTTS横浜(OCN)";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0013":
+ 							a = "NTTS横浜(IC標準)";
+ 							limit = "0930";
+ 							break;
+ 						case "2-0014":
+ 							a = "NTTS横浜(OCN)";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0015":
+ 							a = "穴守稲荷(ID)";
+ 							limit = "0900";
+ 							break;
+ 						case "2-0016":
+ 							a = "FBS（CEQ)";
+ 							limit = "0810";
+ 							break;
+ 						case "2-0017":
+ 							a = "日新火災";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0018":
+ 							a = "ｱｸｾｽPF―光ｺﾗﾎﾞ対応/#P#FUTURE_F27-1";
+ 							limit = "0900";
+ 							break;
+ 						case "2-0019":
+ 							a = "移動機試験";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0020":
+ 							a = "HiICS戸塚";
+ 							limit = "0815";
+ 							break;
+ 						case "2-0021":
+ 							a = "コンカード横浜";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0022":
+ 							a = "三菱電機(湘セン)";
+ 							limit = "0900";
+ 							break;
+ 						case "2-0023":
+ 							a = "丸の内中央ビル(JR)";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0024":
+ 							a = "情報総研（大船）";
+ 							limit = "0800";
+ 							break;
+ 						case "2-0025":
+ 							a = "ワテラスタワー";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0026":
+ 							a = "コンカード横浜";
+ 							limit = "0815";
+ 							break;
+ 						case "2-0027":
+ 							a = "神谷町MTビル";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0028":
+ 							a = "NEC別館ビル";
+ 							limit = "0900";
+ 							break;
+ 						case "2-0029":
+ 							a = "ソフトバンクテレコム東京イーストセンター";
+ 							limit = "0930";
+ 							break;
+ 						case "2-0030":
+ 							a = "HIENG戸塚";
+ 							limit = "0815";
+ 							break;
+ 						case "2-0031":
+ 							a = "コープ共済プラザ";
+ 							limit = "0830";
+ 							break;
+ 						case "2-0032":
+ 							a = "楽天クリムゾンハウス";
+ 							limit = "0900";
+ 							break;
+ 						case "2-0033":
+ 							a = "三菱電機鎌倉製作所";
+ 							limit = "0815";
+ 							break;
+ 						case "3-0001":
+ 							a = "GA多摩ビル（TNK）";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0002":
+ 							a = "GA多摩ビル（情報H）";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0003":
+ 							a = "明治安田生命ビル(業務管理)";
+ 							limit = "0845";
+ 							break;
+ 						case "3-0004":
+ 							a = "明治安田生命ビル(ネットワーク基盤Ｇ)";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0005":
+ 							a = "明治安田生命ビル(ＢＩ開発営業)";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0006":
+ 							a = "KSP（富士通）";
+ 							limit = "0820";
+ 							break;
+ 						case "3-0007":
+ 							a = "三菱電機(鎌電)";
+ 							limit = "0815";
+ 							break;
+ 						case "3-0008":
+ 							a = "ZENITAKAANNEXビル(三菱電機)";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0009":
+ 							a = "勝どき（運用）";
+ 							limit = "0930";
+ 							break;
+ 						case "3-0010":
+ 							a = "マイテクノ新人研修";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0011":
+ 							a = "イーストネットビル(コープ共済)";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0012":
+ 							a = "クラフト";
+ 							limit = "0930";
+ 							break;
+ 						case "3-0013":
+ 							a = "新東京ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0014":
+ 							a = "東京ファッションタウンビル(みずほ総研)";
+ 							limit = "0810";
+ 							break;
+ 						case "3-0015":
+ 							a = "芝浦ルネサイトタワー";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0016":
+ 							a = "コープ共済";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0017":
+ 							a = "東芝府中";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0018":
+ 							a = "丸の内一丁目みずほビル";
+ 							limit = "0810";
+ 							break;
+ 						case "3-0019":
+ 							a = "アークヒルズビル";
+ 							limit = "0930";
+ 							break;
+ 						case "3-0020":
+ 							a = "横浜東口ウィスポートビル３F";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0021":
+ 							a = "楽天ビル２号館";
+ 							limit = "0810";
+ 							break;
+ 						case "3-0022":
+ 							a = "ガーデンシティ品川御殿山";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0023":
+ 							a = "日新ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0024":
+ 							a = "新川崎三井ビルディング";
+ 							limit = "0820";
+ 							break;
+ 						case "3-0025":
+ 							a = "品川アレア";
+ 							limit = "0900";
+ 							break;
+ 						case "3-0026":
+ 							a = "横浜ビジネスパーク";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0027":
+ 							a = "NEC玉川事業場ルネッサンスシティN棟";
+ 							limit = "0830";
+ 							break;
+ 						case "3-0028":
+ 							a = "コープ共済プラザ";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0001":
+ 							a = "AXA";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0002":
+ 							a = "NTTDATAビル（航空管制）";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0003":
+ 							a = "住友ツインビル（NSOL）";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0004":
+ 							a = "東京電力";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0005":
+ 							a = "コニカミノルタ";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0006":
+ 							a = "アルファ2号館";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0007":
+ 							a = "コムシス";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0008":
+ 							a = "住友芝浦ビル";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0009":
+ 							a = "DNP五反田ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0010":
+ 							a = "パナソニック";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0011":
+ 							a = "虎ノ門ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0012":
+ 							a = "井門九段北ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0013":
+ 							a = "NRIセキュア";
+ 							limit = "0930";
+ 							break;
+ 						case "4-0014":
+ 							a = "T社向け電力システム開発";
+ 							limit = "0930";
+ 							break;
+ 						case "4-0015":
+ 							a = "日本HP本社ビル（ドライバー端末アプリ開発）";
+ 							limit = "0930";
+ 							break;
+ 						case "4-0016":
+ 							a = "日本HP本社ビル（電力システム開発）";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0017":
+ 							a = "図研　センター南ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0018":
+ 							a = "NTT横浜山下ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0019":
+ 							a = "横浜ダイヤビル";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0020":
+ 							a = "五洋芝浦ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0021":
+ 							a = "新駿河台ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0022":
+ 							a = "東京ガーデンテラス紀尾井町";
+ 							limit = "0930";
+ 							break;
+ 						case "4-0023":
+ 							a = "NRI";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0024":
+ 							a = "アイマーク";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0025":
+ 							a = "中島商事ビル";
+ 							limit = "0930";
+ 							break;
+ 						case "4-0026":
+ 							a = "新東京センター";
+ 							limit = "0930";
+ 							break;
+ 						case "4-0027":
+ 							a = "新宿ガーデンタワー";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0028":
+ 							a = "第３アルファテクノセンター";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0029":
+ 							a = "mBAYPOINT幕張";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0030":
+ 							a = "パークタワー";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0031":
+ 							a = "日本HP本社ビル";
+ 							limit = "0930";
+ 							break;
+ 						case "4-0032":
+ 							a = "太陽生命浦和ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0033":
+ 							a = "NTT品川TWINSアネックス";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0034":
+ 							a = "品川シーサイドサウスタワー";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0035":
+ 							a = "豊洲フロント";
+ 							limit = "0930";
+ 							break;
+ 						case "4-0036":
+ 							a = "KDX晴海ビル，晴海トリトンスクエア";
+ 							limit = "0830";
+ 							break;
+ 						case "4-0037":
+ 							a = "日本HP本社ビル";
+ 							limit = "0900";
+ 							break;
+ 						case "4-0038":
+ 							a = "KDX晴海ビル，晴海トリトンスクエア";
+ 							limit = "0930";
+ 							break;
+ 						case "4-0039":
+ 							a = "I・Sビル";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0001":
+ 							a = "中之島フェスティバルタワー（DKI）";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0002":
+ 							a = "東京建物梅田ビル（CTC）";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0003":
+ 							a = "日本流通システム";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0004":
+ 							a = "オージス総研　千里オフィス";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0005":
+ 							a = "日本IBM　大阪京橋事業所";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0006":
+ 							a = "パナソニックスマートファクトリーソリューションズ";
+ 							limit = "0800";
+ 							break;
+ 						case "5-0007":
+ 							a = "梅田センタービル（NTTﾃﾞｰﾀｾｷｽｲｼｽﾃﾑ）";
+ 							limit = "0900";
+ 							break;
+ 						case "5-0008":
+ 							a = "新ダイビル（日立ｼｽﾃﾑｽﾞ）";
+ 							limit = "0820";
+ 							break;
+ 						case "5-0009":
+ 							a = "東洋紡ビル（ｿﾌﾟﾗ）";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0010":
+ 							a = "新大阪ニッセイビル（住友電工情報ｼｽﾃﾑ）";
+ 							limit = "0800";
+ 							break;
+ 						case "5-0011":
+ 							a = "大津市役所（日立ｼｽﾃﾑｽﾞ）";
+ 							limit = "0820";
+ 							break;
+ 						case "5-0012":
+ 							a = "和田岬（三菱電機製作所）";
+ 							limit = "0815";
+ 							break;
+ 						case "5-0013":
+ 							a = "三井住友信託銀行";
+ 							limit = "0820";
+ 							break;
+ 						case "5-0014":
+ 							a = "オージス総研千里オフィス";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0015":
+ 							a = "三井住友信託銀行";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0016":
+ 							a = "アートヴィレッジ大崎セントラルタワー";
+ 							limit = "0930";
+ 							break;
+ 						case "5-0017":
+ 							a = "ニッセイアロマスクウェア";
+ 							limit = "0930";
+ 							break;
+ 						case "5-0018":
+ 							a = "品川シーサイドサウスタワー";
+ 							limit = "0900";
+ 							break;
+ 						case "5-0019":
+ 							a = "イヌイビル";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0020":
+ 							a = "SLC";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0021":
+ 							a = "新大阪ニッセイビル（ニッセイ情報テクノロジー）";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0022":
+ 							a = "大阪中之島ビル（ｱｸｾﾝﾁｭｱ）";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0023":
+ 							a = "中之島セントラルタワー";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0024":
+ 							a = "大阪日興ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "5-0025":
+ 							a = "北浜東森田ビル";
+ 							limit = "0830";
+ 							break;
+ 						case "6-0001":
+ 							a = "横浜ダイヤビル（NRI）";
+ 							limit = "0830";
+ 							break;
+ 						case "6-0002":
+ 							a = "アルカウェスト（AIU）";
+ 							limit = "0830";
+ 							break;
+ 						case "6-0003":
+ 							a = "日新火災";
+ 							limit = "0830";
+ 							break;
+ 						case "6-0004":
+ 							a = "住友生命";
+ 							limit = "0820";
+ 							break;
+ 						case "6-0005":
+ 							a = "イーストネットビル(コープ共済)";
+ 							limit = "0830";
+ 							break;
+ 						case "6-0006":
+ 							a = "FBS（CEQ)";
+ 							limit = "0810";
+ 							break;
+ 						case "6-0007":
+ 							a = "三菱電機製作所";
+ 							limit = "0830";
+ 							break;
+ 						case "6-0008":
+ 							a = "日興システムソリューションズ";
+ 							limit = "0900";
+ 							break;
+ 						case "7-0001":
+ 							a = "トレードピアお台場";
+ 							limit = "0830";
+ 							break;
+ 						case "7-0002":
+ 							a = "NTTDOCOMOR&Dセンター２号館";
+ 							limit = "0900";
+ 							break;
+ 						case "7-0003":
+ 							a = "ソフトバンク";
+ 							limit = "0830";
+ 							break;
+ 						case "7-0004":
+ 							a = "日立ソリューションズタワー";
+ 							limit = "0830";
+ 							break;
+ 						case "7-0005":
+ 							a = "SLC";
+ 							limit = "0730";
+ 							break;
+ 						case "7-0006":
+ 							a = "SLC";
+ 							limit = "0930";
+ 							break;
+ 						case "7-0007":
+ 							a = "NTT西日本";
+ 							limit = "0830";
+ 							break;
+ 						case "7-0008":
+ 							a = "オペラシティタワー";
+ 							limit = "0930";
+ 							break;
+ 						default:
+ 							a = "無効なコードです";
+ 						}
 
-			try {
-				// フィニッシュとクローズ処理
-				OSW.flush();
-				OSW.close();
-				FOS.flush();
-				FOS.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+ 						// 無届かどうかをif文で表示
+ 						if (Integer.parseInt(span.get(i).substring(4, 8)) <= Integer
+ 								.parseInt(mmdd.get(i))) {
+ 							if (Integer.parseInt(send_time.get(i)) > Integer
+ 									.parseInt(limit)) {
+ 								send = "無届";
+ 							} else {
+ 								send = "";
+ 							}
+ 						} else {
+ 							send = "";
+ 						}
 
-		}
+ 				 if(kintai_s[i].substring(6,8).equals(kintai_s2[i].substring(6,8))){
+ 		             row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(day+2);
+ 		             cell = row.createCell(0);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue(dada+"日");
+ 		             cell = row.createCell(1);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue(mmdd.get(i));
+ 		             cell = row.createCell(2);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue(send_time.get(i));
+ 		             cell = row.createCell(3);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue(limit);
+ 		             cell = row.createCell(4);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue(send);
+ 		             cell = row.createCell(5);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue(division.get(i));
+ 		             cell = row.createCell(6);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue(a);
+ 		             if(perm.get(i)==null){
+ 	 		             cell = row.createCell(7);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue("");
+ 		             }else{
+ 	 		             cell = row.createCell(7);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue(perm.get(i));
+ 		             }
+ 		             cell = row.createCell(8);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue(remark.get(i));
+ 						flg = 1;
+ 						break;
+ 				 }else{
+ 					 for(int k=Integer.parseInt(kintai_s[i].substring(6,8));k<=(Integer.parseInt(kintai_s2[i].substring(6,8)));k++){
+ 	 		             row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(day+2);
+ 	 		             cell = row.createCell(0);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue(k+"日");
+ 	 		             cell = row.createCell(1);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue(mmdd.get(i));
+ 	 		             cell = row.createCell(2);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue(send_time.get(i));
+ 	 		             cell = row.createCell(3);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue(limit);
+ 	 		             cell = row.createCell(4);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue(send);
+ 	 		             cell = row.createCell(5);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue(division.get(i));
+ 	 		             cell = row.createCell(6);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue(a);
+ 	 		             if(perm.get(i)==null){
+ 	 	 		             cell = row.createCell(7);
+ 	 	 		             cell.setCellStyle(cellStyle);
+ 	 	 		             cell.setCellValue("");
+ 	 		             }else{
+ 	 	 		             cell = row.createCell(7);
+ 	 	 		             cell.setCellStyle(cellStyle);
+ 	 	 		             cell.setCellValue(perm.get(i));
+ 	 		             }
+ 	 		             cell = row.createCell(8);
+ 	 		             cell.setCellStyle(cellStyle);
+ 	 		             cell.setCellValue(remark.get(i));
+ 						flg=1;
+ 						day=k;
+ 					 }
+ 				 }
+ 					}
+ 				}
+ 				if (flg == 0) {
+		             row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(day+2);
+ 		             cell = row.createCell(0);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue(dada+"日");
+ 		             cell = row.createCell(1);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue("");
+ 		             cell = row.createCell(2);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue("");
+ 		             cell = row.createCell(3);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue("");
+ 		             cell = row.createCell(4);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue("");
+ 		             cell = row.createCell(5);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue("");
+ 		             cell = row.createCell(6);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue("");
+ 	 		         cell = row.createCell(7);
+ 	 		         cell.setCellStyle(cellStyle);
+ 	 		         cell.setCellValue("");
+ 		             cell = row.createCell(8);
+ 		             cell.setCellStyle(cellStyle);
+ 		             cell.setCellValue("");
+ 				}
+ 			}
+
+
+
+
+
+
+
+
+            // 出力先のファイル名を指定
+            out = new FileOutputStream("C:\\kintaiExcel\\サンプル３.xlsx");
+            // ブックに書き込み
+            workbook.write(out);
+        }
+        finally {
+            if (out != null) {
+                out.close();
+            }
+            if (workbook != null) {
+                workbook.close();
+            }
+        }
 		return true;
+    }
+
+    // 四角形を描きます
+    private static CellStyle setStyle(Workbook workbook, BorderStyle borderStyle, short color) {
+        CellStyle cellStyle = workbook.createCellStyle();
+        // 罫線設定
+        cellStyle.setBorderBottom(borderStyle);
+        cellStyle.setBorderLeft(borderStyle);
+        cellStyle.setBorderRight(borderStyle);
+        cellStyle.setBorderTop(borderStyle);
+        // 罫線色設定
+        cellStyle.setBottomBorderColor(color);
+        cellStyle.setLeftBorderColor(color);
+        cellStyle.setRightBorderColor(color);
+        cellStyle.setTopBorderColor(color);
+
+        return cellStyle;
+
 	}
 	}

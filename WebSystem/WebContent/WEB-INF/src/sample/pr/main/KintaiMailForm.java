@@ -81,6 +81,12 @@ public class KintaiMailForm extends ActionForm{
 		case "6":
 			this.CC="solution_admin@procd-k.co.jp";
 			break;
+		case "7":
+			this.CC="eigyogroup@procd-k.co.jp";
+			break;
+		case "8":
+			this.CC="soumu@procd-k.co.jp";
+			break;
 		}
 	}
 
@@ -107,6 +113,12 @@ public class KintaiMailForm extends ActionForm{
 			break;
 		case "6":
 			this.depart="ソリューション技術部";
+			break;
+		case "7":
+			this.depart="システム営業部";
+			break;
+		case "8":
+			this.depart="総務部";
 			break;
 		}
 	}
