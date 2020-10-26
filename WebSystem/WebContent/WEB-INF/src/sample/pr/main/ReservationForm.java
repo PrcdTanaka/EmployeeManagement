@@ -14,11 +14,11 @@ public final class ReservationForm extends ActionForm {
 	/**会議室名 */
 	private List<String> room_name;
 	/** 席数 */
-	private String seat_number;
+	private List<String> seat_number;
 	/** モニター */
-	private String monitor;
+	private List<String> monitor;
 	/** カメラ */
-	private String camera;
+	private List<String> camera;
 	/** ボタン */
 	private String button;
 	/** 時間 */
@@ -45,9 +45,9 @@ public final class ReservationForm extends ActionForm {
 		employee_no = "";
 		name = new ArrayList<String>();
 		room_name = new ArrayList<String>();
-		seat_number = "";
-		monitor = "";
-		camera = "";
+		seat_number = new ArrayList<String>();
+		monitor = new ArrayList<String>();
+		camera = new ArrayList<String>();
 		button = "";
 		res_time =new ArrayList<String>();
 		mmdd = new ArrayList<String>();
@@ -134,7 +134,7 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @return 席数
 	 */
-	public String getSeat_number() {
+	public List<String> getSeat_number() {
 		return seat_number;
 	}
 
@@ -147,7 +147,7 @@ public final class ReservationForm extends ActionForm {
 	 * @param newpassword 新しいパスワード1
 	 */
 	public void setSeat_number(String seat_number) {
-		this.seat_number = seat_number;
+		this.seat_number.add(seat_number);
 	}
 
 	/**
@@ -158,7 +158,7 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @return 新しいパスワード2
 	 */
-	public String getMonitor() {
+	public List<String> getMonitor() {
 		return monitor;
 	}
 
@@ -171,7 +171,7 @@ public final class ReservationForm extends ActionForm {
 	 * @param newpassword 新しいパスワード2
 	 */
 	public void setMonitor(String monitor) {
-		this.monitor = monitor;
+		this.monitor.add(monitor);
 	}
 
 	/**
@@ -182,7 +182,7 @@ public final class ReservationForm extends ActionForm {
 	 *
 	 * @return ボタン名
 	 */
-	public String getCamera() {
+	public List<String> getCamera() {
 		return camera;
 	}
 
@@ -195,7 +195,7 @@ public final class ReservationForm extends ActionForm {
 	 * @param button ボタン名
 	 */
 	public void setCamera(String camera) {
-		this.camera = camera;
+		this.camera.add(camera);
 	}
 	/**
 	 * ボタン名取得処理。
