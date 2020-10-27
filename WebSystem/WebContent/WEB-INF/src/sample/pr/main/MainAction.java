@@ -129,7 +129,7 @@ public final class MainAction extends Action {
 				forward="attendance";
 				break;
 			case "KintaiList":
-				forward="kintailist";
+				forward="KintaiList";
 				break;
 			case "reservation":
 				forward="reservation";
