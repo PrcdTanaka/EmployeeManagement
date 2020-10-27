@@ -214,7 +214,7 @@ public class DbConnector {
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * INSERT句を発行する。
 	 *
