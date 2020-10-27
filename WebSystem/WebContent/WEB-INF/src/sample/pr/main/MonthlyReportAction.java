@@ -39,7 +39,7 @@ public class MonthlyReportAction extends Action {
 
 	public MonthlyReportAction() throws IOException {
 	}
-//qqqq
+
 	String button;
 
 	public ActionForward execute(ActionMapping map, ActionForm frm,
