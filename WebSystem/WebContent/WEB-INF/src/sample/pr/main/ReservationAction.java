@@ -14,6 +14,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
+import sample.pr.main.LoginForm;
 
 public final class ReservationAction extends Action{
 
