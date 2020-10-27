@@ -39,7 +39,7 @@ public final class ReservationAction extends Action{
 		rForm.setEmployee_no(lForm.getEmployee_no());
 		dba.getEmployeeName(lForm);
 		forward="reservation";
-		String button=rForm.getButton();
+		String button=rForm.getButton();			
 
 		try{
 			if(button.equals("戻る")){
@@ -54,7 +54,7 @@ public final class ReservationAction extends Action{
 	}
 
 	//1か月先の月を取得
-	public static int lastmonth(){
+	public int lastmonth(ReservationForm rForm){
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH+1);
@@ -63,6 +63,7 @@ public final class ReservationAction extends Action{
 			year -= 1;
 			month =12;
 		}
+		dba.getMMDD(rForm);
 		return month;
 	}
 

@@ -53,7 +53,7 @@
 
 						dba.getMMDD(rForm);
 						//dba.getRoomstatus(rForm);
-						dba.getRoom_name(rForm);
+						//dba.getRoom_name(rForm);
 					    List<String> res_name = rForm.getName();
 					    List<String> res_time = rForm.getRes_time();
 					    List<String> mmdd = rForm.getMmdd();
@@ -139,9 +139,9 @@
       <p class="c-txtsp">
       <table border="2" cellpadding="0" cellspacing="0">
 				<tr>
-					<td width=90px><a href="jsp/Reservation.jsp">前の月へ</a></td>
+					<td width=90px><a href="/Reservation.jsp">前の月へ</a></td>
 					<td rowspan = "2" width="360" colspan="7" style="text-align: center;"><%=year+ "年" + month + "月" %></td>
-					<td height="40" colspan="5"width=90px><a href="jsp/Reservation.jsp">次の月へ</a></td>
+					<td height="40" colspan="5"width=90px><a href="/Reservation.jsp">次の月へ</a></td>
 				</tr>
 				<tr>
 					<td rowspan = "2" width=90px><a href="jsp/Reservation.jsp">前の週へ</a></td>
