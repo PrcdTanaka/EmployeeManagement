@@ -9,14 +9,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import a01.room.reservation.ReservationForm;
 import sample.db.DbConnector;
 import sample.pr.main.AttendanceForm;
 import sample.pr.main.EnterForm;
 import sample.pr.main.KinmuRecordGetForm;
 //import sample.pr.main.KinmuRecordForm;
 import sample.pr.main.KinmuRecordSendForm;
-import sample.pr.main.KintaiMailForm;
 import sample.pr.main.KintaiNotificationForm;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
@@ -29,6 +27,8 @@ import sample.pr.main.ReservationConfirmForm;
 import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
+import a01.room.reservation.ReservationForm;
+import b02.attendance.inform.KintaiMailForm;
 
 public class DbAction extends Object{
 
