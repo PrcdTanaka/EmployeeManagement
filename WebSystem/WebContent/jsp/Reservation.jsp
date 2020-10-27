@@ -5,7 +5,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="sample.ap.DbAction"%>
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.ReservationForm"%>
+<%@ page import="a01.room.reservation.ReservationForm"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
