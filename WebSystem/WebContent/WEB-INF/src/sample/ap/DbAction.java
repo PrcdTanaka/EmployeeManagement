@@ -3047,7 +3047,34 @@ public class DbAction extends Object{
 	public boolean setKintaiDelete(KintaiMailForm form, LoginForm lform, String MMdd, String SendTime)
 	{
 		boolean ret = false;
-		ret = true;
+
+		DbConnector dba=null;
+		try {
+			dba = new DbConnector(gHost,gSid,gUser,gPass);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		if (dba.conSts) {
+
+
+			StringBuffer sb = new StringBuffer();
+			String crlf = System.getProperty("line.separator");
+
+			sb.append("DELETE FROM KINTAIMAIL" + crlf);
+			sb.append(" WHERE" + crlf);
+			sb.append(" SPAN = '" + form.getSpan() + "'" + crlf );
+			String query = sb.toString();
+
+			try {
+				dba.executeQuery(query);
+				dba.commit();
+				dba.closeConnection();
+				ret=true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
 		return ret;
 	}
 

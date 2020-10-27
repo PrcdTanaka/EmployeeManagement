@@ -33,4 +33,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>WebContent/WEB-INF/lib/ojdbc6.jar</name>
+			<type>1</type>
+			<location>//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/システム製作/00_環境構築/ojdbc6.jar</location>
+		</link>
+	</linkedResources>
 </projectDescription>

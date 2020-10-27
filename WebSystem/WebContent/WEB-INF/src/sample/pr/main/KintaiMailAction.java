@@ -40,14 +40,14 @@ public class KintaiMailAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		KintaiMailForm form = (KintaiMailForm) frm;
+		KintaiMailForm KMform = (KintaiMailForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		form.setEmployee_no(lForm.getEmployee_no());
-		form.setEmployee_name(lForm.getEmployee_name());
+		KMform.setEmployee_no(lForm.getEmployee_no());
+		KMform.setEmployee_name(lForm.getEmployee_name());
 
 		//forward = "kintaimail";
-		String button = form.getButton();
+		String button = KMform.getButton();
 		try {
 			if (button.equals("戻る")) {
 
@@ -56,13 +56,13 @@ public class KintaiMailAction extends Action {
 			if(button.equals("勤怠取消し"))
 			{
 				int Send_Edit_val = 2;
-				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, form, Send_Edit_val);
+				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, KMform, Send_Edit_val);
 				if(Send_Chk_Flg == false)
 				{
 				//	session.setAttribute("form", form);
 				//	session.removeAttribute("form");
-					dba.setKintaiDelete(form,lForm,Action_MMdd,Action_SendTime);
-					forward = "kintailist";;
+					dba.setKintaiDelete(KMform,lForm,Action_MMdd,Action_SendTime);
+					forward = "kintailist";
 				}
 			}
 			if (button.equals("編集"))
@@ -71,31 +71,30 @@ public class KintaiMailAction extends Action {
 				// Send_Edit_valを1にする。
 				int Send_Edit_val = 1;
 				// 対象期間/日付がDBの既存情報と被っていないか確認
-				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, form, Send_Edit_val);
+				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, KMform, Send_Edit_val);
 
-				if ((((form.getCC().equals("") || form.getSpotcode().equals("")
-						|| form.getDivision().equals("")
-						|| form.getSpan().equals("")
-						|| form.getRemark().equals("")
-						|| form.getDepart().equals("")
-						|| form.getSpan2().equals(""))))
-						|| !(form.getSpan().equals(form.getSpan()))
-						|| !(form.getSpan2().equals(form.getSpan2()))){
-					session.setAttribute("form", form);
+				if ((((KMform.getCC().equals("") || KMform.getSpotcode().equals("")
+						|| KMform.getDivision().equals("")
+						|| KMform.getSpan().equals("")
+						|| KMform.getRemark().equals("")
+						|| KMform.getDepart().equals("")
+						|| KMform.getSpan2().equals(""))))
+						|| !(KMform.getSpan().equals(KMform.getSpan()))
+						|| !(KMform.getSpan2().equals(KMform.getSpan2()))){
+					session.setAttribute("form", KMform);
 				}
 				else{
 					// DB上のデータと対象期間に被りが無い場合にDBの編集処理を行う
 					if(Send_Chk_Flg == false)
 					{
-					//	session.setAttribute("form", form);
 						//メール機能
-						boolean mailflg = Send_Mail(form,lForm);
+						boolean mailflg = Send_Mail(KMform,lForm);
 						if(mailflg==true){
 							System.out.println("メールフォーム出力完了");
 						}else{
 							System.out.println("メールフォーム出力失敗");
 						}
-						dba.setKintaiEdit(form, lForm, Action_MMdd, Action_SendTime);
+						dba.setKintaiEdit(KMform, lForm, Action_MMdd, Action_SendTime);
 					//	response.sendRedirect("http://localhost:8080/WebSystem/jsp/KintaiList.jsp");
 					//	session.removeAttribute("form");
 						forward = "kintailist";
@@ -106,17 +105,17 @@ public class KintaiMailAction extends Action {
 				// Send_Edit_valを0にする。
 				int Send_Edit_val = 0;
 				// 対象期間/日付がDBの既存情報と被っていないか確認
-				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, form, Send_Edit_val);
+				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, KMform, Send_Edit_val);
 
-				if ((((form.getCC().equals("") || form.getSpotcode().equals("")
-						|| form.getDivision().equals("")
-						|| form.getSpan().equals("")
-						|| form.getRemark().equals("")
-						|| form.getDepart().equals("")
-						|| form.getSpan2().equals(""))))
-						|| !(form.getSpan().equals(form.getSpan()))
-						|| !(form.getSpan2().equals(form.getSpan2()))){
-					session.setAttribute("form", form);
+				if ((((KMform.getCC().equals("") || KMform.getSpotcode().equals("")
+						|| KMform.getDivision().equals("")
+						|| KMform.getSpan().equals("")
+						|| KMform.getRemark().equals("")
+						|| KMform.getDepart().equals("")
+						|| KMform.getSpan2().equals(""))))
+						|| !(KMform.getSpan().equals(KMform.getSpan()))
+						|| !(KMform.getSpan2().equals(KMform.getSpan2()))){
+					session.setAttribute("form", KMform);
 					forward = "kintaimail";
 				//	request.setAttribute("errowMsg", "必須項目を入力してください");
 				//	String errorMsg=(String)request.getAttribute("errorMsg");
@@ -127,7 +126,7 @@ public class KintaiMailAction extends Action {
 					if(Send_Chk_Flg == false)
 					{
 						//メール機能
-						boolean mailflg = Send_Mail(form,lForm);
+						boolean mailflg = Send_Mail(KMform,lForm);
 						if(mailflg==true){
 							System.out.println("メールフォーム出力完了");
 						}else{
@@ -135,16 +134,8 @@ public class KintaiMailAction extends Action {
 						}
 						// DBへの登録作業以外をコメント化
 						//session.setAttribute("form", form);
-						dba.setKintaiInfo(form, lForm);
+						dba.setKintaiInfo(KMform, lForm);
 						forward = "kintailist";
-
-						// DBへの登録作業以外をコメント化
-						//forward = "kintailist";
-						// DBへの登録作業以外をコメント化
-						//response.sendRedirect("http://localhost:8080/WebSystem/jsp/login.jsp");
-						// DBへの登録作業以外をコメント化
-						//session.removeAttribute("form");
-						// JOptionPane.showMessageDialog(null,"送信しました");
 					}
 				}
 			}
@@ -159,9 +150,10 @@ public class KintaiMailAction extends Action {
 
 	//メール機能(outlookのみ対応)
 	public boolean Send_Mail(KintaiMailForm form, LoginForm lForm) throws IOException, URISyntaxException {
-		// TODO 自動生成されたメソッド・スタブ
 
-		String string = String.format("mailto:%s?subject=%s&body=%s&cc=%s&bcc=%s",
+		boolean ret=false;
+
+		String mail = String.format("mailto:%s?subject=%s&body=%s&cc=%s&bcc=%s",
 				//	実際のアドレスkintai@procd-k.co.jp
 				"test@test.test",
 				"勤怠連絡",
@@ -180,8 +172,9 @@ public class KintaiMailAction extends Action {
 				form.getBcc());
 		Desktop desktop = Desktop.getDesktop();
 		// メール作成ウィンドウを起動
-		desktop.mail(new URI(string));
-		return true;
+		desktop.mail(new URI(mail));
+		ret=true;
+		return ret;
 	}
 
 	/*
@@ -195,11 +188,11 @@ public class KintaiMailAction extends Action {
 	 */
 	public boolean Send_Edit_Chk(LoginForm lForm, KintaiMailForm form, int Send_Edit_val)
 	{
-		MonthlyReportForm FORM=new MonthlyReportForm();
-		FORM.setEmployee_no(lForm.getEmployee_no());
-		dba.getMonthly_report(FORM,"","");
-		List<String> FSpan1 = FORM.getSpan();
-		List<String> FSpan2 = FORM.getSpan2();
+		MonthlyReportForm MRFORM=new MonthlyReportForm();
+		MRFORM.setEmployee_no(lForm.getEmployee_no());
+		dba.getMonthly_report(MRFORM,"","");
+		List<String> FSpan1 = MRFORM.getSpan();
+		List<String> FSpan2 = MRFORM.getSpan2();
 
 		int lSpan1 = 0;
 		int lSpan2 = 0;
@@ -233,8 +226,8 @@ public class KintaiMailAction extends Action {
 				if(int_date == int_Span1_List && int_Span2_List == int_date)
 				{
 					chk_bukking_flg = false;
-					List<String> MMDD = FORM.getMmdd();
-					List<String> SENDTIME = FORM.getSend_Time();
+					List<String> MMDD = MRFORM.getMmdd();
+					List<String> SENDTIME = MRFORM.getSend_Time();
 					Action_MMdd = MMDD.get(spans_culm);
 					Action_SendTime = SENDTIME.get(spans_culm);
 
@@ -242,8 +235,8 @@ public class KintaiMailAction extends Action {
 				else if(int_date == int_Span1_List && int_Span2_List >= int_date)
 				{
 					chk_bukking_flg = false;
-					List<String> MMDD = FORM.getMmdd();
-					List<String> SENDTIME = FORM.getSend_Time();
+					List<String> MMDD = MRFORM.getMmdd();
+					List<String> SENDTIME = MRFORM.getSend_Time();
 					Action_MMdd = MMDD.get(spans_culm);
 					Action_SendTime = SENDTIME.get(spans_culm);
 				}
@@ -265,8 +258,8 @@ public class KintaiMailAction extends Action {
 				if(int_date == int_Span1_List && int_Span2_List == int_date)
 				{
 					chk_bukking_flg = false;
-					List<String> MMDD = FORM.getMmdd();
-					List<String> SENDTIME = FORM.getSend_Time();
+					List<String> MMDD = MRFORM.getMmdd();
+					List<String> SENDTIME = MRFORM.getSend_Time();
 					Action_MMdd = MMDD.get(spans_culm);
 					Action_SendTime = SENDTIME.get(spans_culm);
 

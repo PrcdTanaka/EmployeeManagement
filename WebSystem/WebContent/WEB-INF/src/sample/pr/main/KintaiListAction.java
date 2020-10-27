@@ -12,11 +12,9 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
-
 public class KintaiListAction extends Action {
 
-	private DbAction dba = new DbAction();
+//	private DbAction dba = new DbAction();
 	// 遷移先
 	private String forward;
 
@@ -34,20 +32,20 @@ public class KintaiListAction extends Action {
 		}
 		KintaiListForm kForm = (KintaiListForm) frm;
 		HttpSession session = request.getSession();
-		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		lForm.setEmployee_no(lForm.getEmployee_no());
-		forward = "KintaiList";
+//		LoginForm lForm = (LoginForm) session.getAttribute("form");
+//		lForm.setEmployee_no(lForm.getEmployee_no());
+		forward ="";
 		String button=kForm.getButton();
 		try{
 			// 勤怠一覧画面から選択されたのが「戻る」の場合
 			if(button.equals("戻る")){
 				forward="main";
-				session.removeAttribute("kform");
+				//session.removeAttribute("kform");
 			}
 			// 勤怠一覧画面から選択されたのが「勤怠月報画面へ」の場合
 			else if(button.equals("勤怠月報画面へ")){
 				forward="MonthlyReport";
-				session.setAttribute("lform", lForm);
+				//session.setAttribute("lform", lForm);
 			}
 			// 勤怠一覧画面から選択されたのが「勤怠連絡入力」の場合
 			else if(button.equals("勤怠連絡入力")){
