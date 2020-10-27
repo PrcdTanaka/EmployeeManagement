@@ -18,6 +18,7 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.ap.DbAction;
 import sample.pr.main.LoginForm;
+import sample.pr.main.MonthlyReportForm;
 
 public class KintaiMailAction extends Action {
 	private DbAction dba = new DbAction();
