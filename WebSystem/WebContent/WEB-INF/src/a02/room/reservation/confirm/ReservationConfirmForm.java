@@ -1,8 +1,8 @@
-package sample.pr.main;
+package a02.room.reservation.confirm;
 
 import org.apache.struts.action.ActionForm;
 
-public final class ReservConForm extends ActionForm {
+public final class ReservationConfirmForm extends ActionForm {
 
 	/** 社員番号 */
 	private String employee_no;
@@ -27,7 +27,7 @@ public final class ReservConForm extends ActionForm {
 	/**
 	 * 初期化処理。
 	 * <p>
-	 * メイン画面アクションフォームを初期化する。
+	 * 予約確認画面アクションフォームを初期化する。
 	 * </p>
 	 */
 	public void initialize() {
@@ -137,24 +137,24 @@ public final class ReservConForm extends ActionForm {
 	}
 
 	/**
-	 * ボタン名取得処理。
+	 * 予約時間取得処理。
 	 * <p>
 	 * メイン画面アクションフォームからボタン名を取得する。
 	 * </p>
 	 *
-	 * @return ボタン名
+	 * @return 予約時間
 	 */
 	public String getRes_time() {
 		return res_time;
 	}
 
 	/**
-	 * ボタン名設定処理。
+	 * 予約時間設定処理。
 	 * <p>
 	 * メイン画面アクションフォームにボタン名を設定する。
 	 * </p>
 	 *
-	 * @param button ボタン名
+	 * @param button 予約時間
 	 */
 	public void setRes_time(String res_time) {
 		this.res_time = res_time;
@@ -166,7 +166,7 @@ public final class ReservConForm extends ActionForm {
 	 * 会議室予約画面アクションフォームから日付を取得する。
 	 * </p>
 	 *
-	 * @return ボタン名
+	 * @return 日付
 	 */
 	public String getMmdd() {
 		return mmdd;
@@ -178,30 +178,30 @@ public final class ReservConForm extends ActionForm {
 	 * 会議室予約画面アクションフォームに日付を設定する。
 	 * </p>
 	 *
-	 * @param button ボタン名
+	 * @param button 日付
 	 */
 	public void setMmdd(String mmdd) {
 		this.mmdd = mmdd;
 	}
 	/**
-	 * 日付取得処理。
+	 * 用途取得処理。
 	 * <p>
-	 * 会議室予約画面アクションフォームから日付を取得する。
+	 * 会議室予約画面アクションフォームから用途を取得する。
 	 * </p>
 	 *
-	 * @return ボタン名
+	 * @return 用途
 	 */
 	public String getUse() {
 		return use;
 	}
 
 	/**
-	 * 日付設定処理。
+	 * 用途設定処理。
 	 * <p>
-	 * 会議室予約画面アクションフォームに日付を設定する。
+	 * 会議室予約画面アクションフォームに用途を設定する。
 	 * </p>
 	 *
-	 * @param button ボタン名
+	 * @param use 用途
 	 */
 	public void setUse(String use) {
 		this.use = use;
