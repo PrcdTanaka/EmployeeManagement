@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import a01.room.reservation.ReservationForm;
 import sample.db.DbConnector;
 import sample.pr.main.AttendanceForm;
 import sample.pr.main.EnterForm;
@@ -25,7 +26,6 @@ import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
 import sample.pr.main.ReservationConfirmForm;
-import sample.pr.main.ReservationForm;
 import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
