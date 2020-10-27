@@ -64,7 +64,7 @@
 			<forward name="search" path="/jsp/search.jsp" />
 			<forward name="password" path="/jsp/Password.jsp" />
 			<forward name="attendance" path="/jsp/Attendance.jsp" />
-			<forward name="KintaiList" path="/jsp/B01AttendanceMain/KintaiList.jsp" />
+			<forward name="KintaiList" path="/WEB-INF/jsp/B01AttendanceMain/KintaiList.jsp" />
 			<forward name="reservation" path="/jsp/Reservation.jsp" />
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 			<forward name="Enter" path="/jsp/Enter_leave.jsp" />

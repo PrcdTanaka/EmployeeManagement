@@ -1,4 +1,4 @@
-package b02.attendance.infom;
+package b02.attendance.inform;
 
 import org.apache.struts.action.ActionForm;
 
