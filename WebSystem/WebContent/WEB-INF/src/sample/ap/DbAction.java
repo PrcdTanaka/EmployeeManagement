@@ -18,7 +18,6 @@ import sample.pr.main.KinmuRecordSendForm;
 import sample.pr.main.KintaiNotificationForm;
 import sample.pr.main.LoginForm;
 import sample.pr.main.MainForm;
-import sample.pr.main.MonthlyReportForm;
 import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
@@ -29,6 +28,7 @@ import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
 import a01.room.reservation.ReservationForm;
 import b02.attendance.inform.KintaiMailForm;
+import b03.attendance.monthlyreport.MonthlyReportForm;
 
 public class DbAction extends Object{
 

@@ -6,11 +6,11 @@
 <%@ page import="sample.pr.main.AttendanceForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="sample.ap.DbAction"%>
-<%@ page import="sample.pr.main.KintaiListForm"%>
+<%@ page import="b01.attendance.main.KintaiListForm"%>
 
-<%@ page import="sample.pr.main.MonthlyReportForm"%>
-<%@ page import="sample.pr.main.MonthlyReportAction"%>
-<%@ page import="sample.pr.main.KintaiManagement"%>
+<%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>
+<%@ page import="b03.attendance.monthlyreport.MonthlyReportAction"%>
+<%@ page import="b04.attendance.calendar.KintaiManagement"%>
 
 <%@ page import="java.util.ArrayList"%>
 
