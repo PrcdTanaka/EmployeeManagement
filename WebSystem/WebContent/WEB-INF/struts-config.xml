@@ -65,7 +65,7 @@
 			<forward name="password" path="/jsp/Password.jsp" />
 			<forward name="attendance" path="/jsp/Attendance.jsp" />
 			<forward name="KintaiList" path="/WEB-INF/jsp/B01AttendanceMain/KintaiList.jsp" />
-			<forward name="reservation" path="/jsp/Reservation.jsp" />
+			<forward name="reservation" path="/WEB-INF/jsp/A01Reservation/Reservation.jsp" />
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 			<forward name="Enter" path="/jsp/Enter_leave.jsp" />
 			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp"/>
@@ -160,8 +160,8 @@
 			<forward name="kintaieditor" path="/WEB-INF/jsp/B02AttendanceInform/KintaiEditor.jsp" />
 		</action>
 		<action name="ReservationForm" path="/ReservationAction"
-			type="sample.pr.main.ReservationAction" validate="false" scope="request">
-			<forward name="reservation" path="/jsp/Reservation.jsp" />
+			type="a01.room.reservation.ReservationAction" validate="false" scope="request">
+			<forward name="reservation" path="/WEB-INF/jsp/A01Reservation/Reservation.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
 		<action name="KinmuRecordForm" path="/KinmuRecordAction"
@@ -183,8 +183,8 @@
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 		</action>
 		<action name="ReservationForm" path="/RoomReservationAction"
-			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
-			<forward name="room" path="/jsp/RoomReservation.jsp" />
+			type="a03.room.register.RoomReservationAction" validate="false" scope="request">
+			<forward name="room" path="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
 				<action name="ReservationForm" path="/Access_SelectAction"
@@ -192,14 +192,14 @@
 			<forward name="main" path="/jsp/Access_Control.jsp" />
 		</action>
 		<action name="RoomReservationForm" path="/RoomReservationAction"
-			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
-			<forward name="room" path="/jsp/RoomReservation.jsp" />
-			<forward name="reservation" path="/jsp/Reservation.jsp" />
+			type="a03.room.register.RoomReservationAction" validate="false" scope="request">
+			<forward name="room" path="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp" />
+			<forward name="reservation" path="/WEB-INF/jsp/A01Reservation/Reservation.jsp" />
 		</action>
 		<action name="ReservationConfirmForm" path="/ReservationConfirmAction"
-			type="sample.pr.main.ReservationConfirmAction" validate="false" scope="request">
-			<forward name="main" path="/jsp/Reservation.jsp" />
-			<forward name="confirm" path="/jsp/ReservationConfirm.jsp" />
+			type="a02.room.reservation.confirm.ReservationConfirmAction" validate="false" scope="request">
+			<forward name="main" path="/WEB-INF/jsp/A01Reservation/Reservation.jsp" />
+			<forward name="confirm" path="/WEB-INF/jsp/A02ReservationConfirm/ReservationConfirm.jsp" />
 		</action>
 		<action name="KintaiNotificationForm" path="/KintaiNotificationAction"
 				type="sample.pr.main.KintaiNotificationAction" validate="false" scope="request">
