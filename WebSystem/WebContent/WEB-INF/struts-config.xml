@@ -28,7 +28,7 @@
 		<form-bean name="KintaiMailForm" type="sample.pr.main.KintaiMailForm" />
 		<form-bean name="KintaiListForm" type="sample.pr.main.KintaiListForm" />
 		<form-bean name="MonthlyReportForm" type="sample.pr.main.MonthlyReportForm" />
-		<form-bean name="ReservationForm" type="sample.pr.main.ReservationForm" />
+		<form-bean name="ReservationForm" type="a01.room.reservation.ReservationForm" />
 		<form-bean name="ReservationConfimForm" type="sample.pr.main.ReservationConfirmForm" />
 		<form-bean name="EnterForm" type="sample.pr.main.EnterForm" />
 		<form-bean name="ReservationFrom" type="sample.pr.main.ReservationForm" />
