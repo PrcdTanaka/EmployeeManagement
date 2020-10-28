@@ -22,11 +22,11 @@ import sample.pr.main.Open_informationForm;
 import sample.pr.main.PasswordForm;
 import sample.pr.main.Personal_informationForm;
 import sample.pr.main.RegisterForm;
-import sample.pr.main.ReservationConfirmForm;
-import sample.pr.main.RoomReservationForm;
 import sample.pr.main.SearchForm;
 import sample.utility.FileLoader;
 import a01.room.reservation.ReservationForm;
+import a02.room.reservation.confirm.ReservationConfirmForm;
+import a03.room.register.RoomReservationForm;
 import b02.attendance.inform.KintaiMailForm;
 import b03.attendance.monthlyreport.MonthlyReportForm;
 
