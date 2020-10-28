@@ -1,5 +1,6 @@
 package b03.attendance.monthlyreport;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -11,13 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -50,11 +49,13 @@ public class MonthlyReportAction extends Action {
 			e.printStackTrace();
 		}
 
+
+
 		MonthlyReportForm MForm =  (MonthlyReportForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		//MForm.setEmployee_no(lForm.getEmployee_no());
-		forward = "";
+		MForm.setEmployee_no(lForm.getEmployee_no());
+		forward = "MonthlyReport";
 		String button = MForm.getButton();
 		try {
 			if (button.equals("戻る")) {
@@ -76,6 +77,7 @@ public class MonthlyReportAction extends Action {
 	}
 
 	// csv出力メソッド
+	@SuppressWarnings("resource")
 	public boolean Output_Csv(MonthlyReportForm MRForm,
 			 LoginForm lForm) throws IOException {
 
@@ -101,18 +103,6 @@ public class MonthlyReportAction extends Action {
 		List<String> span = MRForm.getSpan();
 		List<String> span2 = MRForm.getSpan2();
 		List<String> depart = MRForm.getDepart();
-
-
-		//いらないかも
-		MForm.addAll(mmdd);
-		MForm.addAll(send_time);
-		MForm.addAll(division);
-		MForm.addAll(spotcode);
-		MForm.addAll(perm);
-		MForm.addAll(remark);
-		MForm.addAll(span);
-		MForm.addAll(span2);
-		MForm.addAll(depart);
 
 		// 現場名
 		String spotname = "";
@@ -143,468 +133,52 @@ public class MonthlyReportAction extends Action {
 		}
 
 		// ファイル出力方法
-		Workbook workbook = null;
+		Workbook workbook = new XSSFWorkbook();
 		FileOutputStream out = null;
+		FileInputStream fis=null;
 
 		try {
 			//「.xlsx」形式のファイル作成
-			workbook = new XSSFWorkbook();
-			// シートを「勤怠月報画面」という名前で作成
-			org.apache.poi.ss.usermodel.Sheet sheet = workbook
-					.createSheet("勤怠月報画面");
 
-			// 罫線のスタイルを指定
-			//中太線
-			CellStyle cellStyle = null;
-			cellStyle = setStyle(workbook, BorderStyle.MEDIUM,
-					IndexedColors.BLACK.getIndex());
-			//細線
-			CellStyle THINStyle=null;
-			THINStyle = setStyle(workbook, BorderStyle.THIN,
-					IndexedColors.BLACK.getIndex());
-			//点線
-			CellStyle DOTTEDStyle=null;
-			DOTTEDStyle = setStyle(workbook, BorderStyle.DOTTED,
-					IndexedColors.BLACK.getIndex());
+			fis = new FileInputStream("C:\\kintaiExcel\\勤怠月報画面テンプレ.xlsx");
+			workbook=WorkbookFactory.create(fis);
+			// シートを「勤怠月報画面」という名前で作成
+			Sheet sheet = workbook.cloneSheet(workbook.getSheetIndex("勤怠月報"));
+			workbook.setSheetName(workbook.getSheetIndex(sheet), "勤怠月報画面");
+
 
 			// 行を指定する変数
 			Row row;
 			// 列を指定する変数
 			Cell cell;
 
-
-			//列の幅を指定
-			for(int i=0;i<=8;i++){
-			 sheet.setColumnWidth(i, 600);
-			}
-			sheet.setColumnWidth(9, 850);
-			for(int i=10;i<=13;i++){
-				 sheet.setColumnWidth(i, 600);
-				}
-			sheet.setColumnWidth(14, 900);
-			sheet.setColumnWidth(15, 800);
-			for(int i=16;i<=18;i++){
-				 sheet.setColumnWidth(i, 600);
-				}
-			sheet.setColumnWidth(19, 1300);
-			for(int i=20;i<=21;i++){
-				 sheet.setColumnWidth(i, 600);
-				}
-			sheet.setColumnWidth(22, 800);
-			sheet.setColumnWidth(23, 600);
-			sheet.setColumnWidth(24, 1600);
-			for(int i=25;i<=34;i++){
-				 sheet.setColumnWidth(i, 600);
-				}
-
-//	 //セルの結合
-			 //印鑑を押す場所
-			 sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 8));
-			 sheet.addMergedRegion(new CellRangeAddress(3, 5, 1, 4));
-			 sheet.addMergedRegion(new CellRangeAddress(3, 5, 5, 8));
-			 sheet.addMergedRegion(new CellRangeAddress(1, 1, 9, 16));
-			 sheet.addMergedRegion(new CellRangeAddress(2, 2, 9, 12));
-			 sheet.addMergedRegion(new CellRangeAddress(2, 2, 13, 16));
-			 sheet.addMergedRegion(new CellRangeAddress(3, 5, 9, 12));
-			 sheet.addMergedRegion(new CellRangeAddress(3, 5, 13, 16));
-			 sheet.addMergedRegion(new CellRangeAddress(1, 1, 17, 32));
-			 sheet.addMergedRegion(new CellRangeAddress(2, 2, 17, 20));
-			 sheet.addMergedRegion(new CellRangeAddress(2, 2, 21, 24));
-			 sheet.addMergedRegion(new CellRangeAddress(2, 2, 25, 28));
-			 sheet.addMergedRegion(new CellRangeAddress(2, 2, 29, 32));
-			 sheet.addMergedRegion(new CellRangeAddress(3, 5, 17, 20));
-			 sheet.addMergedRegion(new CellRangeAddress(3, 5, 21, 24));
-			 sheet.addMergedRegion(new CellRangeAddress(3, 5, 25, 28));
-			 sheet.addMergedRegion(new CellRangeAddress(3, 5, 29, 32));
-			 //勤怠月報画面と記述する場所
-			 sheet.addMergedRegion(new CellRangeAddress(7, 8, 0, 12));
-			 //提出日を記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(9, 10, 1, 11));
-			 //報告者と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(7, 10, 13, 14));
-			 //所属部署と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(7, 8, 15, 20));
-			 //所属部署を記載する項目
-			 sheet.addMergedRegion(new CellRangeAddress(7, 8, 21, 32));
-			 //氏名を記載する項目
-			 sheet.addMergedRegion(new CellRangeAddress(9, 10, 21, 32));
-			 //社員番号と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(9, 9, 15, 20));
-			 //社員番号を記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(10, 10, 15, 20));
-			 //年を記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(12, 13, 0, 4));
-			 //月を記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(14, 15, 0, 4));
-			 // 遅刻/早退回数と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(12, 12, 5, 16));
-			 //遅刻と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(13, 13, 5, 8));
-			 //交通遅延と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(13,13, 9, 12));
-			 //早退・その他と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(13, 13, 13, 16));
-			 //シフトと記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(12, 13, 17, 19));
-			 //休暇取得日数と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(12, 12, 20, 34));
-			 //有給/リフと記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(13, 13, 20, 22));
-			 //振替と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(13, 13, 23, 25));
-			 //  [/]と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(13, 13, 26, 28));
-			 //特別と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(13, 13, 29, 31));
-			 //欠勤と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(13, 13, 32, 34));
-			 //上段の遅刻数
-			 sheet.addMergedRegion(new CellRangeAddress(14, 14, 5, 8));
-			 //下段の遅刻数
-			 sheet.addMergedRegion(new CellRangeAddress(15, 15, 5, 8));
-			 //上段の交通遅延数
-			 sheet.addMergedRegion(new CellRangeAddress(14, 14, 9, 12));
-			 //下段の交通遅延数
-			 sheet.addMergedRegion(new CellRangeAddress(15, 15, 9, 12));
-			 //上段の早退・その他数
-			 sheet.addMergedRegion(new CellRangeAddress(14, 14, 13, 16));
-			 //下段の早退・その他数
-			 sheet.addMergedRegion(new CellRangeAddress(15, 15, 13, 16));
-			 //上段のシフト数
-			 sheet.addMergedRegion(new CellRangeAddress(14, 14, 17, 19));
-			 //下段のシフト数
-			 sheet.addMergedRegion(new CellRangeAddress(15, 15, 17, 19));
-			 //上段の有給/リフ数
-			 sheet.addMergedRegion(new CellRangeAddress(14, 14, 20, 22));
-			 //下段の有給/リフ数
-			 sheet.addMergedRegion(new CellRangeAddress(15, 15, 20, 22));
-			 //上段の振替数
-			 sheet.addMergedRegion(new CellRangeAddress(14, 14, 23, 25));
-			 //下段の振替数
-			 sheet.addMergedRegion(new CellRangeAddress(15, 15, 23, 25));
-			 //[/]の上段
-			 sheet.addMergedRegion(new CellRangeAddress(14, 14, 26, 28));
-			 //[/]の下段
-			 sheet.addMergedRegion(new CellRangeAddress(15, 15, 26, 28));
-			 //上段の特別数
-			 sheet.addMergedRegion(new CellRangeAddress(14, 14, 29, 31));
-			 //下段の特別数
-			 sheet.addMergedRegion(new CellRangeAddress(15, 15, 29, 31));
-			 //上段の欠勤数
-			 sheet.addMergedRegion(new CellRangeAddress(14, 14, 32, 34));
-			 //下段の欠勤数
-			 sheet.addMergedRegion(new CellRangeAddress(15, 15, 32, 34));
-			 //※上段：届有件数、下段：無届（連絡遅延）件数と記載する場所
-			 sheet.addMergedRegion(new CellRangeAddress(16, 16, 5, 20));
-			 //18行目の項目
-			 sheet.addMergedRegion(new CellRangeAddress(17, 17, 0, 3));
-			 sheet.addMergedRegion(new CellRangeAddress(17, 17, 4, 7));
-			 sheet.addMergedRegion(new CellRangeAddress(17, 17, 8, 9));
-			 sheet.addMergedRegion(new CellRangeAddress(17, 17, 10, 12));
-			 sheet.addMergedRegion(new CellRangeAddress(17, 17, 13, 15));
-			 sheet.addMergedRegion(new CellRangeAddress(17, 17, 16, 19));
-			 sheet.addMergedRegion(new CellRangeAddress(17, 17, 20, 24));
-			 sheet.addMergedRegion(new CellRangeAddress(17, 17, 25, 27));
-			 sheet.addMergedRegion(new CellRangeAddress(17, 17, 28, 34));
-			 //19から49行目の日にち
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,0 ,1));
-			 }
-			//19から49行目の休の項目
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,2 ,3));
-			 }
-			//19から49行目の届出日の項目
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,4 ,7));
-			 }
-			//19から49行目の時刻の項目
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,8 ,9));
-			 }
-			//19から49行目のLimitの項目
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,10 ,12));
-			 }
-			//19から49行目の連絡遅延の項目
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,13 ,15));
-			 }
-			//19から49行目の届け区分(右)の項目
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,17 ,19));
-			 }
-			//19から49行目の作業場所の項目
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,20 ,24));
-			 }
-			//19から49行目の許可者の項目
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,25 ,27));
-			 }
-			//19から49行目の備考の項目
-			 for(int i=18;i<=48;i++){
-				 sheet.addMergedRegion(new CellRangeAddress(i, i,28 ,34));
-			 }
-
-
-
-
-	// excel出力時のフォーム作成
-			//2行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(1);
-			cell = row.createCell(1);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("承認役員");
-			for(int i=2;i<=8;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(9);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("総務部");
-			for(int i=10;i<=16;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(17);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("報告承認部課");
-			for(int i=18;i<=32;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-
-			//3行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(2);
-			for(int i=1;i<=8;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(9);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("責任者");
-			for(int i=10;i<=12;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(13);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("担当");
-			for(int i=14;i<=16;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(17);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("役員");
-			for(int i=18;i<=20;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(21);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("部長");
-			for(int i=22;i<=24;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(25);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("課長");
-			for(int i=26;i<=28;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(29);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("リーダー");
-			for(int i=30;i<=32;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-
-			//4行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(3);
-			for(int i=1;i<=32;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-
-			//5行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(4);
-			for(int i=1;i<=32;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-
-			//6行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(5);
-			for(int i=1;i<=32;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-
+//	        excel出力時のフォーム作成
 			//8行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(7);
-			cell = row.createCell(0);
-			cell.setCellValue("勤怠連絡月報");
-			cell = row.createCell(13);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("報告者");
-			cell = row.createCell(14);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(15);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("所属部署");
-			for(int i=16;i<=20;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(21);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue(lForm.getEmployee_name());
-			for(int i=22;i<=32;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			//9行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(8);
-			for(int i=13;i<=32;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
+			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(7);
+			cell = row.getCell(21);
+			cell.setCellValue(depart.get(1));
 
 			//10行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(9);
-			cell = row.createCell(1);
-			cell.setCellValue("提出日"+String.valueOf(KintaiManagement.Cale_Date_Year)+"年"+String.valueOf(KintaiManagement.Cale_Date_Month)+"月"+monthlastDay+"日");
-			cell = row.createCell(13);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(14);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(15);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("社員番号");
-			for(int i=16;i<=20;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
-			cell = row.createCell(21);
-			cell.setCellStyle(DOTTEDStyle);
+			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(9);
+			cell = row.getCell(21);
 			cell.setCellValue(lForm.getEmployee_name());
-			for(int i=22;i<=32;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
 
 			//11行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(10);
-			cell = row.createCell(13);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(14);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(15);
-			cell.setCellStyle(DOTTEDStyle);
+			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(10);
+		    cell = row.getCell(11);
+		    cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)+"年"+String.valueOf(KintaiManagement.Cale_Date_Month)+"月"+monthlastDay+"日");
+			cell = row.getCell(15);
 			cell.setCellValue(lForm.getEmployee_no());
-			for(int i=16;i<=32;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(DOTTEDStyle);
-			}
 
-			//13行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(12);
-			cell = row.createCell(0);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)+"年度");
-			for(int i=1;i<=4;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(5);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("遅刻/早退回数");
-			for(int i=6;i<=16;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(17);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("シフト");
-			for(int i=18;i<=19;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(20);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("休暇取得日数");
-			for(int i=21;i<=34;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
+//			//13行目
+//			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(12);
+//			cell = row.getCell(0);
+//			cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)+"年度");
 
 			//14行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(13);
-			for(int i=0;i<=4;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(5);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("遅刻");
-			for(int i=6;i<=8;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(9);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("交通遅延");
-			for(int i=10;i<=12;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(13);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("早退・その他");
-			for(int i=14;i<=19;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(20);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("有給/リフ");
-			cell = row.createCell(21);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(22);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(23);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("振替");
-			cell = row.createCell(24);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(25);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(26);
-			cell.setCellValue("-----");
-			cell = row.createCell(27);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(28);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(29);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("特別");
-			cell = row.createCell(30);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(31);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(32);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("欠勤");
-			cell = row.createCell(33);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(34);
-			cell.setCellStyle(THINStyle);
-
+			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(13);
+			cell = row.getCell(0);
+			cell.setCellValue( String.valueOf(KintaiManagement.Cale_Date_Month));
 
 			//有給などの回数をカウントする変数
 			int tikoku=0;
@@ -615,6 +189,9 @@ public class MonthlyReportAction extends Action {
 			int sotai=0;
 			int kotu=0;
 			int kekkin=0;
+
+
+
 			//有給などの回数をカウントするfor文、switch文
 			for(int c=0;c<mmdd.size();c++){
 				switch (division.get(c)) {
@@ -644,243 +221,36 @@ public class MonthlyReportAction extends Action {
 					break;
 			}
 			}
+
+
 			//15行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(14);
-			cell = row.createCell(0);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Month)+"月度");
-			for(int i=1;i<=4;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(5);
-			cell.setCellStyle(THINStyle);
+			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(14);
+			cell = row.getCell(5);
 			cell.setCellValue(tikoku);
-			for(int i=6;i<=8;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(9);
-			cell.setCellStyle(THINStyle);
+			cell = row.getCell(9);
 			cell.setCellValue(kotu);
-			for(int i=10;i<=12;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(13);
-			cell.setCellStyle(THINStyle);
+			cell = row.getCell(13);
 			cell.setCellValue(sotai);
-			for(int i=11;i<=16;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(17);
-			cell.setCellStyle(THINStyle);
+			cell = row.getCell(17);
 			cell.setCellValue(shihuto);
-			cell = row.createCell(18);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(19);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(20);
-			cell.setCellStyle(THINStyle);
+			cell = row.getCell(20);
 			cell.setCellValue(yuukyuu);
-			cell = row.createCell(21);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(22);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(23);
-			cell.setCellStyle(THINStyle);
+			cell = row.getCell(23);
 			cell.setCellValue(hurikae);
-			cell = row.createCell(24);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(25);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(26);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("-----");
-			cell = row.createCell(27);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(28);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(29);
-			cell.setCellStyle(THINStyle);
+			cell = row.getCell(29);
 			cell.setCellValue(tokubetsu);
-			cell = row.createCell(30);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(31);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(32);
-			cell.setCellStyle(THINStyle);
+			cell = row.getCell(32);
 			cell.setCellValue(kekkin);
-			cell = row.createCell(33);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(34);
-			cell.setCellStyle(THINStyle);
-
-			//16行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(15);
-			for(int i=0;i<=4;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(5);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("0(遅刻下段)");
-			for(int i=6;i<=8;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(9);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("0(交通遅延下段)");
-			for(int i=10;i<=12;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(13);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("0(早退・その他下段)");
-			for(int i=14;i<=16;i++){
-				cell = row.createCell(i);
-				cell.setCellStyle(THINStyle);
-			}
-			cell = row.createCell(17);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("0(シフト下段)");
-			cell = row.createCell(18);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(19);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(20);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("-----");
-			cell = row.createCell(21);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(22);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(23);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("-----");
-			cell = row.createCell(24);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(25);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(26);
-			cell.setCellValue("-----");
-			cell = row.createCell(27);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(28);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(29);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("-----");
-			cell = row.createCell(30);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(31);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(32);
-			cell.setCellStyle(THINStyle);
-			cell.setCellValue("0(欠勤下段)");
-			cell = row.createCell(33);
-			cell.setCellStyle(THINStyle);
-			cell = row.createCell(34);
-			cell.setCellStyle(THINStyle);
 
 
-			//17行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(16);
-			cell = row.createCell(5);
-			cell.setCellValue("※上段：届有件数、下段：無届（連絡遅延）件数");
+			//無届かつ遅刻などをしているかどうかをカウント
+			int unreported_tikoku=0;
+			int unreported_shihuto=0;
+			int unreported_sotai=0;
+			int unreported_kotu=0;
+			int unreported_kekkin=0;
 
-
-			//18行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).createRow(17);
-			row.setHeightInPoints(15);
-			cell = row.createCell(0);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("/");
-			cell = row.createCell(1);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(2);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(3);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(4);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("届出日");
-			cell = row.createCell(5);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(6);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(7);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(8);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("時刻");
-			cell = row.createCell(9);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(10);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("Limit");
-			cell = row.createCell(11);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(12);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(13);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("連絡遅延");
-			cell = row.createCell(14);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(15);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(16);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("届出区分");
-			cell = row.createCell(17);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(18);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(19);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(20);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("作業場所");
-			cell = row.createCell(21);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(22);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(23);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(24);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(25);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("許可者");
-			cell = row.createCell(26);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(27);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(28);
-			cell.setCellStyle(DOTTEDStyle);
-			cell.setCellValue("備考");
-			cell = row.createCell(29);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(30);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(31);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(32);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(33);
-			cell.setCellStyle(DOTTEDStyle);
-			cell = row.createCell(34);
-			cell.setCellStyle(DOTTEDStyle);
-
-
-
-
-
-			// リストの内容を順に処理
+		// リストの内容を順に処理
 			String dada = "";
 			cal.set(Integer.parseInt(year), Integer.parseInt(month), 0);
 			monthlastDay = cal.getActualMaximum(Calendar.DATE);
@@ -1706,6 +1076,25 @@ public class MonthlyReportAction extends Action {
 							if (Integer.parseInt(send_time.get(i)) > Integer
 									.parseInt(limit)) {
 								send = "無届";
+									switch (division.get(i)) {
+									case "1":
+										unreported_tikoku++;
+										break;
+									case "5":
+										unreported_shihuto++;
+										break;
+									case "6":
+										unreported_sotai++;
+										break;
+									case "7":
+										unreported_kotu++;
+										break;
+									case "8":
+										unreported_kekkin++;
+										break;
+								}
+
+
 							} else {
 								send = "";
 							}
@@ -1713,100 +1102,50 @@ public class MonthlyReportAction extends Action {
 							send = "";
 						}
 
-						//19行目以降
+
+						//16行目
+						row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(15);
+						cell = row.getCell(5);
+						cell.setCellValue(unreported_tikoku);
+						cell = row.getCell(9);
+						cell.setCellValue(unreported_kotu);
+						cell = row.getCell(13);
+						cell.setCellValue(unreported_sotai);
+						cell = row.getCell(17);
+						cell.setCellValue(unreported_shihuto);
+						cell = row.getCell(32);
+						cell.setCellValue(unreported_kekkin);
+
+    					//19行目以降
 						//span==span2だった場合（期間が一日だった場合）
 						if (kintai_s[i].substring(6, 8).equals(
 								kintai_s2[i].substring(6, 8))) {
 							row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
-									.createRow(day + 17);
-							row.setHeightInPoints(15);
-							cell = row.createCell(0);
-							cell.setCellStyle(DOTTEDStyle);
-							cell.setCellValue(dada + "日");
-							cell = row.createCell(1);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(2);
-							cell.setCellStyle(DOTTEDStyle);
-							cell.setCellValue("");
-							cell = row.createCell(3);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(4);
-							cell.setCellStyle(DOTTEDStyle);
+									.getRow(day + 17);
+//							row.setHeightInPoints(15);
+							cell = row.getCell(4);
 							cell.setCellValue(mmdd.get(i));
-							cell = row.createCell(5);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(6);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(7);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(8);
-							cell.setCellStyle(DOTTEDStyle);
+							cell = row.getCell(8);
 							cell.setCellValue(send_time.get(i));
-							cell = row.createCell(9);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(10);
-							cell.setCellStyle(DOTTEDStyle);
+							cell = row.getCell(10);
 							cell.setCellValue(limit);
-							cell = row.createCell(11);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(12);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(13);
-							cell.setCellStyle(DOTTEDStyle);
+							cell = row.getCell(13);
 							cell.setCellValue(send);
-							cell = row.createCell(14);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(15);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(16);
-							cell.setCellStyle(DOTTEDStyle);
+							cell = row.getCell(16);
 							cell.setCellValue(division.get(i));
-							cell = row.createCell(17);
-							cell.setCellStyle(DOTTEDStyle);
+							cell = row.getCell(17);
 							cell.setCellValue(div);
-							cell = row.createCell(18);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(19);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(20);
-							cell.setCellStyle(DOTTEDStyle);
+							cell = row.getCell(20);
 							cell.setCellValue(spotname);
-							cell = row.createCell(21);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(22);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(23);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(24);
-							cell.setCellStyle(DOTTEDStyle);
 							if (perm.get(i) == null) {
-								cell = row.createCell(25);
-								cell.setCellStyle(DOTTEDStyle);
+								cell = row.getCell(25);
 								cell.setCellValue("");
 							} else {
-								cell = row.createCell(25);
-								cell.setCellStyle(DOTTEDStyle);
+								cell = row.getCell(25);
 								cell.setCellValue(perm.get(i));
 							}
-							cell = row.createCell(26);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(27);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(28);
-							cell.setCellStyle(DOTTEDStyle);
+							cell = row.getCell(28);
 							cell.setCellValue(remark.get(i));
-							cell = row.createCell(29);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(30);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(31);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(32);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(33);
-							cell.setCellStyle(DOTTEDStyle);
-							cell = row.createCell(34);
-							cell.setCellStyle(DOTTEDStyle);
 							flg = 1;
 							break;
 							//span<span2だった場合(期間が連続して複数ある時)
@@ -1815,186 +1154,44 @@ public class MonthlyReportAction extends Action {
 									.substring(6, 8)); k <= (Integer
 									.parseInt(kintai_s2[i].substring(6, 8))); k++) {
 								row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
-										.createRow(day + 17);
-								row.setHeightInPoints(15);
-								cell = row.createCell(0);
-								cell.setCellStyle(DOTTEDStyle);
-								cell.setCellValue(k + "日");
-								cell = row.createCell(1);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(2);
-								cell.setCellStyle(DOTTEDStyle);
-								cell.setCellValue("");
-								cell = row.createCell(3);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(4);
-								cell.setCellStyle(DOTTEDStyle);
+										.getRow(day + 17);
+//								row.setHeightInPoints(15);
+								cell = row.getCell(4);
 								cell.setCellValue(mmdd.get(i));
-								cell = row.createCell(5);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(6);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(7);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(8);
-								cell.setCellStyle(DOTTEDStyle);
+								cell = row.getCell(8);
 								cell.setCellValue(send_time.get(i));
-								cell = row.createCell(9);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(10);
-								cell.setCellStyle(DOTTEDStyle);
+								cell = row.getCell(10);
 								cell.setCellValue(limit);
-								cell = row.createCell(11);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(12);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(13);
-								cell.setCellStyle(DOTTEDStyle);
+								cell = row.getCell(13);
 								cell.setCellValue(send);
-								cell = row.createCell(14);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(15);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(16);
-								cell.setCellStyle(DOTTEDStyle);
+								cell = row.getCell(16);
 								cell.setCellValue(division.get(i));
-								cell = row.createCell(17);
-								cell.setCellStyle(DOTTEDStyle);
+								cell = row.getCell(17);
 								cell.setCellValue(div);
-								cell = row.createCell(18);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(19);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(20);
-								cell.setCellStyle(DOTTEDStyle);
+								cell = row.getCell(20);
 								cell.setCellValue(spotname);
-								cell = row.createCell(21);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(22);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(23);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(24);
-								cell.setCellStyle(DOTTEDStyle);
 								if (perm.get(i) == null) {
-									cell = row.createCell(25);
-									cell.setCellStyle(DOTTEDStyle);
+									cell = row.getCell(25);
 									cell.setCellValue("");
 								} else {
-									cell = row.createCell(25);
-									cell.setCellStyle(DOTTEDStyle);
+									cell = row.getCell(25);
 									cell.setCellValue(perm.get(i));
 								}
-								cell = row.createCell(26);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(27);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(28);
-								cell.setCellStyle(DOTTEDStyle);
+								cell = row.getCell(28);
 								cell.setCellValue(remark.get(i));
-								cell = row.createCell(29);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(30);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(31);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(32);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(33);
-								cell.setCellStyle(DOTTEDStyle);
-								cell = row.createCell(34);
-								cell.setCellStyle(DOTTEDStyle);
 								flg = 1;
 								day = k;
 							}
 						}
 					}
 				}
-				if (flg == 0) {
-					row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
-							.createRow(day + 17);
-					row.setHeightInPoints(15);
-					cell = row.createCell(0);
-					cell.setCellStyle(DOTTEDStyle);
-					cell.setCellValue(dada + "日");
-					cell = row.createCell(1);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(2);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(3);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(4);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(5);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(6);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(7);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(8);
-					cell.setCellStyle(DOTTEDStyle);
-					cell.setCellValue("");
-					cell = row.createCell(9);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(10);
-					cell.setCellStyle(DOTTEDStyle);
-					cell.setCellValue("");
-					cell = row.createCell(11);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(12);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(13);
-					cell.setCellStyle(DOTTEDStyle);
-					cell.setCellValue("");
-					cell = row.createCell(14);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(15);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(16);
-					cell.setCellStyle(DOTTEDStyle);
-					cell.setCellValue("");
-					cell = row.createCell(17);
-					cell.setCellStyle(DOTTEDStyle);
-					cell.setCellValue("");
-					cell = row.createCell(18);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(19);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(20);
-					cell.setCellStyle(DOTTEDStyle);
-					cell.setCellValue("");
-					cell = row.createCell(21);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(22);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(23);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(24);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(25);
-					cell.setCellStyle(DOTTEDStyle);
-					cell.setCellValue("");
-					cell = row.createCell(26);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(27);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(28);
-					cell.setCellStyle(DOTTEDStyle);
-					cell.setCellValue("");
-					cell = row.createCell(29);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(30);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(31);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(32);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(33);
-					cell.setCellStyle(DOTTEDStyle);
-					cell = row.createCell(34);
-					cell.setCellStyle(DOTTEDStyle);
-				}
 			}
+
+			workbook.removeSheetAt(0);
+
+			//シートの保護
+			sheet.protectSheet("");
+
 			// 出力先のファイル名を指定
 			out = new FileOutputStream("C:\\kintaiExcel\\"
 					+ String.valueOf(KintaiManagement.Cale_Date_Year) + ""
@@ -2003,7 +1200,13 @@ public class MonthlyReportAction extends Action {
 					+ lForm.getEmployee_name() + ".xlsx");
 			// ブックに書き込み
 			workbook.write(out);
+
+
 		} finally {
+
+		    if(fis != null) {
+			    fis.close();
+			 }
 			if (out != null) {
 				out.close();
 			}
@@ -2012,24 +1215,5 @@ public class MonthlyReportAction extends Action {
 			}
 		}
 		return true;
-	}
-
-	// 罫線を設定
-	private static CellStyle setStyle(Workbook workbook,
-			BorderStyle borderStyle, short color) {
-		CellStyle cellStyle = workbook.createCellStyle();
-		// 罫線設定
-		cellStyle.setBorderBottom(borderStyle);
-		cellStyle.setBorderLeft(borderStyle);
-		cellStyle.setBorderRight(borderStyle);
-		cellStyle.setBorderTop(borderStyle);
-		// 罫線色設定
-		cellStyle.setBottomBorderColor(color);
-		cellStyle.setLeftBorderColor(color);
-		cellStyle.setRightBorderColor(color);
-		cellStyle.setTopBorderColor(color);
-
-		return cellStyle;
-
 	}
 }
