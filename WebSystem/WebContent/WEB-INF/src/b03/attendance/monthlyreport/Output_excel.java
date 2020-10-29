@@ -13,9 +13,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import sample.ap.DbAction;
 import sample.pr.main.LoginForm;
 import b04.attendance.calendar.KintaiManagement;
+import b05.attendance.dbaction.DbAction;
 
 public class Output_excel {
 
@@ -1056,9 +1056,9 @@ public class Output_excel {
 							row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
 									.getRow(day + 17);
 							cell = row.getCell(4);
-							cell.setCellValue(mmdd.get(i));
+							cell.setCellValue(mmdd.get(i).substring(0,2)+"/"+mmdd.get(i).substring(2,4));
 							cell = row.getCell(8);
-							cell.setCellValue(send_time.get(i));
+							cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
 							cell = row.getCell(10);
 							cell.setCellValue(limit);
 							cell = row.getCell(13);
@@ -1088,9 +1088,9 @@ public class Output_excel {
 								row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
 										.getRow(day + 17);
 								cell = row.getCell(4);
-								cell.setCellValue(mmdd.get(i));
+								cell.setCellValue(mmdd.get(i).substring(0,2)+"/"+mmdd.get(i).substring(2,4));
 								cell = row.getCell(8);
-								cell.setCellValue(send_time.get(i));
+								cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
 								cell = row.getCell(10);
 								cell.setCellValue(limit);
 								cell = row.getCell(13);

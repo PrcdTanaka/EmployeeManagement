@@ -5,7 +5,7 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.AttendanceForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="sample.ap.DbAction"%>
+<%@ page import="b05.attendance.dbaction.DbAction"%>
 <%@ page import="sample.pr.main.KintaiListForm"%>
 
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>

@@ -6,7 +6,7 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="b02.attendance.inform.KintaiMailForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="sample.ap.DbAction"%>
+<%@ page import="b05.attendance.dbaction.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <html lang="ja">

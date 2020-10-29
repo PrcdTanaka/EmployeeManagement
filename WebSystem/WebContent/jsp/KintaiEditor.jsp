@@ -3,12 +3,12 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.KintaiMailForm"%>
-<%@ page import="sample.pr.main.KintaiMailAction"%>
+<%@ page import="b02.attendance.inform.KintaiMailForm"%>
+<%@ page import="b02.attendance.inform.KintaiMailAction"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="sample.pr.main.MonthlyReportForm"%>
-<%@ page import="sample.pr.main.MonthlyReportAction"%>
-<%@ page import="sample.ap.DbAction"%>
+<%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>
+<%@ page import="b03.attendance.monthlyreport.MonthlyReportAction"%>
+<%@ page import="b05.attendance.dbaction.DbAction"%>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List" %>

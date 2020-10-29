@@ -12,12 +12,11 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
 import sample.pr.main.LoginForm;
 
 public class MonthlyReportAction extends Action {
 
-	private DbAction dba = new DbAction();
+	//private DbAction dba = new DbAction();
 
 	// 遷移先
 	private String forward;

@@ -8,7 +8,7 @@
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportAction"%>
-<%@ page import="sample.ap.DbAction"%>
+<%@ page import="b05.attendance.dbaction.DbAction"%>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List" %>

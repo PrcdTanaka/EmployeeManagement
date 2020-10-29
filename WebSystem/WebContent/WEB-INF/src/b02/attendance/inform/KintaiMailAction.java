@@ -13,9 +13,9 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
 import sample.pr.main.LoginForm;
 import b03.attendance.monthlyreport.MonthlyReportForm;
+import b05.attendance.dbaction.DbAction;
 
 public class KintaiMailAction extends Action {
 	private DbAction dba = new DbAction();
@@ -116,7 +116,7 @@ public class KintaiMailAction extends Action {
 						|| !(KMform.getSpan().equals(KMform.getSpan()))
 						|| !(KMform.getSpan2().equals(KMform.getSpan2()))){
 					session.setAttribute("form", KMform);
-					forward = "kintaimail";
+					forward = "kintailist";
 				//	request.setAttribute("errowMsg", "必須項目を入力してください");
 				//	String errorMsg=(String)request.getAttribute("errorMsg");
 				//	JOptionPane.showMessageDialog(null, errorMsg);

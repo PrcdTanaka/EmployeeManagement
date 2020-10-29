@@ -7,7 +7,7 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="sample.ap.DbAction"%>
+<%@ page import="b05.attendance.dbaction.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.util.List"%>
@@ -46,6 +46,17 @@
         List<String>Send_Time=form.getSend_Time();
         List<String> spotcode =form.getSpotcode();
 
+        String mm;
+        String dd;
+        String md;
+        for(int i = 0; i < Mmdd.size(); i++)
+       {
+            mm=Mmdd.get(i).substring(0,2);
+            dd=Mmdd.get(i).substring(2,4);
+
+
+       }
+
 
         String link1 = "http://localhost:8080/WebSystem/KintaiListAction.do";
 
@@ -76,7 +87,7 @@
 		<center>
 			<h1>勤怠月報画面</h1>
 		</center>
-		<center>
+		center
 		<table border="3" bordercolor="#0000ff">
 			<tr bgcolor="#87cefa">
 			<tr>
@@ -926,8 +937,8 @@
          <%-- span==span2だった場合--%>
         <%  if(kintai_s[listnumber].substring(6,8).equals(kintai_s2[listnumber].substring(6,8))){%>
 				<td><%=dada%>日</td>
-				<td><%=Mmdd.get(listnumber)%></td>
-				<td><%=Send_Time.get(listnumber)%></td>
+				<td><%=Mmdd.get(listnumber).substring(0,2)+"/"+Mmdd.get(listnumber).substring(2,4)%></td>
+				<td><%=Send_Time.get(listnumber).substring(0,2)+":"+Send_Time.get(listnumber).substring(2,4)%></td>
 				<td><%=limit %></td>
 				<td><%=send %></td>
 				<td><%=division.get(listnumber)%></td>
@@ -954,8 +965,8 @@
          }else{
         	 for(int i=Integer.parseInt(kintai_s[listnumber].substring(6,8));i<=(Integer.parseInt(kintai_s2[listnumber].substring(6,8)));i++){%>
  				<td><%=i%>日</td>
- 				<td><%=Mmdd.get(listnumber)%></td>
- 				<td><%=Send_Time.get(listnumber)%></td>
+ 				<td><%=Mmdd.get(listnumber).substring(0,2)+"/"+Mmdd.get(listnumber).substring(2,4)%></td>
+ 				<td><%=Send_Time.get(listnumber).substring(0,2)+":"+Send_Time.get(listnumber).substring(2,4)%></td>
  				<td><%=limit %></td>
  				<td><%=send %></td>
  				<td><%=division.get(listnumber)%></td>

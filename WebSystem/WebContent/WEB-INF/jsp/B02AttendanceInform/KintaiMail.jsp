@@ -6,7 +6,7 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="b02.attendance.inform.KintaiMailForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="sample.ap.DbAction"%>
+<%@ page import="b05.attendance.dbaction.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <html lang="ja">
@@ -218,7 +218,7 @@
 
 		<div>
 			<html:submit property="button" styleClass="btn" value="送信"
-				styleId="kintaimail" style="margin-top:10;" />
+				styleId="kintailist" style="margin-top:10;" />
 		</div>
         <div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="戻る"
