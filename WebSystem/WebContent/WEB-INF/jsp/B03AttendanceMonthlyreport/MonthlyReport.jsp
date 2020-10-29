@@ -87,7 +87,7 @@
 		<center>
 			<h1>勤怠月報画面</h1>
 		</center>
-		center
+		<center>
 		<table border="3" bordercolor="#0000ff">
 			<tr bgcolor="#87cefa">
 			<tr>
