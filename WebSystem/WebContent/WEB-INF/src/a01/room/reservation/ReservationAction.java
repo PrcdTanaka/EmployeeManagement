@@ -50,8 +50,8 @@ public final class ReservationAction extends Action {
 			if (button.equals("戻る")) {
 				forward = "main";
 				session.removeAttribute("rForm");
-			}else if(button.equals(null)){
-				switch (link) {
+			}else if(button.equals("")){
+				switch (rForm.getLink()) {
 				case "":
 					break;
 

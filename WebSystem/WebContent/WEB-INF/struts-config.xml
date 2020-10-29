@@ -183,12 +183,7 @@
 			type="sample.pr.main.Access_Control" validate="false" scope="request">
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 		</action>
-		<action name="RoomReservationForm" path="/RoomReservationAction"
-			type="a03.room.register.RoomReservationAction" validate="false" scope="request">
-			<forward name="room" path="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp" />
-			<forward name="main" path="/jsp/Main.jsp" />
-		</action>
-				<action name="ReservationForm" path="/Access_SelectAction"
+		<action name="ReservationForm" path="/Access_SelectAction"
 			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
 			<forward name="main" path="/jsp/Access_Control.jsp" />
 		</action>

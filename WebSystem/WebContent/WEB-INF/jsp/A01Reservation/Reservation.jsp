@@ -81,8 +81,10 @@
 		</div>
 
 		<div align="right">
-
-			<!-- a href="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp">会議室新規登録画面へ</a> -->
+			<html:link action="/MainAction">会議室新規登録画面へ
+				<html:param name="link">room</html:param>
+			</html:link>
+			<a href="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp">会議室新規登録画面へ</a>
 		</div>
 		<div class="details">
 			<div align="left">
@@ -156,7 +158,7 @@
 				<tr>
 
 					<%
-						for (int i = 0; i < 7; i++) { //7セル分
+						for (int i = 0; i < 7; i++) { //7日分
 									if (day > max) {
 					%>
 					<td width=90px></td>
@@ -221,10 +223,6 @@
 										if (rForm.getMmdd() == null) {
 					%>
 					<td>
-					<form name="confirm" method="post" action="/WEB-INF/jsp/A02ReservationConfirm/ReservationConfirmAction">
-						<a href="#" onClick="document.ReservationConfirm.submit();">○</a>
-					</form>
-
 					<a href="/WEB-INF/jsp/A02ReservationConfirm/ReservationConfirm.jsp?res_time=08:00&mm=<%=mon%>&dd=<%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name%>"
 						onclick="return confirm('<%=mon + "月" %>
 						<%=dayalert + i%>日08:00に予約しますか？');">○</a></td>
@@ -247,9 +245,7 @@
 									for (int j = 0; i < 7; i++) {
 										if (rForm.getMmdd() == null) {
 					%>
-					<td><form name="confirm" method="post" action="/ReservatioinConfirm">
-							<a href="#" onClick="document.form1.submit();">○</a>
-						</form>
+					<td>
 					<a
 						href="/WEB-INF/jsp/A02ReservationConfirm/ReservationConfirm.jsp?res_time=08:30&mm=<%=mon%>&dd=<%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name%>"
 						onclick="return confirm('<%=mon + "月"%><%=dayalert + i%>日08:30に予約しますか？');">○</a></td>

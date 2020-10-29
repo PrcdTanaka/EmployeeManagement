@@ -327,8 +327,8 @@ public final class ReservationForm extends ActionForm {
 		return message;
 	}
 
-	public void setMessage(String link) {
-		this.link = link;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	public String getLink() {
 		return link;
