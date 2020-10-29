@@ -77,6 +77,7 @@
 		</div>
 		<br/>
 		<br/>
+
 		<%
 		String strYear=request.getParameter("year");		// 変数request内のyearを取得
 		String strMonth=request.getParameter("month");		// 変数request内のmonthを取得
@@ -108,6 +109,9 @@
 		%>
 		<!-- 前月・来月移動のリンク表示と、今の月を表示 -->
 		<div class="head">
+		<div style="position: relative; margin-top: 5%; align: center;" >
+		<html:submit property="button"  value="前月"/>
+		</div>
 		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=
 		<%
 			int LinkYear = 0;		// リンク用の年
