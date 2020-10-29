@@ -7,7 +7,7 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="b05.attendance.dbaction.DbAction"%>
+<%@ page import="b05.attendance.dbaction.MonthlyReportDb"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.util.List"%>
@@ -32,7 +32,7 @@
         String year = (cal.get(cal.YEAR))+"";
         String month=(cal.get(cal.MONTH)+1)+"";
         int monthlastDay = cal.getActualMaximum(Calendar.DATE);
-        DbAction dba = new DbAction();
+        MonthlyReportDb dba = new MonthlyReportDb();
         LoginForm lForm=(LoginForm)session.getAttribute("form");
         form.setEmployee_no(lForm.getEmployee_no());
 
@@ -916,6 +916,7 @@
         	break;
         	default:
         	a="無効なコードです";
+        	limit="9999";
         }
 
 

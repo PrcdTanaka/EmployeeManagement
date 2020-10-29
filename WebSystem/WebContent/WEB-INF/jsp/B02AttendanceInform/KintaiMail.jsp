@@ -86,7 +86,7 @@
 			String Email = "kintai@procd-k.co.jp";
 					String Employee_no = "";
 					String name = "";
-					DbAction dba = new DbAction();
+					//DbAction dba = new DbAction();
 					LoginForm s = (LoginForm) session.getAttribute("form");
 					KintaiMailForm Form = new KintaiMailForm();
 					String CC = Form.getCC();

@@ -15,13 +15,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import sample.pr.main.LoginForm;
 import b04.attendance.calendar.KintaiManagement;
-import b05.attendance.dbaction.DbAction;
+import b05.attendance.dbaction.MonthlyReportDb;
 
 public class Output_excel {
 
 	public void Output_Excel(MonthlyReportForm MRForm, LoginForm lForm)
 			throws IOException {
-	    DbAction dba = new DbAction();
+		MonthlyReportDb dba = new MonthlyReportDb();
 		// カレンダークラスを取得
 		Calendar cal = Calendar.getInstance();
 		String year = (cal.get(cal.YEAR)) + "";
@@ -967,6 +967,7 @@ public class Output_excel {
 							break;
 						default:
 							spotname = "無効なコードです";
+							limit="9999";
 						}
 
 						// カウントするための変数

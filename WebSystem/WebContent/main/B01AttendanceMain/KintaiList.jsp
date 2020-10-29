@@ -5,7 +5,7 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.AttendanceForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="b05.attendance.dbaction.DbAction"%>
+<%@ page import="b05.attendance.dbaction.MonthlyReportDb"%>
 <%@ page import="b01.attendance.main.KintaiListForm"%>
 
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>
@@ -49,7 +49,7 @@
 		Calendar cale = Calendar.getInstance();
 
 		MonthlyReportForm form=new MonthlyReportForm();		//MonthlyReportFormを使用するために宣言
-		DbAction dba = new DbAction();						// DbActionを使用するために宣言
+		MonthlyReportDb dba = new MonthlyReportDb();						// DbActionを使用するために宣言
 		LoginForm lForm=(LoginForm)session.getAttribute("form");	// LoginForm型の変数lFormにsessionのformを取得
 		form.setEmployee_no(lForm.getEmployee_no());				// formにlFormのログイン中の社員番号を取得
 

@@ -15,10 +15,12 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.pr.main.LoginForm;
 import b03.attendance.monthlyreport.MonthlyReportForm;
-import b05.attendance.dbaction.DbAction;
+import b05.attendance.dbaction.KintaiMailDb;
+import b05.attendance.dbaction.MonthlyReportDb;
 
 public class KintaiMailAction extends Action {
-	private DbAction dba = new DbAction();
+	private KintaiMailDb dba = new KintaiMailDb();
+	private MonthlyReportDb dba2 = new MonthlyReportDb();
 
 	// 遷移先
 	private String forward;
@@ -161,7 +163,7 @@ public class KintaiMailAction extends Action {
 	{
 		MonthlyReportForm MRFORM=new MonthlyReportForm();
 		MRFORM.setEmployee_no(lForm.getEmployee_no());
-		dba.getMonthly_report(MRFORM,"","");
+		dba2.getMonthly_report(MRFORM,"","");
 		List<String> FSpan1 = MRFORM.getSpan();
 		List<String> FSpan2 = MRFORM.getSpan2();
 
