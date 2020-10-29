@@ -29,11 +29,10 @@
 		<form-bean name="KintaiListForm" type="b01.attendance.main.KintaiListForm" />
 		<form-bean name="MonthlyReportForm" type="b03.attendance.monthlyreport.MonthlyReportForm" />
 		<form-bean name="ReservationForm" type="a01.room.reservation.ReservationForm" />
-		<form-bean name="ReservationConfimForm" type="sample.pr.main.ReservationConfirmForm" />
+		<form-bean name="ReservationConfimForm" type="a02.room.reservation.confirm.ReservationConfirmForm" />
 		<form-bean name="EnterForm" type="sample.pr.main.EnterForm" />
-		<form-bean name="ReservationFrom" type="sample.pr.main.ReservationForm" />
 		<form-bean name="Access_Select" type="sample.pr.main.Access_SelectForm" />
-		<form-bean name="RoomReservationForm" type="sample.pr.main.RoomReservationForm" />
+		<form-bean name="RoomReservationForm" type="a03.room.register.RoomReservationForm" />
 		<form-bean name="KinmuRecordForm" type="sample.pr.main.KinmuRecordForm" />
 		<form-bean name="KinmuRecordSendForm" type="sample.pr.main.KinmuRecordSendForm" />
 		<form-bean name="KintaiNotificationForm" type="sample.pr.main.KintaiNotificationForm" />
@@ -162,6 +161,8 @@
 		<action name="ReservationForm" path="/ReservationAction"
 			type="a01.room.reservation.ReservationAction" validate="false" scope="request">
 			<forward name="reservation" path="/WEB-INF/jsp/A01Reservation/Reservation.jsp" />
+			<forward name="confirm" path="/WEB-INF/jsp/A02ReservationConfirm/ReservationConfirm.jsp" />
+			<forward name="room" path="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
 		<action name="KinmuRecordForm" path="/KinmuRecordAction"
@@ -182,7 +183,7 @@
 			type="sample.pr.main.Access_Control" validate="false" scope="request">
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
 		</action>
-		<action name="ReservationForm" path="/RoomReservationAction"
+		<action name="RoomReservationForm" path="/RoomReservationAction"
 			type="a03.room.register.RoomReservationAction" validate="false" scope="request">
 			<forward name="room" path="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />

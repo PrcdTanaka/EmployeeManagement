@@ -33,6 +33,8 @@ public final class ReservationForm extends ActionForm {
 	private List<String> member;
 	/** メッセージ */
 	private String message;
+	/** リンク */
+	private String link;
 
 
 	/**
@@ -325,8 +327,14 @@ public final class ReservationForm extends ActionForm {
 		return message;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setMessage(String link) {
+		this.link = link;
+	}
+	public String getLink() {
+		return link;
 	}
 
+	public void setLink(String link) {
+		this.link = link;
+	}
 }
