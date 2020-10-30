@@ -43,7 +43,7 @@ public final class ReservationConfirmAction extends Action{
 				session.removeAttribute("rcForm");
 			}else if(button.equals("登録")){
 				forward ="confirm";
-				dba.InsReservation(rcForm);
+				//dba.InsReservation(rcForm);
 				rcForm.setMessage("登録しました");
 			}
 		}catch(Exception e){
