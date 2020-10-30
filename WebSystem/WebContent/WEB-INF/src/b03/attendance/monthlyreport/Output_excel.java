@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -90,6 +92,11 @@ public class Output_excel {
 			Row row;
 			// 列を指定する変数
 			Cell cell;
+
+			Font font =workbook.createFont();
+			font.setFontName("メイリオ");
+			CellStyle cs = workbook.createCellStyle();
+			cs.setFont(font);
 
 			// 8行目
 			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(7);
