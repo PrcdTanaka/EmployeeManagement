@@ -98,6 +98,7 @@
 					String ptime = Form.getPtime();
 					String remark = Form.getRemark();
 					String perm = Form.getPerm();
+					String message=Form.getMessage();
 					try {
 						Employee_no = s.getEmployee_no();
 						name = s.getEmployee_name();
@@ -111,7 +112,7 @@
 				<h1>勤怠連絡画面</h1>
 			</center>
 		</div>
-
+		<div class="outputmessage"><%= message %></div>
 		<p style="margin-left: -44%;">
 		<p align="center" style="margin-left: -45%">
 			宛先:<%=Email%></p>

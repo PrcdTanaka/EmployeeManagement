@@ -125,6 +125,7 @@ public class KintaiMailAction extends Action {
 						boolean mailflg = SMail.Send_Mail(KMform,lForm);
 						if(mailflg==true){
 							System.out.println("メールフォーム出力完了");
+							KMform.setMessage("送信完了");
 						}else{
 							System.out.println("メールフォーム出力失敗");
 						}
