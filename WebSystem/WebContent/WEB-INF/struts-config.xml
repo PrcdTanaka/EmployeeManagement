@@ -173,7 +173,7 @@
 		<action name="RoomReservationForm" path="/RoomReservationAction"
 			type="a03.room.register.RoomReservationAction" validate="false" scope="request">
 			<forward name="room" path="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp" />
-			<forward name="reservation" path="/WEB-INF/jsp/A01Reservation/Reservation.jsp" />
+			<forward name="reservation" path="/main/A01Reservation/Reservation.jsp" />
 		</action>
 		<action name="ReservationConfirmForm" path="/ReservationConfirmAction"
 			type="a02.room.reservation.confirm.ReservationConfirmAction" validate="false" scope="request">
