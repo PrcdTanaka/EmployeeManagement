@@ -108,7 +108,7 @@
 		%>
 		<!-- 前月・来月移動のリンク表示と、今の月を表示 -->
 		<div class="head">
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=
+		<a href="http://localhost:8080/WebSystem/main/B01AttendanceMain/KintaiList.jsp?year=
 		<%
 			int LinkYear = 0;		// リンク用の年
 			int LinkMonth = 0;		// リンク用の月
@@ -123,7 +123,7 @@
 		%>
 		<%=LinkYear%>&month=<%=LinkMonth-1 %>">前月</a>
 		<span class="title"><%= intYear%>年<%=intMonth %>月</span>
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=
+		<a href="http://localhost:8080/WebSystem/main/B01AttendanceMain/KintaiList.jsp?year=
 		<%
 			// intMonth +1が13の場合
 			if(intMonth +1 == 13)

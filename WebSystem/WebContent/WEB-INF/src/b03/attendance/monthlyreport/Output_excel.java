@@ -98,27 +98,17 @@ public class Output_excel {
 
 			// 10行目
 			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(9);
+			cell = row.getCell(1);
+			cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)
+					+ "年" + String.valueOf(KintaiManagement.Cale_Date_Month)
+					+ "月" + monthlastDay + "日");
 			cell = row.getCell(21);
 			cell.setCellValue(lForm.getEmployee_name());
 
 			// 11行目
 			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(10);
-			cell = row.getCell(11);
-			cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)
-					+ "年" + String.valueOf(KintaiManagement.Cale_Date_Month)
-					+ "月" + monthlastDay + "日");
 			cell = row.getCell(15);
 			cell.setCellValue(lForm.getEmployee_no());
-
-			// //13行目
-			// row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(12);
-			// cell = row.getCell(0);
-			// cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)+"年度");
-
-//			// 14行目
-//			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(13);
-//			cell = row.getCell(0);
-//			cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Month));
 
 			// 有給などの回数をカウントする変数
 			int tikoku = 0;
