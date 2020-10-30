@@ -81,9 +81,7 @@
 		</div>
 
 		<div align="right">
-			<html:link action="/ReservationAction">会議室新規登録画面へ
-				<html:param name="link">room</html:param>
-			</html:link>
+		<html:submit property="button" styleClass="btn" value="会議室新規登録画面へ" styleId="room" style="border:none;background-color:transparent;color:blue;text-decoration:underline;"/>
 		</div>
 		<div class="details">
 			<div align="left">
@@ -224,7 +222,7 @@
 					<td>
 					<a href="/WEB-INF/jsp/A02ReservationConfirm/ReservationConfirm.jsp?res_time=08:00&mm=<%=mon%>&dd=<%=dayalert + i%>&room_name=2F&emp_name=<%=emp_name%>"
 						onclick="return confirm('<%=mon + "月" %>
-						<%=dayalert + i%>日08:00に予約しますか？');">○</a></td>
+						日08:00に予約しますか？');">○</a></td>
 					<%
 						} else {
 					%>

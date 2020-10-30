@@ -47,22 +47,11 @@ public final class ReservationAction extends Action {
 		String link = request.getParameter("link");
 
 		try {
-			if (button.equals("戻る")) {
+			if (button != null & button.equals("戻る")) {
 				forward = "main";
 				session.removeAttribute("rForm");
-			}else if(button.equals("")){
-				switch (rForm.getLink()) {
-				case "":
-					break;
-
-				case "confirm":
-					forward = "confirm";
-					break;
-
-				case "room":
-					forward = "room";
-					break;
-				}
+			}else if(button.equals("会議室新規登録画面へ")){
+				forward = "room";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
