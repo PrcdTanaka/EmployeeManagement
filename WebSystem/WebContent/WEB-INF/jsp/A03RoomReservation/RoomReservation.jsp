@@ -63,7 +63,6 @@ text-align:center;
 			</div>
 			<br>
 			<div align="center">
-			<!-- 登録ボタン -->
 			<html:submit property="button" styleClass="btn" value="登録"
 				styleId="room"/>
 			</div>

@@ -12,7 +12,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
+import a04.room.dbaction.DbAction;
 
 public final class RoomReservationAction extends Action{
 
