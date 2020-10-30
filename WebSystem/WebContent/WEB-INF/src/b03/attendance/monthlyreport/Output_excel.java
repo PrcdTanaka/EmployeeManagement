@@ -13,15 +13,15 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import sample.ap.DbAction;
 import sample.pr.main.LoginForm;
 import b04.attendance.calendar.KintaiManagement;
+import b05.attendance.dbaction.MonthlyReportDb;
 
 public class Output_excel {
 
 	public void Output_Excel(MonthlyReportForm MRForm, LoginForm lForm)
 			throws IOException {
-	    DbAction dba = new DbAction();
+		MonthlyReportDb dba = new MonthlyReportDb();
 		// カレンダークラスを取得
 		Calendar cal = Calendar.getInstance();
 		String year = (cal.get(cal.YEAR)) + "";
@@ -98,27 +98,17 @@ public class Output_excel {
 
 			// 10行目
 			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(9);
+			cell = row.getCell(1);
+			cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)
+					+ "年" + String.valueOf(KintaiManagement.Cale_Date_Month)
+					+ "月" + monthlastDay + "日");
 			cell = row.getCell(21);
 			cell.setCellValue(lForm.getEmployee_name());
 
 			// 11行目
 			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(10);
-			cell = row.getCell(11);
-			cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)
-					+ "年" + String.valueOf(KintaiManagement.Cale_Date_Month)
-					+ "月" + monthlastDay + "日");
 			cell = row.getCell(15);
 			cell.setCellValue(lForm.getEmployee_no());
-
-			// //13行目
-			// row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(12);
-			// cell = row.getCell(0);
-			// cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Year)+"年度");
-
-//			// 14行目
-//			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(13);
-//			cell = row.getCell(0);
-//			cell.setCellValue(String.valueOf(KintaiManagement.Cale_Date_Month));
 
 			// 有給などの回数をカウントする変数
 			int tikoku = 0;
@@ -967,6 +957,7 @@ public class Output_excel {
 							break;
 						default:
 							spotname = "無効なコードです";
+							limit="9999";
 						}
 
 						// カウントするための変数
@@ -1056,9 +1047,9 @@ public class Output_excel {
 							row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
 									.getRow(day + 17);
 							cell = row.getCell(4);
-							cell.setCellValue(mmdd.get(i));
+							cell.setCellValue(mmdd.get(i).substring(0,2)+"/"+mmdd.get(i).substring(2,4));
 							cell = row.getCell(8);
-							cell.setCellValue(send_time.get(i));
+							cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
 							cell = row.getCell(10);
 							cell.setCellValue(limit);
 							cell = row.getCell(13);
@@ -1088,9 +1079,9 @@ public class Output_excel {
 								row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
 										.getRow(day + 17);
 								cell = row.getCell(4);
-								cell.setCellValue(mmdd.get(i));
+								cell.setCellValue(mmdd.get(i).substring(0,2)+"/"+mmdd.get(i).substring(2,4));
 								cell = row.getCell(8);
-								cell.setCellValue(send_time.get(i));
+								cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
 								cell = row.getCell(10);
 								cell.setCellValue(limit);
 								cell = row.getCell(13);

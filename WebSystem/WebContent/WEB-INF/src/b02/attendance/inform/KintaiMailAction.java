@@ -13,12 +13,14 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
 import sample.pr.main.LoginForm;
 import b03.attendance.monthlyreport.MonthlyReportForm;
+import b05.attendance.dbaction.KintaiMailDb;
+import b05.attendance.dbaction.MonthlyReportDb;
 
 public class KintaiMailAction extends Action {
-	private DbAction dba = new DbAction();
+	private KintaiMailDb dba = new KintaiMailDb();
+	private MonthlyReportDb dba2 = new MonthlyReportDb();
 
 	// 遷移先
 	private String forward;
@@ -39,14 +41,13 @@ public class KintaiMailAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		//メール機能のインスタンス生成
 		SendMail SMail =new SendMail();
 		KintaiMailForm KMform = (KintaiMailForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		KMform.setEmployee_no(lForm.getEmployee_no());
 		KMform.setEmployee_name(lForm.getEmployee_name());
-
-		//forward = "kintaimail";
 		String button = KMform.getButton();
 		try {
 			if (button.equals("戻る")) {
@@ -59,7 +60,6 @@ public class KintaiMailAction extends Action {
 				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, KMform, Send_Edit_val);
 				if(Send_Chk_Flg == false)
 				{
-				//	session.setAttribute("form", form);
 				//	session.removeAttribute("form");
 					dba.setKintaiDelete(KMform,lForm,Action_MMdd,Action_SendTime);
 					forward = "kintailist";
@@ -82,6 +82,7 @@ public class KintaiMailAction extends Action {
 						|| !(KMform.getSpan().equals(KMform.getSpan()))
 						|| !(KMform.getSpan2().equals(KMform.getSpan2()))){
 					session.setAttribute("form", KMform);
+					forward = "kintailist";
 				}
 				else{
 					// DB上のデータと対象期間に被りが無い場合にDBの編集処理を行う
@@ -95,8 +96,6 @@ public class KintaiMailAction extends Action {
 							System.out.println("メールフォーム出力失敗");
 						}
 						dba.setKintaiEdit(KMform, lForm, Action_MMdd, Action_SendTime);
-					//	response.sendRedirect("http://localhost:8080/WebSystem/jsp/KintaiList.jsp");
-					//	session.removeAttribute("form");
 						forward = "kintailist";
 					}
 				}
@@ -116,10 +115,7 @@ public class KintaiMailAction extends Action {
 						|| !(KMform.getSpan().equals(KMform.getSpan()))
 						|| !(KMform.getSpan2().equals(KMform.getSpan2()))){
 					session.setAttribute("form", KMform);
-					forward = "kintaimail";
-				//	request.setAttribute("errowMsg", "必須項目を入力してください");
-				//	String errorMsg=(String)request.getAttribute("errorMsg");
-				//	JOptionPane.showMessageDialog(null, errorMsg);
+					forward = "kintailist";
 				}
 				else{
 					// DB上のデータと対象期間に被りが無い場合にDBの追加処理を行う
@@ -133,7 +129,6 @@ public class KintaiMailAction extends Action {
 							System.out.println("メールフォーム出力失敗");
 						}
 						// DBへの登録作業以外をコメント化
-						//session.setAttribute("form", form);
 						dba.setKintaiInfo(KMform, lForm);
 						forward = "kintailist";
 					}
@@ -161,7 +156,7 @@ public class KintaiMailAction extends Action {
 	{
 		MonthlyReportForm MRFORM=new MonthlyReportForm();
 		MRFORM.setEmployee_no(lForm.getEmployee_no());
-		dba.getMonthly_report(MRFORM,"","");
+		dba2.getMonthly_report(MRFORM,"","");
 		List<String> FSpan1 = MRFORM.getSpan();
 		List<String> FSpan2 = MRFORM.getSpan2();
 

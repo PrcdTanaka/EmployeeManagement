@@ -3,12 +3,12 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page import="sample.pr.main.LoginForm"%>
-<%@ page import="sample.pr.main.KintaiMailForm"%>
-<%@ page import="sample.pr.main.KintaiMailAction"%>
+<%@ page import="b02.attendance.inform.KintaiMailForm"%>
+<%@ page import="b02.attendance.inform.KintaiMailAction"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="sample.pr.main.MonthlyReportForm"%>
-<%@ page import="sample.pr.main.MonthlyReportAction"%>
-<%@ page import="sample.ap.DbAction"%>
+<%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>
+<%@ page import="b03.attendance.monthlyreport.MonthlyReportAction"%>
+<%@ page import="b05.attendance.dbaction.MonthlyReportDb"%>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List" %>
@@ -45,7 +45,7 @@
 			String Email = "kintai@procd-k.co.jp";
 					String Employee_no = "";
 					String name = "";
-					DbAction dba = new DbAction();
+					MonthlyReportDb dba = new MonthlyReportDb();
 					LoginForm s = (LoginForm) session.getAttribute("form");
 					KintaiMailForm Form = new KintaiMailForm();
 					String CC = Form.getCC();

@@ -13,6 +13,7 @@ public class SendMail {
 
 		boolean ret=false;
 
+		//メール本文のフォーマットを作成
 		String mail = String.format("mailto:%s?subject=%s&body=%s&cc=%s&bcc=%s",
 				//	実際のアドレスkintai@procd-k.co.jp
 				"test@test.test",
@@ -31,7 +32,7 @@ public class SendMail {
 				form.getCC(),
 				form.getBcc());
 		Desktop desktop = Desktop.getDesktop();
-		// メール作成ウィンドウを起動
+		// 電子メールウィンドウを起動
 		desktop.mail(new URI(mail));
 		ret=true;
 		return ret;

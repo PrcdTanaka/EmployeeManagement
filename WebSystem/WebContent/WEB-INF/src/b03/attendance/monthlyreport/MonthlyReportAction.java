@@ -12,16 +12,12 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.ap.DbAction;
 import sample.pr.main.LoginForm;
 
 public class MonthlyReportAction extends Action {
 
-	private DbAction dba = new DbAction();
-
 	// 遷移先
 	private String forward;
-	public static boolean OutputFlg = false;
 
 	public MonthlyReportAction() throws IOException {
 	}
@@ -47,10 +43,11 @@ public class MonthlyReportAction extends Action {
 		try {
 			if (button.equals("戻る")) {
 				forward = "kintailist";
-				// session.removeAttribute("kForm");
-			} else if (button.equals("保存")) {
+
+		//保存ボタン押下後月報画面がエクセルに出力
+			} else if (button.equals("エクセル出力")) {
 				forward = "MonthlyReport";
-				session.setAttribute("kform", MForm);
+				//エクセル出力用メソッド
 				excel.Output_Excel(MForm, lForm);
 			}
 		} catch (Exception e) {

@@ -5,8 +5,8 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="sample.pr.main.AttendanceForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="sample.ap.DbAction"%>
-<%@ page import="sample.pr.main.KintaiListForm"%>
+<%@ page import="b05.attendance.dbaction.MonthlyReportDb"%>
+<%@ page import="b01.attendance.main.KintaiListForm"%>
 
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportAction"%>
@@ -49,7 +49,7 @@
 		Calendar cale = Calendar.getInstance();
 
 		MonthlyReportForm form=new MonthlyReportForm();		//MonthlyReportFormを使用するために宣言
-		DbAction dba = new DbAction();						// DbActionを使用するために宣言
+		MonthlyReportDb dba = new MonthlyReportDb();						// DbActionを使用するために宣言
 		LoginForm lForm=(LoginForm)session.getAttribute("form");	// LoginForm型の変数lFormにsessionのformを取得
 		form.setEmployee_no(lForm.getEmployee_no());				// formにlFormのログイン中の社員番号を取得
 
@@ -108,7 +108,7 @@
 		%>
 		<!-- 前月・来月移動のリンク表示と、今の月を表示 -->
 		<div class="head">
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=
+		<a href="http://localhost:8080/WebSystem/main/B01AttendanceMain/KintaiList.jsp?year=
 		<%
 			int LinkYear = 0;		// リンク用の年
 			int LinkMonth = 0;		// リンク用の月
@@ -123,7 +123,7 @@
 		%>
 		<%=LinkYear%>&month=<%=LinkMonth-1 %>">前月</a>
 		<span class="title"><%= intYear%>年<%=intMonth %>月</span>
-		<a href="http://localhost:8080/WebSystem/jsp/KintaiList.jsp?year=
+		<a href="http://localhost:8080/WebSystem/main/B01AttendanceMain/KintaiList.jsp?year=
 		<%
 			// intMonth +1が13の場合
 			if(intMonth +1 == 13)

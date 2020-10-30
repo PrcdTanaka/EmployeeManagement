@@ -6,7 +6,6 @@
 <%@ page import="sample.pr.main.LoginForm"%>
 <%@ page import="b02.attendance.inform.KintaiMailForm"%>
 <%@ page import="sample.pr.main.MainForm"%>
-<%@ page import="sample.ap.DbAction"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <html lang="ja">
@@ -86,7 +85,7 @@
 			String Email = "kintai@procd-k.co.jp";
 					String Employee_no = "";
 					String name = "";
-					DbAction dba = new DbAction();
+				//	DbAction dba = new DbAction();
 					LoginForm s = (LoginForm) session.getAttribute("form");
 					KintaiMailForm Form = new KintaiMailForm();
 					String CC = Form.getCC();
