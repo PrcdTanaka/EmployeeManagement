@@ -20,6 +20,8 @@
 		</html:form>
 	</div>
 
+	<button type="button" onclick="history.back()">戻る</button>
+
 
 </body>
 </html>

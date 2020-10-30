@@ -198,6 +198,10 @@ public final class MainAction extends Action {
 			case"kintaiNotification":
 				forward="kintaiNotification";
 				break;
+
+			case"accessControl":
+				forward="accessControl";
+				break;
 			}
 		}
 

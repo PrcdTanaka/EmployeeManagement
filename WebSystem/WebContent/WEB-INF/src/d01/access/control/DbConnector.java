@@ -291,4 +291,32 @@ public class DbConnector {
 		return ret;
 	}
 
+	//COUNTを取得するためのSQLを作成
+	public int getCount(String pQuery) throws SQLException {
+
+		int count = 0;
+
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+
+		try {
+			pst = this.con.prepareStatement(pQuery);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				count = Integer.parseInt(rs.getString("COUNT(ACCESS_DATE)"));
+			}
+
+			rs.close();
+			pst.close();
+
+		} catch (SQLException e) {
+			con.rollback();
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 }
