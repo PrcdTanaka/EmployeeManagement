@@ -8,9 +8,9 @@ import java.util.List;
 import org.apache.struts.action.ActionForm;
 
 public class AccessLogSelectForm extends ActionForm {
-	private int floor;
-	private int year;
-	private int month;
+	private String floor;
+	private String year;
+	private String month;
 
 	private List<String> accessDate = new ArrayList<String>();
 	private List<String> entryEmpName = new ArrayList<String>();
@@ -129,27 +129,27 @@ public class AccessLogSelectForm extends ActionForm {
 		this.status.add(status);
 	}
 
-	public int getFloor() {
+	public String getFloor() {
 		return floor;
 	}
 
-	public void setFloor(int floor) {
+	public void setFloor(String floor) {
 		this.floor = floor;
 	}
 
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
-	public int getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(int month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 }

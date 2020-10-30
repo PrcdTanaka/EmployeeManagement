@@ -35,9 +35,11 @@ public class AccessLogSelectAction extends Action{
 		AccessLogSelectForm aLSForm = (AccessLogSelectForm)frm;
 
 		//入退室管理システムのメイン画面で選択した階数、年、月を各変数に代入
-		int floor = aLSForm.getFloor();
-		int year = aLSForm.getYear();
-		int month = aLSForm.getMonth();
+		String floor = aLSForm.getFloor();
+		String year = aLSForm.getYear();
+		String month = aLSForm.getMonth();
+//		String year = String.valueOf(yearInt);
+//		String month = String.valueOf(monthInt);
 
 		//DBに接続できている場合以下を実行
 		if (dba.conSts) {
@@ -82,7 +84,7 @@ public class AccessLogSelectAction extends Action{
 
 			// 設定値 - 型
 			List<Integer> typeList = new ArrayList<Integer>();
-			typeList.add(dba.DB_INT);
+			typeList.add(dba.DB_STRING);
 
 			// 設定値 - 値    （選択された階数）
 			List<Object> bindList = new ArrayList<Object>();
