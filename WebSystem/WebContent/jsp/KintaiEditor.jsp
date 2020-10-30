@@ -260,6 +260,16 @@
 							CC_Val = "6";
 							break;
 
+						case "eigyogroup@procd-k.co.jp" :
+							CC_Add = "システム営業部";
+							CC_Val = "7";
+							break;
+
+						case "soumu@procd-k.co.jp" :
+							CC_Add = "総務部";
+							CC_Val = "8";
+							break;
+
 						default :
 							CC_Add = "";
 							CC_Val = "";
@@ -288,6 +298,8 @@
 						<html:option value="4">第四技術部</html:option>
 						<html:option value="5">第五技術部</html:option>
 						<html:option value="6">ソリューション技術部</html:option>
+						<html:option value="7">システム営業部</html:option>
+						<html:option value="8">総務部</html:option>
 					</html:select>
 				<%
 					}

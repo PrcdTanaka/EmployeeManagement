@@ -39,6 +39,7 @@ public class KintaiMailDb extends Object{
 		gPass = fl.getItem("pass");
 	}
 
+	//勤怠連絡入力画面で送信した情報をDBに保存
 	public boolean setKintaiInfo(KintaiMailForm form, LoginForm lform) {
 
 		boolean ret = false;

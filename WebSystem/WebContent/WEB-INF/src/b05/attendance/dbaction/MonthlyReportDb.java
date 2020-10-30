@@ -39,6 +39,7 @@ public class MonthlyReportDb extends Object{
 		gPass = fl.getItem("pass");
 	}
 
+	//勤怠連絡入力画面で送信した情報を取得
 	public boolean getMonthly_report(MonthlyReportForm form, String year, String month) {
 
 		boolean ret = false;
