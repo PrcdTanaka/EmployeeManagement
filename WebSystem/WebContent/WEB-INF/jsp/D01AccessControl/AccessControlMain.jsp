@@ -40,15 +40,15 @@
 				<html:option value="2019">2019</html:option>
 			</html:select>
 			<html:select property="month">
-				<html:option value="1">1月</html:option>
-				<html:option value="2">2月</html:option>
-				<html:option value="3">3月</html:option>
-				<html:option value="4">4月</html:option>
-				<html:option value="5">5月</html:option>
-				<html:option value="6">6月</html:option>
-				<html:option value="7">7月</html:option>
-				<html:option value="8">8月</html:option>
-				<html:option value="9">9月</html:option>
+				<html:option value="01">1月</html:option>
+				<html:option value="02">2月</html:option>
+				<html:option value="03">3月</html:option>
+				<html:option value="04">4月</html:option>
+				<html:option value="05">5月</html:option>
+				<html:option value="06">6月</html:option>
+				<html:option value="07">7月</html:option>
+				<html:option value="08">8月</html:option>
+				<html:option value="09">9月</html:option>
 				<html:option value="10">10月</html:option>
 				<html:option value="11">11月</html:option>
 				<html:option value="12">12月</html:option>
