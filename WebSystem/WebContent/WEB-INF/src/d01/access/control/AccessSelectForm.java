@@ -7,7 +7,20 @@ public class AccessSelectForm extends ActionForm {
 	private int floor;
 	private String empNo;
 	private String empName;
-	private String status = "0";
+	private String status;
+
+	private int checklist;
+
+	public int getChecklist() {
+		return checklist;
+	}
+
+	public void setChecklist(String[] checklist) {
+		for(String check : checklist)
+		{
+		this.checklist += Integer.parseInt(check);
+		}
+	}
 
 	public int getFloor(){
 		return floor;

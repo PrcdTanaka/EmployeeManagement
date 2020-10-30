@@ -1,4 +1,4 @@
-package d01.access.control;
+package a04.room.dbaction;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import sample.utility.FileLoader;
 
 /**
  * データベースアクセス
@@ -49,14 +47,13 @@ public class DbConnector {
 	 *
 	 * @throws IOException
 	 */
-	public DbConnector() throws IOException {
-		FileLoader fl = new FileLoader("Configuration.properties");
-		gHost = fl.getItem("host");
-		gSid = fl.getItem("sid");
-		gUser = fl.getItem("user");
-		gPass = fl.getItem("pass");
+	public DbConnector(String pHost, String pSid, String pUser, String pPass) throws IOException {
 
 		// パラメータをフィールドに設定
+		gHost = pHost;
+		gSid = pSid;
+		gUser = pUser;
+		gPass = pPass;
 
 		/** DBに接続 */
 		this.openConnection();
@@ -289,34 +286,6 @@ public class DbConnector {
 			}
 		}
 		return ret;
-	}
-
-	//COUNTを取得するためのSQLを作成
-	public int getCount(String pQuery) throws SQLException {
-
-		int count = 0;
-
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-
-		try {
-			pst = this.con.prepareStatement(pQuery);
-			rs = pst.executeQuery();
-
-			while (rs.next()) {
-				count = Integer.parseInt(rs.getString("COUNT(ACCESS_DATE)"));
-			}
-
-			rs.close();
-			pst.close();
-
-		} catch (SQLException e) {
-			con.rollback();
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return count;
 	}
 
 }

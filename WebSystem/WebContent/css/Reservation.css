@@ -142,4 +142,15 @@ td {	/*table“à‚Ìtd‚É‘Î‚µ‚Ä*/
 	font-size:20px;
 	text-align:center;
 }
+
+button.link-style-btn{
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #0033cc;
+}
+button.link-style-btn:hover{
+  text-decoration: underline;
+  color: #002080;
+}
 }

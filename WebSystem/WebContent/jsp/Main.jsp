@@ -107,6 +107,12 @@
 							<html:param name="link">kintaiNotification</html:param>
 						</html:link>
 					</li>
+					<li>
+						<html:link action="/MainAction">入退室管理システム画面
+							<html:param name="employee_no"><%=no %></html:param>
+							<html:param name="link">accessControl</html:param>
+						</html:link>
+					</li>
 				</p>
 
 				<!-- bean:define id="manager" name="LoginForm" property="manager" type="String" /-->
@@ -122,62 +128,6 @@
 				</div>
 			</div>
 			<!--//ラベル1-->
-			</html:form>
-
-
-		<html:form action="/MainAction">
-			<div class="accbox">
-			<!--ラベル2-->
-			<label for="label2">入退室管理</label>
-			<input type="checkbox" id="label2" class="cssacc" />
-			<div class="accshow">
-				<!--ここに隠す中身-->
-				<p class="link">
-					<li>
-						<html:link action="/MainAction">1F
-							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">1F</html:param>
-						</html:link>
-						<html:link action="/MainAction">入退出者履歴(1F)
-							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Select1F</html:param>
-						</html:link>
-					</li>
-
-						<li>
-							<html:link action="/MainAction">2F
-								<html:param name="employee_no"><%= no %></html:param>
-								<html:param name="link">2F</html:param>
-							</html:link>
-							<html:link action="/MainAction">入退出者履歴(2F)
-							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Select2F</html:param>
-						</html:link>
-						</li>
-
-					<li>
-						<html:link action="/MainAction">3F
-							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">3F</html:param>
-						</html:link>
-						<html:link action="/MainAction">入退出者履歴(3F)
-							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Select3F</html:param>
-						</html:link>
-					</li>
-					<li>
-						<html:link action="/MainAction">4F
-							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">4F</html:param>
-						</html:link>
-						<html:link action="/MainAction">入退出者履歴(4F)
-							<html:param name="employee_no"><%= no %></html:param>
-							<html:param name="link">Access_Select4F</html:param>
-						</html:link>
-					</li>
-				</p>
-
-							<!--//ラベル2-->
 			</html:form>
 
 		</body>

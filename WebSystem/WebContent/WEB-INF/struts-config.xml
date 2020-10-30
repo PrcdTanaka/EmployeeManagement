@@ -30,13 +30,13 @@
 		<form-bean name="MonthlyReportForm" type="b03.attendance.monthlyreport.MonthlyReportForm" />
 		<form-bean name="ReservationForm" type="a01.room.reservation.ReservationForm" />
 		<form-bean name="ReservationConfimForm" type="a02.room.reservation.confirm.ReservationConfirmForm" />
-		<form-bean name="EnterForm" type="sample.pr.main.EnterForm" />
 		<form-bean name="Access_Select" type="sample.pr.main.Access_SelectForm" />
 		<form-bean name="RoomReservationForm" type="a03.room.register.RoomReservationForm" />
 		<form-bean name="KinmuRecordForm" type="sample.pr.main.KinmuRecordForm" />
 		<form-bean name="KinmuRecordSendForm" type="sample.pr.main.KinmuRecordSendForm" />
 		<form-bean name="KintaiNotificationForm" type="sample.pr.main.KintaiNotificationForm" />
-		<form-bean name="Access_SelectForm" type="sample.pr.main.Access_ControlForm" />
+		<form-bean name="AccessSelectForm" type="d01.access.control.AccessSelectForm" />
+		<form-bean name="AccessLogSelectForm" type="d02.access.log.AccessLogSelectForm" />
 	</form-beans>
 
 
@@ -66,10 +66,9 @@
 			<forward name="KintaiList" path="/main/B01AttendanceMain/KintaiList.jsp" />
 			<forward name="reservation" path="/main/A01Reservation/Reservation.jsp" />
 			<forward name="Access" path="/jsp/Access_Control.jsp" />
-			<forward name="Enter" path="/jsp/Enter_leave.jsp" />
 			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp"/>
 			<forward name="kintaiNotification" path="/jsp/KintaiNotification.jsp"/>
-			<forward name="Access_Select" path="/jsp/Access_Select.jsp"/>
+			<forward name="accessControl" path="/WEB-INF/jsp/D01AccessControl/AccessControlMain.jsp"/>
 		</action>
 
 		<action name="PasswordForm" path="/PasswordAction"
@@ -160,7 +159,7 @@
 		</action>
 		<action name="ReservationForm" path="/ReservationAction"
 			type="a01.room.reservation.ReservationAction" validate="false" scope="request">
-			<forward name="reservation" path="/WEB-INF/jsp/A01Reservation/Reservation.jsp" />
+			<forward name="reservation" path="/main/A01Reservation/Reservation.jsp" />
 			<forward name="confirm" path="/WEB-INF/jsp/A02ReservationConfirm/ReservationConfirm.jsp" />
 			<forward name="room" path="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
@@ -170,23 +169,7 @@
 			<forward name="main" path="/jsp/Main.jsp" />
 			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp" />
 		</action>
-		<action name="Access_ControlForm" path="/Access_ControlAction"
-			type="sample.pr.main.Access_Control" validate="false" scope="request">
-			<forward name="Access" path="/jsp/Access_Control.jsp" />
-		</action>
-		<action name="EnterForm" path="/EnterAction" type="sample.pr.main.EnterAction"
-			validate="false" scope="request">
-			<forward name="success" path="/jsp/Main.jsp" />
-			<forward name="success" path="/jsp/Enter_leave.jsp" />
-		</action>
-		<action name="Access_ControlForm" path="/Access_ControlAction"
-			type="sample.pr.main.Access_Control" validate="false" scope="request">
-			<forward name="Access" path="/jsp/Access_Control.jsp" />
-		</action>
-		<action name="ReservationForm" path="/Access_SelectAction"
-			type="sample.pr.main.RoomReservationAction" validate="false" scope="request">
-			<forward name="main" path="/jsp/Access_Control.jsp" />
-		</action>
+
 		<action name="RoomReservationForm" path="/RoomReservationAction"
 			type="a03.room.register.RoomReservationAction" validate="false" scope="request">
 			<forward name="room" path="/WEB-INF/jsp/A03RoomReservation/RoomReservation.jsp" />
@@ -202,10 +185,27 @@
 			<forward name="main" path="/jsp/Main.jsp" />
 			<forward name="kintaiNotification" path="/jsp/KintaiNotification.jsp"/>
 		</action>
-		<action name="Access_SelectForm" path="/Access_ControlAction"
-				type="sample.pr.main.Access_ControlAction" validate="false" scope="request">
-			<forward name="Access_Select" path="/jsp/Access_Control.jsp" />
-			<forward name="login" path="/jsp/login.jsp" />
+
+		<action name="AccessSelectForm" path="/AccessSelectAction"
+				type="d01.access.control.AccessSelectAction" validate="false" scope="request">
+			<forward name="entry" path="/WEB-INF/jsp/D01AccessControl/AccessControlEntry.jsp" />
+			<forward name="exit" path="/WEB-INF/jsp/D01AccessControl/AccessControlExit.jsp" />
+			<forward name="reEntry" path="/WEB-INF/jsp/D01AccessControl/AccessControlReEntry.jsp" />
+			<forward name="reExit" path="/WEB-INF/jsp/D01AccessControl/AccessControlReExit.jsp" />
+		</action>
+		<action name="AccessSelectForm" path="/InsertAccess"
+				type="d01.access.control.InsertAccess" validate="false" scope="request">
+			<forward name="complete" path="/WEB-INF/jsp/D01AccessControl/AccessCompleteEntry.jsp" />
+			<forward name="reComplete" path="/WEB-INF/jsp/D01AccessControl/AccessCompleteReEntry.jsp" />
+		</action>
+		<action name="AccessSelectForm" path="/UpdateAccess"
+				type="d01.access.control.UpdateAccess" validate="false" scope="request">
+			<forward name="complete" path="/WEB-INF/jsp/D01AccessControl/AccessCompleteExit.jsp" />
+			<forward name="reComplete" path="/WEB-INF/jsp/D01AccessControl/AccessCompleteReExit.jsp" />
+		</action>
+		<action name="AccessLogSelectForm" path="/AccessLogSelectAction"
+				type="d02.access.log.AccessLogSelectAction" validate="false" scope="request">
+			<forward name="AccessLogSelect" path="/WEB-INF/jsp/D02AccessLog/AccessLogTable.jsp" />
 		</action>
 
 
