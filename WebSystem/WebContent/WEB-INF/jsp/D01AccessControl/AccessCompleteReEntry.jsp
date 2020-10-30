@@ -7,20 +7,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>入室画面</title>
+<title>再入室完了画面</title>
 </head>
 <body>
 
-	<h2>入室画面</h2>
+	<h2>再入室完了画面</h2>
 
-	<div>
-		入退室処理
-		<html:form action="/InsertAccess">
-			<html:submit styleClass="send" property="button" value="入室"/>
-		</html:form>
-	</div>
-
-	<button type="button" onclick="history.back()">戻る</button>
+	<html:link action="/MainAction">入退室管理システム画面
+		<html:param name="link">accessControl</html:param>
+	</html:link>
 
 
 </body>
