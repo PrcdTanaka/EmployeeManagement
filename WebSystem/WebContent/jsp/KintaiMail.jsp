@@ -112,7 +112,9 @@
 				<h1>勤怠連絡画面</h1>
 			</center>
 		</div>
-		<div class="outputmessage"><%= message %></div>
+		<center>
+			<h1><%= message%></h1>
+		</center>
 		<p style="margin-left: -44%;">
 		<p align="center" style="margin-left: -45%">
 			宛先:<%=Email%></p>

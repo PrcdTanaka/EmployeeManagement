@@ -20,10 +20,12 @@ public class MonthlyReportForm extends ActionForm{
 	private List<String> perm;
 	private List<String> Mmdd;
 	private List<String> Send_Time;
+	private String message;
 
 	{
 		Button="";
 		Employee_no="";
+		message="";
 		CC = new ArrayList<String>();
 		BCC = new ArrayList<String>();
 		Depart = new ArrayList<String>();
@@ -36,6 +38,13 @@ public class MonthlyReportForm extends ActionForm{
 		Mmdd=new  ArrayList<String>();
 		Send_Time=new ArrayList<String>();
 		spotcode=new ArrayList<String>();
+	}
+
+	public void setMessage(String message){
+		this.message=message;
+	}
+	public String getMessage(){
+		return message;
 	}
 	public void setButton(String button){
 		this.Button=button;

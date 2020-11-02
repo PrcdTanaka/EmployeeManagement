@@ -7,8 +7,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -82,10 +80,12 @@ public class Output_excel {
 		try {
 			// 「.xlsx」形式のファイル作成
 
-			fis = new FileInputStream("C:\\kintaiExcel\\勤怠月報画面テンプレ.xlsx");
+			fis = new FileInputStream("//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/江泉洸佑/勤怠月報画面テンプレ.xlsx");
 			workbook = WorkbookFactory.create(fis);
 			// シートを「勤怠月報画面」という名前で作成
 			Sheet sheet = workbook.cloneSheet(workbook.getSheetIndex("勤怠月報"));
+			// シートの保護
+			sheet.protectSheet("");
 			workbook.setSheetName(workbook.getSheetIndex(sheet), "勤怠月報画面");
 
 			// 行を指定する変数
@@ -93,15 +93,15 @@ public class Output_excel {
 			// 列を指定する変数
 			Cell cell;
 
-			Font font =workbook.createFont();
-			font.setFontName("メイリオ");
-			CellStyle cs = workbook.createCellStyle();
-			cs.setFont(font);
+//			Font font =workbook.createFont();
+//			font.setFontName("メイリオ");
+//			CellStyle cs = workbook.createCellStyle();
+//			cs.setFont(font);
 
 			// 8行目
 			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(7);
 			cell = row.getCell(21);
-			cell.setCellValue(depart.get(1));
+			cell.setCellValue(depart.get(0));
 
 			// 10行目
 			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(9);
@@ -1118,11 +1118,9 @@ public class Output_excel {
 
 			workbook.removeSheetAt(0);
 
-			// シートの保護
-			sheet.protectSheet("");
 
 			// 出力先のファイル名を指定
-			out = new FileOutputStream("C:\\kintaiExcel\\"
+			out = new FileOutputStream("//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/勤怠月報エクセル出力/"
 					+ String.valueOf(KintaiManagement.Cale_Date_Year) + ""
 					+ String.valueOf(KintaiManagement.Cale_Date_Month)
 					+ "_勤怠連絡月報_" + lForm.getEmployee_no()
