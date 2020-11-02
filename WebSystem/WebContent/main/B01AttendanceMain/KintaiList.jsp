@@ -7,6 +7,7 @@
 <%@ page import="sample.pr.main.MainForm"%>
 <%@ page import="b05.attendance.dbaction.MonthlyReportDb"%>
 <%@ page import="b01.attendance.main.KintaiListForm"%>
+<%@ page import="b02.attendance.inform.KintaiMailForm"%>
 
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportForm"%>
 <%@ page import="b03.attendance.monthlyreport.MonthlyReportAction"%>
@@ -48,6 +49,7 @@
 	<%
 		Calendar cale = Calendar.getInstance();
 
+ 		KintaiMailForm KMform=(KintaiMailForm)request.getAttribute("KMform");
 		MonthlyReportForm form=new MonthlyReportForm();		//MonthlyReportFormを使用するために宣言
 		MonthlyReportDb dba = new MonthlyReportDb();						// DbActionを使用するために宣言
 		LoginForm lForm=(LoginForm)session.getAttribute("form");	// LoginForm型の変数lFormにsessionのformを取得
@@ -73,6 +75,7 @@
 		<div>
 			<center>
 				<h1>勤怠一覧</h1>
+
 			</center>
 		</div>
 		<br/>

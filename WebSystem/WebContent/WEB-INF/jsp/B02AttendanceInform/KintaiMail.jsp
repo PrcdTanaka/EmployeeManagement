@@ -97,6 +97,7 @@
 					String ptime = Form.getPtime();
 					String remark = Form.getRemark();
 					String perm = Form.getPerm();
+					String message=Form.getMessage();
 					try {
 						Employee_no = s.getEmployee_no();
 						name = s.getEmployee_name();
@@ -111,6 +112,9 @@
 			</center>
 		</div>
 
+		<center>
+				<h1><%= message%></h1>
+		</center>
 		<p style="margin-left: -44%;">
 		<p align="center" style="margin-left: -45%">
 			宛先:<%=Email%></p>
