@@ -28,6 +28,7 @@
 	<body>
 		<%
         MonthlyReportForm form=new MonthlyReportForm();
+
         Calendar cal = Calendar.getInstance();
         String year = (cal.get(cal.YEAR))+"";
         String month=(cal.get(cal.MONTH)+1)+"";
@@ -998,7 +999,7 @@
 		</center>
  		<div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="エクセル出力"
-				styleId="MonthlyReport" />
+				styleId="MonthlyReportcomp"/>
 
 		</div>
 		<div style="position: relative; margin-top: 5%; align: center;">

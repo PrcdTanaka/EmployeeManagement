@@ -98,7 +98,7 @@
 					String ptime = Form.getPtime();
 					String remark = Form.getRemark();
 					String perm = Form.getPerm();
-					String message=Form.getMessage();
+					String message=s.getMessage();
 					try {
 						Employee_no = s.getEmployee_no();
 						name = s.getEmployee_name();
@@ -220,7 +220,7 @@
 
 		<div>
 			<html:submit property="button" styleClass="btn" value="送信"
-				styleId="kintaimail" style="margin-top:10;" />
+				styleId="kintaimailcomp" style="margin-top:10;" />
 		</div>
         <div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="戻る"

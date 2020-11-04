@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import sample.pr.main.LoginForm;
+import b02.attendance.inform.KintaiMailForm;
 
 public class MonthlyReportAction extends Action {
 
@@ -35,6 +36,7 @@ public class MonthlyReportAction extends Action {
 
 		Output_excel excel =new Output_excel();
 		MonthlyReportForm MForm = (MonthlyReportForm) frm;
+		KintaiMailForm KMForm=new KintaiMailForm();
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
 		MForm.setEmployee_no(lForm.getEmployee_no());
@@ -46,7 +48,7 @@ public class MonthlyReportAction extends Action {
 
 		//保存ボタン押下後月報画面がエクセルに出力
 			} else if (button.equals("エクセル出力")) {
-				forward = "MonthlyReport";
+				forward = "MonthlyReportcomp";
 				//エクセル出力用メソッド
 				excel.Output_Excel(MForm, lForm);
 			}

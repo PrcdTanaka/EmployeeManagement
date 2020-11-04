@@ -142,6 +142,7 @@
 			<forward name="kintaimail" path="/WEB-INF/jsp/B02AttendanceInform/KintaiMail.jsp" />
 			<forward name="kintaieditor" path="/WEB-INF/jsp/B02AttendanceInform/KintaiEditor.jsp" />
 			<forward name="kintailist" path="/main/B01AttendanceMain/KintaiList.jsp" />
+			<forward name="kintaimailcomp" path="/WEB-INF/jsp/B02AttendanceInform/KintaiMailComp.jsp" />
 			<forward name="main" path="/jsp/Main.jsp" />
 		</action>
 		<action name="KintaiListForm" path="/KintaiListAction"
@@ -156,6 +157,7 @@
 			<forward name="MonthlyReport" path="/WEB-INF/jsp/B03AttendanceMonthlyreport/MonthlyReport.jsp" />
 			<forward name="kintailist" path="/main/B01AttendanceMain/KintaiList.jsp" />
 			<forward name="kintaieditor" path="/WEB-INF/jsp/B02AttendanceInform/KintaiEditor.jsp" />
+			<forward name="MonthlyReportcomp" path="/WEB-INF/jsp/B03AttendanceMonthlyreport/MonthlyReportComp.jsp" />
 		</action>
 		<action name="ReservationForm" path="/ReservationAction"
 			type="a01.room.reservation.ReservationAction" validate="false" scope="request">

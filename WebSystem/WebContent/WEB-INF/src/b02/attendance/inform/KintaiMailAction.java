@@ -70,7 +70,7 @@ public class KintaiMailAction extends Action {
 						System.out.println("メールフォーム出力失敗");
 					}
 					dba.setKintaiDelete(KMform,lForm,Action_MMdd,Action_SendTime);
-					forward = "kintailist";
+					forward = "kintaimailcomp";
 				}
 			}
 			if (button.equals("編集"))
@@ -106,7 +106,7 @@ public class KintaiMailAction extends Action {
 						dba.setKintaiEdit(KMform, lForm, Action_MMdd, Action_SendTime);
 						KMform.setMessage("メール出力完了");
 						request.setAttribute("KMform",KMform);
-						forward = "kintailist";
+						forward = "kintaimailcomp";
 					}
 				}
 			}
@@ -135,14 +135,12 @@ public class KintaiMailAction extends Action {
 						boolean mailflg = SMail.Send_Mail(KMform,lForm);
 						if(mailflg==true){
 							System.out.println("メールフォーム出力完了");
-							KMform.setMessage("メール出力完了");
-							request.setAttribute("KMform",KMform);
 						}else{
 							System.out.println("メールフォーム出力失敗");
 						}
 						// DBへの登録作業以外をコメント化
 						dba.setKintaiInfo(KMform, lForm);
-						forward = "kintailist";
+						forward = "kintaimailcomp";
 					}
 				}
 			}
