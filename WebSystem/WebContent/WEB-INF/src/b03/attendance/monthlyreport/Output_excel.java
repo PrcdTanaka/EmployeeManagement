@@ -1058,7 +1058,7 @@ public class Output_excel {
 							cell = row.getCell(8);
 							cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
 							cell = row.getCell(10);
-							cell.setCellValue(limit);
+							cell.setCellValue(limit.substring(0,2)+":"+limit.substring(2,4));
 							cell = row.getCell(13);
 							cell.setCellValue(send);
 							cell = row.getCell(16);
@@ -1090,7 +1090,7 @@ public class Output_excel {
 								cell = row.getCell(8);
 								cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
 								cell = row.getCell(10);
-								cell.setCellValue(limit);
+								cell.setCellValue(limit.substring(0,2)+":"+limit.substring(2,4));
 								cell = row.getCell(13);
 								cell.setCellValue(send);
 								cell = row.getCell(16);
