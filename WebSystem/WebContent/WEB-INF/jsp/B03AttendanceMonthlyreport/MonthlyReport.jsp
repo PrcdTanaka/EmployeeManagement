@@ -996,7 +996,10 @@
 
 
 		</table>
+		<p style="color:red;">勤怠連絡情報がない場合はエクセル出力できません
+		</p>
 		</center>
+
  		<div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="エクセル出力"
 				styleId="MonthlyReportcomp"/>
