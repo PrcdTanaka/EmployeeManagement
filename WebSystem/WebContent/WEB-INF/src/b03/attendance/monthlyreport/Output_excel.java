@@ -21,6 +21,7 @@ public class Output_excel {
 
 	public void Output_Excel(MonthlyReportForm MRForm, LoginForm lForm)
 			throws IOException {
+
 		MonthlyReportDb dba = new MonthlyReportDb();
 		// カレンダークラスを取得
 		Calendar cal = Calendar.getInstance();

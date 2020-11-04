@@ -48,8 +48,8 @@ public class MonthlyReportAction extends Action {
 
 		//保存ボタン押下後月報画面がエクセルに出力
 			} else if (button.equals("エクセル出力")) {
-				forward = "MonthlyReportcomp";
 				//エクセル出力用メソッド
+				forward = "MonthlyReportcomp";
 				excel.Output_Excel(MForm, lForm);
 			}
 		} catch (Exception e) {
