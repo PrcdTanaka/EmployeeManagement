@@ -1,0 +1,96 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	background: #fafafa;
+}
+
+.container{
+	padding: 20px;
+}
+
+.head{
+	padding: 20px;
+	height: 100px;
+	line-height: 100px;
+	font-size: 50px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.main{
+	padding: 20px;
+	height: 350px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.accessControl, .accessLog {
+	margin: 20px;
+}
+
+.accessControlHead, .accessLogHead {
+	padding: 20px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 30px;
+	font-weight: 600;
+	text-align: center;
+	color: blue;
+}
+
+.accessLogHead {
+	color: red;
+}
+
+.accessControlMain, .accessLogMain {
+	padding: 5px;;
+	display: flex;
+	justify-content: center;
+}
+
+.accessControlSelect, .accessControlLogSelect {
+	margin-bottom: 20px;
+}
+
+.accessControlSelectFloor {
+	height: 60px;
+	width: 120px;
+	font-size: 30px;
+	text-indent: 20px;
+}
+
+.submitBox{
+	text-align: center;
+}
+
+.submit {
+	height: 60px;
+	width: 120px;
+	font-size: 30px;
+	text-align: center;
+	background-color: aqua;
+}
+
+.accessControlLogSelect {
+	display: flex;
+}
+
+.selectBox {
+	margin-right: 10px;
+}
+
+.accessControlLogSelectFloor, .accessControlLogSelectYear, .accessControlLogSelectYear {
+	height: 60px;
+	width: 150px;
+	font-size: 30px;
+	text-indent: 20px;
+}
+
+.back {
+	text-align: center;
+}
