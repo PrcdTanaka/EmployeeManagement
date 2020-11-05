@@ -80,7 +80,8 @@ public class Output_excel {
 		try {
 			// 「.xlsx」形式のファイル作成
 
-			fis = new FileInputStream("//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/江泉洸佑/勤怠月報画面テンプレ.xlsx");
+			fis = new FileInputStream(
+					"//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/江泉洸佑/勤怠月報画面テンプレ.xlsx");
 			workbook = WorkbookFactory.create(fis);
 			// シートを「勤怠月報画面」という名前で作成
 			Sheet sheet = workbook.cloneSheet(workbook.getSheetIndex("勤怠月報"));
@@ -93,10 +94,6 @@ public class Output_excel {
 			// 列を指定する変数
 			Cell cell;
 
-//			Font font =workbook.createFont();
-//			font.setFontName("メイリオ");
-//			CellStyle cs = workbook.createCellStyle();
-//			cs.setFont(font);
 
 			// 8行目
 			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(7);
@@ -129,52 +126,67 @@ public class Output_excel {
 
 			// 有給などの回数をカウントするfor文、switch文
 			for (int c = 0; c < mmdd.size(); c++) {
-				switch (division.get(c)) {
-				case "1":
-					tikoku++;
-					break;
-				case "2":
-					yuukyuu++;
-					break;
-				case "3":
-					hurikae++;
-					break;
-				case "4":
-					tokubetsu++;
-					break;
-				case "5":
-					shihuto++;
-					break;
-				case "6":
-					sotai++;
-					break;
-				case "7":
-					kotu++;
-					break;
-				case "8":
-					kekkin++;
-					break;
+				if (kintai_s[c].substring(6, 8).equals(
+						kintai_s2[c].substring(6, 8))) {
+					switch (division.get(c)) {
+					case "1":
+						tikoku++;
+						break;
+					case "2":
+						yuukyuu++;
+						break;
+					case "3":
+						hurikae++;
+						break;
+					case "4":
+						tokubetsu++;
+						break;
+					case "5":
+						shihuto++;
+						break;
+					case "6":
+						sotai++;
+						break;
+					case "7":
+						kotu++;
+						break;
+					case "8":
+						kekkin++;
+						break;
+					}
+				} else {
+					for (int k = Integer.parseInt(kintai_s[c].substring(6, 8)); k <= (Integer
+							.parseInt(kintai_s2[c].substring(6, 8))); k++) {
+						switch (division.get(c)) {
+						case "1":
+							tikoku++;
+							break;
+						case "2":
+							yuukyuu++;
+							break;
+						case "3":
+							hurikae++;
+							break;
+						case "4":
+							tokubetsu++;
+							break;
+						case "5":
+							shihuto++;
+							break;
+						case "6":
+							sotai++;
+							break;
+						case "7":
+							kotu++;
+							break;
+						case "8":
+							kekkin++;
+							break;
+						}
+					}
 				}
 			}
 
-			// 15行目
-			row = ((org.apache.poi.ss.usermodel.Sheet) sheet).getRow(14);
-			cell = row.getCell(5);
-			cell.setCellValue(tikoku);
-			cell = row.getCell(9);
-			cell.setCellValue(kotu);
-			cell = row.getCell(13);
-			cell.setCellValue(sotai);
-			cell = row.getCell(17);
-			cell.setCellValue(shihuto);
-			cell = row.getCell(20);
-			cell.setCellValue(yuukyuu);
-			cell = row.getCell(23);
-			cell.setCellValue(hurikae);
-			cell = row.getCell(29);
-			cell.setCellValue(tokubetsu);
-			cell = row.getCell(32);
-			cell.setCellValue(kekkin);
 
 			// 無届かつ遅刻などをしているかどうかをカウント
 			int unreported_tikoku = 0;
@@ -398,73 +410,13 @@ public class Output_excel {
 							spotname = "目白台ビル";
 							limit = "0810";
 							break;
-						case "2-0001":
-							spotname = "日立　戸塚";
-							limit = "0815";
-							break;
-						case "2-0002":
-							spotname = "横浜西ビル（NSKJひまわり）";
-							limit = "0900";
-							break;
-						case "2-0003":
-							spotname = "NTTS横浜(IC標準)";
-							limit = "0930";
-							break;
-						case "2-0004":
-							spotname = "NTTS横浜(OCN)";
-							limit = "0830";
-							break;
-						case "2-0005":
-							spotname = "ドコモR＆Dセンタ（Cカテゴリ）";
-							limit = "0930";
-							break;
-						case "2-0006":
-							spotname = "明治安田生命ビル(基盤)";
-							limit = "0830";
-							break;
-						case "2-0007":
-							spotname = "明治安田生命ビル(アプリ営業)";
-							limit = "0830";
-							break;
-						case "2-0008":
-							spotname = "明治安田生命ビル(活動基盤)";
-							limit = "0830";
-							break;
-						case "2-0009":
-							spotname = "JA川崎(普及)";
-							limit = "0830";
-							break;
-						case "2-0010":
-							spotname = "JA川崎(再構築)";
-							limit = "0830";
-							break;
-						case "2-0011":
-							spotname = "東京情報センター";
-							limit = "0830";
-							break;
-						case "2-0012":
-							spotname = "NTTS横浜(OCN)";
-							limit = "0830";
-							break;
-						case "2-0013":
-							spotname = "NTTS横浜(IC標準)";
-							limit = "0930";
-							break;
 						case "2-0014":
 							spotname = "NTTS横浜(OCN)";
 							limit = "0830";
 							break;
-						case "2-0015":
-							spotname = "穴守稲荷(ID)";
-							limit = "0900";
-							break;
 						case "2-0016":
 							spotname = "FBS（CEQ)";
 							limit = "0810";
-							break;
-						case "2-0017":
-							spotname = "日新火災";
-							limit = "0830";
 							break;
 						case "2-0018":
 							spotname = "ｱｸｾｽPF―光ｺﾗﾎﾞ対応/#P#FUTURE_F27-1";
@@ -474,10 +426,6 @@ public class Output_excel {
 							spotname = "移動機試験";
 							limit = "0830";
 							break;
-						case "2-0020":
-							spotname = "HiICS戸塚";
-							limit = "0815";
-							break;
 						case "2-0021":
 							spotname = "コンカード横浜";
 							limit = "0830";
@@ -485,10 +433,6 @@ public class Output_excel {
 						case "2-0022":
 							spotname = "三菱電機(湘セン)";
 							limit = "0900";
-							break;
-						case "2-0023":
-							spotname = "丸の内中央ビル(JR)";
-							limit = "0830";
 							break;
 						case "2-0024":
 							spotname = "情報総研（大船）";
@@ -513,10 +457,6 @@ public class Output_excel {
 						case "2-0029":
 							spotname = "ソフトバンクテレコム東京イーストセンター";
 							limit = "0930";
-							break;
-						case "2-0030":
-							spotname = "HIENG戸塚";
-							limit = "0815";
 							break;
 						case "2-0031":
 							spotname = "コープ共済プラザ";
@@ -802,61 +742,13 @@ public class Output_excel {
 							spotname = "中之島フェスティバルタワー（DKI）";
 							limit = "0830";
 							break;
-						case "5-0002":
-							spotname = "東京建物梅田ビル（CTC）";
-							limit = "0830";
-							break;
-						case "5-0003":
-							spotname = "日本流通システム";
-							limit = "0830";
-							break;
-						case "5-0004":
-							spotname = "オージス総研　千里オフィス";
-							limit = "0830";
-							break;
-						case "5-0005":
-							spotname = "日本IBM　大阪京橋事業所";
-							limit = "0830";
-							break;
-						case "5-0006":
-							spotname = "パナソニックスマートファクトリーソリューションズ";
-							limit = "0800";
-							break;
-						case "5-0007":
-							spotname = "梅田センタービル（NTTﾃﾞｰﾀｾｷｽｲｼｽﾃﾑ）";
-							limit = "0900";
-							break;
-						case "5-0008":
-							spotname = "新ダイビル（日立ｼｽﾃﾑｽﾞ）";
-							limit = "0820";
-							break;
-						case "5-0009":
-							spotname = "東洋紡ビル（ｿﾌﾟﾗ）";
-							limit = "0830";
-							break;
 						case "5-0010":
 							spotname = "新大阪ニッセイビル（住友電工情報ｼｽﾃﾑ）";
 							limit = "0800";
 							break;
-						case "5-0011":
-							spotname = "大津市役所（日立ｼｽﾃﾑｽﾞ）";
-							limit = "0820";
-							break;
-						case "5-0012":
-							spotname = "和田岬（三菱電機製作所）";
-							limit = "0815";
-							break;
 						case "5-0013":
 							spotname = "三井住友信託銀行";
 							limit = "0820";
-							break;
-						case "5-0014":
-							spotname = "オージス総研千里オフィス";
-							limit = "0830";
-							break;
-						case "5-0015":
-							spotname = "三井住友信託銀行";
-							limit = "0830";
 							break;
 						case "5-0016":
 							spotname = "アートヴィレッジ大崎セントラルタワー";
@@ -876,14 +768,6 @@ public class Output_excel {
 							break;
 						case "5-0020":
 							spotname = "SLC";
-							limit = "0830";
-							break;
-						case "5-0021":
-							spotname = "新大阪ニッセイビル（ニッセイ情報テクノロジー）";
-							limit = "0830";
-							break;
-						case "5-0022":
-							spotname = "大阪中之島ビル（ｱｸｾﾝﾁｭｱ）";
 							limit = "0830";
 							break;
 						case "5-0023":
@@ -964,7 +848,7 @@ public class Output_excel {
 							break;
 						default:
 							spotname = "無効なコードです";
-							limit="9999";
+							limit = "9999";
 						}
 
 						// カウントするための変数
@@ -1008,29 +892,95 @@ public class Output_excel {
 							if (Integer.parseInt(send_time.get(i)) > Integer
 									.parseInt(limit)) {
 								send = "無届";
-								switch (division.get(i)) {
-								case "1":
-									unreported_tikoku++;
-									break;
-								case "5":
-									unreported_shihuto++;
-									break;
-								case "6":
-									unreported_sotai++;
-									break;
-								case "7":
-									unreported_kotu++;
-									break;
-								case "8":
-									unreported_kekkin++;
-									break;
-								}
 
+								if (kintai_s[i].substring(6, 8).equals(
+										kintai_s2[i].substring(6, 8))) {
+									switch (division.get(i)) {
+									case "1":
+										unreported_tikoku++;
+										break;
+									case "5":
+										unreported_shihuto++;
+										break;
+									case "6":
+										unreported_sotai++;
+										break;
+									case "7":
+										unreported_kotu++;
+										break;
+									case "8":
+										unreported_kekkin++;
+										break;
+									}
+								} else {
+									for (int k = Integer.parseInt(kintai_s[i]
+											.substring(6, 8)); k <= (Integer
+											.parseInt(kintai_s2[i].substring(6,
+													8))); k++) {
+										switch (division.get(i)) {
+										case "1":
+											unreported_tikoku++;
+											break;
+										case "5":
+											unreported_shihuto++;
+											break;
+										case "6":
+											unreported_sotai++;
+											break;
+										case "7":
+											unreported_kotu++;
+											break;
+										case "8":
+											unreported_kekkin++;
+											break;
+										}
+									}
+								}
 							} else {
 								send = "";
 							}
 						} else {
 							send = "";
+						}
+
+						// 15行目
+						row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
+								.getRow(14);
+						cell = row.getCell(5);
+						if (unreported_tikoku != 0) {
+							cell.setCellValue(tikoku-unreported_tikoku);
+						} else {
+							cell.setCellValue(tikoku);
+						}
+						cell = row.getCell(9);
+						if (unreported_kotu != 0) {
+							cell.setCellValue(kotu-unreported_kotu);
+						} else {
+							cell.setCellValue(kotu);
+						}
+						cell = row.getCell(13);
+						if (unreported_sotai != 0) {
+							cell.setCellValue(sotai-unreported_sotai);
+						} else {
+							cell.setCellValue(sotai);
+						}
+						cell = row.getCell(17);
+						if (unreported_shihuto != 0) {
+							cell.setCellValue(shihuto-unreported_shihuto);
+						} else {
+							cell.setCellValue(shihuto);
+						}
+						cell = row.getCell(20);
+						cell.setCellValue(yuukyuu);
+						cell = row.getCell(23);
+						cell.setCellValue(hurikae);
+						cell = row.getCell(29);
+						cell.setCellValue(tokubetsu);
+						cell = row.getCell(32);
+						if (unreported_kekkin != 0) {
+							cell.setCellValue(kekkin-unreported_kekkin);
+						} else {
+							cell.setCellValue(kekkin);
 						}
 
 						// 16行目
@@ -1054,11 +1004,14 @@ public class Output_excel {
 							row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
 									.getRow(day + 17);
 							cell = row.getCell(4);
-							cell.setCellValue(mmdd.get(i).substring(0,2)+"/"+mmdd.get(i).substring(2,4));
+							cell.setCellValue(mmdd.get(i).substring(0, 2) + "/"
+									+ mmdd.get(i).substring(2, 4));
 							cell = row.getCell(8);
-							cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
+							cell.setCellValue(send_time.get(i).substring(0, 2)
+									+ ":" + send_time.get(i).substring(2, 4));
 							cell = row.getCell(10);
-							cell.setCellValue(limit.substring(0,2)+":"+limit.substring(2,4));
+							cell.setCellValue(limit.substring(0, 2) + ":"
+									+ limit.substring(2, 4));
 							cell = row.getCell(13);
 							cell.setCellValue(send);
 							cell = row.getCell(16);
@@ -1086,11 +1039,16 @@ public class Output_excel {
 								row = ((org.apache.poi.ss.usermodel.Sheet) sheet)
 										.getRow(day + 17);
 								cell = row.getCell(4);
-								cell.setCellValue(mmdd.get(i).substring(0,2)+"/"+mmdd.get(i).substring(2,4));
+								cell.setCellValue(mmdd.get(i).substring(0, 2)
+										+ "/" + mmdd.get(i).substring(2, 4));
 								cell = row.getCell(8);
-								cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
+								cell.setCellValue(send_time.get(i).substring(0,
+										2)
+										+ ":"
+										+ send_time.get(i).substring(2, 4));
 								cell = row.getCell(10);
-								cell.setCellValue(limit.substring(0,2)+":"+limit.substring(2,4));
+								cell.setCellValue(limit.substring(0, 2) + ":"
+										+ limit.substring(2, 4));
 								cell = row.getCell(13);
 								cell.setCellValue(send);
 								cell = row.getCell(16);
@@ -1109,7 +1067,7 @@ public class Output_excel {
 								cell = row.getCell(28);
 								cell.setCellValue(remark.get(i));
 								flg = 1;
-								day = k;
+								day = k + 1;
 							}
 						}
 					}
@@ -1118,13 +1076,14 @@ public class Output_excel {
 
 			workbook.removeSheetAt(0);
 
-
 			// 出力先のファイル名を指定
-			out = new FileOutputStream("//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/勤怠月報エクセル出力/"
-					+ String.valueOf(KintaiManagement.Cale_Date_Year) + ""
-					+ String.valueOf(KintaiManagement.Cale_Date_Month)
-					+ "_勤怠連絡月報_" + lForm.getEmployee_no()
-					+ lForm.getEmployee_name() + ".xlsx");
+			out = new FileOutputStream(
+					"//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/勤怠月報エクセル出力/"
+							+ String.valueOf(KintaiManagement.Cale_Date_Year)
+							+ ""
+							+ String.valueOf(KintaiManagement.Cale_Date_Month)
+							+ "_勤怠連絡月報_" + lForm.getEmployee_no()
+							+ lForm.getEmployee_name() + ".xlsx");
 			// ブックに書き込み
 			workbook.write(out);
 

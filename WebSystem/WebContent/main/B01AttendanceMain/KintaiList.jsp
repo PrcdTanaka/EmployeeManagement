@@ -49,7 +49,7 @@
 	<%
 		Calendar cale = Calendar.getInstance();
 
- 		KintaiMailForm KMform=(KintaiMailForm)request.getAttribute("KMform");
+
 		MonthlyReportForm form=new MonthlyReportForm();		//MonthlyReportFormを使用するために宣言
 		MonthlyReportDb dba = new MonthlyReportDb();						// DbActionを使用するために宣言
 		LoginForm lForm=(LoginForm)session.getAttribute("form");	// LoginForm型の変数lFormにsessionのformを取得

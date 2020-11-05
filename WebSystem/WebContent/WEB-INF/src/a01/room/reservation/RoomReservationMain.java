@@ -1,7 +1,8 @@
-package b03.attendance.monthlyreport;
+package a01.room.reservation;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,14 +13,18 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import sample.ap.DbAction;
 import sample.pr.main.LoginForm;
 
-public class MonthlyReportAction extends Action {
+public final class RoomReservationMain extends Action {
+
+	// DB接続用オブジェクト
+	private DbAction dba = new DbAction();
 
 	// 遷移先
 	private String forward;
 
-	public MonthlyReportAction() throws IOException {
+	public RoomReservationMain() throws IOException {
 	}
 
 	String button;
@@ -32,28 +37,26 @@ public class MonthlyReportAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
-		Output_excel excel =new Output_excel();
-		MonthlyReportForm MRForm = (MonthlyReportForm) frm;
+		RoomReservationMainForm rForm = (RoomReservationMainForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		MRForm.setEmployee_no(lForm.getEmployee_no());
-		forward = "MonthlyReport";
-		String button = MRForm.getButton();
-		try {
-			if (button.equals("戻る")) {
-				forward = "kintailist";
+		Calendar cal = Calendar.getInstance();
+		dba.getEmployeeName(lForm);
+		forward = "reservation";
+		String button = rForm.getButton();
 
-		//保存ボタン押下後月報画面がエクセルに出力
-			} else if (button.equals("エクセル出力")) {
-				//エクセル出力用メソッド
-				forward = "MonthlyReportcomp";
-				excel.Output_Excel(MRForm, lForm);
+
+		try {
+			if (button.equals("選択")) {
+				forward = "calendar";
+			} else if (button.equals("会議室新規登録画面へ")) {
+				forward = "room";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// session.removeAttribute("kForm");
+		session.removeAttribute("rForm");
+
 		return map.findForward(forward);
 	}
 }

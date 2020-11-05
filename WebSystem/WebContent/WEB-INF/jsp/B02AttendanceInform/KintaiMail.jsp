@@ -112,9 +112,7 @@
 			</center>
 		</div>
 
-		<center>
-				<h1><%= message%></h1>
-		</center>
+
 		<p style="margin-left: -44%;">
 		<p align="center" style="margin-left: -45%">
 			宛先:<%=Email%></p>
@@ -220,7 +218,7 @@
 
 		<div>
 			<html:submit property="button" styleClass="btn" value="送信"
-				styleId="kintailist" style="margin-top:10;" />
+				styleId="kintaimailcomp" style="margin-top:10;" />
 		</div>
         <div style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" styleClass="btn" value="戻る"
