@@ -340,69 +340,13 @@
         	spotname="日立　戸塚";
         	limit="0815";
         	break;
-        	case "2-0002":
-        	spotname="横浜西ビル（NSKJひまわり）";
-        	limit="0900";
-        	break;
-        	case "2-0003":
-        	spotname="NTTS横浜(IC標準)";
-        	limit="0930";
-        	break;
-        	case "2-0004":
-        	spotname="NTTS横浜(OCN)";
-        	limit="0830";
-        	break;
-        	case "2-0005":
-        	spotname="ドコモR＆Dセンタ（Cカテゴリ）";
-        	limit="0930";
-        	break;
-        	case "2-0006":
-        	spotname="明治安田生命ビル(基盤)";
-        	limit="0830";
-        	break;
-        	case "2-0007":
-        	spotname="明治安田生命ビル(アプリ営業)";
-        	limit="0830";
-        	break;
-        	case "2-0008":
-        	spotname="明治安田生命ビル(活動基盤)";
-        	limit="0830";
-        	break;
-        	case "2-0009":
-        	spotname="JA川崎(普及)";
-        	limit="0830";
-        	break;
-        	case "2-0010":
-        	spotname="JA川崎(再構築)";
-        	limit="0830";
-        	break;
-        	case "2-0011":
-        	spotname="東京情報センター";
-        	limit="0830";
-        	break;
-        	case "2-0012":
-        	spotname="NTTS横浜(OCN)";
-        	limit="0830";
-        	break;
-        	case "2-0013":
-        	spotname="NTTS横浜(IC標準)";
-        	limit="0930";
-        	break;
         	case "2-0014":
         	spotname="NTTS横浜(OCN)";
         	limit="0830";
         	break;
-        	case "2-0015":
-        	spotname="穴守稲荷(ID)";
-        	limit="0900";
-        	break;
-        	case "2-0016":
+         	case "2-0016":
         	spotname="FBS（CEQ)";
         	limit="0810";
-        	break;
-        	case "2-0017":
-        	spotname="日新火災";
-        	limit="0830";
         	break;
         	case "2-0018":
         	spotname="ｱｸｾｽPF―光ｺﾗﾎﾞ対応/#P#FUTURE_F27-1";
@@ -412,10 +356,6 @@
         	spotname="移動機試験";
         	limit="0830";
         	break;
-        	case "2-0020":
-        	spotname="HiICS戸塚";
-        	limit="0815";
-        	break;
         	case "2-0021":
         	spotname="コンカード横浜";
         	limit="0830";
@@ -423,10 +363,6 @@
         	case "2-0022":
         	spotname="三菱電機(湘セン)";
         	limit="0900";
-        	break;
-        	case "2-0023":
-        	spotname="丸の内中央ビル(JR)";
-        	limit="0830";
         	break;
         	case "2-0024":
         	spotname="情報総研（大船）";
@@ -451,10 +387,6 @@
         	case "2-0029":
         	spotname="ソフトバンクテレコム東京イーストセンター";
         	limit="0930";
-        	break;
-        	case "2-0030":
-        	spotname="HIENG戸塚";
-        	limit="0815";
         	break;
         	case "2-0031":
         	spotname="コープ共済プラザ";
@@ -740,61 +672,13 @@
         	spotname="中之島フェスティバルタワー（DKI）";
         	limit="0830";
         	break;
-        	case "5-0002":
-        	spotname="東京建物梅田ビル（CTC）";
-        	limit="0830";
-        	break;
-        	case "5-0003":
-        	spotname="日本流通システム";
-        	limit="0830";
-        	break;
-        	case "5-0004":
-        	spotname="オージス総研　千里オフィス";
-        	limit="0830";
-        	break;
-        	case "5-0005":
-        	spotname="日本IBM　大阪京橋事業所";
-        	limit="0830";
-        	break;
-        	case "5-0006":
-        	spotname="パナソニックスマートファクトリーソリューションズ";
-        	limit="0800";
-        	break;
-        	case "5-0007":
-        	spotname="梅田センタービル（NTTﾃﾞｰﾀｾｷｽｲｼｽﾃﾑ）";
-        	limit="0900";
-        	break;
-        	case "5-0008":
-        	spotname="新ダイビル（日立ｼｽﾃﾑｽﾞ）";
-        	limit="0820";
-        	break;
-        	case "5-0009":
-        	spotname="東洋紡ビル（ｿﾌﾟﾗ）";
-        	limit="0830";
-        	break;
         	case "5-0010":
         	spotname="新大阪ニッセイビル（住友電工情報ｼｽﾃﾑ）";
         	limit="0800";
         	break;
-        	case "5-0011":
-        	spotname="大津市役所（日立ｼｽﾃﾑｽﾞ）";
-        	limit="0820";
-        	break;
-        	case "5-0012":
-        	spotname="和田岬（三菱電機製作所）";
-        	limit="0815";
-        	break;
         	case "5-0013":
         	spotname="三井住友信託銀行";
         	limit="0820";
-        	break;
-        	case "5-0014":
-        	spotname="オージス総研千里オフィス";
-        	limit="0830";
-        	break;
-        	case "5-0015":
-        	spotname="三井住友信託銀行";
-        	limit="0830";
         	break;
         	case "5-0016":
         	spotname="アートヴィレッジ大崎セントラルタワー";
@@ -814,14 +698,6 @@
         	break;
         	case "5-0020":
         	spotname="SLC";
-        	limit="0830";
-        	break;
-        	case "5-0021":
-        	spotname="新大阪ニッセイビル（ニッセイ情報テクノロジー）";
-        	limit="0830";
-        	break;
-        	case "5-0022":
-        	spotname="大阪中之島ビル（ｱｸｾﾝﾁｭｱ）";
         	limit="0830";
         	break;
         	case "5-0023":

@@ -28,9 +28,9 @@ public class KintaiListAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		KintaiListForm kForm = (KintaiListForm) frm;
+		KintaiListForm KLForm = (KintaiListForm) frm;
 		forward ="";
-		String button=kForm.getButton();
+		String button=KLForm.getButton();
 		try{
 			// 勤怠一覧画面から選択されたのが「戻る」の場合
 			if(button.equals("戻る")){

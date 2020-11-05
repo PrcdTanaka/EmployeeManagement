@@ -13,7 +13,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import sample.pr.main.LoginForm;
-import b02.attendance.inform.KintaiMailForm;
 
 public class MonthlyReportAction extends Action {
 
@@ -35,13 +34,12 @@ public class MonthlyReportAction extends Action {
 		}
 
 		Output_excel excel =new Output_excel();
-		MonthlyReportForm MForm = (MonthlyReportForm) frm;
-		KintaiMailForm KMForm=new KintaiMailForm();
+		MonthlyReportForm MRForm = (MonthlyReportForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		MForm.setEmployee_no(lForm.getEmployee_no());
+		MRForm.setEmployee_no(lForm.getEmployee_no());
 		forward = "MonthlyReport";
-		String button = MForm.getButton();
+		String button = MRForm.getButton();
 		try {
 			if (button.equals("戻る")) {
 				forward = "kintailist";
@@ -50,7 +48,7 @@ public class MonthlyReportAction extends Action {
 			} else if (button.equals("エクセル出力")) {
 				//エクセル出力用メソッド
 				forward = "MonthlyReportcomp";
-				excel.Output_Excel(MForm, lForm);
+				excel.Output_Excel(MRForm, lForm);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
