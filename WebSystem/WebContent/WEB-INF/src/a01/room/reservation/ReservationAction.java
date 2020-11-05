@@ -40,11 +40,18 @@ public final class ReservationAction extends Action {
 		ReservationForm rForm = (ReservationForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
+		Calendar cal = Calendar.getInstance();
 		rForm.setEmployee_no(lForm.getEmployee_no());
 		dba.getEmployeeName(lForm);
 		forward = "reservation";
 		String button = rForm.getButton();
 		String link = request.getParameter("link");
+
+
+		int year = cal.get(Calendar.YEAR); //年取得
+		int month = cal.get(Calendar.MONTH) + 1; //月取得
+		int day = cal.get(Calendar.DATE); //日付取得
+		int week = cal.get(Calendar.DAY_OF_WEEK) - 1; //曜日取得
 
 		try {
 			if (button != null & button.equals("戻る")) {
@@ -60,6 +67,21 @@ public final class ReservationAction extends Action {
 
 
 		return map.findForward(forward);
+	}
+
+	public int getCriteria(){
+		Calendar cal = Calendar.getInstance();
+		int date[] =new int[8];
+		int year = cal.get(Calendar.YEAR); //年取得
+		int month = cal.get(Calendar.MONTH) + 1; //月取得
+		int day = cal.get(Calendar.DATE); //日付取得
+		int day2 = cal.get(Calendar.DATE);
+		int day3 = cal.get(Calendar.DATE);
+		int dayalert = cal.get(Calendar.DATE);
+		int hour = cal.get(Calendar.HOUR_OF_DAY); //時間取得
+		int minute = cal.get(Calendar.MINUTE); //分取得
+		int week = cal.get(Calendar.DAY_OF_WEEK) - 1; //曜日取得
+		return 0;
 	}
 
 	// 1か月先の月を取得

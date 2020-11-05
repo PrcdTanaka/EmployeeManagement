@@ -134,6 +134,9 @@ public final class MainAction extends Action {
 			case "reservation":
 				forward="reservation";
 				break;
+			case "reservationmain":
+				forward="reservationmain";
+				break;
 
 
 			case"1F":
