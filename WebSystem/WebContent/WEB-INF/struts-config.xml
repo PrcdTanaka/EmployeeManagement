@@ -37,6 +37,7 @@
 		<form-bean name="KintaiNotificationForm" type="sample.pr.main.KintaiNotificationForm" />
 		<form-bean name="AccessSelectForm" type="d01.access.control.AccessSelectForm" />
 		<form-bean name="AccessLogSelectForm" type="d02.access.log.AccessLogSelectForm" />
+		<form-bean name="RoomReservationMainForm" type="a01.room.reservation.RoomReservationMainForm" />
 	</form-beans>
 
 
@@ -69,6 +70,7 @@
 			<forward name="kinmurecord" path="/jsp/KinmuRecord.jsp"/>
 			<forward name="kintaiNotification" path="/jsp/KintaiNotification.jsp"/>
 			<forward name="accessControl" path="/WEB-INF/jsp/D01AccessControl/AccessControlMain.jsp"/>
+			<forward name="reservationmain" path="/main/A01Reservation/Reservation_main.jsp"/>
 		</action>
 
 		<action name="PasswordForm" path="/PasswordAction"
@@ -210,7 +212,15 @@
 			<forward name="AccessLogSelect" path="/WEB-INF/jsp/D02AccessLog/AccessLogTable.jsp" />
 		</action>
 
+		<action name="RoomReservationMainForm" path="/RoomReservationMain"
+				type="a01.room.reservation" validate="false" scope="request">
+			<forward name="calendar" path="/WEB-INF/jsp/A02ReservationConfirm/ReservationCalendar.jsp" />
+		</action>
 
+		<action name="ReservationCalendar" path="/ReservationCalendar"
+				type="a02.room.reservation.confirm" validate="false" scope="request">
+			<forward name="details" path="/WEB-INF/jsp/A02ReservationConfirm/ReservationDetai.jsp" />
+		</action>
 
 	</action-mappings>
 
