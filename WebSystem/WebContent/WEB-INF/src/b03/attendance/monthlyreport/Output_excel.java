@@ -129,6 +129,8 @@ public class Output_excel {
 
 			// 有給などの回数をカウントするfor文、switch文
 			for (int c = 0; c < mmdd.size(); c++) {
+				if(kintai_s[c].substring(6, 8).equals(
+						kintai_s2[c].substring(6, 8))) {
 				switch (division.get(c)) {
 				case "1":
 					tikoku++;
@@ -154,6 +156,38 @@ public class Output_excel {
 				case "8":
 					kekkin++;
 					break;
+				}
+			}else{
+				for (int k = Integer.parseInt(kintai_s[c]
+						.substring(6, 8)); k <= (Integer
+						.parseInt(kintai_s2[c].substring(6, 8))); k++) {
+					switch (division.get(c)) {
+					case "1":
+						tikoku++;
+						break;
+					case "2":
+						yuukyuu++;
+						break;
+					case "3":
+						hurikae++;
+						break;
+					case "4":
+						tokubetsu++;
+						break;
+					case "5":
+						shihuto++;
+						break;
+					case "6":
+						sotai++;
+						break;
+					case "7":
+						kotu++;
+						break;
+					case "8":
+						kekkin++;
+						break;
+					}
+				}
 				}
 			}
 
@@ -1008,6 +1042,9 @@ public class Output_excel {
 							if (Integer.parseInt(send_time.get(i)) > Integer
 									.parseInt(limit)) {
 								send = "無届";
+
+								if(kintai_s[i].substring(6, 8).equals(
+										kintai_s2[i].substring(6, 8))) {
 								switch (division.get(i)) {
 								case "1":
 									unreported_tikoku++;
@@ -1025,7 +1062,29 @@ public class Output_excel {
 									unreported_kekkin++;
 									break;
 								}
-
+							}else{
+								for (int k = Integer.parseInt(kintai_s[i]
+										.substring(6, 8)); k <= (Integer
+										.parseInt(kintai_s2[i].substring(6, 8))); k++) {
+									switch (division.get(i)) {
+									case "1":
+										unreported_tikoku++;
+										break;
+									case "5":
+										unreported_shihuto++;
+										break;
+									case "6":
+										unreported_sotai++;
+										break;
+									case "7":
+										unreported_kotu++;
+										break;
+									case "8":
+										unreported_kekkin++;
+										break;
+									}
+								}
+							}
 							} else {
 								send = "";
 							}
@@ -1058,7 +1117,7 @@ public class Output_excel {
 							cell = row.getCell(8);
 							cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
 							cell = row.getCell(10);
-							cell.setCellValue(limit);
+							cell.setCellValue(limit.substring(0,2)+":"+limit.substring(2,4));
 							cell = row.getCell(13);
 							cell.setCellValue(send);
 							cell = row.getCell(16);
@@ -1090,7 +1149,7 @@ public class Output_excel {
 								cell = row.getCell(8);
 								cell.setCellValue(send_time.get(i).substring(0,2)+":"+send_time.get(i).substring(2,4));
 								cell = row.getCell(10);
-								cell.setCellValue(limit);
+								cell.setCellValue(limit.substring(0,2)+":"+limit.substring(2,4));
 								cell = row.getCell(13);
 								cell.setCellValue(send);
 								cell = row.getCell(16);
@@ -1109,7 +1168,7 @@ public class Output_excel {
 								cell = row.getCell(28);
 								cell.setCellValue(remark.get(i));
 								flg = 1;
-								day = k;
+								day = k+1;
 							}
 						}
 					}
