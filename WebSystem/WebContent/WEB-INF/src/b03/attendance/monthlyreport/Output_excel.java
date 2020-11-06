@@ -81,7 +81,8 @@ public class Output_excel {
 			// 「.xlsx」形式のファイル作成
 
 			fis = new FileInputStream(
-					"//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/江泉洸佑/勤怠月報画面テンプレ.xlsx");
+					"//db366ybx/Proc-Server/Pro-Top/新人研修/2020年度/03.講義/04_成果/08_Webシステム/江泉洸佑/勤怠月報画面テンプレ_"+
+							String.valueOf(KintaiManagement.Cale_Date_Month)+"月.xlsx");
 			workbook = WorkbookFactory.create(fis);
 			// シートを「勤怠月報画面」という名前で作成
 			Sheet sheet = workbook.cloneSheet(workbook.getSheetIndex("勤怠月報"));

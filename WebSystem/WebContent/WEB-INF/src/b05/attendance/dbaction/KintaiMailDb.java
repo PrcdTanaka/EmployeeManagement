@@ -208,7 +208,7 @@ public class KintaiMailDb extends Object{
 	/*
 	 * 勤怠連絡削除メソッド
 	 */
-	public boolean setKintaiDelete(KintaiMailForm form, LoginForm lform, String MMdd, String SendTime)
+	public boolean setKintaiDelete(KintaiMailForm form, LoginForm lform)
 	{
 		boolean ret = false;
 
