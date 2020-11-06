@@ -24,7 +24,7 @@
 				<html:option value="3">3F</html:option>
 				<html:option value="4">4F</html:option>
 			</html:select>
-			<html:submit styleClass="send" property="button" value="選択" />
+			<html:submit styleClass="send" property="button" value="選択" styleId = "calendar"/>
 		</html:form>
 	</div>
 
@@ -55,11 +55,10 @@
 				<html:option value="11">11月</html:option>
 				<html:option value="12">12月</html:option>
 			</html:select>
-			<html:submit styleClass="send" property="button" value="GO" />
+			<html:submit styleClass="send" property="button" value="選択" />
 		</html:form>
 	</div>
 
 	<html:link href="/WebSystem/jsp/Main.jsp">メインへ戻る</html:link>
-
 </body>
 </html>

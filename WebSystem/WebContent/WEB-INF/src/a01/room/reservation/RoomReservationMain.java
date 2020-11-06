@@ -2,7 +2,6 @@ package a01.room.reservation;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,8 +39,6 @@ public final class RoomReservationMain extends Action {
 		RoomReservationMainForm rForm = (RoomReservationMainForm) frm;
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
-		Calendar cal = Calendar.getInstance();
-		dba.getEmployeeName(lForm);
 		forward = "reservation";
 		String button = rForm.getButton();
 
