@@ -114,7 +114,7 @@
 						</html:link>
 					</li>
 					<li>
-						<html:link action="/MainAction">かいぎしつよやくあ
+						<html:link action="/MainAction">会議室予約(仮)
 							<html:param name="employee_no"><%=no %></html:param>
 							<html:param name="link">reservationmain</html:param>
 						</html:link>

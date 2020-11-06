@@ -2,10 +2,18 @@ package a02.room.reservation.confirm;
 
 import org.apache.struts.action.ActionForm;
 
-public final class ReservationCalendarForm extends ActionForm {
+public class ReservationCalendarForm extends ActionForm {
 
 	private String date;
 	private String month;
+	private String button;
+
+	public String getButton() {
+		return button;
+	}
+	public void setButton(String button) {
+		this.button = button;
+	}
 	public String getDate() {
 		return date;
 	}

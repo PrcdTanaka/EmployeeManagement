@@ -38,6 +38,7 @@
 		<form-bean name="AccessSelectForm" type="d01.access.control.AccessSelectForm" />
 		<form-bean name="AccessLogSelectForm" type="d02.access.log.AccessLogSelectForm" />
 		<form-bean name="RoomReservationMainForm" type="a01.room.reservation.RoomReservationMainForm" />
+		<form-bean name="ReservationCalendarForm" type="a02.room.reservation.confirm.ReservationCalendarForm" />
 	</form-beans>
 
 
@@ -213,12 +214,12 @@
 		</action>
 
 		<action name="RoomReservationMainForm" path="/RoomReservationMain"
-				type="a01.room.reservation" validate="false" scope="request">
-			<forward name="calendar" path="/jsp/ReservationCalendar.jsp" />
+				type="a01.room.reservation.RoomReservationMain" validate="false" scope="request">
+			<forward name="calendar" path="/WEB-INF/jsp/A02ReservationConfirm/ReservationCalendar.jsp" />
 		</action>
 
 		<action name="ReservationCalendar" path="/ReservationCalendar"
-				type="a02.room.reservation.confirm" validate="false" scope="request">
+				type="a02.room.reservation.confirm.ReservationCalendar" validate="false" scope="request">
 			<forward name="details" path="/WEB-INF/jsp/A02ReservationConfirm/ReservationDetai.jsp" />
 		</action>
 

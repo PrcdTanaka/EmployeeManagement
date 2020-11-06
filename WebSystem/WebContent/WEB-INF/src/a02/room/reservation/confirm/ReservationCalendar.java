@@ -40,13 +40,14 @@ public final class ReservationCalendar extends Action {
 		}
 		HttpSession session = request.getSession();
 		LoginForm lForm = (LoginForm) session.getAttribute("form");
+		//ReservationCalendarForm rcForm = new rcForm(ReservationCalendarForm)frm;
 		Calendar cal = Calendar.getInstance();
 		dba.getEmployeeName(lForm);
 		forward = "reservation";
 
 		try {
 			if (button.equals("選択")) {
-				forward = "calendar";
+				forward = "details";
 			} else if (button.equals("会議室新規登録画面へ")) {
 				forward = "room";
 			}

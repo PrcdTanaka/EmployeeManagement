@@ -19,7 +19,10 @@
 <title>会議室予約</title>
 </head>
 <body>
-
+カレンダー画面
+<html:form action="/ReservationCalendar">
+	<html:submit styleClass="send" property="button" value="選択" styleId = "details"/>
+</html:form>
 </body>
 </body>
 </html>

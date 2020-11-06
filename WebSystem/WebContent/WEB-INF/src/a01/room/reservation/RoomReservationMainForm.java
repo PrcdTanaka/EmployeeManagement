@@ -2,15 +2,10 @@ package a01.room.reservation;
 
 import org.apache.struts.action.ActionForm;
 
-public final class RoomReservationMainForm extends ActionForm {
+public class RoomReservationMainForm extends ActionForm {
 
 	private int floor;
 	private String button;
-
-
-	{
-
-	}
 
 	public int getFloor() {
 		return floor;

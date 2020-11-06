@@ -15,7 +15,7 @@ import org.apache.struts.action.ActionMapping;
 import sample.ap.DbAction;
 import sample.pr.main.LoginForm;
 
-public final class ReservationDetails extends Action {
+public  class ReservationDetails extends Action {
 
 	// DB接続用オブジェクト
 	private DbAction dba = new DbAction();
