@@ -214,7 +214,7 @@
 
 		<action name="RoomReservationMainForm" path="/RoomReservationMain"
 				type="a01.room.reservation" validate="false" scope="request">
-			<forward name="calendar" path="/WEB-INF/jsp/A02ReservationConfirm/ReservationCalendar.jsp" />
+			<forward name="calendar" path="/jsp/ReservationCalendar.jsp" />
 		</action>
 
 		<action name="ReservationCalendar" path="/ReservationCalendar"

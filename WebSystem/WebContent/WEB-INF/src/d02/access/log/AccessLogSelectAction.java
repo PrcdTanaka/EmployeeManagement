@@ -38,8 +38,6 @@ public class AccessLogSelectAction extends Action{
 		String floor = aLSForm.getFloor();
 		String year = aLSForm.getYear();
 		String month = aLSForm.getMonth();
-//		String year = String.valueOf(yearInt);
-//		String month = String.valueOf(monthInt);
 
 		//DBに接続できている場合以下を実行
 		if (dba.conSts) {

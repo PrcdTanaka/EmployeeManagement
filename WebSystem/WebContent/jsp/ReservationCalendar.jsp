@@ -19,7 +19,7 @@
 <title>会議室予約</title>
 </head>
 <body>
-	<button onclick="window.href='./ReservationDetails.jsp'" >次へ</button>
+
 </body>
 </body>
 </html>

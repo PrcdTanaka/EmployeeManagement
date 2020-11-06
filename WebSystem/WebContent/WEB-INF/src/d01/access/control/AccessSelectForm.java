@@ -53,8 +53,4 @@ public class AccessSelectForm extends ActionForm {
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
-
-
-
-
 }

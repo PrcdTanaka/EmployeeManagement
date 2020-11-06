@@ -23,6 +23,8 @@ public class AccessSelectAction extends Action {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		//遷移先を格納するための変数を宣言
+		String forward = "";
 
 		//自動生成されたインスタンスを入退室管理システムのインスタンスに変更
 		AccessSelectForm aSForm = (AccessSelectForm)frm;
@@ -35,10 +37,6 @@ public class AccessSelectAction extends Action {
 		String empNo = lForm.getEmployee_no();
 		aSForm.setEmpName(empName);
 		aSForm.setEmpNo(empNo);
-
-
-		//遷移先を格納するための変数を宣言
-		String forward = "";
 
 		try{
 			//ボタン押下時の日付のレコードがあるかどうか確認し、なかった場合は0を、あった場合はステータスの値を取得
