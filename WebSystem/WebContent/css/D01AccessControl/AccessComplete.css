@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	background: #fafafa;
+}
+
+.head{
+	height: 150px;
+	margin-bottom: 20px;
+	background-color: #FF0000;
+	color: white;
+	padding: 10px 40px;
+}
+
+.title {
+	padding: 10px;
+	height: 100px;
+	line-height: 100px;
+	font-size: 50px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.main {
+	padding: 20px 40px;
+	text-align: center;
+}
+
+.sentence{
+	font-size: 30px;
+	margin-bottom: 20px;
+}
