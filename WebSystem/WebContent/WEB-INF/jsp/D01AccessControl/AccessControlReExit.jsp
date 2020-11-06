@@ -12,6 +12,7 @@ AccessSelectForm aSForm = (AccessSelectForm) session.getAttribute("aSForm");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="/WebSystem/JavaScript/D01AccessControl/AccessControlExit.js"></script>
 <title>再退室画面</title>
 </head>
 <body>
