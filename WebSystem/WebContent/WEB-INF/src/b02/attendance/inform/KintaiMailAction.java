@@ -51,27 +51,16 @@ public class KintaiMailAction extends Action {
 		String button = KMform.getButton();
 		try {
 			if (button.equals("戻る")) {
-
 				forward = "kintailist";
 			}
 			if(button.equals("勤怠取消し"))
 			{
-				int Send_Edit_val = 2;
-				boolean Send_Chk_Flg = Send_Edit_Chk(lForm, KMform, Send_Edit_val);
-				if(Send_Chk_Flg == false)
-				{
-				//	session.removeAttribute("form");
 					boolean mailflg = SMail.Delete_Mail(KMform,lForm);
 					if(mailflg==true){
 						System.out.println("メールフォーム出力完了");
-						KMform.setMessage("送信完了");
-						request.setAttribute("KMform",KMform);
-					}else{
-						System.out.println("メールフォーム出力失敗");
+						dba.setKintaiDelete(KMform,lForm);
+						forward = "kintaimailcomp";
 					}
-					dba.setKintaiDelete(KMform,lForm,Action_MMdd,Action_SendTime);
-					forward = "kintaimailcomp";
-				}
 			}
 			if (button.equals("編集"))
 			{
@@ -85,10 +74,7 @@ public class KintaiMailAction extends Action {
 						|| KMform.getSpan().equals("")
 						|| KMform.getRemark().equals("")
 						|| KMform.getDepart().equals("")
-						|| KMform.getSpan2().equals(""))))
-						|| !(KMform.getSpan().equals(KMform.getSpan()))
-						|| !(KMform.getSpan2().equals(KMform.getSpan2()))){
-					session.setAttribute("form", KMform);
+						|| KMform.getSpan2().equals(""))))){
 					forward = "kintailist";
 				}
 				else{
@@ -99,12 +85,8 @@ public class KintaiMailAction extends Action {
 						boolean mailflg = SMail.Send_Mail(KMform,lForm);
 						if(mailflg==true){
 							System.out.println("メールフォーム出力完了");
-						}else{
-							System.out.println("メールフォーム出力失敗");
 						}
 						dba.setKintaiEdit(KMform, lForm, Action_MMdd, Action_SendTime);
-						KMform.setMessage("メール出力完了");
-						request.setAttribute("KMform",KMform);
 						forward = "kintaimailcomp";
 					}
 				}
@@ -120,10 +102,7 @@ public class KintaiMailAction extends Action {
 						|| KMform.getSpan().equals("")
 						|| KMform.getRemark().equals("")
 						|| KMform.getDepart().equals("")
-						|| KMform.getSpan2().equals(""))))
-						|| !(KMform.getSpan().equals(KMform.getSpan()))
-						|| !(KMform.getSpan2().equals(KMform.getSpan2()))){
-					session.setAttribute("form", KMform);
+						|| KMform.getSpan2().equals(""))))){
 					forward = "kintailist";
 				}
 				else{
@@ -134,8 +113,6 @@ public class KintaiMailAction extends Action {
 						boolean mailflg = SMail.Send_Mail(KMform,lForm);
 						if(mailflg==true){
 							System.out.println("メールフォーム出力完了");
-						}else{
-							System.out.println("メールフォーム出力失敗");
 						}
 						// DBへの登録作業以外をコメント化
 						dba.setKintaiInfo(KMform, lForm);
