@@ -12,49 +12,56 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="/WebSystem/css/D02AccessLog/AccessLogTable.css">
 <title>履歴閲覧画面</title>
 </head>
 <body>
-
-	<h2>履歴閲覧画面</h2>
-
-	<html:link action="/MainAction">入退室管理システムメイン画面へ戻る
+	<div class="wrapper">
+		<div class="head">
+			<div class="title">履歴閲覧画面</div>
+		</div>
+		<div class="back">
+			<html:link action="/MainAction">入退室管理システムメイン画面へ戻る
 		<html:param name="link">accessControl</html:param>
-	</html:link>
+			</html:link>
+		</div>
+		<div class="main">
+			<div class="mainBox">
 
-	<table border=3>
-		<tr>
-			<th>日付</th>
-			<th>入室者社員名</th>
-			<th>入室者社員番号</th>
-			<th>入室時間</th>
-			<th>退室者社員名</th>
-			<th>退室者社員番号</th>
-			<th>退出時間</th>
-			<th>チェックリスト</th>
-			<th>ステータス</th>
-		</tr>
+				<table border=3>
+					<tr>
+						<th>日付</th>
+						<th>入室者社員名</th>
+						<th>入室者社員番号</th>
+						<th>入室時間</th>
+						<th>退室者社員名</th>
+						<th>退室者社員番号</th>
+						<th>退出時間</th>
+						<th>チェックリスト</th>
+						<th>ステータス</th>
+					</tr>
 
-		<%
-			for (int i = 0; i < aLSForm.getAccessDate().size(); i++) {
-		%>
-		<tr>
-			<td><%=aLSForm.getAccessDate().get(i)%></td>
-			<td><%=aLSForm.getEntryEmpName().get(i)%></td>
-			<td><%=aLSForm.getEntryEmpNo().get(i)%></td>
-			<td><%=aLSForm.getEntryTime().get(i)%></td>
-			<td><%=aLSForm.getExitEmpName().get(i)%></td>
-			<td><%=aLSForm.getExitEmpNo().get(i)%></td>
-			<td><%=aLSForm.getExitTime().get(i)%></td>
-			<td><%=aLSForm.getCheckList().get(i)%></td>
-			<td><%=aLSForm.getStatus().get(i)%></td>
-		</tr>
-		<%
-			}
-		%>
-
-	</table>
-
-
+					<%
+						for (int i = 0; i < aLSForm.getAccessDate().size(); i++) {
+					%>
+					<tr>
+						<td><%=aLSForm.getAccessDate().get(i)%></td>
+						<td><%=aLSForm.getEntryEmpName().get(i)%></td>
+						<td><%=aLSForm.getEntryEmpNo().get(i)%></td>
+						<td><%=aLSForm.getEntryTime().get(i)%></td>
+						<td><%=aLSForm.getExitEmpName().get(i)%></td>
+						<td><%=aLSForm.getExitEmpNo().get(i)%></td>
+						<td><%=aLSForm.getExitTime().get(i)%></td>
+						<td><%=aLSForm.getCheckList().get(i)%></td>
+						<td><%=aLSForm.getStatus().get(i)%></td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

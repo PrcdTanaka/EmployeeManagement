@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	background: #fafafa;
+}
+
+.head{
+	height: 150px;
+	margin-bottom: 20px;
+	background-color: #000080;
+	color: white;
+	padding: 10px 40px;
+}
+
+.title {
+	padding: 10px;
+	height: 100px;
+	line-height: 100px;
+	font-size: 50px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.empInfo {
+	font-size: 20px;
+	text-align: right;
+}
+
+.info{
+	padding: 20px;
+	height: 80px;
+	line-height: 80px;
+}
+
+.sentence {
+	font-size: 25px;
+	text-align: center;
+}
+
+.main {
+	padding: 20px;
+	height: 170px;
+}
+
+.mainTitle {
+	height: 50px;
+	font-size: 40px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.mainButton {
+	height: 50px;
+	font-size: 40px;
+	text-align: center;
+}
+
+input {
+	height: 50px;
+	width: 120px;
+	font-size: 30px;
+	background-color: aqua;
+	border-radius: 10px;
+
+}
+
+.back {
+	text-align: right;
+	padding: 20px;
+}
+
+button {
+	height: 30px;
+	width: 60px;
+	font-size: 15px;
+	background-color: gray;
+	border-radius: 10px;
+
+}
