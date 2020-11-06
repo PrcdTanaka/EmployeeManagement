@@ -75,7 +75,6 @@ public class KintaiMailAction extends Action {
 			}
 			if (button.equals("編集"))
 			{
-				//forward = "kintaieditor";
 				// Send_Edit_valを1にする。
 				int Send_Edit_val = 1;
 				// 対象期間/日付がDBの既存情報と被っていないか確認

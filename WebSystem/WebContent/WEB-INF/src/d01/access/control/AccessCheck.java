@@ -12,8 +12,18 @@ public class AccessCheck {
 
 	public String getStatus(AccessSelectForm aSForm) {
 
-		//戻り値を格納する変数を宣言（ステータスを管理）
+		// 戻り値を格納する変数を宣言（ステータスを管理）
 		String status = "0";
+
+		// ボタン押下時の日付と時間を取得
+		LocalDateTime localDateTime = LocalDateTime.now();
+		// 時間が0時～7時の場合日付を1日前に変更
+		if (localDateTime.getHour() < 7) {
+			localDateTime = localDateTime.plusDays(-1);
+		}
+		// 日付のフォーマットを8桁に変更
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyyMMdd");
+		String formattedDate = localDateTime.format(dateFormat);
 
 		// DB接続
 		DbConnector dba = null;
@@ -23,20 +33,10 @@ public class AccessCheck {
 			e1.printStackTrace();
 		}
 
-		//ボタン押下時の日付と時間を取得
-		LocalDateTime localDateTime = LocalDateTime.now();
-		//時間が0時～7時の場合日付を1日前に変更
-		if (localDateTime.getHour() < 7) {
-			localDateTime = localDateTime.plusDays(-1);
-		}
-		//日付のフォーマットを8桁に変更
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyyMMdd");
-		String formattedDate = localDateTime.format(dateFormat);
-
-		//DB接続ができていれば以下を実行
+		// DB接続ができていれば以下を実行
 		if (dba.conSts) {
 
-			//ボタン押下時の日付のレコードがあるかどうか確認
+			// ボタン押下時の日付のレコードがあるかどうか確認
 			int count = 0;
 			String selectCountQuery = "SELECT COUNT(ACCESS_DATE) FROM ACCESS_TBL WHERE ACCESS_DATE ="
 					+ formattedDate;
@@ -46,7 +46,7 @@ public class AccessCheck {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			//レコードがなかった場合、ボタン押下時の日付の最新レコードを取得
+			// レコードがあった場合、ボタン押下時の日付の最新レコードを取得
 			if (count != 0) {
 				StringBuffer sb = new StringBuffer();
 				String crlf = System.getProperty("line.separator");
@@ -89,7 +89,7 @@ public class AccessCheck {
 						aSForm.setStatus(val.get("STATUS"));
 					}
 
-					//取得したレコードのステータスを戻り値の変数に代入
+					// 取得したレコードのステータスを戻り値の変数に代入
 					if (aSForm.getStatus() != null) {
 						switch (aSForm.getStatus()) {
 						case "1":
