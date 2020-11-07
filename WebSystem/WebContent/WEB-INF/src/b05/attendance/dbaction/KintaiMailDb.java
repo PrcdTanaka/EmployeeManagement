@@ -126,7 +126,7 @@ public class KintaiMailDb extends Object{
 	/*
 	 * 勤怠編集メソッド
 	 */
-	public boolean setKintaiEdit(KintaiMailForm form, LoginForm lform, String MMdd, String SendTime) {
+	public boolean setKintaiEdit(KintaiMailForm form, LoginForm lform) {
 
 		boolean ret = false;
 		// DB接続
@@ -176,8 +176,7 @@ public class KintaiMailDb extends Object{
 			sb.append("  SPAN2 ='" + form.getSpan2()+"'"+crlf);
 			sb.append("WHERE" + crlf);
 			sb.append("  EMP_NO = ?" + crlf);
-			sb.append("  AND MMDD =" + MMdd + crlf);
-			sb.append("  AND SEND_TIME =" + SendTime + crlf);
+			sb.append("  AND SPAN =" + form.getSpan() + crlf);
 			String query = sb.toString();
 
 			// 設定値 - 型
