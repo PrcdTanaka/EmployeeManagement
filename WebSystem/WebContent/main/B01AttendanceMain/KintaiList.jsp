@@ -385,12 +385,6 @@
 				</tr>
 				<%}%>
 		</table>
-
-	<%-- <div style="position: relative; margin-top: 5%; align: center;" >
-			<html:submit property="button" style="color:#fff; background-color:#49a9d4; width: 20%;  border-radius: 20px;" value="勤怠連絡入力"
-				styleId="kintaimail"/>
-		</div>--%>
-
 		<div  style="position: relative; margin-top: 5%; align: center;">
 			<html:submit property="button" style="color:#fff; background-color:#49a9d4; width: 20%;  border-radius: 20px;" value="勤怠月報画面へ"
 				styleId="MonthlyReport"/>

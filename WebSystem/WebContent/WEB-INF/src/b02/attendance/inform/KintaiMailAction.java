@@ -14,11 +14,9 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.pr.main.LoginForm;
 import b05.attendance.dbaction.KintaiMailDb;
-import b05.attendance.dbaction.MonthlyReportDb;
 
 public class KintaiMailAction extends Action {
 	private KintaiMailDb dba = new KintaiMailDb();
-	private MonthlyReportDb dba2 = new MonthlyReportDb();
 
 	// 遷移先
 	private String forward;
@@ -68,7 +66,6 @@ public class KintaiMailAction extends Action {
 					forward = "kintailist";
 				}
 				else{
-					// DB上のデータと対象期間に被りが無い場合にDBの編集処理を行う
 						//メール機能
 						boolean mailflg = SMail.Send_Mail(KMform,lForm);
 						if(mailflg==true){

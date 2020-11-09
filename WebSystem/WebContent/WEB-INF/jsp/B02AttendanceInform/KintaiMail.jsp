@@ -86,18 +86,6 @@
 					String Employee_no = "";
 					String name = "";
 					LoginForm s = (LoginForm) session.getAttribute("form");
-					KintaiMailForm Form = new KintaiMailForm();
-					String CC = Form.getCC();
-					String depart = Form.getDepart();
-					String division = Form.getDivision();
-					String bcc = Form.getBcc();
-					String spotcode = Form.getSpotcode();
-				    String span = Form.getSpan();
-					String span2 = Form.getSpan2();
-					String ptime = Form.getPtime();
-					String remark = Form.getRemark();
-					String perm = Form.getPerm();
-					String message=Form.getMessage();
 					try {
 						Employee_no = s.getEmployee_no();
 						name = s.getEmployee_name();
@@ -133,7 +121,7 @@
 			</html:select>
 		</div>
 		<p align="center" class="BCC">
-				BCC:<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" value="<%=bcc%>" />
+				BCC:<html:text property="bcc" size="20" maxlength="40" style="font-size: 15px; width: 60%" />
 				<p style="color:red;margin-left: 17%">※ 任意で入力
 		</p>
 
@@ -161,7 +149,7 @@
 			氏名：<%=name%>
 		</p>
 		<p align="center" class="code" style="margin-left: -42%">
-			現場コード：<html:text property="spotcode" size="20" maxlength="6" style="width: 17%" value="<%=spotcode%>" />
+			現場コード：<html:text property="spotcode" size="20" maxlength="6" style="width: 17%"/>
 			<p style="color:red;margin-left: 13%">例) 1-2345
 		</p>
 		<div align="center" class="depert2"
@@ -194,25 +182,25 @@
 				}
 				else if(Url_Flg == true){
 			%>
-				<html:text property="span" size="20" maxlength="8" style="width: 17%" value="<%=span%>" />
+				<html:text property="span" size="20" maxlength="8" style="width: 17%" />
 			<%
 				}
 			%>
-			～対象日付/期間(終了)：<html:text property="span2" size="20" maxlength="8" style="width: 17%" value="<%=span2%>" />
+			～対象日付/期間(終了)：<html:text property="span2" size="20" maxlength="8" style="width: 17%" />
 			<p style="color:red;margin-left: 12%">例) 2020年9月1日～2020年9月3日 → 20200901～20200903
 		</p>
 		<p align="center" class="code" style="margin-left: -43%">
-			出勤予定時刻:<html:text property="ptime" size="43" maxlength="5" style="width: 17%" value="<%=ptime%>" />
+			出勤予定時刻:<html:text property="ptime" size="43" maxlength="5" style="width: 17%" />
 			<p style="color:red;margin-left: 12%">例) 12:00
 
 		</p>
 		<p style="margin-left: 17.5%;">備考:</p>
 		<div style="margin-left: 21%;">
-			<html:textarea property="remark" rows="10" cols="100" value="<%=remark%>"></html:textarea>
+			<html:textarea property="remark" rows="10" cols="100"></html:textarea>
 		</div>
 
 		<p align="center" class="code" style="margin-left: -39%">
-			許可:<html:text property="perm" size="43" maxlength="4" style="width: 17%" value="<%=perm%>" />
+			許可:<html:text property="perm" size="43" maxlength="4" style="width: 17%"/>
 			<p style="color:red;margin-left: 17%">※ 届出区分がA,Bの場合、姓のみ記載
 		</p>
 
